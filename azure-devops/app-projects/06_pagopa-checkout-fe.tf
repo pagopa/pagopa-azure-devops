@@ -34,8 +34,8 @@ locals {
   }
   # deploy vars
   pagopa-checkout-fe-variables_deploy = {
-    git_mail                 = module.secrets.values["io-azure-devops-github-EMAIL"].value
-    git_username             = module.secrets.values["io-azure-devops-github-USERNAME"].value
+    git_mail                 = module.secrets.values["azure-devops-github-EMAIL"].value
+    git_username             = module.secrets.values["azure-devops-github-USERNAME"].value
     github_connection        = azuredevops_serviceendpoint_github.azure-devops-github-rw.service_endpoint_name
     dev_azure_subscription   = azuredevops_serviceendpoint_azurerm.DEV-PAGOPA.service_endpoint_name
     uat_azure_subscription   = azuredevops_serviceendpoint_azurerm.UAT-PAGOPA.service_endpoint_name
@@ -44,9 +44,9 @@ locals {
     checkout_api_host_dev    = "https://api.dev.platform.pagopa.it"
     checkout_api_host_uat    = "https://api.uat.platform.pagopa.it"
     checkout_api_host_prod   = "https://api.platform.pagopa.it"
-    checkout_captcha_id_dev  = module.secrets.values["CHECKOUT-CAPTCHA-ID-UAT"].value
-    checkout_captcha_id_uat  = module.secrets.values["CHECKOUT-CAPTCHA-ID-UAT"].value
-    checkout_captcha_id_prod = module.secrets.values["CHECKOUT-CAPTCHA-ID-PROD"].value
+    checkout_captcha_id_dev  = module.secrets.values["UAT-CHECKOUT-CAPTCHA-ID"].value
+    checkout_captcha_id_uat  = module.secrets.values["UAT-CHECKOUT-CAPTCHA-ID"].value
+    checkout_captcha_id_prod = module.secrets.values["PROD-CHECKOUT-CAPTCHA-ID"].value
   }
   # deploy secrets
   pagopa-checkout-fe-variables_secret_deploy = {

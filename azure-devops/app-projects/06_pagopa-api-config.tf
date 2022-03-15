@@ -44,8 +44,8 @@ locals {
   }
   # deploy vars
   pagopa-api-config-variables_deploy = {
-    git_mail                         = module.secrets.values["io-azure-devops-github-EMAIL"].value
-    git_username                     = module.secrets.values["io-azure-devops-github-USERNAME"].value
+    git_mail                         = module.secrets.values["azure-devops-github-EMAIL"].value
+    git_username                     = module.secrets.values["azure-devops-github-USERNAME"].value
     github_connection                = azuredevops_serviceendpoint_github.azure-devops-github-rw.service_endpoint_name
     healthcheck_endpoint             = "/api/v1/info"
     dev_deploy_type                  = "production_slot" #or staging_slot_and_swap
@@ -61,7 +61,7 @@ locals {
     prod_web_app_name                = "pagopa-p-app-api-config"
     prod_web_app_resource_group_name = "pagopa-p-api-config-rg"
 
-    tenant_id                         = module.secrets.values["PAGOPAIT-TENANTID"].value
+    tenant_id                         = module.secrets.values["TENANTID"].value
     dev_apiconfig_client_fe_id        = module.secrets.values["DEV-APICONFIG-CLIENT-ID"].value
     dev_apiconfig_client_fe_secret    = module.secrets.values["DEV-APICONFIG-CLIENT-SECRECT"].value
     dev_apiconfig_client_be_resource  = module.secrets.values["DEV-APICONFIG-BE-CLIENT-ID"].value

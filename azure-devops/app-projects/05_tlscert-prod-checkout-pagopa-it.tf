@@ -26,9 +26,9 @@ variable "tlscert-prod-checkout-pagopa-it" {
 
 locals {
   tlscert-prod-checkout-pagopa-it = {
-    tenant_id         = module.secrets.values["PAGOPAIT-TENANTID"].value
+    tenant_id         = module.secrets.values["TENANTID"].value
     subscription_name = "PROD-PAGOPA"
-    subscription_id   = module.secrets.values["PAGOPAIT-PROD-PAGOPA-SUBSCRIPTION-ID"].value
+    subscription_id   = module.secrets.values["PROD-SUBSCRIPTION-ID"].value
   }
   tlscert-prod-checkout-pagopa-it-variables = {
     KEY_VAULT_SERVICE_CONNECTION = module.PROD-TLS-CERT-SERVICE-CONN.service_endpoint_name

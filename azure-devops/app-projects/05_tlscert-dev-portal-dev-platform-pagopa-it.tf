@@ -26,9 +26,9 @@ variable "tlscert-dev-portal-dev-platform-pagopa-it" {
 
 locals {
   tlscert-dev-portal-dev-platform-pagopa-it = {
-    tenant_id         = module.secrets.values["PAGOPAIT-TENANTID"].value
+    tenant_id         = module.secrets.values["TENANTID"].value
     subscription_name = "DEV-PAGOPA"
-    subscription_id   = module.secrets.values["PAGOPAIT-DEV-PAGOPA-SUBSCRIPTION-ID"].value
+    subscription_id   = module.secrets.values["DEV-SUBSCRIPTION-ID"].value
   }
   tlscert-dev-portal-dev-platform-pagopa-it-variables = {
     KEY_VAULT_SERVICE_CONNECTION = module.DEV-TLS-CERT-SERVICE-CONN.service_endpoint_name

@@ -44,13 +44,13 @@ locals {
   }
   # deploy vars
   pagopa-api-config-fe-variables_deploy = {
-    git_mail          = module.secrets.values["io-azure-devops-github-EMAIL"].value
-    git_username      = module.secrets.values["io-azure-devops-github-USERNAME"].value
+    git_mail          = module.secrets.values["azure-devops-github-EMAIL"].value
+    git_username      = module.secrets.values["azure-devops-github-USERNAME"].value
     github_connection = azuredevops_serviceendpoint_github.azure-devops-github-rw.service_endpoint_name
 
     blob_container_name     = "$web"
     apim_basepath_apiconfig = "/apiconfig/api"
-    apiconfig_tenant        = format("https://login.microsoftonline.com/%s", module.secrets.values["PAGOPAIT-TENANTID"].value),
+    apiconfig_tenant        = format("https://login.microsoftonline.com/%s", module.secrets.values["TENANTID"].value),
     apiconfig_scopes        = "api://pagopa-apiconfig-be/access-apiconfig-be"
 
     dev_apiconfig_client_id  = module.secrets.values["DEV-APICONFIG-CLIENT-ID"].value

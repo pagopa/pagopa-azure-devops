@@ -26,9 +26,9 @@ variable "tlscert-uat-checkout-pagopa-it" {
 
 locals {
   tlscert-uat-checkout-pagopa-it = {
-    tenant_id         = module.secrets.values["PAGOPAIT-TENANTID"].value
+    tenant_id         = module.secrets.values["TENANTID"].value
     subscription_name = "UAT-PAGOPA"
-    subscription_id   = module.secrets.values["PAGOPAIT-UAT-PAGOPA-SUBSCRIPTION-ID"].value
+    subscription_id   = module.secrets.values["UAT-SUBSCRIPTION-ID"].value
   }
   tlscert-uat-checkout-pagopa-it-variables = {
     KEY_VAULT_SERVICE_CONNECTION = module.UAT-TLS-CERT-SERVICE-CONN.service_endpoint_name

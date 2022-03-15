@@ -7,7 +7,7 @@ resource "azuredevops_serviceendpoint_dockerregistry" "sia-registry-dev" {
   service_endpoint_name = "sia-registry-dev"
   docker_registry       = "docker-registry-default.ocp-tst-npaspc.sia.eu"
   docker_username       = "serviceaccount"
-  docker_password       = module.secrets.values["DEV-PAGOPA-SIA-DOCKER-REGISTRY-PWD"].value
+  docker_password       = module.secrets.values["DEV-SIA-DOCKER-REGISTRY-PWD"].value
   registry_type         = "Others"
 }
 
@@ -18,7 +18,7 @@ resource "azuredevops_serviceendpoint_dockerregistry" "sia-registry-uat" {
   service_endpoint_name = "sia-registry-uat"
   docker_registry       = "docker-registry-default.ocp-tst-npaspc.sia.eu"
   docker_username       = "serviceaccount"
-  docker_password       = module.secrets.values["UAT-PAGOPA-SIA-DOCKER-REGISTRY-PWD"].value
+  docker_password       = module.secrets.values["UAT-SIA-DOCKER-REGISTRY-PWD"].value
   registry_type         = "Others"
 }
 
@@ -29,6 +29,6 @@ resource "azuredevops_serviceendpoint_dockerregistry" "sia-registry-prod" {
   service_endpoint_name = "sia-registry-prod"
   docker_registry       = "docker-registry-default.ocp-tst-npaspc.sia.eu"
   docker_username       = "serviceaccount"
-  docker_password       = module.secrets.values["PROD-PAGOPA-SIA-DOCKER-REGISTRY-PWD"].value
+  docker_password       = module.secrets.values["PROD-SIA-DOCKER-REGISTRY-PWD"].value
   registry_type         = "Others"
 }

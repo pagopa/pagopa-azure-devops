@@ -44,8 +44,8 @@ locals {
   }
   # deploy vars
   pagopa-nodo4-nodo-dei-pagamenti-variables_deploy = {
-    git_mail                             = module.secrets.values["io-azure-devops-github-EMAIL"].value
-    git_username                         = module.secrets.values["io-azure-devops-github-USERNAME"].value
+    git_mail                             = module.secrets.values["azure-devops-github-EMAIL"].value
+    git_username                         = module.secrets.values["azure-devops-github-USERNAME"].value
     github_connection                    = azuredevops_serviceendpoint_github.azure-devops-github-rw.service_endpoint_name
     dev_container_registry_service_conn  = azuredevops_serviceendpoint_azurecr.pagopa-azurecr-dev.service_endpoint_name
     dev_container_registry_name          = "pagopadacr.azurecr.io"
@@ -60,7 +60,7 @@ locals {
 
     sia_docker_registry = "docker-registry-default.ocp-tst-npaspc.sia.eu"
     sia_docker_username = "serviceaccount"
-    sia_docker_password = module.secrets.values["DEV-PAGOPA-SIA-DOCKER-REGISTRY-PWD"].value
+    sia_docker_password = module.secrets.values["DEV-SIA-DOCKER-REGISTRY-PWD"].value
 
   }
   # deploy secrets

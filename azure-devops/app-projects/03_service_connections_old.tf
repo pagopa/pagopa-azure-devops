@@ -53,8 +53,8 @@
 #   service_endpoint_name     = "DEV-PAGOPA-SERVICE-CONN"
 #   description               = "DEV-PAGOPA Service connection"
 #   azurerm_subscription_name = "DEV-PAGOPA"
-#   azurerm_spn_tenantid      = module.secrets.values["PAGOPAIT-TENANTID"].value
-#   azurerm_subscription_id   = module.secrets.values["PAGOPAIT-DEV-PAGOPA-SUBSCRIPTION-ID"].value
+#   azurerm_spn_tenantid      = module.secrets.values["TENANTID"].value
+#   azurerm_subscription_id   = module.secrets.values["DEV-SUBSCRIPTION-ID"].value
 # }
 
 # # UAT service connection
@@ -65,8 +65,8 @@
 #   service_endpoint_name     = "UAT-PAGOPA-SERVICE-CONN"
 #   description               = "UAT-PAGOPA Service connection"
 #   azurerm_subscription_name = "UAT-PAGOPA"
-#   azurerm_spn_tenantid      = module.secrets.values["PAGOPAIT-TENANTID"].value
-#   azurerm_subscription_id   = module.secrets.values["PAGOPAIT-UAT-PAGOPA-SUBSCRIPTION-ID"].value
+#   azurerm_spn_tenantid      = module.secrets.values["TENANTID"].value
+#   azurerm_subscription_id   = module.secrets.values["UAT-SUBSCRIPTION-ID"].value
 # }
 
 # # PROD service connection
@@ -77,8 +77,8 @@
 #   service_endpoint_name     = "PROD-PAGOPA-SERVICE-CONN"
 #   description               = "PROD-PAGOPA Service connection"
 #   azurerm_subscription_name = "PROD-PAGOPA"
-#   azurerm_spn_tenantid      = module.secrets.values["PAGOPAIT-TENANTID"].value
-#   azurerm_subscription_id   = module.secrets.values["PAGOPAIT-PROD-PAGOPA-SUBSCRIPTION-ID"].value
+#   azurerm_spn_tenantid      = module.secrets.values["TENANTID"].value
+#   azurerm_subscription_id   = module.secrets.values["PROD-SUBSCRIPTION-ID"].value
 # }
 
 # module "DEV-TLS-CERT-SERVICE-CONN" {
@@ -89,8 +89,8 @@
 #   #tfsec:ignore:GEN003
 #   renew_token       = local.tlscert_renew_token
 #   name              = "pagopa-d-tls-cert"
-#   tenant_id         = module.secrets.values["PAGOPAIT-TENANTID"].value
-#   subscription_id   = module.secrets.values["PAGOPAIT-DEV-PAGOPA-SUBSCRIPTION-ID"].value
+#   tenant_id         = module.secrets.values["TENANTID"].value
+#   subscription_id   = module.secrets.values["DEV-SUBSCRIPTION-ID"].value
 #   subscription_name = "DEV-PAGOPA"
 
 #   credential_subcription              = local.key_vault_subscription
@@ -107,7 +107,7 @@
 # resource "azurerm_key_vault_access_policy" "DEV-TLS-CERT-SERVICE-CONN_kv_dev" {
 #   provider     = azurerm.dev-pagopa
 #   key_vault_id = data.azurerm_key_vault.kv_dev.id
-#   tenant_id    = module.secrets.values["PAGOPAIT-TENANTID"].value
+#   tenant_id    = module.secrets.values["TENANTID"].value
 #   object_id    = module.DEV-TLS-CERT-SERVICE-CONN.service_principal_object_id
 
 #   certificate_permissions = ["Get", "Import"]
@@ -121,8 +121,8 @@
 #   #tfsec:ignore:GEN003
 #   renew_token       = local.tlscert_renew_token
 #   name              = "pagopa-u-tls-cert"
-#   tenant_id         = module.secrets.values["PAGOPAIT-TENANTID"].value
-#   subscription_id   = module.secrets.values["PAGOPAIT-UAT-PAGOPA-SUBSCRIPTION-ID"].value
+#   tenant_id         = module.secrets.values["TENANTID"].value
+#   subscription_id   = module.secrets.values["UAT-SUBSCRIPTION-ID"].value
 #   subscription_name = "UAT-PAGOPA"
 
 #   credential_subcription              = local.key_vault_subscription
@@ -139,7 +139,7 @@
 # resource "azurerm_key_vault_access_policy" "UAT-TLS-CERT-SERVICE-CONN_kv_uat" {
 #   provider     = azurerm.uat-pagopa
 #   key_vault_id = data.azurerm_key_vault.kv_uat.id
-#   tenant_id    = module.secrets.values["PAGOPAIT-TENANTID"].value
+#   tenant_id    = module.secrets.values["TENANTID"].value
 #   object_id    = module.UAT-TLS-CERT-SERVICE-CONN.service_principal_object_id
 
 #   certificate_permissions = ["Get", "Import"]
@@ -153,8 +153,8 @@
 #   #tfsec:ignore:GEN003
 #   renew_token       = local.tlscert_renew_token
 #   name              = "pagopa-p-tls-cert"
-#   tenant_id         = module.secrets.values["PAGOPAIT-TENANTID"].value
-#   subscription_id   = module.secrets.values["PAGOPAIT-PROD-PAGOPA-SUBSCRIPTION-ID"].value
+#   tenant_id         = module.secrets.values["TENANTID"].value
+#   subscription_id   = module.secrets.values["PROD-SUBSCRIPTION-ID"].value
 #   subscription_name = "PROD-PAGOPA"
 
 #   credential_subcription              = local.key_vault_subscription
@@ -171,7 +171,7 @@
 # resource "azurerm_key_vault_access_policy" "PROD-TLS-CERT-SERVICE-CONN_kv_prod" {
 #   provider     = azurerm.prod-pagopa
 #   key_vault_id = data.azurerm_key_vault.kv_prod.id
-#   tenant_id    = module.secrets.values["PAGOPAIT-TENANTID"].value
+#   tenant_id    = module.secrets.values["TENANTID"].value
 #   object_id    = module.PROD-TLS-CERT-SERVICE-CONN.service_principal_object_id
 
 #   certificate_permissions = ["Get", "Import"]
@@ -186,8 +186,8 @@
 #   resource_group            = "pagopa-d-aks-rg"
 #   azurecr_name              = "pagopadacr"
 #   azurecr_subscription_name = "DEV-PAGOPA"
-#   azurecr_spn_tenantid      = module.secrets.values["PAGOPAIT-TENANTID"].value
-#   azurecr_subscription_id   = module.secrets.values["PAGOPAIT-DEV-PAGOPA-SUBSCRIPTION-ID"].value
+#   azurecr_spn_tenantid      = module.secrets.values["TENANTID"].value
+#   azurecr_subscription_id   = module.secrets.values["DEV-SUBSCRIPTION-ID"].value
 # }
 
 # # UAT service connection for azure container registry 
@@ -199,8 +199,8 @@
 #   resource_group            = "pagopa-u-aks-rg"
 #   azurecr_name              = "pagopauacr"
 #   azurecr_subscription_name = "UAT-PAGOPA"
-#   azurecr_spn_tenantid      = module.secrets.values["PAGOPAIT-TENANTID"].value
-#   azurecr_subscription_id   = module.secrets.values["PAGOPAIT-UAT-PAGOPA-SUBSCRIPTION-ID"].value
+#   azurecr_spn_tenantid      = module.secrets.values["TENANTID"].value
+#   azurecr_subscription_id   = module.secrets.values["UAT-SUBSCRIPTION-ID"].value
 # }
 
 # # PROD service connection for azure container registry 
@@ -212,8 +212,8 @@
 #   resource_group            = "pagopa-p-aks-rg"
 #   azurecr_name              = "pagopapacr"
 #   azurecr_subscription_name = "PROD-PAGOPA"
-#   azurecr_spn_tenantid      = module.secrets.values["PAGOPAIT-TENANTID"].value
-#   azurecr_subscription_id   = module.secrets.values["PAGOPAIT-PROD-PAGOPA-SUBSCRIPTION-ID"].value
+#   azurecr_spn_tenantid      = module.secrets.values["TENANTID"].value
+#   azurecr_subscription_id   = module.secrets.values["PROD-SUBSCRIPTION-ID"].value
 # }
 
 

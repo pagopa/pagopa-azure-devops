@@ -44,8 +44,8 @@ locals {
   }
   # deploy vars
   pagopa-debt-position-variables_deploy = {
-    git_mail                         = module.secrets.values["io-azure-devops-github-EMAIL"].value
-    git_username                     = module.secrets.values["io-azure-devops-github-USERNAME"].value
+    git_mail                         = module.secrets.values["azure-devops-github-EMAIL"].value
+    git_username                     = module.secrets.values["azure-devops-github-USERNAME"].value
     github_connection                = azuredevops_serviceendpoint_github.azure-devops-github-rw.service_endpoint_name
     healthcheck_endpoint             = "/api/v1/info"
     dev_azure_subscription           = azuredevops_serviceendpoint_azurerm.DEV-PAGOPA.service_endpoint_name
@@ -55,7 +55,7 @@ locals {
     prod_azure_subscription          = azuredevops_serviceendpoint_azurerm.PROD-PAGOPA.service_endpoint_name
     prod_web_app_name                = "pagopa-p"
 
-    tenant_id                         = module.secrets.values["PAGOPAIT-TENANTID"].value
+    tenant_id                         = module.secrets.values["TENANTID"].value
 
     # acr section
     image_repository = "debt-position"

@@ -34,8 +34,8 @@ locals {
   }
   # deploy vars
   pagopa-checkout-io-pay-portal-fe-variables_deploy = {
-    git_mail                              = module.secrets.values["io-azure-devops-github-EMAIL"].value
-    git_username                          = module.secrets.values["io-azure-devops-github-USERNAME"].value
+    git_mail                              = module.secrets.values["azure-devops-github-EMAIL"].value
+    git_username                          = module.secrets.values["azure-devops-github-USERNAME"].value
     github_connection                     = azuredevops_serviceendpoint_github.azure-devops-github-rw.service_endpoint_name
     cache_version_id                      = "v3"
     blob_container_name                   = "$web"
@@ -46,8 +46,8 @@ locals {
     profile_name_cdn_azure                = "pagopa-p-checkout-cdn-p"
     resource_group_azure                  = "pagopa-p-checkout-fe-rg"
     storage_account_name                  = "pagopapcheckoutsa"
-    checkout_captcha_id_uat               = module.secrets.values["CHECKOUT-CAPTCHA-ID-UAT"].value
-    checkout_captcha_id_prod              = module.secrets.values["CHECKOUT-CAPTCHA-ID-PROD"].value
+    checkout_captcha_id_uat               = module.secrets.values["UAT-CHECKOUT-CAPTCHA-ID"].value
+    checkout_captcha_id_prod              = module.secrets.values["PROD-CHECKOUT-CAPTCHA-ID"].value
   }
   # deploy secrets
   pagopa-checkout-io-pay-portal-fe-variables_secret_deploy = {

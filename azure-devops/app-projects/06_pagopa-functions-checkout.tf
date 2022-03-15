@@ -34,8 +34,8 @@ locals {
   }
   # deploy vars
   pagopa-functions-checkout-variables_deploy = {
-    git_mail                = module.secrets.values["io-azure-devops-github-EMAIL"].value
-    git_username            = module.secrets.values["io-azure-devops-github-USERNAME"].value
+    git_mail                = module.secrets.values["azure-devops-github-EMAIL"].value
+    git_username            = module.secrets.values["azure-devops-github-USERNAME"].value
     github_connection       = azuredevops_serviceendpoint_github.azure-devops-github-rw.service_endpoint_name
     uat_azure_subscription  = azuredevops_serviceendpoint_azurerm.UAT-PAGOPA.service_endpoint_name
     prod_azure_subscription = azuredevops_serviceendpoint_azurerm.PROD-PAGOPA.service_endpoint_name
