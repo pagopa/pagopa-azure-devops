@@ -1,5 +1,5 @@
 resource "azuredevops_project" "project" {
-  name               = "pagoPA-projects-beta"
+  name               = "beta-pagoPA-projects"
   description        = "This is the DevOps project for pagoPA service projects"
   visibility         = "public"
   version_control    = "Git"
