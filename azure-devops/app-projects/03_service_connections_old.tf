@@ -1,11 +1,11 @@
 # Github service connection (read-only)
-# resource "azuredevops_serviceendpoint_github" "io-azure-devops-github-ro" {
+# resource "azuredevops_serviceendpoint_github" "azure-devops-github-ro" {
 #   depends_on = [azuredevops_project.project]
 
 #   project_id            = azuredevops_project.project.id
-#   service_endpoint_name = "io-azure-devops-github-ro"
+#   service_endpoint_name = "azure-devops-github-ro"
 #   auth_personal {
-#     personal_access_token = module.secrets.values["io-azure-devops-github-ro-TOKEN"].value
+#     personal_access_token = module.secrets.values["azure-devops-github-ro-TOKEN"].value
 #   }
 #   lifecycle {
 #     ignore_changes = [description, authorization]
@@ -13,13 +13,13 @@
 # }
 
 # # Github service connection (pull request)
-# resource "azuredevops_serviceendpoint_github" "io-azure-devops-github-pr" {
+# resource "azuredevops_serviceendpoint_github" "azure-devops-github-pr" {
 #   depends_on = [azuredevops_project.project]
 
 #   project_id            = azuredevops_project.project.id
-#   service_endpoint_name = "io-azure-devops-github-pr"
+#   service_endpoint_name = "azure-devops-github-pr"
 #   auth_personal {
-#     personal_access_token = module.secrets.values["io-azure-devops-github-pr-TOKEN"].value
+#     personal_access_token = module.secrets.values["azure-devops-github-pr-TOKEN"].value
 #   }
 #   lifecycle {
 #     ignore_changes = [description, authorization]
@@ -27,13 +27,13 @@
 # }
 
 # # Github service connection (read-write)
-# resource "azuredevops_serviceendpoint_github" "io-azure-devops-github-rw" {
+# resource "azuredevops_serviceendpoint_github" "azure-devops-github-rw" {
 #   depends_on = [azuredevops_project.project]
 
 #   project_id            = azuredevops_project.project.id
-#   service_endpoint_name = "io-azure-devops-github-rw"
+#   service_endpoint_name = "azure-devops-github-rw"
 #   auth_personal {
-#     personal_access_token = module.secrets.values["io-azure-devops-github-rw-TOKEN"].value
+#     personal_access_token = module.secrets.values["azure-devops-github-rw-TOKEN"].value
 #   }
 #   lifecycle {
 #     ignore_changes = [description, authorization]
@@ -81,7 +81,7 @@
 #   azurerm_subscription_id   = module.secrets.values["PAGOPAIT-PROD-PAGOPA-SUBSCRIPTION-ID"].value
 # }
 
-# module "DEV-PAGOPA-TLS-CERT-SERVICE-CONN" {
+# module "DEV-TLS-CERT-SERVICE-CONN" {
 #   depends_on = [azuredevops_project.project]
 #   source     = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_azurerm_limited?ref=v2.0.4"
 
@@ -104,16 +104,16 @@
 #   resource_group_name = format("%s-d-sec-rg", local.prefix)
 # }
 
-# resource "azurerm_key_vault_access_policy" "DEV-PAGOPA-TLS-CERT-SERVICE-CONN_kv_dev" {
+# resource "azurerm_key_vault_access_policy" "DEV-TLS-CERT-SERVICE-CONN_kv_dev" {
 #   provider     = azurerm.dev-pagopa
 #   key_vault_id = data.azurerm_key_vault.kv_dev.id
 #   tenant_id    = module.secrets.values["PAGOPAIT-TENANTID"].value
-#   object_id    = module.DEV-PAGOPA-TLS-CERT-SERVICE-CONN.service_principal_object_id
+#   object_id    = module.DEV-TLS-CERT-SERVICE-CONN.service_principal_object_id
 
 #   certificate_permissions = ["Get", "Import"]
 # }
 
-# module "UAT-PAGOPA-TLS-CERT-SERVICE-CONN" {
+# module "UAT-TLS-CERT-SERVICE-CONN" {
 #   depends_on = [azuredevops_project.project]
 #   source     = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_azurerm_limited?ref=v2.0.4"
 
@@ -136,16 +136,16 @@
 #   resource_group_name = format("%s-u-sec-rg", local.prefix)
 # }
 
-# resource "azurerm_key_vault_access_policy" "UAT-PAGOPA-TLS-CERT-SERVICE-CONN_kv_uat" {
+# resource "azurerm_key_vault_access_policy" "UAT-TLS-CERT-SERVICE-CONN_kv_uat" {
 #   provider     = azurerm.uat-pagopa
 #   key_vault_id = data.azurerm_key_vault.kv_uat.id
 #   tenant_id    = module.secrets.values["PAGOPAIT-TENANTID"].value
-#   object_id    = module.UAT-PAGOPA-TLS-CERT-SERVICE-CONN.service_principal_object_id
+#   object_id    = module.UAT-TLS-CERT-SERVICE-CONN.service_principal_object_id
 
 #   certificate_permissions = ["Get", "Import"]
 # }
 
-# module "PROD-PAGOPA-TLS-CERT-SERVICE-CONN" {
+# module "PROD-TLS-CERT-SERVICE-CONN" {
 #   depends_on = [azuredevops_project.project]
 #   source     = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_azurerm_limited?ref=v2.0.4"
 
@@ -168,11 +168,11 @@
 #   resource_group_name = format("%s-p-sec-rg", local.prefix)
 # }
 
-# resource "azurerm_key_vault_access_policy" "PROD-PAGOPA-TLS-CERT-SERVICE-CONN_kv_prod" {
+# resource "azurerm_key_vault_access_policy" "PROD-TLS-CERT-SERVICE-CONN_kv_prod" {
 #   provider     = azurerm.prod-pagopa
 #   key_vault_id = data.azurerm_key_vault.kv_prod.id
 #   tenant_id    = module.secrets.values["PAGOPAIT-TENANTID"].value
-#   object_id    = module.PROD-PAGOPA-TLS-CERT-SERVICE-CONN.service_principal_object_id
+#   object_id    = module.PROD-TLS-CERT-SERVICE-CONN.service_principal_object_id
 
 #   certificate_permissions = ["Get", "Import"]
 # }
