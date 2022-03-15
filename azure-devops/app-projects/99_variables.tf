@@ -20,7 +20,7 @@ variable "project_name_prefix" {
 }
 
 locals {
-  prefix           = "prefix"
+  prefix           = "pagopa"
   azure_devops_org = "pagopaspa"
 
   # 🔐 KV
