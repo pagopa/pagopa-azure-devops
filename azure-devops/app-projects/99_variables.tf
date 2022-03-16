@@ -20,7 +20,7 @@ variable "project_name_prefix" {
 }
 
 variable "pipeline_environments" {
-  type = list
+  type        = list(any)
   description = "List of environments pipeline to create"
 }
 
@@ -44,18 +44,18 @@ locals {
 
   # 📦 ACR DEV DOCKER
   srv_endpoint_name_docker_registry_dev = "${local.prefix}-azurecr-dev"
-  docker_registry_rg_name_dev      = "${local.prefix}-d-aks-rg"
-  docker_registry_name_dev         = "${local.prefix}dacr"
+  docker_registry_rg_name_dev           = "${local.prefix}-d-aks-rg"
+  docker_registry_name_dev              = "${local.prefix}dacr"
 
   # 📦 ACR UAT DOCKER
   srv_endpoint_name_docker_registry_uat = "${local.prefix}-azurecr-uat"
-  docker_registry_rg_name_uat      = "${local.prefix}-u-aks-rg"
-  docker_registry_name_uat         = "${local.prefix}uacr"
+  docker_registry_rg_name_uat           = "${local.prefix}-u-aks-rg"
+  docker_registry_name_uat              = "${local.prefix}uacr"
 
   # 📦 ACR PROD DOCKER
   srv_endpoint_name_docker_registry_prod = "${local.prefix}-azurecr-prod"
-  docker_registry_rg_name_prod      = "${local.prefix}-p-aks-rg"
-  docker_registry_name_prod         = "${local.prefix}pacr"
+  docker_registry_rg_name_prod           = "${local.prefix}-p-aks-rg"
+  docker_registry_name_prod              = "${local.prefix}pacr"
 
   #tfsec:ignore:general-secrets-no-plaintext-exposure
   #tfsec:ignore:GEN002
