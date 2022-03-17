@@ -47,16 +47,16 @@
 #     git_mail                             = module.secrets.values["azure-devops-github-EMAIL"].value
 #     git_username                         = module.secrets.values["azure-devops-github-USERNAME"].value
 #     github_connection                    = azuredevops_serviceendpoint_github.azure-devops-github-rw.service_endpoint_name
-#     dev_container_registry_service_conn  = azuredevops_serviceendpoint_azurecr.pagopa-azurecr-dev.service_endpoint_name
+#     dev_container_registry_service_conn  = azuredevops_serviceendpoint_azurecr.acr_docker_registry_dev.service_endpoint_name
 #     dev_container_registry_name          = "pagopadacr.azurecr.io"
-#     uat_container_registry_service_conn  = azuredevops_serviceendpoint_azurecr.pagopa-azurecr-uat.service_endpoint_name
+#     uat_container_registry_service_conn  = azuredevops_serviceendpoint_azurecr.acr_docker_registry_uat.service_endpoint_name
 #     uat_container_registry_name          = "pagopauacr.azurecr.io"
-#     prod_container_registry_service_conn = azuredevops_serviceendpoint_azurecr.pagopa-azurecr-prod.service_endpoint_name
+#     prod_container_registry_service_conn = azuredevops_serviceendpoint_azurecr.acr_docker_registry_prod.service_endpoint_name
 #     prod_container_registry_name         = "pagopapacr.azurecr.io"
 
-#     dev_sia_registry_service_conn  = azuredevops_serviceendpoint_dockerregistry.sia-registry-dev.service_endpoint_name
-#     uat_sia_registry_service_conn  = azuredevops_serviceendpoint_dockerregistry.sia-registry-uat.service_endpoint_name
-#     prod_sia_registry_service_conn = azuredevops_serviceendpoint_dockerregistry.sia-registry-prod.service_endpoint_name
+#     dev_sia_registry_service_conn  = azuredevops_serviceendpoint_dockerregistry.sia-docker-registry-dev.service_endpoint_name
+#     uat_sia_registry_service_conn  = azuredevops_serviceendpoint_dockerregistry.sia-docker-registry-uat.service_endpoint_name
+#     prod_sia_registry_service_conn = azuredevops_serviceendpoint_dockerregistry.sia-docker-registry-prod.service_endpoint_name
 
 #     sia_docker_registry = "docker-registry-default.ocp-tst-npaspc.sia.eu"
 #     sia_docker_username = "serviceaccount"
@@ -117,11 +117,11 @@
 
 #   service_connection_ids_authorization = [
 #     azuredevops_serviceendpoint_github.azure-devops-github-ro.id,
-#     azuredevops_serviceendpoint_azurecr.pagopa-azurecr-dev.id,
-#     azuredevops_serviceendpoint_dockerregistry.sia-registry-dev.id,
-#     azuredevops_serviceendpoint_azurecr.pagopa-azurecr-uat.id,
-#     azuredevops_serviceendpoint_dockerregistry.sia-registry-uat.id,
-#     azuredevops_serviceendpoint_azurecr.pagopa-azurecr-prod.id,
-#     azuredevops_serviceendpoint_dockerregistry.sia-registry-prod.id,
+#     azuredevops_serviceendpoint_azurecr.acr_docker_registry_dev.id,
+#     azuredevops_serviceendpoint_dockerregistry.sia-docker-registry-dev.id,
+#     azuredevops_serviceendpoint_azurecr.acr_docker_registry_uat.id,
+#     azuredevops_serviceendpoint_dockerregistry.sia-docker-registry-uat.id,
+#     azuredevops_serviceendpoint_azurecr.acr_docker_registry_prod.id,
+#     azuredevops_serviceendpoint_dockerregistry.sia-docker-registry-prod.id,
 #   ]
 # }

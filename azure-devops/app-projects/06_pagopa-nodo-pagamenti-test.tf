@@ -108,11 +108,11 @@
 
 #   service_connection_ids_authorization = [
 #     azuredevops_serviceendpoint_github.azure-devops-github-ro.id,
-#     azuredevops_serviceendpoint_azurecr.pagopa-azurecr-dev.id,
-#     azuredevops_serviceendpoint_dockerregistry.sia-registry-dev.id,
-#     azuredevops_serviceendpoint_azurecr.pagopa-azurecr-uat.id,
-#     azuredevops_serviceendpoint_dockerregistry.sia-registry-uat.id,
-#     azuredevops_serviceendpoint_azurecr.pagopa-azurecr-prod.id,
-#     azuredevops_serviceendpoint_dockerregistry.sia-registry-prod.id,
+#     azuredevops_serviceendpoint_azurecr.acr_docker_registry_dev.id,
+#     azuredevops_serviceendpoint_dockerregistry.sia-docker-registry-dev.id,
+#     azuredevops_serviceendpoint_azurecr.acr_docker_registry_uat.id,
+#     azuredevops_serviceendpoint_dockerregistry.sia-docker-registry-uat.id,
+#     azuredevops_serviceendpoint_azurecr.acr_docker_registry_prod.id,
+#     azuredevops_serviceendpoint_dockerregistry.sia-docker-registry-prod.id,
 #   ]
 # }
