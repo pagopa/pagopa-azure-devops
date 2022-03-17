@@ -3,7 +3,6 @@ variable "dev_subscription_name" {
   description = "DEV Subscription name"
 }
 
-
 variable "uat_subscription_name" {
   type        = string
   description = "UAT Subscription name"

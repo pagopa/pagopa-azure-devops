@@ -48,11 +48,11 @@
 #     git_username                     = module.secrets.values["azure-devops-github-USERNAME"].value
 #     github_connection                = azuredevops_serviceendpoint_github.azure-devops-github-rw.service_endpoint_name
 #     healthcheck_endpoint             = "/api/v1/info"
-#     dev_azure_subscription           = azuredevops_serviceendpoint_azurerm.DEV-PAGOPA.service_endpoint_name
+#     dev_azure_subscription           = azuredevops_serviceendpoint_azurerm.DEV-SERVICE-CONN.service_endpoint_name
 #     dev_web_app_name                 = "pagopa-d"
-#     uat_azure_subscription           = azuredevops_serviceendpoint_azurerm.UAT-PAGOPA.service_endpoint_name
+#     uat_azure_subscription           = azuredevops_serviceendpoint_azurerm.UAT-SERVICE-CONN.service_endpoint_name
 #     uat_web_app_name                 = "pagopa-u"
-#     prod_azure_subscription          = azuredevops_serviceendpoint_azurerm.PROD-PAGOPA.service_endpoint_name
+#     prod_azure_subscription          = azuredevops_serviceendpoint_azurerm.PROD-SERVICE-CONN.service_endpoint_name
 #     prod_web_app_name                = "pagopa-p"
 
 #     tenant_id                         = module.secrets.values["TENANTID"].value
@@ -119,8 +119,8 @@
 
 #   service_connection_ids_authorization = [
 #     azuredevops_serviceendpoint_github.azure-devops-github-ro.id,
-#     azuredevops_serviceendpoint_azurerm.DEV-PAGOPA.id,
-#     azuredevops_serviceendpoint_azurerm.UAT-PAGOPA.id,
-#     azuredevops_serviceendpoint_azurerm.PROD-PAGOPA.id,
+#     azuredevops_serviceendpoint_azurerm.DEV-SERVICE-CONN.id,
+#     azuredevops_serviceendpoint_azurerm.UAT-SERVICE-CONN.id,
+#     azuredevops_serviceendpoint_azurerm.PROD-SERVICE-CONN.id,
 #   ]
 # }

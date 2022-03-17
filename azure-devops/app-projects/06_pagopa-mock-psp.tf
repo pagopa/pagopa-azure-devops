@@ -50,13 +50,13 @@
 #     github_connection                             = azuredevops_serviceendpoint_github.azure-devops-github-rw.service_endpoint_name
 #     healthcheck_endpoint                          = "/actuator/health" #todo
 #     dev_deploy_type                               = "production_slot"  #or staging_slot_and_swap
-#     dev_azure_subscription                        = azuredevops_serviceendpoint_azurerm.DEV-PAGOPA.service_endpoint_name
+#     dev_azure_subscription                        = azuredevops_serviceendpoint_azurerm.DEV-SERVICE-CONN.service_endpoint_name
 #     dev_web_app_name                              = "pagopa-d-app-mock-psp"
 #     dev_web_app_resource_group_name               = "pagopa-d-mock-psp-rg"
 #     dev_healthcheck_container_resource_group_name = "NA"
 #     dev_healthcheck_container_vnet                = "NA"
 #     uat_deploy_type                               = "production_slot" #or staging_slot_and_swap
-#     uat_azure_subscription                        = azuredevops_serviceendpoint_azurerm.UAT-PAGOPA.service_endpoint_name
+#     uat_azure_subscription                        = azuredevops_serviceendpoint_azurerm.UAT-SERVICE-CONN.service_endpoint_name
 #     uat_web_app_name                              = "pagopa-u-app-mock-psp"
 #     uat_web_app_resource_group_name               = "pagopa-u-mock-psp-rg"
 #     uat_healthcheck_container_resource_group_name = "NA"
@@ -112,7 +112,7 @@
 
 #   service_connection_ids_authorization = [
 #     azuredevops_serviceendpoint_github.azure-devops-github-ro.id,
-#     azuredevops_serviceendpoint_azurerm.DEV-PAGOPA.id,
-#     azuredevops_serviceendpoint_azurerm.UAT-PAGOPA.id,
+#     azuredevops_serviceendpoint_azurerm.DEV-SERVICE-CONN.id,
+#     azuredevops_serviceendpoint_azurerm.UAT-SERVICE-CONN.id,
 #   ]
 # }

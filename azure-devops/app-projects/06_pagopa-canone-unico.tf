@@ -49,15 +49,15 @@
 #     github_connection           = azuredevops_serviceendpoint_github.azure-devops-github-rw.service_endpoint_name
 #     healthcheck_endpoint        = ""
 #     dev_deploy_type             = "production_slot" #or staging_slot_and_swap
-#     dev_azure_subscription      = azuredevops_serviceendpoint_azurerm.DEV-PAGOPA.service_endpoint_name
+#     dev_azure_subscription      = azuredevops_serviceendpoint_azurerm.DEV-SERVICE-CONN.service_endpoint_name
 #     dev_fn_name                 = "pagopa-d-fn-canoneunico"
 #     dev_fn_resource_group_name  = "pagopa-d-canoneunico-rg"
 #     uat_deploy_type             = "production_slot" #or staging_slot_and_swap
-#     uat_azure_subscription      = azuredevops_serviceendpoint_azurerm.UAT-PAGOPA.service_endpoint_name
+#     uat_azure_subscription      = azuredevops_serviceendpoint_azurerm.UAT-SERVICE-CONN.service_endpoint_name
 #     uat_fn_name                 = "pagopa-u-fn-canoneunico"
 #     uat_fn_resource_group_name  = "pagopa-u-canoneunico-rg"
 #     prod_deploy_type            = "production_slot" #or staging_slot_and_swap
-#     prod_azure_subscription     = azuredevops_serviceendpoint_azurerm.PROD-PAGOPA.service_endpoint_name
+#     prod_azure_subscription     = azuredevops_serviceendpoint_azurerm.PROD-SERVICE-CONN.service_endpoint_name
 #     prod_fn_name                = "pagopa-p-fn-canoneunico"
 #     prod_fn_resource_group_name = "pagopa-p-canoneunico-rg"
 
@@ -125,8 +125,8 @@
 
 #   service_connection_ids_authorization = [
 #     azuredevops_serviceendpoint_github.azure-devops-github-ro.id,
-#     azuredevops_serviceendpoint_azurerm.DEV-PAGOPA.id,
-#     azuredevops_serviceendpoint_azurerm.UAT-PAGOPA.id,
-#     azuredevops_serviceendpoint_azurerm.PROD-PAGOPA.id,
+#     azuredevops_serviceendpoint_azurerm.DEV-SERVICE-CONN.id,
+#     azuredevops_serviceendpoint_azurerm.UAT-SERVICE-CONN.id,
+#     azuredevops_serviceendpoint_azurerm.PROD-SERVICE-CONN.id,
 #   ]
 # }

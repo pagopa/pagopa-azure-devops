@@ -37,9 +37,9 @@
 #     git_mail                 = module.secrets.values["azure-devops-github-EMAIL"].value
 #     git_username             = module.secrets.values["azure-devops-github-USERNAME"].value
 #     github_connection        = azuredevops_serviceendpoint_github.azure-devops-github-rw.service_endpoint_name
-#     dev_azure_subscription   = azuredevops_serviceendpoint_azurerm.DEV-PAGOPA.service_endpoint_name
-#     uat_azure_subscription   = azuredevops_serviceendpoint_azurerm.UAT-PAGOPA.service_endpoint_name
-#     prod_azure_subscription  = azuredevops_serviceendpoint_azurerm.PROD-PAGOPA.service_endpoint_name
+#     dev_azure_subscription   = azuredevops_serviceendpoint_azurerm.DEV-SERVICE-CONN.service_endpoint_name
+#     uat_azure_subscription   = azuredevops_serviceendpoint_azurerm.UAT-SERVICE-CONN.service_endpoint_name
+#     prod_azure_subscription  = azuredevops_serviceendpoint_azurerm.PROD-SERVICE-CONN.service_endpoint_name
 #     cache_version_id         = "v1"
 #     checkout_api_host_dev    = "https://api.dev.platform.pagopa.it"
 #     checkout_api_host_uat    = "https://api.uat.platform.pagopa.it"
@@ -97,8 +97,8 @@
 
 #   service_connection_ids_authorization = [
 #     azuredevops_serviceendpoint_github.azure-devops-github-ro.id,
-#     azuredevops_serviceendpoint_azurerm.DEV-PAGOPA.id,
-#     azuredevops_serviceendpoint_azurerm.UAT-PAGOPA.id,
-#     azuredevops_serviceendpoint_azurerm.PROD-PAGOPA.id,
+#     azuredevops_serviceendpoint_azurerm.DEV-SERVICE-CONN.id,
+#     azuredevops_serviceendpoint_azurerm.UAT-SERVICE-CONN.id,
+#     azuredevops_serviceendpoint_azurerm.PROD-SERVICE-CONN.id,
 #   ]
 # }
