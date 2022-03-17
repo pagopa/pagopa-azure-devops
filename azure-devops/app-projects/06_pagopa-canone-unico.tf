@@ -66,9 +66,9 @@
 #     # acr section
 #     image_repository = "canone-unico"
 
-#     dev_container_registry  = azuredevops_serviceendpoint_azurecr.pagopa-azurecr-dev.service_endpoint_name
-#     uat_container_registry  = azuredevops_serviceendpoint_azurecr.pagopa-azurecr-uat.service_endpoint_name
-#     prod_container_registry = azuredevops_serviceendpoint_azurecr.pagopa-azurecr-prod.service_endpoint_name
+#     dev_container_registry  = azuredevops_serviceendpoint_azurecr.acr_docker_registry_dev.service_endpoint_name
+#     uat_container_registry  = azuredevops_serviceendpoint_azurecr.acr_docker_registry_uat.service_endpoint_name
+#     prod_container_registry = azuredevops_serviceendpoint_azurecr.acr_docker_registry_prod.service_endpoint_name
 
 #     dev_container_namespace  = "pagopadacr.azurecr.io"
 #     uat_container_namespace  = "pagopauacr.azurecr.io"
