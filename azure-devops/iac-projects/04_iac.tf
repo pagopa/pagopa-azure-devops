@@ -1,8 +1,8 @@
 variable "iac" {
   default = {
     repository = {
-      organization    = ""
-      name            = ""
+      organization    = "pagopa"
+      name            = "pagopa-infra"
       branch_name     = "main"
       pipelines_path  = ".devops"
       yml_prefix_name = null
@@ -14,18 +14,41 @@ variable "iac" {
   }
 }
 
+locals {
+  # global vars
+  iac-variables = {
+
+  }
+  # global secrets
+  iac-variables_secret = {
+
+  }
+
+  # code_review vars
+  iac-variables_code_review = {
+
+  }
+  # code_review secrets
+  iac-variables_secret_code_review = {
+
+  }
+
+  # deploy vars
+  iac-variables_deploy = {
+
+  }
+  # deploy secrets
+  iac-variables_secret_deploy = {
+
+  }
+}
+
 module "iac_code_review" {
   source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review?ref=v2.0.5"
   count  = var.iac.pipeline.enable_code_review == true ? 1 : 0
 
-  project_id = azuredevops_project.project.id
-  repository = merge(
-    var.iac.repository,
-    {
-      organization = local.github_org
-      name         = "${var.project_name_prefix}-infra"
-    }
-  )
+  project_id                   = azuredevops_project.project.id
+  repository                   = var.iac.repository
   github_service_connection_id = azuredevops_serviceendpoint_github.azure-devops-github-pr.id
 
   pull_request_trigger_use_yaml = true
@@ -52,14 +75,8 @@ module "iac_deploy" {
   source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy?ref=v2.0.5"
   count  = var.iac.pipeline.enable_deploy == true ? 1 : 0
 
-  project_id = azuredevops_project.project.id
-  repository = merge(
-    var.iac.repository,
-    {
-      organization = local.github_org
-      name         = "${var.project_name_prefix}-infra"
-    }
-  )
+  project_id                   = azuredevops_project.project.id
+  repository                   = var.iac.repository
   github_service_connection_id = azuredevops_serviceendpoint_github.azure-devops-github-pr.id
 
   ci_trigger_use_yaml = true
