@@ -17,19 +17,31 @@ provider "azurerm" {
 }
 
 provider "azurerm" {
-  features {}
+  features {
+    key_vault {
+      purge_soft_delete_on_destroy = false
+    }
+  }
   alias           = "dev"
   subscription_id = module.secrets.values["DEV-SUBSCRIPTION-ID"].value
 }
 
 provider "azurerm" {
-  features {}
+  features {
+    key_vault {
+      purge_soft_delete_on_destroy = false
+    }
+  }
   alias           = "uat"
   subscription_id = module.secrets.values["UAT-SUBSCRIPTION-ID"].value
 }
 
 provider "azurerm" {
-  features {}
+  features {
+    key_vault {
+      purge_soft_delete_on_destroy = false
+    }
+  }
   alias           = "prod"
   subscription_id = module.secrets.values["PROD-SUBSCRIPTION-ID"].value
 }
