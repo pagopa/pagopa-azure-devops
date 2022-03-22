@@ -38,6 +38,11 @@ locals {
 }
 
 module "tlscert-dev-apiconfig-dev-platform-pagopa-it-cert_az" {
+
+  providers = {
+    azurerm = azurerm.dev
+  }
+
   source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_tls_cert?ref=v2.0.4"
   count  = var.tlscert-dev-api-config-dev-platform-pagopa-it.pipeline.enable_tls_cert == true ? 1 : 0
 
@@ -56,9 +61,9 @@ module "tlscert-dev-apiconfig-dev-platform-pagopa-it-cert_az" {
   subscription_name       = local.tlscert-dev-api-config-dev-platform-pagopa-it.subscription_name
   subscription_id         = local.tlscert-dev-api-config-dev-platform-pagopa-it.subscription_id
 
-  credential_subcription              = var.prod_subscription_name
-  credential_key_vault_name           = local.prod_key_vault_name
-  credential_key_vault_resource_group = local.prod_key_vault_resource_group
+  credential_subcription              = var.dev_subscription_name
+  credential_key_vault_name           = local.dev_key_vault_name
+  credential_key_vault_resource_group = local.dev_key_vault_resource_group
 
   variables = merge(
     var.tlscert-dev-api-config-dev-platform-pagopa-it.pipeline.variables,
