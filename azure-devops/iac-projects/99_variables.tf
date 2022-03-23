@@ -35,4 +35,9 @@ locals {
   dev_key_vault_resource_group  = "${local.prefix}-d-sec-rg"
   uat_key_vault_resource_group  = "${local.prefix}-u-sec-rg"
   prod_key_vault_resource_group = "${local.prefix}-p-sec-rg"
+
+  # Service connections/ End points
+  srv_endpoint_github_ro = "io-azure-devops-github-ro"
+  srv_endpoint_github_rw = "io-azure-devops-github-rw"
+  srv_endpoint_github_pr = "io-azure-devops-github-pr"
 }
