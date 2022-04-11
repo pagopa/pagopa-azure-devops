@@ -12,7 +12,7 @@ module "DEV-TLS-CERT-SERVICE-CONN" {
   project_id = azuredevops_project.project.id
   #tfsec:ignore:general-secrets-no-plaintext-exposure
   renew_token       = local.tlscert_renew_token
-  name              = "${local.prefix}-d-tls-cert"
+  name              = "${local.prefix}-d-tls-cert-kv-policy"
   tenant_id         = module.secrets.values["TENANTID"].value
   subscription_id   = module.secrets.values["DEV-SUBSCRIPTION-ID"].value
   subscription_name = var.dev_subscription_name
@@ -52,7 +52,7 @@ module "UAT-TLS-CERT-SERVICE-CONN" {
   project_id = azuredevops_project.project.id
   #tfsec:ignore:general-secrets-no-plaintext-exposure
   renew_token       = local.tlscert_renew_token
-  name              = "${local.prefix}-u-tls-cert"
+  name              = "${local.prefix}-u-tls-cert-kv-policy"
   tenant_id         = module.secrets.values["TENANTID"].value
   subscription_id   = module.secrets.values["UAT-SUBSCRIPTION-ID"].value
   subscription_name = var.uat_subscription_name
@@ -91,7 +91,7 @@ module "PROD-TLS-CERT-SERVICE-CONN" {
   project_id = azuredevops_project.project.id
   #tfsec:ignore:general-secrets-no-plaintext-exposure
   renew_token       = local.tlscert_renew_token
-  name              = "${local.prefix}-p-tls-cert"
+  name              = "${local.prefix}-p-tls-cert-kv-policy"
   tenant_id         = module.secrets.values["TENANTID"].value
   subscription_id   = module.secrets.values["PROD-SUBSCRIPTION-ID"].value
   subscription_name = var.prod_subscription_name
