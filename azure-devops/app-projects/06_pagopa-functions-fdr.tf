@@ -46,9 +46,9 @@ locals {
   }
   # deploy vars
   pagopa-reporting-fdr-variables_deploy = {
-    git_mail                = module.secrets.values["azure-devops-github-EMAIL"].value
-    git_username            = module.secrets.values["azure-devops-github-USERNAME"].value
-    github_connection       = azuredevops_serviceendpoint_github.azure-devops-github-rw.service_endpoint_name
+    git_mail          = module.secrets.values["azure-devops-github-EMAIL"].value
+    git_username      = module.secrets.values["azure-devops-github-USERNAME"].value
+    github_connection = azuredevops_serviceendpoint_github.azure-devops-github-rw.service_endpoint_name
 
     healthcheck_endpoint             = "/api/v1/info"
     dev_deploy_type                  = "production_slot" #or staging_slot_and_swap
@@ -64,7 +64,7 @@ locals {
     prod_web_app_name                = "pagopa-p-fn-reportingfdr"
     prod_web_app_resource_group_name = "pagopa-p-reporting-fdr-rg"
 
-    tenant_id                         = module.secrets.values["TENANTID"].value
+    tenant_id = module.secrets.values["TENANTID"].value
 
     # acr section
     image_repository = "reporting-fdr"
