@@ -1,4 +1,4 @@
-# your-project-name
+# pagoPA platform
 
 This repo template allows you to create a repo for your project pipelines
 
