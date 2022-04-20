@@ -78,4 +78,16 @@ module "tlscert-dev-api-dev-platform-pagopa-it-cert_az" {
   service_connection_ids_authorization = [
     module.DEV-TLS-CERT-SERVICE-CONN.service_endpoint_id,
   ]
+
+  schedules = {
+    days_to_build              = ["Mon"]
+    schedule_only_with_changes = false
+    start_hours                = 3
+    start_minutes              = 0
+    time_zone                  = "(UTC+01:00) Amsterdam, Berlin, Bern, Rome, Stockholm, Vienna"
+    branch_filter = {
+      include = ["master"]
+      exclude = []
+    }
+  }
 }
