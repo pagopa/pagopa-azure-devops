@@ -68,7 +68,7 @@ locals {
   srv_endpoint_github_ro = "io-azure-devops-github-ro"
   srv_endpoint_github_rw = "io-azure-devops-github-rw"
   srv_endpoint_github_pr = "io-azure-devops-github-pr"
-  
+
   # TODO azure devops terraform provider does not support SonarCloud service endpoint
   azuredevops_serviceendpoint_sonarcloud_id = "9182be64-d387-465d-9acc-e79e802910c8"
 }
