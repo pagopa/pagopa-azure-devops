@@ -43,8 +43,3 @@ resource "azuredevops_serviceendpoint_github" "azure-devops-github-rw" {
     ignore_changes = [description, authorization]
   }
 }
-
-# TODO azure devops terraform provider does not support SonarCloud service endpoint
-locals {
-  azuredevops_serviceendpoint_sonarcloud_id = "7034a65a-9430-4ab0-bbb2-4421c33c2f35"
-}
