@@ -78,8 +78,8 @@ locals {
     PROD_POSTGRES_DATASOURCE_PASSWORD = module.secrets.values["PROD-APD-SPRING-DATASOURCE-PWD"].value
 
     DEV_POSTGRES_DATASOURCE_URL  = format("jdbc:postgresql://%s:5432/%s", "pagopa-d-postgresql.postgres.database.azure.com", "apd")
-    UAT_POSTGRES_DATASOURCE_URL  = format("jdbc:postgresql://%s:5432/%s?sslmode=require&prepareThreshold=0", "pagopa-u-gpd-pgflex.postgres.database.azure.com", "apd")
-    PROD_POSTGRES_DATASOURCE_URL = format("jdbc:postgresql://%s:5432/%s?sslmode=require&prepareThreshold=0", "pagopa-p-gpd-pgflex.postgres.database.azure.com", "apd")
+    UAT_POSTGRES_DATASOURCE_URL  = format("jdbc:postgresql://%s:5432/%s?sslmode=require", "pagopa-u-gpd-pgflex.postgres.database.azure.com", "apd")
+    PROD_POSTGRES_DATASOURCE_URL = format("jdbc:postgresql://%s:5432/%s?sslmode=require", "pagopa-p-gpd-pgflex.postgres.database.azure.com", "apd")
 
     SCHEMA_NAME = "apd"
 
