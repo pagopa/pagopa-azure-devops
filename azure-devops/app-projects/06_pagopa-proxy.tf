@@ -3,7 +3,7 @@ variable "pagopa-proxy" {
     repository = {
       organization    = "pagopa"
       name            = "io-pagopa-proxy"
-      branch_name     = "main"
+      branch_name     = "refs/heads/main"
       pipelines_path  = ".devops"
       yml_prefix_name = "pagopa"
     }

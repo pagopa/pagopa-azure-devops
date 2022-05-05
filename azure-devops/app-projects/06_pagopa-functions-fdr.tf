@@ -3,7 +3,7 @@ variable "pagopa-reporting-fdr" {
     repository = {
       organization    = "pagopa"
       name            = "pagopa-reporting-fdr"
-      branch_name     = "main"
+      branch_name     = "refs/heads/main"
       pipelines_path  = ".devops"
       yml_prefix_name = "pagopa"
     }

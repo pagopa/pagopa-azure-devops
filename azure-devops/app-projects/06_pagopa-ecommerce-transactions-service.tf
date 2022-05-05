@@ -3,7 +3,7 @@ variable "pagopa-ecommerce-transactions-service" {
     repository = {
       organization    = "pagopa"
       name            = "pagopa-ecommerce-transactions-service"
-      branch_name     = "main"
+      branch_name     = "refs/heads/main"
       pipelines_path  = ".devops"
       yml_prefix_name = null
     }
