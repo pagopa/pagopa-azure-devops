@@ -3,7 +3,7 @@ variable "pagopa-mock-ec" {
     repository = {
       organization    = "pagopa"
       name            = "pagopa-mock-ec"
-      branch_name     = "main"
+      branch_name     = "refs/heads/main"
       pipelines_path  = ".devops"
       yml_prefix_name = null
     }

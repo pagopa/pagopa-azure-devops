@@ -3,7 +3,7 @@ variable "tlscert-uat-checkout-pagopa-it" {
     repository = {
       organization   = "pagopa"
       name           = "le-azure-acme-tiny"
-      branch_name    = "master"
+      branch_name    = "refs/heads/master"
       pipelines_path = "."
     }
     pipeline = {

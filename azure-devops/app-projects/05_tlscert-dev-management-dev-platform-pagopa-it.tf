@@ -3,7 +3,7 @@ variable "tlscert-dev-management-dev-platform-pagopa-it" {
     repository = {
       organization   = "pagopa"
       name           = "le-azure-acme-tiny"
-      branch_name    = "master"
+      branch_name    = "refs/heads/master"
       pipelines_path = "."
     }
     pipeline = {

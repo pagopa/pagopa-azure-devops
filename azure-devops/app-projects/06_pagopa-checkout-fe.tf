@@ -3,7 +3,7 @@ variable "pagopa-checkout-fe" {
     repository = {
       organization    = "pagopa"
       name            = "pagopa-checkout-fe"
-      branch_name     = "main"
+      branch_name     = "refs/heads/main"
       pipelines_path  = ".devops"
       yml_prefix_name = "pagopa"
     }

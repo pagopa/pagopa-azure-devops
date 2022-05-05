@@ -3,7 +3,7 @@ variable "pagopa-debt-position" {
     repository = {
       organization    = "pagopa"
       name            = "pagopa-debt-position"
-      branch_name     = "main"
+      branch_name     = "refs/heads/main"
       pipelines_path  = ".devops"
       yml_prefix_name = null
     }
