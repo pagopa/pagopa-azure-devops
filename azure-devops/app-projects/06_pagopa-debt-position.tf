@@ -69,17 +69,17 @@ locals {
     prod_container_namespace = "pagopapacr.azurecr.io"
 
     # datasource4flyway
-    DEV_SPRING_DATASOURCE_USERNAME  = "apduser@pagopa-d-postgresql"
-    UAT_SPRING_DATASOURCE_USERNAME  = "apduser"
-    PROD_SPRING_DATASOURCE_USERNAME = "apduser"
+    DEV_POSTGRES_DATASOURCE_USERNAME  = "apduser@pagopa-d-postgresql"
+    UAT_POSTGRES_DATASOURCE_USERNAME  = "apduser"
+    PROD_POSTGRES_DATASOURCE_USERNAME = "apduser"
 
-    DEV_SPRING_DATASOURCE_PASSWORD  = module.secrets.values["DEV-APD-SPRING-DATASOURCE-PWD"].value
-    UAT_SPRING_DATASOURCE_PASSWORD  = module.secrets.values["UAT-APD-SPRING-DATASOURCE-PWD"].value
-    PROD_SPRING_DATASOURCE_PASSWORD = module.secrets.values["PROD-APD-SPRING-DATASOURCE-PWD"].value
+    DEV_POSTGRES_DATASOURCE_PASSWORD  = module.secrets.values["DEV-APD-SPRING-DATASOURCE-PWD"].value
+    UAT_POSTGRES_DATASOURCE_PASSWORD  = module.secrets.values["UAT-APD-SPRING-DATASOURCE-PWD"].value
+    PROD_POSTGRES_DATASOURCE_PASSWORD = module.secrets.values["PROD-APD-SPRING-DATASOURCE-PWD"].value
 
-    DEV_SPRING_DATASOURCE_URL  = format("jdbc:postgresql://%s:5432/%s", "pagopa-d-postgresql.postgres.database.azure.com", "apd")
-    UAT_SPRING_DATASOURCE_URL  = format("jdbc:postgresql://%s:5432/%s?sslmode=require&prepareThreshold=0", "pagopa-u-gpd-pgflex.postgres.database.azure.com", "apd")
-    PROD_SPRING_DATASOURCE_URL = format("jdbc:postgresql://%s:5432/%s?sslmode=require&prepareThreshold=0", "pagopa-p-gpd-pgflex.postgres.database.azure.com", "apd")
+    DEV_POSTGRES_DATASOURCE_URL  = format("jdbc:postgresql://%s:5432/%s", "pagopa-d-postgresql.postgres.database.azure.com", "apd")
+    UAT_POSTGRES_DATASOURCE_URL  = format("jdbc:postgresql://%s:5432/%s?sslmode=require&prepareThreshold=0", "pagopa-u-gpd-pgflex.postgres.database.azure.com", "apd")
+    PROD_POSTGRES_DATASOURCE_URL = format("jdbc:postgresql://%s:5432/%s?sslmode=require&prepareThreshold=0", "pagopa-p-gpd-pgflex.postgres.database.azure.com", "apd")
 
     SCHEMA_NAME = "apd"
 
