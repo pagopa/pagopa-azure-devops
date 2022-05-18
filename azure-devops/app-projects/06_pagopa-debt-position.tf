@@ -98,6 +98,8 @@ module "pagopa-debt-position_code_review" {
   repository                   = var.pagopa-debt-position.repository
   github_service_connection_id = azuredevops_serviceendpoint_github.azure-devops-github-pr.id
 
+  pull_request_trigger_use_yaml = true
+
   variables = merge(
     local.pagopa-debt-position-variables,
     local.pagopa-debt-position-variables_code_review,
@@ -121,6 +123,8 @@ module "pagopa-debt-position_deploy" {
   project_id                   = azuredevops_project.project.id
   repository                   = var.pagopa-debt-position.repository
   github_service_connection_id = azuredevops_serviceendpoint_github.azure-devops-github-rw.id
+
+  pull_request_trigger_use_yaml = true
 
   variables = merge(
     local.pagopa-debt-position-variables,

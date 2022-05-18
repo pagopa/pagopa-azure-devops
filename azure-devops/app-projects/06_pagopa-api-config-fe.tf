@@ -96,6 +96,8 @@ module "pagopa-api-config-fe_code_review" {
   repository                   = var.pagopa-api-config-fe.repository
   github_service_connection_id = azuredevops_serviceendpoint_github.azure-devops-github-pr.id
 
+  pull_request_trigger_use_yaml = true
+
   variables = merge(
     local.pagopa-api-config-fe-variables,
     local.pagopa-api-config-fe-variables_code_review,
@@ -119,6 +121,8 @@ module "pagopa-api-config-fe_deploy" {
   project_id                   = azuredevops_project.project.id
   repository                   = var.pagopa-api-config-fe.repository
   github_service_connection_id = azuredevops_serviceendpoint_github.azure-devops-github-rw.id
+
+  pull_request_trigger_use_yaml = true
 
   variables = merge(
     local.pagopa-api-config-fe-variables,
