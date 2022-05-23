@@ -39,5 +39,8 @@ module "secrets" {
     "DEV-APD-SPRING-DATASOURCE-PWD",
     "UAT-APD-SPRING-DATASOURCE-PWD",
     "PROD-APD-SPRING-DATASOURCE-PWD",
+    "aks-azure-devops-sa-token-dev",
+    "aks-azure-devops-sa-token-dev",
+    "aks-azure-devops-sa-token-dev"
   ]
 }
