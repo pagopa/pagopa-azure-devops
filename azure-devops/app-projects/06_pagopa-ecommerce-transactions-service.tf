@@ -45,6 +45,19 @@ locals {
   }
   # deploy vars
   pagopa-ecommerce-transactions-service-variables_deploy = {
+    github_connection = azuredevops_serviceendpoint_github.azure-devops-github-rw.service_endpoint_name
+    tenant_id         = module.secrets.values["TENANTID"].value
+
+    # acr section
+    image_repository = "pagopa-ecommerce-transactions-service"
+
+    dev_container_registry  = azuredevops_serviceendpoint_azurecr.acr_aks_dev.service_endpoint_name
+    uat_container_registry  = azuredevops_serviceendpoint_azurecr.acr_aks_uat.service_endpoint_name
+    prod_container_registry = azuredevops_serviceendpoint_azurecr.acr_aks_prod.service_endpoint_name
+
+    dev_container_namespace  = "pagopapcommonacr.azurecr.io"
+    uat_container_namespace  = "pagopapcommonacr.azurecr.io"
+    prod_container_namespace = "pagopapcommonacr.azurecr.io"
 
   }
   # deploy secrets
@@ -74,5 +87,34 @@ module "pagopa-ecommerce-transactions-service_code_review" {
   service_connection_ids_authorization = [
     azuredevops_serviceendpoint_github.azure-devops-github-ro.id,
     local.azuredevops_serviceendpoint_sonarcloud_id
+  ]
+}
+
+module "pagopa-ecommerce-transactions-service_deploy" {
+  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy?ref=v2.0.4"
+  count  = var.pagopa-ecommerce-transactions-service.pipeline.enable_deploy == true ? 1 : 0
+
+  project_id                   = azuredevops_project.project.id
+  repository                   = var.pagopa-ecommerce-transactions-service.repository
+  github_service_connection_id = azuredevops_serviceendpoint_github.azure-devops-github-rw.id
+
+  variables = merge(
+    local.pagopa-ecommerce-transactions-service-variables,
+    local.pagopa-ecommerce-transactions-service-variables_deploy,
+  )
+
+  variables_secret = merge(
+    local.pagopa-ecommerce-transactions-service-variables_secret,
+    local.pagopa-ecommerce-transactions-service-variables_secret_deploy,
+  )
+
+  service_connection_ids_authorization = [
+    azuredevops_serviceendpoint_github.azure-devops-github-ro.id,
+    azuredevops_serviceendpoint_azurecr.acr_aks_dev.id,
+    azuredevops_serviceendpoint_azurecr.acr_aks_uat.id,
+    azuredevops_serviceendpoint_azurecr.acr_aks_prod.id,
+    azuredevops_serviceendpoint_azurerm.DEV-SERVICE-CONN.id,
+    azuredevops_serviceendpoint_azurerm.UAT-SERVICE-CONN.id,
+    azuredevops_serviceendpoint_azurerm.PROD-SERVICE-CONN.id,
   ]
 }
