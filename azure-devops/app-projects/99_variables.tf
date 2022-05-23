@@ -60,6 +60,21 @@ locals {
   docker_registry_rg_name_prod           = "${local.prefix}-p-aks-rg"
   docker_registry_name_prod              = "${local.prefix}pacr"
 
+  # 📦 ACR DEV FOR AKS
+  srv_endpoint_name_aks_cr_dev = "${local.prefix}-aks-cr-dev"
+  aks_cr_rg_name_dev           = "${local.prefix}-d-container-registry-rg"
+  aks_cr_name_dev              = "${local.prefix}dcommonacr"
+
+  # 📦 ACR UAT FOR AKS
+  srv_endpoint_name_aks_cr_uat = "${local.prefix}-aks-cr-uat"
+  aks_cr_rg_name_uat           = "${local.prefix}-u-container-registry-rg"
+  aks_cr_name_uat              = "${local.prefix}ucommonacr"
+
+  # 📦 ACR PROD FOR AKS
+  srv_endpoint_name_aks_cr_prod = "${local.prefix}-aks-cr-prod"
+  aks_cr_rg_name_prod           = "${local.prefix}-p-container-registry-rg"
+  aks_cr_name_prod              = "${local.prefix}pcommonacr"
+
   #tfsec:ignore:general-secrets-no-plaintext-exposure
   #tfsec:ignore:GEN002
   tlscert_renew_token = "v1"
