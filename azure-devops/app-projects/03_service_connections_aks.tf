@@ -1,4 +1,4 @@
-resource "azuredevops_serviceendpoint_kubernetes" "aks-dev" {
+resource "azuredevops_serviceendpoint_kubernetes" "aks_dev" {
   depends_on            = [azuredevops_project.project]
   project_id            = azuredevops_project.project.id
   service_endpoint_name = "${var.prefix}-aks-dev"
@@ -11,7 +11,7 @@ resource "azuredevops_serviceendpoint_kubernetes" "aks-dev" {
   }
 }
 
-resource "azuredevops_serviceendpoint_kubernetes" "aks-uat" {
+resource "azuredevops_serviceendpoint_kubernetes" "aks_uat" {
   depends_on            = [azuredevops_project.project]
   project_id            = azuredevops_project.project.id
   service_endpoint_name = "${var.prefix}-aks-uat"
@@ -24,7 +24,7 @@ resource "azuredevops_serviceendpoint_kubernetes" "aks-uat" {
   }
 }
 
-resource "azuredevops_serviceendpoint_kubernetes" "aks-prod" {
+resource "azuredevops_serviceendpoint_kubernetes" "aks_prod" {
   depends_on            = [azuredevops_project.project]
   project_id            = azuredevops_project.project.id
   service_endpoint_name = "${var.prefix}-aks-prod"
