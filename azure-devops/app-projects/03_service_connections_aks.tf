@@ -1,7 +1,7 @@
 resource "azuredevops_serviceendpoint_kubernetes" "aks_dev" {
   depends_on            = [azuredevops_project.project]
   project_id            = azuredevops_project.project.id
-  service_endpoint_name = "${var.prefix}-aks-dev"
+  service_endpoint_name = local.srv_endpoint_name_aks_dev
   apiserver_url         = module.secrets.values["aks-apiserver-url"].value
   authorization_type    = "ServiceAccount"
   service_account {
@@ -14,7 +14,7 @@ resource "azuredevops_serviceendpoint_kubernetes" "aks_dev" {
 resource "azuredevops_serviceendpoint_kubernetes" "aks_uat" {
   depends_on            = [azuredevops_project.project]
   project_id            = azuredevops_project.project.id
-  service_endpoint_name = "${var.prefix}-aks-uat"
+  service_endpoint_name = local.srv_endpoint_name_aks_uat
   apiserver_url         = module.secrets.values["aks-apiserver-url"].value
   authorization_type    = "ServiceAccount"
   service_account {
@@ -27,7 +27,7 @@ resource "azuredevops_serviceendpoint_kubernetes" "aks_uat" {
 resource "azuredevops_serviceendpoint_kubernetes" "aks_prod" {
   depends_on            = [azuredevops_project.project]
   project_id            = azuredevops_project.project.id
-  service_endpoint_name = "${var.prefix}-aks-prod"
+  service_endpoint_name = local.srv_endpoint_name_aks_prod
   apiserver_url         = module.secrets.values["aks-apiserver-url"].value
   authorization_type    = "ServiceAccount"
   service_account {

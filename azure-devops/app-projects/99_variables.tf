@@ -75,6 +75,10 @@ locals {
   aks_cr_rg_name_prod           = "${local.prefix}-p-container-registry-rg"
   aks_cr_name_prod              = "${local.prefix}pcommonacr"
 
+  srv_endpoint_name_aks_dev = "${local.prefix}-aks-dev"
+  srv_endpoint_name_aks_uat = "${local.prefix}-aks-uat"
+  srv_endpoint_name_aks_prod = "${local.prefix}-aks-prod"
+
   #tfsec:ignore:general-secrets-no-plaintext-exposure
   #tfsec:ignore:GEN002
   tlscert_renew_token = "v1"
