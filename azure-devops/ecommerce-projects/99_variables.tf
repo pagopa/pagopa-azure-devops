@@ -44,9 +44,9 @@ locals {
   uat_key_vault_resource_group  = "${local.prefix}-u-sec-rg"
   prod_key_vault_resource_group = "${local.prefix}-p-sec-rg"
 
-  dev_ecommerce_key_vault_resource_group  = "${local.prefix}-d-ecommerce-rg"
-  uat_ecommerce_key_vault_resource_group  = "${local.prefix}-u-ecommerce-rg"
-  prod_ecommerce_key_vault_resource_group = "${local.prefix}-p-ecommerce-rg"
+  dev_ecommerce_key_vault_resource_group  = "${local.prefix}-d-ecommerce-sec-rg"
+  uat_ecommerce_key_vault_resource_group  = "${local.prefix}-u-ecommerce-sec-rg"
+  prod_ecommerce_key_vault_resource_group = "${local.prefix}-p-ecommerce-sec-rg"
 
   # ☁️ VNET
   dev_vnet_rg  = "${local.prefix}-d-vnet-rg"
