@@ -38,12 +38,6 @@ module "secrets" {
     "PROD-BUYERBANKS-API-KEY",
     "DEV-APD-SPRING-DATASOURCE-PWD",
     "UAT-APD-SPRING-DATASOURCE-PWD",
-    "PROD-APD-SPRING-DATASOURCE-PWD",
-    "aks-azure-devops-sa-token-dev",
-    "aks-azure-devops-sa-token-uat",
-    "aks-azure-devops-sa-token-prod",
-    "aks-azure-devops-sa-cacrt-dev",
-    "aks-azure-devops-sa-cacrt-uat",
-    "aks-azure-devops-sa-cacrt-prod"
+    "PROD-APD-SPRING-DATASOURCE-PWD"
   ]
 }
