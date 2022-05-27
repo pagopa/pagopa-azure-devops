@@ -45,19 +45,19 @@ locals {
   }
   # deploy vars
   pagopa-ecommerce-transactions-service-variables_deploy = {
-    github_connection = azuredevops_serviceendpoint_github.azure-devops-github-rw.service_endpoint_name
+    github_connection = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_rw_name
     tenant_id         = module.secrets.values["TENANTID"].value
 
     # acr section
     image_repository = "pagopa-ecommerce-transactions-service"
 
-    dev_container_registry = azuredevops_serviceendpoint_azurecr.acr_aks_dev.service_endpoint_name
+    dev_container_registry = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_dev_name
     # uat_container_registry  = azuredevops_serviceendpoint_azurecr.acr_aks_uat.service_endpoint_name
     # prod_container_registry = azuredevops_serviceendpoint_azurecr.acr_aks_prod.service_endpoint_name
 
     dev_container_namespace  = "pagopapcommonacr.azurecr.io"
-    uat_container_namespace  = "pagopapcommonacr.azurecr.io"
-    prod_container_namespace = "pagopapcommonacr.azurecr.io"
+    # uat_container_namespace  = "pagopapcommonacr.azurecr.io"
+    # prod_container_namespace = "pagopapcommonacr.azurecr.io"
 
   }
   # deploy secrets
@@ -70,9 +70,10 @@ module "pagopa-ecommerce-transactions-service_code_review" {
   source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review?ref=v2.0.4"
   count  = var.pagopa-ecommerce-transactions-service.pipeline.enable_code_review == true ? 1 : 0
 
-  project_id                   = azuredevops_project.project.id
+  project_id                   = data.azuredevops_project.project.id
   repository                   = var.pagopa-ecommerce-transactions-service.repository
-  github_service_connection_id = azuredevops_serviceendpoint_github.azure-devops-github-pr.id
+  github_service_connection_id = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_pr_id
+
 
   variables = merge(
     local.pagopa-ecommerce-transactions-service-variables,
@@ -85,7 +86,7 @@ module "pagopa-ecommerce-transactions-service_code_review" {
   )
 
   service_connection_ids_authorization = [
-    azuredevops_serviceendpoint_github.azure-devops-github-ro.id,
+    data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_ro_id,
     local.azuredevops_serviceendpoint_sonarcloud_id
   ]
 }
@@ -94,9 +95,9 @@ module "pagopa-ecommerce-transactions-service_deploy" {
   source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy?ref=v2.0.4"
   count  = var.pagopa-ecommerce-transactions-service.pipeline.enable_deploy == true ? 1 : 0
 
-  project_id                   = azuredevops_project.project.id
+  project_id                   = data.azuredevops_project.project.id
   repository                   = var.pagopa-ecommerce-transactions-service.repository
-  github_service_connection_id = azuredevops_serviceendpoint_github.azure-devops-github-rw.id
+  github_service_connection_id = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_rw_id
 
   variables = merge(
     local.pagopa-ecommerce-transactions-service-variables,
@@ -109,11 +110,11 @@ module "pagopa-ecommerce-transactions-service_deploy" {
   )
 
   service_connection_ids_authorization = [
-    azuredevops_serviceendpoint_github.azure-devops-github-ro.id,
-    azuredevops_serviceendpoint_azurecr.acr_aks_dev.id,
+    data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_ro_id,
+    data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_dev_id,
     # azuredevops_serviceendpoint_azurecr.acr_aks_uat.id,
     # azuredevops_serviceendpoint_azurecr.acr_aks_prod.id,
-    azuredevops_serviceendpoint_azurerm.DEV-SERVICE-CONN.id,
+    data.terraform_remote_state.app.outputs.service_endpoint_azure_dev_id,
     # azuredevops_serviceendpoint_azurerm.UAT-SERVICE-CONN.id,
     # azuredevops_serviceendpoint_azurerm.PROD-SERVICE-CONN.id,
   ]

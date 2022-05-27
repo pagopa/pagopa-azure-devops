@@ -57,9 +57,9 @@ module "pagopa-ecommerce-sessions-service_code_review" {
   source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review?ref=v2.0.4"
   count  = var.pagopa-ecommerce-sessions-service.pipeline.enable_code_review == true ? 1 : 0
 
-  project_id                   = azuredevops_project.project.id
+  project_id                   = data.azuredevops_project.project.id
   repository                   = var.pagopa-ecommerce-sessions-service.repository
-  github_service_connection_id = azuredevops_serviceendpoint_github.azure-devops-github-pr.id
+  github_service_connection_id = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_pr_id
 
   variables = merge(
     local.pagopa-ecommerce-sessions-service-variables,
@@ -72,7 +72,7 @@ module "pagopa-ecommerce-sessions-service_code_review" {
   )
 
   service_connection_ids_authorization = [
-    azuredevops_serviceendpoint_github.azure-devops-github-ro.id,
+    data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_ro_id,
     local.azuredevops_serviceendpoint_sonarcloud_id
   ]
 }
