@@ -49,13 +49,17 @@ locals {
     tenant_id         = module.secrets.values["TENANTID"].value
 
     # acr section
-    image_repository = "pagopa-ecommerce-transactions-service"
+    dev_container_registry_service_conn = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_dev_id
+    k8s_image_repository_name           = replace(var.pagopa-ecommerce-transactions-service.repository.name, "-", "")
+    dev_container_registry_name         = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_dev_name
 
-    dev_container_registry = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_dev_name
     # uat_container_registry  = azuredevops_serviceendpoint_azurecr.acr_aks_uat.service_endpoint_name
     # prod_container_registry = azuredevops_serviceendpoint_azurecr.acr_aks_prod.service_endpoint_name
 
-    dev_container_namespace  = "pagopapcommonacr.azurecr.io"
+    # aks section
+    dev_kubernetes_service_conn = azuredevops_serviceendpoint_kubernetes.aks_dev.id
+
+    dev_container_namespace = "pagopapcommonacr.azurecr.io"
     # uat_container_namespace  = "pagopapcommonacr.azurecr.io"
     # prod_container_namespace = "pagopapcommonacr.azurecr.io"
 

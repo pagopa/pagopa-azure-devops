@@ -74,6 +74,8 @@ locals {
   aks_cr_rg_name_prod           = "${local.prefix}-p-container-registry-rg"
   aks_cr_name_prod              = "${local.prefix}pcommonacr"
 
+  settings_xml_ro_secure_file_name = "settings-ro.xml"
+
   srv_endpoint_name_aks_dev  = "${local.prefix}-${local.domain}-aks-dev"
   srv_endpoint_name_aks_uat  = "${local.prefix}-${local.domain}-aks-uat"
   srv_endpoint_name_aks_prod = "${local.prefix}-${local.domain}-aks-prod"
