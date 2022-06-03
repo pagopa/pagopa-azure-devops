@@ -45,6 +45,23 @@ locals {
   }
   # deploy vars
   pagopa-ecommerce-sessions-service-variables_deploy = {
+    github_connection = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_rw_name
+    tenant_id         = module.secrets.values["TENANTID"].value
+
+    # acr section
+    dev_container_registry_service_conn = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_dev_id
+    k8s_image_repository_name           = replace(var.pagopa-ecommerce-sessions-service.repository.name, "-", "")
+    dev_container_registry_name         = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_dev_name
+
+    # uat_container_registry  = azuredevops_serviceendpoint_azurecr.acr_aks_uat.service_endpoint_name
+    # prod_container_registry = azuredevops_serviceendpoint_azurecr.acr_aks_prod.service_endpoint_name
+
+    # aks section
+    dev_kubernetes_service_conn = azuredevops_serviceendpoint_kubernetes.aks_dev.id
+
+    dev_container_namespace = "pagopapcommonacr.azurecr.io"
+    # uat_container_namespace  = "pagopapcommonacr.azurecr.io"
+    # prod_container_namespace = "pagopapcommonacr.azurecr.io"
 
   }
   # deploy secrets
@@ -76,3 +93,33 @@ module "pagopa-ecommerce-sessions-service_code_review" {
     local.azuredevops_serviceendpoint_sonarcloud_id
   ]
 }
+
+module "pagopa-ecommerce-sessions-service_deploy" {
+  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy?ref=v2.0.4"
+  count  = var.pagopa-ecommerce-sessions-service.pipeline.enable_deploy == true ? 1 : 0
+
+  project_id                   = data.azuredevops_project.project.id
+  repository                   = var.pagopa-ecommerce-sessions-service.repository
+  github_service_connection_id = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_rw_id
+
+  variables = merge(
+    local.pagopa-ecommerce-sessions-service-variables,
+    local.pagopa-ecommerce-sessions-service-variables_deploy,
+  )
+
+  variables_secret = merge(
+    local.pagopa-ecommerce-sessions-service-variables_secret,
+    local.pagopa-ecommerce-sessions-service-variables_secret_deploy,
+  )
+
+  service_connection_ids_authorization = [
+    data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_ro_id,
+    data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_dev_id,
+    # azuredevops_serviceendpoint_azurecr.acr_aks_uat.id,
+    # azuredevops_serviceendpoint_azurecr.acr_aks_prod.id,
+    data.terraform_remote_state.app.outputs.service_endpoint_azure_dev_id,
+    # azuredevops_serviceendpoint_azurerm.UAT-SERVICE-CONN.id,
+    # azuredevops_serviceendpoint_azurerm.PROD-SERVICE-CONN.id,
+  ]
+}
+
