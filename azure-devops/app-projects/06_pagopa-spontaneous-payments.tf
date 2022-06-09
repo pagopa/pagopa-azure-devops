@@ -61,7 +61,7 @@ locals {
     prod_web_app_name                = "pagopa-p-app-spontaneous-payments"
     prod_web_app_resource_group_name = "pagopa-p-spontaneous-payments-rg"
 
-    tenant_id                         = module.secrets.values["TENANTID"].value
+    tenant_id                                    = module.secrets.values["TENANTID"].value
     dev_spontaneous_payments_client_fe_id        = module.secrets.values["DEV-SPONTANEOUS-PAYMENTS-CLIENT-ID"].value
     dev_spontaneous_payments_client_fe_secret    = module.secrets.values["DEV-SPONTANEOUS-PAYMENTS-CLIENT-SECRECT"].value
     dev_spontaneous_payments_client_be_resource  = module.secrets.values["DEV-SPONTANEOUS-PAYMENTS-BE-CLIENT-ID"].value
@@ -139,3 +139,4 @@ module "pagopa-spontaneous-payments_deploy" {
     azuredevops_serviceendpoint_azurerm.PROD-SERVICE-CONN.id,
   ]
 }
+
