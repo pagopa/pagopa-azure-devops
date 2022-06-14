@@ -47,17 +47,17 @@ locals {
 
   # 📦 ACR DEV DOCKER
   srv_endpoint_name_docker_registry_dev = "${local.prefix}-azurecr-dev"
-  docker_registry_rg_name_dev           = "${local.prefix}-d-aks-rg"
+  docker_registry_rg_name_dev           = "${local.prefix}-d-container-registry-rg"
   docker_registry_name_dev              = "${local.prefix}dcommonacr"
 
   # 📦 ACR UAT DOCKER
   srv_endpoint_name_docker_registry_uat = "${local.prefix}-azurecr-uat"
-  docker_registry_rg_name_uat           = "${local.prefix}-u-aks-rg"
+  docker_registry_rg_name_uat           = "${local.prefix}-u-container-registry-rg"
   docker_registry_name_uat              = "${local.prefix}ucommonacr"
 
   # 📦 ACR PROD DOCKER
   srv_endpoint_name_docker_registry_prod = "${local.prefix}-azurecr-prod"
-  docker_registry_rg_name_prod           = "${local.prefix}-p-aks-rg"
+  docker_registry_rg_name_prod           = "${local.prefix}-p-container-registry-rg"
   docker_registry_name_prod              = "${local.prefix}pcommonacr"
 
   #tfsec:ignore:general-secrets-no-plaintext-exposure
