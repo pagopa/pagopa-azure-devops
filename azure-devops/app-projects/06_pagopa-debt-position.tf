@@ -64,9 +64,9 @@ locals {
     uat_container_registry  = azuredevops_serviceendpoint_azurecr.acr_docker_registry_uat.service_endpoint_name
     prod_container_registry = azuredevops_serviceendpoint_azurecr.acr_docker_registry_prod.service_endpoint_name
 
-    dev_container_namespace  = "pagopadacr.azurecr.io"
-    uat_container_namespace  = "pagopauacr.azurecr.io"
-    prod_container_namespace = "pagopapacr.azurecr.io"
+    dev_container_namespace  = "pagopadcommonacr.azurecr.io"
+    uat_container_namespace  = "pagopaucommonacr.azurecr.io"
+    prod_container_namespace = "pagopapcommonacr.azurecr.io"
 
     # datasource4flyway
     DEV_POSTGRES_DATASOURCE_USERNAME  = "apduser@pagopa-d-postgresql"
