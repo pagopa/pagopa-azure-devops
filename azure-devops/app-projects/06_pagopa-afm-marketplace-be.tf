@@ -61,16 +61,16 @@ locals {
     prod_web_app_name                = "pagopa-p-app-afm"
     prod_web_app_resource_group_name = "pagopa-p-afm-rg"
 
-    tenant_id                   = module.secrets.values["TENANTID"].value
-    dev_afm_client_fe_id        = module.secrets.values["DEV-AFM-CLIENT-ID"].value
-    dev_afm_client_fe_secret    = module.secrets.values["DEV-AFM-CLIENT-SECRECT"].value
-    dev_afm_client_be_resource  = module.secrets.values["DEV-AFM-BE-CLIENT-ID"].value
-    uat_afm_client_fe_id        = module.secrets.values["UAT-AFM-CLIENT-ID"].value
-    uat_afm_client_fe_secret    = module.secrets.values["UAT-AFM-CLIENT-SECRECT"].value
-    uat_afm_client_be_resource  = module.secrets.values["UAT-AFM-BE-CLIENT-ID"].value
-    prod_afm_client_fe_id       = module.secrets.values["PROD-AFM-CLIENT-ID"].value
-    prod_afm_client_fe_secret   = module.secrets.values["PROD-AFM-CLIENT-SECRECT"].value
-    prod_afm_client_be_resource = module.secrets.values["PROD-AFM-BE-CLIENT-ID"].value
+    tenant_id = module.secrets.values["TENANTID"].value
+    # dev_afm_client_fe_id        = module.secrets.values["DEV-AFM-CLIENT-ID"].value
+    # dev_afm_client_fe_secret    = module.secrets.values["DEV-AFM-CLIENT-SECRECT"].value
+    # dev_afm_client_be_resource  = module.secrets.values["DEV-AFM-BE-CLIENT-ID"].value
+    # uat_afm_client_fe_id        = module.secrets.values["UAT-AFM-CLIENT-ID"].value
+    # uat_afm_client_fe_secret    = module.secrets.values["UAT-AFM-CLIENT-SECRECT"].value
+    # uat_afm_client_be_resource  = module.secrets.values["UAT-AFM-BE-CLIENT-ID"].value
+    # prod_afm_client_fe_id       = module.secrets.values["PROD-AFM-CLIENT-ID"].value
+    # prod_afm_client_fe_secret   = module.secrets.values["PROD-AFM-CLIENT-SECRECT"].value
+    # prod_afm_client_be_resource = module.secrets.values["PROD-AFM-BE-CLIENT-ID"].value
 
     # acr section
     image_repository = "api-afm-backend"
@@ -79,9 +79,9 @@ locals {
     uat_container_registry  = azuredevops_serviceendpoint_azurecr.acr_docker_registry_uat.service_endpoint_name
     prod_container_registry = azuredevops_serviceendpoint_azurecr.acr_docker_registry_prod.service_endpoint_name
 
-    dev_container_namespace  = "pagopadacr.azurecr.io"
-    uat_container_namespace  = "pagopauacr.azurecr.io"
-    prod_container_namespace = "pagopapacr.azurecr.io"
+    dev_container_namespace  = "pagopadcommonacr.azurecr.io"
+    uat_container_namespace  = "pagopadcommonacr.azurecr.io"
+    prod_container_namespace = "pagopadcommonacr.azurecr.io"
 
   }
   # deploy secrets
