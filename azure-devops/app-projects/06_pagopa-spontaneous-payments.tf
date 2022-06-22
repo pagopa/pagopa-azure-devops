@@ -44,38 +44,24 @@ locals {
   }
   # deploy vars
   pagopa-spontaneous-payments-variables_deploy = {
-    git_mail                         = module.secrets.values["azure-devops-github-EMAIL"].value
-    git_username                     = module.secrets.values["azure-devops-github-USERNAME"].value
-    github_connection                = azuredevops_serviceendpoint_github.azure-devops-github-rw.service_endpoint_name
-    healthcheck_endpoint             = "/api/v1/info"
-    dev_deploy_type                  = "production_slot" #or staging_slot_and_swap
-    dev_azure_subscription           = azuredevops_serviceendpoint_azurerm.DEV-SERVICE-CONN.service_endpoint_name
-    dev_web_app_name                 = "pagopa-d-app-spontaneous-payments"
-    dev_web_app_resource_group_name  = "pagopa-d-spontaneous-payments-rg"
-    uat_deploy_type                  = "production_slot" #or staging_slot_and_swap
-    uat_azure_subscription           = azuredevops_serviceendpoint_azurerm.UAT-SERVICE-CONN.service_endpoint_name
-    uat_web_app_name                 = "pagopa-u-app-spontaneous-payments"
-    uat_web_app_resource_group_name  = "pagopa-u-spontaneous-payments-rg"
-    prod_deploy_type                 = "production_slot" #or staging_slot_and_swap
-    prod_azure_subscription          = azuredevops_serviceendpoint_azurerm.PROD-SERVICE-CONN.service_endpoint_name
-    prod_web_app_name                = "pagopa-p-app-spontaneous-payments"
-    prod_web_app_resource_group_name = "pagopa-p-spontaneous-payments-rg"
+    git_mail          = module.secrets.values["azure-devops-github-EMAIL"].value
+    git_username      = module.secrets.values["azure-devops-github-USERNAME"].value
+    github_connection = azuredevops_serviceendpoint_github.azure-devops-github-rw.service_endpoint_name
+    tenant_id         = module.secrets.values["TENANTID"].value
 
-    tenant_id                                    = module.secrets.values["TENANTID"].value
-    dev_spontaneous_payments_client_be_resource  = module.secrets.values["DEV-SPONTANEOUS-PAYMENTS-BE-CLIENT-ID"].value
-    uat_spontaneous_payments_client_be_resource  = module.secrets.values["UAT-SPONTANEOUS-PAYMENTS-BE-CLIENT-ID"].value
-    prod_spontaneous_payments_client_be_resource = module.secrets.values["PROD-SPONTANEOUS-PAYMENTS-BE-CLIENT-ID"].value
-
-    # acr section
-    image_repository = "api-spontaneous-payments-backend"
+    # acr section 
+    image_repository                    = "api-spontaneous-payments-backend"
+    dev_container_registry_service_conn = ""
+    k8s_image_repository_name           = ""
+    dev_container_registry_name         = ""
 
     dev_container_registry  = azuredevops_serviceendpoint_azurecr.acr_docker_registry_dev.service_endpoint_name
     uat_container_registry  = azuredevops_serviceendpoint_azurecr.acr_docker_registry_uat.service_endpoint_name
     prod_container_registry = azuredevops_serviceendpoint_azurecr.acr_docker_registry_prod.service_endpoint_name
 
-    dev_container_namespace  = "pagopadacr.azurecr.io"
-    uat_container_namespace  = "pagopauacr.azurecr.io"
-    prod_container_namespace = "pagopapacr.azurecr.io"
+    dev_container_namespace  = "pagopadcommonacr.azurecr.io"
+    uat_container_namespace  = "pagopaucommonacr.azurecr.io"
+    prod_container_namespace = "pagopapcommonacr.azurecr.io"
 
   }
   # deploy secrets
