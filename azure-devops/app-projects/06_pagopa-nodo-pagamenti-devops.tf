@@ -48,11 +48,11 @@ locals {
     git_username                         = module.secrets.values["azure-devops-github-USERNAME"].value
     github_connection                    = azuredevops_serviceendpoint_github.azure-devops-github-rw.service_endpoint_name
     dev_container_registry_service_conn  = azuredevops_serviceendpoint_azurecr.acr_docker_registry_dev.service_endpoint_name
-    dev_container_registry_name          = "pagopadacr.azurecr.io"
+    dev_container_registry_name          = "pagopadcommonacr.azurecr.io"
     uat_container_registry_service_conn  = azuredevops_serviceendpoint_azurecr.acr_docker_registry_uat.service_endpoint_name
-    uat_container_registry_name          = "pagopauacr.azurecr.io"
+    uat_container_registry_name          = "pagopaucommonacr.azurecr.io"
     prod_container_registry_service_conn = azuredevops_serviceendpoint_azurecr.acr_docker_registry_prod.service_endpoint_name
-    prod_container_registry_name         = "pagopapacr.azurecr.io"
+    prod_container_registry_name         = "pagopapcommonacr.azurecr.io"
 
     dev_sia_registry_service_conn  = azuredevops_serviceendpoint_dockerregistry.sia-docker-registry-dev.service_endpoint_name
     uat_sia_registry_service_conn  = azuredevops_serviceendpoint_dockerregistry.sia-docker-registry-uat.service_endpoint_name

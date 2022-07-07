@@ -1,8 +1,8 @@
-variable "pagopa-debt-position" {
+variable "pagopa-iuv-generator" {
   default = {
     repository = {
       organization    = "pagopa"
-      name            = "pagopa-debt-position"
+      name            = "pagopa-iuv-generator"
       branch_name     = "refs/heads/main"
       pipelines_path  = ".devops"
       yml_prefix_name = null
@@ -14,8 +14,8 @@ variable "pagopa-debt-position" {
         # TODO azure devops terraform provider does not support SonarCloud service endpoint
         service_connection = "SONARCLOUD-SERVICE-CONN"
         org                = "pagopa"
-        project_key        = "pagopa_pagopa-debt-position"
-        project_name       = "pagopa-debt-position"
+        project_key        = "pagopa_pagopa-iuv-generator"
+        project_name       = "pagopa-iuv-generator"
       }
     }
   }
@@ -23,27 +23,27 @@ variable "pagopa-debt-position" {
 
 locals {
   # global vars
-  pagopa-debt-position-variables = {
+  pagopa-iuv-generator-variables = {
     cache_version_id = "v1"
-    default_branch   = var.pagopa-debt-position.repository.branch_name
+    default_branch   = var.pagopa-iuv-generator.repository.branch_name
   }
   # global secrets
-  pagopa-debt-position-variables_secret = {
+  pagopa-iuv-generator-variables_secret = {
 
   }
   # code_review vars
-  pagopa-debt-position-variables_code_review = {
-    sonarcloud_service_conn = var.pagopa-debt-position.pipeline.sonarcloud.service_connection
-    sonarcloud_org          = var.pagopa-debt-position.pipeline.sonarcloud.org
-    sonarcloud_project_key  = var.pagopa-debt-position.pipeline.sonarcloud.project_key
-    sonarcloud_project_name = var.pagopa-debt-position.pipeline.sonarcloud.project_name
+  pagopa-iuv-generator-variables_code_review = {
+    sonarcloud_service_conn = var.pagopa-iuv-generator.pipeline.sonarcloud.service_connection
+    sonarcloud_org          = var.pagopa-iuv-generator.pipeline.sonarcloud.org
+    sonarcloud_project_key  = var.pagopa-iuv-generator.pipeline.sonarcloud.project_key
+    sonarcloud_project_name = var.pagopa-iuv-generator.pipeline.sonarcloud.project_name
   }
   # code_review secrets
-  pagopa-debt-position-variables_secret_code_review = {
+  pagopa-iuv-generator-variables_secret_code_review = {
     danger_github_api_token = "skip"
   }
   # deploy vars
-  pagopa-debt-position-variables_deploy = {
+  pagopa-iuv-generator-variables_deploy = {
     git_mail                = module.secrets.values["azure-devops-github-EMAIL"].value
     git_username            = module.secrets.values["azure-devops-github-USERNAME"].value
     github_connection       = azuredevops_serviceendpoint_github.azure-devops-github-rw.service_endpoint_name
@@ -58,7 +58,7 @@ locals {
     tenant_id = module.secrets.values["TENANTID"].value
 
     # acr section
-    image_repository = "debt-position"
+    image_repository = "iuv-generator"
 
     dev_container_registry  = azuredevops_serviceendpoint_azurecr.acr_docker_registry_dev.service_endpoint_name
     uat_container_registry  = azuredevops_serviceendpoint_azurecr.acr_docker_registry_uat.service_endpoint_name
@@ -68,44 +68,29 @@ locals {
     uat_container_namespace  = "pagopaucommonacr.azurecr.io"
     prod_container_namespace = "pagopapcommonacr.azurecr.io"
 
-    # datasource4flyway
-    DEV_POSTGRES_DATASOURCE_USERNAME  = "apduser@pagopa-d-postgresql"
-    UAT_POSTGRES_DATASOURCE_USERNAME  = "apduser"
-    PROD_POSTGRES_DATASOURCE_USERNAME = "apduser"
-
-    DEV_POSTGRES_DATASOURCE_PASSWORD  = module.secrets.values["DEV-APD-SPRING-DATASOURCE-PWD"].value
-    UAT_POSTGRES_DATASOURCE_PASSWORD  = module.secrets.values["UAT-APD-SPRING-DATASOURCE-PWD"].value
-    PROD_POSTGRES_DATASOURCE_PASSWORD = module.secrets.values["PROD-APD-SPRING-DATASOURCE-PWD"].value
-
-    DEV_POSTGRES_DATASOURCE_URL  = format("jdbc:postgresql://%s:5432/%s", "pagopa-d-postgresql.postgres.database.azure.com", "apd")
-    UAT_POSTGRES_DATASOURCE_URL  = format("jdbc:postgresql://%s:5432/%s?sslmode=require", "pagopa-u-gpd-pgflex.postgres.database.azure.com", "apd")
-    PROD_POSTGRES_DATASOURCE_URL = format("jdbc:postgresql://%s:5432/%s?sslmode=require", "pagopa-p-gpd-pgflex.postgres.database.azure.com", "apd")
-
-    SCHEMA_NAME = "apd"
-
   }
   # deploy secrets
-  pagopa-debt-position-variables_secret_deploy = {
+  pagopa-iuv-generator-variables_secret_deploy = {
 
   }
 }
 
-module "pagopa-debt-position_code_review" {
+module "pagopa-iuv-generator_code_review" {
   source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review?ref=v2.0.4"
-  count  = var.pagopa-debt-position.pipeline.enable_code_review == true ? 1 : 0
+  count  = var.pagopa-iuv-generator.pipeline.enable_code_review == true ? 1 : 0
 
   project_id                   = azuredevops_project.project.id
-  repository                   = var.pagopa-debt-position.repository
+  repository                   = var.pagopa-iuv-generator.repository
   github_service_connection_id = azuredevops_serviceendpoint_github.azure-devops-github-pr.id
 
   variables = merge(
-    local.pagopa-debt-position-variables,
-    local.pagopa-debt-position-variables_code_review,
+    local.pagopa-iuv-generator-variables,
+    local.pagopa-iuv-generator-variables_code_review,
   )
 
   variables_secret = merge(
-    local.pagopa-debt-position-variables_secret,
-    local.pagopa-debt-position-variables_secret_code_review,
+    local.pagopa-iuv-generator-variables_secret,
+    local.pagopa-iuv-generator-variables_secret_code_review,
   )
 
   service_connection_ids_authorization = [
@@ -114,22 +99,22 @@ module "pagopa-debt-position_code_review" {
   ]
 }
 
-module "pagopa-debt-position_deploy" {
+module "pagopa-iuv-generator_deploy" {
   source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy?ref=v2.0.4"
-  count  = var.pagopa-debt-position.pipeline.enable_deploy == true ? 1 : 0
+  count  = var.pagopa-iuv-generator.pipeline.enable_deploy == true ? 1 : 0
 
   project_id                   = azuredevops_project.project.id
-  repository                   = var.pagopa-debt-position.repository
+  repository                   = var.pagopa-iuv-generator.repository
   github_service_connection_id = azuredevops_serviceendpoint_github.azure-devops-github-rw.id
 
   variables = merge(
-    local.pagopa-debt-position-variables,
-    local.pagopa-debt-position-variables_deploy,
+    local.pagopa-iuv-generator-variables,
+    local.pagopa-iuv-generator-variables_deploy,
   )
 
   variables_secret = merge(
-    local.pagopa-debt-position-variables_secret,
-    local.pagopa-debt-position-variables_secret_deploy,
+    local.pagopa-iuv-generator-variables_secret,
+    local.pagopa-iuv-generator-variables_secret_deploy,
   )
 
   service_connection_ids_authorization = [
