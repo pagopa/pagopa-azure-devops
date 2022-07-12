@@ -7,6 +7,10 @@ set -e
 # $ sh terraform.sh apply iac -> to apply terraform file inside iac-projects
 # $ sh terraform.sh apply app -> to apply terraform file inside app-projects
 #
+# for subfolder ex :
+# sh terraform.sh apply gps -> to apply terraform file inside gps-projects
+
+
 
 SCRIPT_PATH="$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
 CURRENT_DIRECTORY="$(basename "$SCRIPT_PATH")"
