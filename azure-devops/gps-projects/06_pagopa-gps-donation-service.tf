@@ -124,3 +124,4 @@ module "pagopa-gps-donation-service_deploy" {
     azuredevops_serviceendpoint_azurerm.PROD-SERVICE-CONN.id,
   ]
 }
+
