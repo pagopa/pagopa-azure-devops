@@ -44,25 +44,18 @@ locals {
   }
   # deploy vars
   pagopa-gps-donation-service-variables_deploy = {
-    git_mail                = module.secrets.values["azure-devops-github-EMAIL"].value
-    git_username            = module.secrets.values["azure-devops-github-USERNAME"].value
-    github_connection       = azuredevops_serviceendpoint_github.azure-devops-github-rw.service_endpoint_name
-    healthcheck_endpoint    = "/api/v1/info"
-    dev_azure_subscription  = azuredevops_serviceendpoint_azurerm.DEV-SERVICE-CONN.service_endpoint_name
-    dev_web_app_name        = "pagopa-d"
-    uat_azure_subscription  = azuredevops_serviceendpoint_azurerm.UAT-SERVICE-CONN.service_endpoint_name
-    uat_web_app_name        = "pagopa-u"
-    prod_azure_subscription = azuredevops_serviceendpoint_azurerm.PROD-SERVICE-CONN.service_endpoint_name
-    prod_web_app_name       = "pagopa-p"
+    git_mail          = module.secrets.values["azure-devops-github-EMAIL"].value
+    git_username      = module.secrets.values["azure-devops-github-USERNAME"].value
+    github_connection = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_rw_name
 
     tenant_id = module.secrets.values["TENANTID"].value
 
     # acr section
     image_repository = "gps-donation-service"
 
-    dev_container_registry  = azuredevops_serviceendpoint_azurecr.acr_docker_registry_dev.service_endpoint_name
-    uat_container_registry  = azuredevops_serviceendpoint_azurecr.acr_docker_registry_uat.service_endpoint_name
-    prod_container_registry = azuredevops_serviceendpoint_azurecr.acr_docker_registry_prod.service_endpoint_name
+    dev_container_registry = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_dev_id
+    #    uat_container_registry  = data.azuredevops_serviceendpoint_azurecr.acr_docker_registry_uat.service_endpoint_name
+    #    prod_container_registry = data.azuredevops_serviceendpoint_azurecr.acr_docker_registry_prod.service_endpoint_name
 
     dev_container_namespace  = "pagopadcommonacr.azurecr.io"
     uat_container_namespace  = "pagopaucommonacr.azurecr.io"
@@ -79,9 +72,9 @@ module "pagopa-gps-donation-service_code_review" {
   source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review?ref=v2.0.4"
   count  = var.pagopa-gps-donation-service.pipeline.enable_code_review == true ? 1 : 0
 
-  project_id                   = azuredevops_project.project.id
+  project_id                   = data.azuredevops_project.project.id
   repository                   = var.pagopa-gps-donation-service.repository
-  github_service_connection_id = azuredevops_serviceendpoint_github.azure-devops-github-pr.id
+  github_service_connection_id = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_pr_id
 
   variables = merge(
     local.pagopa-gps-donation-service-variables,
@@ -103,9 +96,9 @@ module "pagopa-gps-donation-service_deploy" {
   source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy?ref=v2.0.4"
   count  = var.pagopa-gps-donation-service.pipeline.enable_deploy == true ? 1 : 0
 
-  project_id                   = azuredevops_project.project.id
+  project_id                   = data.azuredevops_project.project.id
   repository                   = var.pagopa-gps-donation-service.repository
-  github_service_connection_id = azuredevops_serviceendpoint_github.azure-devops-github-rw.id
+  github_service_connection_id = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_rw_id
 
   variables = merge(
     local.pagopa-gps-donation-service-variables,
@@ -118,10 +111,8 @@ module "pagopa-gps-donation-service_deploy" {
   )
 
   service_connection_ids_authorization = [
-    azuredevops_serviceendpoint_github.azure-devops-github-ro.id,
-    azuredevops_serviceendpoint_azurerm.DEV-SERVICE-CONN.id,
-    azuredevops_serviceendpoint_azurerm.UAT-SERVICE-CONN.id,
-    azuredevops_serviceendpoint_azurerm.PROD-SERVICE-CONN.id,
+    data.terraform_remote_state.app.outputs.service_endpoint_azure_dev_id,
+    # TODO uat, prod
   ]
 }
 
