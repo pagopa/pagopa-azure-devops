@@ -87,8 +87,8 @@ module "pagopa-gps-donation-service_code_review" {
   )
 
   service_connection_ids_authorization = [
-    azuredevops_serviceendpoint_github.azure-devops-github-ro.id,
-    local.azuredevops_serviceendpoint_sonarcloud_id,
+    data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_ro_id,
+    local.azuredevops_serviceendpoint_sonarcloud_id
   ]
 }
 
