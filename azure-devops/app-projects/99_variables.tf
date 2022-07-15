@@ -44,6 +44,10 @@ locals {
   uat_gps_key_vault_name  = "${local.prefix}-u-gps-kv"
   prod_gps_key_vault_name = "${local.prefix}-p-gps-kv"
 
+  dev_shared_key_vault_name  = "${local.prefix}-d-shared-kv"
+  uat_shared_key_vault_name  = "${local.prefix}-u-shared-kv"
+  prod_shared_key_vault_name = "${local.prefix}-p-shared-kv"
+
   dev_key_vault_resource_group  = "${local.prefix}-d-sec-rg"
   uat_key_vault_resource_group  = "${local.prefix}-u-sec-rg"
   prod_key_vault_resource_group = "${local.prefix}-p-sec-rg"
@@ -55,6 +59,10 @@ locals {
   dev_gps_key_vault_resource_group  = "${local.prefix}-d-gps-sec-rg"
   uat_gps_key_vault_resource_group  = "${local.prefix}-u-gps-sec-rg"
   prod_gps_key_vault_resource_group = "${local.prefix}-p-gps-sec-rg"
+
+  dev_shared_key_vault_resource_group  = "${local.prefix}-d-shared-sec-rg"
+  uat_shared_key_vault_resource_group  = "${local.prefix}-u-shared-sec-rg"
+  prod_shared_key_vault_resource_group = "${local.prefix}-p-shared-sec-rg"
 
   # ☁️ VNET
   dev_vnet_rg  = "${local.prefix}-d-vnet-rg"
