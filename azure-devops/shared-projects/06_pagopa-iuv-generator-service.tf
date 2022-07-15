@@ -40,10 +40,10 @@ locals {
     sonarcloud_project_name = var.pagopa-iuv-generator-service.pipeline.sonarcloud.project_name
   }
   # code_review secrets
-  pagopa-gps-donation-service-variables_secret_code_review = {
+  pagopa-iuv-generator-service-variables_secret_code_review = {
   }
   # deploy vars
-  pagopa-gps-donation-service-variables_deploy = {
+  pagopa-iuv-generator-service-variables_deploy = {
     git_mail          = module.secrets.values["azure-devops-github-EMAIL"].value
     git_username      = module.secrets.values["azure-devops-github-USERNAME"].value
     github_connection = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_rw_name
@@ -106,7 +106,7 @@ module "pagopa-iuv-generator-service_deploy" {
 
   variables = merge(
     local.pagopa-iuv-generator-service-variables,
-    local.pagopa-gps-donation-service-variables_deploy,
+    local.pagopa-iuv-generator-service-variables_deploy,
   )
 
   variables_secret = merge(

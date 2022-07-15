@@ -42,9 +42,9 @@ locals {
   uat_key_vault_azdo_name  = "${local.prefix}-u-azdo-weu-kv"
   prod_key_vault_azdo_name = "${local.prefix}-p-azdo-weu-kv"
 
-  dev_gps_key_vault_name  = "${local.prefix}-d-${local.domain}-kv"
-  uat_gps_key_vault_name  = "${local.prefix}-u-${local.domain}-kv"
-  prod_gps_key_vault_name = "${local.prefix}-p-${local.domain}-kv"
+  dev_shared_key_vault_name  = "${local.prefix}-d-${local.domain}-kv"
+  uat_shared_key_vault_name  = "${local.prefix}-u-${local.domain}-kv"
+  prod_shared_key_vault_name = "${local.prefix}-p-${local.domain}-kv"
 
   dev_key_vault_resource_group  = "${local.prefix}-d-sec-rg"
   uat_key_vault_resource_group  = "${local.prefix}-u-sec-rg"

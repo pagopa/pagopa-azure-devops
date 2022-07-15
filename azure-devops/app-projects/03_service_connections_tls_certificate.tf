@@ -196,3 +196,43 @@ resource "azurerm_key_vault_access_policy" "DEV-GPS-TLS-CERT-SERVICE-CONN_kv_dev
 
   certificate_permissions = ["Get", "Import"]
 }
+
+#
+# ⛩ Service connection 3 🔐 KV-SHARED@DEV 🟢
+#
+#tfsec:ignore:GEN003
+module "DEV-SHARED-TLS-CERT-SERVICE-CONN" {
+  depends_on = [azuredevops_project.project]
+  source     = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_azurerm_limited?ref=v2.0.5"
+  providers = {
+    azurerm = azurerm.dev
+  }
+
+  project_id = azuredevops_project.project.id
+  #tfsec:ignore:general-secrets-no-plaintext-exposure
+  renew_token       = local.tlscert_renew_token
+  name              = "${local.prefix}-shared-d-tls-cert-kv-policy"
+  tenant_id         = module.secrets.values["TENANTID"].value
+  subscription_id   = module.secrets.values["DEV-SUBSCRIPTION-ID"].value
+  subscription_name = var.dev_subscription_name
+
+  credential_subcription              = var.dev_subscription_name
+  credential_key_vault_name           = local.dev_gps_key_vault_name
+  credential_key_vault_resource_group = local.dev_gps_key_vault_resource_group
+}
+
+data "azurerm_key_vault" "kv_shared_dev" {
+  provider            = azurerm.dev
+  name                = local.dev_shared_key_vault_name
+  resource_group_name = local.dev_shared_key_vault_resource_group
+}
+
+resource "azurerm_key_vault_access_policy" "DEV-SHARED-TLS-CERT-SERVICE-CONN_kv_dev" {
+  provider = azurerm.dev
+
+  key_vault_id = data.azurerm_key_vault.kv_gps_dev.id
+  tenant_id    = module.secrets.values["TENANTID"].value
+  object_id    = module.DEV-SHARED-TLS-CERT-SERVICE-CONN.service_principal_object_id
+
+  certificate_permissions = ["Get", "Import"]
+}
