@@ -34,8 +34,6 @@ locals {
   }
   # deploy vars
   pagopa-proxy-variables_deploy = {
-    git_mail                = module.secrets.values["azure-devops-github-EMAIL"].value
-    git_username            = module.secrets.values["azure-devops-github-USERNAME"].value
     github_connection       = azuredevops_serviceendpoint_github.azure-devops-github-rw.service_endpoint_name
     dev_azure_subscription  = azuredevops_serviceendpoint_azurerm.DEV-SERVICE-CONN.service_endpoint_name
     uat_azure_subscription  = azuredevops_serviceendpoint_azurerm.UAT-SERVICE-CONN.service_endpoint_name
@@ -43,7 +41,10 @@ locals {
   }
   # deploy secrets
   pagopa-proxy-variables_secret_deploy = {
-
+    git_mail                          = module.secrets.values["azure-devops-github-EMAIL"].value
+    git_username                      = module.secrets.values["azure-devops-github-USERNAME"].value
+    checkout_apim_v1_subscription_key = module.secrets.values["CHECKOUT-TEST-V1-SUBSCRIPTION-KEY"].value
+    checkout_apim_v2_subscription_key = module.secrets.values["CHECKOUT-TEST-V2-SUBSCRIPTION-KEY"].value
   }
 }
 
