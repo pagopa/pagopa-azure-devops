@@ -33,6 +33,7 @@ locals {
   }
   # code_review vars
   pagopa-gps-donation-service-variables_code_review = {
+    danger_github_api_token = "skip"
     sonarcloud_service_conn = var.pagopa-gps-donation-service.pipeline.sonarcloud.service_connection
     sonarcloud_org          = var.pagopa-gps-donation-service.pipeline.sonarcloud.org
     sonarcloud_project_key  = var.pagopa-gps-donation-service.pipeline.sonarcloud.project_key
@@ -40,26 +41,26 @@ locals {
   }
   # code_review secrets
   pagopa-gps-donation-service-variables_secret_code_review = {
-    danger_github_api_token = "skip"
   }
   # deploy vars
   pagopa-gps-donation-service-variables_deploy = {
     git_mail          = module.secrets.values["azure-devops-github-EMAIL"].value
     git_username      = module.secrets.values["azure-devops-github-USERNAME"].value
     github_connection = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_rw_name
-
-    tenant_id = module.secrets.values["TENANTID"].value
+    tenant_id         = module.secrets.values["TENANTID"].value
 
     # acr section
-    image_repository = "gps-donation-service"
-
+    image_repository       = replace(var.pagopa-gps-donation-service.repository.name, "-", "")
     dev_container_registry = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_dev_id
-    #    uat_container_registry  = data.azuredevops_serviceendpoint_azurecr.acr_docker_registry_uat.service_endpoint_name
-    #    prod_container_registry = data.azuredevops_serviceendpoint_azurecr.acr_docker_registry_prod.service_endpoint_name
 
-    dev_container_namespace  = "pagopadcommonacr.azurecr.io"
-    uat_container_namespace  = "pagopaucommonacr.azurecr.io"
-    prod_container_namespace = "pagopapcommonacr.azurecr.io"
+    # aks section
+    k8s_namespace               = "gps"
+    dev_kubernetes_service_conn = azuredevops_serviceendpoint_kubernetes.aks_dev.id
+
+
+    dev_container_namespace = "pagopadcommonacr.azurecr.io"
+    # uat_container_namespace  = "pagopaucommonacr.azurecr.io"
+    # prod_container_namespace = "pagopapcommonacr.azurecr.io"
 
   }
   # deploy secrets
@@ -69,12 +70,14 @@ locals {
 }
 
 module "pagopa-gps-donation-service_code_review" {
-  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review?ref=v2.0.4"
+  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review?ref=v2.2.0"
   count  = var.pagopa-gps-donation-service.pipeline.enable_code_review == true ? 1 : 0
 
   project_id                   = data.azuredevops_project.project.id
   repository                   = var.pagopa-gps-donation-service.repository
   github_service_connection_id = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_pr_id
+  path                         = "${local.domain}\\pagopa-donations-service"
+
 
   variables = merge(
     local.pagopa-gps-donation-service-variables,
@@ -93,12 +96,13 @@ module "pagopa-gps-donation-service_code_review" {
 }
 
 module "pagopa-gps-donation-service_deploy" {
-  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy?ref=v2.0.4"
+  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy?ref=v2.2.0"
   count  = var.pagopa-gps-donation-service.pipeline.enable_deploy == true ? 1 : 0
 
   project_id                   = data.azuredevops_project.project.id
   repository                   = var.pagopa-gps-donation-service.repository
   github_service_connection_id = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_rw_id
+  path                         = "${local.domain}\\pagopa-donations-service"
 
   variables = merge(
     local.pagopa-gps-donation-service-variables,
@@ -111,8 +115,12 @@ module "pagopa-gps-donation-service_deploy" {
   )
 
   service_connection_ids_authorization = [
+    data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_ro_id,
+    data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_dev_id,
+    # azuredevops_serviceendpoint_azurecr.acr_aks_uat.id,
+    # azuredevops_serviceendpoint_azurecr.acr_aks_prod.id,
     data.terraform_remote_state.app.outputs.service_endpoint_azure_dev_id,
-    # TODO uat, prod
+    # azuredevops_serviceendpoint_azurerm.UAT-SERVICE-CONN.id,
+    # azuredevops_serviceendpoint_azurerm.PROD-SERVICE-CONN.id,
   ]
 }
-
