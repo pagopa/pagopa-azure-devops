@@ -50,8 +50,8 @@ locals {
     tenant_id         = module.secrets.values["TENANTID"].value
 
     # acr section
-    image_repository       = replace(var.pagopa-iuv-generator-service.repository.name, "-", "")
-    dev_container_registry = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_dev_id
+    image_repository                    = replace(var.pagopa-iuv-generator-service.repository.name, "-", "")
+    dev_container_registry_service_conn = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_dev_id
 
     # aks section
     k8s_namespace               = "shared"
