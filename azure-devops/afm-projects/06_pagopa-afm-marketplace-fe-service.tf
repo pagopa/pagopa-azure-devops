@@ -52,6 +52,7 @@ locals {
     blob_container_name              = "$web"
     apim_basepath_afm_marketplace_be = "afm/marketplace-service"
 
+    // TODO check
     dev_afm_api_host                       = "https://api.dev.platform.pagopa.it"
     dev_endpoint_azure                     = "pagopa-d-afm-marketplace-fe-cdn-endpoint"
     dev_profile_name_cdn_azure             = "pagopa-d-afm-marketplace-fe-cdn-profile"
@@ -60,7 +61,7 @@ locals {
     dev_azure_subscription_storage_account = "DEV-PAGOPA-SERVICE-CONN"
 
 
-    #    dev_container_namespace = "pagopadcommonacr.azurecr.io"
+    # dev_container_namespace = "pagopadcommonacr.azurecr.io"
     # uat_container_namespace  = "pagopaucommonacr.azurecr.io"
     # prod_container_namespace = "pagopapcommonacr.azurecr.io"
 
