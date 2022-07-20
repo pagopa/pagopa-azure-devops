@@ -217,8 +217,8 @@ module "DEV-SHARED-TLS-CERT-SERVICE-CONN" {
   subscription_name = var.dev_subscription_name
 
   credential_subcription              = var.dev_subscription_name
-  credential_key_vault_name           = local.dev_gps_key_vault_name
-  credential_key_vault_resource_group = local.dev_gps_key_vault_resource_group
+  credential_key_vault_name           = local.dev_shared_key_vault_name
+  credential_key_vault_resource_group = local.dev_shared_key_vault_resource_group
 }
 
 data "azurerm_key_vault" "kv_shared_dev" {
@@ -230,7 +230,7 @@ data "azurerm_key_vault" "kv_shared_dev" {
 resource "azurerm_key_vault_access_policy" "DEV-SHARED-TLS-CERT-SERVICE-CONN_kv_dev" {
   provider = azurerm.dev
 
-  key_vault_id = data.azurerm_key_vault.kv_gps_dev.id
+  key_vault_id = data.azurerm_key_vault.kv_shared_dev.id
   tenant_id    = module.secrets.values["TENANTID"].value
   object_id    = module.DEV-SHARED-TLS-CERT-SERVICE-CONN.service_principal_object_id
 
