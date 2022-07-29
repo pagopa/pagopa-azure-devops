@@ -21,15 +21,19 @@ module "gps_dev_secrets" {
 }
 
 module "gps_uat_secrets" {
+  providers = {
+    azurerm = azurerm.uat
+  }
+
   source = "git::https://github.com/pagopa/azurerm.git//key_vault_secrets_query?ref=v2.0.4"
 
   resource_group = local.uat_gps_key_vault_resource_group
   key_vault_name = local.uat_gps_key_vault_name
 
   secrets = [
-    "pagopa-u-weu-dev-aks-azure-devops-sa-token",
-    "pagopa-u-weu-dev-aks-azure-devops-sa-cacrt",
-    "pagopa-u-weu-dev-aks-apiserver-url"
+    "pagopa-u-weu-uat-aks-azure-devops-sa-token",
+    "pagopa-u-weu-uat-aks-azure-devops-sa-cacrt",
+    "pagopa-u-weu-uat-aks-apiserver-url"
   ]
 }
 

@@ -119,7 +119,7 @@ module "pagopa-gps-donation-service_deploy" {
   service_connection_ids_authorization = [
     data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_ro_id,
     data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_dev_id,
-    data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_uatid,
+    data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_uat_id,
     # azuredevops_serviceendpoint_azurecr.acr_aks_uat.id,
     # azuredevops_serviceendpoint_azurecr.acr_aks_prod.id,
     data.terraform_remote_state.app.outputs.service_endpoint_azure_dev_id,
