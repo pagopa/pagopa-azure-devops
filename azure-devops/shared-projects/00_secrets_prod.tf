@@ -16,6 +16,7 @@ module "secrets" {
     "azure-devops-github-EMAIL",
     "azure-devops-github-USERNAME",
     "TENANTID",
-    "DEV-SUBSCRIPTION-ID"
+    "DEV-SUBSCRIPTION-ID",
+    "UAT-SUBSCRIPTION-ID"
   ]
 }
