@@ -1,19 +1,3 @@
-variable "iac" {
-  default = {
-    repository = {
-      organization    = "pagopa"
-      name            = "pagopa-infra"
-      branch_name     = "refs/heads/main"
-      pipelines_path  = ".devops"
-      yml_prefix_name = null
-    }
-    pipeline = {
-      enable_code_review = true
-      enable_deploy      = true
-    }
-  }
-}
-
 locals {
   # global vars
   iac-variables = {
@@ -104,3 +88,6 @@ module "iac_deploy" {
     azuredevops_serviceendpoint_azurerm.PROD-SERVICE-CONN.id,
   ]
 }
+
+
+
