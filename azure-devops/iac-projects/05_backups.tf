@@ -28,10 +28,10 @@ module "apim_backup" {
     days_to_build              = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
     schedule_only_with_changes = false
     start_hours                = 5
-    start_minutes              = 0
+    start_minutes              = 15
     time_zone                  = "(UTC+01:00) Amsterdam, Berlin, Bern, Rome, Stockholm, Vienna"
     branch_filter = {
-      include = ["master"]
+      include = ["main"]
       exclude = []
     }
   }
