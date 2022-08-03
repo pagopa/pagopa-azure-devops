@@ -1,7 +1,7 @@
 resource "azuredevops_project" "project" {
   name               = "pagoPA-iac"
   description        = "This is the DevOps project for pagoPA service projects"
-  visibility         = "public"
+  visibility         = "private"
   version_control    = "Git"
   work_item_template = "Basic"
 }
