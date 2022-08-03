@@ -37,15 +37,19 @@ module "shared_uat_secrets" {
   ]
 }
 
-# module "shared_prod_secrets" {
-#   source = "git::https://github.com/pagopa/azurerm.git//key_vault_secrets_query?ref=v2.0.4"
+module "shared_prod_secrets" {
+  source = "git::https://github.com/pagopa/azurerm.git//key_vault_secrets_query?ref=v2.0.4"
 
-#   resource_group = local.prod_shared_key_vault_resource_group
-#   key_vault_name = local.prod_shared_key_vault_name
+  providers = {
+    azurerm = azurerm.prod
+  }
 
-#   secrets = [
-#     "pagopa-p-weu-dev-aks-azure-devops-sa-token",
-#     "pagopa-p-weu-dev-aks-azure-devops-sa-cacrt",
-#     "pagopa-p-weu-dev-aks-apiserver-url"
-#   ]
-# }
+  resource_group = local.prod_shared_key_vault_resource_group
+  key_vault_name = local.prod_shared_key_vault_name
+
+  secrets = [
+    "pagopa-p-weu-prod-aks-azure-devops-sa-token",
+    "pagopa-p-weu-prod-aks-azure-devops-sa-cacrt",
+    "pagopa-p-weu-prod-aks-apiserver-url"
+  ]
+}
