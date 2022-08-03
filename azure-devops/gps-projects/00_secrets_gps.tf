@@ -37,15 +37,19 @@ module "gps_uat_secrets" {
   ]
 }
 
-# module "gps_prod_secrets" {
-#   source = "git::https://github.com/pagopa/azurerm.git//key_vault_secrets_query?ref=v2.0.4"
+module "gps_prod_secrets" {
+  providers = {
+    azurerm = azurerm.prod
+  }
 
-#   resource_group = local.prod_gps_key_vault_resource_group
-#   key_vault_name = local.prod_gps_key_vault_name
+  source = "git::https://github.com/pagopa/azurerm.git//key_vault_secrets_query?ref=v2.0.4"
 
-#   secrets = [
-#     "pagopa-p-weu-dev-aks-azure-devops-sa-token",
-#     "pagopa-p-weu-dev-aks-azure-devops-sa-cacrt",
-#     "pagopa-p-weu-dev-aks-apiserver-url"
-#   ]
-# }
+  resource_group = local.prod_gps_key_vault_resource_group
+  key_vault_name = local.prod_gps_key_vault_name
+
+  secrets = [
+    "pagopa-p-weu-prod-aks-azure-devops-sa-token",
+    "pagopa-p-weu-prod-aks-azure-devops-sa-cacrt",
+    "pagopa-p-weu-prod-aks-apiserver-url"
+  ]
+}
