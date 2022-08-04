@@ -200,11 +200,14 @@
 | <a name="output_service_endpoint_azure_dev_id"></a> [service\_endpoint\_azure\_dev\_id](#output\_service\_endpoint\_azure\_dev\_id) | n/a |
 | <a name="output_service_endpoint_azure_devops_acr_aks_dev_id"></a> [service\_endpoint\_azure\_devops\_acr\_aks\_dev\_id](#output\_service\_endpoint\_azure\_devops\_acr\_aks\_dev\_id) | n/a |
 | <a name="output_service_endpoint_azure_devops_acr_aks_dev_name"></a> [service\_endpoint\_azure\_devops\_acr\_aks\_dev\_name](#output\_service\_endpoint\_azure\_devops\_acr\_aks\_dev\_name) | n/a |
+| <a name="output_service_endpoint_azure_devops_acr_aks_prod_id"></a> [service\_endpoint\_azure\_devops\_acr\_aks\_prod\_id](#output\_service\_endpoint\_azure\_devops\_acr\_aks\_prod\_id) | n/a |
+| <a name="output_service_endpoint_azure_devops_acr_aks_prod_name"></a> [service\_endpoint\_azure\_devops\_acr\_aks\_prod\_name](#output\_service\_endpoint\_azure\_devops\_acr\_aks\_prod\_name) | n/a |
 | <a name="output_service_endpoint_azure_devops_acr_aks_uat_id"></a> [service\_endpoint\_azure\_devops\_acr\_aks\_uat\_id](#output\_service\_endpoint\_azure\_devops\_acr\_aks\_uat\_id) | n/a |
 | <a name="output_service_endpoint_azure_devops_acr_aks_uat_name"></a> [service\_endpoint\_azure\_devops\_acr\_aks\_uat\_name](#output\_service\_endpoint\_azure\_devops\_acr\_aks\_uat\_name) | n/a |
 | <a name="output_service_endpoint_azure_devops_github_pr_id"></a> [service\_endpoint\_azure\_devops\_github\_pr\_id](#output\_service\_endpoint\_azure\_devops\_github\_pr\_id) | n/a |
 | <a name="output_service_endpoint_azure_devops_github_ro_id"></a> [service\_endpoint\_azure\_devops\_github\_ro\_id](#output\_service\_endpoint\_azure\_devops\_github\_ro\_id) | n/a |
 | <a name="output_service_endpoint_azure_devops_github_rw_id"></a> [service\_endpoint\_azure\_devops\_github\_rw\_id](#output\_service\_endpoint\_azure\_devops\_github\_rw\_id) | n/a |
 | <a name="output_service_endpoint_azure_devops_github_rw_name"></a> [service\_endpoint\_azure\_devops\_github\_rw\_name](#output\_service\_endpoint\_azure\_devops\_github\_rw\_name) | n/a |
+| <a name="output_service_endpoint_azure_prod_id"></a> [service\_endpoint\_azure\_prod\_id](#output\_service\_endpoint\_azure\_prod\_id) | n/a |
 | <a name="output_service_endpoint_azure_uat_id"></a> [service\_endpoint\_azure\_uat\_id](#output\_service\_endpoint\_azure\_uat\_id) | n/a |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
