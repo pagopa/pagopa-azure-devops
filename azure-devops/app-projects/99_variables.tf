@@ -48,6 +48,10 @@ locals {
   uat_shared_key_vault_name  = "${local.prefix}-u-shared-kv"
   prod_shared_key_vault_name = "${local.prefix}-p-shared-kv"
 
+  dev_afm_key_vault_name  = "${local.prefix}-d-afm-kv"
+  uat_afm_key_vault_name  = "${local.prefix}-u-afm-kv"
+  prod_afm_key_vault_name = "${local.prefix}-p-afm-kv"
+
   dev_key_vault_resource_group  = "${local.prefix}-d-sec-rg"
   uat_key_vault_resource_group  = "${local.prefix}-u-sec-rg"
   prod_key_vault_resource_group = "${local.prefix}-p-sec-rg"
@@ -63,6 +67,10 @@ locals {
   dev_shared_key_vault_resource_group  = "${local.prefix}-d-shared-sec-rg"
   uat_shared_key_vault_resource_group  = "${local.prefix}-u-shared-sec-rg"
   prod_shared_key_vault_resource_group = "${local.prefix}-p-shared-sec-rg"
+
+  dev_afm_key_vault_resource_group  = "${local.prefix}-d-afm-sec-rg"
+  uat_afm_key_vault_resource_group  = "${local.prefix}-u-afm-sec-rg"
+  prod_afm_key_vault_resource_group = "${local.prefix}-p-afm-sec-rg"
 
   # ☁️ VNET
   dev_vnet_rg  = "${local.prefix}-d-vnet-rg"
