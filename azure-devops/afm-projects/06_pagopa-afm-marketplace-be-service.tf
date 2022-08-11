@@ -105,7 +105,7 @@ module "pagopa-afm-marketplace-be-service_deploy" {
   project_id                   = data.azuredevops_project.project.id
   repository                   = var.pagopa-afm-marketplace-be-service.repository
   github_service_connection_id = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_rw_id
-  path                         = "${local.domain}\\pagopa-afm-marketplace-be"
+  path                         = "${local.domain}\\pagopa-afm-marketplace-service"
 
   variables = merge(
     local.pagopa-afm-marketplace-be-service-variables,
