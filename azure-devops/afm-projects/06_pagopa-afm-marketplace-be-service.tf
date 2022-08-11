@@ -50,20 +50,20 @@ locals {
     tenant_id         = module.secrets.values["TENANTID"].value
 
     # acr section
-    image_repository_name                = replace(var.pagopa-afm-marketplace-be-service.repository.name, "-", "")
-    dev_container_registry_service_conn  = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_dev_id
-    uat_container_registry_service_conn  = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_uat_id
-    prod_container_registry_service_conn = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_prod_id
+    image_repository_name               = replace(var.pagopa-afm-marketplace-be-service.repository.name, "-", "")
+    dev_container_registry_service_conn = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_dev_id
+    # uat_container_registry_service_conn  = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_uat_id
+    # prod_container_registry_service_conn = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_prod_id
 
     # aks section
-    k8s_namespace                = "afm"
-    dev_kubernetes_service_conn  = azuredevops_serviceendpoint_kubernetes.aks_dev.id
-    uat_kubernetes_service_conn  = azuredevops_serviceendpoint_kubernetes.aks_uat.id
-    prod_kubernetes_service_conn = azuredevops_serviceendpoint_kubernetes.aks_prod.id
+    k8s_namespace               = "afm"
+    dev_kubernetes_service_conn = azuredevops_serviceendpoint_kubernetes.aks_dev.id
+    # uat_kubernetes_service_conn  = azuredevops_serviceendpoint_kubernetes.aks_uat.id
+    # prod_kubernetes_service_conn = azuredevops_serviceendpoint_kubernetes.aks_prod.id
 
-    dev_container_namespace  = "pagopadcommonacr.azurecr.io"
-    uat_container_namespace  = "pagopaucommonacr.azurecr.io"
-    prod_container_namespace = "pagopapcommonacr.azurecr.io"
+    dev_container_namespace = "pagopadcommonacr.azurecr.io"
+    # uat_container_namespace  = "pagopaucommonacr.azurecr.io"
+    # prod_container_namespace = "pagopapcommonacr.azurecr.io"
 
   }
   # deploy secrets
