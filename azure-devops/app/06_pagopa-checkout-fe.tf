@@ -44,7 +44,7 @@ locals {
     checkout_api_host_dev    = "https://api.dev.platform.pagopa.it"
     checkout_api_host_uat    = "https://api.uat.platform.pagopa.it"
     checkout_api_host_prod   = "https://api.platform.pagopa.it"
-    checkout_captcha_id_dev  = module.secrets.values["UAT-CHECKOUT-CAPTCHA-ID"].value
+    checkout_captcha_id_dev  = module.secrets.values["DEV-CHECKOUT-CAPTCHA-ID"].value
     checkout_captcha_id_uat  = module.secrets.values["UAT-CHECKOUT-CAPTCHA-ID"].value
     checkout_captcha_id_prod = module.secrets.values["PROD-CHECKOUT-CAPTCHA-ID"].value
   }
