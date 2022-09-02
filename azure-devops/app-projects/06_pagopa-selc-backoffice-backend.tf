@@ -18,7 +18,7 @@ locals {
   # global vars
   pagopa-selc-backoffice-backend-variables = {
     cache_version_id = "v1"
-    default_branch   = var.pagopa-selc-backoffice-backend.branch_name
+    default_branch   = var.pagopa-selc-backoffice-backend.repository.branch_name
 
     settings_xml_rw_secure_file_name = "settings-rw.xml"
     settings_xml_ro_secure_file_name = "settings-ro.xml"
