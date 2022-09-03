@@ -88,7 +88,9 @@ module "iac_core_deploy" {
   github_service_connection_id = azuredevops_serviceendpoint_github.azure-devops-github-pr.id
   path                         = var.iac_core.pipeline.path_name
 
-  ci_trigger_use_yaml = true
+  ci_trigger_use_yaml           = false
+  pull_request_trigger_use_yaml = false
+
 
   variables = merge(
     local.iac_core-variables,
