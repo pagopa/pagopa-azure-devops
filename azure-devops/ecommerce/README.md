@@ -8,13 +8,6 @@
 | <a name="requirement_azuredevops"></a> [azuredevops](#requirement\_azuredevops) | >= 0.2.0 |
 | <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) | >= 2.98.0 |
 
-## Providers
-
-| Name | Version |
-|------|---------|
-| <a name="provider_azuredevops"></a> [azuredevops](#provider\_azuredevops) | 0.2.1 |
-| <a name="provider_terraform"></a> [terraform](#provider\_terraform) | n/a |
-
 ## Modules
 
 | Name | Source | Version |

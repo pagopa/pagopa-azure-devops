@@ -10,7 +10,7 @@ variable "iac_core" {
     pipeline = {
       enable_code_review = true
       enable_deploy      = true
-      path_name               = "core-infra"
+      path_name          = "core-infra"
     }
   }
 }
@@ -54,7 +54,7 @@ module "iac_core_code_review" {
   project_id                   = azuredevops_project.project.id
   repository                   = var.iac_core.repository
   github_service_connection_id = azuredevops_serviceendpoint_github.azure-devops-github-pr.id
-  path = var.iac_core.pipeline.path_name
+  path                         = var.iac_core.pipeline.path_name
 
   pull_request_trigger_use_yaml = true
 
@@ -86,7 +86,7 @@ module "iac_core_deploy" {
   project_id                   = azuredevops_project.project.id
   repository                   = var.iac_core.repository
   github_service_connection_id = azuredevops_serviceendpoint_github.azure-devops-github-pr.id
-  path = var.iac_core.pipeline.path_name
+  path                         = var.iac_core.pipeline.path_name
 
   ci_trigger_use_yaml = true
 
