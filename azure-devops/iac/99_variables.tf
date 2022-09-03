@@ -42,22 +42,6 @@ locals {
   srv_endpoint_github_pr = "io-azure-devops-github-pr"
 }
 
-variable "iac" {
-  default = {
-    repository = {
-      organization    = "pagopa"
-      name            = "pagopa-infra"
-      branch_name     = "refs/heads/main"
-      pipelines_path  = ".devops"
-      yml_prefix_name = null
-    }
-    pipeline = {
-      enable_code_review = true
-      enable_deploy      = true
-    }
-  }
-}
-
 variable "apim_backup" {
   default = {
     repository = {
