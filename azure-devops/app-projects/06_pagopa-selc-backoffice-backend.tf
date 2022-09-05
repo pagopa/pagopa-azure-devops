@@ -138,8 +138,8 @@ module "pagopa-selc-backoffice-backend_deploy" {
   service_connection_ids_authorization = [
     azuredevops_serviceendpoint_github.azure-devops-github-ro.id,
     azuredevops_serviceendpoint_azurerm.DEV-SERVICE-CONN.id,
-  #  azuredevops_serviceendpoint_azurecr.acr_docker_registry_dev.id,
-  #  azuredevops_serviceendpoint_kubernetes.sia-docker-registry-dev.id,
+    azuredevops_serviceendpoint_azurecr.acr_docker_registry_dev.id,
+    azuredevops_serviceendpoint_kubernetes.sia-docker-registry-dev.id,
     azuredevops_serviceendpoint_azurerm.UAT-SERVICE-CONN.id,
   #  azuredevops_serviceendpoint_azurecr.acr_docker_registry_uat.id,
   #  azuredevops_serviceendpoint_dockerregistry.sia-docker-registry-uat.id,
