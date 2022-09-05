@@ -51,7 +51,10 @@ locals {
     blob_container_name     = "$web"
     apim_basepath_apiconfig = "/apiconfig/api"
     apiconfig_tenant        = format("https://login.microsoftonline.com/%s", module.secrets.values["TENANTID"].value),
-    apiconfig_scopes        = "api://pagopa-apiconfig-be/access-apiconfig-be"
+
+    dev_apiconfig_scopes  = "api://pagopa-d-apiconfig-be/access-apiconfig-be"
+    uat_apiconfig_scopes  = "api://pagopa-u-apiconfig-be/access-apiconfig-be"
+    prod_apiconfig_scopes = "api://pagopa-p-apiconfig-be/access-apiconfig-be"
 
     dev_apiconfig_client_id  = module.secrets.values["DEV-APICONFIG-CLIENT-ID"].value
     uat_apiconfig_client_id  = module.secrets.values["UAT-APICONFIG-CLIENT-ID"].value

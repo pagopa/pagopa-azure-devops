@@ -2,6 +2,8 @@ name: Static Analysis
 
 on:
   push:
+    branches-ignore:
+      - main
 
 jobs:
   static_analysis:
@@ -10,21 +12,43 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: init_app_projects
+      - name: init_terraform_folders
+        env:
+          FOLDERS: >
+            azure-devops/afm
+            azure-devops/app
+            azure-devops/ecommerce
+            azure-devops/gps
+            azure-devops/iac
+            azure-devops/shared
         run: |
-          TAG=$(cat .terraform-version)
-          cd azure-devops/app-projects
-          sed -i -e 's/  backend "azurerm" {}//g' 99_main.tf # use local backend
-          docker run -v $(pwd):/tmp -w /tmp hashicorp/terraform:$TAG init
+          pids=()
 
-      - name: init_iac_projects
-        run: |
           TAG=$(cat .terraform-version)
-          cd azure-devops/iac-projects
-          sed -i -e 's/  backend "azurerm" {}//g' 99_main.tf # use local backend
-          docker run -v $(pwd):/tmp -w /tmp hashicorp/terraform:$TAG init
+          for f in $FOLDERS; do
+            pushd "$(pwd)/${f}"
+              sed -i -e 's/  backend "azurerm" {}//g' 99_main.tf # use local backend
+              docker run -v $(pwd):/tmp -w /tmp hashicorp/terraform:$TAG init &
+              pids+=($!)
+            popd
 
-      - name: run_test
+          done
+
+          # Wait for each specific process to terminate.
+          # Instead of this loop, a single call to 'wait' would wait for all the jobs
+          # to terminate, but it would not give us their exit status.
+          #
+          for pid in "${pids[@]}"; do
+            #
+            # Waiting on a specific PID makes the wait command return with the exit
+            # status of that process. Because of the 'set -e' setting, any exit status
+            # other than zero causes the current shell to terminate with that exit
+            # status as well.
+            #
+            wait "$pid"
+          done
+
+      - name: run_pre_commit_terraform
         run: |
-          TAG=v1.68.1
+          TAG=v1.71.0
           docker run -v $(pwd):/lint -w /lint ghcr.io/antonbabenko/pre-commit-terraform:$TAG run -a
