@@ -121,9 +121,9 @@ module "pagopa-notifications-service_deploy" {
     data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_ro_id,
     data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_dev_id,
     data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_uat_id,
-    # azuredevops_serviceendpoint_azurecr.acr_aks_prod.id,
+    data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_prod_id,
     data.terraform_remote_state.app.outputs.service_endpoint_azure_dev_id,
     data.terraform_remote_state.app.outputs.service_endpoint_azure_uat_id,
-    # azuredevops_serviceendpoint_azurerm.PROD-SERVICE-CONN.id,
+    data.terraform_remote_state.app.outputs.service_endpoint_azure_prod_id,
   ]
 }
