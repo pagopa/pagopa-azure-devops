@@ -56,7 +56,7 @@ locals {
     # prod_container_registry_service_conn = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_prod_id
 
     # aks section
-    k8s_namespace               = "afm"
+    k8s_namespace               = "shared"
     dev_kubernetes_service_conn = azuredevops_serviceendpoint_kubernetes.aks_dev.id
     # uat_kubernetes_service_conn  = azuredevops_serviceendpoint_kubernetes.aks_uat.id
     # prod_kubernetes_service_conn = azuredevops_serviceendpoint_kubernetes.aks_prod.id
@@ -97,7 +97,7 @@ module "pagopa-selc-backoffice-backend_code_review" {
   )
 
   service_connection_ids_authorization = [
-    azuredevops_serviceendpoint_github.azure-devops-github-ro.id,
+    data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_ro_id,
     local.azuredevops_serviceendpoint_sonarcloud_id,
   ]
 }
