@@ -82,7 +82,7 @@ module "pagopa-selc-backoffice-backend_code_review" {
   project_id                   = data.azuredevops_project.project.id
   repository                   = var.pagopa-selc-backoffice-backend.repository
   github_service_connection_id = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_pr_id
-  # path                         = "${local.domain}\\pagopa-selc-backoffice-backend"
+  path                         = "${local.domain}\\pagopa-selc-backoffice-backend"
 
   pull_request_trigger_use_yaml = true
 
@@ -109,7 +109,7 @@ module "pagopa-selc-backoffice-backend_deploy" {
   project_id                   = azuredevops_project.project.id
   repository                   = var.pagopa-selc-backoffice-backend.repository
   github_service_connection_id = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_rw_id
-  #path                         = "${local.domain}\\pagopa-selc-backoffice-backend"
+  path                         = "${local.domain}\\pagopa-selc-backoffice-backend"
 
   variables = merge(
     local.pagopa-selc-backoffice-backend-variables,
