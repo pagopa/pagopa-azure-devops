@@ -68,6 +68,7 @@ locals {
     #prod_container_registry_name
     # prod_container_namespace = "pagopapcommonacr.azurecr.io"
   }
+  
   # deploy secrets
   pagopa-selc-backoffice-backend-variables_secret_deploy = {
 
