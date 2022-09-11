@@ -69,7 +69,7 @@ locals {
   }
   # deploy secrets
   pagopa-notifications-service-variables_secret_deploy = {
-
+    notifications_service_testing_api_key = module.shared_uat_secrets.values["notifications-service-testing-api-key"].value
   }
 }
 
