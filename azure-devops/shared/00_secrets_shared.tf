@@ -34,7 +34,8 @@ module "shared_uat_secrets" {
     "pagopa-u-weu-uat-aks-azure-devops-sa-token",
     "pagopa-u-weu-uat-aks-azure-devops-sa-cacrt",
     "pagopa-u-weu-uat-aks-apiserver-url",
-    "notifications-service-testing-api-key"
+    "notifications-service-testing-api-key",
+    "notifications-service-testing-mail"
   ]
 }
 
