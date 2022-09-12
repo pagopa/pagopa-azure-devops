@@ -65,6 +65,10 @@ locals {
     # uat_container_namespace  = "pagopaucommonacr.azurecr.io"
     # prod_container_namespace = "pagopapcommonacr.azurecr.io"
 
+    TF_APPINSIGHTS_SERVICE_CONN_DEV = module.DEV-APPINSIGHTS-SERVICE-CONN.service_endpoint_name
+    TF_APPINSIGHTS_RESOURCE_ID_DEV  = data.azurerm_application_insights.application_insights_dev.id
+
+
   }
   # deploy secrets
   pagopa-afm-calculator-service-variables_secret_deploy = {
@@ -125,5 +129,6 @@ module "pagopa-afm-calculator-service_deploy" {
     data.terraform_remote_state.app.outputs.service_endpoint_azure_dev_id,
     # data.terraform_remote_state.app.outputs.service_endpoint_azure_uat_id,
     # data.terraform_remote_state.app.outputs.service_endpoint_azure_prod_id,
+    module.DEV-APPINSIGHTS-SERVICE-CONN.service_endpoint_id
   ]
 }
