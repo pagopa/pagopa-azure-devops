@@ -43,6 +43,7 @@ locals {
   # code_review secrets
   pagopa-selc-backoffice-backend-variables_secret_code_review = {
   }
+  
   # deploy vars
   pagopa-selc-backoffice-backend-variables_deploy = {
     git_mail          = module.secrets.values["azure-devops-github-EMAIL"].value
