@@ -22,7 +22,7 @@ module "UAT-APPINSIGHTS-SERVICE-CONN" {
 }
 
 data "azurerm_application_insights" "application_insights_uat" {
-  provider            = azurerm.dev
+  provider            = azurerm.uat
   name                = local.uat_appinsights_name
   resource_group_name = local.uat_appinsights_resource_group
 }
