@@ -32,6 +32,7 @@ locals {
   pagopa-selc-backoffice-backend-variables_secret = {
 
   }
+  
   # code_review vars
   pagopa-selc-backoffice-backend-variables_code_review = {
     danger_github_api_token = "skip"
