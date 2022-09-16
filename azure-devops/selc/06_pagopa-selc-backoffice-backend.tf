@@ -32,7 +32,7 @@ locals {
   pagopa-selc-backoffice-backend-variables_secret = {
 
   }
-  
+
   # code_review vars
   pagopa-selc-backoffice-backend-variables_code_review = {
     danger_github_api_token = "skip"
@@ -59,17 +59,17 @@ locals {
     prod_container_registry_service_conn = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_prod_id
 
     # custom section
-    dev_azure_client_secret         = module.secrets.values["DEV_AZURE_CLIENT_SECRET"].value
-    dev_azure_client_id             = module.secrets.values["DEV_AZURE_CLIENT_ID"].value
-    dev_selc_apim_external_api_key  = module.secrets.values["DEV_SELC_APIM_EXTERNAL_API_KEY"].value
+    dev_azure_client_secret         = module.secrets.values["pagopa-selc-d-azure-client-secret"].value
+    dev_azure_client_id             = module.secrets.values["pagopa-selc-d-azure-client-id"].value
+    dev_selc_apim_external_api_key  = module.secrets.values["selc-d_apim_external_api_key"].value
 
-    uat_azure_client_secret         = module.secrets.values["UAT_AZURE_CLIENT_SECRET"].value
-    uat_azure_client_id             = module.secrets.values["UAT_AZURE_CLIENT_ID"].value
-    uat_selc_apim_external_api_key  = module.secrets.values["UAT_SELC_APIM_EXTERNAL_API_KEY"].value
+    uat_azure_client_secret         = module.secrets.values["pagopa-selc-u-azure-client-secret"].value
+    uat_azure_client_id             = module.secrets.values["pagopa-selc-u-azure-client-id"].value
+    uat_selc_apim_external_api_key  = module.secrets.values["selc-u_apim_external_api_key"].value
 
-    prod_azure_client_secret        = module.secrets.values["PROD_AZURE_CLIENT_SECRET"].value
-    prod_azure_client_id            = module.secrets.values["PROD_AZURE_CLIENT_ID"].value
-    prod_selc_apim_external_api_key = module.secrets.values["PROD_SELC_APIM_EXTERNAL_API_KEY"].value
+    prod_azure_client_secret        = module.secrets.values["pagopa-selc-p-azure-client-secret"].value
+    prod_azure_client_id            = module.secrets.values["pagopa-selc-p-azure-client-id"].value
+    prod_selc_apim_external_api_key = module.secrets.values["selc-p_apim_external_api_key"].value
 
     # aks section
     k8s_namespace                = "selc"
