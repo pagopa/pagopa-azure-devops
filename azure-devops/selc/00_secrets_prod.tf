@@ -9,7 +9,7 @@ module "secrets" {
   key_vault_name = local.prod_key_vault_azdo_name
 
   secrets = [
-   "DANGER-GITHUB-API-TOKEN",
+    "DANGER-GITHUB-API-TOKEN",
     "azure-devops-github-ro-TOKEN",
     "azure-devops-github-rw-TOKEN",
     "azure-devops-github-pr-TOKEN",
@@ -18,15 +18,6 @@ module "secrets" {
     "TENANTID",
     "DEV-SUBSCRIPTION-ID",
     "UAT-SUBSCRIPTION-ID",
-    "PROD-SUBSCRIPTION-ID",
-    "pagopa-selc-d-azure-client-secret",
-    "pagopa-selc-d-azure-client-id",
-    "selc-d-apim-external-api-key",
-    "pagopa-selc-u-azure-client-secret",
-    "pagopa-selc-u-azure-client-id",
-    "selc-u-apim-external-api-key",
-    "pagopa-selc-p-azure-client-secret",
-    "pagopa-selc-p-azure-client-id",
-    "selc-p-apim-external-api-key",
+    "PROD-SUBSCRIPTION-ID"
   ]
 }
