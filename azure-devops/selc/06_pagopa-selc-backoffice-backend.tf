@@ -58,16 +58,16 @@ locals {
     prod_container_registry_service_conn = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_prod_id
 
     # custom section
-    dev_azure_client_secret  = module.secrets.values["DEV_AZURE_CLIENT_SECRET"].value
-    uat_azure_client_secret  = module.secrets.values["UAT_AZURE_CLIENT_SECRET"].value
-    prod_azure_client_secret = module.secrets.values["PROD_AZURE_CLIENT_SECRET"].value
-
-    dev_azure_client_id  = module.secrets.values["DEV_AZURE_CLIENT_ID"].value
-    uat_azure_client_id  = module.secrets.values["UAT_AZURE_CLIENT_ID"].value
-    prod_azure_client_id = module.secrets.values["PROD_AZURE_CLIENT_ID"].value
-
+    dev_azure_client_secret         = module.secrets.values["DEV_AZURE_CLIENT_SECRET"].value
+    dev_azure_client_id             = module.secrets.values["DEV_AZURE_CLIENT_ID"].value
     dev_selc_apim_external_api_key  = module.secrets.values["DEV_SELC_APIM_EXTERNAL_API_KEY"].value
+
+    uat_azure_client_secret         = module.secrets.values["UAT_AZURE_CLIENT_SECRET"].value
+    uat_azure_client_id             = module.secrets.values["UAT_AZURE_CLIENT_ID"].value
     uat_selc_apim_external_api_key  = module.secrets.values["UAT_SELC_APIM_EXTERNAL_API_KEY"].value
+
+    prod_azure_client_secret        = module.secrets.values["PROD_AZURE_CLIENT_SECRET"].value
+    prod_azure_client_id            = module.secrets.values["PROD_AZURE_CLIENT_ID"].value
     prod_selc_apim_external_api_key = module.secrets.values["PROD_SELC_APIM_EXTERNAL_API_KEY"].value
 
     # aks section
@@ -79,6 +79,19 @@ locals {
     dev_container_namespace  = "pagopadcommonacr.azurecr.io"
     uat_container_namespace  = "pagopaucommonacr.azurecr.io"
     prod_container_namespace = "pagopapcommonacr.azurecr.io"
+
+    # apim
+    dev_external_api_service_url = "https://api.dev.selfcare.pagopa.it"
+    dev_azure_resource_group     = "pagopa-d-api-rg"
+    dev_azure_service_name       = "pagopa-d-apim"
+
+    uat_external_api_service_url = "https://api.uat.selfcare.pagopa.it"
+    uat_azure_resource_group     = "pagopa-u-api-rg"
+    uat_azure_service_name       = "pagopa-u-apim"
+
+    prod_external_api_service_url = "https://api.selfcare.pagopa.it"
+    prod_azure_resource_group     = "pagopa-p-api-rg"
+    prod_azure_service_name       = "pagopa-p-apim"
   }
   
   # deploy secrets

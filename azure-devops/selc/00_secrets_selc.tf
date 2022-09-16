@@ -1,5 +1,5 @@
 #
-# PROD GPS KEYVAULT
+# PROD SELC KEYVAULT
 #
 
 module "selc_dev_secrets" {
