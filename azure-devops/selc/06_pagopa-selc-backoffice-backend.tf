@@ -61,15 +61,15 @@ locals {
     # custom section
     dev_azure_client_secret         = module.secrets.values["pagopa-selc-d-azure-client-secret"].value
     dev_azure_client_id             = module.secrets.values["pagopa-selc-d-azure-client-id"].value
-    dev_selc_apim_external_api_key  = module.secrets.values["selc-d_apim_external_api_key"].value
+    dev_selc-apim-external-api-key  = module.secrets.values["selc-d-apim-external-api-key"].value
 
     uat_azure_client_secret         = module.secrets.values["pagopa-selc-u-azure-client-secret"].value
     uat_azure_client_id             = module.secrets.values["pagopa-selc-u-azure-client-id"].value
-    uat_selc_apim_external_api_key  = module.secrets.values["selc-u_apim_external_api_key"].value
+    uat_selc-apim-external-api-key  = module.secrets.values["selc-u-apim-external-api-key"].value
 
     prod_azure_client_secret        = module.secrets.values["pagopa-selc-p-azure-client-secret"].value
     prod_azure_client_id            = module.secrets.values["pagopa-selc-p-azure-client-id"].value
-    prod_selc_apim_external_api_key = module.secrets.values["selc-p_apim_external_api_key"].value
+    prod_selc-apim-external-api-key = module.secrets.values["selc-p-apim-external-api-key"].value
 
     # aks section
     k8s_namespace                = "selc"

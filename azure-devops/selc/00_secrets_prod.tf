@@ -21,12 +21,12 @@ module "secrets" {
     "PROD-SUBSCRIPTION-ID",
     "pagopa-selc-d-azure-client-secret",
     "pagopa-selc-d-azure-client-id",
-    "selc-d_apim_external_api_key",
+    "selc-d-apim-external-api-key",
     "pagopa-selc-u-azure-client-secret",
     "pagopa-selc-u-azure-client-id",
-    "selc-u_apim_external_api_key",
+    "selc-u-apim-external-api-key",
     "pagopa-selc-p-azure-client-secret",
     "pagopa-selc-p-azure-client-id",
-    "selc-p_apim_external_api_key",
+    "selc-p-apim-external-api-key",
   ]
 }
