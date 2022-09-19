@@ -37,7 +37,7 @@ locals {
 }
 
 module "pagopa-ecommerce-tests_soak" {
-  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_generic?ref=v2.2.0"
+  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_generic?ref=v2.6.3"
   count  = var.pagopa-ecommerce-tests.pipeline.enable_soak == true ? 1 : 0
 
   project_id                   = data.azuredevops_project.project.id
