@@ -6,9 +6,11 @@ variable "pagopa-ecommerce-tests" {
       branch_name     = "refs/heads/main"
       pipelines_path  = ".devops"
       yml_prefix_name = null
+      pipeline_yml_filename = "soaktest.yaml"
     }
     pipeline = {
       enable_soak = true
+      name        = "soak-test-pipeline"
     }
   }
 }
@@ -35,13 +37,15 @@ locals {
 }
 
 module "pagopa-ecommerce-tests_soak" {
-  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review?ref=v2.2.0"
+  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_generic?ref=v2.2.0"
   count  = var.pagopa-ecommerce-tests.pipeline.enable_soak == true ? 1 : 0
 
   project_id                   = data.azuredevops_project.project.id
   repository                   = var.pagopa-ecommerce-tests.repository
   github_service_connection_id = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_pr_id
   path                         = "${local.domain}\\pagopa-ecommerce-tests"
+  pipeline_name                = var.pagopa-ecommerce-tests.pipeline.name
+  pipeline_yml_filename        = var.pagopa-ecommerce-tests.repository.pipeline_yml_filename
 
   variables = merge(
     local.pagopa-ecommerce-tests-variables,
