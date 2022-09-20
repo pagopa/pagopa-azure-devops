@@ -70,6 +70,8 @@ locals {
 
     TF_APPINSIGHTS_SERVICE_CONN_UAT = module.UAT-APPINSIGHTS-SERVICE-CONN.service_endpoint_name
     TF_APPINSIGHTS_RESOURCE_ID_UAT  = data.azurerm_application_insights.application_insights_uat.id
+
+    apim_basepath = "afm/marketplace-service"
   }
   # deploy secrets
   pagopa-afm-marketplace-be-service-variables_secret_deploy = {
