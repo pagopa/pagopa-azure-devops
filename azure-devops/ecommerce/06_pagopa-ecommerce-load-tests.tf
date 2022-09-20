@@ -42,7 +42,7 @@ module "pagopa-ecommerce-tests_soak" {
 
   project_id                   = data.azuredevops_project.project.id
   repository                   = var.pagopa-ecommerce-tests.repository
-  github_service_connection_id = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_pr_id
+  github_service_connection_id = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_ro_id
   path                         = "${local.domain}\\pagopa-ecommerce-tests"
   pipeline_name                = var.pagopa-ecommerce-tests.pipeline.name
   pipeline_yml_filename        = var.pagopa-ecommerce-tests.repository.pipeline_yml_filename
