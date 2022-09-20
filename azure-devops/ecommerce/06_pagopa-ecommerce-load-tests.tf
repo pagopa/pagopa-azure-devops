@@ -31,7 +31,7 @@ locals {
   }
   # soak secrets
   pagopa-ecommerce-tests-variables_secret_soak = {
-
+    api_subscription_key = module.secrets.values["pagopa-u-weu-dev-test-subscription-key"].value
   }
 
 }
