@@ -46,7 +46,6 @@ locals {
   # deploy vars
   pagopa-ecommerce-transactions-service-variables_deploy = {
     github_connection = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_rw_name
-    tenant_id         = module.secrets.values["TENANTID"].value
 
     # acr section
     k8s_image_repository_name           = replace(var.pagopa-ecommerce-transactions-service.repository.name, "-", "")
@@ -65,8 +64,10 @@ locals {
 
   }
   # deploy secrets
-  pagopa-ecommerce-transactions-service-variables_secret_deploy = {
-
+  pagopa-ecommerce-transactions-service-variables_secret_deploy = {    
+    git_mail     = module.secrets.values["azure-devops-github-EMAIL"].value
+    git_username = module.secrets.values["azure-devops-github-USERNAME"].value
+    tenant_id    = module.secrets.values["TENANTID"].value
   }
 }
 
