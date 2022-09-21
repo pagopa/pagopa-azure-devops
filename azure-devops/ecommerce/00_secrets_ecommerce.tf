@@ -17,7 +17,7 @@ module "ecommerce_dev_secrets" {
     "pagopa-d-weu-dev-aks-azure-devops-sa-token",
     "pagopa-d-weu-dev-aks-azure-devops-sa-cacrt",
     "pagopa-d-weu-dev-aks-apiserver-url",
-    "pagopa-u-weu-dev-test-subscription-key"
+    "pagopa-u-weu-uat-test-subscription-key"
   ]
 }
 
