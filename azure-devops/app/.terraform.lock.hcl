@@ -62,7 +62,7 @@ provider "registry.terraform.io/hashicorp/null" {
 
 provider "registry.terraform.io/hashicorp/time" {
   version     = "0.7.2"
-  constraints = "~> 0.7.0"
+  constraints = ">= 0.7.0, ~> 0.7.0"
   hashes = [
     "h1:NKy1QrNLlP5mKy5Tea6lQSRsVoyydJQKh6WvNTdBF4I=",
     "zh:0bbe0158c2a9e3f5be911b7e94477586110c51746bb13d102054f22754565bda",
