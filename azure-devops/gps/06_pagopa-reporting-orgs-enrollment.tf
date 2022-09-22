@@ -36,6 +36,9 @@ locals {
     sonarcloud_org          = var.pagopa-reporting-orgs-enrollment.pipeline.sonarcloud.org
     sonarcloud_project_key  = var.pagopa-reporting-orgs-enrollment.pipeline.sonarcloud.project_key
     sonarcloud_project_name = var.pagopa-reporting-orgs-enrollment.pipeline.sonarcloud.project_name
+
+    dev_container_registry = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_dev_id
+
   }
   # code_review secrets
   pagopa-reporting-orgs-enrollment-variables_secret_code_review = {
