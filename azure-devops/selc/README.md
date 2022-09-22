@@ -64,7 +64,7 @@ No outputs.
 | <a name="module_pagopa-selc-backoffice-backend_deploy"></a> [pagopa-selc-backoffice-backend\_deploy](#module\_pagopa-selc-backoffice-backend\_deploy) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy | v2.2.0 |
 | <a name="module_secrets"></a> [secrets](#module\_secrets) | git::https://github.com/pagopa/azurerm.git//key_vault_secrets_query | v2.0.4 |
 | <a name="module_selc_dev_secrets"></a> [selc\_dev\_secrets](#module\_selc\_dev\_secrets) | git::https://github.com/pagopa/azurerm.git//key_vault_secrets_query | v2.0.4 |
-
+| <a name="module_tlscert-dev-selc-backoffice-dev-platform-pagopa-it-cert_az"></a> [tlscert-dev-selc-backoffice-dev-platform-pagopa-it-cert\_az](#module\_tlscert-dev-selc-backoffice-dev-platform-pagopa-it-cert\_az) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_tls_cert | v2.0.4 |
 ## Resources
 
 | Name | Type |
@@ -84,7 +84,7 @@ No outputs.
 | <a name="input_project_name"></a> [project\_name](#input\_project\_name) | Project name (e.g. pagoPA platform) | `string` | n/a | yes |
 | <a name="input_terraform_remote_state_app"></a> [terraform\_remote\_state\_app](#input\_terraform\_remote\_state\_app) | n/a | <pre>object({<br>    resource_group_name  = string,<br>    storage_account_name = string,<br>    container_name       = string,<br>    key                  = string<br>  })</pre> | n/a | yes |
 | <a name="input_uat_subscription_name"></a> [uat\_subscription\_name](#input\_uat\_subscription\_name) | UAT Subscription name | `string` | n/a | yes |
-
+| <a name="input_tlscert-dev-selc-backoffice-dev-platform-pagopa-it"></a> [tlscert-dev-selc-backoffice-dev-platform-pagopa-it](#input\_tlscert-dev-selc-backoffice-dev-platform-pagopa-it) | n/a | `map` | <pre>{<br>  "pipeline": {<br>    "dns_record_name": "marketplace",<br>    "dns_zone_name": "dev.platform.pagopa.it",<br>    "dns_zone_resource_group": "pagopa-d-vnet-rg",<br>    "enable_tls_cert": true,<br>    "path": "TLS-Certificates\\DEV",<br>    "variables": {<br>      "CERT_NAME_EXPIRE_SECONDS": "2592000",<br>      "KEY_VAULT_NAME": "pagopa-d-kv"<br>    },<br>    "variables_secret": {}<br>  },<br>  "repository": {<br>    "branch_name": "refs/heads/master",<br>    "name": "le-azure-acme-tiny",<br>    "organization": "pagopa",<br>    "pipelines_path": "."<br>  }<br>}</pre> | no |
 ## Outputs
 
 No outputs.
