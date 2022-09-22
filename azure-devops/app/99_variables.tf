@@ -72,14 +72,6 @@ locals {
   uat_afm_key_vault_resource_group  = "${local.prefix}-u-afm-sec-rg"
   prod_afm_key_vault_resource_group = "${local.prefix}-p-afm-sec-rg"
 
-  dev_selc_key_vault_resource_group  = "${local.prefix}-d-selc-sec-rg"
-  uat_selc_key_vault_resource_group  = "${local.prefix}-u-selc-sec-rg"
-  prod_selc_key_vault_resource_group = "${local.prefix}-p-selc-sec-rg"
-
-  dev_selc_key_vault_name  = "${local.prefix}-d-selc-kv"
-  uat_selc_key_vault_name  = "${local.prefix}-u-selc-kv"
-  prod_selc_key_vault_name = "${local.prefix}-p-selc-kv"
-
   # ☁️ VNET
   dev_vnet_rg  = "${local.prefix}-d-vnet-rg"
   uat_vnet_rg  = "${local.prefix}-u-vnet-rg"
