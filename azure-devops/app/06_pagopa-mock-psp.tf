@@ -2,7 +2,7 @@ variable "pagopa-mock-psp" {
   default = {
     repository = {
       organization    = "pagopa"
-      name            = "pagopa-mock-psp"
+      name            = "pagopa-mock-payment-gateway"
       branch_name     = "refs/heads/master"
       pipelines_path  = ".devops"
       yml_prefix_name = null

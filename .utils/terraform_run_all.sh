@@ -21,6 +21,7 @@ array=(
     'azure-devops::ecommerce'
     'azure-devops::gps'
     'azure-devops::iac'
+    'azure-devops::selc'
     'azure-devops::shared'
 )
 
