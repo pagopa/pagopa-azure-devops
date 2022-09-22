@@ -3,7 +3,7 @@
 #
 #tfsec:ignore:GEN003
 module "DEV-APPINSIGHTS-SERVICE-CONN" {
-  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_azurerm_limited?ref=v2.6.4"
+  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_azurerm_limited?ref=v2.6.5"
   providers = {
     azurerm = azurerm.dev
   }
