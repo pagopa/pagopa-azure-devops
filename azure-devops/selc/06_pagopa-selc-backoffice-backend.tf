@@ -162,5 +162,6 @@ module "pagopa-selc-backoffice-backend_deploy" {
     data.terraform_remote_state.app.outputs.service_endpoint_azure_dev_id,
     # data.terraform_remote_state.app.outputs.service_endpoint_azure_uat_id,
     # data.terraform_remote_state.app.outputs.service_endpoint_azure_prod_id,
+    module.DEV-APPINSIGHTS-SERVICE-CONN.service_endpoint_id,
   ]
 }
