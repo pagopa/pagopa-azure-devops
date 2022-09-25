@@ -46,7 +46,6 @@ locals {
   # deploy vars
   pagopa-ecommerce-scheduler-service-variables_deploy = {
     github_connection = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_rw_name
-    tenant_id         = module.secrets.values["TENANTID"].value
 
     # acr section
     k8s_image_repository_name           = replace(var.pagopa-ecommerce-scheduler-service.repository.name, "-", "")
