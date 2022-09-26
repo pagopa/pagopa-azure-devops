@@ -13,6 +13,7 @@
 | Name | Source | Version |
 |------|--------|---------|
 | <a name="module_ecommerce_dev_secrets"></a> [ecommerce\_dev\_secrets](#module\_ecommerce\_dev\_secrets) | git::https://github.com/pagopa/azurerm.git//key_vault_secrets_query | v2.0.4 |
+| <a name="module_ecommerce_uat_secrets"></a> [ecommerce\_uat\_secrets](#module\_ecommerce\_uat\_secrets) | git::https://github.com/pagopa/azurerm.git//key_vault_secrets_query | v2.0.4 |
 | <a name="module_pagopa-ecommerce-payment-instruments-service_code_review"></a> [pagopa-ecommerce-payment-instruments-service\_code\_review](#module\_pagopa-ecommerce-payment-instruments-service\_code\_review) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review | v2.2.0 |
 | <a name="module_pagopa-ecommerce-payment-instruments-service_deploy"></a> [pagopa-ecommerce-payment-instruments-service\_deploy](#module\_pagopa-ecommerce-payment-instruments-service\_deploy) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy | v2.2.0 |
 | <a name="module_pagopa-ecommerce-scheduler-service_code_review"></a> [pagopa-ecommerce-scheduler-service\_code\_review](#module\_pagopa-ecommerce-scheduler-service\_code\_review) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review | v2.4.0 |
@@ -28,6 +29,7 @@
 | Name | Type |
 |------|------|
 | [azuredevops_serviceendpoint_kubernetes.aks_dev](https://registry.terraform.io/providers/microsoft/azuredevops/latest/docs/resources/serviceendpoint_kubernetes) | resource |
+| [azuredevops_serviceendpoint_kubernetes.aks_uat](https://registry.terraform.io/providers/microsoft/azuredevops/latest/docs/resources/serviceendpoint_kubernetes) | resource |
 | [azuredevops_project.project](https://registry.terraform.io/providers/microsoft/azuredevops/latest/docs/data-sources/project) | data source |
 | [terraform_remote_state.app](https://registry.terraform.io/providers/hashicorp/terraform/latest/docs/data-sources/remote_state) | data source |
 

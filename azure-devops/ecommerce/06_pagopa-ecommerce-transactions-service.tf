@@ -53,7 +53,7 @@ locals {
     dev_container_registry_name         = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_dev_name
     uat_container_registry_service_conn = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_uat_id
     uat_container_registry_name         = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_uat_name
-    
+
     # aks section
     dev_kubernetes_service_conn = azuredevops_serviceendpoint_kubernetes.aks_dev.id
     uat_kubernetes_service_conn = azuredevops_serviceendpoint_kubernetes.aks_uat.id
@@ -64,7 +64,7 @@ locals {
 
   }
   # deploy secrets
-  pagopa-ecommerce-transactions-service-variables_secret_deploy = {    
+  pagopa-ecommerce-transactions-service-variables_secret_deploy = {
     git_mail     = module.secrets.values["azure-devops-github-EMAIL"].value
     git_username = module.secrets.values["azure-devops-github-USERNAME"].value
     tenant_id    = module.secrets.values["TENANTID"].value
