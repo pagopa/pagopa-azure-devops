@@ -47,7 +47,7 @@ locals {
     git_mail                = module.secrets.values["azure-devops-github-EMAIL"].value
     git_username            = module.secrets.values["azure-devops-github-USERNAME"].value
     github_connection       = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_rw_name
-
+    
     blob_container_name                    = "$web"
     # apim_basepath_selc_marketplace_be      = "selc-marketplace/api"
 
@@ -74,9 +74,10 @@ module "pagopa-selfcare-frontend_code_review" {
   source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review?ref=v2.2.0"
   count  = var.pagopa-selfcare-frontend.pipeline.enable_code_review == true ? 1 : 0
 
-  project_id                   = azuredevops_project.project.id
+  project_id                   = data.azuredevops_project.project.id
   repository                   = var.pagopa-selfcare-frontend.repository
-  github_service_connection_id = azuredevops_serviceendpoint_github.azure-devops-github-pr.id
+  # github_service_connection_id = data.azuredevops_serviceendpoint_github.azure-devops-github-pr.id
+  github_service_connection_id = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_pr_id
   path                         = "${local.domain}\\pagopa-selc-backoffice-frontend"
 
   variables = merge(
@@ -90,7 +91,8 @@ module "pagopa-selfcare-frontend_code_review" {
   )
 
   service_connection_ids_authorization = [
-    azuredevops_serviceendpoint_github.azure-devops-github-ro.id,
+    #azuredevops_serviceendpoint_github.azure-devops-github-ro.id,
+    data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_ro_id,
     local.azuredevops_serviceendpoint_sonarcloud_id,
   ]
 }
@@ -101,9 +103,9 @@ module "pagopa-selfcare-frontend_deploy" {
 
   project_id                   = data.azuredevops_project.project.id
   repository                   = var.pagopa-selfcare-frontend.repository
-  github_service_connection_id = azuredevops_serviceendpoint_github.azure-devops-github-rw.id
-#   path                         = "${local.domain}\\pagopa-selc-backoffice-frontend"
-
+  #github_service_connection_id = data.azuredevops_serviceendpoint_github.azure-devops-github-rw.id
+  github_service_connection_id = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_pr_id
+  path                         = "${local.domain}\\pagopa-selc-backoffice-fe"
 
   variables = merge(
     local.pagopa-selfcare-frontend-variables,
