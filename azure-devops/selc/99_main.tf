@@ -29,25 +29,25 @@ provider "azurerm" {
   subscription_id = module.secrets.values["DEV-SUBSCRIPTION-ID"].value
 }
 
-provider "azurerm" {
-  features {
-    key_vault {
-      purge_soft_delete_on_destroy = false
-    }
-  }
-  alias           = "uat"
-  subscription_id = module.secrets.values["UAT-SUBSCRIPTION-ID"].value
-}
+# provider "azurerm" {
+#   features {
+#     key_vault {
+#       purge_soft_delete_on_destroy = false
+#     }
+#   }
+#   alias           = "uat"
+#   subscription_id = module.secrets.values["UAT-SUBSCRIPTION-ID"].value
+# }
 
-provider "azurerm" {
-  features {
-    key_vault {
-      purge_soft_delete_on_destroy = false
-    }
-  }
-  alias           = "prod"
-  subscription_id = module.secrets.values["PROD-SUBSCRIPTION-ID"].value
-}
+# provider "azurerm" {
+#   features {
+#     key_vault {
+#       purge_soft_delete_on_destroy = false
+#     }
+#   }
+#   alias           = "prod"
+#   subscription_id = module.secrets.values["PROD-SUBSCRIPTION-ID"].value
+# }
 
 data "terraform_remote_state" "app" {
   backend = "azurerm"

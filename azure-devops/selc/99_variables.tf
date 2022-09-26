@@ -3,15 +3,15 @@ variable "dev_subscription_name" {
   description = "DEV Subscription name"
 }
 
-variable "uat_subscription_name" {
-  type        = string
-  description = "UAT Subscription name"
-}
+# variable "uat_subscription_name" {
+#   type        = string
+#   description = "UAT Subscription name"
+# }
 
-variable "prod_subscription_name" {
-  type        = string
-  description = "PROD Subscription name"
-}
+# variable "prod_subscription_name" {
+#   type        = string
+#   description = "PROD Subscription name"
+# }
 
 variable "project_name" {
   type        = string
@@ -39,27 +39,27 @@ locals {
 
   # 🔐 KV AZDO
   dev_key_vault_azdo_name  = "${local.prefix}-d-azdo-weu-kv"
-  uat_key_vault_azdo_name  = "${local.prefix}-u-azdo-weu-kv"
+  # uat_key_vault_azdo_name  = "${local.prefix}-u-azdo-weu-kv"
   prod_key_vault_azdo_name = "${local.prefix}-p-azdo-weu-kv"
 
   dev_key_vault_resource_group  = "${local.prefix}-d-sec-rg"
-  uat_key_vault_resource_group  = "${local.prefix}-u-sec-rg"
+  # uat_key_vault_resource_group  = "${local.prefix}-u-sec-rg"
   prod_key_vault_resource_group = "${local.prefix}-p-sec-rg"
 
 
   # 🔐 KV DOMAIN
   dev_selc_key_vault_name  = "${local.prefix}-d-${local.domain}-kv"
-  uat_selc_key_vault_name  = "${local.prefix}-u-${local.domain}-kv"
-  prod_selc_key_vault_name = "${local.prefix}-p-${local.domain}-kv"
+  # uat_selc_key_vault_name  = "${local.prefix}-u-${local.domain}-kv"
+  # prod_selc_key_vault_name = "${local.prefix}-p-${local.domain}-kv"
 
   dev_selc_key_vault_resource_group  = "${local.prefix}-d-${local.domain}-sec-rg"
-  uat_selc_key_vault_resource_group  = "${local.prefix}-u-${local.domain}-sec-rg"
-  prod_selc_key_vault_resource_group = "${local.prefix}-p-${local.domain}-sec-rg"
+  # uat_selc_key_vault_resource_group  = "${local.prefix}-u-${local.domain}-sec-rg"
+  # prod_selc_key_vault_resource_group = "${local.prefix}-p-${local.domain}-sec-rg"
 
   # ☁️ VNET
   dev_vnet_rg  = "${local.prefix}-d-vnet-rg"
-  uat_vnet_rg  = "${local.prefix}-u-vnet-rg"
-  prod_vnet_rg = "${local.prefix}-p-vnet-rg"
+  # uat_vnet_rg  = "${local.prefix}-u-vnet-rg"
+  # prod_vnet_rg = "${local.prefix}-p-vnet-rg"
 
   # 📦 ACR DEV FOR AKS
   srv_endpoint_name_aks_cr_dev = "${local.prefix}-aks-cr-dev"
@@ -67,20 +67,20 @@ locals {
   aks_cr_name_dev              = "${local.prefix}dcommonacr"
 
   # 📦 ACR UAT FOR AKS
-  srv_endpoint_name_aks_cr_uat = "${local.prefix}-aks-cr-uat"
-  aks_cr_rg_name_uat           = "${local.prefix}-u-container-registry-rg"
-  aks_cr_name_uat              = "${local.prefix}ucommonacr"
+  # srv_endpoint_name_aks_cr_uat = "${local.prefix}-aks-cr-uat"
+  # aks_cr_rg_name_uat           = "${local.prefix}-u-container-registry-rg"
+  # aks_cr_name_uat              = "${local.prefix}ucommonacr"
 
   # 📦 ACR PROD FOR AKS
-  srv_endpoint_name_aks_cr_prod = "${local.prefix}-aks-cr-prod"
-  aks_cr_rg_name_prod           = "${local.prefix}-p-container-registry-rg"
-  aks_cr_name_prod              = "${local.prefix}pcommonacr"
+  # srv_endpoint_name_aks_cr_prod = "${local.prefix}-aks-cr-prod"
+  # aks_cr_rg_name_prod           = "${local.prefix}-p-container-registry-rg"
+  # aks_cr_name_prod              = "${local.prefix}pcommonacr"
 
   settings_xml_ro_secure_file_name = "settings-ro.xml"
 
   srv_endpoint_name_aks_dev  = "${local.prefix}-${local.domain}-aks-dev"
-  srv_endpoint_name_aks_uat  = "${local.prefix}-${local.domain}-aks-uat"
-  srv_endpoint_name_aks_prod = "${local.prefix}-${local.domain}-aks-prod"
+  # srv_endpoint_name_aks_uat  = "${local.prefix}-${local.domain}-aks-uat"
+  # srv_endpoint_name_aks_prod = "${local.prefix}-${local.domain}-aks-prod"
 
   #tfsec:ignore:general-secrets-no-plaintext-exposure
   #tfsec:ignore:GEN002
