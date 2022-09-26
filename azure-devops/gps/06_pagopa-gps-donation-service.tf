@@ -38,6 +38,8 @@ locals {
     sonarcloud_org          = var.pagopa-gps-donation-service.pipeline.sonarcloud.org
     sonarcloud_project_key  = var.pagopa-gps-donation-service.pipeline.sonarcloud.project_key
     sonarcloud_project_name = var.pagopa-gps-donation-service.pipeline.sonarcloud.project_name
+
+    dev_container_registry = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_dev_id
   }
   # code_review secrets
   pagopa-gps-donation-service-variables_secret_code_review = {

@@ -8,6 +8,9 @@ terraform {
     azurerm = {
       version = ">= 2.98.0"
     }
+    time = {
+      version = ">= 0.7.0, < 0.8.0"
+    }
   }
   backend "azurerm" {}
 }
