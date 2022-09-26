@@ -47,7 +47,7 @@ locals {
     git_mail                = module.secrets.values["azure-devops-github-EMAIL"].value
     git_username            = module.secrets.values["azure-devops-github-USERNAME"].value
     github_connection       = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_rw_name
-    
+
     blob_container_name                    = "$web"
     # apim_basepath_selc_marketplace_be      = "selc-marketplace/api"
 
@@ -56,14 +56,14 @@ locals {
     dev_profile_name_cdn_azure             = "pagopa-d-selc-checkout-cdn-profile"
     dev_storage_account_name               = "pagopadselccheckoutsa"
     dev_resource_group_azure               = "pagopa-d-selc-rg"
-    
+
     #from gitops//selfcare
-    dev_azure_subscription                 = azuredevops_serviceendpoint_azurerm.DEV-SERVICE-CONN.service_endpoint_name
+    dev_azure_subscription                 = data.terraform_remote_state.app.outputs.service_endpoint_azure_dev_id
     dev_mixpanel_token                     = "6e1290bdda5885981a2f443f37444f0f"
     dev_onetrust_domain_id                 = "a8f58d7a-7f6a-4fe6-ac02-f95bac3876d4-test"
-    
-#     uat_azure_subscription  = azuredevops_serviceendpoint_azurerm.UAT-SERVICE-CONN.service_endpoint_name
-#     prod_azure_subscription = azuredevops_serviceendpoint_azurerm.PROD-SERVICE-CONN.service_endpoint_name
+
+#     uat_azure_subscription  = data.terraform_remote_state.app.outputs.service_endpoint_azure_uat_id
+#     prod_azure_subscription = data.terraform_remote_state.app.outputs.service_endpoint_azure_prod_id
   }
   # deploy secrets
   pagopa-selfcare-frontend-variables_secret_deploy = {
