@@ -62,15 +62,18 @@ locals {
     dev_azure_client_secret        = module.selc_dev_secrets.values["pagopa-selc-d-azure-client-secret"].value
     dev_azure_client_id            = module.selc_dev_secrets.values["pagopa-selc-d-azure-client-id"].value
     dev_selc-apim-external-api-key = module.selc_dev_secrets.values["selc-d-apim-external-api-key"].value
+    dev_subscription_id            = module.secrets.values["DEV-SUBSCRIPTION-ID"].value
 
     # uat_azure_client_secret        = module.secrets.values["pagopa-selc-u-azure-client-secret"].value
     # uat_azure_client_id            = module.secrets.values["pagopa-selc-u-azure-client-id"].value
     # uat_selc-apim-external-api-key = module.secrets.values["selc-u-apim-external-api-key"].value
+    # uat_subscription_id            = module.secrets.values["UAT-SUBSCRIPTION-ID"].value
 
     # prod_azure_client_secret        = module.secrets.values["pagopa-selc-p-azure-client-secret"].value
     # prod_azure_client_id            = module.secrets.values["pagopa-selc-p-azure-client-id"].value
     # prod_selc-apim-external-api-key = module.secrets.values["selc-p-apim-external-api-key"].value
-
+    # prod_subscription_id            = module.secrets.values["PROD-SUBSCRIPTION-ID"].value
+    
     # aks section
     k8s_namespace               = "selc"
     dev_kubernetes_service_conn = azuredevops_serviceendpoint_kubernetes.aks_dev.id
@@ -85,7 +88,7 @@ locals {
     dev_external_api_service_url = "https://api.dev.selfcare.pagopa.it"
     dev_azure_resource_group     = "pagopa-d-api-rg"
     dev_azure_service_name       = "pagopa-d-apim"
-
+    
     # uat_external_api_service_url = "https://api.uat.selfcare.pagopa.it"
     # uat_azure_resource_group     = "pagopa-u-api-rg"
     # uat_azure_service_name       = "pagopa-u-apim"
