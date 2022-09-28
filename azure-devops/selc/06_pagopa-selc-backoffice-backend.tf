@@ -62,14 +62,17 @@ locals {
     dev_azure_client_secret        = module.selc_dev_secrets.values["pagopa-selc-d-azure-client-secret"].value
     dev_azure_client_id            = module.selc_dev_secrets.values["pagopa-selc-d-azure-client-id"].value
     dev_selc-apim-external-api-key = module.selc_dev_secrets.values["selc-d-apim-external-api-key"].value
+    dev_subscription_id            = module.secrets.values["DEV-SUBSCRIPTION-ID"].value
 
     # uat_azure_client_secret        = module.secrets.values["pagopa-selc-u-azure-client-secret"].value
     # uat_azure_client_id            = module.secrets.values["pagopa-selc-u-azure-client-id"].value
     # uat_selc-apim-external-api-key = module.secrets.values["selc-u-apim-external-api-key"].value
+    # uat_subscription_id            = module.secrets.values["UAT-SUBSCRIPTION-ID"].value
 
     # prod_azure_client_secret        = module.secrets.values["pagopa-selc-p-azure-client-secret"].value
     # prod_azure_client_id            = module.secrets.values["pagopa-selc-p-azure-client-id"].value
     # prod_selc-apim-external-api-key = module.secrets.values["selc-p-apim-external-api-key"].value
+    # prod_subscription_id            = module.secrets.values["PROD-SUBSCRIPTION-ID"].value
 
     # aks section
     k8s_namespace               = "selc"
@@ -94,9 +97,9 @@ locals {
     # prod_azure_resource_group     = "pagopa-p-api-rg"
     # prod_azure_service_name       = "pagopa-p-apim"
 
-    # # APP Insight
-    # TF_APPINSIGHTS_SERVICE_CONN_DEV = module.DEV-APPINSIGHTS-SERVICE-CONN.service_endpoint_name
-    # TF_APPINSIGHTS_RESOURCE_ID_DEV  = data.azurerm_application_insights.application_insights_dev.id
+    # APP Insight
+    TF_APPINSIGHTS_SERVICE_CONN_DEV = module.DEV-APPINSIGHTS-SERVICE-CONN.service_endpoint_name
+    TF_APPINSIGHTS_RESOURCE_ID_DEV  = data.azurerm_application_insights.application_insights_dev.id
 
     # TF_APPINSIGHTS_SERVICE_CONN_UAT = module.UAT-APPINSIGHTS-SERVICE-CONN.service_endpoint_name
     # TF_APPINSIGHTS_RESOURCE_ID_UAT  = data.azurerm_application_insights.application_insights_uat.id
@@ -162,5 +165,7 @@ module "pagopa-selc-backoffice-backend_deploy" {
     data.terraform_remote_state.app.outputs.service_endpoint_azure_dev_id,
     # data.terraform_remote_state.app.outputs.service_endpoint_azure_uat_id,
     # data.terraform_remote_state.app.outputs.service_endpoint_azure_prod_id,
+    module.DEV-APPINSIGHTS-SERVICE-CONN.service_endpoint_id,
+
   ]
 }
