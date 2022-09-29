@@ -16,8 +16,7 @@ module "ecommerce_dev_secrets" {
   secrets = [
     "pagopa-d-weu-dev-aks-azure-devops-sa-token",
     "pagopa-d-weu-dev-aks-azure-devops-sa-cacrt",
-    "pagopa-d-weu-dev-aks-apiserver-url",
-    "pagopa-u-weu-uat-test-subscription-key"
+    "pagopa-d-weu-dev-aks-apiserver-url"
   ]
 }
 
@@ -35,7 +34,8 @@ module "ecommerce_uat_secrets" {
   secrets = [
     "pagopa-u-weu-uat-aks-azure-devops-sa-token",
     "pagopa-u-weu-uat-aks-azure-devops-sa-cacrt",
-    "pagopa-u-weu-uat-aks-apiserver-url"
+    "pagopa-u-weu-uat-aks-apiserver-url",
+    "ecommerce-load-test-subscription-key"
   ]
 }
 
