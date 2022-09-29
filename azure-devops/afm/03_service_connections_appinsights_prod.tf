@@ -11,7 +11,7 @@ module "PROD-APPINSIGHTS-SERVICE-CONN" {
   project_id = data.azuredevops_project.project.id
   #tfsec:ignore:general-secrets-no-plaintext-exposure
   renew_token       = local.appinsights_renew_token
-  name              = "${local.prefix}-u-${local.domain}-appinsights"
+  name              = "${local.prefix}-p-${local.domain}-appinsights"
   tenant_id         = module.secrets.values["TENANTID"].value
   subscription_id   = module.secrets.values["PROD-SUBSCRIPTION-ID"].value
   subscription_name = var.prod_subscription_name
