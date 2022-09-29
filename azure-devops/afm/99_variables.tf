@@ -90,8 +90,8 @@ locals {
   appinsights_renew_token         = "v1"
   dev_appinsights_name            = "${local.prefix}-d-appinsights"
   uat_appinsights_name            = "${local.prefix}-u-appinsights"
-  prod_appinsights_name           = "${local.prefix}-p-ai-common"
+  prod_appinsights_name           = "${local.prefix}-p-appinsights"
   dev_appinsights_resource_group  = "${local.prefix}-d-monitor-rg"
   uat_appinsights_resource_group  = "${local.prefix}-u-monitor-rg"
-  prod_appinsights_resource_group = "${local.prefix}-p-rg-common"
+  prod_appinsights_resource_group = "${local.prefix}-p-monitor-rg"
 }

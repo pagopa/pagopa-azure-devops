@@ -32,7 +32,7 @@ resource "azuredevops_serviceendpoint_kubernetes" "aks_prod" {
   authorization_type    = "ServiceAccount"
   service_account {
     # base64 values
-    token   = module.secrets.values["pagopa-p-weu-prod-aks-azure-devops-sa-token"].value
-    ca_cert = module.secrets.values["pagopa-p-weu-prod-aks-azure-devops-sa-cacrt"].value
+    token   = module.afm_prod_secrets.values["pagopa-p-weu-prod-aks-azure-devops-sa-token"].value
+    ca_cert = module.afm_prod_secrets.values["pagopa-p-weu-prod-aks-azure-devops-sa-cacrt"].value
   }
 }
