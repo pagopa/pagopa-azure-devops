@@ -38,6 +38,9 @@ locals {
     sonarcloud_org          = var.pagopa-afm-calculator-service.pipeline.sonarcloud.org
     sonarcloud_project_key  = var.pagopa-afm-calculator-service.pipeline.sonarcloud.project_key
     sonarcloud_project_name = var.pagopa-afm-calculator-service.pipeline.sonarcloud.project_name
+
+    dev_container_registry_service_conn = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_dev_id
+
   }
   # code_review secrets
   pagopa-afm-calculator-service-variables_secret_code_review = {

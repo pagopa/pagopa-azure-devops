@@ -38,6 +38,9 @@ locals {
     sonarcloud_org          = var.pagopa-afm-marketplace-be-service.pipeline.sonarcloud.org
     sonarcloud_project_key  = var.pagopa-afm-marketplace-be-service.pipeline.sonarcloud.project_key
     sonarcloud_project_name = var.pagopa-afm-marketplace-be-service.pipeline.sonarcloud.project_name
+
+    dev_container_registry_service_conn = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_dev_id
+
   }
   # code_review secrets
   pagopa-afm-marketplace-be-service-variables_secret_code_review = {
@@ -70,6 +73,7 @@ locals {
 
     TF_APPINSIGHTS_SERVICE_CONN_UAT = module.UAT-APPINSIGHTS-SERVICE-CONN.service_endpoint_name
     TF_APPINSIGHTS_RESOURCE_ID_UAT  = data.azurerm_application_insights.application_insights_uat.id
+
   }
   # deploy secrets
   pagopa-afm-marketplace-be-service-variables_secret_deploy = {
