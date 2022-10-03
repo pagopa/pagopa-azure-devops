@@ -52,15 +52,29 @@ locals {
     # apim_basepath_selc_marketplace_be      = "selc-marketplace/api"
 
     dev_selc_api_host                      = "https://api.dev.platform.pagopa.it"
-    dev_endpoint_azure                     = "pagopa-d-selc-checkout-cdn-endpoint"
-    dev_profile_name_cdn_azure             = "pagopa-d-selc-checkout-cdn-profile"
-    dev_storage_account_name               = "pagopadselccheckoutsa"
-    dev_resource_group_azure               = "pagopa-d-selc-rg"
+    dev_endpoint_azure                     = "pagopa-d-weu-selc-selc-cdn-endpoint"
+    dev_profile_name_cdn_azure             = "pagopa-d-weu-selc-selc-cdn-profile"
+    dev_storage_account_name               = "pagopadweuselcselcsa"
+    dev_resource_group_azure               = "pagopa-d-weu-selc-selc-fe-rg"
+    
+    # dev_react_app_url_storage              = "https://selcdcheckoutsa.z6.web.core.windows.net"
 
     #from gitops//selfcare
     dev_azure_subscription                 = data.terraform_remote_state.app.outputs.service_endpoint_azure_dev_id
-    dev_mixpanel_token                     = "6e1290bdda5885981a2f443f37444f0f"
-    dev_onetrust_domain_id                 = "a8f58d7a-7f6a-4fe6-ac02-f95bac3876d4-test"
+    #dev_mixpanel_token                     = "6e1290bdda5885981a2f443f37444f0f"
+    #dev_onetrust_domain_id                 = "a8f58d7a-7f6a-4fe6-ac02-f95bac3876d4-test"
+
+    dev_react_app_url_fe_login             = "https://dev.selfcare.pagopa.it/auth"
+    dev_react_app_url_fe_landing           = "https://dev.selfcare.pagopa.it/auth/logout"
+    dev_react_app_url_fe_assistance        = "https://dev.selfcare.pagopa.it/assistenza"
+    dev_react_app_url_api_portal           = "https://api.dev.platform.pagopa.it/selc/pagopa/v1/"
+    dev_react_app_url_storage              = "https://pagopadweuselcselcsa.z6.web.core.windows.net/"
+
+    dev_react_app_analytics_enabled        = "true"
+    dev_react_app_analytics_mocked         = "false"
+    dev_react_app_mixpanel_token           = "16e1290bdda5885981a2f443f37444f0f23"
+    dev_react_app_onetrust_domain_id       = "a8f58d7a-7f6a-4fe6-ac02-f95bac3876d4-test"
+    
 
 #     uat_azure_subscription  = data.terraform_remote_state.app.outputs.service_endpoint_azure_uat_id
 #     prod_azure_subscription = data.terraform_remote_state.app.outputs.service_endpoint_azure_prod_id
