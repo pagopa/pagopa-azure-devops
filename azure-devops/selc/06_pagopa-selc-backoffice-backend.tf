@@ -56,7 +56,7 @@ locals {
     image_repository_name               = replace(var.pagopa-selc-backoffice-backend.repository.name, "-", "")
     dev_container_registry_service_conn = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_dev_id
     # uat_container_registry_service_conn  = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_uat_id
-    # prod_container_registry_service_conn = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_prod_id
+    prod_container_registry_service_conn = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_prod_id
 
     # custom section
     dev_azure_client_secret        = module.selc_dev_secrets.values["pagopa-selc-d-azure-client-secret"].value
@@ -69,20 +69,20 @@ locals {
     # uat_selc-apim-external-api-key = module.secrets.values["selc-u-apim-external-api-key"].value
     # uat_subscription_id            = module.secrets.values["UAT-SUBSCRIPTION-ID"].value
 
-    # prod_azure_client_secret        = module.secrets.values["pagopa-selc-p-azure-client-secret"].value
-    # prod_azure_client_id            = module.secrets.values["pagopa-selc-p-azure-client-id"].value
-    # prod_selc-apim-external-api-key = module.secrets.values["selc-p-apim-external-api-key"].value
-    # prod_subscription_id            = module.secrets.values["PROD-SUBSCRIPTION-ID"].value
+    prod_azure_client_secret        = module.secrets.values["pagopa-selc-p-azure-client-secret"].value
+    prod_azure_client_id            = module.secrets.values["pagopa-selc-p-azure-client-id"].value
+    prod_selc-apim-external-api-key = module.secrets.values["selc-p-apim-external-api-key"].value
+    prod_subscription_id            = module.secrets.values["PROD-SUBSCRIPTION-ID"].value
 
     # aks section
     k8s_namespace               = "selc"
     dev_kubernetes_service_conn = azuredevops_serviceendpoint_kubernetes.aks_dev.id
     # uat_kubernetes_service_conn  = azuredevops_serviceendpoint_kubernetes.aks_uat.id
-    # prod_kubernetes_service_conn = azuredevops_serviceendpoint_kubernetes.aks_prod.id
+    prod_kubernetes_service_conn = azuredevops_serviceendpoint_kubernetes.aks_prod.id
 
     dev_container_namespace = "pagopadcommonacr.azurecr.io"
     # uat_container_namespace  = "pagopaucommonacr.azurecr.io"
-    # prod_container_namespace = "pagopapcommonacr.azurecr.io"
+    prod_container_namespace = "pagopapcommonacr.azurecr.io"
 
     # apim
     dev_external_api_service_url = "https://api.dev.selfcare.pagopa.it"
@@ -93,9 +93,9 @@ locals {
     # uat_azure_resource_group     = "pagopa-u-api-rg"
     # uat_azure_service_name       = "pagopa-u-apim"
 
-    # prod_external_api_service_url = "https://api.selfcare.pagopa.it"
-    # prod_azure_resource_group     = "pagopa-p-api-rg"
-    # prod_azure_service_name       = "pagopa-p-apim"
+    prod_external_api_service_url = "https://api.selfcare.pagopa.it"
+    prod_azure_resource_group     = "pagopa-p-api-rg"
+    prod_azure_service_name       = "pagopa-p-apim"
 
     # APP Insight
     TF_APPINSIGHTS_SERVICE_CONN_DEV = module.DEV-APPINSIGHTS-SERVICE-CONN.service_endpoint_name
@@ -103,6 +103,10 @@ locals {
 
     # TF_APPINSIGHTS_SERVICE_CONN_UAT = module.UAT-APPINSIGHTS-SERVICE-CONN.service_endpoint_name
     # TF_APPINSIGHTS_RESOURCE_ID_UAT  = data.azurerm_application_insights.application_insights_uat.id
+
+    # APP Insight
+    TF_APPINSIGHTS_SERVICE_CONN_PROD = module.PROD-APPINSIGHTS-SERVICE-CONN.service_endpoint_name
+    TF_APPINSIGHTS_RESOURCE_ID_PROD  = data.azurerm_application_insights.application_insights_prod.id
   }
 
   # deploy secrets
@@ -161,11 +165,11 @@ module "pagopa-selc-backoffice-backend_deploy" {
     data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_ro_id,
     data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_dev_id,
     # data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_uat_id,
-    # data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_prod_id,
+    data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_prod_id,
     data.terraform_remote_state.app.outputs.service_endpoint_azure_dev_id,
     # data.terraform_remote_state.app.outputs.service_endpoint_azure_uat_id,
-    # data.terraform_remote_state.app.outputs.service_endpoint_azure_prod_id,
+    data.terraform_remote_state.app.outputs.service_endpoint_azure_prod_id,
     module.DEV-APPINSIGHTS-SERVICE-CONN.service_endpoint_id,
-
+    module.PROD-APPINSIGHTS-SERVICE-CONN.service_endpoint_id,
   ]
 }
