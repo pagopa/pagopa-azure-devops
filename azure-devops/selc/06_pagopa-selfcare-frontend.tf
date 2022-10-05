@@ -33,6 +33,7 @@ locals {
   }
   # code_review vars
   pagopa-selfcare-frontend-variables_code_review = {
+    danger_github_api_token = "skip"
     sonarcloud_service_conn = var.pagopa-selfcare-frontend.pipeline.sonarcloud.service_connection
     sonarcloud_org          = var.pagopa-selfcare-frontend.pipeline.sonarcloud.org
     sonarcloud_project_key  = var.pagopa-selfcare-frontend.pipeline.sonarcloud.project_key
