@@ -24,15 +24,16 @@ variable "pagopa-selc-backoffice-backend" {
 locals {
   # global vars
   pagopa-selc-backoffice-backend-variables = {
-    cache_version_id = "v1"
-    default_branch   = var.pagopa-selc-backoffice-backend.repository.branch_name
+    cache_version_id                 = "v1"
+    default_branch                   = var.pagopa-selc-backoffice-backend.repository.branch_name
+    settings_xml_ro_secure_file_name = "settings-ro.xml"
   }
 
   # global secrets
   pagopa-selc-backoffice-backend-variables_secret = {
 
   }
-
+  
   # code_review vars
   pagopa-selc-backoffice-backend-variables_code_review = {
     danger_github_api_token = "skip"
@@ -41,6 +42,7 @@ locals {
     sonarcloud_project_key  = var.pagopa-selc-backoffice-backend.pipeline.sonarcloud.project_key
     sonarcloud_project_name = var.pagopa-selc-backoffice-backend.pipeline.sonarcloud.project_name
   }
+  
   # code_review secrets
   pagopa-selc-backoffice-backend-variables_secret_code_review = {
   }
