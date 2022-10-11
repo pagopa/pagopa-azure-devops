@@ -53,13 +53,13 @@ locals {
 
 
   # 🔐 KV DOMAIN
-  dev_selc_key_vault_name  = "${local.prefix}-d-${local.domain}-kv"
-  uat_selc_key_vault_name  = "${local.prefix}-u-${local.domain}-kv"
-  prod_selc_key_vault_name = "${local.prefix}-p-${local.domain}-kv"
+  dev_selfcare_key_vault_name  = "${local.prefix}-d-${local.domain}-kv"
+  uat_selfcare_key_vault_name  = "${local.prefix}-u-${local.domain}-kv"
+  prod_selfcare_key_vault_name = "${local.prefix}-p-${local.domain}-kv"
 
-  dev_selc_key_vault_resource_group  = "${local.prefix}-d-${local.domain}-sec-rg"
-  uat_selc_key_vault_resource_group  = "${local.prefix}-u-${local.domain}-sec-rg"
-  prod_selc_key_vault_resource_group = "${local.prefix}-p-${local.domain}-sec-rg"
+  dev_selfcare_key_vault_resource_group  = "${local.prefix}-d-${local.domain}-sec-rg"
+  uat_selfcare_key_vault_resource_group  = "${local.prefix}-u-${local.domain}-sec-rg"
+  prod_selfcare_key_vault_resource_group = "${local.prefix}-p-${local.domain}-sec-rg"
 
   # ☁️ VNET
   dev_vnet_rg  = "${local.prefix}-d-vnet-rg"

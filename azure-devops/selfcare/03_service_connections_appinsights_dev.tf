@@ -17,8 +17,8 @@ module "DEV-APPINSIGHTS-SERVICE-CONN" {
   subscription_name = var.dev_subscription_name
 
   credential_subcription              = var.dev_subscription_name
-  credential_key_vault_name           = local.dev_selc_key_vault_name
-  credential_key_vault_resource_group = local.dev_selc_key_vault_resource_group
+  credential_key_vault_name           = local.dev_selfcare_key_vault_name
+  credential_key_vault_resource_group = local.dev_selfcare_key_vault_resource_group
 }
 
 data "azurerm_application_insights" "application_insights_dev" {
