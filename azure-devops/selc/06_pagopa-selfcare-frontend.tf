@@ -111,30 +111,36 @@ module "pagopa-selfcare-frontend_code_review" {
     local.pagopa-selfcare-frontend-variables_secret_code_review,
   )
 
-# module "pagopa-selfcare-frontend_deploy" {
-#   source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy?ref=v2.2.0"
-#   count  = var.pagopa-selfcare-frontend.pipeline.enable_deploy == true ? 1 : 0
+  service_connection_ids_authorization = [
+    azuredevops_serviceendpoint_github.azure-devops-github-ro.id,
+    data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_ro_id,
+    local.azuredevops_serviceendpoint_sonarcloud_id,
+  ]
+}
 
-#   project_id                   = data.azuredevops_project.project.id
-#   repository                   = var.pagopa-selfcare-frontend.repository
-#   github_service_connection_id = azuredevops_serviceendpoint_github.azure-devops-github-rw.id
-#   path                         = "${local.domain}\\pagopa-selc-backoffice-frontend"
+module "pagopa-selfcare-frontend_deploy" {
+  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy?ref=v2.2.0"
+  count  = var.pagopa-selfcare-frontend.pipeline.enable_deploy == true ? 1 : 0
 
+  project_id                   = data.azuredevops_project.project.id
+  repository                   = var.pagopa-selfcare-frontend.repository
+  github_service_connection_id = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_pr_id
+  path                         = "${local.domain}\\pagopa-selc-backoffice-fe"
 
-#   variables = merge(
-#     local.pagopa-selfcare-frontend-variables,
-#     local.pagopa-selfcare-frontend-variables_deploy,
-#   )
+  variables = merge(
+    local.pagopa-selfcare-frontend-variables,
+    local.pagopa-selfcare-frontend-variables_deploy,
+  )
 
-#   variables_secret = merge(
-#     local.pagopa-selfcare-frontend-variables_secret,
-#     local.pagopa-selfcare-frontend-variables_secret_deploy,
-#   )
+  variables_secret = merge(
+    local.pagopa-selfcare-frontend-variables_secret,
+    local.pagopa-selfcare-frontend-variables_secret_deploy,
+  )
 
-#   service_connection_ids_authorization = [
-#     data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_ro_id,
-#     data.terraform_remote_state.app.outputs.service_endpoint_azure_dev_id,
-#     data.terraform_remote_state.app.outputs.service_endpoint_azure_uat_id,
-#     data.terraform_remote_state.app.outputs.service_endpoint_azure_prod_id,
-#   ]
-# }
+  service_connection_ids_authorization = [
+    data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_ro_id,
+    data.terraform_remote_state.app.outputs.service_endpoint_azure_dev_id,
+    #     data.terraform_remote_state.app.outputs.service_endpoint_azure_uat_id,
+    data.terraform_remote_state.app.outputs.service_endpoint_azure_prod_id,
+  ]
+}
