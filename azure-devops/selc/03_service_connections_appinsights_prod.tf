@@ -3,7 +3,7 @@
 #
 #tfsec:ignore:GEN003
 module "PROD-APPINSIGHTS-SERVICE-CONN" {
-  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_azurerm_limited?ref=v2.6.5"
+  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_azurerm_limited?ref=v2.0.5"
   providers = {
     azurerm = azurerm.prod
   }
@@ -11,7 +11,7 @@ module "PROD-APPINSIGHTS-SERVICE-CONN" {
   project_id = data.azuredevops_project.project.id
   #tfsec:ignore:general-secrets-no-plaintext-exposure
   renew_token       = local.appinsights_renew_token
-  name              = "${local.prefix}-d-${local.domain}-appinsights"
+  name              = "${local.prefix}-p-${local.domain}-appinsights"
   tenant_id         = module.secrets.values["TENANTID"].value
   subscription_id   = module.secrets.values["PROD-SUBSCRIPTION-ID"].value
   subscription_name = var.prod_subscription_name

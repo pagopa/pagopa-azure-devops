@@ -15,7 +15,7 @@ variable "tlscert-weuprod-selc-internal-prod-platform-pagopa-it" {
       # common variables to all pipelines
       variables = {
         CERT_NAME_EXPIRE_SECONDS = "2592000" #30 days
-        KEY_VAULT_NAME           = "pagopa-p-selc-kv"
+        KEY_VAULT_NAME           = "pagopa-p-selfcare-kv"
       }
       # common secret variables to all pipelines
       variables_secret = {

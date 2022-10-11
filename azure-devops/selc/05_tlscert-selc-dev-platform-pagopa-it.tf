@@ -9,13 +9,13 @@ variable "tlscert-selc-dev-platform-pagopa-it" {
     pipeline = {
       enable_tls_cert         = true
       path                    = "TLS-Certificates\\DEV"
-      dns_record_name         = "selc"
+      dns_record_name         = "selfcare"
       dns_zone_name           = "dev.platform.pagopa.it"
       dns_zone_resource_group = "pagopa-d-vnet-rg"
       # common variables to all pipelines
       variables = {
         CERT_NAME_EXPIRE_SECONDS = "2592000" #30 days
-        KEY_VAULT_NAME           = "pagopa-d-selc-kv"
+        KEY_VAULT_NAME           = "pagopa-d-selfcare-kv"
       }
       # common secret variables to all pipelines
       variables_secret = {

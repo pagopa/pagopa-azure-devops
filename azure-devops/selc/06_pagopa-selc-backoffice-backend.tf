@@ -33,7 +33,7 @@ locals {
   pagopa-selc-backoffice-backend-variables_secret = {
 
   }
-  
+
   # code_review vars
   pagopa-selc-backoffice-backend-variables_code_review = {
     danger_github_api_token = "skip"
@@ -42,7 +42,7 @@ locals {
     sonarcloud_project_key  = var.pagopa-selc-backoffice-backend.pipeline.sonarcloud.project_key
     sonarcloud_project_name = var.pagopa-selc-backoffice-backend.pipeline.sonarcloud.project_name
   }
-  
+
   # code_review secrets
   pagopa-selc-backoffice-backend-variables_secret_code_review = {
   }
@@ -71,9 +71,9 @@ locals {
     # uat_selc-apim-external-api-key = module.secrets.values["selc-u-apim-external-api-key"].value
     # uat_subscription_id            = module.secrets.values["UAT-SUBSCRIPTION-ID"].value
 
-    prod_azure_client_secret        = module.secrets.values["pagopa-selc-p-azure-client-secret"].value
-    prod_azure_client_id            = module.secrets.values["pagopa-selc-p-azure-client-id"].value
-    prod_selc-apim-external-api-key = module.secrets.values["selc-p-apim-external-api-key"].value
+    prod_azure_client_secret        = module.selc_prod_secrets.values["pagopa-selc-p-azure-client-secret"].value
+    prod_azure_client_id            = module.selc_prod_secrets.values["pagopa-selc-p-azure-client-id"].value
+    prod_selc-apim-external-api-key = module.selc_prod_secrets.values["selc-p-apim-external-api-key"].value
     prod_subscription_id            = module.secrets.values["PROD-SUBSCRIPTION-ID"].value
 
     # aks section
