@@ -17,10 +17,10 @@ variable "pagopa-afm-calculator-service" {
         project_key        = "pagopa_pagopa-afm-calculator"
         project_name       = "pagopa-afm-calculator"
       }
-      load_test = {
+      performance_test = {
         enabled               = true
-        name                  = "load-test-pipeline"
-        pipeline_yml_filename = "load-test-pipelines.yaml"
+        name                  = "performance-test-pipeline"
+        pipeline_yml_filename = "performance-test-pipelines.yaml"
       }
     }
   }
@@ -88,11 +88,11 @@ locals {
 
   }
 
-  # load vars
-  pagopa-afm-calculator-service-variables_load_test = {
+  # performance vars
+  pagopa-afm-calculator-service-variables_performance_test = {
   }
-  # load secrets
-  pagopa-afm-calculator-service-variables_secret_load_test = {
+  # performance secrets
+  pagopa-afm-calculator-service-variables_secret_performance_test = {
   }
 
 }
@@ -156,25 +156,25 @@ module "pagopa-afm-calculator-service_deploy" {
   ]
 }
 
-module "pagopa-ecommerce-tests_soak" {
+module "pagopa-afm-calculator-service_performance_test" {
   source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_generic?ref=v2.6.3"
-  count  = var.pagopa-afm-calculator-service.pipeline.load_test.enabled == true ? 1 : 0
+  count  = var.pagopa-afm-calculator-service.pipeline.performance_test.enabled == true ? 1 : 0
 
   project_id                   = data.azuredevops_project.project.id
   repository                   = var.pagopa-afm-calculator-service.repository
   github_service_connection_id = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_ro_id
   path                         = "${local.domain}\\pagopa-afm-calculator-service"
-  pipeline_name                = var.pagopa-afm-calculator-service.pipeline.load_test.name
-  pipeline_yml_filename        = var.pagopa-afm-calculator-service.pipeline.load_test.pipeline_yml_filename
+  pipeline_name                = var.pagopa-afm-calculator-service.pipeline.performance_test.name
+  pipeline_yml_filename        = var.pagopa-afm-calculator-service.pipeline.performance_test.pipeline_yml_filename
 
   variables = merge(
     local.pagopa-afm-calculator-service-variables,
-    local.pagopa-afm-calculator-service-variables_load_test,
+    local.pagopa-afm-calculator-service-variables_performance_test,
   )
 
   variables_secret = merge(
     local.pagopa-afm-calculator-service-variables_secret,
-    local.pagopa-afm-calculator-service-variables_secret_load_test,
+    local.pagopa-afm-calculator-service-variables_secret_performance_test,
   )
 
   service_connection_ids_authorization = [
