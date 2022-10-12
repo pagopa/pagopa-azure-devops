@@ -52,7 +52,7 @@ locals {
     # apim_basepath_selfcare_marketplace_be      = "selfcare-marketplace/api"
 
     # DEV
-    dev_selfcare_api_host                = "https://api.dev.platform.pagopa.it"
+    dev_selfcare_api_host            = "https://api.dev.platform.pagopa.it"
     dev_endpoint_azure               = "pagopa-d-weu-selfcare-selfcare-cdn-endpoint"
     dev_profile_name_cdn_azure       = "pagopa-d-weu-selfcare-selfcare-cdn-profile"
     dev_storage_account_name         = "pagopadweuselfcareselfcaresa"
@@ -69,7 +69,7 @@ locals {
     dev_react_app_onetrust_domain_id = "a8f58d7a-7f6a-4fe6-ac02-f95bac3876d4-test"
 
     # PROD
-    prod_selfcare_api_host                = "https://api.platform.pagopa.it"
+    prod_selfcare_api_host            = "https://api.platform.pagopa.it"
     prod_endpoint_azure               = "pagopa-p-weu-selfcare-selfcare-cdn-endpoint"
     prod_profile_name_cdn_azure       = "pagopa-p-weu-selfcare-selfcare-cdn-profile"
     prod_storage_account_name         = "pagopapweuselfcareselfcaresa"

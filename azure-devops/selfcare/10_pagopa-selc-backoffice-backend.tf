@@ -61,20 +61,20 @@ locals {
     prod_container_registry_service_conn = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_prod_id
 
     # custom section
-    dev_azure_client_secret        = module.selfcare_dev_secrets.values["pagopa-selfcare-d-azure-client-secret"].value
-    dev_azure_client_id            = module.selfcare_dev_secrets.values["pagopa-selfcare-d-azure-client-id"].value
+    dev_azure_client_secret            = module.selfcare_dev_secrets.values["pagopa-selfcare-d-azure-client-secret"].value
+    dev_azure_client_id                = module.selfcare_dev_secrets.values["pagopa-selfcare-d-azure-client-id"].value
     dev_selfcare-apim-external-api-key = module.selfcare_dev_secrets.values["selfcare-d-apim-external-api-key"].value
-    dev_subscription_id            = module.secrets.values["DEV-SUBSCRIPTION-ID"].value
+    dev_subscription_id                = module.secrets.values["DEV-SUBSCRIPTION-ID"].value
 
     # uat_azure_client_secret        = module.secrets.values["pagopa-selfcare-u-azure-client-secret"].value
     # uat_azure_client_id            = module.secrets.values["pagopa-selfcare-u-azure-client-id"].value
     # uat_selfcare-apim-external-api-key = module.secrets.values["selfcare-u-apim-external-api-key"].value
     # uat_subscription_id            = module.secrets.values["UAT-SUBSCRIPTION-ID"].value
 
-    prod_azure_client_secret        = module.selfcare_prod_secrets.values["pagopa-selfcare-p-azure-client-secret"].value
-    prod_azure_client_id            = module.selfcare_prod_secrets.values["pagopa-selfcare-p-azure-client-id"].value
+    prod_azure_client_secret            = module.selfcare_prod_secrets.values["pagopa-selfcare-p-azure-client-secret"].value
+    prod_azure_client_id                = module.selfcare_prod_secrets.values["pagopa-selfcare-p-azure-client-id"].value
     prod_selfcare-apim-external-api-key = module.selfcare_prod_secrets.values["selfcare-p-apim-external-api-key"].value
-    prod_subscription_id            = module.secrets.values["PROD-SUBSCRIPTION-ID"].value
+    prod_subscription_id                = module.secrets.values["PROD-SUBSCRIPTION-ID"].value
 
     # aks section
     k8s_namespace               = "selfcare"

@@ -1,11 +1,11 @@
 variable "pagopa-ecommerce-tests" {
   default = {
     repository = {
-      organization    = "pagopa"
-      name            = "pagopa-ecommerce-tests"
-      branch_name     = "refs/heads/main"
-      pipelines_path  = ".devops"
-      yml_prefix_name = null
+      organization          = "pagopa"
+      name                  = "pagopa-ecommerce-tests"
+      branch_name           = "refs/heads/main"
+      pipelines_path        = ".devops"
+      yml_prefix_name       = null
       pipeline_yml_filename = "soaktest.yaml"
     }
     pipeline = {
