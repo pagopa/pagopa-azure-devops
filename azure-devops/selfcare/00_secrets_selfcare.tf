@@ -1,7 +1,4 @@
-#
-# PROD SELC KEYVAULT
-#
-
+# DEV
 module "selfcare_dev_secrets" {
 
   providers = {
@@ -23,6 +20,7 @@ module "selfcare_dev_secrets" {
   ]
 }
 
+# UAT
 # module "selfcare_uat_secrets" {
 #   source = "git::https://github.com/pagopa/azurerm.git//key_vault_secrets_query?ref=v2.0.4"
 
@@ -40,22 +38,23 @@ module "selfcare_dev_secrets" {
 #   ]
 # }
 
-# module "selfcare_prod_secrets" {
-#   source = "git::https://github.com/pagopa/azurerm.git//key_vault_secrets_query?ref=v2.0.4"
+# PROD
+module "selfcare_prod_secrets" {
+  source = "git::https://github.com/pagopa/azurerm.git//key_vault_secrets_query?ref=v2.0.4"
 
-#   providers = {
-#     azurerm = azurerm.prod
-#   }
+  providers = {
+    azurerm = azurerm.prod
+  }
 
-#   resource_group = local.prod_selfcare_key_vault_resource_group
-#   key_vault_name = local.prod_selfcare_key_vault_name
+  resource_group = local.prod_selfcare_key_vault_resource_group
+  key_vault_name = local.prod_selfcare_key_vault_name
 
-#   secrets = [
-#     "pagopa-p-weu-prod-aks-azure-devops-sa-token",
-#     "pagopa-p-weu-prod-aks-azure-devops-sa-cacrt",
-#     "pagopa-p-weu-prod-aks-apiserver-url",
-#     "pagopa-selfcare-p-azure-client-secret",
-#     "pagopa-selfcare-p-azure-client-id",
-#     "selfcare-p-apim-external-api-key",
-#   ]
-# }
+  secrets = [
+    "pagopa-p-weu-prod-aks-azure-devops-sa-token",
+    "pagopa-p-weu-prod-aks-azure-devops-sa-cacrt",
+    "pagopa-p-weu-prod-aks-apiserver-url",
+    "pagopa-selfcare-p-azure-client-secret",
+    "pagopa-selfcare-p-azure-client-id",
+    "selfcare-p-apim-external-api-key",
+  ]
+}
