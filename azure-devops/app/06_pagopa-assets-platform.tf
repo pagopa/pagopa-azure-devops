@@ -50,28 +50,28 @@ locals {
   }
 }
 
-module "pagopa-platform-cdn-assets_code_review" {
-  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review?ref=v2.0.4"
-  count  = var.pagopa-platform-cdn-assets.pipeline.enable_code_review == true ? 1 : 0
+# module "pagopa-platform-cdn-assets_code_review" {
+#   source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review?ref=v2.0.4"
+#   count  = var.pagopa-platform-cdn-assets.pipeline.enable_code_review == true ? 1 : 0
 
-  project_id                   = azuredevops_project.project.id
-  repository                   = var.pagopa-platform-cdn-assets.repository
-  github_service_connection_id = azuredevops_serviceendpoint_github.azure-devops-github-pr.id
+#   project_id                   = azuredevops_project.project.id
+#   repository                   = var.pagopa-platform-cdn-assets.repository
+#   github_service_connection_id = azuredevops_serviceendpoint_github.azure-devops-github-pr.id
 
-  variables = merge(
-    local.pagopa-platform-cdn-assets-variables,
-    local.pagopa-platform-cdn-assets-variables_code_review,
-  )
+#   variables = merge(
+#     local.pagopa-platform-cdn-assets-variables,
+#     local.pagopa-platform-cdn-assets-variables_code_review,
+#   )
 
-  variables_secret = merge(
-    local.pagopa-platform-cdn-assets-variables_secret,
-    local.pagopa-platform-cdn-assets-variables_secret_code_review,
-  )
+#   variables_secret = merge(
+#     local.pagopa-platform-cdn-assets-variables_secret,
+#     local.pagopa-platform-cdn-assets-variables_secret_code_review,
+#   )
 
-  service_connection_ids_authorization = [
-    azuredevops_serviceendpoint_github.azure-devops-github-ro.id
-  ]
-}
+#   service_connection_ids_authorization = [
+#     azuredevops_serviceendpoint_github.azure-devops-github-ro.id
+#   ]
+# }
 
 module "pagopa-platform-cdn-assets_deploy" {
   source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy?ref=v2.0.4"
