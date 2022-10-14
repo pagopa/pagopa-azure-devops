@@ -43,10 +43,10 @@ locals {
   }
   # deploy secrets
   pagopa-platform-cdn-assets-variables_secret_deploy = {
-    git_mail                 = module.secrets.values["azure-devops-github-EMAIL"].value
-    git_username             = module.secrets.values["azure-devops-github-USERNAME"].value
-    github_connection        = azuredevops_serviceendpoint_github.azure-devops-github-rw.service_endpoint_name
-    prod_azure_subscription  = azuredevops_serviceendpoint_azurerm.PROD-SERVICE-CONN.service_endpoint_name
+    git_mail                = module.secrets.values["azure-devops-github-EMAIL"].value
+    git_username            = module.secrets.values["azure-devops-github-USERNAME"].value
+    github_connection       = azuredevops_serviceendpoint_github.azure-devops-github-rw.service_endpoint_name
+    prod_azure_subscription = azuredevops_serviceendpoint_azurerm.PROD-SERVICE-CONN.service_endpoint_name
   }
 }
 
