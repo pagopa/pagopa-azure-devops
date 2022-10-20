@@ -3,7 +3,7 @@ variable "pagopa-tkm-mock-circuit" {
     repository = {
       organization    = "pagopa"
       name            = "tkm-mock-circuit"
-      branch_name     = "refs/heads/main"
+      branch_name     = "refs/heads/develop"
       pipelines_path  = ".devops"
       yml_prefix_name = null
     }
@@ -68,7 +68,7 @@ locals {
 }
 
 module "pagopa-tkm-mock-circuit_code_review" {
-  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review?ref=v2.2.0"
+  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review?ref=v2.6.5"
   count  = var.pagopa-tkm-mock-circuit.pipeline.enable_code_review == true ? 1 : 0
 
   project_id                   = data.azuredevops_project.project.id
@@ -76,6 +76,7 @@ module "pagopa-tkm-mock-circuit_code_review" {
   github_service_connection_id = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_pr_id
   path                         = "${local.domain}\\pagopa-tkm-mock-circuit"
 
+  pull_request_trigger_use_yaml = true
 
   variables = merge(
     local.pagopa-tkm-mock-circuit-variables,
