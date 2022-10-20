@@ -54,12 +54,16 @@ locals {
 }
 
 module "pagopa-payment-transactions-gateway_code_review" {
-  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review?ref=v2.0.4"
+  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review?ref=v2.6.5"
   count  = var.pagopa-payment-transactions-gateway.pipeline.enable_code_review == true ? 1 : 0
 
   project_id                   = azuredevops_project.project.id
   repository                   = var.pagopa-payment-transactions-gateway.repository
   github_service_connection_id = azuredevops_serviceendpoint_github.azure-devops-github-pr.id
+
+  path                         = "pagopa-payment-transactions-gateway"
+
+  pull_request_trigger_use_yaml = true
 
   variables = merge(
     local.pagopa-payment-transactions-gateway-variables,
