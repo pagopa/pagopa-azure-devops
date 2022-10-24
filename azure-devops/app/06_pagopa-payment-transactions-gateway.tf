@@ -61,7 +61,7 @@ module "pagopa-payment-transactions-gateway_code_review" {
   repository                   = var.pagopa-payment-transactions-gateway.repository
   github_service_connection_id = azuredevops_serviceendpoint_github.azure-devops-github-pr.id
 
-  path                         = "pagopa-payment-transactions-gateway"
+  path = "pagopa-payment-transactions-gateway"
 
   pull_request_trigger_use_yaml = true
 

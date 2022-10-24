@@ -71,7 +71,7 @@ locals {
     dev_react_app_url_fe_selfcare       = "https://dev.selfcare.pagopa.it/dashboard/"
     dev_react_app_url_fe_token_exchange = "https://dev.selfcare.pagopa.it/token-exchange"
     DEV_REACT_APP_URL_API_TOKEN         = "https://api.dev.platform.pagopa.it/api/token/token"
-    
+
     # PROD
     prod_selfcare_host                   = "https://selfcare.pagopa.it"
     prod_selfcare_api_host               = "https://api.platform.pagopa.it"
