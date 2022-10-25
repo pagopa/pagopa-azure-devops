@@ -39,14 +39,15 @@ locals {
     prod_profile_cdn_name     = "pagopa-p-assets-platform-cdn-profile"
     prod_endpoint_name        = "pagopa-p-assets-platform-cdn-endpoint "
     prod_resource_group_name  = "pagopa-p-assets-cdn-platform-rg"
-    blob_container_name       = "$web"
+    prod_blob_container_name  = "$web"
     prod_azure_subscription   = azuredevops_serviceendpoint_azurerm.PROD-SERVICE-CONN.service_endpoint_name
   }
   # deploy secrets
   pagopa-platform-cdn-assets-variables_secret_deploy = {
-    git_mail          = module.secrets.values["azure-devops-github-EMAIL"].value
-    git_username      = module.secrets.values["azure-devops-github-USERNAME"].value
-    github_connection = azuredevops_serviceendpoint_github.azure-devops-github-rw.service_endpoint_name
+    git_mail                = module.secrets.values["azure-devops-github-EMAIL"].value
+    git_username            = module.secrets.values["azure-devops-github-USERNAME"].value
+    github_connection       = azuredevops_serviceendpoint_github.azure-devops-github-rw.service_endpoint_name
+    prod_azure_storage_key  = module.secrets.values["assets-azure-storage-key"].value
   }
 }
 
