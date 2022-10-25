@@ -23,23 +23,19 @@ variable "pipeline_environments" {
   description = "List of environments pipeline to create"
 }
 
-locals {
-  prefix           = "pagopa"
-  azure_devops_org = "pagopaspa"
+variable "aks_dev_platform_name" {
+  type        = string
+  description = "AKS DEV platform name"
+}
 
-  # 🔐 KV
-  dev_key_vault_azdo_name  = "${local.prefix}-d-azdo-weu-kv"
-  uat_key_vault_azdo_name  = "${local.prefix}-u-azdo-weu-kv"
-  prod_key_vault_azdo_name = "${local.prefix}-p-azdo-weu-kv"
+variable "aks_uat_platform_name" {
+  type        = string
+  description = "AKS UAT platform name"
+}
 
-  dev_key_vault_resource_group  = "${local.prefix}-d-sec-rg"
-  uat_key_vault_resource_group  = "${local.prefix}-u-sec-rg"
-  prod_key_vault_resource_group = "${local.prefix}-p-sec-rg"
-
-  # Service connections/ End points
-  srv_endpoint_github_ro = "io-azure-devops-github-ro"
-  srv_endpoint_github_rw = "io-azure-devops-github-rw"
-  srv_endpoint_github_pr = "io-azure-devops-github-pr"
+variable "aks_prod_platform_name" {
+  type        = string
+  description = "AKS PROD platform name"
 }
 
 variable "apim_backup" {
@@ -56,4 +52,33 @@ variable "apim_backup" {
       enable_deploy      = true
     }
   }
+}
+
+locals {
+  prefix           = "pagopa"
+  azure_devops_org = "pagopaspa"
+
+  # Service connections/ End points
+  srv_endpoint_github_ro = "io-azure-devops-github-ro"
+  srv_endpoint_github_rw = "io-azure-devops-github-rw"
+  srv_endpoint_github_pr = "io-azure-devops-github-pr"
+
+  # 🔐 KV AZDO
+  dev_key_vault_azdo_name  = "${local.prefix}-d-azdo-weu-kv"
+  uat_key_vault_azdo_name  = "${local.prefix}-u-azdo-weu-kv"
+  prod_key_vault_azdo_name = "${local.prefix}-p-azdo-weu-kv"
+
+  dev_key_vault_resource_group  = "${local.prefix}-d-sec-rg"
+  uat_key_vault_resource_group  = "${local.prefix}-u-sec-rg"
+  prod_key_vault_resource_group = "${local.prefix}-p-sec-rg"
+
+  # 🔐 KV Domain
+  dev_shared_key_vault_resource_group  = "${local.prefix}-d-shared-sec-rg"
+  uat_shared_key_vault_resource_group  = "${local.prefix}-u-shared-sec-rg"
+  prod_shared_key_vault_resource_group = "${local.prefix}-p-shared-sec-rg"
+
+  dev_shared_key_vault_name  = "${local.prefix}-d-shared-kv"
+  uat_shared_key_vault_name  = "${local.prefix}-u-shared-kv"
+  prod_shared_key_vault_name = "${local.prefix}-p-shared-kv"
+
 }
