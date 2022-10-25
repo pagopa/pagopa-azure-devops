@@ -18,6 +18,7 @@ pids=()
 array=(
     'azure-devops::afm'
     'azure-devops::app'
+    'azure-devops::bizevents'
     'azure-devops::ecommerce'
     'azure-devops::gps'
     'azure-devops::iac'
