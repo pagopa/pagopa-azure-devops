@@ -1,8 +1,8 @@
-variable "pagopa-afm-calculator-data-service" {
+variable "pagopa-afm-utils-service" {
   default = {
     repository = {
       organization    = "pagopa"
-      name            = "pagopa-afm-calculator-data"
+      name            = "pagopa-afm-utils"
       branch_name     = "refs/heads/main"
       pipelines_path  = ".devops"
       yml_prefix_name = null
@@ -14,8 +14,8 @@ variable "pagopa-afm-calculator-data-service" {
         # TODO azure devops terraform provider does not support SonarCloud service endpoint
         service_connection = "SONARCLOUD-SERVICE-CONN"
         org                = "pagopa"
-        project_key        = "pagopa_pagopa-afm-calculator-data"
-        project_name       = "pagopa-afm-calculator-data"
+        project_key        = "pagopa_pagopa-afm-utils"
+        project_name       = "pagopa-afm-utils"
       }
     }
   }
@@ -23,37 +23,37 @@ variable "pagopa-afm-calculator-data-service" {
 
 locals {
   # global vars
-  pagopa-afm-calculator-data-service-variables = {
+  pagopa-afm-utils-service-variables = {
     cache_version_id = "v1"
-    default_branch   = var.pagopa-afm-calculator-data-service.repository.branch_name
+    default_branch   = var.pagopa-afm-utils-service.repository.branch_name
   }
   # global secrets
-  pagopa-afm-calculator-data-service-variables_secret = {
+  pagopa-afm-utils-service-variables_secret = {
 
   }
   # code_review vars
-  pagopa-afm-calculator-data-service-variables_code_review = {
+  pagopa-afm-utils-service-variables_code_review = {
     danger_github_api_token = "skip"
-    sonarcloud_service_conn = var.pagopa-afm-calculator-data-service.pipeline.sonarcloud.service_connection
-    sonarcloud_org          = var.pagopa-afm-calculator-data-service.pipeline.sonarcloud.org
-    sonarcloud_project_key  = var.pagopa-afm-calculator-data-service.pipeline.sonarcloud.project_key
-    sonarcloud_project_name = var.pagopa-afm-calculator-data-service.pipeline.sonarcloud.project_name
+    sonarcloud_service_conn = var.pagopa-afm-utils-service.pipeline.sonarcloud.service_connection
+    sonarcloud_org          = var.pagopa-afm-utils-service.pipeline.sonarcloud.org
+    sonarcloud_project_key  = var.pagopa-afm-utils-service.pipeline.sonarcloud.project_key
+    sonarcloud_project_name = var.pagopa-afm-utils-service.pipeline.sonarcloud.project_name
 
     dev_container_registry_service_conn = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_dev_id
 
   }
   # code_review secrets
-  pagopa-afm-calculator-data-service-variables_secret_code_review = {
+  pagopa-afm-utils-service-variables_secret_code_review = {
   }
   # deploy vars
-  pagopa-afm-calculator-data-service-variables_deploy = {
+  pagopa-afm-utils-service-variables_deploy = {
     git_mail          = module.secrets.values["azure-devops-github-EMAIL"].value
     git_username      = module.secrets.values["azure-devops-github-USERNAME"].value
     github_connection = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_rw_name
     tenant_id         = module.secrets.values["TENANTID"].value
 
     # acr section
-    image_repository_name                = replace(var.pagopa-afm-calculator-data-service.repository.name, "-", "")
+    image_repository_name                = replace(var.pagopa-afm-utils-service.repository.name, "-", "")
     dev_container_registry_service_conn  = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_dev_id
     uat_container_registry_service_conn  = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_uat_id
     prod_container_registry_service_conn = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_prod_id
@@ -78,29 +78,29 @@ locals {
     TF_APPINSIGHTS_RESOURCE_ID_PROD  = data.azurerm_application_insights.application_insights_prod.id
   }
   # deploy secrets
-  pagopa-afm-calculator-data-service-variables_secret_deploy = {
+  pagopa-afm-utils-service-variables_secret_deploy = {
 
   }
 }
 
-module "pagopa-afm-calculator-data-service_code_review" {
+module "pagopa-afm-utils-service_code_review" {
   source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review?ref=v2.2.0"
-  count  = var.pagopa-afm-calculator-data-service.pipeline.enable_code_review == true ? 1 : 0
+  count  = var.pagopa-afm-utils-service.pipeline.enable_code_review == true ? 1 : 0
 
   project_id                   = data.azuredevops_project.project.id
-  repository                   = var.pagopa-afm-calculator-data-service.repository
+  repository                   = var.pagopa-afm-utils-service.repository
   github_service_connection_id = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_pr_id
-  path                         = "${local.domain}\\pagopa-afm-calculator-data-service"
+  path                         = "${local.domain}\\pagopa-afm-utils-service"
 
 
   variables = merge(
-    local.pagopa-afm-calculator-data-service-variables,
-    local.pagopa-afm-calculator-data-service-variables_code_review,
+    local.pagopa-afm-utils-service-variables,
+    local.pagopa-afm-utils-service-variables_code_review,
   )
 
   variables_secret = merge(
-    local.pagopa-afm-calculator-data-service-variables_secret,
-    local.pagopa-afm-calculator-data-service-variables_secret_code_review,
+    local.pagopa-afm-utils-service-variables_secret,
+    local.pagopa-afm-utils-service-variables_secret_code_review,
   )
 
   service_connection_ids_authorization = [
@@ -109,23 +109,23 @@ module "pagopa-afm-calculator-data-service_code_review" {
   ]
 }
 
-module "pagopa-afm-calculator-data-service_deploy" {
+module "pagopa-afm-utils-service_deploy" {
   source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy?ref=v2.2.0"
-  count  = var.pagopa-afm-calculator-data-service.pipeline.enable_deploy == true ? 1 : 0
+  count  = var.pagopa-afm-utils-service.pipeline.enable_deploy == true ? 1 : 0
 
   project_id                   = data.azuredevops_project.project.id
-  repository                   = var.pagopa-afm-calculator-data-service.repository
+  repository                   = var.pagopa-afm-utils-service.repository
   github_service_connection_id = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_rw_id
-  path                         = "${local.domain}\\pagopa-afm-calculator-data-service"
+  path                         = "${local.domain}\\pagopa-afm-utils-service"
 
   variables = merge(
-    local.pagopa-afm-calculator-data-service-variables,
-    local.pagopa-afm-calculator-data-service-variables_deploy,
+    local.pagopa-afm-utils-service-variables,
+    local.pagopa-afm-utils-service-variables_deploy,
   )
 
   variables_secret = merge(
-    local.pagopa-afm-calculator-data-service-variables_secret,
-    local.pagopa-afm-calculator-data-service-variables_secret_deploy,
+    local.pagopa-afm-utils-service-variables_secret,
+    local.pagopa-afm-utils-service-variables_secret_deploy,
   )
 
   service_connection_ids_authorization = [
