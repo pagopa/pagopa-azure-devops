@@ -22,20 +22,20 @@ locals {
     tf_dev_aks_apiserver_url         = module.shared_dev_secrets.values["pagopa-d-weu-dev-aks-apiserver-url"].value,
     tf_dev_aks_azure_devops_sa_cacrt = module.shared_dev_secrets.values["pagopa-d-weu-dev-aks-azure-devops-sa-cacrt"].value,
     tf_dev_aks_azure_devops_sa_token = base64decode(module.shared_dev_secrets.values["pagopa-d-weu-dev-aks-azure-devops-sa-token"].value),
-    tf_aks_dev_name                    = var.aks_dev_platform_name
-    tf_dev_azure_service_connection           = azuredevops_serviceendpoint_azurerm.DEV-SERVICE-CONN.service_endpoint_name
+    tf_aks_dev_name                  = var.aks_dev_platform_name
+    tf_dev_azure_service_connection  = azuredevops_serviceendpoint_azurerm.DEV-SERVICE-CONN.service_endpoint_name
 
     tf_uat_aks_apiserver_url         = module.shared_uat_secrets.values["pagopa-u-weu-uat-aks-apiserver-url"].value,
     tf_uat_aks_azure_devops_sa_cacrt = module.shared_uat_secrets.values["pagopa-u-weu-uat-aks-azure-devops-sa-cacrt"].value,
     tf_uat_aks_azure_devops_sa_token = base64decode(module.shared_uat_secrets.values["pagopa-u-weu-uat-aks-azure-devops-sa-token"].value),
-    tf_aks_uat_name                    = var.aks_uat_platform_name
-    tf_uat_azure_service_connection           = azuredevops_serviceendpoint_azurerm.UAT-SERVICE-CONN.service_endpoint_name
+    tf_aks_uat_name                  = var.aks_uat_platform_name
+    tf_uat_azure_service_connection  = azuredevops_serviceendpoint_azurerm.UAT-SERVICE-CONN.service_endpoint_name
 
     tf_prod_aks_apiserver_url         = module.shared_prod_secrets.values["pagopa-p-weu-prod-aks-apiserver-url"].value,
     tf_prod_aks_azure_devops_sa_cacrt = module.shared_prod_secrets.values["pagopa-p-weu-prod-aks-azure-devops-sa-cacrt"].value,
     tf_prod_aks_azure_devops_sa_token = base64decode(module.shared_prod_secrets.values["pagopa-p-weu-prod-aks-azure-devops-sa-token"].value),
-    tf_aks_prod_name                    = var.aks_prod_platform_name
-    tf_prod_azure_service_connection           = azuredevops_serviceendpoint_azurerm.PROD-SERVICE-CONN.service_endpoint_name
+    tf_aks_prod_name                  = var.aks_prod_platform_name
+    tf_prod_azure_service_connection  = azuredevops_serviceendpoint_azurerm.PROD-SERVICE-CONN.service_endpoint_name
   }
   # global secrets
   shared_iac_variables_secret = {}
@@ -58,7 +58,7 @@ module "shared_iac_code_review" {
 
   project_id                   = azuredevops_project.project.id
   repository                   = var.shared_iac.repository
-  github_service_connection_id = azuredevops_serviceendpoint_github.io-azure-devops-github-rw.id
+  github_service_connection_id = azuredevops_serviceendpoint_github.azure-devops-github-pr.id
 
   pipeline_name_prefix = var.shared_iac.pipeline.pipeline_name_prefix
 
