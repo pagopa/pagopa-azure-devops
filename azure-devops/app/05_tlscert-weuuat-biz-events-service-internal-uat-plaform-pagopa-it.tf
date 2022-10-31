@@ -15,7 +15,7 @@ variable "tlscert-weuuat-biz-events-service-internal-uat-platform-pagopa-it" {
       # common variables to all pipelines
       variables = {
         CERT_NAME_EXPIRE_SECONDS = "2592000" #30 days
-        KEY_VAULT_NAME           = "pagopa-u-kv"
+        KEY_VAULT_NAME           = "pagopa-u-bizevents-kv"
       }
       # common secret variables to all pipelines
       variables_secret = {
