@@ -67,7 +67,7 @@ locals {
     tenant_id = module.secrets.values["TENANTID"].value
 
     # acr section
-    image_repository = "pagopa-node-forwarder"
+    image_repository = "pagopanodeforwarder"
 
     dev_container_registry_service_conn = azuredevops_serviceendpoint_azurecr.acr_docker_registry_dev.service_endpoint_name
     uat_container_registry_service_conn = azuredevops_serviceendpoint_azurecr.acr_docker_registry_uat.service_endpoint_name
