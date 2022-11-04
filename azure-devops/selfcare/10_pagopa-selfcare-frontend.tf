@@ -72,6 +72,27 @@ locals {
     dev_react_app_url_fe_token_exchange = "https://dev.selfcare.pagopa.it/token-exchange"
     DEV_REACT_APP_URL_API_TOKEN         = "https://api.dev.platform.pagopa.it/api/token/token"
 
+    # UAT
+    uat_selfcare_host                   = "https://uat.selfcare.pagopa.it"
+    uat_selfcare_api_host               = "https://api.uat.platform.pagopa.it"
+    uat_endpoint_azure                  = "pagopa-u-selfcare-cdn-endpoint"
+    uat_profile_name_cdn_azure          = "pagopa-u-selfcare-cdn-profile"
+    uat_storage_account_name            = "pagopauselfcaresa"
+    uat_resource_group_azure            = "pagopa-u-fe-rg"
+    uat_azure_subscription              = data.terraform_remote_state.app.outputs.service_endpoint_azure_uat_id
+    uat_react_app_url_fe_login          = "https://uat.selfcare.pagopa.it/auth"
+    uat_react_app_url_fe_landing        = "https://uat.selfcare.pagopa.it/auth/logout"
+    uat_react_app_url_fe_assistance     = "https://uat.selfcare.pagopa.it/assistenza"
+    uat_react_app_url_api_portal        = "https://api.uat.platform.pagopa.it/selfcare/pagopa/v1/"
+    uat_react_app_url_storage           = "https://pagopauselfcaresa.z6.web.core.windows.net/"
+    uat_react_app_analytics_enabled     = "true"
+    uat_react_app_analytics_mocked      = "false"
+    uat_react_app_mixpanel_token        = "1d1b09b008638080ab34fe9b75db84fd"
+    uat_react_app_onetrust_domain_id    = "084d5de2-d423-458a-9b28-0f8db3e55e71"
+    uat_react_app_url_fe_selfcare       = "https://uat.selfcare.pagopa.it/dashboard/"
+    uat_react_app_url_fe_token_exchange = "https://uat.selfcare.pagopa.it/token-exchange"
+    uat_react_app_url_api_token         = "https://api.uat.platform.pagopa.it/api/token/token"
+
     # PROD
     prod_selfcare_host                   = "https://selfcare.pagopa.it"
     prod_selfcare_api_host               = "https://api.platform.pagopa.it"
@@ -147,7 +168,7 @@ module "pagopa-selfcare-frontend_deploy" {
   service_connection_ids_authorization = [
     data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_ro_id,
     data.terraform_remote_state.app.outputs.service_endpoint_azure_dev_id,
-    #     data.terraform_remote_state.app.outputs.service_endpoint_azure_uat_id,
+    data.terraform_remote_state.app.outputs.service_endpoint_azure_uat_id,
     data.terraform_remote_state.app.outputs.service_endpoint_azure_prod_id,
   ]
 }
