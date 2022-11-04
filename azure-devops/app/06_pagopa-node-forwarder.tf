@@ -41,6 +41,8 @@ locals {
   # code_review secrets
   pagopa-node-forwarder-variables_secret_code_review = {
     danger_github_api_token = "skip"
+
+    dev_container_registry_service_conn = azuredevops_serviceendpoint_azurecr.acr_docker_registry_dev.service_endpoint_name
   }
   # deploy vars
   pagopa-node-forwarder-variables_deploy = {
@@ -65,11 +67,11 @@ locals {
     tenant_id = module.secrets.values["TENANTID"].value
 
     # acr section
-    image_repository = "pagopa-node-forwarder"
+    image_repository = "pagopanodeforwarder"
 
-    dev_container_registry = azuredevops_serviceendpoint_azurecr.acr_docker_registry_dev.service_endpoint_name
-    uat_container_registry = azuredevops_serviceendpoint_azurecr.acr_docker_registry_uat.service_endpoint_name
-    # prod_container_registry = azuredevops_serviceendpoint_azurecr.acr_docker_registry_prod.service_endpoint_name
+    dev_container_registry_service_conn = azuredevops_serviceendpoint_azurecr.acr_docker_registry_dev.service_endpoint_name
+    uat_container_registry_service_conn = azuredevops_serviceendpoint_azurecr.acr_docker_registry_uat.service_endpoint_name
+    # prod_container_registry_service_conn = azuredevops_serviceendpoint_azurecr.acr_docker_registry_prod.service_endpoint_name
 
     dev_container_namespace = "pagopadcommonacr.azurecr.io"
     uat_container_namespace = "pagopaucommonacr.azurecr.io"
