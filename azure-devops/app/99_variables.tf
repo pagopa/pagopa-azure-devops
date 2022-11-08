@@ -52,6 +52,12 @@ locals {
   uat_afm_key_vault_name  = "${local.prefix}-u-afm-kv"
   prod_afm_key_vault_name = "${local.prefix}-p-afm-kv"
 
+  dev_biz_events_key_vault_name = "${local.prefix}-d-bizevents-kv"
+  uat_biz_events_key_vault_name = "${local.prefix}-u-bizevents-kv"
+  # prod_biz_events_key_vault_name = "${local.prefix}-p-bizevents-kv"
+
+  # KV RG
+
   dev_key_vault_resource_group  = "${local.prefix}-d-sec-rg"
   uat_key_vault_resource_group  = "${local.prefix}-u-sec-rg"
   prod_key_vault_resource_group = "${local.prefix}-p-sec-rg"
@@ -71,6 +77,10 @@ locals {
   dev_afm_key_vault_resource_group  = "${local.prefix}-d-afm-sec-rg"
   uat_afm_key_vault_resource_group  = "${local.prefix}-u-afm-sec-rg"
   prod_afm_key_vault_resource_group = "${local.prefix}-p-afm-sec-rg"
+
+  dev_biz_events_key_vault_resource_group = "${local.prefix}-d-bizevents-sec-rg"
+  uat_biz_events_key_vault_resource_group = "${local.prefix}-u-bizevents-sec-rg"
+  # prod_biz_events_key_vault_resource_group = "${local.prefix}-p-bizevents-sec-rg"
 
   # ☁️ VNET
   dev_vnet_rg  = "${local.prefix}-d-vnet-rg"

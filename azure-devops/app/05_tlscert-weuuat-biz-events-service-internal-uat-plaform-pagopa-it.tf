@@ -31,7 +31,7 @@ locals {
     subscription_id   = module.secrets.values["UAT-SUBSCRIPTION-ID"].value
   }
   tlscert-weuuat-biz-events-service-internal-uat-platform-pagopa-it-variables = {
-    KEY_VAULT_SERVICE_CONNECTION = module.UAT-TLS-CERT-SERVICE-CONN.service_endpoint_name
+    KEY_VAULT_SERVICE_CONNECTION = module.UAT-BIZEVENTS-TLS-CERT-SERVICE-CONN.service_endpoint_name
   }
   tlscert-weuuat-biz-events-service-internal-uat-platform-pagopa-it-variables_secret = {
   }
@@ -62,8 +62,8 @@ module "tlscert-weuuat-biz-events-service-internal-uat-platform-pagopa-it-cert_a
   subscription_id         = local.tlscert-weuuat-biz-events-service-internal-uat-platform-pagopa-it.subscription_id
 
   credential_subcription              = var.uat_subscription_name
-  credential_key_vault_name           = local.uat_key_vault_name
-  credential_key_vault_resource_group = local.uat_key_vault_resource_group
+  credential_key_vault_name           = local.uat_biz_events_key_vault_name
+  credential_key_vault_resource_group = local.uat_biz_events_key_vault_resource_group
 
   variables = merge(
     var.tlscert-weuuat-biz-events-service-internal-uat-platform-pagopa-it.pipeline.variables,
@@ -76,7 +76,7 @@ module "tlscert-weuuat-biz-events-service-internal-uat-platform-pagopa-it-cert_a
   )
 
   service_connection_ids_authorization = [
-    module.UAT-TLS-CERT-SERVICE-CONN.service_endpoint_id,
+    module.UAT-BIZEVENTS-TLS-CERT-SERVICE-CONN.service_endpoint_id,
   ]
 
   schedules = {

@@ -31,7 +31,7 @@ locals {
     subscription_id   = module.secrets.values["DEV-SUBSCRIPTION-ID"].value
   }
   tlscert-weudev-biz-events-service-internal-dev-platform-pagopa-it-variables = {
-    KEY_VAULT_SERVICE_CONNECTION = module.DEV-TLS-CERT-SERVICE-CONN.service_endpoint_name
+    KEY_VAULT_SERVICE_CONNECTION = module.DEV-BIZEVENTS-TLS-CERT-SERVICE-CONN.service_endpoint_name
   }
   tlscert-weudev-biz-events-service-internal-dev-platform-pagopa-it-variables_secret = {
   }
@@ -62,8 +62,8 @@ module "tlscert-weudev-biz-events-service-internal-dev-platform-pagopa-it-cert_a
   subscription_id         = local.tlscert-weudev-biz-events-service-internal-dev-platform-pagopa-it.subscription_id
 
   credential_subcription              = var.dev_subscription_name
-  credential_key_vault_name           = local.dev_key_vault_name
-  credential_key_vault_resource_group = local.dev_key_vault_resource_group
+  credential_key_vault_name           = local.dev_biz_events_key_vault_name
+  credential_key_vault_resource_group = local.dev_biz_events_key_vault_resource_group
 
   variables = merge(
     var.tlscert-weudev-biz-events-service-internal-dev-platform-pagopa-it.pipeline.variables,
@@ -76,7 +76,7 @@ module "tlscert-weudev-biz-events-service-internal-dev-platform-pagopa-it-cert_a
   )
 
   service_connection_ids_authorization = [
-    module.DEV-TLS-CERT-SERVICE-CONN.service_endpoint_id,
+    module.DEV-BIZEVENTS-TLS-CERT-SERVICE-CONN.service_endpoint_id,
   ]
 
   schedules = {
