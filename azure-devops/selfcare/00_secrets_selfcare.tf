@@ -34,7 +34,10 @@ module "selfcare_uat_secrets" {
   secrets = [
     "pagopa-u-weu-uat-aks-azure-devops-sa-token",
     "pagopa-u-weu-uat-aks-azure-devops-sa-cacrt",
-    "pagopa-u-weu-uat-aks-apiserver-url"
+    "pagopa-u-weu-uat-aks-apiserver-url",
+    "pagopa-selfcare-u-azure-client-secret",
+    "pagopa-selfcare-u-azure-client-id",
+    "selfcare-u-apim-external-api-key",
   ]
 }
 

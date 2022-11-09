@@ -66,9 +66,9 @@ locals {
     dev_selfcare-apim-external-api-key = module.selfcare_dev_secrets.values["selfcare-d-apim-external-api-key"].value
     dev_subscription_id                = module.secrets.values["DEV-SUBSCRIPTION-ID"].value
 
-    uat_azure_client_secret            = module.secrets.values["pagopa-selfcare-u-azure-client-secret"].value
-    uat_azure_client_id                = module.secrets.values["pagopa-selfcare-u-azure-client-id"].value
-    uat_selfcare-apim-external-api-key = module.secrets.values["selfcare-u-apim-external-api-key"].value
+    uat_azure_client_secret            = module.selfcare_uat_secrets.values["pagopa-selfcare-u-azure-client-secret"].value
+    uat_azure_client_id                = module.selfcare_uat_secrets.values["pagopa-selfcare-u-azure-client-id"].value
+    uat_selfcare-apim-external-api-key = module.selfcare_uat_secrets.values["selfcare-u-apim-external-api-key"].value
     uat_subscription_id                = module.secrets.values["UAT-SUBSCRIPTION-ID"].value
 
     prod_azure_client_secret            = module.selfcare_prod_secrets.values["pagopa-selfcare-p-azure-client-secret"].value

@@ -153,7 +153,7 @@ module "pagopa-selfcare-frontend_deploy" {
   project_id                   = data.azuredevops_project.project.id
   repository                   = var.pagopa-selfcare-frontend.repository
   github_service_connection_id = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_pr_id
-  path                         = "${local.domain}\\pagopa-selfcare-backoffice-fe"
+  path                         = "${local.domain}\\pagopa-selfcare-backoffice-frontend"
 
   variables = merge(
     local.pagopa-selfcare-frontend-variables,
