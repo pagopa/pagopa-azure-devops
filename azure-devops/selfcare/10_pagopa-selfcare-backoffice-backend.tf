@@ -66,10 +66,10 @@ locals {
     dev_selfcare-apim-external-api-key = module.selfcare_dev_secrets.values["selfcare-d-apim-external-api-key"].value
     dev_subscription_id                = module.secrets.values["DEV-SUBSCRIPTION-ID"].value
 
-    # uat_azure_client_secret        = module.secrets.values["pagopa-selfcare-u-azure-client-secret"].value
-    # uat_azure_client_id            = module.secrets.values["pagopa-selfcare-u-azure-client-id"].value
-    # uat_selfcare-apim-external-api-key = module.secrets.values["selfcare-u-apim-external-api-key"].value
-    # uat_subscription_id            = module.secrets.values["UAT-SUBSCRIPTION-ID"].value
+    uat_azure_client_secret            = module.selfcare_uat_secrets.values["pagopa-selfcare-u-azure-client-secret"].value
+    uat_azure_client_id                = module.selfcare_uat_secrets.values["pagopa-selfcare-u-azure-client-id"].value
+    uat_selfcare-apim-external-api-key = module.selfcare_uat_secrets.values["selfcare-u-apim-external-api-key"].value
+    uat_subscription_id                = module.secrets.values["UAT-SUBSCRIPTION-ID"].value
 
     prod_azure_client_secret            = module.selfcare_prod_secrets.values["pagopa-selfcare-p-azure-client-secret"].value
     prod_azure_client_id                = module.selfcare_prod_secrets.values["pagopa-selfcare-p-azure-client-id"].value
@@ -91,9 +91,9 @@ locals {
     dev_azure_resource_group     = "pagopa-d-api-rg"
     dev_azure_service_name       = "pagopa-d-apim"
 
-    # uat_external_api_service_url = "https://api.uat.selfcare.pagopa.it"
-    # uat_azure_resource_group     = "pagopa-u-api-rg"
-    # uat_azure_service_name       = "pagopa-u-apim"
+    uat_external_api_service_url = "https://api.uat.selfcare.pagopa.it"
+    uat_azure_resource_group     = "pagopa-u-api-rg"
+    uat_azure_service_name       = "pagopa-u-apim"
 
     prod_external_api_service_url = "https://api.selfcare.pagopa.it"
     prod_azure_resource_group     = "pagopa-p-api-rg"
@@ -103,8 +103,8 @@ locals {
     TF_APPINSIGHTS_SERVICE_CONN_DEV = module.DEV-APPINSIGHTS-SERVICE-CONN.service_endpoint_name
     TF_APPINSIGHTS_RESOURCE_ID_DEV  = data.azurerm_application_insights.application_insights_dev.id
 
-    # TF_APPINSIGHTS_SERVICE_CONN_UAT = module.UAT-APPINSIGHTS-SERVICE-CONN.service_endpoint_name
-    # TF_APPINSIGHTS_RESOURCE_ID_UAT  = data.azurerm_application_insights.application_insights_uat.id
+    TF_APPINSIGHTS_SERVICE_CONN_UAT = module.UAT-APPINSIGHTS-SERVICE-CONN.service_endpoint_name
+    TF_APPINSIGHTS_RESOURCE_ID_UAT  = data.azurerm_application_insights.application_insights_uat.id
 
     # APP Insight
     TF_APPINSIGHTS_SERVICE_CONN_PROD = module.PROD-APPINSIGHTS-SERVICE-CONN.service_endpoint_name
@@ -166,12 +166,13 @@ module "pagopa-selfcare-backoffice-backend_deploy" {
   service_connection_ids_authorization = [
     data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_ro_id,
     data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_dev_id,
-    # data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_uat_id,
+    data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_uat_id,
     data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_prod_id,
     data.terraform_remote_state.app.outputs.service_endpoint_azure_dev_id,
-    # data.terraform_remote_state.app.outputs.service_endpoint_azure_uat_id,
+    data.terraform_remote_state.app.outputs.service_endpoint_azure_uat_id,
     data.terraform_remote_state.app.outputs.service_endpoint_azure_prod_id,
     module.DEV-APPINSIGHTS-SERVICE-CONN.service_endpoint_id,
+    module.UAT-APPINSIGHTS-SERVICE-CONN.service_endpoint_id,
     module.PROD-APPINSIGHTS-SERVICE-CONN.service_endpoint_id,
   ]
 }
