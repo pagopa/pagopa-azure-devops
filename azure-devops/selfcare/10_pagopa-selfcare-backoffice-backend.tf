@@ -77,6 +77,7 @@ locals {
     prod_subscription_id                = module.secrets.values["PROD-SUBSCRIPTION-ID"].value
 
     # aks section
+
     k8s_namespace                = "selfcare"
     dev_kubernetes_service_conn  = azuredevops_serviceendpoint_kubernetes.aks_dev.id
     uat_kubernetes_service_conn  = azuredevops_serviceendpoint_kubernetes.aks_uat.id
