@@ -36,19 +36,19 @@ module "bizevents_uat_secrets" {
   ]
 }
 
-module "bizevents_prod_secrets" {
-  source = "git::https://github.com/pagopa/azurerm.git//key_vault_secrets_query?ref=v2.18.9"
+# module "bizevents_prod_secrets" {
+#   source = "git::https://github.com/pagopa/azurerm.git//key_vault_secrets_query?ref=v2.18.9"
 
-  providers = {
-    azurerm = azurerm.prod
-  }
+#   providers = {
+#     azurerm = azurerm.prod
+#   }
 
-  resource_group = local.prod_bizevents_key_vault_resource_group
-  key_vault_name = local.prod_bizevents_key_vault_name
+#   resource_group = local.prod_bizevents_key_vault_resource_group
+#   key_vault_name = local.prod_bizevents_key_vault_name
 
-  secrets = [
-    "pagopa-p-weu-prod-aks-azure-devops-sa-token",
-    "pagopa-p-weu-prod-aks-azure-devops-sa-cacrt",
-    "pagopa-p-weu-prod-aks-apiserver-url"
-  ]
-}
+#   secrets = [
+#     "pagopa-p-weu-prod-aks-azure-devops-sa-token",
+#     "pagopa-p-weu-prod-aks-azure-devops-sa-cacrt",
+#     "pagopa-p-weu-prod-aks-apiserver-url"
+#   ]
+# }
