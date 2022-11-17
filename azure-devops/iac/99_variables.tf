@@ -81,4 +81,52 @@ locals {
   uat_shared_key_vault_name  = "${local.prefix}-u-shared-kv"
   prod_shared_key_vault_name = "${local.prefix}-p-shared-kv"
 
+  dev_afm_key_vault_resource_group  = "${local.prefix}-d-afm-sec-rg"
+  uat_afm_key_vault_resource_group  = "${local.prefix}-u-afm-sec-rg"
+  prod_afm_key_vault_resource_group = "${local.prefix}-p-afm-sec-rg"
+
+  dev_afm_key_vault_name  = "${local.prefix}-d-afm-kv"
+  uat_afm_key_vault_name  = "${local.prefix}-u-afm-kv"
+  prod_afm_key_vault_name = "${local.prefix}-p-afm-kv"
+
+  dev_bizevents_key_vault_resource_group  = "${local.prefix}-d-bizevents-sec-rg"
+  uat_bizevents_key_vault_resource_group  = "${local.prefix}-u-bizevents-sec-rg"
+  prod_bizevents_key_vault_resource_group = "${local.prefix}-p-bizevents-sec-rg"
+
+  dev_bizevents_key_vault_name  = "${local.prefix}-d-bizevents-kv"
+  uat_bizevents_key_vault_name  = "${local.prefix}-u-bizevents-kv"
+  prod_bizevents_key_vault_name = "${local.prefix}-p-bizevents-kv"
+
+  dev_gps_key_vault_resource_group  = "${local.prefix}-d-gps-sec-rg"
+  uat_gps_key_vault_resource_group  = "${local.prefix}-u-gps-sec-rg"
+  prod_gps_key_vault_resource_group = "${local.prefix}-p-gps-sec-rg"
+
+  dev_gps_key_vault_name  = "${local.prefix}-d-gps-kv"
+  uat_gps_key_vault_name  = "${local.prefix}-u-gps-kv"
+  prod_gps_key_vault_name = "${local.prefix}-p-gps-kv"
+
+  dev_ecommerce_key_vault_resource_group  = "${local.prefix}-d-ecommerce-sec-rg"
+  uat_ecommerce_key_vault_resource_group  = "${local.prefix}-u-ecommerce-sec-rg"
+  prod_ecommerce_key_vault_resource_group = "${local.prefix}-p-ecommerce-sec-rg"
+
+  dev_ecommerce_key_vault_name  = "${local.prefix}-d-ecommerce-kv"
+  uat_ecommerce_key_vault_name  = "${local.prefix}-u-ecommerce-kv"
+  prod_ecommerce_key_vault_name = "${local.prefix}-p-ecommerce-kv"
+
+  dev_selfcare_key_vault_resource_group  = "${local.prefix}-d-selfcare-sec-rg"
+  uat_selfcare_key_vault_resource_group  = "${local.prefix}-u-selfcare-sec-rg"
+  prod_selfcare_key_vault_resource_group = "${local.prefix}-p-selfcare-sec-rg"
+
+  dev_selfcare_key_vault_name  = "${local.prefix}-d-selfcare-kv"
+  uat_selfcare_key_vault_name  = "${local.prefix}-u-selfcare-kv"
+  prod_selfcare_key_vault_name = "${local.prefix}-p-selfcare-kv"
+
+  dev_nodo_key_vault_resource_group  = "${local.prefix}-d-nodo-sec-rg"
+  uat_nodo_key_vault_resource_group  = "${local.prefix}-u-nodo-sec-rg"
+  prod_nodo_key_vault_resource_group = "${local.prefix}-p-nodo-sec-rg"
+
+  dev_nodo_key_vault_name  = "${local.prefix}-d-nodo-kv"
+  uat_nodo_key_vault_name  = "${local.prefix}-u-nodo-kv"
+  prod_nodo_key_vault_name = "${local.prefix}-p-nodo-kv"
+
 }
