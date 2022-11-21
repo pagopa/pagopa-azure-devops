@@ -79,7 +79,17 @@ locals {
   }
   # deploy secrets
   pagopa-biz-events-datastore-service-variables_secret_deploy = {
+  }
+    # integration vars
+  pagopa-biz-events-datastore-variables_integration_test = {
+  }
+  # integration secrets
+  pagopa-biz-events-datastore-variables_secret_integration_test = {
+    dev_cosmos_primary_key = module.bizevents_uat_secrets.values["cosmos-d-biz-key"].value
+    dev_ehub_tx_primary_key = module.bizevents_uat_secrets.values["ehub-tx-d-biz-key"].value
 
+    uat_cosmos_primary_key = module.bizevents_uat_secrets.values["cosmos-u-biz-key"].value
+    uat_ehub_tx_primary_key = module.bizevents_uat_secrets.values["ehub-tx-u-biz-key"].value
   }
 }
 
@@ -126,6 +136,7 @@ module "pagopa-biz-events-datastore-service_deploy" {
   variables_secret = merge(
     local.pagopa-biz-events-datastore-service-variables_secret,
     local.pagopa-biz-events-datastore-service-variables_secret_deploy,
+    local.pagopa-biz-events-datastore-variables_secret_integration_test,
   )
 
   service_connection_ids_authorization = [

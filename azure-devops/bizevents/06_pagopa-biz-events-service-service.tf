@@ -81,6 +81,13 @@ locals {
   pagopa-biz-events-service-service-variables_secret_deploy = {
 
   }
+
+    # integration secrets
+  pagopa-biz-events-service-variables_secret_integration_test = {
+    dev_cosmos_primary_key = module.bizevents_uat_secrets.values["cosmos-d-biz-key"].value
+    
+    uat_cosmos_primary_key = module.bizevents_uat_secrets.values["cosmos-u-biz-key"].value
+  }
 }
 
 module "pagopa-biz-events-service-service_code_review" {
@@ -101,6 +108,7 @@ module "pagopa-biz-events-service-service_code_review" {
   variables_secret = merge(
     local.pagopa-biz-events-service-service-variables_secret,
     local.pagopa-biz-events-service-service-variables_secret_code_review,
+    local.pagopa-biz-events-service-variables_secret_integration_test,
   )
 
   service_connection_ids_authorization = [
