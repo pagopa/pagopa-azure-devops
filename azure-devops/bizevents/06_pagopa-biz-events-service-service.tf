@@ -84,9 +84,8 @@ locals {
 
     # integration secrets
   pagopa-biz-events-service-variables_secret_integration_test = {
-    dev_cosmos_primary_key = module.bizevents_uat_secrets.values["cosmos-d-biz-key"].value
-    
-    uat_cosmos_primary_key = module.bizevents_uat_secrets.values["cosmos-u-biz-key"].value
+    DEV_COSMOS_DB_PRIMARY_KEY = module.bizevents_dev_secrets.values["cosmos-d-biz-key"].value
+    UAT_COSMOS_DB_PRIMARY_KEY = module.bizevents_uat_secrets.values["cosmos-u-biz-key"].value
   }
 }
 
