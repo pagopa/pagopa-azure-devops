@@ -61,7 +61,7 @@ locals {
     # aks section
     k8s_namespace               = "bizevents"
     dev_kubernetes_service_conn = azuredevops_serviceendpoint_kubernetes.aks_dev.id
-    #    uat_kubernetes_service_conn  = azuredevops_serviceendpoint_kubernetes.aks_uat.id
+    uat_kubernetes_service_conn = azuredevops_serviceendpoint_kubernetes.aks_uat.id
     #    prod_kubernetes_service_conn = azuredevops_serviceendpoint_kubernetes.aks_prod.id
 
     dev_container_namespace  = "pagopadcommonacr.azurecr.io"
@@ -71,8 +71,8 @@ locals {
     TF_APPINSIGHTS_SERVICE_CONN_DEV = module.DEV-APPINSIGHTS-SERVICE-CONN.service_endpoint_name
     TF_APPINSIGHTS_RESOURCE_ID_DEV  = data.azurerm_application_insights.application_insights_dev.id
 
-    #    TF_APPINSIGHTS_SERVICE_CONN_UAT = module.UAT-APPINSIGHTS-SERVICE-CONN.service_endpoint_name
-    #    TF_APPINSIGHTS_RESOURCE_ID_UAT  = data.azurerm_application_insights.application_insights_uat.id
+    TF_APPINSIGHTS_SERVICE_CONN_UAT = module.UAT-APPINSIGHTS-SERVICE-CONN.service_endpoint_name
+    TF_APPINSIGHTS_RESOURCE_ID_UAT  = data.azurerm_application_insights.application_insights_uat.id
 
     #    TF_APPINSIGHTS_SERVICE_CONN_PROD = module.PROD-APPINSIGHTS-SERVICE-CONN.service_endpoint_name
     #    TF_APPINSIGHTS_RESOURCE_ID_PROD  = data.azurerm_application_insights.application_insights_prod.id
@@ -80,6 +80,12 @@ locals {
   # deploy secrets
   pagopa-biz-events-service-service-variables_secret_deploy = {
 
+  }
+
+  # integration secrets
+  pagopa-biz-events-service-variables_secret_integration_test = {
+    DEV_COSMOS_DB_PRIMARY_KEY = module.bizevents_dev_secrets.values["cosmos-d-biz-key"].value
+    UAT_COSMOS_DB_PRIMARY_KEY = module.bizevents_uat_secrets.values["cosmos-u-biz-key"].value
   }
 }
 
@@ -101,6 +107,7 @@ module "pagopa-biz-events-service-service_code_review" {
   variables_secret = merge(
     local.pagopa-biz-events-service-service-variables_secret,
     local.pagopa-biz-events-service-service-variables_secret_code_review,
+    local.pagopa-biz-events-service-variables_secret_integration_test,
   )
 
   service_connection_ids_authorization = [
@@ -137,7 +144,7 @@ module "pagopa-biz-events-service-service_deploy" {
     data.terraform_remote_state.app.outputs.service_endpoint_azure_uat_id,
     data.terraform_remote_state.app.outputs.service_endpoint_azure_prod_id,
     module.DEV-APPINSIGHTS-SERVICE-CONN.service_endpoint_id,
-    #    module.UAT-APPINSIGHTS-SERVICE-CONN.service_endpoint_id,
+    module.UAT-APPINSIGHTS-SERVICE-CONN.service_endpoint_id,
     #    module.PROD-APPINSIGHTS-SERVICE-CONN.service_endpoint_id
   ]
 }
