@@ -80,16 +80,16 @@ locals {
   # deploy secrets
   pagopa-biz-events-datastore-service-variables_secret_deploy = {
   }
-    # integration vars
+  # integration vars
   pagopa-biz-events-datastore-variables_integration_test = {
   }
   # integration secrets
   pagopa-biz-events-datastore-variables_secret_integration_test = {
     DEV_COSMOS_DB_PRIMARY_KEY = module.bizevents_dev_secrets.values["cosmos-d-biz-key"].value
-    DEV_EHUB_TX_PRIMARY_KEY = module.bizevents_dev_secrets.values["ehub-tx-d-biz-key"].value
+    DEV_EHUB_TX_PRIMARY_KEY   = module.bizevents_dev_secrets.values["ehub-tx-d-biz-key"].value
 
     UAT_COSMOS_DB_PRIMARY_KEY = module.bizevents_uat_secrets.values["cosmos-u-biz-key"].value
-    UAT_EHUB_TX_PRIMARY_KEY = module.bizevents_uat_secrets.values["ehub-tx-u-biz-key"].value
+    UAT_EHUB_TX_PRIMARY_KEY   = module.bizevents_uat_secrets.values["ehub-tx-u-biz-key"].value
   }
 }
 
@@ -148,7 +148,7 @@ module "pagopa-biz-events-datastore-service_deploy" {
     data.terraform_remote_state.app.outputs.service_endpoint_azure_uat_id,
     data.terraform_remote_state.app.outputs.service_endpoint_azure_prod_id,
     module.DEV-APPINSIGHTS-SERVICE-CONN.service_endpoint_id,
-    #    module.UAT-APPINSIGHTS-SERVICE-CONN.service_endpoint_id,
+    module.UAT-APPINSIGHTS-SERVICE-CONN.service_endpoint_id,
     #    module.PROD-APPINSIGHTS-SERVICE-CONN.service_endpoint_id
   ]
 }

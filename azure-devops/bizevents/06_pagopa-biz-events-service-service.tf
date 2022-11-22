@@ -61,7 +61,7 @@ locals {
     # aks section
     k8s_namespace               = "bizevents"
     dev_kubernetes_service_conn = azuredevops_serviceendpoint_kubernetes.aks_dev.id
-    uat_kubernetes_service_conn  = azuredevops_serviceendpoint_kubernetes.aks_uat.id
+    uat_kubernetes_service_conn = azuredevops_serviceendpoint_kubernetes.aks_uat.id
     #    prod_kubernetes_service_conn = azuredevops_serviceendpoint_kubernetes.aks_prod.id
 
     dev_container_namespace  = "pagopadcommonacr.azurecr.io"
@@ -82,7 +82,7 @@ locals {
 
   }
 
-    # integration secrets
+  # integration secrets
   pagopa-biz-events-service-variables_secret_integration_test = {
     DEV_COSMOS_DB_PRIMARY_KEY = module.bizevents_dev_secrets.values["cosmos-d-biz-key"].value
     UAT_COSMOS_DB_PRIMARY_KEY = module.bizevents_uat_secrets.values["cosmos-u-biz-key"].value
