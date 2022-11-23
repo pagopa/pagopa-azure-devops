@@ -10,6 +10,11 @@ variable "pagopa-node-forwarder" {
     pipeline = {
       enable_code_review = true
       enable_deploy      = true
+      performance_test = {
+        enabled               = true
+        name                  = "performance-test-pipeline"
+        pipeline_yml_filename = "performance-test-pipelines.yaml"
+      }
       sonarcloud = {
         # TODO azure devops terraform provider does not support SonarCloud service endpoint
         service_connection = "SONARCLOUD-SERVICE-CONN"
@@ -82,6 +87,15 @@ locals {
   pagopa-node-forwarder-variables_secret_deploy = {
 
   }
+
+  # performance vars
+  pagopa-node-forwarder-variables_performance_test = {
+    DEV_API_SUBSCRIPTION_KEY = module.pagopa-node-forwarder_dev_secrets.values["node-forwarder-api-subscription-key"].value
+    UAT_API_SUBSCRIPTION_KEY = module.pagopa-node-forwarder_uat_secrets.values["node-forwarder-api-subscription-key"].value
+  }
+  # performance secrets
+  pagopa-node-forwarder-variables_secret_performance_test = {
+  }
 }
 
 module "pagopa-node-forwarder_code_review" {
@@ -131,5 +145,31 @@ module "pagopa-node-forwarder_deploy" {
     azuredevops_serviceendpoint_azurerm.DEV-SERVICE-CONN.id,
     azuredevops_serviceendpoint_azurerm.UAT-SERVICE-CONN.id,
     azuredevops_serviceendpoint_azurerm.PROD-SERVICE-CONN.id,
+  ]
+}
+
+module "pagopa-node-forwarder_performance_test" {
+  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_generic?ref=v2.6.3"
+  count  = var.pagopa-node-forwarder.pipeline.performance_test.enabled == true ? 1 : 0
+
+  project_id                   = azuredevops_project.project.id
+  repository                   = var.pagopa-node-forwarder.repository
+  github_service_connection_id = azuredevops_serviceendpoint_github.azure-devops-github-rw.id
+  path                         = var.pagopa-node-forwarder.repository.name
+  pipeline_name                = var.pagopa-node-forwarder.pipeline.performance_test.name
+  pipeline_yml_filename        = var.pagopa-node-forwarder.pipeline.performance_test.pipeline_yml_filename
+
+  variables = merge(
+    local.pagopa-node-forwarder-variables,
+    local.pagopa-node-forwarder-variables_performance_test,
+  )
+
+  variables_secret = merge(
+    local.pagopa-node-forwarder-variables_secret,
+    local.pagopa-node-forwarder-variables_secret_performance_test,
+  )
+
+  service_connection_ids_authorization = [
+    azuredevops_serviceendpoint_github.azure-devops-github-ro.id
   ]
 }
