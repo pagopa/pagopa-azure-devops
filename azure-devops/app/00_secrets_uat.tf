@@ -1,8 +1,8 @@
-module "pagopa-node-forwarder_dev_secrets" {
+module "pagopa-node-forwarder_uat_secrets" {
   source = "git::https://github.com/pagopa/azurerm.git//key_vault_secrets_query?ref=v2.0.4"
 
   providers = {
-    azurerm = azurerm.dev
+    azurerm = azurerm.uat
   }
 
   resource_group = local.uat_key_vault_resource_group
