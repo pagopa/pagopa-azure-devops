@@ -107,7 +107,6 @@ module "pagopa-biz-events-service-service_code_review" {
   variables_secret = merge(
     local.pagopa-biz-events-service-service-variables_secret,
     local.pagopa-biz-events-service-service-variables_secret_code_review,
-    local.pagopa-biz-events-service-variables_secret_integration_test,
   )
 
   service_connection_ids_authorization = [
@@ -133,6 +132,7 @@ module "pagopa-biz-events-service-service_deploy" {
   variables_secret = merge(
     local.pagopa-biz-events-service-service-variables_secret,
     local.pagopa-biz-events-service-service-variables_secret_deploy,
+    local.pagopa-biz-events-service-variables_secret_integration_test,
   )
 
   service_connection_ids_authorization = [
