@@ -17,6 +17,11 @@ variable "pagopa-biz-events-service-service" {
         project_key        = "pagopa_pagopa-biz-events-service"
         project_name       = "pagopa-biz-events-service"
       }
+      performance_test = {
+        enabled               = true
+        name                  = "performance-test-pipeline"
+        pipeline_yml_filename = "performance-test-pipelines.yml"
+      }
     }
   }
 }
@@ -81,9 +86,20 @@ locals {
   pagopa-biz-events-service-service-variables_secret_deploy = {
 
   }
+  # integration vars
+  pagopa-biz-events-service-variables_integration_test = {
 
+  }
   # integration secrets
   pagopa-biz-events-service-variables_secret_integration_test = {
+    DEV_COSMOS_DB_PRIMARY_KEY = module.bizevents_dev_secrets.values["cosmos-d-biz-key"].value
+    UAT_COSMOS_DB_PRIMARY_KEY = module.bizevents_uat_secrets.values["cosmos-u-biz-key"].value
+  }
+  # performance vars
+  pagopa-biz-events-service-variables_performance_test = {
+  }
+  # performance secrets
+  pagopa-biz-events-service-variables_secret_performance_test = {
     DEV_COSMOS_DB_PRIMARY_KEY = module.bizevents_dev_secrets.values["cosmos-d-biz-key"].value
     UAT_COSMOS_DB_PRIMARY_KEY = module.bizevents_uat_secrets.values["cosmos-u-biz-key"].value
   }
@@ -127,6 +143,7 @@ module "pagopa-biz-events-service-service_deploy" {
   variables = merge(
     local.pagopa-biz-events-service-service-variables,
     local.pagopa-biz-events-service-service-variables_deploy,
+    local.pagopa-biz-events-service-variables_integration_test,
   )
 
   variables_secret = merge(
@@ -146,5 +163,31 @@ module "pagopa-biz-events-service-service_deploy" {
     module.DEV-APPINSIGHTS-SERVICE-CONN.service_endpoint_id,
     module.UAT-APPINSIGHTS-SERVICE-CONN.service_endpoint_id,
     #    module.PROD-APPINSIGHTS-SERVICE-CONN.service_endpoint_id
+  ]
+}
+
+module "pagopa-biz-events-service-service_performance_test" {
+  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_generic?ref=v2.6.3"
+  count  = var.pagopa-biz-events-service-service.pipeline.performance_test.enabled == true ? 1 : 0
+
+  project_id                   = data.azuredevops_project.project.id
+  repository                   = var.pagopa-biz-events-service-service.repository
+  github_service_connection_id = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_ro_id
+  path                         = "${local.domain}\\pagopa-biz-events-service-service"
+  pipeline_name                = var.pagopa-biz-events-service-service.pipeline.performance_test.name
+  pipeline_yml_filename        = var.pagopa-biz-events-service-service.pipeline.performance_test.pipeline_yml_filename
+
+  variables = merge(
+    local.pagopa-biz-events-service-service-variables,
+    local.pagopa-biz-events-service-variables_performance_test,
+  )
+
+  variables_secret = merge(
+    local.pagopa-biz-events-service-service-variables_secret,
+    local.pagopa-biz-events-service-variables_secret_performance_test,
+  )
+
+  service_connection_ids_authorization = [
+    data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_ro_id,
   ]
 }
