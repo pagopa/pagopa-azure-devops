@@ -13,7 +13,7 @@ variable "pagopa-node-forwarder" {
       performance_test = {
         enabled               = true
         name                  = "performance-test-pipeline"
-        pipeline_yml_filename = "performance-test-pipelines.yaml"
+        pipeline_yml_filename = "performance-test-pipelines.yml"
       }
       sonarcloud = {
         # TODO azure devops terraform provider does not support SonarCloud service endpoint
