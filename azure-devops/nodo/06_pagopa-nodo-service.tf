@@ -53,8 +53,9 @@ locals {
     tenant_id         = module.secrets.values["TENANTID"].value
 
     # acr section
-    image_repository_name               = replace(var.pagopa-nodo-service.repository.name, "-", "")
-    dev_container_registry_service_conn = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_dev_id
+    image_repository_name                     = replace(var.pagopa-nodo-service.repository.name, "-", "")
+    container-registry-service-connection-dev = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_dev_id
+
     # uat_container_registry_service_conn  = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_uat_id
     # prod_container_registry_service_conn = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_prod_id
 
@@ -76,6 +77,11 @@ locals {
 
     #    TF_APPINSIGHTS_SERVICE_CONN_PROD = module.PROD-APPINSIGHTS-SERVICE-CONN.service_endpoint_name
     #    TF_APPINSIGHTS_RESOURCE_ID_PROD  = data.azurerm_application_insights.application_insights_prod.id
+
+
+    # nodo4 variables of cd pipeline
+    kv-service-connection-dev = module.nodo_dev_secrets.values["azure-subscription"].value # azure subscription
+    az-kv-name-dev            = local.dev_nodo_key_vault_name                              # kv name
   }
   # deploy secrets
   pagopa-nodo-service-variables_secret_deploy = {
