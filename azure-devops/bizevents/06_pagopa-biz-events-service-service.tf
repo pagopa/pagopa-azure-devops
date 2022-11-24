@@ -20,7 +20,7 @@ variable "pagopa-biz-events-service-service" {
       performance_test = {
         enabled               = true
         name                  = "performance-test-pipeline"
-        pipeline_yml_filename = "performance-test-pipelines.yaml"
+        pipeline_yml_filename = "performance-test-pipelines.yml"
       }
     }
   }
