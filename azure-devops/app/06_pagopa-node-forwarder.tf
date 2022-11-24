@@ -92,6 +92,8 @@ locals {
   pagopa-node-forwarder-variables_performance_test = {
     DEV_API_SUBSCRIPTION_KEY = module.pagopa-node-forwarder_dev_secrets.values["node-forwarder-api-subscription-key"].value
     UAT_API_SUBSCRIPTION_KEY = module.pagopa-node-forwarder_uat_secrets.values["node-forwarder-api-subscription-key"].value
+
+    DB_NAME = replace(var.pagopa-node-forwarder.repository.name, "-", "")
   }
   # performance secrets
   pagopa-node-forwarder-variables_secret_performance_test = {
