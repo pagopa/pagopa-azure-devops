@@ -16,8 +16,7 @@ module "nodo_dev_secrets" {
   secrets = [
     "pagopa-d-weu-dev-aks-azure-devops-sa-token",
     "pagopa-d-weu-dev-aks-azure-devops-sa-cacrt",
-    "pagopa-d-weu-dev-aks-apiserver-url",
-    "azure-subscription"
+    "pagopa-d-weu-dev-aks-apiserver-url"
   ]
 }
 
