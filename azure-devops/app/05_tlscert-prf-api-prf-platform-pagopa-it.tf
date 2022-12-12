@@ -49,7 +49,7 @@ module "tlscert-prf-api-prf-platform-pagopa-it-cert_az" {
   repository = var.tlscert-prf-api-prf-platform-pagopa-it.repository
   name       = "${var.tlscert-prf-api-prf-platform-pagopa-it.pipeline.dns_record_name}.${var.tlscert-prf-api-prf-platform-pagopa-it.pipeline.dns_zone_name}"
   #tfsec:ignore:GEN003
-  renew_token                  = local.tlscert_renew_token
+  renew_token                  = "v2"
   path                         = var.tlscert-prf-api-prf-platform-pagopa-it.pipeline.path
   github_service_connection_id = azuredevops_serviceendpoint_github.azure-devops-github-ro.id
 
