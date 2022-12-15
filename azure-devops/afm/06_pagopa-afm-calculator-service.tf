@@ -90,6 +90,8 @@ locals {
 
   # performance vars
   pagopa-afm-calculator-service-variables_performance_test = {
+    DEV_API_SUBSCRIPTION_KEY = module.pagopa-afm-calculator_dev_secrets.values["afm-calculator-api-subscription-key"].value
+    UAT_API_SUBSCRIPTION_KEY = module.pagopa-afm-calculator_uat_secrets.values["afm-calculator-api-subscription-key"].value
   }
   # performance secrets
   pagopa-afm-calculator-service-variables_secret_performance_test = {
