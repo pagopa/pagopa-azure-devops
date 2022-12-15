@@ -92,11 +92,11 @@ locals {
   }
   # deploy secrets
   pagopa-gpd-payments-variables_secret_deploy = {
-    DEV_PAYMENTS_SA_CONNECTION_STRING =  module.gps_dev_secrets.values["gpd-payments-d-sa-connection-string"].value
-    UAT_PAYMENTS_SA_CONNECTION_STRING =  module.gps_uat_secrets.values["gpd-payments-u-sa-connection-string"].value
+    DEV_PAYMENTS_SA_CONNECTION_STRING = module.gps_dev_secrets.values["gpd-payments-d-sa-connection-string"].value
+    #    UAT_PAYMENTS_SA_CONNECTION_STRING =  module.gps_uat_secrets.values["gpd-payments-u-sa-connection-string"].value
 
-    DEV_API_CONFIG_SUBSCRIPTION_KEY =  module.gps_dev_secrets.values["gpd-d-apiconfig-subscription-key"].value
-    UAT_API_CONFIG_SUBSCRIPTION_KEY =  module.gps_uat_secrets.values["gpd-u-apiconfig-subscription-key"].value
+    DEV_API_CONFIG_SUBSCRIPTION_KEY = module.gps_dev_secrets.values["gpd-d-apiconfig-subscription-key"].value
+    #    UAT_API_CONFIG_SUBSCRIPTION_KEY =  module.gps_uat_secrets.values["gpd-u-apiconfig-subscription-key"].value
   }
 
   ## Performance Test Pipeline vars and secrets ##

@@ -36,8 +36,8 @@ module "gps_uat_secrets" {
     "pagopa-u-weu-uat-aks-azure-devops-sa-token",
     "pagopa-u-weu-uat-aks-azure-devops-sa-cacrt",
     "pagopa-u-weu-uat-aks-apiserver-url",
-    "gpd-payments-u-sa-connection-string",
-    "gpd-u-apiconfig-subscription-key"
+    #    "gpd-payments-u-sa-connection-string",
+    #    "gpd-u-apiconfig-subscription-key"
   ]
 }
 
