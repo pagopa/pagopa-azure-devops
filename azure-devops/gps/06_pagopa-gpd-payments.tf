@@ -175,7 +175,7 @@ module "pagopa-gpd-payments_performance_test" {
   project_id                   = data.azuredevops_project.project.id
   repository                   = var.pagopa-gpd-payments.repository
   github_service_connection_id = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_ro_id
-  path                         = "${local.domain}\\pagopa-gpd-payements-service"
+  path                         = "${local.domain}\\pagopa-gpd-payments-service"
   pipeline_name                = var.pagopa-gpd-payments.pipeline.performance_test.name
   pipeline_yml_filename        = var.pagopa-gpd-payments.pipeline.performance_test.pipeline_yml_filename
 
