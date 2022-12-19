@@ -27,8 +27,8 @@ variable "tlscert-prod-wisp2-pagopa-gov-it" {
 locals {
   tlscert-prod-wisp2-pagopa-gov-it = {
     tenant_id         = module.secrets.values["TENANTID"].value
-    subscription_name = "PROD-PAGOPA"
-    subscription_id   = module.secrets.values["PROD-SUBSCRIPTION-ID"].value
+    subscription_name = "ORG"
+    subscription_id   = module.secrets.values["ORG-SUBSCRIPTION-ID"].value
   }
   tlscert-prod-wisp2-pagopa-gov-it-variables = {
     KEY_VAULT_SERVICE_CONNECTION = module.PROD-TLS-CERT-SERVICE-CONN.service_endpoint_name
@@ -81,8 +81,8 @@ module "tlscert-prod-wisp2-pagopa-gov-it-cert_az" {
   schedules = {
     days_to_build              = ["Mon"]
     schedule_only_with_changes = false
-    start_hours                = 9
-    start_minutes              = 30
+    start_hours                = 16
+    start_minutes              = 35
     time_zone                  = "(UTC+01:00) Amsterdam, Berlin, Bern, Rome, Stockholm, Vienna"
     branch_filter = {
       include = ["master"]

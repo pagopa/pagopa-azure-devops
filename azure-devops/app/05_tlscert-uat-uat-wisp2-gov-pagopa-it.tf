@@ -27,8 +27,8 @@ variable "tlscert-uat-uat-wisp2-gov-pagopa-it" {
 locals {
   tlscert-uat-uat-wisp2-gov-pagopa-it = {
     tenant_id         = module.secrets.values["TENANTID"].value
-    subscription_name = "UAT-PAGOPA"
-    subscription_id   = module.secrets.values["UAT-SUBSCRIPTION-ID"].value
+    subscription_name = "ORG"
+    subscription_id   = module.secrets.values["ORG-SUBSCRIPTION-ID"].value
   }
   tlscert-uat-uat-wisp2-gov-pagopa-it-variables = {
     KEY_VAULT_SERVICE_CONNECTION = module.UAT-TLS-CERT-SERVICE-CONN.service_endpoint_name
@@ -82,8 +82,8 @@ module "tlscert-uat-uat-wisp2-gov-pagopa-it-cert_az" {
   schedules = {
     days_to_build              = ["Mon"]
     schedule_only_with_changes = false
-    start_hours                = 9
-    start_minutes              = 30
+    start_hours                = 16
+    start_minutes              = 35
     time_zone                  = "(UTC+01:00) Amsterdam, Berlin, Bern, Rome, Stockholm, Vienna"
     branch_filter = {
       include = ["master"]
