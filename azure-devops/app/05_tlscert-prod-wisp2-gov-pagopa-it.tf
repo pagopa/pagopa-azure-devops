@@ -7,7 +7,7 @@ variable "tlscert-prod-wisp2-pagopa-gov-it" {
       pipelines_path = "."
     }
     pipeline = {
-      enable_tls_cert         = false
+      enable_tls_cert         = true
       path                    = "TLS-Certificates\\PROD"
       dns_record_name         = "wisp2"
       dns_zone_name           = "pagopa.gov.it"
