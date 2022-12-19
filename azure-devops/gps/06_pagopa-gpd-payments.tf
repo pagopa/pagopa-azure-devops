@@ -52,6 +52,8 @@ locals {
   }
   # code_review secrets
   pagopa-gpd-payments-variables_secret_code_review = {
+    DEV_API_CONFIG_SUBSCRIPTION_KEY = module.gps_dev_secrets.values["gpd-d-apiconfig-subscription-key"].value
+    # UAT_API_CONFIG_SUBSCRIPTION_KEY = module.gps_uat_secrets.values["gpd-u-apiconfig-subscription-key"].value
   }
 
   ## Deploy Pipeline vars and secrets ##
@@ -106,8 +108,8 @@ locals {
   }
   # performance secrets
   pagopa-gpd-payments-variables_secret_performance_test = {
-    DEV_API_SUBSCRIPTION_KEY = module.gps_dev_secrets.values["gpd-d-apiconfig-subscription-key"].value
-    # UAT_API_SUBSCRIPTION_KEY = module.gps_uat_secrets.values["gpd-u-apiconfig-subscription-key"].value
+    DEV_API_CONFIG_SUBSCRIPTION_KEY = module.gps_dev_secrets.values["gpd-d-apiconfig-subscription-key"].value
+    # UAT_API_CONFIG_SUBSCRIPTION_KEY = module.gps_uat_secrets.values["gpd-u-apiconfig-subscription-key"].value
   }
 }
 
