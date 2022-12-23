@@ -60,27 +60,27 @@ locals {
     dev_web_app_name                = "pagopa-d-app-node-forwarder"
     dev_web_app_resource_group_name = "pagopa-d-node-forwarder-rg"
 
-    uat_deploy_type                 = "production_slot" #or staging_slot_and_swap
-    uat_azure_subscription          = azuredevops_serviceendpoint_azurerm.UAT-SERVICE-CONN.service_endpoint_name
-    uat_web_app_name                = "pagopa-u-app-node-forwarder"
-    uat_web_app_resource_group_name = "pagopa-u-node-forwarder-rg"
-    # prod_deploy_type                 = "production_slot" #or staging_slot_and_swap
-    # prod_azure_subscription          = azuredevops_serviceendpoint_azurerm.PROD-SERVICE-CONN.service_endpoint_name
-    # prod_web_app_name                = "pagopa-p-app-node-forwarder"
-    # prod_web_app_resource_group_name = "pagopa-p-node-forwarder-rg"
+    uat_deploy_type                  = "production_slot" #or staging_slot_and_swap
+    uat_azure_subscription           = azuredevops_serviceendpoint_azurerm.UAT-SERVICE-CONN.service_endpoint_name
+    uat_web_app_name                 = "pagopa-u-app-node-forwarder"
+    uat_web_app_resource_group_name  = "pagopa-u-node-forwarder-rg"
+    prod_deploy_type                 = "production_slot" #or staging_slot_and_swap
+    prod_azure_subscription          = azuredevops_serviceendpoint_azurerm.PROD-SERVICE-CONN.service_endpoint_name
+    prod_web_app_name                = "pagopa-p-app-node-forwarder"
+    prod_web_app_resource_group_name = "pagopa-p-node-forwarder-rg"
 
     tenant_id = module.secrets.values["TENANTID"].value
 
     # acr section
     image_repository = "pagopanodeforwarder"
 
-    dev_container_registry_service_conn = azuredevops_serviceendpoint_azurecr.acr_docker_registry_dev.service_endpoint_name
-    uat_container_registry_service_conn = azuredevops_serviceendpoint_azurecr.acr_docker_registry_uat.service_endpoint_name
-    # prod_container_registry_service_conn = azuredevops_serviceendpoint_azurecr.acr_docker_registry_prod.service_endpoint_name
+    dev_container_registry_service_conn  = azuredevops_serviceendpoint_azurecr.acr_docker_registry_dev.service_endpoint_name
+    uat_container_registry_service_conn  = azuredevops_serviceendpoint_azurecr.acr_docker_registry_uat.service_endpoint_name
+    prod_container_registry_service_conn = azuredevops_serviceendpoint_azurecr.acr_docker_registry_prod.service_endpoint_name
 
-    dev_container_namespace = "pagopadcommonacr.azurecr.io"
-    uat_container_namespace = "pagopaucommonacr.azurecr.io"
-    # prod_container_namespace = "pagopapcommonacr.azurecr.io"
+    dev_container_namespace  = "pagopadcommonacr.azurecr.io"
+    uat_container_namespace  = "pagopaucommonacr.azurecr.io"
+    prod_container_namespace = "pagopapcommonacr.azurecr.io"
 
   }
   # deploy secrets
