@@ -18,7 +18,11 @@ module "gps_dev_secrets" {
     "pagopa-d-weu-dev-aks-azure-devops-sa-cacrt",
     "pagopa-d-weu-dev-aks-apiserver-url",
     "gpd-payments-d-sa-connection-string",
-    "gpd-d-apiconfig-subscription-key"
+    "gpd-d-apiconfig-subscription-key",
+    "gpd-d-gps-subscription-key",
+    "gpd-d-gpd-subscription-key",
+    "gpd-d-donations-subscription-key",
+    "gpd-d-iuv-generator-subscription-key"
   ]
 }
 
@@ -36,8 +40,12 @@ module "gps_uat_secrets" {
     "pagopa-u-weu-uat-aks-azure-devops-sa-token",
     "pagopa-u-weu-uat-aks-azure-devops-sa-cacrt",
     "pagopa-u-weu-uat-aks-apiserver-url",
-    #    "gpd-payments-u-sa-connection-string",
-    #    "gpd-u-apiconfig-subscription-key"
+    "gpd-payments-u-sa-connection-string",
+    "gpd-u-apiconfig-subscription-key",
+    "gpd-u-gps-subscription-key",
+    "gpd-u-gpd-subscription-key",
+    "gpd-u-donations-subscription-key",
+    "gpd-u-iuv-generator-subscription-key"
   ]
 }
 
