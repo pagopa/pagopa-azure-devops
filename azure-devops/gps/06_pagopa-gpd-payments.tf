@@ -41,10 +41,10 @@ locals {
     DEV_IUV_GENERATOR_SUBSCRIPTION_KEY = module.gps_dev_secrets.values["gpd-d-iuv-generator-subscription-key"].value
     #####
     UAT_API_CONFIG_SUBSCRIPTION_KEY = module.gps_uat_secrets.values["gpd-u-apiconfig-subscription-key"].value
-    UAT_GPD_SUBSCRIPTION_KEY = module.gps_dev_secrets.values["gpd-u-gpd-subscription-key"].value
-    UAT_GPS_SUBSCRIPTION_KEY = module.gps_dev_secrets.values["gpd-u-gps-subscription-key"].value
-    UAT_DONATIONS_SUBSCRIPTION_KEY = module.gps_dev_secrets.values["gpd-u-donations-subscription-key"].value
-    UAT_IUV_GENERATOR_SUBSCRIPTION_KEY = module.gps_dev_secrets.values["gpd-u-iuv-generator-subscription-key"].value
+    UAT_GPD_SUBSCRIPTION_KEY = module.gps_uat_secrets.values["gpd-u-gpd-subscription-key"].value
+    UAT_GPS_SUBSCRIPTION_KEY = module.gps_uat_secrets.values["gpd-u-gps-subscription-key"].value
+    UAT_DONATIONS_SUBSCRIPTION_KEY = module.gps_uat_secrets.values["gpd-u-donations-subscription-key"].value
+    UAT_IUV_GENERATOR_SUBSCRIPTION_KEY = module.gps_uat_secrets.values["gpd-u-iuv-generator-subscription-key"].value
   }
 
   ## Code Review Pipeline  vars and secrets ##
