@@ -46,7 +46,7 @@ locals {
     UAT_GPS_SUBSCRIPTION_KEY           = module.gps_uat_secrets.values["gpd-u-gps-subscription-key"].value
     UAT_DONATIONS_SUBSCRIPTION_KEY     = module.gps_uat_secrets.values["gpd-u-donations-subscription-key"].value
     UAT_IUV_GENERATOR_SUBSCRIPTION_KEY = module.gps_uat_secrets.values["gpd-u-iuv-generator-subscription-key"].value
-    UAT_PAYMENTS_SUBSCRIPTION_KEY      = module.gps_dev_secrets.values["gpd-u-payments-subscription-key"].value
+    UAT_PAYMENTS_SUBSCRIPTION_KEY      = module.gps_uat_secrets.values["gpd-u-payments-subscription-key"].value
   }
 
   ## Code Review Pipeline  vars and secrets ##
