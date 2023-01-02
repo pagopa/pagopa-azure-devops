@@ -1,14 +1,15 @@
 #
-# PROD GPS KEYVAULT
+# DEV GPS KEYVAULT
 #
 
 module "gps_dev_secrets" {
+
+  source = "git::https://github.com/pagopa/azurerm.git//key_vault_secrets_query?ref=v2.0.4"
 
   providers = {
     azurerm = azurerm.dev
   }
 
-  source = "git::https://github.com/pagopa/azurerm.git//key_vault_secrets_query?ref=v2.0.4"
 
   resource_group = local.dev_gps_key_vault_resource_group
   key_vault_name = local.dev_gps_key_vault_name
@@ -28,11 +29,12 @@ module "gps_dev_secrets" {
 }
 
 module "gps_uat_secrets" {
+  source = "git::https://github.com/pagopa/azurerm.git//key_vault_secrets_query?ref=v2.0.4"
+
   providers = {
     azurerm = azurerm.uat
   }
 
-  source = "git::https://github.com/pagopa/azurerm.git//key_vault_secrets_query?ref=v2.0.4"
 
   resource_group = local.uat_gps_key_vault_resource_group
   key_vault_name = local.uat_gps_key_vault_name
