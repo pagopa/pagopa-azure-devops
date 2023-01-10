@@ -12,6 +12,10 @@ variable "nodo_iac" {
       enable_deploy        = true
       path                 = "nodo-infrastructure"
       pipeline_name_prefix = "nodo-infra"
+      db_migration = {
+        name = "nodo-db-migration-pipelines"
+        pipeline_yml_filename = "nodo-db-migration-pipelines.yml"
+      }
     }
   }
 }
@@ -49,6 +53,11 @@ locals {
   nodo_iac_variables_deploy = {}
   # deploy secrets
   nodo_iac_variables_secret_deploy = {}
+
+  # db-migration vars
+  nodo_iac_variables_db_migration = {}
+  # deploy secrets
+  nodo_iac_variables_secret_db_migration = {}
 }
 
 module "nodo_iac_code_review" {
@@ -111,5 +120,32 @@ module "nodo_iac_deploy" {
     azuredevops_serviceendpoint_azurerm.DEV-SERVICE-CONN.id,
     azuredevops_serviceendpoint_azurerm.UAT-SERVICE-CONN.id,
     azuredevops_serviceendpoint_azurerm.PROD-SERVICE-CONN.id,
+  ]
+}
+
+module "nodo_iac_db_migration" {
+  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_generic?ref=v2.6.3"
+
+  project_id                   = azuredevops_project.project.id
+  repository                   = var.nodo_iac.repository
+  github_service_connection_id = azuredevops_serviceendpoint_github.azure-devops-github-pr.id
+  path                         = var.nodo_iac.pipeline.path
+  pipeline_name                = var.nodo_iac.pipeline.db_migration.name
+  pipeline_yml_filename        = var.nodo_iac.pipeline.db_migration.pipeline_yml_filename
+
+  variables = merge(
+    local.nodo_iac_variables,
+    local.nodo_iac_variables_db_migration,
+  )
+
+  variables_secret = merge(
+    local.nodo_iac_variables_secret_db_migration,
+  )
+
+  service_connection_ids_authorization = [
+    azuredevops_serviceendpoint_github.azure-devops-github-ro.id,
+    azuredevops_serviceendpoint_azurerm.DEV-SERVICE-CONN.id,
+    # azuredevops_serviceendpoint_azurerm.UAT-SERVICE-CONN.id,
+    # azuredevops_serviceendpoint_azurerm.PROD-SERVICE-CONN.id,
   ]
 }
