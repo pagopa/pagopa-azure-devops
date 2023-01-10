@@ -3,7 +3,7 @@ variable "pagopa-nodo-service" {
     repository = {
       organization    = "pagopa"
       name            = "pagopa-nodo4-nodo-dei-pagamenti"
-      branch_name     = "refs/heads/main"
+      branch_name     = "refs/heads/develop"
       pipelines_path  = ".devops"
       yml_prefix_name = null
     }
