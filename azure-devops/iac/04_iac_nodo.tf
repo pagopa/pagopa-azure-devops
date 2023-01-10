@@ -13,7 +13,7 @@ variable "nodo_iac" {
       path                 = "nodo-infrastructure"
       pipeline_name_prefix = "nodo-infra"
       db_migration = {
-        name = "nodo-db-migration-pipelines"
+        name                  = "nodo-db-migration-pipelines"
         pipeline_yml_filename = "nodo-db-migration-pipelines.yml"
       }
     }
