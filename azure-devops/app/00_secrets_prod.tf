@@ -51,7 +51,7 @@ module "pagopa-api-config_prod_secrets" {
   source = "git::https://github.com/pagopa/azurerm.git//key_vault_secrets_query?ref=v2.0.4"
 
   providers = {
-    azurerm = azurerm.dev
+    azurerm = azurerm.prod
   }
 
   resource_group = local.prod_key_vault_resource_group

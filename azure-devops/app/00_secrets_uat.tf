@@ -17,11 +17,11 @@ module "pagopa-api-config_uat_secrets" {
   source = "git::https://github.com/pagopa/azurerm.git//key_vault_secrets_query?ref=v2.0.4"
 
   providers = {
-    azurerm = azurerm.dev
+    azurerm = azurerm.uat
   }
 
-  resource_group = local.prod_key_vault_resource_group
-  key_vault_name = local.prod_key_vault_name
+  resource_group = local.uat_key_vault_resource_group
+  key_vault_name = local.uat_key_vault_name
 
   secrets = [
     "api-config-fe-storage-account-key"
