@@ -63,7 +63,7 @@ locals {
 
     # aks section
     k8s_namespace = "nodo"
-    # dev_kubernetes_service_conn = azuredevops_serviceendpoint_kubernetes.aks_dev.id
+    dev_kubernetes_service_conn = azuredevops_serviceendpoint_kubernetes.aks_dev.id
     # uat_kubernetes_service_conn = azuredevops_serviceendpoint_kubernetes.aks_uat.id
     # prod_kubernetes_service_conn = azuredevops_serviceendpoint_kubernetes.aks_prod.id
 
