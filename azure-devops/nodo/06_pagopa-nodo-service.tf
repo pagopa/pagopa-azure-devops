@@ -53,7 +53,7 @@ locals {
     tenant_id         = module.secrets.values["TENANTID"].value
 
     # acr section
-    # image_repository_name                     = replace(var.pagopa-nodo-service.repository.name, "-", "")
+    image_repository_name                     = replace(var.pagopa-nodo-service.repository.name, "-", "")
     container-registry-service-connection-dev = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_dev_id
     repository                                = replace(var.pagopa-nodo-service.repository.name, "-", "")
 
