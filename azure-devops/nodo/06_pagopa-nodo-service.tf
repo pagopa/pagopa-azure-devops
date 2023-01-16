@@ -14,8 +14,8 @@ variable "pagopa-nodo-service" {
         # TODO azure devops terraform provider does not support SonarCloud service endpoint
         service_connection = "SONARCLOUD-SERVICE-CONN"
         org                = "pagopa"
-        project_key        = "pagopa_pagopa-nodo"
-        project_name       = "pagopa-nodo"
+        project_key        = "pagopa_pagopa-nodo4-nodo-dei-pagamenti"
+        project_name       = "pagopa-nodo4-nodo-dei-pagamenti"
       }
     }
   }
@@ -62,7 +62,7 @@ locals {
     # prod_container_registry_service_conn = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_prod_id
 
     # aks section
-    k8s_namespace = "nodo"
+    k8s_namespace               = "nodo"
     dev_kubernetes_service_conn = azuredevops_serviceendpoint_kubernetes.aks_dev.id
     # uat_kubernetes_service_conn = azuredevops_serviceendpoint_kubernetes.aks_uat.id
     # prod_kubernetes_service_conn = azuredevops_serviceendpoint_kubernetes.aks_prod.id
