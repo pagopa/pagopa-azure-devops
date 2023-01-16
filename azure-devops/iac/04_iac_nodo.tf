@@ -20,6 +20,15 @@ variable "nodo_iac" {
         name                  = "nodo-db-schema-pipelines"
         pipeline_yml_filename = "nodo-db-schema-pipelines.yml"
       }
+      web_bo_db_migration = {
+        name                  = "web-bo-db-migration-pipelines"
+        pipeline_yml_filename = "web-bo-db-migration-pipelines.yml"
+      }
+      web_bo_db_schema = {
+        name                  = "web-bo-db-schema-pipelines"
+        pipeline_yml_filename = "web-bo-db-schema-pipelines.yml"
+      }
+
     }
   }
 }
@@ -67,6 +76,17 @@ locals {
   nodo_iac_variables_db_schema = {}
   # db-schema secrets
   nodo_iac_variables_secret_db_schema = {}
+
+  # db-migration vars
+  nodo_iac_variables_web_bo_db_migration = {}
+  # db-migration secrets
+  nodo_iac_variables_secret_web_bo_db_migration = {}
+
+  # db-schema vars
+  nodo_iac_variables_web_bo_db_schema = {}
+  # db-schema secrets
+  nodo_iac_variables_secret_web_bo_db_schema = {}
+
 }
 
 module "nodo_iac_code_review" {
@@ -176,6 +196,60 @@ module "nodo_iac_db_schema" {
 
   variables_secret = merge(
     local.nodo_iac_variables_secret_db_schema,
+  )
+
+  service_connection_ids_authorization = [
+    azuredevops_serviceendpoint_github.azure-devops-github-ro.id,
+    azuredevops_serviceendpoint_azurerm.DEV-SERVICE-CONN.id,
+    # azuredevops_serviceendpoint_azurerm.UAT-SERVICE-CONN.id,
+    # azuredevops_serviceendpoint_azurerm.PROD-SERVICE-CONN.id,
+  ]
+}
+
+module "nodo_iac_web_bo_db_migration" {
+  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_generic?ref=v2.6.3"
+
+  project_id                   = azuredevops_project.project.id
+  repository                   = var.nodo_iac.repository
+  github_service_connection_id = azuredevops_serviceendpoint_github.azure-devops-github-pr.id
+  path                         = var.nodo_iac.pipeline.path
+  pipeline_name                = var.nodo_iac.pipeline.web_bo_db_migration.name
+  pipeline_yml_filename        = var.nodo_iac.pipeline.web_bo_db_migration.pipeline_yml_filename
+
+  variables = merge(
+    local.nodo_iac_variables,
+    local.nodo_iac_variables_web_bo_db_migration,
+  )
+
+  variables_secret = merge(
+    local.nodo_iac_variables_secret_web_bo_db_migration,
+  )
+
+  service_connection_ids_authorization = [
+    azuredevops_serviceendpoint_github.azure-devops-github-ro.id,
+    azuredevops_serviceendpoint_azurerm.DEV-SERVICE-CONN.id,
+    # azuredevops_serviceendpoint_azurerm.UAT-SERVICE-CONN.id,
+    # azuredevops_serviceendpoint_azurerm.PROD-SERVICE-CONN.id,
+  ]
+}
+
+module "nodo_iac_web_bo_db_schema" {
+  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_generic?ref=v2.6.3"
+
+  project_id                   = azuredevops_project.project.id
+  repository                   = var.nodo_iac.repository
+  github_service_connection_id = azuredevops_serviceendpoint_github.azure-devops-github-pr.id
+  path                         = var.nodo_iac.pipeline.path
+  pipeline_name                = var.nodo_iac.pipeline.web_bo_db_schema.name
+  pipeline_yml_filename        = var.nodo_iac.pipeline.web_bo_db_schema.pipeline_yml_filename
+
+  variables = merge(
+    local.nodo_iac_variables,
+    local.nodo_iac_variables_web_bo_db_schema,
+  )
+
+  variables_secret = merge(
+    local.nodo_iac_variables_secret_web_bo_db_schema,
   )
 
   service_connection_ids_authorization = [
