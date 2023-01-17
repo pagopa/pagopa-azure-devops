@@ -16,12 +16,12 @@ variable "pagopa-web-bo-service" {
 
 locals {
   # global vars
-  pagopa-nodo-service-variables = {
+  pagopa-web-bo-service-variables = {
     cache_version_id = "v1"
     default_branch   = var.pagopa-nodo-service.repository.branch_name
   }
   # global secrets
-  pagopa-nodo-service-variables_secret = {
+  pagopa-web-bo-service-variables_secret = {
 
   }
 
@@ -69,7 +69,7 @@ locals {
     deploy-pool-dev                   = "pagopa-dev-linux"
   }
   # deploy secrets
-  pagopa-nodo-service-variables_secret_deploy = {
+  pagopa-web-bo-service-variables_secret_deploy = {
 
   }
 }
