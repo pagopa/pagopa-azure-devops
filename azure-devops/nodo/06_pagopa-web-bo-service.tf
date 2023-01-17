@@ -27,7 +27,7 @@ locals {
 
   # deploy vars
   pagopa-web-bo-service-variables_deploy = {
-    git_mail          = module.secrets.values["azure-devops-github-EMAIL"].value
+    git_email         = module.secrets.values["azure-devops-github-EMAIL"].value
     git_username      = module.secrets.values["azure-devops-github-USERNAME"].value
     github_connection = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_rw_name
     tenant_id         = module.secrets.values["TENANTID"].value
