@@ -18,7 +18,7 @@ locals {
   # global vars
   pagopa-web-bo-service-variables = {
     cache_version_id = "v1"
-    default_branch   = var.pagopa-nodo-service.repository.branch_name
+    default_branch   = var.pagopa-web-bo-service.repository.branch_name
   }
   # global secrets
   pagopa-web-bo-service-variables_secret = {
