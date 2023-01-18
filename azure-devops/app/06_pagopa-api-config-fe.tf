@@ -48,9 +48,10 @@ locals {
     git_username      = module.secrets.values["azure-devops-github-USERNAME"].value
     github_connection = azuredevops_serviceendpoint_github.azure-devops-github-rw.service_endpoint_name
 
-    blob_container_name     = "$web"
-    apim_basepath_apiconfig = "/apiconfig/api"
-    apiconfig_tenant        = format("https://login.microsoftonline.com/%s", module.secrets.values["TENANTID"].value),
+    blob_container_name         = "$web"
+    apim_basepath_apiconfig     = "/apiconfig/api"
+    apim_basepath_apiconfig_alt = "/apiconfig-oauth/service"
+    apiconfig_tenant            = format("https://login.microsoftonline.com/%s", module.secrets.values["TENANTID"].value),
 
     dev_apiconfig_scopes  = "api://pagopa-d-apiconfig-be/access-apiconfig-be"
     uat_apiconfig_scopes  = "api://pagopa-u-apiconfig-be/access-apiconfig-be"
