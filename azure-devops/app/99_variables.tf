@@ -87,7 +87,7 @@ locals {
 
   dev_kibana_key_vault_resource_group = "${local.prefix}-d-elk-sec-rg"
   uat_kibana_key_vault_resource_group = "${local.prefix}-u-elk-sec-rg"
-  #prod_kibana_key_vault_resource_group = "${local.prefix}-p-elk-sec-rg"
+  prod_kibana_key_vault_resource_group = "${local.prefix}-p-elk-sec-rg"
   # ☁️ VNET
   dev_vnet_rg  = "${local.prefix}-d-vnet-rg"
   uat_vnet_rg  = "${local.prefix}-u-vnet-rg"
