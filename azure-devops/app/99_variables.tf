@@ -85,8 +85,8 @@ locals {
   uat_biz_events_key_vault_resource_group  = "${local.prefix}-u-bizevents-sec-rg"
   prod_biz_events_key_vault_resource_group = "${local.prefix}-p-bizevents-sec-rg"
 
-  dev_kibana_key_vault_resource_group = "${local.prefix}-d-elk-sec-rg"
-  uat_kibana_key_vault_resource_group = "${local.prefix}-u-elk-sec-rg"
+  dev_kibana_key_vault_resource_group  = "${local.prefix}-d-elk-sec-rg"
+  uat_kibana_key_vault_resource_group  = "${local.prefix}-u-elk-sec-rg"
   prod_kibana_key_vault_resource_group = "${local.prefix}-p-elk-sec-rg"
   # ☁️ VNET
   dev_vnet_rg  = "${local.prefix}-d-vnet-rg"
