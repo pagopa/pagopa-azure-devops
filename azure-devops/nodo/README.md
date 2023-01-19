@@ -19,7 +19,7 @@
 | <a name="module_letsencrypt_dev"></a> [letsencrypt\_dev](#module\_letsencrypt\_dev) | git::https://github.com/pagopa/azurerm.git//letsencrypt_credential | v2.18.0 |
 | <a name="module_nodo_dev_secrets"></a> [nodo\_dev\_secrets](#module\_nodo\_dev\_secrets) | git::https://github.com/pagopa/azurerm.git//key_vault_secrets_query | v2.0.4 |
 | <a name="module_nodo_uat_secrets"></a> [nodo\_uat\_secrets](#module\_nodo\_uat\_secrets) | git::https://github.com/pagopa/azurerm.git//key_vault_secrets_query | v2.0.4 |
-| <a name="module_pagopa-nodo-service_code_review"></a> [pagopa-nodo-service\_code\_review](#module\_pagopa-nodo-service\_code\_review) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review | v2.2.0 |
+| <a name="module_pagopa-nodo-service_code_review"></a> [pagopa-nodo-service\_code\_review](#module\_pagopa-nodo-service\_code\_review) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review | add_ci_trigger_code_review |
 | <a name="module_pagopa-nodo-service_deploy"></a> [pagopa-nodo-service\_deploy](#module\_pagopa-nodo-service\_deploy) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy | v2.2.0 |
 | <a name="module_pagopa-web-bo-service_deploy"></a> [pagopa-web-bo-service\_deploy](#module\_pagopa-web-bo-service\_deploy) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy | v2.2.0 |
 | <a name="module_pagopa-wfesp-service_deploy"></a> [pagopa-wfesp-service\_deploy](#module\_pagopa-wfesp-service\_deploy) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy | v2.2.0 |

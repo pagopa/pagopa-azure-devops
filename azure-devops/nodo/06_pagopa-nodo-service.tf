@@ -95,7 +95,7 @@ locals {
 }
 
 module "pagopa-nodo-service_code_review" {
-  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review?ref=v2.2.0"
+  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review?ref=add_ci_trigger_code_review"
   count  = var.pagopa-nodo-service.pipeline.enable_code_review == true ? 1 : 0
 
   project_id = data.azuredevops_project.project.id
@@ -104,6 +104,8 @@ module "pagopa-nodo-service_code_review" {
   github_service_connection_id = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_rw_id
   path                         = "${local.domain}\\pagopa-nodo-service"
 
+  pull_request_trigger_use_yaml = true
+  ci_trigger_use_yaml           = true
 
   variables = merge(
     local.pagopa-nodo-service-variables,
