@@ -108,4 +108,3 @@ module "pagopa-mock-pm-service_deploy" {
     #    module.PROD-APPINSIGHTS-SERVICE-CONN.service_endpoint_id
   ]
 }
-
