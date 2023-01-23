@@ -64,7 +64,7 @@ locals {
   }
   # deploy secrets
   pagopa-poc-micronaut-variables_secret_deploy = {
-    DEV_PENROL_SA_CONNECTION_STRING = module.shared_dev_secrets.values["poc-reporting-enrollment-d-sa-connection-string"].value
+    DEV_POC_ENROLLMENT_SUB_KEY = module.shared_dev_secrets.values["poc-d-reporting-enrollment-subscription-key"].value
   }
 }
 

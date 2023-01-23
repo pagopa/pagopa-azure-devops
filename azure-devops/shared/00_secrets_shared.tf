@@ -17,7 +17,7 @@ module "shared_dev_secrets" {
     "pagopa-d-weu-dev-aks-azure-devops-sa-token",
     "pagopa-d-weu-dev-aks-azure-devops-sa-cacrt",
     "pagopa-d-weu-dev-aks-apiserver-url",
-    "poc-reporting-enrollment-d-sa-connection-string"
+    "poc-d-reporting-enrollment-subscription-key"
   ]
 }
 
