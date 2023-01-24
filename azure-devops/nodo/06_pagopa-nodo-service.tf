@@ -185,10 +185,11 @@ module "pagopa-nodo-service_integration_test" {
 
   project_id                   = data.azuredevops_project.project.id
   repository                   = var.pagopa-nodo-service.repository
-  github_service_connection_id = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_ro_id
-  path                         = "${local.domain}\\pagopa-nodo-service"
-  pipeline_name                = var.pagopa-nodo-service.pipeline.integration_test.name
-  pipeline_yml_filename        = var.pagopa-nodo-service.pipeline.integration_test.pipeline_yml_filename
+  github_service_connection_id = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_rw_id
+  # github_service_connection_id = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_ro_id
+  path                  = "${local.domain}\\pagopa-nodo-service"
+  pipeline_name         = var.pagopa-nodo-service.pipeline.integration_test.name
+  pipeline_yml_filename = var.pagopa-nodo-service.pipeline.integration_test.pipeline_yml_filename
 
   variables = merge(
     local.pagopa-nodo-service-variables,
@@ -212,10 +213,11 @@ module "pagopa-nodo-service_performance_test" {
 
   project_id                   = data.azuredevops_project.project.id
   repository                   = var.pagopa-nodo-service.repository
-  github_service_connection_id = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_ro_id
-  path                         = "${local.domain}\\pagopa-nodo-service"
-  pipeline_name                = var.pagopa-nodo-service.pipeline.performance_test.name
-  pipeline_yml_filename        = var.pagopa-nodo-service.pipeline.performance_test.pipeline_yml_filename
+  github_service_connection_id = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_rw_id
+  # github_service_connection_id = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_ro_id
+  path                  = "${local.domain}\\pagopa-nodo-service"
+  pipeline_name         = var.pagopa-nodo-service.pipeline.performance_test.name
+  pipeline_yml_filename = var.pagopa-nodo-service.pipeline.performance_test.pipeline_yml_filename
 
   variables = merge(
     local.pagopa-nodo-service-variables,
