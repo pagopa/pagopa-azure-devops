@@ -105,6 +105,10 @@ locals {
 
   # integration vars
   pagopa-nodo-service-variables_integration_test = {
+    github_connection = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_rw_name
+
+    tf_dev_azure_service_connection = "io-azure-devops-github-rw"
+    kv-service-connection-dev       = "DEV-PAGOPA-SERVICE-CONN"
   }
   # integration secrets
   pagopa-nodo-service-variables_secret_integration_test = {
