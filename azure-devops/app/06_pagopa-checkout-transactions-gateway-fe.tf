@@ -43,7 +43,8 @@ locals {
   }
   # deploy secrets
   pagopa-checkout-transactions-gateway-fe-variables_secret_deploy = {
-
+    dev-pgs-mock-test-api-key = module.secrets.values["DEV-PGS-MOCK-TEST-API-KEY"].value
+    dev-pgs-test-api-key      = module.secrets.values["DEV-PGS-TEST-API-KEY"].value
   }
 }
 
