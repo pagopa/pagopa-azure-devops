@@ -24,6 +24,8 @@ module "pagopa-api-config_dev_secrets" {
   key_vault_name = local.dev_key_vault_name
 
   secrets = [
-    "api-config-fe-storage-account-key"
+    "api-config-fe-storage-account-key",
+    "pgs-mock-dev-subscription-key",
+    "pgs-dev-subscription-key",
   ]
 }
