@@ -52,10 +52,10 @@ locals {
     # prod_container_namespace = "pagopapcommonacr.azurecr.io"
 
     # nodo4 variables of cd pipeline
-    kv-service-cron-connection-dev         = "DEV-PAGOPA-SERVICE-CONN"
-    az-kv-name-dev                         = local.dev_nodo_key_vault_name # kv name
-    kubernetes-service-cron-connection-dev = azuredevops_serviceendpoint_kubernetes.aks_dev.id
-    deploy-pool-dev                        = "pagopa-dev-linux"
+    kv-service-connection-dev         = "DEV-PAGOPA-SERVICE-CONN"
+    az-kv-name-dev                    = local.dev_nodo_key_vault_name # kv name
+    kubernetes-service-connection-dev = azuredevops_serviceendpoint_kubernetes.aks_dev.id
+    deploy-pool-dev                   = "pagopa-dev-linux"
   }
   # deploy secrets
   pagopa-firmatore-service-variables_secret_deploy = {
