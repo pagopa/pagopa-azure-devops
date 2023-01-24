@@ -45,7 +45,7 @@ module "secrets" {
     "CHECKOUT-TEST-V2-SUBSCRIPTION-KEY",
     "assets-azure-storage-key",
     "DEV-PGS-MOCK-TEST-API-KEY",
-    "DEV-PGS-FE-TEST-API-KEY",
+    "DEV-PGS-TEST-API-KEY",
   ]
 }
 
