@@ -43,7 +43,9 @@ module "secrets" {
     "PROD-APD-SPRING-DATASOURCE-PWD",
     "CHECKOUT-TEST-V1-SUBSCRIPTION-KEY",
     "CHECKOUT-TEST-V2-SUBSCRIPTION-KEY",
-    "assets-azure-storage-key"
+    "assets-azure-storage-key",
+    "DEV-PGS-MOCK-TEST-API-KEY",
+    "DEV-PGS-TEST-API-KEY",
   ]
 }
 
