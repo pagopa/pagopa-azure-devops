@@ -105,8 +105,7 @@ locals {
 
   # integration vars
   pagopa-nodo-service-variables_integration_test = {
-    github_connection = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_rw_name
-
+    github_connection               = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_rw_name
     tf_dev_azure_service_connection = "io-azure-devops-github-rw"
     kv-service-connection-dev       = "DEV-PAGOPA-SERVICE-CONN"
   }
@@ -115,6 +114,9 @@ locals {
   }
   # performance vars
   pagopa-nodo-service-variables_performance_test = {
+    github_connection               = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_rw_name
+    tf_dev_azure_service_connection = "io-azure-devops-github-rw"
+    kv-service-connection-dev       = "DEV-PAGOPA-SERVICE-CONN"
   }
   # performance secrets
   pagopa-nodo-service-variables_secret_performance_test = {
@@ -182,7 +184,6 @@ module "pagopa-nodo-service_deploy" {
     #    module.PROD-APPINSIGHTS-SERVICE-CONN.service_endpoint_id
   ]
 }
-
 module "pagopa-nodo-service_integration_test" {
   source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_generic?ref=v2.6.3"
   count  = var.pagopa-nodo-service.pipeline.integration_test.enabled == true ? 1 : 0
@@ -209,8 +210,6 @@ module "pagopa-nodo-service_integration_test" {
     data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_ro_id,
   ]
 }
-
-
 module "pagopa-nodo-service_performance_test" {
   source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_generic?ref=v2.6.3"
   count  = var.pagopa-nodo-service.pipeline.performance_test.enabled == true ? 1 : 0
