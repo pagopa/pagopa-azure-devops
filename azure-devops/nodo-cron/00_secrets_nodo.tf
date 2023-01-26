@@ -20,28 +20,28 @@ module "nodo_dev_secrets" {
   ]
 }
 
-# #
-# # UAT NODO KEYVAULT
-# #
-
-# module "nodo_uat_secrets" {
-#   source = "git::https://github.com/pagopa/azurerm.git//key_vault_secrets_query?ref=v2.0.4"
-
-#   providers = {
-#     azurerm = azurerm.uat
-#   }
-
-#   resource_group = local.uat_nodo_key_vault_resource_group
-#   key_vault_name = local.uat_nodo_key_vault_name
-
-#   secrets = [
-#     "pagopa-u-weu-uat-aks-azure-devops-sa-token",
-#     "pagopa-u-weu-uat-aks-azure-devops-sa-cacrt",
-#     "pagopa-u-weu-uat-aks-apiserver-url"
-#   ]
-# }
-
 #
+# UAT NODO KEYVAULT
+#
+
+module "nodo_uat_secrets" {
+  source = "git::https://github.com/pagopa/azurerm.git//key_vault_secrets_query?ref=v2.0.4"
+
+  providers = {
+    azurerm = azurerm.uat
+  }
+
+  resource_group = local.uat_nodo_key_vault_resource_group
+  key_vault_name = local.uat_nodo_key_vault_name
+
+  secrets = [
+    "pagopa-u-weu-uat-aks-azure-devops-sa-token",
+    "pagopa-u-weu-uat-aks-azure-devops-sa-cacrt",
+    "pagopa-u-weu-uat-aks-apiserver-url"
+  ]
+}
+
+
 ##
 ## PROD NODO KEYVAULT
 ##
