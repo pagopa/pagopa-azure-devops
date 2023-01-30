@@ -18,9 +18,10 @@ variable "project_name" {
   description = "Project name (e.g. pagoPA platform)"
 }
 
-variable "pipeline_environments" {
+variable "pipeline_environments_extra" {
   type        = list(any)
   description = "List of environments pipeline to create"
+  default     = ["INT", "PRF"]
 }
 
 variable "terraform_remote_state_app" {

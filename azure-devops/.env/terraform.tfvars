@@ -5,7 +5,7 @@ prod_subscription_name = "PROD-PAGOPA"
 project_name        = "pagoPA-projects"
 project_name_prefix = "pagopa"
 
-pipeline_environments = ["DEV", "IT", "PRF", "UAT", "PROD"]
+pipeline_environments = ["DEV", "UAT", "PROD"]
 
 aks_dev_platform_name  = "pagopa-d-weu-dev-aks"
 aks_uat_platform_name  = "pagopa-u-weu-uat-aks"
