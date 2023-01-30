@@ -21,7 +21,7 @@ variable "project_name" {
 variable "pipeline_environments_extra" {
   type        = list(any)
   description = "List of environments pipeline to create"
-  default     = ["INT", "PRF"]
+  default     = ["IT", "PRF"]
 }
 
 variable "terraform_remote_state_app" {
