@@ -56,9 +56,9 @@ module "nodo_prod_secrets" {
   resource_group = local.prod_nodo_key_vault_resource_group
   key_vault_name = local.prod_nodo_key_vault_name
 
-  #  secrets = [
-  #    "pagopa-p-weu-prod-aks-azure-devops-sa-token",
-  #    "pagopa-p-weu-prod-aks-azure-devops-sa-cacrt",
-  #    "pagopa-p-weu-prod-aks-apiserver-url"
-  #  ]
+  secrets = [
+    "pagopa-p-weu-prod-aks-azure-devops-sa-token",
+    "pagopa-p-weu-prod-aks-azure-devops-sa-cacrt",
+    "pagopa-p-weu-prod-aks-apiserver-url"
+  ]
 }
