@@ -25,7 +25,7 @@ resource "azuredevops_serviceendpoint_kubernetes" "aks_uat" {
 }
 
 
-#resource "azuredevops_serviceendpoint_kubernetes" "aks_prod" {
+# resource "azuredevops_serviceendpoint_kubernetes" "aks_prod" {
 #  depends_on            = [data.azuredevops_project.project]
 #  project_id            = data.azuredevops_project.project.id
 #  service_endpoint_name = local.srv_endpoint_name_aks_prod
@@ -36,4 +36,4 @@ resource "azuredevops_serviceendpoint_kubernetes" "aks_uat" {
 #    token   = module.nodo_prod_secrets.values["pagopa-p-weu-prod-aks-azure-devops-sa-token"].value
 #    ca_cert = module.nodo_prod_secrets.values["pagopa-p-weu-prod-aks-azure-devops-sa-cacrt"].value
 #  }
-#}
+# }
