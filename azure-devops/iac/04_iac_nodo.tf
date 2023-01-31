@@ -52,7 +52,7 @@ locals {
     # tf_prod_aks_azure_devops_sa_cacrt = module.nodo_prod_secrets.values["pagopa-p-weu-prod-aks-azure-devops-sa-cacrt"].value,
     # tf_prod_aks_azure_devops_sa_token = base64decode(module.nodo_prod_secrets.values["pagopa-p-weu-prod-aks-azure-devops-sa-token"].value),
     # tf_aks_prod_name                  = var.aks_prod_platform_name
-    # tf_prod_azure_service_connection = azuredevops_serviceendpoint_azurerm.PROD-SERVICE-CONN.service_endpoint_name
+    tf_prod_azure_service_connection = azuredevops_serviceendpoint_azurerm.PROD-SERVICE-CONN.service_endpoint_name
   }
   # global secrets
   nodo_iac_variables_secret = {}
@@ -177,7 +177,7 @@ module "nodo_iac_db_migration" {
     azuredevops_serviceendpoint_github.azure-devops-github-ro.id,
     azuredevops_serviceendpoint_azurerm.DEV-SERVICE-CONN.id,
     azuredevops_serviceendpoint_azurerm.UAT-SERVICE-CONN.id,
-    # azuredevops_serviceendpoint_azurerm.PROD-SERVICE-CONN.id,
+    azuredevops_serviceendpoint_azurerm.PROD-SERVICE-CONN.id,
   ]
 }
 
@@ -204,7 +204,7 @@ module "nodo_iac_db_schema" {
     azuredevops_serviceendpoint_github.azure-devops-github-ro.id,
     azuredevops_serviceendpoint_azurerm.DEV-SERVICE-CONN.id,
     azuredevops_serviceendpoint_azurerm.UAT-SERVICE-CONN.id,
-    # azuredevops_serviceendpoint_azurerm.PROD-SERVICE-CONN.id,
+    azuredevops_serviceendpoint_azurerm.PROD-SERVICE-CONN.id,
   ]
 }
 
@@ -232,7 +232,7 @@ module "nodo_iac_web_bo_db_migration" {
     azuredevops_serviceendpoint_github.azure-devops-github-ro.id,
     azuredevops_serviceendpoint_azurerm.DEV-SERVICE-CONN.id,
     azuredevops_serviceendpoint_azurerm.UAT-SERVICE-CONN.id,
-    # azuredevops_serviceendpoint_azurerm.PROD-SERVICE-CONN.id,
+    azuredevops_serviceendpoint_azurerm.PROD-SERVICE-CONN.id,
   ]
 }
 
@@ -259,6 +259,6 @@ module "nodo_iac_web_bo_db_schema" {
     azuredevops_serviceendpoint_github.azure-devops-github-ro.id,
     azuredevops_serviceendpoint_azurerm.DEV-SERVICE-CONN.id,
     azuredevops_serviceendpoint_azurerm.UAT-SERVICE-CONN.id,
-    # azuredevops_serviceendpoint_azurerm.PROD-SERVICE-CONN.id,
+    azuredevops_serviceendpoint_azurerm.PROD-SERVICE-CONN.id,
   ]
 }
