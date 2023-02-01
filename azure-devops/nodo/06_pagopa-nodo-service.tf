@@ -17,6 +17,16 @@ variable "pagopa-nodo-service" {
         project_key        = "pagopa_pagopa-nodo4-nodo-dei-pagamenti"
         project_name       = "pagopa-nodo4-nodo-dei-pagamenti"
       }
+      integration_test = {
+        enabled               = true
+        name                  = "integration-test-pipeline"
+        pipeline_yml_filename = "integration-test-pipelines.yml"
+      }
+      performance_test = {
+        enabled               = true
+        name                  = "performance-test-pipeline"
+        pipeline_yml_filename = "performance-test-pipelines.yml"
+      }
     }
   }
 }
@@ -57,29 +67,29 @@ locals {
     container-registry-service-connection-dev = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_dev_id
     repository                                = replace(var.pagopa-nodo-service.repository.name, "-", "")
 
-    dev_container_registry_service_conn = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_dev_id
-    uat_container_registry_service_conn = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_uat_id
-    # prod_container_registry_service_conn = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_prod_id
+    dev_container_registry_service_conn  = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_dev_id
+    uat_container_registry_service_conn  = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_uat_id
+    prod_container_registry_service_conn = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_prod_id
 
     # aks section
-    k8s_namespace               = "nodo"
-    dev_kubernetes_service_conn = azuredevops_serviceendpoint_kubernetes.aks_dev.id
-    uat_kubernetes_service_conn = azuredevops_serviceendpoint_kubernetes.aks_uat.id
-    # prod_kubernetes_service_conn = azuredevops_serviceendpoint_kubernetes.aks_prod.id
+    k8s_namespace                = "nodo"
+    dev_kubernetes_service_conn  = azuredevops_serviceendpoint_kubernetes.aks_dev.id
+    uat_kubernetes_service_conn  = azuredevops_serviceendpoint_kubernetes.aks_uat.id
+    prod_kubernetes_service_conn = azuredevops_serviceendpoint_kubernetes.aks_prod.id
 
-    dev_container_namespace = "pagopadcommonacr.azurecr.io"
-    uat_container_namespace = "pagopaucommonacr.azurecr.io"
-    # prod_container_namespace = "pagopapcommonacr.azurecr.io"
+    dev_container_namespace  = "pagopadcommonacr.azurecr.io"
+    uat_container_namespace  = "pagopaucommonacr.azurecr.io"
+    prod_container_namespace = "pagopapcommonacr.azurecr.io"
 
 
     TF_APPINSIGHTS_SERVICE_CONN_DEV = module.DEV-APPINSIGHTS-SERVICE-CONN.service_endpoint_name
     TF_APPINSIGHTS_RESOURCE_ID_DEV  = data.azurerm_application_insights.application_insights_dev.id
 
     TF_APPINSIGHTS_SERVICE_CONN_UAT = module.UAT-APPINSIGHTS-SERVICE-CONN.service_endpoint_name
-    # TF_APPINSIGHTS_RESOURCE_ID_UAT  = data.azurerm_application_insights.application_insights_uat.id
+    TF_APPINSIGHTS_RESOURCE_ID_UAT  = data.azurerm_application_insights.application_insights_uat.id
 
-    #    TF_APPINSIGHTS_SERVICE_CONN_PROD = module.PROD-APPINSIGHTS-SERVICE-CONN.service_endpoint_name
-    #    TF_APPINSIGHTS_RESOURCE_ID_PROD  = data.azurerm_application_insights.application_insights_prod.id
+    TF_APPINSIGHTS_SERVICE_CONN_PROD = module.PROD-APPINSIGHTS-SERVICE-CONN.service_endpoint_name
+    TF_APPINSIGHTS_RESOURCE_ID_PROD  = data.azurerm_application_insights.application_insights_prod.id
 
 
     # nodo4 variables of cd pipeline
@@ -92,10 +102,30 @@ locals {
   pagopa-nodo-service-variables_secret_deploy = {
 
   }
+
+  # integration vars
+  pagopa-nodo-service-variables_integration_test = {
+    github_connection               = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_rw_name
+    tf_dev_azure_service_connection = "io-azure-devops-github-rw"
+    kv-service-connection-dev       = "DEV-PAGOPA-SERVICE-CONN"
+  }
+  # integration secrets
+  pagopa-nodo-service-variables_secret_integration_test = {
+  }
+  # performance vars
+  pagopa-nodo-service-variables_performance_test = {
+    github_connection               = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_rw_name
+    tf_dev_azure_service_connection = "io-azure-devops-github-rw"
+    kv-service-connection-dev       = "DEV-PAGOPA-SERVICE-CONN"
+  }
+  # performance secrets
+  pagopa-nodo-service-variables_secret_performance_test = {
+  }
+
 }
 
 module "pagopa-nodo-service_code_review" {
-  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review?ref=v2.2.0"
+  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review?ref=add_ci_trigger_code_review"
   count  = var.pagopa-nodo-service.pipeline.enable_code_review == true ? 1 : 0
 
   project_id = data.azuredevops_project.project.id
@@ -104,6 +134,8 @@ module "pagopa-nodo-service_code_review" {
   github_service_connection_id = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_rw_id
   path                         = "${local.domain}\\pagopa-nodo-service"
 
+  pull_request_trigger_use_yaml = true
+  ci_trigger_use_yaml           = true
 
   variables = merge(
     local.pagopa-nodo-service-variables,
@@ -120,7 +152,6 @@ module "pagopa-nodo-service_code_review" {
     local.azuredevops_serviceendpoint_sonarcloud_id
   ]
 }
-
 module "pagopa-nodo-service_deploy" {
   source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy?ref=v2.2.0"
   count  = var.pagopa-nodo-service.pipeline.enable_deploy == true ? 1 : 0
@@ -149,7 +180,60 @@ module "pagopa-nodo-service_deploy" {
     data.terraform_remote_state.app.outputs.service_endpoint_azure_uat_id,
     data.terraform_remote_state.app.outputs.service_endpoint_azure_prod_id,
     module.DEV-APPINSIGHTS-SERVICE-CONN.service_endpoint_id,
-    #    module.UAT-APPINSIGHTS-SERVICE-CONN.service_endpoint_id,
-    #    module.PROD-APPINSIGHTS-SERVICE-CONN.service_endpoint_id
+    module.UAT-APPINSIGHTS-SERVICE-CONN.service_endpoint_id,
+    module.PROD-APPINSIGHTS-SERVICE-CONN.service_endpoint_id
   ]
 }
+module "pagopa-nodo-service_integration_test" {
+  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_generic?ref=v2.6.3"
+  count  = var.pagopa-nodo-service.pipeline.integration_test.enabled == true ? 1 : 0
+
+  project_id                   = data.azuredevops_project.project.id
+  repository                   = var.pagopa-nodo-service.repository
+  github_service_connection_id = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_rw_id
+  # github_service_connection_id = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_ro_id
+  path                  = "${local.domain}\\pagopa-nodo-service"
+  pipeline_name         = var.pagopa-nodo-service.pipeline.integration_test.name
+  pipeline_yml_filename = var.pagopa-nodo-service.pipeline.integration_test.pipeline_yml_filename
+
+  variables = merge(
+    local.pagopa-nodo-service-variables,
+    local.pagopa-nodo-service-variables_integration_test,
+  )
+
+  variables_secret = merge(
+    local.pagopa-nodo-service-variables_secret,
+    local.pagopa-nodo-service-variables_secret_integration_test,
+  )
+
+  service_connection_ids_authorization = [
+    data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_ro_id,
+  ]
+}
+module "pagopa-nodo-service_performance_test" {
+  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_generic?ref=v2.6.3"
+  count  = var.pagopa-nodo-service.pipeline.performance_test.enabled == true ? 1 : 0
+
+  project_id                   = data.azuredevops_project.project.id
+  repository                   = var.pagopa-nodo-service.repository
+  github_service_connection_id = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_rw_id
+  # github_service_connection_id = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_ro_id
+  path                  = "${local.domain}\\pagopa-nodo-service"
+  pipeline_name         = var.pagopa-nodo-service.pipeline.performance_test.name
+  pipeline_yml_filename = var.pagopa-nodo-service.pipeline.performance_test.pipeline_yml_filename
+
+  variables = merge(
+    local.pagopa-nodo-service-variables,
+    local.pagopa-nodo-service-variables_performance_test,
+  )
+
+  variables_secret = merge(
+    local.pagopa-nodo-service-variables_secret,
+    local.pagopa-nodo-service-variables_secret_performance_test,
+  )
+
+  service_connection_ids_authorization = [
+    data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_ro_id,
+  ]
+}
+

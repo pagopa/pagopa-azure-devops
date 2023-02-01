@@ -38,6 +38,7 @@
 | <a name="module_nodo_iac_deploy"></a> [nodo\_iac\_deploy](#module\_nodo\_iac\_deploy) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy | v2.6.2 |
 | <a name="module_nodo_iac_web_bo_db_migration"></a> [nodo\_iac\_web\_bo\_db\_migration](#module\_nodo\_iac\_web\_bo\_db\_migration) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_generic | v2.6.3 |
 | <a name="module_nodo_iac_web_bo_db_schema"></a> [nodo\_iac\_web\_bo\_db\_schema](#module\_nodo\_iac\_web\_bo\_db\_schema) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_generic | v2.6.3 |
+| <a name="module_nodo_prod_secrets"></a> [nodo\_prod\_secrets](#module\_nodo\_prod\_secrets) | git::https://github.com/pagopa/azurerm.git//key_vault_secrets_query | v2.18.9 |
 | <a name="module_nodo_uat_secrets"></a> [nodo\_uat\_secrets](#module\_nodo\_uat\_secrets) | git::https://github.com/pagopa/azurerm.git//key_vault_secrets_query | v2.18.9 |
 | <a name="module_secrets"></a> [secrets](#module\_secrets) | git::https://github.com/pagopa/azurerm.git//key_vault_secrets_query | v2.0.4 |
 | <a name="module_selfcare_dev_secrets"></a> [selfcare\_dev\_secrets](#module\_selfcare\_dev\_secrets) | git::https://github.com/pagopa/azurerm.git//key_vault_secrets_query | v2.18.9 |

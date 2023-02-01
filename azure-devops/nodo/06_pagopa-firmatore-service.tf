@@ -1,8 +1,8 @@
-variable "pagopa-wfesp-service" {
+variable "pagopa-firmatore-service" {
   default = {
     repository = {
       organization    = "pagopa"
-      name            = "pagopa-wfesp-wfesp"
+      name            = "pagopa-firmatore"
       branch_name     = "refs/heads/develop"
       pipelines_path  = ".devops"
       yml_prefix_name = null
@@ -16,26 +16,26 @@ variable "pagopa-wfesp-service" {
 
 locals {
   # global vars
-  pagopa-wfesp-service-variables = {
+  pagopa-firmatore-service-variables = {
     cache_version_id = "v1"
-    default_branch   = var.pagopa-wfesp-service.repository.branch_name
+    default_branch   = var.pagopa-firmatore-service.repository.branch_name
   }
   # global secrets
-  pagopa-wfesp-service-variables_secret = {
+  pagopa-firmatore-service-variables_secret = {
 
   }
 
   # deploy vars
-  pagopa-wfesp-service-variables_deploy = {
-    git_email         = module.secrets.values["azure-devops-github-EMAIL"].value
+  pagopa-firmatore-service-variables_deploy = {
+    git_mail          = module.secrets.values["azure-devops-github-EMAIL"].value
     git_username      = module.secrets.values["azure-devops-github-USERNAME"].value
     github_connection = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_rw_name
     tenant_id         = module.secrets.values["TENANTID"].value
 
     # acr section
-    image_repository_name                     = replace(var.pagopa-wfesp-service.repository.name, "-", "")
+    image_repository_name                     = replace(var.pagopa-firmatore-service.repository.name, "-", "")
     container-registry-service-connection-dev = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_dev_id
-    repository                                = replace(var.pagopa-wfesp-service.repository.name, "-", "")
+    repository                                = replace(var.pagopa-firmatore-service.repository.name, "-", "")
 
     dev_container_registry_service_conn  = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_dev_id
     uat_container_registry_service_conn  = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_uat_id
@@ -51,17 +51,6 @@ locals {
     uat_container_namespace  = "pagopaucommonacr.azurecr.io"
     prod_container_namespace = "pagopapcommonacr.azurecr.io"
 
-
-    TF_APPINSIGHTS_SERVICE_CONN_DEV = module.DEV-APPINSIGHTS-SERVICE-CONN.service_endpoint_name
-    TF_APPINSIGHTS_RESOURCE_ID_DEV  = data.azurerm_application_insights.application_insights_dev.id
-
-    TF_APPINSIGHTS_SERVICE_CONN_UAT = module.UAT-APPINSIGHTS-SERVICE-CONN.service_endpoint_name
-    TF_APPINSIGHTS_RESOURCE_ID_UAT  = data.azurerm_application_insights.application_insights_uat.id
-
-    TF_APPINSIGHTS_SERVICE_CONN_PROD = module.PROD-APPINSIGHTS-SERVICE-CONN.service_endpoint_name
-    TF_APPINSIGHTS_RESOURCE_ID_PROD  = data.azurerm_application_insights.application_insights_prod.id
-
-
     # nodo4 variables of cd pipeline
     kv-service-connection-dev         = "DEV-PAGOPA-SERVICE-CONN"
     az-kv-name-dev                    = local.dev_nodo_key_vault_name # kv name
@@ -69,30 +58,29 @@ locals {
     deploy-pool-dev                   = "pagopa-dev-linux"
   }
   # deploy secrets
-  pagopa-wfesp-service-variables_secret_deploy = {
+  pagopa-firmatore-service-variables_secret_deploy = {
 
   }
 }
 
 
-
-module "pagopa-wfesp-service_deploy" {
+module "pagopa-firmatore-service_deploy" {
   source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy?ref=v2.2.0"
-  count  = var.pagopa-wfesp-service.pipeline.enable_deploy == true ? 1 : 0
+  count  = var.pagopa-firmatore-service.pipeline.enable_deploy == true ? 1 : 0
 
   project_id                   = data.azuredevops_project.project.id
-  repository                   = var.pagopa-wfesp-service.repository
+  repository                   = var.pagopa-firmatore-service.repository
   github_service_connection_id = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_rw_id
-  path                         = "${local.domain}\\pagopa-wfesp-service"
+  path                         = "${local.domain}\\pagopa-firmatore-service"
 
   variables = merge(
-    local.pagopa-wfesp-service-variables,
-    local.pagopa-wfesp-service-variables_deploy,
+    local.pagopa-firmatore-service-variables,
+    local.pagopa-firmatore-service-variables_deploy,
   )
 
   variables_secret = merge(
-    local.pagopa-wfesp-service-variables_secret,
-    local.pagopa-wfesp-service-variables_secret_deploy,
+    local.pagopa-firmatore-service-variables_secret,
+    local.pagopa-firmatore-service-variables_secret_deploy,
   )
 
   service_connection_ids_authorization = [
@@ -103,8 +91,5 @@ module "pagopa-wfesp-service_deploy" {
     data.terraform_remote_state.app.outputs.service_endpoint_azure_dev_id,
     data.terraform_remote_state.app.outputs.service_endpoint_azure_uat_id,
     data.terraform_remote_state.app.outputs.service_endpoint_azure_prod_id,
-    module.DEV-APPINSIGHTS-SERVICE-CONN.service_endpoint_id,
-    module.UAT-APPINSIGHTS-SERVICE-CONN.service_endpoint_id,
-    module.PROD-APPINSIGHTS-SERVICE-CONN.service_endpoint_id
   ]
 }
