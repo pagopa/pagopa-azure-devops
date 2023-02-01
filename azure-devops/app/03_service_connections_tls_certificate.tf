@@ -647,7 +647,7 @@ module "DEV-KIBANA-TLS-CERT-SERVICE-CONN" {
 
   project_id = azuredevops_project.project.id
   #tfsec:ignore:general-secrets-no-plaintext-exposure
-  renew_token       = local.tlscert_renew_token
+  renew_token       = local.tlscert_renew_token_kibana
   name              = "${local.prefix}-kibana-d-tls-cert-kv-policy"
   tenant_id         = module.secrets.values["TENANTID"].value
   subscription_id   = module.secrets.values["DEV-SUBSCRIPTION-ID"].value
@@ -688,7 +688,7 @@ module "UAT-KIBANA-TLS-CERT-SERVICE-CONN" {
 
   project_id = azuredevops_project.project.id
   #tfsec:ignore:general-secrets-no-plaintext-exposure
-  renew_token       = local.tlscert_renew_token
+  renew_token       = local.tlscert_renew_token_kibana
   name              = "${local.prefix}-kibana-u-tls-cert-kv-policy"
   tenant_id         = module.secrets.values["TENANTID"].value
   subscription_id   = module.secrets.values["UAT-SUBSCRIPTION-ID"].value
@@ -729,8 +729,8 @@ module "PROD-KIBANA-TLS-CERT-SERVICE-CONN" {
 
   project_id = azuredevops_project.project.id
   #tfsec:ignore:general-secrets-no-plaintext-exposure
-  renew_token       = local.tlscert_renew_token
-  name              = "${local.prefix}-kibana-u-tls-cert-kv-policy"
+  renew_token       = local.tlscert_renew_token_kibana
+  name              = "${local.prefix}-kibana-p-tls-cert-kv-policy"
   tenant_id         = module.secrets.values["TENANTID"].value
   subscription_id   = module.secrets.values["PROD-SUBSCRIPTION-ID"].value
   subscription_name = var.prod_subscription_name
@@ -749,7 +749,7 @@ data "azurerm_key_vault" "kv_kibana_prod" {
 resource "azurerm_key_vault_access_policy" "PROD-KIBANA-TLS-CERT-SERVICE-CONN_kv_prod" {
   provider = azurerm.prod
 
-  key_vault_id = data.azurerm_key_vault.kv_kibana_uat.id
+  key_vault_id = data.azurerm_key_vault.kv_kibana_prod.id
   tenant_id    = module.secrets.values["TENANTID"].value
   object_id    = module.PROD-KIBANA-TLS-CERT-SERVICE-CONN.service_principal_object_id
 

@@ -129,8 +129,8 @@ locals {
 
   #tfsec:ignore:general-secrets-no-plaintext-exposure
   #tfsec:ignore:GEN002
-  tlscert_renew_token = "v1"
-
+  tlscert_renew_token        = "v1"
+  tlscert_renew_token_kibana = "v2"
   # Service connections/ End points
   srv_endpoint_github_ro = "io-azure-devops-github-ro"
   srv_endpoint_github_rw = "io-azure-devops-github-rw"
