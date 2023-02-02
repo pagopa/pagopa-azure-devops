@@ -10,6 +10,11 @@ variable "pagopa-poc-micronaut" {
     pipeline = {
       enable_code_review = true
       enable_deploy      = true
+      performance_test = {
+        enabled               = true
+        name                  = "performance-test-pipeline"
+        pipeline_yml_filename = "performance-test-pipelines.yml"
+      }
       sonarcloud = {
         service_connection = "SONARCLOUD-SERVICE-CONN"
         org                = "pagopa"
@@ -117,5 +122,31 @@ module "pagopa-poc-micronaut_deploy" {
     data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_dev_id,
     data.terraform_remote_state.app.outputs.service_endpoint_azure_dev_id,
     module.DEV-APPINSIGHTS-SERVICE-CONN.service_endpoint_id
+  ]
+}
+
+module "pagopa-poc-micronaut_performance_test" {
+  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_generic?ref=v2.6.3"
+  count  = var.pagopa-poc-micronaut.pipeline.performance_test.enabled == true ? 1 : 0
+
+  project_id                   = data.azuredevops_project.project.id
+  repository                   = var.pagopa-poc-micronaut.repository
+  github_service_connection_id = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_ro_id
+  path                         = "${local.domain}\\pagopa-poc-micronaut"
+  pipeline_name                = var.pagopa-poc-micronaut.pipeline.performance_test.name
+  pipeline_yml_filename        = var.pagopa-poc-micronaut.pipeline.performance_test.pipeline_yml_filename
+
+  variables = merge(
+    local.pagopa-poc-micronaut-variables,
+    local.pagopa-poc-micronaut-variables_deploy,
+  )
+
+  variables_secret = merge(
+    local.pagopa-poc-micronaut-variables_secret,
+    local.pagopa-poc-micronaut-variables_secret_deploy,
+  )
+
+  service_connection_ids_authorization = [
+    data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_ro_id,
   ]
 }
