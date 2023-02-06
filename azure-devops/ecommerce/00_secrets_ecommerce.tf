@@ -39,15 +39,15 @@ module "ecommerce_uat_secrets" {
   ]
 }
 
-# module "ecommerce_prod_secrets" {
-#   source = "git::https://github.com/pagopa/azurerm.git//key_vault_secrets_query?ref=v2.0.4"
+module "ecommerce_prod_secrets" {
+  source = "git::https://github.com/pagopa/azurerm.git//key_vault_secrets_query?ref=v2.0.4"
 
-#   resource_group = local.prod_ecommerce_key_vault_resource_group
-#   key_vault_name = local.prod_ecommerce_key_vault_name
+  resource_group = local.prod_ecommerce_key_vault_resource_group
+  key_vault_name = local.prod_ecommerce_key_vault_name
 
-#   secrets = [
-#     "pagopa-p-weu-dev-aks-azure-devops-sa-token",
-#     "pagopa-p-weu-dev-aks-azure-devops-sa-cacrt",
-#     "pagopa-p-weu-dev-aks-apiserver-url"
-#   ]
-# }
+  secrets = [
+    "pagopa-p-weu-dev-aks-azure-devops-sa-token",
+    "pagopa-p-weu-dev-aks-azure-devops-sa-cacrt",
+    "pagopa-p-weu-dev-aks-apiserver-url"
+  ]
+}
