@@ -9,7 +9,7 @@ variable "tlscert-weuprod-selfcare-internal-prod-platform-pagopa-it" {
     pipeline = {
       enable_tls_cert         = true
       path                    = "TLS-Certificates\\PROD"
-      dns_record_name         = "weudprod.selfcare.internal"
+      dns_record_name         = "weuprod.selfcare.internal"
       dns_zone_name           = "platform.pagopa.it"
       dns_zone_resource_group = "pagopa-p-vnet-rg"
       # common variables to all pipelines
