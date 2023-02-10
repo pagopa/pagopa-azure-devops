@@ -46,11 +46,11 @@ locals {
   # deploy vars
   pagopa-ecommerce-transactions-functions-variables_deploy = {
     github_connection = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_rw_name
-    
+
     # azure subscription
-    dev_azure_subscription  = "DEV-PAGOPA-SERVICE-CONN"
-    uat_azure_subscription  = "UAT-PAGOPA-SERVICE-CONN"
-  
+    dev_azure_subscription = "DEV-PAGOPA-SERVICE-CONN"
+    uat_azure_subscription = "UAT-PAGOPA-SERVICE-CONN"
+
     # acr section
     k8s_image_repository_name           = replace(var.pagopa-ecommerce-transactions-functions.repository.name, "-", "")
     dev_container_registry_service_conn = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_dev_id
