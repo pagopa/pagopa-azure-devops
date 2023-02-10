@@ -46,21 +46,20 @@ locals {
   # deploy vars
   pagopa-ecommerce-transactions-functions-variables_deploy = {
     github_connection = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_rw_name
-
+    
+    # azure subscription
+    dev_azure_subscription  = "DEV-PAGOPA-SERVICE-CONN"
+    uat_azure_subscription  = "UAT-PAGOPA-SERVICE-CONN"
+  
     # acr section
-    #k8s_image_repository_name           = replace(var.pagopa-ecommerce-transactions-functions.repository.name, "-", "")
-    #dev_container_registry_service_conn = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_dev_id
-    #dev_container_registry_name         = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_dev_name
-    #uat_container_registry_service_conn = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_uat_id
-    #uat_container_registry_name         = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_uat_name
+    k8s_image_repository_name           = replace(var.pagopa-ecommerce-transactions-functions.repository.name, "-", "")
+    dev_container_registry_service_conn = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_dev_id
+    dev_container_registry_name         = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_dev_name
+    uat_container_registry_service_conn = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_uat_id
+    uat_container_registry_name         = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_uat_name
 
-    # aks section
-    #dev_kubernetes_service_conn = azuredevops_serviceendpoint_kubernetes.aks_dev.id
-    #uat_kubernetes_service_conn = azuredevops_serviceendpoint_kubernetes.aks_uat.id
-
-    #dev_container_namespace = "pagopadcommonacr.azurecr.io"
-    #uat_container_namespace = "pagopaucommonacr.azurecr.io"
-    # prod_container_namespace = "pagopapcommonacr.azurecr.io"
+    dev_container_namespace = "pagopadcommonacr.azurecr.io"
+    uat_container_namespace = "pagopaucommonacr.azurecr.io"
 
   }
   # deploy secrets
