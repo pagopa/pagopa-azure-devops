@@ -132,6 +132,12 @@ locals {
     github_connection               = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_rw_name
     tf_dev_azure_service_connection = "io-azure-devops-github-rw"
     kv-service-connection-dev       = "DEV-PAGOPA-SERVICE-CONN"
+    # aks section
+    k8s_namespace                = "nodo-cron"
+    dev_kubernetes_service_conn  = azuredevops_serviceendpoint_kubernetes.aks_dev.id
+    uat_kubernetes_service_conn  = azuredevops_serviceendpoint_kubernetes.aks_uat.id
+    prod_kubernetes_service_conn = azuredevops_serviceendpoint_kubernetes.aks_prod.id
+
   }
   # performance secrets
   pagopa-nodo-service-variables_secret_suspend_job = {
