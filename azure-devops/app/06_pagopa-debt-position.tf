@@ -19,7 +19,7 @@ variable "pagopa-debt-position" {
       }
       performance_test = {
         enabled               = true
-        name                  = "performance-test-pipeline"
+        name                  = "performance-test-gpd-pipeline"
         pipeline_yml_filename = "performance-test-pipelines.yml"
       }
     }
