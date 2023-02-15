@@ -98,8 +98,8 @@ locals {
 
   # performance vars
   pagopa-debt-position-variables_performance_test = {
-    DEV_API_SUBSCRIPTION_KEY = module.pagopa-debt-position_dev_secrets.values["debt-position-api-subscription-key"].value
-    UAT_API_SUBSCRIPTION_KEY = module.pagopa-debt-position_uat_secrets.values["debt-position-api-subscription-key"].value
+    DEV_API_SUBSCRIPTION_KEY = module.pagopa-debt-position_dev_secrets.values["gpd-api-subscription-key"].value
+    UAT_API_SUBSCRIPTION_KEY = module.pagopa-debt-position_uat_secrets.values["gpd-api-subscription-key"].value
   }
   # performance secrets
   pagopa-debt-position-variables_secret_performance_test = {
