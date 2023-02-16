@@ -69,7 +69,10 @@ locals {
   }
   # deploy secrets
   pagopa-notifications-service-variables_secret_deploy = {
-
+    notifications_service_testing_api_key_dev = module.ecommerce_dev_secrets.values["notifications-service-testing-api-key"].value
+    notifications_service_testing_mail_dev    = module.ecommerce_dev_secrets.values["notifications-service-testing-mail"].value
+    notifications_service_testing_api_key_uat = module.ecommerce_uat_secrets.values["notifications-service-testing-api-key"].value
+    notifications_service_testing_mail_uat    = module.ecommerce_uat_secrets.values["notifications-service-testing-mail"].value
   }
 }
 
