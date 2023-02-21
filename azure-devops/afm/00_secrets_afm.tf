@@ -17,7 +17,8 @@ module "afm_dev_secrets" {
     "pagopa-d-weu-dev-aks-azure-devops-sa-token",
     "pagopa-d-weu-dev-aks-azure-devops-sa-cacrt",
     "pagopa-d-weu-dev-aks-apiserver-url",
-    "afm-calculator-api-subscription-key"
+    "afm-calculator-api-subscription-key",
+    "afm_marketplace_cosmos_pkey"
   ]
 }
 
@@ -35,7 +36,8 @@ module "afm_uat_secrets" {
     "pagopa-u-weu-uat-aks-azure-devops-sa-token",
     "pagopa-u-weu-uat-aks-azure-devops-sa-cacrt",
     "pagopa-u-weu-uat-aks-apiserver-url",
-    "afm-calculator-api-subscription-key"
+    "afm-calculator-api-subscription-key",
+    "afm_marketplace_cosmos_pkey"
   ]
 }
 
