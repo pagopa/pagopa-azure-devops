@@ -52,10 +52,6 @@ locals {
   uat_afm_key_vault_name  = "${local.prefix}-u-afm-kv"
   prod_afm_key_vault_name = "${local.prefix}-p-afm-kv"
 
-  dev_apiconfig_key_vault_name  = "${local.prefix}-d-apiconfig-kv"
-  uat_apiconfig_key_vault_name  = "${local.prefix}-u-apiconfig-kv"
-  prod_apiconfig_key_vault_name = "${local.prefix}-p-apiconfig-kv"
-
   dev_biz_events_key_vault_name  = "${local.prefix}-d-bizevents-kv"
   uat_biz_events_key_vault_name  = "${local.prefix}-u-bizevents-kv"
   prod_biz_events_key_vault_name = "${local.prefix}-p-bizevents-kv"
@@ -84,10 +80,6 @@ locals {
   dev_afm_key_vault_resource_group  = "${local.prefix}-d-afm-sec-rg"
   uat_afm_key_vault_resource_group  = "${local.prefix}-u-afm-sec-rg"
   prod_afm_key_vault_resource_group = "${local.prefix}-p-afm-sec-rg"
-
-  dev_apiconfig_key_vault_resource_group  = "${local.prefix}-d-apiconfig-sec-rg"
-  uat_apiconfig_key_vault_resource_group  = "${local.prefix}-u-apiconfig-sec-rg"
-  prod_apiconfig_key_vault_resource_group = "${local.prefix}-p-apiconfig-sec-rg"
 
   dev_biz_events_key_vault_resource_group  = "${local.prefix}-d-bizevents-sec-rg"
   uat_biz_events_key_vault_resource_group  = "${local.prefix}-u-bizevents-sec-rg"
