@@ -33,40 +33,19 @@ locals {
     tenant_id         = module.secrets.values["TENANTID"].value
 
     # acr section
-    image_repository_name                     = replace(var.pagopa-mock-pm-service.repository.name, "-", "")
-    container-registry-service-connection-dev = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_dev_id
-    repository                                = replace(var.pagopa-mock-pm-service.repository.name, "-", "")
+    image_repository_name = replace(var.pagopa-mock-pm-service.repository.name, "-", "")
+    repository            = replace(var.pagopa-mock-pm-service.repository.name, "-", "")
 
     dev_container_registry_service_conn = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_dev_id
-    uat_container_registry_service_conn = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_uat_id
-    # prod_container_registry_service_conn = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_prod_id
 
     # aks section
     k8s_namespace               = "nodo"
     dev_kubernetes_service_conn = azuredevops_serviceendpoint_kubernetes.aks_dev.id
-    uat_kubernetes_service_conn = azuredevops_serviceendpoint_kubernetes.aks_uat.id
-    # prod_kubernetes_service_conn = azuredevops_serviceendpoint_kubernetes.aks_prod.id
 
     dev_container_namespace = "pagopadcommonacr.azurecr.io"
-    uat_container_namespace = "pagopaucommonacr.azurecr.io"
-    # prod_container_namespace = "pagopapcommonacr.azurecr.io"
-
 
     TF_APPINSIGHTS_SERVICE_CONN_DEV = module.DEV-APPINSIGHTS-SERVICE-CONN.service_endpoint_name
     TF_APPINSIGHTS_RESOURCE_ID_DEV  = data.azurerm_application_insights.application_insights_dev.id
-
-    TF_APPINSIGHTS_SERVICE_CONN_UAT = module.UAT-APPINSIGHTS-SERVICE-CONN.service_endpoint_name
-    TF_APPINSIGHTS_RESOURCE_ID_UAT  = data.azurerm_application_insights.application_insights_uat.id
-
-    #    TF_APPINSIGHTS_SERVICE_CONN_PROD = module.PROD-APPINSIGHTS-SERVICE-CONN.service_endpoint_name
-    #    TF_APPINSIGHTS_RESOURCE_ID_PROD  = data.azurerm_application_insights.application_insights_prod.id
-
-
-    # nodo4 variables of cd pipeline
-    kv-service-connection-dev         = "DEV-PAGOPA-SERVICE-CONN"
-    az-kv-name-dev                    = local.dev_nodo_key_vault_name # kv name
-    kubernetes-service-connection-dev = azuredevops_serviceendpoint_kubernetes.aks_dev.id
-    deploy-pool-dev                   = "pagopa-dev-linux"
   }
   # deploy secrets
   pagopa-mock-pm-service-variables_secret_deploy = {
@@ -98,13 +77,7 @@ module "pagopa-mock-pm-service_deploy" {
   service_connection_ids_authorization = [
     data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_ro_id,
     data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_dev_id,
-    data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_uat_id,
-    data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_prod_id,
     data.terraform_remote_state.app.outputs.service_endpoint_azure_dev_id,
-    data.terraform_remote_state.app.outputs.service_endpoint_azure_uat_id,
-    data.terraform_remote_state.app.outputs.service_endpoint_azure_prod_id,
-    module.DEV-APPINSIGHTS-SERVICE-CONN.service_endpoint_id,
-    module.UAT-APPINSIGHTS-SERVICE-CONN.service_endpoint_id,
-    #    module.PROD-APPINSIGHTS-SERVICE-CONN.service_endpoint_id
+    module.DEV-APPINSIGHTS-SERVICE-CONN.service_endpoint_id
   ]
 }
