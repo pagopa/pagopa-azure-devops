@@ -39,14 +39,13 @@ locals {
     sonarcloud_project_name             = var.pagopa-api-config-cache.pipeline.sonarcloud.project_name
     dev_container_registry_service_conn = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_dev_id
 
-    github_token_read_packages_dev = module.apiconfig_dev_secrets.values["github-token-read-packages"].value
-    #    github_token_read_packages_uat = module.apiconfig_uat_secrets.values["github-token-read-packages"].value
-    #    github_token_read_packagess_prod = module.apiconfig_prod_secrets.values["github-token-read-packages"].value
-
   }
 
   # code_review secrets
   pagopa-api-config-cache-variables_secret_code_review = {
+    github_token_read_packages_dev = module.apiconfig_dev_secrets.values["github-token-read-packages"].value
+    #    github_token_read_packages_uat = module.apiconfig_uat_secrets.values["github-token-read-packages"].value
+    #    github_token_read_packagess_prod = module.apiconfig_prod_secrets.values["github-token-read-packages"].value
   }
   # deploy vars
   pagopa-api-config-cache-variables_deploy = {
@@ -86,9 +85,6 @@ locals {
 
 
     # api-config-cache4 variables of cd pipeline
-    github_token_read_packages_dev = module.apiconfig_dev_secrets.values["github-token-read-packages"].value
-    #    github_token_read_packages_uat = module.apiconfig_uat_secrets.values["github-token-read-packages"].value
-    #    github_token_read_packagess_prod = module.apiconfig_prod_secrets.values["github-token-read-packages"].value
     deploy-pool-dev  = "pagopa-dev-linux"
     deploy-pool-uat  = "pagopa-uat-linux"
     deploy-pool-prof = "pagopa-prod-linux"
@@ -96,7 +92,9 @@ locals {
   }
   # deploy secrets
   pagopa-api-config-cache-variables_secret_deploy = {
-
+    github_token_read_packages_dev = module.apiconfig_dev_secrets.values["github-token-read-packages"].value
+    #    github_token_read_packages_uat = module.apiconfig_uat_secrets.values["github-token-read-packages"].value
+    #    github_token_read_packagess_prod = module.apiconfig_prod_secrets.values["github-token-read-packages"].value
   }
 
 }
