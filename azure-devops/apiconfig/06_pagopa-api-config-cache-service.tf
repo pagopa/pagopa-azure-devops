@@ -89,15 +89,12 @@ locals {
 
 
     # api-config-cache4 variables of cd pipeline
-    kv-service-connection-dev  = "DEV-PAGOPA-SERVICE-CONN"
-    kv-service-connection-uat  = "UAT-PAGOPA-SERVICE-CONN"
-    kv-service-connection-prod = "PROD-PAGOPA-SERVICE-CONN"
-    az-kv-name-dev             = local.dev_apiconfig_key_vault_name
-    az-kv-name-uat             = local.uat_apiconfig_key_vault_name
-    az-kv-name-prod            = local.prod_apiconfig_key_vault_name
-    deploy-pool-dev            = "pagopa-dev-linux"
-    deploy-pool-uat            = "pagopa-uat-linux"
-    deploy-pool-prof           = "pagopa-prod-linux"
+    github_token_read_packages_dev = module.nodo_dev_secrets.values["github-token-read-packages"].value
+    #    github_token_read_packages_uat = module.nodo_uat_secrets.values["github-token-read-packages"].value
+    #    github_token_read_packagess_PROD = module.nodo_prod_secrets.values["github-token-read-packages"].value
+    deploy-pool-dev  = "pagopa-dev-linux"
+    deploy-pool-uat  = "pagopa-uat-linux"
+    deploy-pool-prof = "pagopa-prod-linux"
     #kubernetes-service-connection-dev = azuredevops_serviceendpoint_kubernetes.aks_dev.id
   }
   # deploy secrets
