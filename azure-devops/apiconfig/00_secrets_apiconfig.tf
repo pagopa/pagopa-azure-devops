@@ -2,7 +2,7 @@
 # DEV NODO KEYVAULT
 #
 
-module "nodo_dev_secrets" {
+module "apiconfig_dev_secrets" {
 
   source = "git::https://github.com/pagopa/azurerm.git//key_vault_secrets_query?ref=v2.0.4"
 

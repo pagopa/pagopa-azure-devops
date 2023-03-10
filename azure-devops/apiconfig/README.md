@@ -16,8 +16,8 @@
 |------|--------|---------|
 | <a name="module_DEV-APICONFIG-TLS-CERT-SERVICE-CONN"></a> [DEV-APICONFIG-TLS-CERT-SERVICE-CONN](#module\_DEV-APICONFIG-TLS-CERT-SERVICE-CONN) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_azurerm_limited | v2.6.5 |
 | <a name="module_DEV-APPINSIGHTS-SERVICE-CONN"></a> [DEV-APPINSIGHTS-SERVICE-CONN](#module\_DEV-APPINSIGHTS-SERVICE-CONN) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_azurerm_limited | v2.6.5 |
+| <a name="module_apiconfig_dev_secrets"></a> [apiconfig\_dev\_secrets](#module\_apiconfig\_dev\_secrets) | git::https://github.com/pagopa/azurerm.git//key_vault_secrets_query | v2.0.4 |
 | <a name="module_letsencrypt_dev"></a> [letsencrypt\_dev](#module\_letsencrypt\_dev) | git::https://github.com/pagopa/azurerm.git//letsencrypt_credential | v3.12.0 |
-| <a name="module_nodo_dev_secrets"></a> [nodo\_dev\_secrets](#module\_nodo\_dev\_secrets) | git::https://github.com/pagopa/azurerm.git//key_vault_secrets_query | v2.0.4 |
 | <a name="module_pagopa-api-config-cache_deploy"></a> [pagopa-api-config-cache\_deploy](#module\_pagopa-api-config-cache\_deploy) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy | v2.2.0 |
 | <a name="module_pagopa_api_config-cache_code_review"></a> [pagopa\_api\_config-cache\_code\_review](#module\_pagopa\_api\_config-cache\_code\_review) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review | v2.2.0 |
 | <a name="module_pagopa_api_config_code_review"></a> [pagopa\_api\_config\_code\_review](#module\_pagopa\_api\_config\_code\_review) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review | v2.2.0 |
