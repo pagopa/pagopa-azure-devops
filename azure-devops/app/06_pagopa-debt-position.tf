@@ -88,6 +88,8 @@ locals {
 
     SCHEMA_NAME = "apd"
 
+    DEV_API_SUBSCRIPTION_KEY = module.pagopa-debt-position_dev_secrets.values["gpd-api-subscription-key"].value
+    UAT_API_SUBSCRIPTION_KEY = module.pagopa-debt-position_uat_secrets.values["gpd-api-subscription-key"].value
   }
   # deploy secrets
   pagopa-debt-position-variables_secret_deploy = {
