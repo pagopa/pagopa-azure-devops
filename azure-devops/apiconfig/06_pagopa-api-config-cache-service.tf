@@ -91,7 +91,7 @@ locals {
     # api-config-cache4 variables of cd pipeline
     github_token_read_packages_dev = module.nodo_dev_secrets.values["github-token-read-packages"].value
     #    github_token_read_packages_uat = module.nodo_uat_secrets.values["github-token-read-packages"].value
-    #    github_token_read_packagess_PROD = module.nodo_prod_secrets.values["github-token-read-packages"].value
+    #    github_token_read_packagess_prod = module.nodo_prod_secrets.values["github-token-read-packages"].value
     deploy-pool-dev  = "pagopa-dev-linux"
     deploy-pool-uat  = "pagopa-uat-linux"
     deploy-pool-prof = "pagopa-prod-linux"
