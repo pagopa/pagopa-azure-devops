@@ -163,6 +163,7 @@ module "pagopa-debt-position_performance_test" {
   project_id                   = azuredevops_project.project.id
   repository                   = var.pagopa-debt-position.repository
   github_service_connection_id = azuredevops_serviceendpoint_github.azure-devops-github-rw.id
+  path                         = var.pagopa-debt-position.repository.name
   pipeline_name                = var.pagopa-debt-position.pipeline.performance_test.name
   pipeline_yml_filename        = var.pagopa-debt-position.pipeline.performance_test.pipeline_yml_filename
 
