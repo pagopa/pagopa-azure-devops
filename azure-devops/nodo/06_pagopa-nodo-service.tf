@@ -55,12 +55,9 @@ locals {
     sonarcloud_project_name = var.pagopa-nodo-service.pipeline.sonarcloud.project_name
 
     # nodo4 variables of cd pipeline
-    kv-service-connection-dev  = "DEV-PAGOPA-SERVICE-CONN"
-    kv-service-connection-uat  = "UAT-PAGOPA-SERVICE-CONN"
-    kv-service-connection-prod = "PROD-PAGOPA-SERVICE-CONN"
-    az-kv-name-dev             = local.dev_nodo_key_vault_name  # kv name
-    az-kv-name-uat             = local.uat_nodo_key_vault_name  # kv name
-    az-kv-name-prod            = local.prod_nodo_key_vault_name # kv name
+    lightbend_key_dev  = module.nodo_dev_secrets.values["lightbend-key"].value
+    lightbend_key_uat  = module.nodo_uat_secrets.values["lightbend-key"].value
+    lightbend_key_prod = module.nodo_prod_secrets.values["lightbend-key"].value
 
   }
   # code_review secrets
@@ -92,7 +89,6 @@ locals {
     uat_container_namespace  = "pagopaucommonacr.azurecr.io"
     prod_container_namespace = "pagopapcommonacr.azurecr.io"
 
-
     TF_APPINSIGHTS_SERVICE_CONN_DEV = module.DEV-APPINSIGHTS-SERVICE-CONN.service_endpoint_name
     TF_APPINSIGHTS_RESOURCE_ID_DEV  = data.azurerm_application_insights.application_insights_dev.id
 
@@ -104,15 +100,12 @@ locals {
 
 
     # nodo4 variables of cd pipeline
-    kv-service-connection-dev  = "DEV-PAGOPA-SERVICE-CONN"
-    kv-service-connection-uat  = "UAT-PAGOPA-SERVICE-CONN"
-    kv-service-connection-prod = "PROD-PAGOPA-SERVICE-CONN"
-    az-kv-name-dev             = local.dev_nodo_key_vault_name  # kv name
-    az-kv-name-uat             = local.uat_nodo_key_vault_name  # kv name
-    az-kv-name-prod            = local.prod_nodo_key_vault_name # kv name
-    deploy-pool-dev            = "pagopa-dev-linux"
-    deploy-pool-uat            = "pagopa-uat-linux"
-    deploy-pool-prof           = "pagopa-prod-linux"
+    lightbend_key_dev  = module.nodo_dev_secrets.values["lightbend-key"].value
+    lightbend_key_uat  = module.nodo_uat_secrets.values["lightbend-key"].value
+    lightbend_key_prod = module.nodo_prod_secrets.values["lightbend-key"].value
+    deploy-pool-dev    = "pagopa-dev-linux"
+    deploy-pool-uat    = "pagopa-uat-linux"
+    deploy-pool-prof   = "pagopa-prod-linux"
   }
   # deploy secrets
   pagopa-nodo-service-variables_secret_deploy = {
