@@ -56,9 +56,9 @@ locals {
   uat_biz_events_key_vault_name  = "${local.prefix}-u-bizevents-kv"
   prod_biz_events_key_vault_name = "${local.prefix}-p-bizevents-kv"
 
-  dev_kibana_key_vault_name = "${local.prefix}-d-elk-kv"
-  uat_kibana_key_vault_name = "${local.prefix}-u-elk-kv"
-  #prod_kibana_key_vault_name = "${local.prefix}-p-elk-kv"
+  dev_kibana_key_vault_name  = "${local.prefix}-d-elk-kv"
+  uat_kibana_key_vault_name  = "${local.prefix}-u-elk-kv"
+  prod_kibana_key_vault_name = "${local.prefix}-p-elk-kv"
   # KV RG
 
   dev_key_vault_resource_group  = "${local.prefix}-d-sec-rg"
@@ -85,9 +85,9 @@ locals {
   uat_biz_events_key_vault_resource_group  = "${local.prefix}-u-bizevents-sec-rg"
   prod_biz_events_key_vault_resource_group = "${local.prefix}-p-bizevents-sec-rg"
 
-  dev_kibana_key_vault_resource_group = "${local.prefix}-d-elk-sec-rg"
-  uat_kibana_key_vault_resource_group = "${local.prefix}-u-elk-sec-rg"
-  #prod_kibana_key_vault_resource_group = "${local.prefix}-p-elk-sec-rg"
+  dev_kibana_key_vault_resource_group  = "${local.prefix}-d-elk-sec-rg"
+  uat_kibana_key_vault_resource_group  = "${local.prefix}-u-elk-sec-rg"
+  prod_kibana_key_vault_resource_group = "${local.prefix}-p-elk-sec-rg"
   # ☁️ VNET
   dev_vnet_rg  = "${local.prefix}-d-vnet-rg"
   uat_vnet_rg  = "${local.prefix}-u-vnet-rg"
@@ -129,8 +129,8 @@ locals {
 
   #tfsec:ignore:general-secrets-no-plaintext-exposure
   #tfsec:ignore:GEN002
-  tlscert_renew_token = "v1"
-
+  tlscert_renew_token        = "v1"
+  tlscert_renew_token_kibana = "v2"
   # Service connections/ End points
   srv_endpoint_github_ro = "io-azure-devops-github-ro"
   srv_endpoint_github_rw = "io-azure-devops-github-rw"
