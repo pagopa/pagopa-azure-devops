@@ -54,7 +54,13 @@ locals {
     sonarcloud_project_key  = var.pagopa-nodo-service.pipeline.sonarcloud.project_key
     sonarcloud_project_name = var.pagopa-nodo-service.pipeline.sonarcloud.project_name
 
-    dev_container_registry_service_conn = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_dev_id
+    # nodo4 variables of cd pipeline
+    kv-service-connection-dev  = "DEV-PAGOPA-SERVICE-CONN"
+    kv-service-connection-uat  = "UAT-PAGOPA-SERVICE-CONN"
+    kv-service-connection-prod = "PROD-PAGOPA-SERVICE-CONN"
+    az-kv-name-dev             = local.dev_nodo_key_vault_name  # kv name
+    az-kv-name-uat             = local.uat_nodo_key_vault_name  # kv name
+    az-kv-name-prod            = local.prod_nodo_key_vault_name # kv name
 
   }
   # code_review secrets
@@ -98,10 +104,15 @@ locals {
 
 
     # nodo4 variables of cd pipeline
-    kv-service-connection-dev         = "DEV-PAGOPA-SERVICE-CONN"
-    az-kv-name-dev                    = local.dev_nodo_key_vault_name # kv name
-    kubernetes-service-connection-dev = azuredevops_serviceendpoint_kubernetes.aks_dev.id
-    deploy-pool-dev                   = "pagopa-dev-linux"
+    kv-service-connection-dev  = "DEV-PAGOPA-SERVICE-CONN"
+    kv-service-connection-uat  = "UAT-PAGOPA-SERVICE-CONN"
+    kv-service-connection-prod = "PROD-PAGOPA-SERVICE-CONN"
+    az-kv-name-dev             = local.dev_nodo_key_vault_name  # kv name
+    az-kv-name-uat             = local.uat_nodo_key_vault_name  # kv name
+    az-kv-name-prod            = local.prod_nodo_key_vault_name # kv name
+    deploy-pool-dev            = "pagopa-dev-linux"
+    deploy-pool-uat            = "pagopa-uat-linux"
+    deploy-pool-prof           = "pagopa-prod-linux"
   }
   # deploy secrets
   pagopa-nodo-service-variables_secret_deploy = {
