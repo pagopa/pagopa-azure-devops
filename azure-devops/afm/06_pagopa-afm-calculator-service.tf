@@ -95,6 +95,8 @@ locals {
   }
   # performance secrets
   pagopa-afm-calculator-service-variables_secret_performance_test = {
+    DEV_COSMOS_SUBSCRIPTION_KEY = module.afm_dev_secrets.values["afm-marketplace-d-cosmos-pkey"].value
+    UAT_COSMOS_SUBSCRIPTION_KEY = module.afm_uat_secrets.values["afm-marketplace-u-cosmos-pkey"].value
   }
 
 }

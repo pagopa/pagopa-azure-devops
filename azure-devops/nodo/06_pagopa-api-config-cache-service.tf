@@ -1,8 +1,8 @@
-variable "pagopa-firmatore-service" {
+variable "pagopa-api-config-cache-service" {
   default = {
     repository = {
       organization    = "pagopa"
-      name            = "pagopa-firmatore"
+      name            = "pagopa-api-config-cache"
       branch_name     = "refs/heads/develop"
       pipelines_path  = ".devops"
       yml_prefix_name = null
@@ -16,33 +16,41 @@ variable "pagopa-firmatore-service" {
 
 locals {
   # global vars
-  pagopa-firmatore-service-variables = {
+  pagopa-api-config-cache-service-variables = {
     cache_version_id = "v1"
-    default_branch   = var.pagopa-firmatore-service.repository.branch_name
+    default_branch   = var.pagopa-api-config-cache-service.repository.branch_name
   }
   # global secrets
-  pagopa-firmatore-service-variables_secret = {
+  pagopa-api-config-cache-service-variables_secret = {
 
   }
+  # code_review vars
+  pagopa-api-config-cache-service-variables_code_review = {
+    danger_github_api_token             = "skip"
+    dev_container_registry_service_conn = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_dev_id
+  }
 
+  # code_review secrets
+  pagopa-api-config-cache-service-variables_secret_code_review = {
+  }
   # deploy vars
-  pagopa-firmatore-service-variables_deploy = {
-    git_mail          = module.secrets.values["azure-devops-github-EMAIL"].value
+  pagopa-api-config-cache-service-variables_deploy = {
+    git_email         = module.secrets.values["azure-devops-github-EMAIL"].value
     git_username      = module.secrets.values["azure-devops-github-USERNAME"].value
     github_connection = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_rw_name
     tenant_id         = module.secrets.values["TENANTID"].value
 
     # acr section
-    image_repository_name                     = replace(var.pagopa-firmatore-service.repository.name, "-", "")
+    image_repository_name                     = replace(var.pagopa-api-config-cache-service.repository.name, "-", "")
     container-registry-service-connection-dev = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_dev_id
-    repository                                = replace(var.pagopa-firmatore-service.repository.name, "-", "")
+    repository                                = replace(var.pagopa-api-config-cache-service.repository.name, "-", "")
 
     dev_container_registry_service_conn  = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_dev_id
     uat_container_registry_service_conn  = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_uat_id
     prod_container_registry_service_conn = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_prod_id
 
     # aks section
-    k8s_namespace                = "nodo-cron"
+    k8s_namespace                = "nodo"
     dev_kubernetes_service_conn  = azuredevops_serviceendpoint_kubernetes.aks_dev.id
     uat_kubernetes_service_conn  = azuredevops_serviceendpoint_kubernetes.aks_uat.id
     prod_kubernetes_service_conn = azuredevops_serviceendpoint_kubernetes.aks_prod.id
@@ -51,36 +59,47 @@ locals {
     uat_container_namespace  = "pagopaucommonacr.azurecr.io"
     prod_container_namespace = "pagopapcommonacr.azurecr.io"
 
-    # nodo4 variables of cd pipeline
+
+    TF_APPINSIGHTS_SERVICE_CONN_DEV = module.DEV-APPINSIGHTS-SERVICE-CONN.service_endpoint_name
+    TF_APPINSIGHTS_RESOURCE_ID_DEV  = data.azurerm_application_insights.application_insights_dev.id
+
+    TF_APPINSIGHTS_SERVICE_CONN_UAT = module.UAT-APPINSIGHTS-SERVICE-CONN.service_endpoint_name
+    TF_APPINSIGHTS_RESOURCE_ID_UAT  = data.azurerm_application_insights.application_insights_uat.id
+
+    TF_APPINSIGHTS_SERVICE_CONN_PROD = module.PROD-APPINSIGHTS-SERVICE-CONN.service_endpoint_name
+    TF_APPINSIGHTS_RESOURCE_ID_PROD  = data.azurerm_application_insights.application_insights_prod.id
+
+
+    # api-config-cache4 variables of cd pipeline
     kv-service-connection-dev         = "DEV-PAGOPA-SERVICE-CONN"
     az-kv-name-dev                    = local.dev_nodo_key_vault_name # kv name
     kubernetes-service-connection-dev = azuredevops_serviceendpoint_kubernetes.aks_dev.id
     deploy-pool-dev                   = "pagopa-dev-linux"
   }
   # deploy secrets
-  pagopa-firmatore-service-variables_secret_deploy = {
+  pagopa-api-config-cache-service-variables_secret_deploy = {
 
   }
+
 }
 
-
-module "pagopa-firmatore-service_deploy" {
+module "pagopa-api-config-cache-service_deploy" {
   source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy?ref=v2.2.0"
-  count  = var.pagopa-firmatore-service.pipeline.enable_deploy == true ? 1 : 0
+  count  = var.pagopa-api-config-cache-service.pipeline.enable_deploy == true ? 1 : 0
 
   project_id                   = data.azuredevops_project.project.id
-  repository                   = var.pagopa-firmatore-service.repository
+  repository                   = var.pagopa-api-config-cache-service.repository
   github_service_connection_id = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_rw_id
-  path                         = "${local.domain}\\pagopa-firmatore-service"
+  path                         = "${local.domain}\\pagopa-api-config-cache-service"
 
   variables = merge(
-    local.pagopa-firmatore-service-variables,
-    local.pagopa-firmatore-service-variables_deploy,
+    local.pagopa-api-config-cache-service-variables,
+    local.pagopa-api-config-cache-service-variables_deploy,
   )
 
   variables_secret = merge(
-    local.pagopa-firmatore-service-variables_secret,
-    local.pagopa-firmatore-service-variables_secret_deploy,
+    local.pagopa-api-config-cache-service-variables_secret,
+    local.pagopa-api-config-cache-service-variables_secret_deploy,
   )
 
   service_connection_ids_authorization = [
@@ -91,5 +110,8 @@ module "pagopa-firmatore-service_deploy" {
     data.terraform_remote_state.app.outputs.service_endpoint_azure_dev_id,
     data.terraform_remote_state.app.outputs.service_endpoint_azure_uat_id,
     data.terraform_remote_state.app.outputs.service_endpoint_azure_prod_id,
+    module.DEV-APPINSIGHTS-SERVICE-CONN.service_endpoint_id,
+    module.UAT-APPINSIGHTS-SERVICE-CONN.service_endpoint_id,
+    module.PROD-APPINSIGHTS-SERVICE-CONN.service_endpoint_id
   ]
 }

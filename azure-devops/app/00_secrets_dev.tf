@@ -27,3 +27,18 @@ module "pagopa-api-config_dev_secrets" {
     "api-config-fe-storage-account-key"
   ]
 }
+
+module "pagopa-debt-position_dev_secrets" {
+  source = "git::https://github.com/pagopa/azurerm.git//key_vault_secrets_query?ref=v2.0.4"
+
+  providers = {
+    azurerm = azurerm.dev
+  }
+
+  resource_group = local.dev_key_vault_resource_group
+  key_vault_name = local.dev_key_vault_name
+
+  secrets = [
+    "gpd-api-subscription-key",
+  ]
+}

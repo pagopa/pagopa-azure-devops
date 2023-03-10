@@ -315,6 +315,7 @@ resource "azurerm_key_vault_access_policy" "DEV-AFM-TLS-CERT-SERVICE-CONN_kv_dev
 
   certificate_permissions = ["Get", "Import"]
 }
+
 #
 # ⛩ Service connection 3 🔐 KV-BIZEVENTS@DEV 🟢
 #

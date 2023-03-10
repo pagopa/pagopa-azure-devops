@@ -17,6 +17,11 @@ variable "pagopa-debt-position" {
         project_key        = "pagopa_pagopa-debt-position"
         project_name       = "pagopa-debt-position"
       }
+      performance_test = {
+        enabled               = true
+        name                  = "performance-test-gpd-pipeline"
+        pipeline_yml_filename = "performance-test-pipelines.yml"
+      }
     }
   }
 }
@@ -88,6 +93,17 @@ locals {
   pagopa-debt-position-variables_secret_deploy = {
 
   }
+
+  ## Performance Test Pipeline vars and secrets ##
+
+  # performance vars
+  pagopa-debt-position-variables_performance_test = {
+    DEV_API_SUBSCRIPTION_KEY = module.pagopa-debt-position_dev_secrets.values["gpd-api-subscription-key"].value
+    UAT_API_SUBSCRIPTION_KEY = module.pagopa-debt-position_uat_secrets.values["gpd-api-subscription-key"].value
+  }
+  # performance secrets
+  pagopa-debt-position-variables_secret_performance_test = {
+  }
 }
 
 module "pagopa-debt-position_code_review" {
@@ -137,5 +153,30 @@ module "pagopa-debt-position_deploy" {
     azuredevops_serviceendpoint_azurerm.DEV-SERVICE-CONN.id,
     azuredevops_serviceendpoint_azurerm.UAT-SERVICE-CONN.id,
     azuredevops_serviceendpoint_azurerm.PROD-SERVICE-CONN.id,
+  ]
+}
+
+module "pagopa-debt-position_performance_test" {
+  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_generic?ref=v2.6.3"
+  count  = var.pagopa-debt-position.pipeline.performance_test.enabled == true ? 1 : 0
+
+  project_id                   = azuredevops_project.project.id
+  repository                   = var.pagopa-debt-position.repository
+  github_service_connection_id = azuredevops_serviceendpoint_github.azure-devops-github-rw.id
+  pipeline_name                = var.pagopa-debt-position.pipeline.performance_test.name
+  pipeline_yml_filename        = var.pagopa-debt-position.pipeline.performance_test.pipeline_yml_filename
+
+  variables = merge(
+    local.pagopa-debt-position-variables,
+    local.pagopa-debt-position-variables_performance_test
+  )
+
+  variables_secret = merge(
+    local.pagopa-debt-position-variables_secret,
+    local.pagopa-debt-position-variables_secret_performance_test
+  )
+
+  service_connection_ids_authorization = [
+    azuredevops_serviceendpoint_github.azure-devops-github-ro.id
   ]
 }
