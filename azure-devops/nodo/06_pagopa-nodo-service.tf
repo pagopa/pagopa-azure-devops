@@ -53,15 +53,13 @@ locals {
     sonarcloud_org          = var.pagopa-nodo-service.pipeline.sonarcloud.org
     sonarcloud_project_key  = var.pagopa-nodo-service.pipeline.sonarcloud.project_key
     sonarcloud_project_name = var.pagopa-nodo-service.pipeline.sonarcloud.project_name
-
     # nodo4 variables of cd pipeline
-    lightbend_key_dev  = module.nodo_dev_secrets.values["lightbend-key"].value
-    lightbend_key_uat  = module.nodo_uat_secrets.values["lightbend-key"].value
-    lightbend_key_prod = module.nodo_prod_secrets.values["lightbend-key"].value
-
   }
   # code_review secrets
   pagopa-nodo-service-variables_secret_code_review = {
+    lightbend_key_dev  = module.nodo_dev_secrets.values["lightbend-key"].value
+    lightbend_key_uat  = module.nodo_uat_secrets.values["lightbend-key"].value
+    lightbend_key_prod = module.nodo_prod_secrets.values["lightbend-key"].value
   }
   # deploy vars
   pagopa-nodo-service-variables_deploy = {
@@ -100,16 +98,15 @@ locals {
 
 
     # nodo4 variables of cd pipeline
-    lightbend_key_dev  = module.nodo_dev_secrets.values["lightbend-key"].value
-    lightbend_key_uat  = module.nodo_uat_secrets.values["lightbend-key"].value
-    lightbend_key_prod = module.nodo_prod_secrets.values["lightbend-key"].value
-    deploy-pool-dev    = "pagopa-dev-linux"
-    deploy-pool-uat    = "pagopa-uat-linux"
-    deploy-pool-prof   = "pagopa-prod-linux"
+    deploy-pool-dev  = "pagopa-dev-linux"
+    deploy-pool-uat  = "pagopa-uat-linux"
+    deploy-pool-prof = "pagopa-prod-linux"
   }
   # deploy secrets
   pagopa-nodo-service-variables_secret_deploy = {
-
+    lightbend_key_dev  = module.nodo_dev_secrets.values["lightbend-key"].value
+    lightbend_key_uat  = module.nodo_uat_secrets.values["lightbend-key"].value
+    lightbend_key_prod = module.nodo_prod_secrets.values["lightbend-key"].value
   }
 
   # integration vars
