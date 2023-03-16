@@ -65,10 +65,10 @@ locals {
     prod_container_registry_service_conn = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_prod_id
 
     # aks section
-    k8s_namespace                = "apiconfig"
-    dev_kubernetes_service_conn  = azuredevops_serviceendpoint_kubernetes.aks_dev.id
-    uat_kubernetes_service_conn  = azuredevops_serviceendpoint_kubernetes.aks_uat.id
-    prod_kubernetes_service_conn = azuredevops_serviceendpoint_kubernetes.aks_prod.id
+    k8s_namespace               = "apiconfig"
+    dev_kubernetes_service_conn = azuredevops_serviceendpoint_kubernetes.aks_dev.id
+    # uat_kubernetes_service_conn  = azuredevops_serviceendpoint_kubernetes.aks_uat.id
+    # prod_kubernetes_service_conn = azuredevops_serviceendpoint_kubernetes.aks_prod.id
 
     dev_container_namespace  = "pagopadcommonacr.azurecr.io"
     uat_container_namespace  = "pagopaucommonacr.azurecr.io"
