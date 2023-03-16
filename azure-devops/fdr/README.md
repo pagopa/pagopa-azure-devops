@@ -16,6 +16,9 @@
 |------|--------|---------|
 | <a name="module_DEV-FDR-TLS-CERT-SERVICE-CONN"></a> [DEV-FDR-TLS-CERT-SERVICE-CONN](#module\_DEV-FDR-TLS-CERT-SERVICE-CONN) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_azurerm_limited | v2.6.5 |
 | <a name="module_letsencrypt_dev"></a> [letsencrypt\_dev](#module\_letsencrypt\_dev) | git::https://github.com/pagopa/azurerm.git//letsencrypt_credential | v3.12.0 |
+| <a name="module_pagopa-fdr-service_code_review"></a> [pagopa-fdr-service\_code\_review](#module\_pagopa-fdr-service\_code\_review) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review | add_ci_trigger_code_review |
+| <a name="module_pagopa-fdr-service_deploy"></a> [pagopa-fdr-service\_deploy](#module\_pagopa-fdr-service\_deploy) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy | v2.2.0 |
+| <a name="module_secrets"></a> [secrets](#module\_secrets) | git::https://github.com/pagopa/azurerm.git//key_vault_secrets_query | v2.0.4 |
 | <a name="module_tlscert-weudev-fdr-internal-dev-platform-pagopa-it-cert_az"></a> [tlscert-weudev-fdr-internal-dev-platform-pagopa-it-cert\_az](#module\_tlscert-weudev-fdr-internal-dev-platform-pagopa-it-cert\_az) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_tls_cert | v2.6.5 |
 
 ## Resources
@@ -32,6 +35,7 @@
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_dev_subscription_name"></a> [dev\_subscription\_name](#input\_dev\_subscription\_name) | DEV Subscription name | `string` | n/a | yes |
+| <a name="input_pagopa-fdr-service"></a> [pagopa-fdr-service](#input\_pagopa-fdr-service) | n/a | `map` | <pre>{<br>  "pipeline": {<br>    "enable_code_review": true,<br>    "enable_deploy": true,<br>    "sonarcloud": {<br>      "org": "pagopa",<br>      "project_key": "pagopa_pagopa-fdr",<br>      "project_name": "pagopa-fdr",<br>      "service_connection": "SONARCLOUD-SERVICE-CONN"<br>    }<br>  },<br>  "repository": {<br>    "branch_name": "refs/heads/main",<br>    "name": "pagopa-fdr",<br>    "organization": "pagopa",<br>    "pipelines_path": ".devops",<br>    "yml_prefix_name": null<br>  }<br>}</pre> | no |
 | <a name="input_pipeline_environments"></a> [pipeline\_environments](#input\_pipeline\_environments) | List of environments pipeline to create | `list(any)` | n/a | yes |
 | <a name="input_prod_subscription_name"></a> [prod\_subscription\_name](#input\_prod\_subscription\_name) | PROD Subscription name | `string` | n/a | yes |
 | <a name="input_project_name"></a> [project\_name](#input\_project\_name) | Project name (e.g. pagoPA platform) | `string` | n/a | yes |
