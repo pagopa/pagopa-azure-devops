@@ -17,7 +17,8 @@ module "apiconfig_dev_secrets" {
     "pagopa-d-weu-dev-aks-azure-devops-sa-token",
     "pagopa-d-weu-dev-aks-azure-devops-sa-cacrt",
     "pagopa-d-weu-dev-aks-apiserver-url",
-    "apiconfig-selfcare-integration-api-subscription-key"
+    "apiconfig-selfcare-integration-api-subscription-key",
+    "github-token-read-packages"
   ]
 }
 
@@ -35,7 +36,8 @@ module "apiconfig_dev_secrets" {
 #     "pagopa-u-weu-uat-aks-azure-devops-sa-token",
 #     "pagopa-u-weu-uat-aks-azure-devops-sa-cacrt",
 #     "pagopa-u-weu-uat-aks-apiserver-url",
-#     "apiconfig-selfcare-integration-api-subscription-key"
+#     "apiconfig-selfcare-integration-api-subscription-key",
+#     "github-token-read-packages"
 #   ]
 # }
 
@@ -52,6 +54,7 @@ module "apiconfig_dev_secrets" {
 #   secrets = [
 #     "pagopa-p-weu-prod-aks-azure-devops-sa-token",
 #     "pagopa-p-weu-prod-aks-azure-devops-sa-cacrt",
-#     "pagopa-p-weu-prod-aks-apiserver-url"
+#     "pagopa-p-weu-prod-aks-apiserver-url",
+#     "github-token-read-packages"
 #   ]
 # }
