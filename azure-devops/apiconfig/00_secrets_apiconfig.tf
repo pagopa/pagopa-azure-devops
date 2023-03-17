@@ -1,5 +1,5 @@
 #
-# DEV APICONFIG KEYVAULT
+# APICONFIG SECRETS
 #
 
 module "apiconfig_dev_secrets" {
@@ -17,13 +17,10 @@ module "apiconfig_dev_secrets" {
     "pagopa-d-weu-dev-aks-azure-devops-sa-token",
     "pagopa-d-weu-dev-aks-azure-devops-sa-cacrt",
     "pagopa-d-weu-dev-aks-apiserver-url",
+    "apiconfig-selfcare-integration-api-subscription-key",
     "github-token-read-packages"
   ]
 }
-
-#
-# UAT APICONFIG KEYVAULT
-#
 
 module "apiconfig_uat_secrets" {
   source = "git::https://github.com/pagopa/azurerm.git//key_vault_secrets_query?ref=v2.0.4"
@@ -39,14 +36,10 @@ module "apiconfig_uat_secrets" {
     "pagopa-u-weu-uat-aks-azure-devops-sa-token",
     "pagopa-u-weu-uat-aks-azure-devops-sa-cacrt",
     "pagopa-u-weu-uat-aks-apiserver-url",
+    "apiconfig-selfcare-integration-api-subscription-key",
     "github-token-read-packages"
   ]
 }
-
-
-#
-# PROD APICONFIG KEYVAULT
-#
 
 module "apiconfig_prod_secrets" {
   source = "git::https://github.com/pagopa/azurerm.git//key_vault_secrets_query?ref=v2.0.4"

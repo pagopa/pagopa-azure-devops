@@ -648,7 +648,7 @@ module "DEV-KIBANA-TLS-CERT-SERVICE-CONN" {
 
   project_id = azuredevops_project.project.id
   #tfsec:ignore:general-secrets-no-plaintext-exposure
-  renew_token       = local.tlscert_renew_token
+  renew_token       = local.tlscert_renew_token_kibana
   name              = "${local.prefix}-kibana-d-tls-cert-kv-policy"
   tenant_id         = module.secrets.values["TENANTID"].value
   subscription_id   = module.secrets.values["DEV-SUBSCRIPTION-ID"].value
@@ -689,7 +689,7 @@ module "UAT-KIBANA-TLS-CERT-SERVICE-CONN" {
 
   project_id = azuredevops_project.project.id
   #tfsec:ignore:general-secrets-no-plaintext-exposure
-  renew_token       = local.tlscert_renew_token
+  renew_token       = local.tlscert_renew_token_kibana
   name              = "${local.prefix}-kibana-u-tls-cert-kv-policy"
   tenant_id         = module.secrets.values["TENANTID"].value
   subscription_id   = module.secrets.values["UAT-SUBSCRIPTION-ID"].value
@@ -717,6 +717,46 @@ resource "azurerm_key_vault_access_policy" "UAT-KIBANA-TLS-CERT-SERVICE-CONN_kv_
 
 }
 
+#
+# ⛩ Service connection 2 🔐 KV-ELK@PROD 🟢
+#
+#tfsec:ignore:GEN003
+module "PROD-KIBANA-TLS-CERT-SERVICE-CONN" {
+  depends_on = [azuredevops_project.project]
+  source     = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_azurerm_limited?ref=v2.6.5"
+  providers = {
+    azurerm = azurerm.prod
+  }
+
+  project_id = azuredevops_project.project.id
+  #tfsec:ignore:general-secrets-no-plaintext-exposure
+  renew_token       = local.tlscert_renew_token_kibana
+  name              = "${local.prefix}-kibana-p-tls-cert-kv-policy"
+  tenant_id         = module.secrets.values["TENANTID"].value
+  subscription_id   = module.secrets.values["PROD-SUBSCRIPTION-ID"].value
+  subscription_name = var.prod_subscription_name
+
+  credential_subcription              = var.prod_subscription_name
+  credential_key_vault_name           = local.prod_kibana_key_vault_name
+  credential_key_vault_resource_group = local.prod_kibana_key_vault_resource_group
+}
+
+data "azurerm_key_vault" "kv_kibana_prod" {
+  provider            = azurerm.prod
+  name                = local.prod_kibana_key_vault_name
+  resource_group_name = local.prod_kibana_key_vault_resource_group
+}
+
+resource "azurerm_key_vault_access_policy" "PROD-KIBANA-TLS-CERT-SERVICE-CONN_kv_prod" {
+  provider = azurerm.prod
+
+  key_vault_id = data.azurerm_key_vault.kv_kibana_prod.id
+  tenant_id    = module.secrets.values["TENANTID"].value
+  object_id    = module.PROD-KIBANA-TLS-CERT-SERVICE-CONN.service_principal_object_id
+
+  certificate_permissions = ["Get", "Import"]
+
+}
 #
 # ⛩ Service connection 3 🔐 KV-BIZEVENTS@PROD 🟢
 #

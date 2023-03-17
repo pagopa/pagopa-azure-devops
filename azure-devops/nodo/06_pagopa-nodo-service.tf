@@ -53,12 +53,13 @@ locals {
     sonarcloud_org          = var.pagopa-nodo-service.pipeline.sonarcloud.org
     sonarcloud_project_key  = var.pagopa-nodo-service.pipeline.sonarcloud.project_key
     sonarcloud_project_name = var.pagopa-nodo-service.pipeline.sonarcloud.project_name
-
-    dev_container_registry_service_conn = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_dev_id
-
+    # nodo4 variables of cd pipeline
   }
   # code_review secrets
   pagopa-nodo-service-variables_secret_code_review = {
+    lightbend_key_dev  = module.nodo_dev_secrets.values["lightbend-key"].value
+    lightbend_key_uat  = module.nodo_uat_secrets.values["lightbend-key"].value
+    lightbend_key_prod = module.nodo_prod_secrets.values["lightbend-key"].value
   }
   # deploy vars
   pagopa-nodo-service-variables_deploy = {
@@ -86,7 +87,6 @@ locals {
     uat_container_namespace  = "pagopaucommonacr.azurecr.io"
     prod_container_namespace = "pagopapcommonacr.azurecr.io"
 
-
     TF_APPINSIGHTS_SERVICE_CONN_DEV = module.DEV-APPINSIGHTS-SERVICE-CONN.service_endpoint_name
     TF_APPINSIGHTS_RESOURCE_ID_DEV  = data.azurerm_application_insights.application_insights_dev.id
 
@@ -98,21 +98,21 @@ locals {
 
 
     # nodo4 variables of cd pipeline
-    kv-service-connection-dev         = "DEV-PAGOPA-SERVICE-CONN"
-    az-kv-name-dev                    = local.dev_nodo_key_vault_name # kv name
-    kubernetes-service-connection-dev = azuredevops_serviceendpoint_kubernetes.aks_dev.id
-    deploy-pool-dev                   = "pagopa-dev-linux"
+    deploy-pool-dev  = "pagopa-dev-linux"
+    deploy-pool-uat  = "pagopa-uat-linux"
+    deploy-pool-prof = "pagopa-prod-linux"
   }
   # deploy secrets
   pagopa-nodo-service-variables_secret_deploy = {
-
+    lightbend_key_dev  = module.nodo_dev_secrets.values["lightbend-key"].value
+    lightbend_key_uat  = module.nodo_uat_secrets.values["lightbend-key"].value
+    lightbend_key_prod = module.nodo_prod_secrets.values["lightbend-key"].value
   }
 
   # integration vars
   pagopa-nodo-service-variables_integration_test = {
     github_connection               = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_rw_name
     tf_dev_azure_service_connection = "io-azure-devops-github-rw"
-    kv-service-connection-dev       = "DEV-PAGOPA-SERVICE-CONN"
   }
   # integration secrets
   pagopa-nodo-service-variables_secret_integration_test = {
@@ -121,7 +121,6 @@ locals {
   pagopa-nodo-service-variables_performance_test = {
     github_connection               = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_rw_name
     tf_dev_azure_service_connection = "io-azure-devops-github-rw"
-    kv-service-connection-dev       = "DEV-PAGOPA-SERVICE-CONN"
   }
   # performance secrets
   pagopa-nodo-service-variables_secret_performance_test = {
@@ -129,9 +128,7 @@ locals {
 
   # performance vars
   pagopa-nodo-service-variables_suspend_job = {
-    github_connection               = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_rw_name
-    tf_dev_azure_service_connection = "io-azure-devops-github-rw"
-    kv-service-connection-dev       = "DEV-PAGOPA-SERVICE-CONN"
+    github_connection = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_rw_name
     # aks section
     k8s_namespace                = "nodo-cron"
     dev_kubernetes_service_conn  = azuredevops_serviceendpoint_kubernetes.aks_dev.id

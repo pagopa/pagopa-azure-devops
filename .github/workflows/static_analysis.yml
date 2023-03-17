@@ -16,6 +16,7 @@ jobs:
         env:
           FOLDERS: >
             azure-devops/afm
+            azure-devops/apiconfig
             azure-devops/app
             azure-devops/bizevents
             azure-devops/ecommerce
