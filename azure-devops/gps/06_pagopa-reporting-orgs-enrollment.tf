@@ -10,6 +10,11 @@ variable "pagopa-reporting-orgs-enrollment" {
     pipeline = {
       enable_code_review = true
       enable_deploy      = true
+      performance_test = {
+        enabled               = true
+        name                  = "performance-test-pipeline"
+        pipeline_yml_filename = "performance-test-pipelines.yml"
+      }
       sonarcloud = {
         service_connection = "SONARCLOUD-SERVICE-CONN"
         org                = "pagopa"
@@ -79,7 +84,16 @@ locals {
   }
   # deploy secrets
   pagopa-reporting-orgs-enrollment-variables_secret_deploy = {
-
+    DEV_API_SUBSCRIPTION_KEY = module.afm_dev_secrets.values["gpd-d-reporting-enrollment-subscription-key"].value
+    UAT_API_SUBSCRIPTION_KEY = module.afm_dev_secrets.values["gpd-u-reporting-enrollment-subscription-key"].value
+  }
+  # performance vars
+  pagopa-afm-calculator-service-variables_performance_test = {
+  }
+  # performance secrets
+  pagopa-afm-calculator-service-variables_secret_performance_test = {
+    DEV_API_SUBSCRIPTION_KEY = module.afm_dev_secrets.values["gpd-d-reporting-enrollment-subscription-key"].value
+    UAT_API_SUBSCRIPTION_KEY = module.afm_dev_secrets.values["gpd-u-reporting-enrollment-subscription-key"].value
   }
 }
 
@@ -138,5 +152,31 @@ module "pagopa-reporting-orgs-enrollment_deploy" {
     module.DEV-APPINSIGHTS-SERVICE-CONN.service_endpoint_id,
     module.UAT-APPINSIGHTS-SERVICE-CONN.service_endpoint_id,
     module.PROD-APPINSIGHTS-SERVICE-CONN.service_endpoint_id
+  ]
+}
+
+module "pagopa-reporting-orgs-enrollment_performance_test" {
+  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_generic?ref=v2.6.3"
+  count  = var.pagopa-reporting-orgs-enrollment.pipeline.performance_test.enabled == true ? 1 : 0
+
+  project_id                   = data.azuredevops_project.project.id
+  repository                   = var.pagopa-reporting-orgs-enrollment.repository
+  github_service_connection_id = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_ro_id
+  path                         = "${local.domain}\\pagopa-reporting-orgs-enrollment"
+  pipeline_name                = var.pagopa-reporting-orgs-enrollment.pipeline.performance_test.name
+  pipeline_yml_filename        = var.pagopa-reporting-orgs-enrollment.pipeline.performance_test.pipeline_yml_filename
+
+  variables = merge(
+    local.pagopa-reporting-orgs-enrollment-variables,
+    local.pagopa-reporting-orgs-enrollment_performance_test,
+  )
+
+  variables_secret = merge(
+    local.pagopa-reporting-orgs-enrollment-variables_secret,
+    local.pagopa-reporting-orgs-enrollment-variables_secret_performance_test,
+  )
+
+  service_connection_ids_authorization = [
+    data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_ro_id,
   ]
 }

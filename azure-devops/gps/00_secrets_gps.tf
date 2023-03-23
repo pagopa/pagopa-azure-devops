@@ -25,7 +25,8 @@ module "gps_dev_secrets" {
     "gpd-d-donations-subscription-key",
     "gpd-d-iuv-generator-subscription-key",
     "gpd-d-payments-rest-subscription-key",
-    "gpd-d-payments-soap-subscription-key"
+    "gpd-d-payments-soap-subscription-key",
+    "gpd-d-reporting-enrollment-subscription-key"
   ]
 }
 
@@ -51,7 +52,8 @@ module "gps_uat_secrets" {
     "gpd-u-donations-subscription-key",
     "gpd-u-iuv-generator-subscription-key",
     "gpd-u-payments-rest-subscription-key",
-    "gpd-u-payments-soap-subscription-key"
+    "gpd-u-payments-soap-subscription-key",
+    "gpd-u-reporting-enrollment-subscription-key"
   ]
 }
 
