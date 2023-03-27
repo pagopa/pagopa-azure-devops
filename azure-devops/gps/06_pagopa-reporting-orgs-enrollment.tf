@@ -84,16 +84,16 @@ locals {
   }
   # deploy secrets
   pagopa-reporting-orgs-enrollment-variables_secret_deploy = {
-    DEV_API_SUBSCRIPTION_KEY = module.afm_dev_secrets.values["gpd-d-reporting-enrollment-subscription-key"].value
-    UAT_API_SUBSCRIPTION_KEY = module.afm_dev_secrets.values["gpd-u-reporting-enrollment-subscription-key"].value
+    DEV_API_SUBSCRIPTION_KEY = module.gps_dev_secrets.values["gpd-d-reporting-enrollment-subscription-key"].value
+    UAT_API_SUBSCRIPTION_KEY = module.gps_uat_secrets.values["gpd-u-reporting-enrollment-subscription-key"].value
   }
-  # performance vars
-  pagopa-afm-calculator-service-variables_performance_test = {
-  }
+
   # performance secrets
-  pagopa-afm-calculator-service-variables_secret_performance_test = {
-    DEV_API_SUBSCRIPTION_KEY = module.afm_dev_secrets.values["gpd-d-reporting-enrollment-subscription-key"].value
-    UAT_API_SUBSCRIPTION_KEY = module.afm_dev_secrets.values["gpd-u-reporting-enrollment-subscription-key"].value
+  pagopa-reporting-orgs-enrollment_performance_test = {
+  }
+  pagopa-reporting-orgs-enrollment-variables_secret_performance_test = {
+    DEV_API_SUBSCRIPTION_KEY = module.gps_dev_secrets.values["gpd-d-reporting-enrollment-subscription-key"].value
+    UAT_API_SUBSCRIPTION_KEY = module.gps_uat_secrets.values["gpd-u-reporting-enrollment-subscription-key"].value
   }
 }
 
