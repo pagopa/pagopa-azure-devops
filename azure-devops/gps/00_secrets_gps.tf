@@ -56,8 +56,8 @@ module "gps_uat_secrets" {
     "gpd-u-payments-rest-subscription-key",
     "gpd-u-payments-soap-subscription-key",
     "gpd-u-reporting-enrollment-subscription-key",
-    # "gpd-u-reporting-subscription-key",
-    # "gpd-u-reporting-batch-connection-string"
+    "gpd-u-reporting-subscription-key",
+    "gpd-u-reporting-batch-connection-string"
   ]
 }
 

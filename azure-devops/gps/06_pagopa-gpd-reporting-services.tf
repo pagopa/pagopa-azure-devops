@@ -43,12 +43,12 @@ locals {
     DEV_REPORTING_BATCH_CONNECTION_STRING = module.gps_dev_secrets.values["gpd-d-reporting-batch-connection-string"].value
 
     # integration test secrets - uat environment
-    # UAT_API_CONFIG_SUBSCRIPTION_KEY       = module.gps_uat_secrets.values["gpd-u-apiconfig-subscription-key"].value
-    # UAT_GPD_SUBSCRIPTION_KEY              = module.gps_uat_secrets.values["gpd-u-gpd-subscription-key"].value
-    # UAT_PAYMENTS_REST_SUBSCRIPTION_KEY    = module.gps_uat_secrets.values["gpd-u-payments-rest-subscription-key"].value
-    # UAT_PAYMENTS_SOAP_SUBSCRIPTION_KEY    = module.gps_uat_secrets.values["gpd-u-payments-soap-subscription-key"].value
-    # UAT_REPORTING_SUBSCRIPTION_KEY        = module.gps_dev_secrets.values["gpd-u-reporting-subscription-key"].value
-    # UAT_REPORTING_BATCH_CONNECTION_STRING = module.gps_dev_secrets.values["gpd-u-reporting-batch-connection-string"].value
+    UAT_API_CONFIG_SUBSCRIPTION_KEY       = module.gps_uat_secrets.values["gpd-u-apiconfig-subscription-key"].value
+    UAT_GPD_SUBSCRIPTION_KEY              = module.gps_uat_secrets.values["gpd-u-gpd-subscription-key"].value
+    UAT_PAYMENTS_REST_SUBSCRIPTION_KEY    = module.gps_uat_secrets.values["gpd-u-payments-rest-subscription-key"].value
+    UAT_PAYMENTS_SOAP_SUBSCRIPTION_KEY    = module.gps_uat_secrets.values["gpd-u-payments-soap-subscription-key"].value
+    UAT_REPORTING_SUBSCRIPTION_KEY        = module.gps_dev_secrets.values["gpd-u-reporting-subscription-key"].value
+    UAT_REPORTING_BATCH_CONNECTION_STRING = module.gps_dev_secrets.values["gpd-u-reporting-batch-connection-string"].value
   }
 }
 
