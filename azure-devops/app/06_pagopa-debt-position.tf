@@ -90,6 +90,10 @@ locals {
 
     DEV_API_SUBSCRIPTION_KEY = module.pagopa-debt-position_dev_secrets.values["gpd-api-subscription-key"].value
     UAT_API_SUBSCRIPTION_KEY = module.pagopa-debt-position_uat_secrets.values["gpd-api-subscription-key"].value
+
+    DEV_NODO_HOST = "https://api.dev.platform.pagopa.it/nodo/nodo-per-pa/v1/"
+    UAT_NODO_HOST = "https://api.uat.platform.pagopa.it/nodo/nodo-per-pa/v1/"
+    PROD_NODO_HOST = "https://api.platform.pagopa.it/nodo/nodo-per-pa/v1/"
   }
   # deploy secrets
   pagopa-debt-position-variables_secret_deploy = {
