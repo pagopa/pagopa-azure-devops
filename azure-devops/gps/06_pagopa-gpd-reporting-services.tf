@@ -53,7 +53,7 @@ locals {
 }
 
 module "pagopa-gpd-reporting-services_integration-test" {
-  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy?ref=v2.2.0"
+  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_generic?ref=v2.6.3"
   count  = var.pagopa-gpd-reporting-services.pipeline.integration_test.enabled == true ? 1 : 0
 
   project_id                   = data.azuredevops_project.project.id
