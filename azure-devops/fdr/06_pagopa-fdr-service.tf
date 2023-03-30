@@ -93,7 +93,7 @@ locals {
     # fdr4 variables of cd pipeline
     deploy-pool-dev  = "pagopa-dev-linux"
     deploy-pool-uat  = "pagopa-uat-linux"
-    deploy-pool-prof = "pagopa-prod-linux"
+    deploy-pool-prod = "pagopa-prod-linux"
   }
   # deploy secrets
   pagopa-fdr-service-variables_secret_deploy = {

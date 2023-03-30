@@ -42,10 +42,13 @@ locals {
     prod_container_registry_service_conn = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_prod_id
 
     # aks section
-    k8s_namespace                = "nodo"
-    dev_kubernetes_service_conn  = azuredevops_serviceendpoint_kubernetes.aks_dev.id
-    uat_kubernetes_service_conn  = azuredevops_serviceendpoint_kubernetes.aks_uat.id
-    prod_kubernetes_service_conn = azuredevops_serviceendpoint_kubernetes.aks_prod.id
+    k8s_namespace                    = "nodo"
+    dev_weu_kubernetes_service_conn  = azuredevops_serviceendpoint_kubernetes.aks_dev_weu.id
+    dev_neu_kubernetes_service_conn  = azuredevops_serviceendpoint_kubernetes.aks_dev_neu.id
+    uat_weu_kubernetes_service_conn  = azuredevops_serviceendpoint_kubernetes.aks_uat_weu.id
+    uat_neu_kubernetes_service_conn  = azuredevops_serviceendpoint_kubernetes.aks_uat_neu.id
+    prod_weu_kubernetes_service_conn = azuredevops_serviceendpoint_kubernetes.aks_prod_weu.id
+    prod_neu_kubernetes_service_conn = azuredevops_serviceendpoint_kubernetes.aks_prod_neu.id
 
     dev_container_namespace  = "pagopadcommonacr.azurecr.io"
     uat_container_namespace  = "pagopaucommonacr.azurecr.io"
@@ -63,10 +66,9 @@ locals {
 
 
     # nodo4 variables of cd pipeline
-    kv-service-connection-dev         = "DEV-PAGOPA-SERVICE-CONN"
-    az-kv-name-dev                    = local.dev_nodo_key_vault_name # kv name
-    kubernetes-service-connection-dev = azuredevops_serviceendpoint_kubernetes.aks_dev.id
-    deploy-pool-dev                   = "pagopa-dev-linux"
+    kv-service-connection-dev = "DEV-PAGOPA-SERVICE-CONN"
+    az-kv-name-dev            = local.dev_nodo_key_vault_name # kv name
+    deploy-pool-dev           = "pagopa-dev-linux"
   }
   # deploy secrets
   pagopa-web-bo-service-variables_secret_deploy = {

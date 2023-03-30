@@ -87,7 +87,7 @@ locals {
     # api-config-cache4 variables of cd pipeline
     deploy-pool-dev                   = "pagopa-dev-linux"
     deploy-pool-uat                   = "pagopa-uat-linux"
-    deploy-pool-prof                  = "pagopa-prod-linux"
+    deploy-pool-prod                  = "pagopa-prod-linux"
     kubernetes-service-connection-dev = azuredevops_serviceendpoint_kubernetes.aks_dev.id
   }
   # deploy secrets

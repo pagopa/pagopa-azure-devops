@@ -15,8 +15,11 @@ module "nodo_dev_secrets" {
 
   secrets = [
     "pagopa-d-weu-dev-aks-azure-devops-sa-token",
+    "pagopa-d-neu-dev-aks-azure-devops-sa-token",
     "pagopa-d-weu-dev-aks-azure-devops-sa-cacrt",
+    "pagopa-d-neu-dev-aks-azure-devops-sa-cacrt",
     "pagopa-d-weu-dev-aks-apiserver-url",
+    "pagopa-d-neu-dev-aks-apiserver-url",
     "lightbend-key"
   ]
 }
@@ -37,8 +40,11 @@ module "nodo_uat_secrets" {
 
   secrets = [
     "pagopa-u-weu-uat-aks-azure-devops-sa-token",
+    "pagopa-u-neu-uat-aks-azure-devops-sa-token",
     "pagopa-u-weu-uat-aks-azure-devops-sa-cacrt",
+    "pagopa-u-neu-uat-aks-azure-devops-sa-cacrt",
     "pagopa-u-weu-uat-aks-apiserver-url",
+    "pagopa-u-neu-uat-aks-apiserver-url",
     "lightbend-key"
   ]
 }
@@ -60,8 +66,11 @@ module "nodo_prod_secrets" {
 
   secrets = [
     "pagopa-p-weu-prod-aks-azure-devops-sa-token",
+    "pagopa-p-neu-prod-aks-azure-devops-sa-token",
     "pagopa-p-weu-prod-aks-azure-devops-sa-cacrt",
+    "pagopa-p-neu-prod-aks-azure-devops-sa-cacrt",
     "pagopa-p-weu-prod-aks-apiserver-url",
+    "pagopa-p-neu-prod-aks-apiserver-url",
     "lightbend-key"
   ]
 }

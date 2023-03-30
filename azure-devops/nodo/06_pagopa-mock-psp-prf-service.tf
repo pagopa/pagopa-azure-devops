@@ -39,8 +39,9 @@ locals {
     uat_container_registry_service_conn = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_uat_id
 
     # aks section
-    k8s_namespace               = "nodo"
-    uat_kubernetes_service_conn = azuredevops_serviceendpoint_kubernetes.aks_uat.id
+    k8s_namespace                   = "nodo"
+    uat_weu_kubernetes_service_conn = azuredevops_serviceendpoint_kubernetes.aks_uat_weu.id
+    uat_neu_kubernetes_service_conn = azuredevops_serviceendpoint_kubernetes.aks_uat_neu.id
 
     uat_container_namespace = "pagopaucommonacr.azurecr.io"
 

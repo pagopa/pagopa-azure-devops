@@ -78,10 +78,13 @@ locals {
     prod_container_registry_service_conn = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_prod_id
 
     # aks section
-    k8s_namespace                = "nodo"
-    dev_kubernetes_service_conn  = azuredevops_serviceendpoint_kubernetes.aks_dev.id
-    uat_kubernetes_service_conn  = azuredevops_serviceendpoint_kubernetes.aks_uat.id
-    prod_kubernetes_service_conn = azuredevops_serviceendpoint_kubernetes.aks_prod.id
+    k8s_namespace                    = "nodo"
+    dev_weu_kubernetes_service_conn  = azuredevops_serviceendpoint_kubernetes.aks_dev_weu.id
+    dev_neu_kubernetes_service_conn  = azuredevops_serviceendpoint_kubernetes.aks_dev_neu.id
+    uat_weu_kubernetes_service_conn  = azuredevops_serviceendpoint_kubernetes.aks_uat_weu.id
+    uat_neu_kubernetes_service_conn  = azuredevops_serviceendpoint_kubernetes.aks_uat_neu.id
+    prod_weu_kubernetes_service_conn = azuredevops_serviceendpoint_kubernetes.aks_prod_weu.id
+    prod_neu_kubernetes_service_conn = azuredevops_serviceendpoint_kubernetes.aks_prod_neu.id
 
     dev_container_namespace  = "pagopadcommonacr.azurecr.io"
     uat_container_namespace  = "pagopaucommonacr.azurecr.io"
@@ -100,7 +103,7 @@ locals {
     # nodo4 variables of cd pipeline
     deploy-pool-dev  = "pagopa-dev-linux"
     deploy-pool-uat  = "pagopa-uat-linux"
-    deploy-pool-prof = "pagopa-prod-linux"
+    deploy-pool-prod = "pagopa-prod-linux"
   }
   # deploy secrets
   pagopa-nodo-service-variables_secret_deploy = {
@@ -130,10 +133,13 @@ locals {
   pagopa-nodo-service-variables_suspend_job = {
     github_connection = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_rw_name
     # aks section
-    k8s_namespace                = "nodo-cron"
-    dev_kubernetes_service_conn  = azuredevops_serviceendpoint_kubernetes.aks_dev.id
-    uat_kubernetes_service_conn  = azuredevops_serviceendpoint_kubernetes.aks_uat.id
-    prod_kubernetes_service_conn = azuredevops_serviceendpoint_kubernetes.aks_prod.id
+    k8s_namespace                    = "nodo-cron"
+    dev_weu_kubernetes_service_conn  = azuredevops_serviceendpoint_kubernetes.aks_dev_weu.id
+    dev_neu_kubernetes_service_conn  = azuredevops_serviceendpoint_kubernetes.aks_dev_neu.id
+    uat_weu_kubernetes_service_conn  = azuredevops_serviceendpoint_kubernetes.aks_uat_weu.id
+    uat_neu_kubernetes_service_conn  = azuredevops_serviceendpoint_kubernetes.aks_uat_neu.id
+    prod_weu_kubernetes_service_conn = azuredevops_serviceendpoint_kubernetes.aks_prod_weu.id
+    prod_neu_kubernetes_service_conn = azuredevops_serviceendpoint_kubernetes.aks_prod_neu.id
 
   }
   # performance secrets

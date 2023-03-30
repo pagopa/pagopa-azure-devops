@@ -40,8 +40,9 @@ locals {
     uat_container_registry_service_conn = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_uat_id
 
     # aks section
-    k8s_namespace               = "nodo"
-    uat_kubernetes_service_conn = azuredevops_serviceendpoint_kubernetes.aks_uat.id
+    k8s_namespace                   = "nodo"
+    uat_weu_kubernetes_service_conn = azuredevops_serviceendpoint_kubernetes.aks_uat_weu.id
+    uat_neu_kubernetes_service_conn = azuredevops_serviceendpoint_kubernetes.aks_uat_neu.id
 
     uat_container_namespace = "pagopaucommonacr.azurecr.io"
 
@@ -49,10 +50,10 @@ locals {
     TF_APPINSIGHTS_RESOURCE_ID_UAT  = data.azurerm_application_insights.application_insights_uat.id
 
     # nodo4 variables of cd pipeline
-    kv-service-connection-dev         = "DEV-PAGOPA-SERVICE-CONN"
-    az-kv-name-dev                    = local.dev_nodo_key_vault_name # kv name
-    kubernetes-service-connection-dev = azuredevops_serviceendpoint_kubernetes.aks_dev.id
-    deploy-pool-dev                   = "pagopa-dev-linux"
+    kv-service-connection-dev       = "DEV-PAGOPA-SERVICE-CONN"
+    az-kv-name-dev                  = local.dev_nodo_key_vault_name # kv name
+    dev_weu_kubernetes_service_conn = azuredevops_serviceendpoint_kubernetes.aks_dev_weu.id
+    deploy-pool-dev                 = "pagopa-dev-linux"
   }
   # deploy secrets
   pagopa-mock-ec-prf-service-variables_secret_deploy = {
