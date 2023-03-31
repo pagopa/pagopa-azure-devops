@@ -44,7 +44,7 @@ locals {
   # code_review secrets
   pagopa-api-config-cache-variables_secret_code_review = {
     github_token_read_packages_dev = module.apiconfig_dev_secrets.values["github-token-read-packages"].value
-    # github_token_read_packages_uat   = module.apiconfig_uat_secrets.values["github-token-read-packages"].value
+    github_token_read_packages_uat = module.apiconfig_uat_secrets.values["github-token-read-packages"].value
     # github_token_read_packagess_prod = module.apiconfig_prod_secrets.values["github-token-read-packages"].value
   }
   # deploy vars
@@ -66,7 +66,7 @@ locals {
     # aks section
     k8s_namespace               = local.domain
     dev_kubernetes_service_conn = azuredevops_serviceendpoint_kubernetes.aks_dev.id
-    # uat_kubernetes_service_conn  = azuredevops_serviceendpoint_kubernetes.aks_uat.id
+    uat_kubernetes_service_conn = azuredevops_serviceendpoint_kubernetes.aks_uat.id
     # prod_kubernetes_service_conn = azuredevops_serviceendpoint_kubernetes.aks_prod.id
 
     dev_container_namespace  = "pagopadcommonacr.azurecr.io"
@@ -77,12 +77,11 @@ locals {
     TF_APPINSIGHTS_SERVICE_CONN_DEV = module.DEV-APPINSIGHTS-SERVICE-CONN.service_endpoint_name
     TF_APPINSIGHTS_RESOURCE_ID_DEV  = data.azurerm_application_insights.application_insights_dev.id
 
-    # TF_APPINSIGHTS_SERVICE_CONN_UAT = module.UAT-APPINSIGHTS-SERVICE-CONN.service_endpoint_name
-    # TF_APPINSIGHTS_RESOURCE_ID_UAT  = data.azurerm_application_insights.application_insights_uat.id
+    TF_APPINSIGHTS_SERVICE_CONN_UAT = module.UAT-APPINSIGHTS-SERVICE-CONN.service_endpoint_name
+    TF_APPINSIGHTS_RESOURCE_ID_UAT  = data.azurerm_application_insights.application_insights_uat.id
 
     # TF_APPINSIGHTS_SERVICE_CONN_PROD = module.PROD-APPINSIGHTS-SERVICE-CONN.service_endpoint_name
     # TF_APPINSIGHTS_RESOURCE_ID_PROD  = data.azurerm_application_insights.application_insights_prod.id
-
 
     # api-config-cache4 variables of cd pipeline
     deploy-pool-dev                   = "pagopa-dev-linux"
@@ -93,7 +92,7 @@ locals {
   # deploy secrets
   pagopa-api-config-cache-variables_secret_deploy = {
     github_token_read_packages_dev = module.apiconfig_dev_secrets.values["github-token-read-packages"].value
-    # github_token_read_packages_uat   = module.apiconfig_uat_secrets.values["github-token-read-packages"].value
+    github_token_read_packages_uat = module.apiconfig_uat_secrets.values["github-token-read-packages"].value
     # github_token_read_packagess_prod = module.apiconfig_prod_secrets.values["github-token-read-packages"].value
   }
 
