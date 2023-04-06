@@ -54,6 +54,22 @@ variable "apim_backup" {
   }
 }
 
+variable "keyvault_backup" {
+  default = {
+    repository = {
+      organization    = "pagopa"
+      name            = "pagopa-infra"
+      branch_name     = "refs/heads/main"
+      pipelines_path  = ".devops"
+      yml_prefix_name = "keyvault-disaster-recovery"
+    }
+    pipeline = {
+      enable_code_review = false
+      enable_deploy      = true
+    }
+  }
+}
+
 locals {
   prefix           = "pagopa"
   azure_devops_org = "pagopaspa"

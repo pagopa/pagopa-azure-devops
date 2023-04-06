@@ -22,6 +22,29 @@ module "nodo_dev_secrets" {
 }
 
 #
+# DEV NODO NEU KEYVAULT
+#
+
+module "nodo_dev_secrets_neu" {
+
+  source = "git::https://github.com/pagopa/azurerm.git//key_vault_secrets_query?ref=v2.0.4"
+
+  providers = {
+    azurerm = azurerm.dev
+  }
+
+  resource_group = local.dev_nodo_neu_key_vault_resource_group
+  key_vault_name = local.dev_nodo_neu_key_vault_name
+
+  secrets = [
+    "pagopa-d-neu-dev-aks-azure-devops-sa-token",
+    "pagopa-d-neu-dev-aks-azure-devops-sa-cacrt",
+    "pagopa-d-neu-dev-aks-apiserver-url",
+    "lightbend-key"
+  ]
+}
+
+#
 # UAT NODO KEYVAULT
 #
 

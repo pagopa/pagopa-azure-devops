@@ -47,6 +47,10 @@ locals {
   uat_nodo_key_vault_name  = "${local.prefix}-u-${local.domain}-kv"
   prod_nodo_key_vault_name = "${local.prefix}-p-${local.domain}-kv"
 
+  dev_nodo_neu_key_vault_name  = "${local.prefix}-d-neu-${local.domain}-kv"
+  uat_nodo_neu_key_vault_name  = "${local.prefix}-u-neu-${local.domain}-kv"
+  prod_nodo_neu_key_vault_name = "${local.prefix}-p-neu-${local.domain}-kv"
+
   dev_key_vault_resource_group  = "${local.prefix}-d-sec-rg"
   uat_key_vault_resource_group  = "${local.prefix}-u-sec-rg"
   prod_key_vault_resource_group = "${local.prefix}-p-sec-rg"
@@ -54,6 +58,10 @@ locals {
   dev_nodo_key_vault_resource_group  = "${local.prefix}-d-${local.domain}-sec-rg"
   uat_nodo_key_vault_resource_group  = "${local.prefix}-u-${local.domain}-sec-rg"
   prod_nodo_key_vault_resource_group = "${local.prefix}-p-${local.domain}-sec-rg"
+
+  dev_nodo_neu_key_vault_resource_group  = "${local.prefix}-d-neu-${local.domain}-sec-rg"
+  uat_nodo_neu_key_vault_resource_group  = "${local.prefix}-u-neu-${local.domain}-sec-rg"
+  prod_nodo_neu_key_vault_resource_group = "${local.prefix}-p-neu-${local.domain}-sec-rg"
 
   # ☁️ VNET
   dev_vnet_rg  = "${local.prefix}-d-vnet-rg"
@@ -80,6 +88,8 @@ locals {
   srv_endpoint_name_aks_dev  = "${local.prefix}-${local.domain}-aks-dev"
   srv_endpoint_name_aks_uat  = "${local.prefix}-${local.domain}-aks-uat"
   srv_endpoint_name_aks_prod = "${local.prefix}-${local.domain}-aks-prod"
+
+  srv_endpoint_name_aks_dev_neu  = "${local.prefix}-neu-${local.domain}-aks-dev"
 
   #tfsec:ignore:general-secrets-no-plaintext-exposure
   #tfsec:ignore:GEN002
