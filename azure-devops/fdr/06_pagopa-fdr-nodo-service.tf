@@ -30,7 +30,7 @@ locals {
   # global vars
   pagopa-fdr-nodo-service-variables = {
     cache_version_id = "v1"
-    default_branch   = var.pagopa-fdr-service.repository.branch_name
+    default_branch   = var.pagopa-fdr-nodo-service.repository.branch_name
   }
   # global secrets
   pagopa-fdr-nodo-service-variables_secret = {
@@ -155,7 +155,7 @@ module "pagopa-fdr-nodo-service_deploy" {
   count  = var.pagopa-fdr-nodo-service.pipeline.enable_deploy == true ? 1 : 0
 
   project_id                   = data.azuredevops_project.project.id
-  repository                   = var.pagopa-fdr-service.repository
+  repository                   = var.pagopa-fdr-nodo-service.repository
   github_service_connection_id = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_rw_id
   path                         = "${local.domain}\\pagopa-fdr-nodo-service"
 
