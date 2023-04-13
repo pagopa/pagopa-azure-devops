@@ -56,6 +56,10 @@ locals {
     github_connection = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_rw_name
     tenant_id         = module.secrets.values["TENANTID"].value
 
+    dev_azure_subscription  = data.terraform_remote_state.app.outputs.service_endpoint_azure_dev_name
+    uat_azure_subscription  = data.terraform_remote_state.app.outputs.service_endpoint_azure_uat_name
+    prod_azure_subscription = data.terraform_remote_state.app.outputs.service_endpoint_azure_prod_name
+
     # acr section
     image_repository_name                = replace(var.pagopa-gpd-reporting-batch.repository.name, "-", "")
     dev_container_registry_service_conn  = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_dev_id
@@ -66,6 +70,10 @@ locals {
     uat_container_namespace  = "pagopaucommonacr.azurecr.io"
     prod_container_namespace = "pagopapcommonacr.azurecr.io"
 
+    dev_web_app_name  = "pagopa-d-weu"
+    uat_web_app_name  = "pagopa-u-weu"
+    prod_web_app_name = "pagopa-p-weu"
+
     TF_APPINSIGHTS_SERVICE_CONN_DEV = module.DEV-APPINSIGHTS-SERVICE-CONN.service_endpoint_name
     TF_APPINSIGHTS_RESOURCE_ID_DEV  = data.azurerm_application_insights.application_insights_dev.id
 
@@ -74,8 +82,8 @@ locals {
 
     TF_APPINSIGHTS_SERVICE_CONN_PROD = module.PROD-APPINSIGHTS-SERVICE-CONN.service_endpoint_name
     TF_APPINSIGHTS_RESOURCE_ID_PROD  = data.azurerm_application_insights.application_insights_prod.id
-
   }
+
   # deploy secrets
   pagopa-gpd-reporting-batch-variables_secret_deploy = {
     # integration test secrets - dev environment
