@@ -17,6 +17,7 @@ module "fdr_dev_secrets" {
     "pagopa-d-weu-dev-aks-azure-devops-sa-token",
     "pagopa-d-weu-dev-aks-azure-devops-sa-cacrt",
     "pagopa-d-weu-dev-aks-apiserver-url",
+    "lightbend-key"
   ]
 }
 
