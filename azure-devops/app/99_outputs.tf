@@ -44,3 +44,13 @@ output "service_endpoint_azure_prod_id" {
   value = azuredevops_serviceendpoint_azurerm.PROD-SERVICE-CONN.id
 }
 
+output "service_endpoint_azure_dev_name" {
+  value = azuredevops_serviceendpoint_azurerm.DEV-SERVICE-CONN.service_endpoint_name
+}
+output "service_endpoint_azure_uat_name" {
+  value = azuredevops_serviceendpoint_azurerm.UAT-SERVICE-CONN.service_endpoint_name
+}
+output "service_endpoint_azure_prod_name" {
+  value = azuredevops_serviceendpoint_azurerm.PROD-SERVICE-CONN.service_endpoint_name
+}
+
