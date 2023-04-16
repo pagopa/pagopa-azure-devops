@@ -129,4 +129,11 @@ locals {
   uat_nodo_key_vault_name  = "${local.prefix}-u-nodo-kv"
   prod_nodo_key_vault_name = "${local.prefix}-p-nodo-kv"
 
+  dev_wallet_key_vault_resource_group  = "${local.prefix}-d-wallet-sec-rg"
+  uat_wallet_key_vault_resource_group  = "${local.prefix}-u-wallet-sec-rg"
+  prod_wallet_key_vault_resource_group = "${local.prefix}-p-wallet-sec-rg"
+
+  dev_wallet_key_vault_name  = "${local.prefix}-d-wallet-kv"
+  uat_wallet_key_vault_name  = "${local.prefix}-u-wallet-kv"
+  prod_wallet_key_vault_name = "${local.prefix}-p-wallet-kv"
 }
