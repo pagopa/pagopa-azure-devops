@@ -31,7 +31,7 @@ locals {
     subscription_id   = module.secrets.values["UAT-SUBSCRIPTION-ID"].value
   }
   tlscert-weuuat-wallet-internal-uat-platform-pagopa-it-variables = {
-    KEY_VAULT_SERVICE_CONNECTION = module.UAT-wallet-TLS-CERT-SERVICE-CONN.service_endpoint_name
+    KEY_VAULT_SERVICE_CONNECTION = module.UAT-WALLET-TLS-CERT-SERVICE-CONN.service_endpoint_name
   }
   tlscert-weuuat-wallet-internal-uat-platform-pagopa-it-variables_secret = {
   }
@@ -46,13 +46,13 @@ module "tlscert-weuuat-wallet-internal-uat-platform-pagopa-it-cert_az" {
   source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_tls_cert?ref=v2.0.4"
   count  = var.tlscert-weuuat-wallet-internal-uat-platform-pagopa-it.pipeline.enable_tls_cert == true ? 1 : 0
 
-  project_id = azuredevops_project.project.id
+  project_id = data.azuredevops_project.project.id
   repository = var.tlscert-weuuat-wallet-internal-uat-platform-pagopa-it.repository
   name       = "${var.tlscert-weuuat-wallet-internal-uat-platform-pagopa-it.pipeline.dns_record_name}.${var.tlscert-weuuat-wallet-internal-uat-platform-pagopa-it.pipeline.dns_zone_name}"
   #tfsec:ignore:GEN003
   renew_token                  = local.tlscert_renew_token
   path                         = var.tlscert-weuuat-wallet-internal-uat-platform-pagopa-it.pipeline.path
-  github_service_connection_id = azuredevops_serviceendpoint_github.azure-devops-github-ro.id
+  github_service_connection_id = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_ro_id
 
   dns_record_name         = var.tlscert-weuuat-wallet-internal-uat-platform-pagopa-it.pipeline.dns_record_name
   dns_zone_name           = var.tlscert-weuuat-wallet-internal-uat-platform-pagopa-it.pipeline.dns_zone_name
@@ -76,7 +76,7 @@ module "tlscert-weuuat-wallet-internal-uat-platform-pagopa-it-cert_az" {
   )
 
   service_connection_ids_authorization = [
-    module.UAT-wallet-TLS-CERT-SERVICE-CONN.service_endpoint_id,
+    module.UAT-WALLET-TLS-CERT-SERVICE-CONN.service_endpoint_id,
   ]
 
   schedules = {
