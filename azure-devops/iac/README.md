@@ -51,6 +51,10 @@
 | <a name="module_shared_iac_deploy"></a> [shared\_iac\_deploy](#module\_shared\_iac\_deploy) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy | v2.6.2 |
 | <a name="module_shared_prod_secrets"></a> [shared\_prod\_secrets](#module\_shared\_prod\_secrets) | git::https://github.com/pagopa/azurerm.git//key_vault_secrets_query | v2.18.9 |
 | <a name="module_shared_uat_secrets"></a> [shared\_uat\_secrets](#module\_shared\_uat\_secrets) | git::https://github.com/pagopa/azurerm.git//key_vault_secrets_query | v2.18.9 |
+| <a name="module_wallet_dev_secrets"></a> [wallet\_dev\_secrets](#module\_wallet\_dev\_secrets) | git::https://github.com/pagopa/azurerm.git//key_vault_secrets_query | v2.18.9 |
+| <a name="module_wallet_iac_code_review"></a> [wallet\_iac\_code\_review](#module\_wallet\_iac\_code\_review) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review | v2.6.2 |
+| <a name="module_wallet_iac_deploy"></a> [wallet\_iac\_deploy](#module\_wallet\_iac\_deploy) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy | v2.6.2 |
+| <a name="module_wallet_uat_secrets"></a> [wallet\_uat\_secrets](#module\_wallet\_uat\_secrets) | git::https://github.com/pagopa/azurerm.git//key_vault_secrets_query | v2.18.9 |
 
 ## Resources
 
@@ -88,6 +92,7 @@
 | <a name="input_selfcare_iac"></a> [selfcare\_iac](#input\_selfcare\_iac) | n/a | `map` | <pre>{<br>  "pipeline": {<br>    "enable_code_review": true,<br>    "enable_deploy": true,<br>    "path": "selfcare-infrastructure",<br>    "pipeline_name_prefix": "selfcare-infra"<br>  },<br>  "repository": {<br>    "branch_name": "refs/heads/main",<br>    "name": "pagopa-infra",<br>    "organization": "pagopa",<br>    "pipelines_path": ".devops",<br>    "yml_prefix_name": "selfcare"<br>  }<br>}</pre> | no |
 | <a name="input_shared_iac"></a> [shared\_iac](#input\_shared\_iac) | n/a | `map` | <pre>{<br>  "pipeline": {<br>    "enable_code_review": true,<br>    "enable_deploy": true,<br>    "path": "shared-infrastructure",<br>    "pipeline_name_prefix": "shared-infra"<br>  },<br>  "repository": {<br>    "branch_name": "refs/heads/main",<br>    "name": "pagopa-infra",<br>    "organization": "pagopa",<br>    "pipelines_path": ".devops",<br>    "yml_prefix_name": "shared"<br>  }<br>}</pre> | no |
 | <a name="input_uat_subscription_name"></a> [uat\_subscription\_name](#input\_uat\_subscription\_name) | UAT Subscription name | `string` | n/a | yes |
+| <a name="input_wallet_iac"></a> [wallet\_iac](#input\_wallet\_iac) | n/a | `map` | <pre>{<br>  "pipeline": {<br>    "enable_code_review": true,<br>    "enable_deploy": true,<br>    "path": "wallet-infrastructure",<br>    "pipeline_name_prefix": "wallet-infra"<br>  },<br>  "repository": {<br>    "branch_name": "refs/heads/main",<br>    "name": "pagopa-infra",<br>    "organization": "pagopa",<br>    "pipelines_path": ".devops",<br>    "yml_prefix_name": "wallet"<br>  }<br>}</pre> | no |
 
 ## Outputs
 
