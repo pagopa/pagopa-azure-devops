@@ -39,11 +39,11 @@ locals {
     tf_aks_uat_name                  = var.aks_uat_platform_name
     tf_uat_azure_service_connection  = azuredevops_serviceendpoint_azurerm.UAT-SERVICE-CONN.service_endpoint_name
 
-    tf_prod_aks_apiserver_url         = module.fdr_prod_secrets.values["pagopa-p-weu-prod-aks-apiserver-url"].value,
-    tf_prod_aks_azure_devops_sa_cacrt = module.fdr_prod_secrets.values["pagopa-p-weu-prod-aks-azure-devops-sa-cacrt"].value,
-    tf_prod_aks_azure_devops_sa_token = base64decode(module.fdr_prod_secrets.values["pagopa-p-weu-prod-aks-azure-devops-sa-token"].value),
-    tf_aks_prod_name                  = var.aks_prod_platform_name
-    tf_prod_azure_service_connection  = azuredevops_serviceendpoint_azurerm.PROD-SERVICE-CONN.service_endpoint_name
+    # tf_prod_aks_apiserver_url         = module.fdr_prod_secrets.values["pagopa-p-weu-prod-aks-apiserver-url"].value,
+    # tf_prod_aks_azure_devops_sa_cacrt = module.fdr_prod_secrets.values["pagopa-p-weu-prod-aks-azure-devops-sa-cacrt"].value,
+    # tf_prod_aks_azure_devops_sa_token = base64decode(module.fdr_prod_secrets.values["pagopa-p-weu-prod-aks-azure-devops-sa-token"].value),
+    # tf_aks_prod_name                  = var.aks_prod_platform_name
+    # tf_prod_azure_service_connection  = azuredevops_serviceendpoint_azurerm.PROD-SERVICE-CONN.service_endpoint_name
   }
   # global secrets
   fdr_iac_variables_secret = {}

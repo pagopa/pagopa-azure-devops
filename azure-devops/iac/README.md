@@ -29,7 +29,6 @@
 | <a name="module_fdr_iac_db_migration"></a> [fdr\_iac\_db\_migration](#module\_fdr\_iac\_db\_migration) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_generic | v2.6.3 |
 | <a name="module_fdr_iac_db_schema"></a> [fdr\_iac\_db\_schema](#module\_fdr\_iac\_db\_schema) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_generic | v2.6.3 |
 | <a name="module_fdr_iac_deploy"></a> [fdr\_iac\_deploy](#module\_fdr\_iac\_deploy) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy | v2.6.2 |
-| <a name="module_fdr_prod_secrets"></a> [fdr\_prod\_secrets](#module\_fdr\_prod\_secrets) | git::https://github.com/pagopa/azurerm.git//key_vault_secrets_query | v2.18.9 |
 | <a name="module_fdr_uat_secrets"></a> [fdr\_uat\_secrets](#module\_fdr\_uat\_secrets) | git::https://github.com/pagopa/azurerm.git//key_vault_secrets_query | v2.18.9 |
 | <a name="module_gps_dev_secrets"></a> [gps\_dev\_secrets](#module\_gps\_dev\_secrets) | git::https://github.com/pagopa/azurerm.git//key_vault_secrets_query | v2.18.9 |
 | <a name="module_gps_iac_code_review"></a> [gps\_iac\_code\_review](#module\_gps\_iac\_code\_review) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review | v2.6.2 |
