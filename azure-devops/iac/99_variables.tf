@@ -136,4 +136,13 @@ locals {
   dev_wallet_key_vault_name  = "${local.prefix}-d-wallet-kv"
   uat_wallet_key_vault_name  = "${local.prefix}-u-wallet-kv"
   prod_wallet_key_vault_name = "${local.prefix}-p-wallet-kv"
+
+  dev_fdr_key_vault_resource_group  = "${local.prefix}-d-fdr-sec-rg"
+  uat_fdr_key_vault_resource_group  = "${local.prefix}-u-fdr-sec-rg"
+  prod_fdr_key_vault_resource_group = "${local.prefix}-p-fdr-sec-rg"
+
+  dev_fdr_key_vault_name  = "${local.prefix}-d-fdr-kv"
+  uat_fdr_key_vault_name  = "${local.prefix}-u-fdr-kv"
+  prod_fdr_key_vault_name = "${local.prefix}-p-fdr-kv"
+
 }
