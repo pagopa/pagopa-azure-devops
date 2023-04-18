@@ -17,7 +17,12 @@ module "shared_dev_secrets" {
     "pagopa-d-weu-dev-aks-azure-devops-sa-token",
     "pagopa-d-weu-dev-aks-azure-devops-sa-cacrt",
     "pagopa-d-weu-dev-aks-apiserver-url",
-    "poc-d-reporting-enrollment-subscription-key"
+    "poc-d-reporting-enrollment-subscription-key",
+    "auth-d-cosmos-uri",
+    "auth-d-cosmos-key",
+    "auth-d-cosmos-db",
+    "auth-d-cosmos-container",
+    "auth-d-cosmos-connection-string"
   ]
 }
 
@@ -34,7 +39,12 @@ module "shared_uat_secrets" {
   secrets = [
     "pagopa-u-weu-uat-aks-azure-devops-sa-token",
     "pagopa-u-weu-uat-aks-azure-devops-sa-cacrt",
-    "pagopa-u-weu-uat-aks-apiserver-url"
+    "pagopa-u-weu-uat-aks-apiserver-url",
+    "auth-u-cosmos-uri",
+    "auth-u-cosmos-key",
+    "auth-u-cosmos-db",
+    "auth-u-cosmos-container",
+    "auth-u-cosmos-connection-string"
   ]
 }
 
@@ -51,6 +61,11 @@ module "shared_prod_secrets" {
   secrets = [
     "pagopa-p-weu-prod-aks-azure-devops-sa-token",
     "pagopa-p-weu-prod-aks-azure-devops-sa-cacrt",
-    "pagopa-p-weu-prod-aks-apiserver-url"
+    "pagopa-p-weu-prod-aks-apiserver-url",
+    "auth-p-cosmos-uri",
+    "auth-p-cosmos-key",
+    "auth-p-cosmos-db",
+    "auth-p-cosmos-container",
+    "auth-p-cosmos-connection-string"
   ]
 }
