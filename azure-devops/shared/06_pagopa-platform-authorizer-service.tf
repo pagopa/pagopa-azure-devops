@@ -56,58 +56,58 @@ locals {
     github_connection = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_rw_name
     tenant_id         = module.secrets.values["TENANTID"].value
 
-    dev_azure_subscription  = data.terraform_remote_state.app.outputs.service_endpoint_azure_dev_name
-    uat_azure_subscription  = data.terraform_remote_state.app.outputs.service_endpoint_azure_uat_name
-    prod_azure_subscription = data.terraform_remote_state.app.outputs.service_endpoint_azure_prod_name
+    dev_azure_subscription = data.terraform_remote_state.app.outputs.service_endpoint_azure_dev_name
+    # uat_azure_subscription  = data.terraform_remote_state.app.outputs.service_endpoint_azure_uat_name
+    # prod_azure_subscription = data.terraform_remote_state.app.outputs.service_endpoint_azure_prod_name
 
     # acr section
-    image_repository_name                = replace(var.pagopa-platform-authorizer-service.repository.name, "-", "")
-    dev_container_registry_service_conn  = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_dev_id
-    uat_container_registry_service_conn  = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_uat_id
-    prod_container_registry_service_conn = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_prod_id
+    image_repository_name               = replace(var.pagopa-platform-authorizer-service.repository.name, "-", "")
+    dev_container_registry_service_conn = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_dev_id
+    # uat_container_registry_service_conn  = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_uat_id
+    # prod_container_registry_service_conn = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_prod_id
 
-    dev_container_namespace  = "pagopadcommonacr.azurecr.io"
-    uat_container_namespace  = "pagopaucommonacr.azurecr.io"
-    prod_container_namespace = "pagopapcommonacr.azurecr.io"
+    dev_container_namespace = "pagopadcommonacr.azurecr.io"
+    # uat_container_namespace  = "pagopaucommonacr.azurecr.io"
+    # prod_container_namespace = "pagopapcommonacr.azurecr.io"
 
-    dev_web_app_name  = "pagopa-d-weu"
-    uat_web_app_name  = "pagopa-u-weu"
-    prod_web_app_name = "pagopa-p-weu"
+    dev_web_app_name = "pagopa-d-weu"
+    # uat_web_app_name  = "pagopa-u-weu"
+    # prod_web_app_name = "pagopa-p-weu"
 
     TF_APPINSIGHTS_SERVICE_CONN_DEV = module.DEV-APPINSIGHTS-SERVICE-CONN.service_endpoint_name
     TF_APPINSIGHTS_RESOURCE_ID_DEV  = data.azurerm_application_insights.application_insights_dev.id
 
-    TF_APPINSIGHTS_SERVICE_CONN_UAT = module.UAT-APPINSIGHTS-SERVICE-CONN.service_endpoint_name
-    TF_APPINSIGHTS_RESOURCE_ID_UAT  = data.azurerm_application_insights.application_insights_uat.id
+    # TF_APPINSIGHTS_SERVICE_CONN_UAT = module.UAT-APPINSIGHTS-SERVICE-CONN.service_endpoint_name
+    # TF_APPINSIGHTS_RESOURCE_ID_UAT  = data.azurerm_application_insights.application_insights_uat.id
 
-    TF_APPINSIGHTS_SERVICE_CONN_PROD = module.PROD-APPINSIGHTS-SERVICE-CONN.service_endpoint_name
-    TF_APPINSIGHTS_RESOURCE_ID_PROD  = data.azurerm_application_insights.application_insights_prod.id
+    # TF_APPINSIGHTS_SERVICE_CONN_PROD = module.PROD-APPINSIGHTS-SERVICE-CONN.service_endpoint_name
+    # TF_APPINSIGHTS_RESOURCE_ID_PROD  = data.azurerm_application_insights.application_insights_prod.id
   }
 
   # deploy secrets
   pagopa-platform-authorizer-service-variables_secret_deploy = {
     # secrets - dev environment
-    DEV_AUTH_COSMOS_URI                     = module.shared_dev_secrets.values["auth-d-cosmos-uri"].value
-    DEV_AUTH_COSMOS_KEY                     = module.shared_dev_secrets.values["auth-d-cosmos-key"].value
-    DEV_AUTH_COSMOS_DB                      = module.shared_dev_secrets.values["auth-d-cosmos-db"].value
-    DEV_AUTH_COSMOS_CONTAINER               = module.shared_dev_secrets.values["auth-d-cosmos-container"].value
-    DEV_AUTH_COSMOS_CONNECTION_STRING       = module.shared_dev_secrets.values["auth-d-cosmos-connection-string"].value
+    DEV_AUTH_COSMOS_URI               = module.shared_dev_secrets.values["auth-d-cosmos-uri"].value
+    DEV_AUTH_COSMOS_KEY               = module.shared_dev_secrets.values["auth-d-cosmos-key"].value
+    DEV_AUTH_COSMOS_DB                = module.shared_dev_secrets.values["auth-d-cosmos-db"].value
+    DEV_AUTH_COSMOS_CONTAINER         = module.shared_dev_secrets.values["auth-d-cosmos-container"].value
+    DEV_AUTH_COSMOS_CONNECTION_STRING = module.shared_dev_secrets.values["auth-d-cosmos-connection-string"].value
 
 
     # secrets - uat environment
-    UAT_AUTH_COSMOS_URI                     = module.shared_dev_secrets.values["auth-u-cosmos-uri"].value
-    UAT_AUTH_COSMOS_KEY                     = module.shared_dev_secrets.values["auth-u-cosmos-key"].value
-    UAT_AUTH_COSMOS_DB                      = module.shared_dev_secrets.values["auth-u-cosmos-db"].value
-    UAT_AUTH_COSMOS_CONTAINER               = module.shared_dev_secrets.values["auth-u-cosmos-container"].value
-    UAT_AUTH_COSMOS_CONNECTION_STRING       = module.shared_dev_secrets.values["auth-u-cosmos-connection-string"].value
+    # UAT_AUTH_COSMOS_URI                     = module.shared_dev_secrets.values["auth-u-cosmos-uri"].value
+    # UAT_AUTH_COSMOS_KEY                     = module.shared_dev_secrets.values["auth-u-cosmos-key"].value
+    # UAT_AUTH_COSMOS_DB                      = module.shared_dev_secrets.values["auth-u-cosmos-db"].value
+    # UAT_AUTH_COSMOS_CONTAINER               = module.shared_dev_secrets.values["auth-u-cosmos-container"].value
+    # UAT_AUTH_COSMOS_CONNECTION_STRING       = module.shared_dev_secrets.values["auth-u-cosmos-connection-string"].value
 
 
     # secrets - prod environment
-    PROD_AUTH_COSMOS_URI                     = module.shared_dev_secrets.values["auth-p-cosmos-uri"].value
-    PROD_AUTH_COSMOS_KEY                     = module.shared_dev_secrets.values["auth-p-cosmos-key"].value
-    PROD_AUTH_COSMOS_DB                      = module.shared_dev_secrets.values["auth-p-cosmos-db"].value
-    PROD_AUTH_COSMOS_CONTAINER               = module.shared_dev_secrets.values["auth-p-cosmos-container"].value
-    PROD_AUTH_COSMOS_CONNECTION_STRING       = module.shared_dev_secrets.values["auth-p-cosmos-connection-string"].value
+    # PROD_AUTH_COSMOS_URI                     = module.shared_dev_secrets.values["auth-p-cosmos-uri"].value
+    # PROD_AUTH_COSMOS_KEY                     = module.shared_dev_secrets.values["auth-p-cosmos-key"].value
+    # PROD_AUTH_COSMOS_DB                      = module.shared_dev_secrets.values["auth-p-cosmos-db"].value
+    # PROD_AUTH_COSMOS_CONTAINER               = module.shared_dev_secrets.values["auth-p-cosmos-container"].value
+    # PROD_AUTH_COSMOS_CONNECTION_STRING       = module.shared_dev_secrets.values["auth-p-cosmos-connection-string"].value
   }
 }
 
@@ -159,13 +159,13 @@ module "pagopa-platform-authorizer-service_deploy" {
   service_connection_ids_authorization = [
     data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_ro_id,
     data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_dev_id,
-    data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_uat_id,
-    data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_prod_id,
+    # data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_uat_id,
+    # data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_prod_id,
     data.terraform_remote_state.app.outputs.service_endpoint_azure_dev_id,
-    data.terraform_remote_state.app.outputs.service_endpoint_azure_uat_id,
-    data.terraform_remote_state.app.outputs.service_endpoint_azure_prod_id,
+    # data.terraform_remote_state.app.outputs.service_endpoint_azure_uat_id,
+    # data.terraform_remote_state.app.outputs.service_endpoint_azure_prod_id,
     module.DEV-APPINSIGHTS-SERVICE-CONN.service_endpoint_id,
-    module.UAT-APPINSIGHTS-SERVICE-CONN.service_endpoint_id,
-    module.PROD-APPINSIGHTS-SERVICE-CONN.service_endpoint_id
+    # module.UAT-APPINSIGHTS-SERVICE-CONN.service_endpoint_id,
+    # module.PROD-APPINSIGHTS-SERVICE-CONN.service_endpoint_id
   ]
 }
