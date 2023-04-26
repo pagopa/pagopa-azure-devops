@@ -87,27 +87,18 @@ locals {
   # deploy secrets
   pagopa-platform-authorizer-service-variables_secret_deploy = {
     # secrets - dev environment
-    DEV_AUTH_COSMOS_URI               = module.shared_dev_secrets.values["auth-d-cosmos-uri"].value
-    DEV_AUTH_COSMOS_KEY               = module.shared_dev_secrets.values["auth-d-cosmos-key"].value
-    DEV_AUTH_COSMOS_DB                = module.shared_dev_secrets.values["auth-d-cosmos-db"].value
-    DEV_AUTH_COSMOS_CONTAINER         = module.shared_dev_secrets.values["auth-d-cosmos-container"].value
-    DEV_AUTH_COSMOS_CONNECTION_STRING = module.shared_dev_secrets.values["auth-d-cosmos-connection-string"].value
-
+    DEV_AUTH_COSMOS_URI                 = module.shared_dev_secrets.values["auth-d-cosmos-uri"].value
+    DEV_AUTH_COSMOS_KEY                 = module.shared_dev_secrets.values["auth-d-cosmos-key"].value
+    DEV_INTEGRTEST_EXT_SUBSCRIPTION_KEY = module.shared_dev_secrets.values["auth-d-integrationtest-external-subkey"].value
+    DEV_INTEGRTEST_VALID_SUBKEY          = module.shared_dev_secrets.values["auth-d-integrationtest-valid-subkey"].value
+    DEV_INTEGRTEST_INVALID_SUBKEY        = module.shared_dev_secrets.values["auth-d-integrationtest-invalid-subkey"].value
 
     # secrets - uat environment
     # UAT_AUTH_COSMOS_URI                     = module.shared_dev_secrets.values["auth-u-cosmos-uri"].value
     # UAT_AUTH_COSMOS_KEY                     = module.shared_dev_secrets.values["auth-u-cosmos-key"].value
-    # UAT_AUTH_COSMOS_DB                      = module.shared_dev_secrets.values["auth-u-cosmos-db"].value
-    # UAT_AUTH_COSMOS_CONTAINER               = module.shared_dev_secrets.values["auth-u-cosmos-container"].value
-    # UAT_AUTH_COSMOS_CONNECTION_STRING       = module.shared_dev_secrets.values["auth-u-cosmos-connection-string"].value
-
-
-    # secrets - prod environment
-    # PROD_AUTH_COSMOS_URI                     = module.shared_dev_secrets.values["auth-p-cosmos-uri"].value
-    # PROD_AUTH_COSMOS_KEY                     = module.shared_dev_secrets.values["auth-p-cosmos-key"].value
-    # PROD_AUTH_COSMOS_DB                      = module.shared_dev_secrets.values["auth-p-cosmos-db"].value
-    # PROD_AUTH_COSMOS_CONTAINER               = module.shared_dev_secrets.values["auth-p-cosmos-container"].value
-    # PROD_AUTH_COSMOS_CONNECTION_STRING       = module.shared_dev_secrets.values["auth-p-cosmos-connection-string"].value
+    # UAT_INTEGRTEST_EXT_SUBSCRIPTION_KEY     = module.shared_dev_secrets.values["auth-u-integrationtest-external-subkey"].value
+    # UAT_INTEGRTEST_VALID_SUBKEY             = module.shared_dev_secrets.values["auth-u-integrationtest-valid-subkey"].value
+    # UAT_INTEGRTEST_INVALID_SUBKEY           = module.shared_dev_secrets.values["auth-u-integrationtest-invalid-subkey"].value
   }
 }
 
