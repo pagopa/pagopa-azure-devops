@@ -20,9 +20,10 @@ module "shared_dev_secrets" {
     "poc-d-reporting-enrollment-subscription-key",
     "auth-d-cosmos-uri",
     "auth-d-cosmos-key",
-    "auth-d-cosmos-db",
-    "auth-d-cosmos-container",
-    "auth-d-cosmos-connection-string"
+    "auth-d-cosmos-connection-string",
+    "auth-d-integrationtest-external-subkey",
+    "auth-d-integrationtest-valid-subkey",
+    "auth-d-integrationtest-invalid-subkey"
   ]
 }
 
@@ -42,8 +43,6 @@ module "shared_uat_secrets" {
     "pagopa-u-weu-uat-aks-apiserver-url",
     # "auth-u-cosmos-uri",
     # "auth-u-cosmos-key",
-    # "auth-u-cosmos-db",
-    # "auth-u-cosmos-container",
     # "auth-u-cosmos-connection-string"
   ]
 }
@@ -64,8 +63,6 @@ module "shared_prod_secrets" {
     "pagopa-p-weu-prod-aks-apiserver-url",
     # "auth-p-cosmos-uri",
     # "auth-p-cosmos-key",
-    # "auth-p-cosmos-db",
-    # "auth-p-cosmos-container",
     # "auth-p-cosmos-connection-string"
   ]
 }

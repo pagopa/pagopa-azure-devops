@@ -90,8 +90,8 @@ locals {
     DEV_AUTH_COSMOS_URI                 = module.shared_dev_secrets.values["auth-d-cosmos-uri"].value
     DEV_AUTH_COSMOS_KEY                 = module.shared_dev_secrets.values["auth-d-cosmos-key"].value
     DEV_INTEGRTEST_EXT_SUBSCRIPTION_KEY = module.shared_dev_secrets.values["auth-d-integrationtest-external-subkey"].value
-    DEV_INTEGRTEST_VALID_SUBKEY          = module.shared_dev_secrets.values["auth-d-integrationtest-valid-subkey"].value
-    DEV_INTEGRTEST_INVALID_SUBKEY        = module.shared_dev_secrets.values["auth-d-integrationtest-invalid-subkey"].value
+    DEV_INTEGRTEST_VALID_SUBKEY         = module.shared_dev_secrets.values["auth-d-integrationtest-valid-subkey"].value
+    DEV_INTEGRTEST_INVALID_SUBKEY       = module.shared_dev_secrets.values["auth-d-integrationtest-invalid-subkey"].value
 
     # secrets - uat environment
     # UAT_AUTH_COSMOS_URI                     = module.shared_dev_secrets.values["auth-u-cosmos-uri"].value
