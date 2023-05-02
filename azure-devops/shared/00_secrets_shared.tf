@@ -41,9 +41,14 @@ module "shared_uat_secrets" {
     "pagopa-u-weu-uat-aks-azure-devops-sa-token",
     "pagopa-u-weu-uat-aks-azure-devops-sa-cacrt",
     "pagopa-u-weu-uat-aks-apiserver-url",
-    # "auth-u-cosmos-uri",
-    # "auth-u-cosmos-key",
-    # "auth-u-cosmos-connection-string"
+    # "poc-u-reporting-enrollment-subscription-key",
+    "auth-u-cosmos-uri",
+    "auth-u-cosmos-key",
+    "auth-u-cosmos-connection-string",
+    "auth-u-integrationtest-external-subkey",
+    "auth-u-integrationtest-valid-subkey",
+    "auth-u-integrationtest-invalid-subkey"
+
   ]
 }
 
