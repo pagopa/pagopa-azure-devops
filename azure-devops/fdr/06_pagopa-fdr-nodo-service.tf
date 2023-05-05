@@ -47,9 +47,9 @@ locals {
   }
   # code_review secrets
   pagopa-fdr-nodo-service-variables_secret_code_review = {
-    lightbend_key_dev  = module.fdr_dev_secrets.values["lightbend-key"].value
-    lightbend_key_uat  = module.fdr_dev_secrets.values["lightbend-key"].value
-    lightbend_key_prod = module.fdr_dev_secrets.values["lightbend-key"].value
+    lightbend_key_dev = module.fdr_dev_secrets.values["lightbend-key"].value
+    lightbend_key_uat = module.fdr_dev_secrets.values["lightbend-key"].value
+    #    lightbend_key_prod = module.fdr_dev_secrets.values["lightbend-key"].value
   }
   # deploy vars
   pagopa-fdr-nodo-service-variables_deploy = {
@@ -63,29 +63,29 @@ locals {
     container-registry-service-connection-dev = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_dev_id
     repository                                = replace(var.pagopa-fdr-nodo-service.repository.name, "-", "")
 
-    dev_container_registry_service_conn  = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_dev_id
-    uat_container_registry_service_conn  = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_uat_id
-    prod_container_registry_service_conn = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_prod_id
+    dev_container_registry_service_conn = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_dev_id
+    uat_container_registry_service_conn = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_uat_id
+    #    prod_container_registry_service_conn = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_prod_id
 
     # aks section
     k8s_namespace               = "fdr"
     dev_kubernetes_service_conn = azuredevops_serviceendpoint_kubernetes.aks_dev.id
-    #    uat_kubernetes_service_conn  = azuredevops_serviceendpoint_kubernetes.aks_uat.id
+    uat_kubernetes_service_conn = azuredevops_serviceendpoint_kubernetes.aks_uat.id
     #    prod_kubernetes_service_conn = azuredevops_serviceendpoint_kubernetes.aks_prod.id
 
     dev_container_namespace = "pagopadcommonacr.azurecr.io"
-    #    uat_container_namespace  = "pagopaucommonacr.azurecr.io"
+    uat_container_namespace = "pagopaucommonacr.azurecr.io"
     #    prod_container_namespace = "pagopapcommonacr.azurecr.io"
 
     # fdr variables of cd pipeline
     deploy-pool-dev = "pagopa-dev-linux"
-    #    deploy-pool-uat  = "pagopa-uat-linux"
+    deploy-pool-uat = "pagopa-uat-linux"
     #    deploy-pool-prod = "pagopa-prod-linux"
   }
   # deploy secrets
   pagopa-fdr-nodo-service-variables_secret_deploy = {
     lightbend_key_dev = module.fdr_dev_secrets.values["lightbend-key"].value
-    #    lightbend_key_uat  = module.fdr_dev_secrets.values["lightbend-key"].value
+    lightbend_key_uat = module.fdr_dev_secrets.values["lightbend-key"].value
     #    lightbend_key_prod = module.fdr_dev_secrets.values["lightbend-key"].value
   }
 
@@ -112,7 +112,7 @@ locals {
     # aks section
     k8s_namespace               = "fdr"
     dev_kubernetes_service_conn = azuredevops_serviceendpoint_kubernetes.aks_dev.id
-    #    uat_kubernetes_service_conn  = azuredevops_serviceendpoint_kubernetes.aks_uat.id
+    uat_kubernetes_service_conn = azuredevops_serviceendpoint_kubernetes.aks_uat.id
     #    prod_kubernetes_service_conn = azuredevops_serviceendpoint_kubernetes.aks_prod.id
 
   }
@@ -173,12 +173,12 @@ module "pagopa-fdr-nodo-service_deploy" {
     data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_ro_id,
     data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_dev_id,
     data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_uat_id,
-    data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_prod_id,
+    #    data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_prod_id,
     data.terraform_remote_state.app.outputs.service_endpoint_azure_dev_id,
     data.terraform_remote_state.app.outputs.service_endpoint_azure_uat_id,
-    data.terraform_remote_state.app.outputs.service_endpoint_azure_prod_id,
-    module.DEV-APPINSIGHTS-SERVICE-CONN.service_endpoint_id
-    #    module.UAT-APPINSIGHTS-SERVICE-CONN.service_endpoint_id,
+    #    data.terraform_remote_state.app.outputs.service_endpoint_azure_prod_id,
+    module.DEV-APPINSIGHTS-SERVICE-CONN.service_endpoint_id,
+    module.UAT-APPINSIGHTS-SERVICE-CONN.service_endpoint_id
     #    module.PROD-APPINSIGHTS-SERVICE-CONN.service_endpoint_id
   ]
 }
