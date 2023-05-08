@@ -34,7 +34,7 @@ locals {
   }
   # deploy vars
   pagopa-proxy-variables_deploy = {
-    github_connection       = azuredevops_serviceendpoint_github.azure-devops-github-rw.service_endpoint_name
+    github_connection       = local.srv_endpoint_github_rw
     dev_azure_subscription  = azuredevops_serviceendpoint_azurerm.DEV-SERVICE-CONN.service_endpoint_name
     uat_azure_subscription  = azuredevops_serviceendpoint_azurerm.UAT-SERVICE-CONN.service_endpoint_name
     prod_azure_subscription = azuredevops_serviceendpoint_azurerm.PROD-SERVICE-CONN.service_endpoint_name
@@ -52,9 +52,9 @@ module "pagopa-proxy_code_review" {
   source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review?ref=v2.0.4"
   count  = var.pagopa-proxy.pipeline.enable_code_review == true ? 1 : 0
 
-  project_id                   = azuredevops_project.project.id
+  project_id                   = data.azuredevops_project.project.id
   repository                   = var.pagopa-proxy.repository
-  github_service_connection_id = azuredevops_serviceendpoint_github.azure-devops-github-pr.id
+  github_service_connection_id = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_pr_id
 
   variables = merge(
     local.pagopa-proxy-variables,
@@ -67,7 +67,7 @@ module "pagopa-proxy_code_review" {
   )
 
   service_connection_ids_authorization = [
-    azuredevops_serviceendpoint_github.azure-devops-github-ro.id
+    data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_ro_id
   ]
 }
 
@@ -75,9 +75,9 @@ module "pagopa-proxy_deploy" {
   source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy?ref=v2.0.4"
   count  = var.pagopa-proxy.pipeline.enable_deploy == true ? 1 : 0
 
-  project_id                   = azuredevops_project.project.id
+  project_id                   = data.azuredevops_project.project.id
   repository                   = var.pagopa-proxy.repository
-  github_service_connection_id = azuredevops_serviceendpoint_github.azure-devops-github-rw.id
+  github_service_connection_id = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_rw_id
 
   variables = merge(
     local.pagopa-proxy-variables,
@@ -90,7 +90,7 @@ module "pagopa-proxy_deploy" {
   )
 
   service_connection_ids_authorization = [
-    azuredevops_serviceendpoint_github.azure-devops-github-ro.id,
+    data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_ro_id,
     azuredevops_serviceendpoint_azurerm.DEV-SERVICE-CONN.id,
     azuredevops_serviceendpoint_azurerm.UAT-SERVICE-CONN.id,
     azuredevops_serviceendpoint_azurerm.PROD-SERVICE-CONN.id,
