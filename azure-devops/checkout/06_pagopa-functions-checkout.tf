@@ -48,12 +48,14 @@ locals {
 }
 
 module "pagopa-functions-checkout_code_review" {
-  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review?ref=v2.0.4"
+  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review?ref=v2.2.0"
   count  = var.pagopa-functions-checkout.pipeline.enable_code_review == true ? 1 : 0
 
   project_id                   = data.azuredevops_project.project.id
   repository                   = var.pagopa-functions-checkout.repository
   github_service_connection_id = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_pr_id
+
+  path                         = "${local.domain}\\pagopa-functions-checkout"
 
   variables = merge(
     local.pagopa-functions-checkout-variables,
@@ -71,12 +73,14 @@ module "pagopa-functions-checkout_code_review" {
 }
 
 module "pagopa-functions-checkout_deploy" {
-  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy?ref=v2.0.4"
+  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy?ref=v2.2.0"
   count  = var.pagopa-functions-checkout.pipeline.enable_deploy == true ? 1 : 0
 
   project_id                   = data.azuredevops_project.project.id
   repository                   = var.pagopa-functions-checkout.repository
   github_service_connection_id = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_rw_id
+
+  path                         = "${local.domain}\\pagopa-functions-checkout"
 
   variables = merge(
     local.pagopa-functions-checkout-variables,
