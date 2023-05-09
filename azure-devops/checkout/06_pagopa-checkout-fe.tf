@@ -36,10 +36,10 @@ locals {
   pagopa-checkout-fe-variables_deploy = {
     git_mail                 = module.secrets.values["azure-devops-github-EMAIL"].value
     git_username             = module.secrets.values["azure-devops-github-USERNAME"].value
-    github_connection        = azuredevops_serviceendpoint_github.azure-devops-github-rw.service_endpoint_name
-    dev_azure_subscription   = azuredevops_serviceendpoint_azurerm.DEV-SERVICE-CONN.service_endpoint_name
-    uat_azure_subscription   = azuredevops_serviceendpoint_azurerm.UAT-SERVICE-CONN.service_endpoint_name
-    prod_azure_subscription  = azuredevops_serviceendpoint_azurerm.PROD-SERVICE-CONN.service_endpoint_name
+    github_connection        = local.srv_endpoint_github_rw
+    dev_azure_subscription   = data.terraform_remote_state.app.outputs.service_endpoint_azure_dev_name
+    uat_azure_subscription   = data.terraform_remote_state.app.outputs.service_endpoint_azure_uat_name
+    prod_azure_subscription  = data.terraform_remote_state.app.outputs.service_endpoint_azure_prod_name
     cache_version_id         = "v1"
     checkout_api_host_dev    = "https://api.dev.platform.pagopa.it"
     checkout_api_host_uat    = "https://api.uat.platform.pagopa.it"
@@ -55,12 +55,14 @@ locals {
 }
 
 module "pagopa-checkout-fe_code_review" {
-  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review?ref=v2.0.4"
+  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review?ref=v2.2.0"
   count  = var.pagopa-checkout-fe.pipeline.enable_code_review == true ? 1 : 0
 
-  project_id                   = azuredevops_project.project.id
+  project_id                   = data.azuredevops_project.project.id
   repository                   = var.pagopa-checkout-fe.repository
-  github_service_connection_id = azuredevops_serviceendpoint_github.azure-devops-github-pr.id
+  github_service_connection_id = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_pr_id
+
+  path = "${local.domain}\\pagopa-checkout-fe"
 
   variables = merge(
     local.pagopa-checkout-fe-variables,
@@ -73,17 +75,19 @@ module "pagopa-checkout-fe_code_review" {
   )
 
   service_connection_ids_authorization = [
-    azuredevops_serviceendpoint_github.azure-devops-github-ro.id
+    data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_ro_id
   ]
 }
 
 module "pagopa-checkout-fe_deploy" {
-  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy?ref=v2.0.4"
+  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy?ref=v2.2.0"
   count  = var.pagopa-checkout-fe.pipeline.enable_deploy == true ? 1 : 0
 
-  project_id                   = azuredevops_project.project.id
+  project_id                   = data.azuredevops_project.project.id
   repository                   = var.pagopa-checkout-fe.repository
-  github_service_connection_id = azuredevops_serviceendpoint_github.azure-devops-github-rw.id
+  github_service_connection_id = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_rw_id
+
+  path = "${local.domain}\\pagopa-checkout-fe"
 
   variables = merge(
     local.pagopa-checkout-fe-variables,
@@ -96,9 +100,9 @@ module "pagopa-checkout-fe_deploy" {
   )
 
   service_connection_ids_authorization = [
-    azuredevops_serviceendpoint_github.azure-devops-github-ro.id,
-    azuredevops_serviceendpoint_azurerm.DEV-SERVICE-CONN.id,
-    azuredevops_serviceendpoint_azurerm.UAT-SERVICE-CONN.id,
-    azuredevops_serviceendpoint_azurerm.PROD-SERVICE-CONN.id,
+    data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_ro_id,
+    data.terraform_remote_state.app.outputs.service_endpoint_azure_dev_id,
+    data.terraform_remote_state.app.outputs.service_endpoint_azure_uat_id,
+    data.terraform_remote_state.app.outputs.service_endpoint_azure_prod_id,
   ]
 }
