@@ -54,6 +54,6 @@ module "pagopa-checkout-tests_code_review" {
   )
 
   service_connection_ids_authorization = [
-     data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_ro_id,
+    data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_ro_id,
   ]
 }
