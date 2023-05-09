@@ -15,7 +15,7 @@
 | Name | Source | Version |
 |------|--------|---------|
 | <a name="module_pagopa-checkout-fe_code_review"></a> [pagopa-checkout-fe\_code\_review](#module\_pagopa-checkout-fe\_code\_review) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review | v2.2.0 |
-| <a name="module_pagopa-checkout-fe_deploy"></a> [pagopa-checkout-fe\_deploy](#module\_pagopa-checkout-fe\_deploy) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy | v2.0.4 |
+| <a name="module_pagopa-checkout-fe_deploy"></a> [pagopa-checkout-fe\_deploy](#module\_pagopa-checkout-fe\_deploy) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy | v2.2.0 |
 | <a name="module_pagopa-checkout-tests_code_review"></a> [pagopa-checkout-tests\_code\_review](#module\_pagopa-checkout-tests\_code\_review) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review | v2.2.0 |
 | <a name="module_pagopa-functions-checkout_code_review"></a> [pagopa-functions-checkout\_code\_review](#module\_pagopa-functions-checkout\_code\_review) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review | v2.2.0 |
 | <a name="module_pagopa-functions-checkout_deploy"></a> [pagopa-functions-checkout\_deploy](#module\_pagopa-functions-checkout\_deploy) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy | v2.2.0 |

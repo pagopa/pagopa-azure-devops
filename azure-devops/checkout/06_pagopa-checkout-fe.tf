@@ -80,12 +80,14 @@ module "pagopa-checkout-fe_code_review" {
 }
 
 module "pagopa-checkout-fe_deploy" {
-  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy?ref=v2.0.4"
+  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy?ref=v2.2.0"
   count  = var.pagopa-checkout-fe.pipeline.enable_deploy == true ? 1 : 0
 
   project_id                   = data.azuredevops_project.project.id
   repository                   = var.pagopa-checkout-fe.repository
   github_service_connection_id = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_rw_id
+
+  path = "${local.domain}\\pagopa-checkout-fe"
 
   variables = merge(
     local.pagopa-checkout-fe-variables,
