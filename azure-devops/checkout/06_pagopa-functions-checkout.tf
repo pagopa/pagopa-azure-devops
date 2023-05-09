@@ -37,9 +37,9 @@ locals {
     git_mail                = module.secrets.values["azure-devops-github-EMAIL"].value
     git_username            = module.secrets.values["azure-devops-github-USERNAME"].value
     github_connection       = local.srv_endpoint_github_rw
-    dev_azure_subscription  = azuredevops_serviceendpoint_azurerm.DEV-SERVICE-CONN.service_endpoint_name
-    uat_azure_subscription  = azuredevops_serviceendpoint_azurerm.UAT-SERVICE-CONN.service_endpoint_name
-    prod_azure_subscription = azuredevops_serviceendpoint_azurerm.PROD-SERVICE-CONN.service_endpoint_name
+    dev_azure_subscription  = data.terraform_remote_state.app.outputs.service_endpoint_azure_dev_name
+    uat_azure_subscription  = data.terraform_remote_state.app.outputs.service_endpoint_azure_uat_name
+    prod_azure_subscription = data.terraform_remote_state.app.outputs.service_endpoint_azure_prod_name
   }
   # deploy secrets
   pagopa-functions-checkout-variables_secret_deploy = {
@@ -90,8 +90,8 @@ module "pagopa-functions-checkout_deploy" {
 
   service_connection_ids_authorization = [
     data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_ro_id,
-    azuredevops_serviceendpoint_azurerm.DEV-SERVICE-CONN.id,
-    azuredevops_serviceendpoint_azurerm.UAT-SERVICE-CONN.id,
-    azuredevops_serviceendpoint_azurerm.PROD-SERVICE-CONN.id,
+    data.terraform_remote_state.app.outputs.service_endpoint_azure_dev_id,
+    data.terraform_remote_state.app.outputs.service_endpoint_azure_uat_id,
+    data.terraform_remote_state.app.outputs.service_endpoint_azure_prod_id,
   ]
 }

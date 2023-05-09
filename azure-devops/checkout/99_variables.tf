@@ -41,7 +41,7 @@ locals {
   srv_endpoint_github_ro = "io-azure-devops-github-ro"
   srv_endpoint_github_rw = "io-azure-devops-github-rw"
   srv_endpoint_github_pr = "io-azure-devops-github-pr"
-  
+
   # 🔐 KV
   dev_key_vault_azdo_name  = "${local.prefix}-d-azdo-weu-kv"
   uat_key_vault_azdo_name  = "${local.prefix}-u-azdo-weu-kv"
