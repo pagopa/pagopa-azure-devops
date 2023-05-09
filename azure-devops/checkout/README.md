@@ -14,10 +14,10 @@
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_pagopa-functions-checkout_code_review"></a> [pagopa-functions-checkout\_code\_review](#module\_pagopa-functions-checkout\_code\_review) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review | v2.0.4 |
-| <a name="module_pagopa-functions-checkout_deploy"></a> [pagopa-functions-checkout\_deploy](#module\_pagopa-functions-checkout\_deploy) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy | v2.0.4 |
-| <a name="module_pagopa-proxy_code_review"></a> [pagopa-proxy\_code\_review](#module\_pagopa-proxy\_code\_review) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review | v2.0.4 |
-| <a name="module_pagopa-proxy_deploy"></a> [pagopa-proxy\_deploy](#module\_pagopa-proxy\_deploy) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy | v2.0.4 |
+| <a name="module_pagopa-functions-checkout_code_review"></a> [pagopa-functions-checkout\_code\_review](#module\_pagopa-functions-checkout\_code\_review) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review | v2.2.0 |
+| <a name="module_pagopa-functions-checkout_deploy"></a> [pagopa-functions-checkout\_deploy](#module\_pagopa-functions-checkout\_deploy) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy | v2.2.0 |
+| <a name="module_pagopa-proxy_code_review"></a> [pagopa-proxy\_code\_review](#module\_pagopa-proxy\_code\_review) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review | v2.2.0 |
+| <a name="module_pagopa-proxy_deploy"></a> [pagopa-proxy\_deploy](#module\_pagopa-proxy\_deploy) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy | v2.2.0 |
 | <a name="module_secrets"></a> [secrets](#module\_secrets) | git::https://github.com/pagopa/azurerm.git//key_vault_secrets_query | v2.0.4 |
 
 ## Resources
