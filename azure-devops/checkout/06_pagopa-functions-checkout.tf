@@ -55,7 +55,7 @@ module "pagopa-functions-checkout_code_review" {
   repository                   = var.pagopa-functions-checkout.repository
   github_service_connection_id = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_pr_id
 
-  path                         = "${local.domain}\\pagopa-functions-checkout"
+  path = "${local.domain}\\pagopa-functions-checkout"
 
   variables = merge(
     local.pagopa-functions-checkout-variables,
@@ -80,7 +80,7 @@ module "pagopa-functions-checkout_deploy" {
   repository                   = var.pagopa-functions-checkout.repository
   github_service_connection_id = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_rw_id
 
-  path                         = "${local.domain}\\pagopa-functions-checkout"
+  path = "${local.domain}\\pagopa-functions-checkout"
 
   variables = merge(
     local.pagopa-functions-checkout-variables,
