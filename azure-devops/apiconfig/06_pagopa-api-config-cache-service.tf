@@ -43,8 +43,8 @@ locals {
 
   # code_review secrets
   pagopa-api-config-cache-variables_secret_code_review = {
-    github_token_read_packages_dev = module.apiconfig_dev_secrets.values["github-token-read-packages"].value
-    github_token_read_packages_uat = module.apiconfig_uat_secrets.values["github-token-read-packages"].value
+    github_token_read_packages_dev   = module.apiconfig_dev_secrets.values["github-token-read-packages"].value
+    github_token_read_packages_uat   = module.apiconfig_uat_secrets.values["github-token-read-packages"].value
     github_token_read_packagess_prod = module.apiconfig_prod_secrets.values["github-token-read-packages"].value
   }
   # deploy vars
@@ -64,9 +64,9 @@ locals {
     prod_container_registry_service_conn = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_prod_id
 
     # aks section
-    k8s_namespace               = local.domain
-    dev_kubernetes_service_conn = azuredevops_serviceendpoint_kubernetes.aks_dev.id
-    uat_kubernetes_service_conn = azuredevops_serviceendpoint_kubernetes.aks_uat.id
+    k8s_namespace                = local.domain
+    dev_kubernetes_service_conn  = azuredevops_serviceendpoint_kubernetes.aks_dev.id
+    uat_kubernetes_service_conn  = azuredevops_serviceendpoint_kubernetes.aks_uat.id
     prod_kubernetes_service_conn = azuredevops_serviceendpoint_kubernetes.aks_prod.id
 
     dev_container_namespace  = "pagopadcommonacr.azurecr.io"
@@ -85,13 +85,13 @@ locals {
     # api-config-cache4 variables of cd pipeline
     deploy-pool-dev                   = "pagopa-dev-linux"
     deploy-pool-uat                   = "pagopa-uat-linux"
-    deploy-pool-prof                  = "pagopa-prod-linux"
+    deploy-pool-prod                  = "pagopa-prod-linux"
     kubernetes-service-connection-dev = azuredevops_serviceendpoint_kubernetes.aks_dev.id
   }
   # deploy secrets
   pagopa-api-config-cache-variables_secret_deploy = {
-    github_token_read_packages_dev = module.apiconfig_dev_secrets.values["github-token-read-packages"].value
-    github_token_read_packages_uat = module.apiconfig_uat_secrets.values["github-token-read-packages"].value
+    github_token_read_packages_dev   = module.apiconfig_dev_secrets.values["github-token-read-packages"].value
+    github_token_read_packages_uat   = module.apiconfig_uat_secrets.values["github-token-read-packages"].value
     github_token_read_packagess_prod = module.apiconfig_prod_secrets.values["github-token-read-packages"].value
   }
 
