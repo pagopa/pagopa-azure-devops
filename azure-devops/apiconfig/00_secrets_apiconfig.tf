@@ -41,20 +41,20 @@ module "apiconfig_uat_secrets" {
   ]
 }
 
-# module "apiconfig_prod_secrets" {
-#   source = "git::https://github.com/pagopa/azurerm.git//key_vault_secrets_query?ref=v2.0.4"
+ module "apiconfig_prod_secrets" {
+   source = "git::https://github.com/pagopa/azurerm.git//key_vault_secrets_query?ref=v2.0.4"
 
-#   providers = {
-#     azurerm = azurerm.prod
-#   }
+   providers = {
+     azurerm = azurerm.prod
+   }
 
-#   resource_group = local.prod_apiconfig_key_vault_resource_group
-#   key_vault_name = local.prod_apiconfig_key_vault_name
+   resource_group = local.prod_apiconfig_key_vault_resource_group
+   key_vault_name = local.prod_apiconfig_key_vault_name
 
-#   secrets = [
-#     "pagopa-p-weu-prod-aks-azure-devops-sa-token",
-#     "pagopa-p-weu-prod-aks-azure-devops-sa-cacrt",
-#     "pagopa-p-weu-prod-aks-apiserver-url",
-#     "github-token-read-packages"
-#   ]
-# }
+   secrets = [
+     "pagopa-p-weu-prod-aks-azure-devops-sa-token",
+     "pagopa-p-weu-prod-aks-azure-devops-sa-cacrt",
+     "pagopa-p-weu-prod-aks-apiserver-url",
+     "github-token-read-packages"
+   ]
+ }
