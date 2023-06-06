@@ -15,6 +15,7 @@ module "gps_dev_secrets" {
   key_vault_name = local.dev_gps_key_vault_name
 
   secrets = [
+    "gpd-api-subscription-key",
     "pagopa-d-weu-dev-aks-azure-devops-sa-token",
     "pagopa-d-weu-dev-aks-azure-devops-sa-cacrt",
     "pagopa-d-weu-dev-aks-apiserver-url",
@@ -44,6 +45,7 @@ module "gps_uat_secrets" {
   key_vault_name = local.uat_gps_key_vault_name
 
   secrets = [
+    "gpd-api-subscription-key",
     "pagopa-u-weu-uat-aks-azure-devops-sa-token",
     "pagopa-u-weu-uat-aks-azure-devops-sa-cacrt",
     "pagopa-u-weu-uat-aks-apiserver-url",

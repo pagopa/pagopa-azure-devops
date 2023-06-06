@@ -49,25 +49,27 @@ locals {
   }
   # deploy vars
   pagopa-debt-position-variables_deploy = {
-    git_mail                = module.secrets.values["azure-devops-github-EMAIL"].value
-    git_username            = module.secrets.values["azure-devops-github-USERNAME"].value
-    github_connection       = azuredevops_serviceendpoint_github.azure-devops-github-rw.service_endpoint_name
-    healthcheck_endpoint    = "/api/v1/info"
-    dev_azure_subscription  = azuredevops_serviceendpoint_azurerm.DEV-SERVICE-CONN.service_endpoint_name
-    dev_web_app_name        = "pagopa-d"
-    uat_azure_subscription  = azuredevops_serviceendpoint_azurerm.UAT-SERVICE-CONN.service_endpoint_name
-    uat_web_app_name        = "pagopa-u"
-    prod_azure_subscription = azuredevops_serviceendpoint_azurerm.PROD-SERVICE-CONN.service_endpoint_name
-    prod_web_app_name       = "pagopa-p"
+    git_mail          = module.secrets.values["azure-devops-github-EMAIL"].value
+    git_username      = module.secrets.values["azure-devops-github-USERNAME"].value
+    github_connection = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_rw_name
+
+    dev_azure_subscription  = data.terraform_remote_state.app.outputs.service_endpoint_azure_dev_name
+    uat_azure_subscription  = data.terraform_remote_state.app.outputs.service_endpoint_azure_uat_name
+    prod_azure_subscription = data.terraform_remote_state.app.outputs.service_endpoint_azure_prod_name
+
+    healthcheck_endpoint = "/api/v1/info"
+    dev_web_app_name     = "pagopa-d"
+    uat_web_app_name     = "pagopa-u"
+    prod_web_app_name    = "pagopa-p"
 
     tenant_id = module.secrets.values["TENANTID"].value
 
     # acr section
     image_repository = "debt-position"
 
-    dev_container_registry  = azuredevops_serviceendpoint_azurecr.acr_docker_registry_dev.service_endpoint_name
-    uat_container_registry  = azuredevops_serviceendpoint_azurecr.acr_docker_registry_uat.service_endpoint_name
-    prod_container_registry = azuredevops_serviceendpoint_azurecr.acr_docker_registry_prod.service_endpoint_name
+    dev_container_registry  = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_dev_id
+    uat_container_registry  = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_uat_id
+    prod_container_registry = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_prod_id
 
     dev_container_namespace  = "pagopadcommonacr.azurecr.io"
     uat_container_namespace  = "pagopaucommonacr.azurecr.io"
@@ -88,37 +90,37 @@ locals {
 
     SCHEMA_NAME = "apd"
 
-    DEV_API_SUBSCRIPTION_KEY = module.pagopa-debt-position_dev_secrets.values["gpd-api-subscription-key"].value
-    UAT_API_SUBSCRIPTION_KEY = module.pagopa-debt-position_uat_secrets.values["gpd-api-subscription-key"].value
-
     DEV_NODO_HOST  = "https://api.dev.platform.pagopa.it/nodo/nodo-per-pa/v1/"
     UAT_NODO_HOST  = "https://api.uat.platform.pagopa.it/nodo/nodo-per-pa/v1/"
     PROD_NODO_HOST = "https://api.platform.pagopa.it/nodo/nodo-per-pa/v1/"
   }
   # deploy secrets
   pagopa-debt-position-variables_secret_deploy = {
-
+    DEV_API_SUBSCRIPTION_KEY = module.gps_dev_secrets.values["gpd-api-subscription-key"].value
+    UAT_API_SUBSCRIPTION_KEY = module.gps_uat_secrets.values["gpd-api-subscription-key"].value
   }
 
   ## Performance Test Pipeline vars and secrets ##
 
   # performance vars
   pagopa-debt-position-variables_performance_test = {
-    DEV_API_SUBSCRIPTION_KEY = module.pagopa-debt-position_dev_secrets.values["gpd-api-subscription-key"].value
-    UAT_API_SUBSCRIPTION_KEY = module.pagopa-debt-position_uat_secrets.values["gpd-api-subscription-key"].value
   }
   # performance secrets
   pagopa-debt-position-variables_secret_performance_test = {
+    DEV_API_SUBSCRIPTION_KEY = module.gps_dev_secrets.values["gpd-api-subscription-key"].value
+    UAT_API_SUBSCRIPTION_KEY = module.gps_uat_secrets.values["gpd-api-subscription-key"].value
   }
 }
 
 module "pagopa-debt-position_code_review" {
-  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review?ref=v2.0.4"
+  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review?ref=v2.2.0"
   count  = var.pagopa-debt-position.pipeline.enable_code_review == true ? 1 : 0
 
-  project_id                   = azuredevops_project.project.id
+  project_id                   = data.azuredevops_project.project.id
   repository                   = var.pagopa-debt-position.repository
-  github_service_connection_id = azuredevops_serviceendpoint_github.azure-devops-github-pr.id
+  github_service_connection_id = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_pr_id
+  path                         = "${local.domain}\\pagopa-gpd-core"
+
 
   variables = merge(
     local.pagopa-debt-position-variables,
@@ -131,18 +133,19 @@ module "pagopa-debt-position_code_review" {
   )
 
   service_connection_ids_authorization = [
-    azuredevops_serviceendpoint_github.azure-devops-github-ro.id,
+    data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_ro_id,
     local.azuredevops_serviceendpoint_sonarcloud_id,
   ]
 }
 
 module "pagopa-debt-position_deploy" {
-  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy?ref=v2.0.4"
+  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy?ref=v2.2.0"
   count  = var.pagopa-debt-position.pipeline.enable_deploy == true ? 1 : 0
 
-  project_id                   = azuredevops_project.project.id
+  project_id                   = data.azuredevops_project.project.id
   repository                   = var.pagopa-debt-position.repository
-  github_service_connection_id = azuredevops_serviceendpoint_github.azure-devops-github-rw.id
+  github_service_connection_id = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_rw_id
+  path                         = "${local.domain}\\pagopa-gpd-core"
 
   variables = merge(
     local.pagopa-debt-position-variables,
@@ -155,10 +158,16 @@ module "pagopa-debt-position_deploy" {
   )
 
   service_connection_ids_authorization = [
-    azuredevops_serviceendpoint_github.azure-devops-github-ro.id,
-    azuredevops_serviceendpoint_azurerm.DEV-SERVICE-CONN.id,
-    azuredevops_serviceendpoint_azurerm.UAT-SERVICE-CONN.id,
-    azuredevops_serviceendpoint_azurerm.PROD-SERVICE-CONN.id,
+    data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_ro_id,
+    data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_dev_id,
+    data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_uat_id,
+    data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_prod_id,
+    data.terraform_remote_state.app.outputs.service_endpoint_azure_dev_id,
+    data.terraform_remote_state.app.outputs.service_endpoint_azure_uat_id,
+    data.terraform_remote_state.app.outputs.service_endpoint_azure_prod_id,
+    module.DEV-APPINSIGHTS-SERVICE-CONN.service_endpoint_id,
+    module.UAT-APPINSIGHTS-SERVICE-CONN.service_endpoint_id,
+    module.PROD-APPINSIGHTS-SERVICE-CONN.service_endpoint_id
   ]
 }
 
@@ -166,10 +175,10 @@ module "pagopa-debt-position_performance_test" {
   source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_generic?ref=v2.6.3"
   count  = var.pagopa-debt-position.pipeline.performance_test.enabled == true ? 1 : 0
 
-  project_id                   = azuredevops_project.project.id
+  project_id                   = data.azuredevops_project.project.id
   repository                   = var.pagopa-debt-position.repository
-  github_service_connection_id = azuredevops_serviceendpoint_github.azure-devops-github-rw.id
-  path                         = var.pagopa-debt-position.repository.name
+  github_service_connection_id = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_rw_id
+  path                         = "${local.domain}\\pagopa-gpd-core"
   pipeline_name                = var.pagopa-debt-position.pipeline.performance_test.name
   pipeline_yml_filename        = var.pagopa-debt-position.pipeline.performance_test.pipeline_yml_filename
 
@@ -184,6 +193,6 @@ module "pagopa-debt-position_performance_test" {
   )
 
   service_connection_ids_authorization = [
-    azuredevops_serviceendpoint_github.azure-devops-github-ro.id
+    data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_ro_id,
   ]
 }
