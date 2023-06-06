@@ -113,12 +113,14 @@ locals {
 }
 
 module "pagopa-debt-position_code_review" {
-  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review?ref=v2.0.4"
+  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review?ref=v2.2.0"
   count  = var.pagopa-debt-position.pipeline.enable_code_review == true ? 1 : 0
 
   project_id                   = data.azuredevops_project.project.id
   repository                   = var.pagopa-debt-position.repository
   github_service_connection_id = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_pr_id
+  path                         = "${local.domain}\\pagopa-gpd-core"
+
 
   variables = merge(
     local.pagopa-debt-position-variables,
@@ -137,12 +139,13 @@ module "pagopa-debt-position_code_review" {
 }
 
 module "pagopa-debt-position_deploy" {
-  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy?ref=v2.0.4"
+  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy?ref=v2.2.0"
   count  = var.pagopa-debt-position.pipeline.enable_deploy == true ? 1 : 0
 
   project_id                   = data.azuredevops_project.project.id
   repository                   = var.pagopa-debt-position.repository
   github_service_connection_id = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_rw_id
+  path                         = "${local.domain}\\pagopa-gpd-core"
 
   variables = merge(
     local.pagopa-debt-position-variables,
@@ -175,7 +178,7 @@ module "pagopa-debt-position_performance_test" {
   project_id                   = data.azuredevops_project.project.id
   repository                   = var.pagopa-debt-position.repository
   github_service_connection_id = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_rw_id
-  path                         = var.pagopa-debt-position.repository.name
+  path                         = "${local.domain}\\pagopa-gpd-core"
   pipeline_name                = var.pagopa-debt-position.pipeline.performance_test.name
   pipeline_yml_filename        = var.pagopa-debt-position.pipeline.performance_test.pipeline_yml_filename
 
