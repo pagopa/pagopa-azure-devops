@@ -62,7 +62,7 @@ locals {
     # aks section
     dev_kubernetes_service_conn  = azuredevops_serviceendpoint_kubernetes.aks_dev.id
     uat_kubernetes_service_conn  = azuredevops_serviceendpoint_kubernetes.aks_uat.id
-    prod_kubernetes_service_conn = azuredevops_serviceendpoint_kubernetes.service_endpoint_azure_devops_acr_aks_prod_id.id
+    prod_kubernetes_service_conn = azuredevops_serviceendpoint_kubernetes.aks_prod.id
 
     dev_container_namespace  = "pagopadcommonacr.azurecr.io"
     uat_container_namespace  = "pagopaucommonacr.azurecr.io"
@@ -75,6 +75,7 @@ locals {
     notifications_service_testing_mail_dev    = module.ecommerce_dev_secrets.values["notifications-service-testing-mail"].value
     notifications_service_testing_api_key_uat = module.ecommerce_uat_secrets.values["notifications-service-testing-api-key"].value
     notifications_service_testing_mail_uat    = module.ecommerce_uat_secrets.values["notifications-service-testing-mail"].value
+    approve_touchpoint_mail                   = module.ecommerce_prod_secrets.values["touchpoint-mail"].value
   }
 }
 
