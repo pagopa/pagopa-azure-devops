@@ -51,16 +51,18 @@ locals {
     tenant_id         = module.secrets.values["TENANTID"].value
 
     # acr section
-    dev_container_registry_service_conn = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_dev_id
-    uat_container_registry_service_conn = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_uat_id
-    k8s_image_repository_name           = replace(var.pagopa-notifications-service.repository.name, "-", "")
-    dev_container_registry_name         = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_dev_name
-    uat_container_registry_name         = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_uat_name
-    # prod_container_registry = azuredevops_serviceendpoint_azurecr.acr_aks_prod.service_endpoint_name
+    dev_container_registry_service_conn  = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_dev_id
+    uat_container_registry_service_conn  = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_uat_id
+    prod_container_registry_service_conn = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_prod_id
+    k8s_image_repository_name            = replace(var.pagopa-notifications-service.repository.name, "-", "")
+    dev_container_registry_name          = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_dev_name
+    uat_container_registry_name          = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_uat_name
+    prod_container_registry_name         = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_prod_name
 
     # aks section
-    dev_kubernetes_service_conn = azuredevops_serviceendpoint_kubernetes.aks_dev.id
-    uat_kubernetes_service_conn = azuredevops_serviceendpoint_kubernetes.aks_uat.id
+    dev_kubernetes_service_conn  = azuredevops_serviceendpoint_kubernetes.aks_dev.id
+    uat_kubernetes_service_conn  = azuredevops_serviceendpoint_kubernetes.aks_uat.id
+    prod_kubernetes_service_conn = azuredevops_serviceendpoint_kubernetes.service_endpoint_azure_devops_acr_aks_prod_id.id
 
     dev_container_namespace  = "pagopadcommonacr.azurecr.io"
     uat_container_namespace  = "pagopaucommonacr.azurecr.io"
