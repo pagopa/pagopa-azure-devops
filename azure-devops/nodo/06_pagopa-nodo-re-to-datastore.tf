@@ -20,8 +20,8 @@ variable "pagopa-nodo-re-to-datastore" {
         # TODO azure devops terraform provider does not support SonarCloud service endpoint
         service_connection = "SONARCLOUD-SERVICE-CONN"
         org                = "pagopa"
-        project_key        = "pagopa_pagopa-nodo4-nodo-dei-pagamenti"
-        project_name       = "pagopa-nodo4-nodo-dei-pagamenti"
+        project_key        = "pagopa_pagopa-nodo-re-to-datastore"
+        project_name       = "pagopa-nodo-re-to-datastore"
       }
     }
   }
