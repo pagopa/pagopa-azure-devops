@@ -8,16 +8,9 @@ variable "pagopa-nodo-re-to-datastore" {
       yml_prefix_name = null
     }
     pipeline = {
-      # TODO to be replaced by the configuration under commented
-      integration_test = {
-        enabled               = true
-        name                  = "gpd-reporting-services.integration-test"
-        pipeline_yml_filename = "integration-test-pipelines.yml"
-      }
       enable_code_review = true
       enable_deploy      = true
       sonarcloud = {
-        # TODO azure devops terraform provider does not support SonarCloud service endpoint
         service_connection = "SONARCLOUD-SERVICE-CONN"
         org                = "pagopa"
         project_key        = "pagopa_pagopa-nodo-re-to-datastore"
