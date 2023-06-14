@@ -12,6 +12,10 @@
 
 | Name | Source | Version |
 |------|--------|---------|
+| <a name="module_aca_dev_secrets"></a> [aca\_dev\_secrets](#module\_aca\_dev\_secrets) | git::https://github.com/pagopa/azurerm.git//key_vault_secrets_query | v2.18.9 |
+| <a name="module_aca_iac_code_review"></a> [aca\_iac\_code\_review](#module\_aca\_iac\_code\_review) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review | v2.6.2 |
+| <a name="module_aca_iac_deploy"></a> [aca\_iac\_deploy](#module\_aca\_iac\_deploy) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy | v2.6.2 |
+| <a name="module_aca_uat_secrets"></a> [aca\_uat\_secrets](#module\_aca\_uat\_secrets) | git::https://github.com/pagopa/azurerm.git//key_vault_secrets_query | v2.18.9 |
 | <a name="module_afm_dev_secrets"></a> [afm\_dev\_secrets](#module\_afm\_dev\_secrets) | git::https://github.com/pagopa/azurerm.git//key_vault_secrets_query | v2.18.9 |
 | <a name="module_afm_iac_code_review"></a> [afm\_iac\_code\_review](#module\_afm\_iac\_code\_review) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review | v2.6.2 |
 | <a name="module_afm_iac_deploy"></a> [afm\_iac\_deploy](#module\_afm\_iac\_deploy) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy | v2.6.2 |
@@ -25,6 +29,7 @@
 | <a name="module_ecommerce_dev_secrets"></a> [ecommerce\_dev\_secrets](#module\_ecommerce\_dev\_secrets) | git::https://github.com/pagopa/azurerm.git//key_vault_secrets_query | v2.18.9 |
 | <a name="module_ecommerce_iac_code_review"></a> [ecommerce\_iac\_code\_review](#module\_ecommerce\_iac\_code\_review) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review | v2.6.2 |
 | <a name="module_ecommerce_iac_deploy"></a> [ecommerce\_iac\_deploy](#module\_ecommerce\_iac\_deploy) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy | v2.6.2 |
+| <a name="module_ecommerce_prod_secrets"></a> [ecommerce\_prod\_secrets](#module\_ecommerce\_prod\_secrets) | git::https://github.com/pagopa/azurerm.git//key_vault_secrets_query | v2.18.9 |
 | <a name="module_ecommerce_uat_secrets"></a> [ecommerce\_uat\_secrets](#module\_ecommerce\_uat\_secrets) | git::https://github.com/pagopa/azurerm.git//key_vault_secrets_query | v2.18.9 |
 | <a name="module_fdr_dev_secrets"></a> [fdr\_dev\_secrets](#module\_fdr\_dev\_secrets) | git::https://github.com/pagopa/azurerm.git//key_vault_secrets_query | v2.18.9 |
 | <a name="module_fdr_iac_code_review"></a> [fdr\_iac\_code\_review](#module\_fdr\_iac\_code\_review) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review | v2.6.2 |
@@ -83,6 +88,7 @@
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
+| <a name="input_aca_iac"></a> [aca\_iac](#input\_aca\_iac) | n/a | `map` | <pre>{<br>  "pipeline": {<br>    "enable_code_review": true,<br>    "enable_deploy": true,<br>    "path": "aca-infrastructure",<br>    "pipeline_name_prefix": "aca-infra"<br>  },<br>  "repository": {<br>    "branch_name": "refs/heads/main",<br>    "name": "pagopa-infra",<br>    "organization": "pagopa",<br>    "pipelines_path": ".devops",<br>    "yml_prefix_name": "aca"<br>  }<br>}</pre> | no |
 | <a name="input_afm_iac"></a> [afm\_iac](#input\_afm\_iac) | n/a | `map` | <pre>{<br>  "pipeline": {<br>    "enable_code_review": true,<br>    "enable_deploy": true,<br>    "path": "afm-infrastructure",<br>    "pipeline_name_prefix": "afm-infra"<br>  },<br>  "repository": {<br>    "branch_name": "refs/heads/main",<br>    "name": "pagopa-infra",<br>    "organization": "pagopa",<br>    "pipelines_path": ".devops",<br>    "yml_prefix_name": "afm"<br>  }<br>}</pre> | no |
 | <a name="input_aks_dev_platform_name"></a> [aks\_dev\_platform\_name](#input\_aks\_dev\_platform\_name) | AKS DEV platform name | `string` | n/a | yes |
 | <a name="input_aks_prod_platform_name"></a> [aks\_prod\_platform\_name](#input\_aks\_prod\_platform\_name) | AKS PROD platform name | `string` | n/a | yes |
