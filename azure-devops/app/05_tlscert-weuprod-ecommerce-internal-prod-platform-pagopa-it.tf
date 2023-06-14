@@ -31,7 +31,7 @@ locals {
     subscription_id   = module.secrets.values["PROD-SUBSCRIPTION-ID"].value
   }
   tlscert-weuprod-ecommerce-internal-prod-platform-pagopa-it-variables = {
-    KEY_VAULT_SERVICE_CONNECTION = module.PROD-ecommerce-TLS-CERT-SERVICE-CONN.service_endpoint_name
+    KEY_VAULT_SERVICE_CONNECTION = module.PROD-ECOMMERCE-TLS-CERT-SERVICE-CONN.service_endpoint_name
   }
   tlscert-weuprod-ecommerce-internal-prod-platform-pagopa-it-variables_secret = {
   }
@@ -76,7 +76,7 @@ module "tlscert-weuprod-ecommerce-internal-prod-platform-pagopa-it-cert_az" {
   )
 
   service_connection_ids_authorization = [
-    module.PROD-ecommerce-TLS-CERT-SERVICE-CONN.service_endpoint_id,
+    module.PROD-ECOMMERCE-TLS-CERT-SERVICE-CONN.service_endpoint_id,
   ]
 
   schedules = {
