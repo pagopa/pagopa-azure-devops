@@ -39,19 +39,25 @@ module "ecommerce_uat_secrets" {
     "pagopa-u-weu-uat-aks-apiserver-url",
     "ecommerce-load-test-subscription-key",
     "notifications-service-testing-api-key",
-    "notifications-service-testing-mail"
+    "notifications-service-testing-mail",
   ]
 }
 
-# module "ecommerce_prod_secrets" {
-#   source = "git::https://github.com/pagopa/azurerm.git//key_vault_secrets_query?ref=v2.0.4"
+module "ecommerce_prod_secrets" {
 
-#   resource_group = local.prod_ecommerce_key_vault_resource_group
-#   key_vault_name = local.prod_ecommerce_key_vault_name
+  providers = {
+    azurerm = azurerm.prod
+  }
 
-#   secrets = [
-#     "pagopa-p-weu-dev-aks-azure-devops-sa-token",
-#     "pagopa-p-weu-dev-aks-azure-devops-sa-cacrt",
-#     "pagopa-p-weu-dev-aks-apiserver-url"
-#   ]
-# }
+  source = "git::https://github.com/pagopa/azurerm.git//key_vault_secrets_query?ref=v2.0.4"
+
+  resource_group = local.prod_ecommerce_key_vault_resource_group
+  key_vault_name = local.prod_ecommerce_key_vault_name
+
+  secrets = [
+    "pagopa-p-weu-prod-aks-azure-devops-sa-token",
+    "pagopa-p-weu-prod-aks-azure-devops-sa-cacrt",
+    "pagopa-p-weu-prod-aks-apiserver-url",
+    "touchpoint-mail"
+  ]
+}
