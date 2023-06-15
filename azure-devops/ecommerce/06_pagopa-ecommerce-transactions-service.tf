@@ -48,19 +48,22 @@ locals {
     github_connection = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_rw_name
 
     # acr section
-    k8s_image_repository_name           = replace(var.pagopa-ecommerce-transactions-service.repository.name, "-", "")
-    dev_container_registry_service_conn = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_dev_id
-    dev_container_registry_name         = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_dev_name
-    uat_container_registry_service_conn = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_uat_id
-    uat_container_registry_name         = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_uat_name
+    k8s_image_repository_name            = replace(var.pagopa-ecommerce-transactions-service.repository.name, "-", "")
+    dev_container_registry_service_conn  = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_dev_id
+    dev_container_registry_name          = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_dev_name
+    uat_container_registry_service_conn  = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_uat_id
+    uat_container_registry_name          = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_uat_name
+    prod_container_registry_service_conn = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_prod_id
+    prod_container_registry_name         = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_prod_name
 
     # aks section
-    dev_kubernetes_service_conn = azuredevops_serviceendpoint_kubernetes.aks_dev.id
-    uat_kubernetes_service_conn = azuredevops_serviceendpoint_kubernetes.aks_uat.id
+    dev_kubernetes_service_conn  = azuredevops_serviceendpoint_kubernetes.aks_dev.id
+    uat_kubernetes_service_conn  = azuredevops_serviceendpoint_kubernetes.aks_uat.id
+    prod_kubernetes_service_conn = azuredevops_serviceendpoint_kubernetes.aks_prod.id
 
-    dev_container_namespace = "pagopadcommonacr.azurecr.io"
-    uat_container_namespace = "pagopaucommonacr.azurecr.io"
-    # prod_container_namespace = "pagopapcommonacr.azurecr.io"
+    dev_container_namespace  = "pagopadcommonacr.azurecr.io"
+    uat_container_namespace  = "pagopaucommonacr.azurecr.io"
+    prod_container_namespace = "pagopapcommonacr.azurecr.io"
 
   }
   # deploy secrets
@@ -119,9 +122,9 @@ module "pagopa-ecommerce-transactions-service_deploy" {
     data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_ro_id,
     data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_dev_id,
     data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_uat_id,
-    # azuredevops_serviceendpoint_azurecr.acr_aks_prod.id,
+    data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_prod_id,
     data.terraform_remote_state.app.outputs.service_endpoint_azure_dev_id,
     data.terraform_remote_state.app.outputs.service_endpoint_azure_uat_id,
-    # azuredevops_serviceendpoint_azurerm.PROD-SERVICE-CONN.id,
+    data.terraform_remote_state.app.outputs.service_endpoint_azure_prod_id,
   ]
 }
