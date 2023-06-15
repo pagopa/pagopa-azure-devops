@@ -40,9 +40,9 @@ locals {
   }
 
   pagopa-nodo-re-to-datastore-variables_deploy = {
-    dev_azure_subscription  = azuredevops_serviceendpoint_azurerm.DEV-SERVICE-CONN.service_endpoint_name
-    uat_azure_subscription  = azuredevops_serviceendpoint_azurerm.UAT-SERVICE-CONN.service_endpoint_name
-    prod_azure_subscription = azuredevops_serviceendpoint_azurerm.PROD-SERVICE-CONN.service_endpoint_name
+    dev_azure_subscription  = data.terraform_remote_state.app.outputs.service_endpoint_azure_dev_name
+    uat_azure_subscription  = data.terraform_remote_state.app.outputs.service_endpoint_azure_uat_name
+    prod_azure_subscription = data.terraform_remote_state.app.outputs.service_endpoint_azure_prod_name
   }
   pagopa-nodo-re-to-datastore-variables_secret_deploy = {
 
@@ -53,8 +53,8 @@ module "pagopa-nodo-re-to-datastore_code_review" {
   source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review?ref=v2.7.0"
   count  = var.pagopa-nodo-re-to-datastore.pipeline.enable_code_review == true ? 1 : 0
 
-  project_id = data.azuredevops_project.project.id
-  repository = var.pagopa-nodo-re-to-datastore.repository
+  project_id                   = data.azuredevops_project.project.id
+  repository                   = var.pagopa-nodo-re-to-datastore.repository
   github_service_connection_id = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_rw_id
   path                         = "${local.domain}\\pagopa-nodo-re-to-datastore-service"
 

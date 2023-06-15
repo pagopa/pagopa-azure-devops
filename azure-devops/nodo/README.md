@@ -33,7 +33,7 @@
 | <a name="module_pagopa-mock-psp-service_deploy"></a> [pagopa-mock-psp-service\_deploy](#module\_pagopa-mock-psp-service\_deploy) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy | v2.2.0 |
 | <a name="module_pagopa-nodo-re-to-datastore_code_review"></a> [pagopa-nodo-re-to-datastore\_code\_review](#module\_pagopa-nodo-re-to-datastore\_code\_review) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review | v2.7.0 |
 | <a name="module_pagopa-nodo-re-to-datastore_deploy"></a> [pagopa-nodo-re-to-datastore\_deploy](#module\_pagopa-nodo-re-to-datastore\_deploy) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy | v2.7.0 |
-| <a name="module_pagopa-nodo-service_code_review"></a> [pagopa-nodo-service\_code\_review](#module\_pagopa-nodo-service\_code\_review) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review | add_ci_trigger_code_review |
+| <a name="module_pagopa-nodo-service_code_review"></a> [pagopa-nodo-service\_code\_review](#module\_pagopa-nodo-service\_code\_review) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review | v2.7.0 |
 | <a name="module_pagopa-nodo-service_deploy"></a> [pagopa-nodo-service\_deploy](#module\_pagopa-nodo-service\_deploy) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy | v2.2.0 |
 | <a name="module_pagopa-nodo-service_integration_test"></a> [pagopa-nodo-service\_integration\_test](#module\_pagopa-nodo-service\_integration\_test) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_generic | v2.6.3 |
 | <a name="module_pagopa-nodo-service_performance_test"></a> [pagopa-nodo-service\_performance\_test](#module\_pagopa-nodo-service\_performance\_test) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_generic | v2.6.3 |
@@ -50,9 +50,6 @@
 | Name | Type |
 |------|------|
 | [azuredevops_environment.environments_nodo](https://registry.terraform.io/providers/microsoft/azuredevops/latest/docs/resources/environment) | resource |
-| [azuredevops_serviceendpoint_azurerm.DEV-SERVICE-CONN](https://registry.terraform.io/providers/microsoft/azuredevops/latest/docs/resources/serviceendpoint_azurerm) | resource |
-| [azuredevops_serviceendpoint_azurerm.PROD-SERVICE-CONN](https://registry.terraform.io/providers/microsoft/azuredevops/latest/docs/resources/serviceendpoint_azurerm) | resource |
-| [azuredevops_serviceendpoint_azurerm.UAT-SERVICE-CONN](https://registry.terraform.io/providers/microsoft/azuredevops/latest/docs/resources/serviceendpoint_azurerm) | resource |
 | [azuredevops_serviceendpoint_kubernetes.aks_dev](https://registry.terraform.io/providers/microsoft/azuredevops/latest/docs/resources/serviceendpoint_kubernetes) | resource |
 | [azuredevops_serviceendpoint_kubernetes.aks_prod](https://registry.terraform.io/providers/microsoft/azuredevops/latest/docs/resources/serviceendpoint_kubernetes) | resource |
 | [azuredevops_serviceendpoint_kubernetes.aks_uat](https://registry.terraform.io/providers/microsoft/azuredevops/latest/docs/resources/serviceendpoint_kubernetes) | resource |
