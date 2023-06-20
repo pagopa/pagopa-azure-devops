@@ -52,7 +52,7 @@ module "tlscert-uat-uat-wisp2-gov-pagopa-it-cert_az" {
   #tfsec:ignore:GEN003
   renew_token                  = local.tlscert_renew_token
   path                         = var.tlscert-uat-uat-wisp2-gov-pagopa-it.pipeline.path
-  github_service_connection_id = azuredevops_serviceendpoint_github.azure-devops-github-ro.id
+  github_service_connection_id = azuredevops_serviceendpoint_github.azure-devops-github-rw.id
 
   dns_record_name         = var.tlscert-uat-uat-wisp2-gov-pagopa-it.pipeline.dns_record_name
   dns_zone_name           = var.tlscert-uat-uat-wisp2-gov-pagopa-it.pipeline.dns_zone_name
@@ -77,13 +77,14 @@ module "tlscert-uat-uat-wisp2-gov-pagopa-it-cert_az" {
 
   service_connection_ids_authorization = [
     module.UAT-TLS-CERT-SERVICE-CONN.service_endpoint_id,
+    azuredevops_serviceendpoint_github.azure-devops-github-rw.id
   ]
 
   schedules = {
-    days_to_build              = ["Mon"]
+    days_to_build              = ["Tue"]
     schedule_only_with_changes = false
-    start_hours                = 16
-    start_minutes              = 35
+    start_hours                = 15
+    start_minutes              = 30
     time_zone                  = "(UTC+01:00) Amsterdam, Berlin, Bern, Rome, Stockholm, Vienna"
     branch_filter = {
       include = ["master"]
