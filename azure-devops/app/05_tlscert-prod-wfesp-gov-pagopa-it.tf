@@ -76,7 +76,8 @@ module "tlscert-prod-wfesp-pagopa-gov-it-cert_az" {
 
   service_connection_ids_authorization = [
     module.PROD-TLS-CERT-SERVICE-CONN.service_endpoint_id,
-    azuredevops_serviceendpoint_github.azure-devops-github-rw.id,
+    azuredevops_serviceendpoint_github.azure-devops-github-ro.id,
+    azuredevops_serviceendpoint_github.azure-devops-github-pr.id,
   ]
 
   schedules = {
