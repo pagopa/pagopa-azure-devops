@@ -17,8 +17,8 @@ module "DEV-APPINSIGHTS-SERVICE-CONN" {
   subscription_name = var.dev_subscription_name
 
   credential_subcription              = var.dev_subscription_name
-  credential_key_vault_name           = local.dev_mocker_key_vault_name
-  credential_key_vault_resource_group = local.dev_mocker_key_vault_resource_group
+  credential_key_vault_name           = local.dev_mock_key_vault_name
+  credential_key_vault_resource_group = local.dev_mock_key_vault_resource_group
 }
 
 data "azurerm_application_insights" "application_insights_dev" {
@@ -53,8 +53,8 @@ resource "azurerm_role_assignment" "appinsights_component_contributor_dev" {
 #   subscription_name = var.uat_subscription_name
 
 #   credential_subcription              = var.uat_subscription_name
-#   credential_key_vault_name           = local.uat_mocker_key_vault_name
-#   credential_key_vault_resource_group = local.uat_mocker_key_vault_resource_group
+#   credential_key_vault_name           = local.uat_mock_key_vault_name
+#   credential_key_vault_resource_group = local.uat_mock_key_vault_resource_group
 # }
 
 # data "azurerm_application_insights" "application_insights_uat" {

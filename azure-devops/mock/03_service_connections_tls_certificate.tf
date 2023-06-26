@@ -1,7 +1,7 @@
 #
 # DEV
 #
-module "DEV-MOCKER-TLS-CERT-SERVICE-CONN" {
+module "DEV-MOCK-TLS-CERT-SERVICE-CONN" {
 
   providers = {
     azurerm = azurerm.dev
@@ -19,15 +19,15 @@ module "DEV-MOCKER-TLS-CERT-SERVICE-CONN" {
   renew_token = local.tlscert_renew_token
 
   credential_subcription              = var.dev_subscription_name
-  credential_key_vault_name           = local.dev_mocker_key_vault_name
-  credential_key_vault_resource_group = local.dev_mocker_key_vault_resource_group
+  credential_key_vault_name           = local.dev_mock_key_vault_name
+  credential_key_vault_resource_group = local.dev_mock_key_vault_resource_group
 }
 
-resource "azurerm_key_vault_access_policy" "DEV-MOCKER-TLS-CERT-SERVICE-CONN_kv_access_policy" {
+resource "azurerm_key_vault_access_policy" "DEV-MOCK-TLS-CERT-SERVICE-CONN_kv_access_policy" {
   provider     = azurerm.dev
   key_vault_id = data.azurerm_key_vault.domain_kv_dev.id
   tenant_id    = module.secrets.values["TENANTID"].value
-  object_id    = module.DEV-MOCKER-TLS-CERT-SERVICE-CONN.service_principal_object_id
+  object_id    = module.DEV-MOCK-TLS-CERT-SERVICE-CONN.service_principal_object_id
 
   certificate_permissions = ["Get", "Import"]
 }
@@ -41,14 +41,14 @@ module "letsencrypt_dev" {
   }
   prefix            = local.prefix
   env               = "d"
-  key_vault_name    = local.dev_mocker_key_vault_name
+  key_vault_name    = local.dev_mock_key_vault_name
   subscription_name = var.dev_subscription_name
 }
 
 #
 # UAT
 #
-#module "UAT-MOCKER-TLS-CERT-SERVICE-CONN" {
+#module "UAT-MOCK-TLS-CERT-SERVICE-CONN" {
 #
 #  providers = {
 #    azurerm = azurerm.uat
@@ -66,15 +66,15 @@ module "letsencrypt_dev" {
 #  renew_token = local.tlscert_renew_token
 #
 #  credential_subcription              = var.uat_subscription_name
-#  credential_key_vault_name           = local.uat_mocker_key_vault_name
-#  credential_key_vault_resource_group = local.uat_mocker_key_vault_resource_group
+#  credential_key_vault_name           = local.uat_mock_key_vault_name
+#  credential_key_vault_resource_group = local.uat_mock_key_vault_resource_group
 #}
 #
-#resource "azurerm_key_vault_access_policy" "UAT-MOCKER-TLS-CERT-SERVICE-CONN_kv_access_policy" {
+#resource "azurerm_key_vault_access_policy" "UAT-MOCK-TLS-CERT-SERVICE-CONN_kv_access_policy" {
 #  provider     = azurerm.uat
 #  key_vault_id = data.azurerm_key_vault.domain_kv_uat.id
 #  tenant_id    = module.secrets.values["TENANTID"].value
-#  object_id    = module.UAT-MOCKER-TLS-CERT-SERVICE-CONN.service_principal_object_id
+#  object_id    = module.UAT-MOCK-TLS-CERT-SERVICE-CONN.service_principal_object_id
 #
 #  certificate_permissions = ["Get", "Import"]
 #}
@@ -88,6 +88,6 @@ module "letsencrypt_dev" {
 #  }
 #  prefix            = local.prefix
 #  env               = "u"
-#  key_vault_name    = local.uat_mocker_key_vault_name
+#  key_vault_name    = local.uat_mock_key_vault_name
 #  subscription_name = var.uat_subscription_name
 #}

@@ -1,8 +1,8 @@
 #
-# DEV MOCKER KEYVAULT
+# DEV MOCK KEYVAULT
 #
 
-module "mocker_dev_secrets" {
+module "mock_dev_secrets" {
 
   source = "git::https://github.com/pagopa/azurerm.git//key_vault_secrets_query?ref=v2.0.4"
 
@@ -10,8 +10,8 @@ module "mocker_dev_secrets" {
     azurerm = azurerm.dev
   }
 
-  resource_group = local.dev_mocker_key_vault_resource_group
-  key_vault_name = local.dev_mocker_key_vault_name
+  resource_group = local.dev_mock_key_vault_resource_group
+  key_vault_name = local.dev_mock_key_vault_name
 
   secrets = [
     "pagopa-d-weu-dev-aks-azure-devops-sa-token",
@@ -21,18 +21,18 @@ module "mocker_dev_secrets" {
 }
 
 #
-# UAT MOCKER KEYVAULT
+# UAT MOCK KEYVAULT
 #
 
-#module "mocker_uat_secrets" {
+#module "mock_uat_secrets" {
 #  source = "git::https://github.com/pagopa/azurerm.git//key_vault_secrets_query?ref=v2.0.4"
 #
 #  providers = {
 #    azurerm = azurerm.uat
 #  }
 #
-#  resource_group = local.uat_mocker_key_vault_resource_group
-#  key_vault_name = local.uat_mocker_key_vault_name
+#  resource_group = local.uat_mock_key_vault_resource_group
+#  key_vault_name = local.uat_mock_key_vault_name
 #
 #  secrets = [
 #    "pagopa-u-weu-uat-aks-azure-devops-sa-token",

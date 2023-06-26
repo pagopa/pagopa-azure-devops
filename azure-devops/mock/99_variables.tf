@@ -30,7 +30,7 @@ variable "terraform_remote_state_app" {
 locals {
   prefix           = "pagopa"
   azure_devops_org = "pagopaspa"
-  domain           = "mocker"
+  domain           = "mock"
 
   # Service connections/ End points
   srv_endpoint_github_ro = "io-azure-devops-github-ro"
@@ -48,11 +48,11 @@ locals {
 
 
   # 🔐 KV DOMAIN
-  dev_mocker_key_vault_name  = "${local.prefix}-d-${local.domain}-kv"
-  uat_mocker_key_vault_name  = "${local.prefix}-u-${local.domain}-kv"
+  dev_mock_key_vault_name  = "${local.prefix}-d-${local.domain}-kv"
+  uat_mock_key_vault_name  = "${local.prefix}-u-${local.domain}-kv"
 
-  dev_mocker_key_vault_resource_group  = "${local.prefix}-d-${local.domain}-sec-rg"
-  uat_mocker_key_vault_resource_group  = "${local.prefix}-u-${local.domain}-sec-rg"
+  dev_mock_key_vault_resource_group  = "${local.prefix}-d-${local.domain}-sec-rg"
+  uat_mock_key_vault_resource_group  = "${local.prefix}-u-${local.domain}-sec-rg"
 
   # ☁️ VNET
   dev_vnet_rg  = "${local.prefix}-d-vnet-rg"
