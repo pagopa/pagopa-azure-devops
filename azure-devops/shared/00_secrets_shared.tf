@@ -23,7 +23,8 @@ module "shared_dev_secrets" {
     "auth-d-cosmos-connection-string",
     "auth-d-integrationtest-external-subkey",
     "auth-d-integrationtest-valid-subkey",
-    "auth-d-integrationtest-invalid-subkey"
+    "auth-d-integrationtest-invalid-subkey",
+    "pdf-engine-d-perftest-subkey"
   ]
 }
 
@@ -47,8 +48,8 @@ module "shared_uat_secrets" {
     "auth-u-cosmos-connection-string",
     "auth-u-integrationtest-external-subkey",
     "auth-u-integrationtest-valid-subkey",
-    "auth-u-integrationtest-invalid-subkey"
-
+    "auth-u-integrationtest-invalid-subkey",
+    "pdf-engine-u-perftest-subkey"
   ]
 }
 

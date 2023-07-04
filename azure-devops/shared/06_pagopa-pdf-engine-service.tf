@@ -34,6 +34,8 @@ locals {
   }
   # performance secrets
   pagopa-pdf-engine-variables_secret_performance_test = {
+    DEV_SUBSCRIPTION_KEY = module.shared_dev_secrets.values["pdf-engine-d-perftest-subkey"].value
+    UAT_SUBSCRIPTION_KEY = module.shared_uat_secrets.values["pdf-engine-u-perftest-subkey"].value
   }
 
 }
