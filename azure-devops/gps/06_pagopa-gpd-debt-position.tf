@@ -8,15 +8,7 @@ variable "pagopa-debt-position" {
       yml_prefix_name = null
     }
     pipeline = {
-      enable_code_review = true
       enable_deploy      = true
-      sonarcloud = {
-        # TODO azure devops terraform provider does not support SonarCloud service endpoint
-        service_connection = "SONARCLOUD-SERVICE-CONN"
-        org                = "pagopa"
-        project_key        = "pagopa_pagopa-debt-position"
-        project_name       = "pagopa-debt-position"
-      }
       performance_test = {
         enabled               = true
         name                  = "performance-test-gpd-pipeline"
@@ -35,17 +27,6 @@ locals {
   # global secrets
   pagopa-debt-position-variables_secret = {
 
-  }
-  # code_review vars
-  pagopa-debt-position-variables_code_review = {
-    sonarcloud_service_conn = var.pagopa-debt-position.pipeline.sonarcloud.service_connection
-    sonarcloud_org          = var.pagopa-debt-position.pipeline.sonarcloud.org
-    sonarcloud_project_key  = var.pagopa-debt-position.pipeline.sonarcloud.project_key
-    sonarcloud_project_name = var.pagopa-debt-position.pipeline.sonarcloud.project_name
-  }
-  # code_review secrets
-  pagopa-debt-position-variables_secret_code_review = {
-    danger_github_api_token = "skip"
   }
   # deploy vars
   pagopa-debt-position-variables_deploy = {
@@ -110,32 +91,6 @@ locals {
     DEV_API_SUBSCRIPTION_KEY = module.gps_dev_secrets.values["gpd-api-subscription-key"].value
     UAT_API_SUBSCRIPTION_KEY = module.gps_uat_secrets.values["gpd-api-subscription-key"].value
   }
-}
-
-module "pagopa-debt-position_code_review" {
-  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review?ref=v2.2.0"
-  count  = var.pagopa-debt-position.pipeline.enable_code_review == true ? 1 : 0
-
-  project_id                   = data.azuredevops_project.project.id
-  repository                   = var.pagopa-debt-position.repository
-  github_service_connection_id = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_pr_id
-  path                         = "${local.domain}\\pagopa-gpd-core"
-
-
-  variables = merge(
-    local.pagopa-debt-position-variables,
-    local.pagopa-debt-position-variables_code_review,
-  )
-
-  variables_secret = merge(
-    local.pagopa-debt-position-variables_secret,
-    local.pagopa-debt-position-variables_secret_code_review,
-  )
-
-  service_connection_ids_authorization = [
-    data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_ro_id,
-    local.azuredevops_serviceendpoint_sonarcloud_id,
-  ]
 }
 
 module "pagopa-debt-position_deploy" {
