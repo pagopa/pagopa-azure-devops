@@ -22,7 +22,7 @@ variable "pagopa-fdr-re-to-datastore" {
 
 locals {
   pagopa-fdr-re-to-datastore-variables = {
-    default_branch = var.pagopa-nodo-service.repository.branch_name
+    default_branch = var.pagopa-fdr-re-to-datastore.repository.branch_name
   }
   pagopa-fdr-re-to-datastore-variables_secret = {
 
@@ -67,8 +67,8 @@ locals {
     TF_APPINSIGHTS_SERVICE_CONN_UAT = module.UAT-APPINSIGHTS-SERVICE-CONN.service_endpoint_name
     TF_APPINSIGHTS_RESOURCE_ID_UAT  = data.azurerm_application_insights.application_insights_uat.id
 
-    TF_APPINSIGHTS_SERVICE_CONN_PROD = module.PROD-APPINSIGHTS-SERVICE-CONN.service_endpoint_name
-    TF_APPINSIGHTS_RESOURCE_ID_PROD  = data.azurerm_application_insights.application_insights_prod.id
+    #    TF_APPINSIGHTS_SERVICE_CONN_PROD = module.PROD-APPINSIGHTS-SERVICE-CONN.service_endpoint_name
+    #    TF_APPINSIGHTS_RESOURCE_ID_PROD  = data.azurerm_application_insights.application_insights_prod.id
   }
 
   # deploy secrets
@@ -133,6 +133,6 @@ module "pagopa-fdr-re-to-datastore_deploy" {
     data.terraform_remote_state.app.outputs.service_endpoint_azure_prod_id,
     module.DEV-APPINSIGHTS-SERVICE-CONN.service_endpoint_id,
     module.UAT-APPINSIGHTS-SERVICE-CONN.service_endpoint_id,
-    module.PROD-APPINSIGHTS-SERVICE-CONN.service_endpoint_id
+    #    module.PROD-APPINSIGHTS-SERVICE-CONN.service_endpoint_id
   ]
 }
