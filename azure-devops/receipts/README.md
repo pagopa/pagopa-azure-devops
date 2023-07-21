@@ -19,6 +19,7 @@
 | <a name="module_UAT-RECEIPTS-TLS-CERT-SERVICE-CONN"></a> [UAT-RECEIPTS-TLS-CERT-SERVICE-CONN](#module\_UAT-RECEIPTS-TLS-CERT-SERVICE-CONN) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_azurerm_limited | v2.6.5 |
 | <a name="module_letsencrypt_dev"></a> [letsencrypt\_dev](#module\_letsencrypt\_dev) | git::https://github.com/pagopa/azurerm.git//letsencrypt_credential | v3.12.0 |
 | <a name="module_letsencrypt_uat"></a> [letsencrypt\_uat](#module\_letsencrypt\_uat) | git::https://github.com/pagopa/azurerm.git//letsencrypt_credential | v2.18.0 |
+| <a name="module_pagopa-receipt-pdf-datastore_performance_test"></a> [pagopa-receipt-pdf-datastore\_performance\_test](#module\_pagopa-receipt-pdf-datastore\_performance\_test) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_generic | v2.6.3 |
 | <a name="module_receipts_dev_secrets"></a> [receipts\_dev\_secrets](#module\_receipts\_dev\_secrets) | git::https://github.com/pagopa/azurerm.git//key_vault_secrets_query | v2.0.4 |
 | <a name="module_receipts_uat_secrets"></a> [receipts\_uat\_secrets](#module\_receipts\_uat\_secrets) | git::https://github.com/pagopa/azurerm.git//key_vault_secrets_query | v2.0.4 |
 | <a name="module_secrets"></a> [secrets](#module\_secrets) | git::https://github.com/pagopa/azurerm.git//key_vault_secrets_query | v2.0.4 |
@@ -44,6 +45,7 @@
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_dev_subscription_name"></a> [dev\_subscription\_name](#input\_dev\_subscription\_name) | DEV Subscription name | `string` | n/a | yes |
+| <a name="input_pagopa-receipt-pdf-datastore"></a> [pagopa-receipt-pdf-datastore](#input\_pagopa-receipt-pdf-datastore) | n/a | `map` | <pre>{<br>  "pipeline": {<br>    "enable_deploy": true,<br>    "performance_test": {<br>      "enabled": true,<br>      "name": "performance-test-receipt-pdf-datastore-pipeline",<br>      "pipeline_yml_filename": "performance-test-pipelines.yml"<br>    }<br>  },<br>  "repository": {<br>    "branch_name": "refs/heads/main",<br>    "name": "pagopa-receipt-pdf-datastore",<br>    "organization": "pagopa",<br>    "pipelines_path": ".devops",<br>    "yml_prefix_name": null<br>  }<br>}</pre> | no |
 | <a name="input_pipeline_environments"></a> [pipeline\_environments](#input\_pipeline\_environments) | List of environments pipeline to create | `list(any)` | n/a | yes |
 | <a name="input_prod_subscription_name"></a> [prod\_subscription\_name](#input\_prod\_subscription\_name) | PROD Subscription name | `string` | n/a | yes |
 | <a name="input_project_name"></a> [project\_name](#input\_project\_name) | Project name (e.g. pagoPA platform) | `string` | n/a | yes |
