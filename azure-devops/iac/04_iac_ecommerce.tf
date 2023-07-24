@@ -48,7 +48,9 @@ locals {
   # deploy vars
   ecommerce_iac_variables_deploy = {}
   # deploy secrets
-  ecommerce_iac_variables_secret_deploy = {}
+  ecommerce_iac_variables_secret_deploy = {
+    pagopa-p-azure-webhook-dashboard-creation-token = module.ecommerce_uat_secrets.values["pagopa-p-azure-webhook-dashboard-creation-token"].value
+  }
 }
 
 module "ecommerce_iac_code_review" {
