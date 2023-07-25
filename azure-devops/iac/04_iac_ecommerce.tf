@@ -49,7 +49,7 @@ locals {
   ecommerce_iac_variables_deploy = {}
   # deploy secrets
   ecommerce_iac_variables_secret_deploy = {
-    pagopa-p-azure-webhook-dashboard-creation-token = module.ecommerce_prod_secrets.values["pagopa-p-azure-webhook-dashboard-creation-token"].value
+    AZURE-DEVOPS-GITHUB-PR-TOKEN = module.secrets.values["azure-devops-github-pr-TOKEN"].value
   }
 }
 
