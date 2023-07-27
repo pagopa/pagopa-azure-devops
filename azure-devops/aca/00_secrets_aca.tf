@@ -13,7 +13,8 @@ module "aca_dev_secrets" {
     "pagopa-d-weu-dev-aks-azure-devops-sa-token",
     "pagopa-d-weu-dev-aks-azure-devops-sa-cacrt",
     "pagopa-d-weu-dev-aks-apiserver-url",
-    "aca-api-key"
+    "aca-api-key",
+    "aca-load-test-api-key"
   ]
 }
 
@@ -32,6 +33,7 @@ module "aca_uat_secrets" {
     "pagopa-u-weu-uat-aks-azure-devops-sa-token",
     "pagopa-u-weu-uat-aks-azure-devops-sa-cacrt",
     "pagopa-u-weu-uat-aks-apiserver-url",
-    "aca-api-key"
+    "aca-api-key",
+    "aca-load-test-api-key"
   ]
 }
