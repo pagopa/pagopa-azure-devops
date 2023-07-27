@@ -48,7 +48,9 @@ locals {
   # deploy vars
   ecommerce_iac_variables_deploy = {}
   # deploy secrets
-  ecommerce_iac_variables_secret_deploy = {}
+  ecommerce_iac_variables_secret_deploy = {
+    AZURE-DEVOPS-GITHUB-PR-TOKEN = module.secrets.values["azure-devops-github-pr-TOKEN"].value
+  }
 }
 
 module "ecommerce_iac_code_review" {
