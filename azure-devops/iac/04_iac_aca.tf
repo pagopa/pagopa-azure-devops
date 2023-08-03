@@ -31,11 +31,11 @@ locals {
     tf_aks_uat_name                  = var.aks_uat_platform_name
     tf_uat_azure_service_connection  = azuredevops_serviceendpoint_azurerm.UAT-SERVICE-CONN.service_endpoint_name
 
-    # tf_prod_aks_apiserver_url         = module.aca_prod_secrets.values["pagopa-p-weu-prod-aks-apiserver-url"].value,
-    # tf_prod_aks_azure_devops_sa_cacrt = module.aca_prod_secrets.values["pagopa-p-weu-prod-aks-azure-devops-sa-cacrt"].value,
-    # tf_prod_aks_azure_devops_sa_token = base64decode(module.aca_prod_secrets.values["pagopa-p-weu-prod-aks-azure-devops-sa-token"].value),
-    # tf_aks_prod_name                  = var.aks_prod_platform_name
-    tf_prod_azure_service_connection = azuredevops_serviceendpoint_azurerm.PROD-SERVICE-CONN.service_endpoint_name
+    tf_prod_aks_apiserver_url         = "DONT_DEPLOY_module.aca_prod_secrets.values[\"pagopa-p-weu-prod-aks-apiserver-url\"].value",
+    tf_prod_aks_azure_devops_sa_cacrt = "DONT_DEPLOY_module.aca_prod_secrets.values[\"pagopa-p-weu-prod-aks-azure-devops-sa-cacrt\"].value}",
+    tf_prod_aks_azure_devops_sa_token = "DONT_DEPLOY_module.aca_prod_secrets.values[\"pagopa-p-weu-prod-aks-azure-devops-sa-token\"].value",
+    tf_aks_prod_name                  = "DONT_DEPLOY_var.aks_prod_platform_name"
+    tf_prod_azure_service_connection  = "DONT_DEPLOY_azuredevops_serviceendpoint_azurerm.PROD-SERVICE-CONN.service_endpoint_name"
   }
   # global secrets
   aca_iac_variables_secret = {}

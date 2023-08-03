@@ -48,15 +48,15 @@ locals {
 
 
   # 🔐 KV DOMAIN
-  dev_mock_key_vault_name  = "${local.prefix}-d-${local.domain}-kv"
-  uat_mock_key_vault_name  = "${local.prefix}-u-${local.domain}-kv"
+  dev_mock_key_vault_name = "${local.prefix}-d-${local.domain}-kv"
+  uat_mock_key_vault_name = "${local.prefix}-u-${local.domain}-kv"
 
-  dev_mock_key_vault_resource_group  = "${local.prefix}-d-${local.domain}-sec-rg"
-  uat_mock_key_vault_resource_group  = "${local.prefix}-u-${local.domain}-sec-rg"
+  dev_mock_key_vault_resource_group = "${local.prefix}-d-${local.domain}-sec-rg"
+  uat_mock_key_vault_resource_group = "${local.prefix}-u-${local.domain}-sec-rg"
 
   # ☁️ VNET
-  dev_vnet_rg  = "${local.prefix}-d-vnet-rg"
-  uat_vnet_rg  = "${local.prefix}-u-vnet-rg"
+  dev_vnet_rg = "${local.prefix}-d-vnet-rg"
+  uat_vnet_rg = "${local.prefix}-u-vnet-rg"
 
   # 📦 ACR DEV FOR AKS
   srv_endpoint_name_aks_cr_dev = "${local.prefix}-aks-cr-dev"
@@ -70,8 +70,8 @@ locals {
 
   settings_xml_ro_secure_file_name = "settings-ro.xml"
 
-  srv_endpoint_name_aks_dev  = "${local.prefix}-${local.domain}-aks-dev"
-  srv_endpoint_name_aks_uat  = "${local.prefix}-${local.domain}-aks-uat"
+  srv_endpoint_name_aks_dev = "${local.prefix}-${local.domain}-aks-dev"
+  srv_endpoint_name_aks_uat = "${local.prefix}-${local.domain}-aks-uat"
 
   #tfsec:ignore:general-secrets-no-plaintext-exposure
   #tfsec:ignore:GEN002
@@ -80,9 +80,9 @@ locals {
   # TODO azure devops terraform provider does not support SonarCloud service endpoint
   azuredevops_serviceendpoint_sonarcloud_id = "9182be64-d387-465d-9acc-e79e802910c8"
 
-  appinsights_renew_token         = "v1"
-  dev_appinsights_name            = "${local.prefix}-d-appinsights"
-  uat_appinsights_name            = "${local.prefix}-u-appinsights"
-  dev_appinsights_resource_group  = "${local.prefix}-d-monitor-rg"
-  uat_appinsights_resource_group  = "${local.prefix}-u-monitor-rg"
+  appinsights_renew_token        = "v1"
+  dev_appinsights_name           = "${local.prefix}-d-appinsights"
+  uat_appinsights_name           = "${local.prefix}-u-appinsights"
+  dev_appinsights_resource_group = "${local.prefix}-d-monitor-rg"
+  uat_appinsights_resource_group = "${local.prefix}-u-monitor-rg"
 }
