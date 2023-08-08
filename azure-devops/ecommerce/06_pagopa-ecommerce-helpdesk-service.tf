@@ -61,9 +61,9 @@ locals {
     uat_kubernetes_service_conn  = azuredevops_serviceendpoint_kubernetes.aks_uat.id
     prod_kubernetes_service_conn = azuredevops_serviceendpoint_kubernetes.aks_prod.id
 
-    dev_container_namespace  = "pagopadcommonacr.azurecr.io"
-    uat_container_namespace  = "pagopaucommonacr.azurecr.io"
-    prod_container_namespace = "pagopapcommonacr.azurecr.io"
+    dev_container_namespace  = local.aks_cr_namespace_dev
+    uat_container_namespace  = local.aks_cr_namespace_uat
+    prod_container_namespace = local.aks_cr_namespace_prod
 
   }
   # deploy secrets
