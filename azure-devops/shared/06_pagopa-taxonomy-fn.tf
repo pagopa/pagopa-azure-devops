@@ -33,7 +33,6 @@ locals {
     sonarcloud_org          = var.pagopa-taxonomy.pipeline.sonarcloud.org
     sonarcloud_project_key  = var.pagopa-taxonomy.pipeline.sonarcloud.project_key
     sonarcloud_project_name = var.pagopa-taxonomy.pipeline.sonarcloud.project_name
-    # nodo4 variables of cd pipeline
   }
   pagopa-taxonomy-variables_secret_code_review = {
   }
@@ -67,8 +66,8 @@ locals {
     TF_APPINSIGHTS_SERVICE_CONN_UAT = module.UAT-APPINSIGHTS-SERVICE-CONN.service_endpoint_name
     TF_APPINSIGHTS_RESOURCE_ID_UAT  = data.azurerm_application_insights.application_insights_uat.id
 
-    #    TF_APPINSIGHTS_SERVICE_CONN_PROD = module.PROD-APPINSIGHTS-SERVICE-CONN.service_endpoint_name
-    #    TF_APPINSIGHTS_RESOURCE_ID_PROD  = data.azurerm_application_insights.application_insights_prod.id
+    TF_APPINSIGHTS_SERVICE_CONN_PROD = module.PROD-APPINSIGHTS-SERVICE-CONN.service_endpoint_name
+    TF_APPINSIGHTS_RESOURCE_ID_PROD  = data.azurerm_application_insights.application_insights_prod.id
   }
 
   # deploy secrets
@@ -106,6 +105,6 @@ module "pagopa-taxonomy_deploy" {
     data.terraform_remote_state.app.outputs.service_endpoint_azure_prod_id,
     module.DEV-APPINSIGHTS-SERVICE-CONN.service_endpoint_id,
     module.UAT-APPINSIGHTS-SERVICE-CONN.service_endpoint_id,
-    #    module.PROD-APPINSIGHTS-SERVICE-CONN.service_endpoint_id
+    module.PROD-APPINSIGHTS-SERVICE-CONN.service_endpoint_id
   ]
 }
