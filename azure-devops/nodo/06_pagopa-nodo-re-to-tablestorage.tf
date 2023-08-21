@@ -50,6 +50,10 @@ locals {
     dev_container_registry_service_conn  = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_dev_id
     uat_container_registry_service_conn  = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_uat_id
     prod_container_registry_service_conn = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_prod_id
+
+    dev_container_namespace  = "pagopadcommonacr.azurecr.io"
+    uat_container_namespace  = "pagopaucommonacr.azurecr.io"
+    prod_container_namespace = "pagopapcommonacr.azurecr.io"
   }
   pagopa-nodo-re-to-tablestorage-variables_secret_deploy = {
 
