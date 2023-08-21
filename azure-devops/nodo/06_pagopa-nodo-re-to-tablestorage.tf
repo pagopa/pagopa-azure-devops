@@ -33,7 +33,6 @@ locals {
     sonarcloud_org          = var.pagopa-nodo-re-to-tablestorage.pipeline.sonarcloud.org
     sonarcloud_project_key  = var.pagopa-nodo-re-to-tablestorage.pipeline.sonarcloud.project_key
     sonarcloud_project_name = var.pagopa-nodo-re-to-tablestorage.pipeline.sonarcloud.project_name
-    # nodo4 variables of cd pipeline
   }
   pagopa-nodo-re-to-tablestorage-variables_secret_code_review = {
 
@@ -43,6 +42,20 @@ locals {
     dev_azure_subscription  = data.terraform_remote_state.app.outputs.service_endpoint_azure_dev_name
     uat_azure_subscription  = data.terraform_remote_state.app.outputs.service_endpoint_azure_uat_name
     prod_azure_subscription = data.terraform_remote_state.app.outputs.service_endpoint_azure_prod_name
+
+    git_email         = module.secrets.values["azure-devops-github-EMAIL"].value
+    git_username      = module.secrets.values["azure-devops-github-USERNAME"].value
+    github_connection = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_rw_name
+
+    dev_container_registry_service_conn  = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_dev_id
+    uat_container_registry_service_conn  = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_uat_id
+    prod_container_registry_service_conn = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_prod_id
+
+    image_repository_name = replace(var.pagopa-nodo-re-to-tablestorage.repository.name, "-", "")
+
+    dev_container_namespace  = "pagopadcommonacr.azurecr.io"
+    uat_container_namespace  = "pagopaucommonacr.azurecr.io"
+    prod_container_namespace = "pagopapcommonacr.azurecr.io"
   }
   pagopa-nodo-re-to-tablestorage-variables_secret_deploy = {
 
