@@ -33,7 +33,6 @@ locals {
     sonarcloud_org          = var.pagopa-nodo-re-to-tablestorage.pipeline.sonarcloud.org
     sonarcloud_project_key  = var.pagopa-nodo-re-to-tablestorage.pipeline.sonarcloud.project_key
     sonarcloud_project_name = var.pagopa-nodo-re-to-tablestorage.pipeline.sonarcloud.project_name
-    # nodo4 variables of cd pipeline
   }
   pagopa-nodo-re-to-tablestorage-variables_secret_code_review = {
 
@@ -43,6 +42,10 @@ locals {
     dev_azure_subscription  = data.terraform_remote_state.app.outputs.service_endpoint_azure_dev_name
     uat_azure_subscription  = data.terraform_remote_state.app.outputs.service_endpoint_azure_uat_name
     prod_azure_subscription = data.terraform_remote_state.app.outputs.service_endpoint_azure_prod_name
+
+    git_email         = module.secrets.values["azure-devops-github-EMAIL"].value
+    git_username      = module.secrets.values["azure-devops-github-USERNAME"].value
+    github_connection = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_rw_name
   }
   pagopa-nodo-re-to-tablestorage-variables_secret_deploy = {
 
