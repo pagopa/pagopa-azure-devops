@@ -51,7 +51,7 @@ if echo "init plan apply refresh import output state taint destroy" | grep -w "$
   elif [ "$ACTION" = "output" ] || [ "$ACTION" = "state" ] || [ "$ACTION" = "taint" ]; then
     # init terraform backend
     terraform init -reconfigure -backend-config="${BACKEND_CONFIG_PATH}"
-    terraform "$ACTION" "$other"
+    terraform "$ACTION" $other
   else
     # init terraform backend
     echo "[INFO] init tf on folder $(pwd)"
