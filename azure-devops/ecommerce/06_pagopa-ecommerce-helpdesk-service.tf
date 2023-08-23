@@ -71,6 +71,8 @@ locals {
     git_mail     = module.secrets.values["azure-devops-github-EMAIL"].value
     git_username = module.secrets.values["azure-devops-github-USERNAME"].value
     tenant_id    = module.secrets.values["TENANTID"].value
+    helpdesk_testing_api_key_dev = module.ecommerce_dev_secrets.values["helpdesk-service-testing-api-key"].value
+    helpdesk_testing_api_key_uat = module.ecommerce_uat_secrets.values["helpdesk-service-testing-api-key"].value
   }
 }
 
