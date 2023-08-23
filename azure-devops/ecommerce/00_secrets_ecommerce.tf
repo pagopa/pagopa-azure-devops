@@ -19,7 +19,9 @@ module "ecommerce_dev_secrets" {
     "pagopa-d-weu-dev-aks-apiserver-url",
     "notifications-service-testing-api-key",
     "notifications-service-testing-mail",
-    "helpdesk-service-testing-api-key"
+    "helpdesk-service-testing-api-key",
+    "helpdesk-service-testing-email",
+    "helpdesk-service-testing-fiscalCode"
   ]
 }
 
@@ -41,7 +43,9 @@ module "ecommerce_uat_secrets" {
     "ecommerce-load-test-subscription-key",
     "notifications-service-testing-api-key",
     "notifications-service-testing-mail",
-    "helpdesk-service-testing-api-key"
+    "helpdesk-service-testing-api-key",
+    "helpdesk-service-testing-email",
+    "helpdesk-service-testing-fiscalCode"
   ]
 }
 
