@@ -18,7 +18,10 @@ module "receipts_dev_secrets" {
     "pagopa-d-weu-dev-aks-azure-devops-sa-cacrt",
     "pagopa-d-weu-dev-aks-apiserver-url",
     "cosmos-bizevent-pkey",
-    "cosmos-receipt-pkey"
+    "cosmos-receipt-pkey",
+    "cosmos-receipt-connection-string",
+    "receipts-storage-account-connection-string",
+    "apikey-service-receipt"
   ]
 }
 
@@ -41,7 +44,10 @@ module "receipts_uat_secrets" {
     "pagopa-u-weu-uat-aks-azure-devops-sa-cacrt",
     "pagopa-u-weu-uat-aks-apiserver-url",
     "cosmos-bizevent-pkey",
-    "cosmos-receipt-pkey"
+    "cosmos-receipt-pkey",
+    "cosmos-receipt-connection-string",
+    "receipts-storage-account-connection-string",
+    "apikey-service-receipt"
   ]
 }
 
