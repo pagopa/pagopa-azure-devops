@@ -109,6 +109,3 @@ module "iac_core_deploy" {
     azuredevops_serviceendpoint_azurerm.PROD-SERVICE-CONN.id,
   ]
 }
-
-
-
