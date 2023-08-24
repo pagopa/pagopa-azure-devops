@@ -14,7 +14,7 @@ variable "switcher_iac" {
   }
 }
 
-  locals {
+locals {
   # deploy vars
   iac-variables_switcher = {
     TF_AZURE_SERVICE_CONNECTION_NAME = azuredevops_serviceendpoint_azurerm.DEV-SERVICE-CONN.service_endpoint_name
@@ -61,7 +61,7 @@ module "iac_resource_switcher" {
 
   schedule_configuration = {
     days_to_build = ["Mon", "Tue", "Wed", "Thu", "Fri"]
-    timezone = "(UTC+01:00) Amsterdam, Berlin, Bern, Rome, Stockholm, Vienna"
+    timezone      = "(UTC+01:00) Amsterdam, Berlin, Bern, Rome, Stockholm, Vienna"
     branch_filter = {
       include = ["main"]
       exclude = []
@@ -69,30 +69,30 @@ module "iac_resource_switcher" {
     aks = [
       {
         cluster_name = "pagopa-d-neu-dev-aks"
-        rg = "pagopa-d-neu-dev-aks-rg"
-        start_time = "08:00"
-        stop_time = "20:00"
+        rg           = "pagopa-d-neu-dev-aks-rg"
+        start_time   = "08:00"
+        stop_time    = "20:00"
         user = {
           nodes_on_start = "1,5"
-          nodes_on_stop = "0,0"
+          nodes_on_stop  = "0,0"
         }
         system = {
           nodes_on_start = "1,3"
-          nodes_on_stop = "1,1"
+          nodes_on_stop  = "1,1"
         }
       },
       {
         cluster_name = "pagopa-d-weu-dev-aks"
-        rg = "pagopa-d-weu-dev-aks-rg"
-        start_time = "08:00"
-        stop_time = "20:00"
+        rg           = "pagopa-d-weu-dev-aks-rg"
+        start_time   = "08:00"
+        stop_time    = "20:00"
         user = {
           nodes_on_start = "1,5"
-          nodes_on_stop = "0,0"
+          nodes_on_stop  = "0,0"
         }
         system = {
           nodes_on_start = "1,3"
-          nodes_on_stop = "1,1"
+          nodes_on_stop  = "1,1"
         }
       }
     ]
