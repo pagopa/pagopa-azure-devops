@@ -35,7 +35,7 @@ module "iac_resource_switcher" {
     azurerm = azurerm.dev
   }
 
-  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_resource_switcher?ref=v3.8.0"
+  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_resource_switcher?ref=v3.9.0"
   path   = var.switcher_iac.pipeline.path
 
   project_id                   = azuredevops_project.project.id
@@ -53,6 +53,7 @@ module "iac_resource_switcher" {
 
   )
 
+  timeout = 50
 
   service_connection_ids_authorization = [
     azuredevops_serviceendpoint_github.azure-devops-github-ro.id,
@@ -72,6 +73,7 @@ module "iac_resource_switcher" {
         rg           = "pagopa-d-neu-dev-aks-rg"
         start_time   = "08:00"
         stop_time    = "20:00"
+        force        = true
         user = {
           nodes_on_start = "1,5"
           nodes_on_stop  = "0,0"
@@ -86,6 +88,7 @@ module "iac_resource_switcher" {
         rg           = "pagopa-d-weu-dev-aks-rg"
         start_time   = "08:00"
         stop_time    = "20:00"
+        force        = true
         user = {
           nodes_on_start = "1,5"
           nodes_on_stop  = "0,0"
