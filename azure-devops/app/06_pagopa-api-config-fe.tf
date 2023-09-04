@@ -60,29 +60,29 @@ locals {
     uat_apiconfig_client_id  = module.secrets.values["UAT-APICONFIG-CLIENT-ID"].value
     prod_apiconfig_client_id = module.secrets.values["PROD-APICONFIG-CLIENT-ID"].value
 
-    dev_apiconfig_api_host                 = "https://api.dev.platform.pagopa.it"
-    dev_endpoint_azure                     = "pagopa-d-api-config-fe-cdn-endpoint"
-    dev_profile_name_cdn_azure             = "pagopa-d-api-config-fe-cdn-profile"
-    dev_storage_account_name               = "pagopadapiconfigfesa"
-    dev_storage_account_key                = module.pagopa-api-config_dev_secrets.values["api-config-fe-storage-account-key"].value
+    dev_apiconfig_api_host     = "https://api.dev.platform.pagopa.it"
+    dev_endpoint_azure         = "pagopa-d-api-config-fe-cdn-endpoint"
+    dev_profile_name_cdn_azure = "pagopa-d-api-config-fe-cdn-profile"
+    dev_storage_account_name   = "pagopadapiconfigfesa"
+    # dev_storage_account_key                = module.pagopa-api-config_dev_secrets.values["api-config-fe-storage-account-key"].value
     dev_resource_group_azure               = "pagopa-d-api-config-fe-rg"
     dev_azure_subscription_storage_account = "DEV-PAGOPA-SERVICE-CONN"
     dev_apiconfig_redirect_uri             = "https://config.dev.platform.pagopa.it/",
 
-    uat_apiconfig_api_host                 = "https://api.uat.platform.pagopa.it"
-    uat_endpoint_azure                     = "pagopa-u-api-config-fe-cdn-endpoint"
-    uat_profile_name_cdn_azure             = "pagopa-u-api-config-fe-cdn-profile"
-    uat_storage_account_name               = "pagopauapiconfigfesa"
-    uat_storage_account_key                = module.pagopa-api-config_uat_secrets.values["api-config-fe-storage-account-key"].value
+    uat_apiconfig_api_host     = "https://api.uat.platform.pagopa.it"
+    uat_endpoint_azure         = "pagopa-u-api-config-fe-cdn-endpoint"
+    uat_profile_name_cdn_azure = "pagopa-u-api-config-fe-cdn-profile"
+    uat_storage_account_name   = "pagopauapiconfigfesa"
+    # uat_storage_account_key                = module.pagopa-api-config_uat_secrets.values["api-config-fe-storage-account-key"].value
     uat_resource_group_azure               = "pagopa-u-api-config-fe-rg"
     uat_azure_subscription_storage_account = "UAT-PAGOPA-SERVICE-CONN"
     uat_apiconfig_redirect_uri             = "https://config.uat.platform.pagopa.it/",
 
-    prod_apiconfig_api_host                 = "https://api.platform.pagopa.it"
-    prod_endpoint_azure                     = "pagopa-p-api-config-fe-cdn-endpoint"
-    prod_profile_name_cdn_azure             = "pagopa-p-api-config-fe-cdn-profile"
-    prod_storage_account_name               = "pagopapapiconfigfesa"
-    prod_storage_account_key                = module.pagopa-api-config_prod_secrets.values["api-config-fe-storage-account-key"].value
+    prod_apiconfig_api_host     = "https://api.platform.pagopa.it"
+    prod_endpoint_azure         = "pagopa-p-api-config-fe-cdn-endpoint"
+    prod_profile_name_cdn_azure = "pagopa-p-api-config-fe-cdn-profile"
+    prod_storage_account_name   = "pagopapapiconfigfesa"
+    # prod_storage_account_key                = module.pagopa-api-config_prod_secrets.values["api-config-fe-storage-account-key"].value
     prod_resource_group_azure               = "pagopa-p-api-config-fe-rg"
     prod_azure_subscription_storage_account = "PROD-PAGOPA-SERVICE-CONN"
     prod_apiconfig_redirect_uri             = "https://config.platform.pagopa.it/",

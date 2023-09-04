@@ -13,20 +13,20 @@ module "pagopa-node-forwarder_uat_secrets" {
   ]
 }
 
-module "pagopa-api-config_uat_secrets" {
-  source = "git::https://github.com/pagopa/azurerm.git//key_vault_secrets_query?ref=v2.0.4"
+# module "pagopa-api-config_uat_secrets" {
+#   source = "git::https://github.com/pagopa/azurerm.git//key_vault_secrets_query?ref=v2.0.4"
 
-  providers = {
-    azurerm = azurerm.uat
-  }
+#   providers = {
+#     azurerm = azurerm.uat
+#   }
 
-  resource_group = local.uat_key_vault_resource_group
-  key_vault_name = local.uat_key_vault_name
+#   resource_group = local.uat_key_vault_resource_group
+#   key_vault_name = local.uat_key_vault_name
 
-  secrets = [
-    "api-config-fe-storage-account-key"
-  ]
-}
+#   secrets = [
+#     "api-config-fe-storage-account-key"
+#   ]
+# }
 
 module "pagopa-debt-position_uat_secrets" {
   source = "git::https://github.com/pagopa/azurerm.git//key_vault_secrets_query?ref=v2.0.4"

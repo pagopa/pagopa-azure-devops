@@ -44,17 +44,17 @@ module "secrets" {
   ]
 }
 
-module "pagopa-api-config_prod_secrets" {
-  source = "git::https://github.com/pagopa/azurerm.git//key_vault_secrets_query?ref=v2.0.4"
+# module "pagopa-api-config_prod_secrets" {
+#   source = "git::https://github.com/pagopa/azurerm.git//key_vault_secrets_query?ref=v2.0.4"
 
-  providers = {
-    azurerm = azurerm.prod
-  }
+#   providers = {
+#     azurerm = azurerm.prod
+#   }
 
-  resource_group = local.prod_key_vault_resource_group
-  key_vault_name = local.prod_key_vault_name
+#   resource_group = local.prod_key_vault_resource_group
+#   key_vault_name = local.prod_key_vault_name
 
-  secrets = [
-    "api-config-fe-storage-account-key"
-  ]
-}
+#   secrets = [
+#     "api-config-fe-storage-account-key"
+#   ]
+# }
