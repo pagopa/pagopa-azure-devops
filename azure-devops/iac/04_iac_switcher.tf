@@ -89,6 +89,7 @@ module "iac_resource_switcher" {
         start_time   = "08:00"
         stop_time    = "20:00"
         force        = true
+        node_pool_exclusions = ["elastic01"]
         user = {
           nodes_on_start = "1,5"
           nodes_on_stop  = "0,0"
