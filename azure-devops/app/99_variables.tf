@@ -52,10 +52,6 @@ locals {
   uat_afm_key_vault_name  = "${local.prefix}-u-afm-kv"
   prod_afm_key_vault_name = "${local.prefix}-p-afm-kv"
 
-  dev_biz_events_key_vault_name  = "${local.prefix}-d-bizevents-kv"
-  uat_biz_events_key_vault_name  = "${local.prefix}-u-bizevents-kv"
-  prod_biz_events_key_vault_name = "${local.prefix}-p-bizevents-kv"
-
   dev_kibana_key_vault_name  = "${local.prefix}-d-elk-kv"
   uat_kibana_key_vault_name  = "${local.prefix}-u-elk-kv"
   prod_kibana_key_vault_name = "${local.prefix}-p-elk-kv"
@@ -81,9 +77,6 @@ locals {
   uat_afm_key_vault_resource_group  = "${local.prefix}-u-afm-sec-rg"
   prod_afm_key_vault_resource_group = "${local.prefix}-p-afm-sec-rg"
 
-  dev_biz_events_key_vault_resource_group  = "${local.prefix}-d-bizevents-sec-rg"
-  uat_biz_events_key_vault_resource_group  = "${local.prefix}-u-bizevents-sec-rg"
-  prod_biz_events_key_vault_resource_group = "${local.prefix}-p-bizevents-sec-rg"
 
   dev_kibana_key_vault_resource_group  = "${local.prefix}-d-elk-sec-rg"
   uat_kibana_key_vault_resource_group  = "${local.prefix}-u-elk-sec-rg"

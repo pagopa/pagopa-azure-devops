@@ -46,13 +46,13 @@ module "tlscert-weuprod-biz-events-service-internal-prod-platform-pagopa-it-cert
   source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_tls_cert?ref=v2.6.5"
   count  = var.tlscert-weuprod-biz-events-service-internal-prod-platform-pagopa-it.pipeline.enable_tls_cert == true ? 1 : 0
 
-  project_id = azuredevops_project.project.id
+  project_id = data.azuredevops_project.project.id
   repository = var.tlscert-weuprod-biz-events-service-internal-prod-platform-pagopa-it.repository
   name       = "${var.tlscert-weuprod-biz-events-service-internal-prod-platform-pagopa-it.pipeline.dns_record_name}.${var.tlscert-weuprod-biz-events-service-internal-prod-platform-pagopa-it.pipeline.dns_zone_name}"
   #tfsec:ignore:GEN003
   renew_token                  = local.tlscert_renew_token
   path                         = var.tlscert-weuprod-biz-events-service-internal-prod-platform-pagopa-it.pipeline.path
-  github_service_connection_id = azuredevops_serviceendpoint_github.azure-devops-github-ro.id
+  github_service_connection_id = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_rw_id
 
   dns_record_name         = var.tlscert-weuprod-biz-events-service-internal-prod-platform-pagopa-it.pipeline.dns_record_name
   dns_zone_name           = var.tlscert-weuprod-biz-events-service-internal-prod-platform-pagopa-it.pipeline.dns_zone_name
@@ -62,8 +62,8 @@ module "tlscert-weuprod-biz-events-service-internal-prod-platform-pagopa-it-cert
   subscription_id         = local.tlscert-weuprod-biz-events-service-internal-prod-platform-pagopa-it.subscription_id
 
   credential_subcription              = var.prod_subscription_name
-  credential_key_vault_name           = local.prod_biz_events_key_vault_name
-  credential_key_vault_resource_group = local.prod_biz_events_key_vault_resource_group
+  credential_key_vault_name           = local.prod_biz_key_vault_name
+  credential_key_vault_resource_group = local.prod_biz_key_vault_resource_group
 
   variables = merge(
     var.tlscert-weuprod-biz-events-service-internal-prod-platform-pagopa-it.pipeline.variables,
@@ -90,4 +90,8 @@ module "tlscert-weuprod-biz-events-service-internal-prod-platform-pagopa-it-cert
       exclude = []
     }
   }
+
+  depends_on = [
+    module.letsencrypt_prod
+  ]
 }

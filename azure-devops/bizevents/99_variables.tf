@@ -37,22 +37,29 @@ locals {
   azure_devops_org = "pagopaspa"
   domain           = "bizevents"
 
+  # Service connections/ End points
+  srv_endpoint_github_ro = "io-azure-devops-github-ro"
+  srv_endpoint_github_rw = "io-azure-devops-github-rw"
+  srv_endpoint_github_pr = "io-azure-devops-github-pr"
+
   # 🔐 KV
   dev_key_vault_azdo_name  = "${local.prefix}-d-azdo-weu-kv"
   uat_key_vault_azdo_name  = "${local.prefix}-u-azdo-weu-kv"
   prod_key_vault_azdo_name = "${local.prefix}-p-azdo-weu-kv"
 
-  dev_bizevents_key_vault_name  = "${local.prefix}-d-${local.domain}-kv"
-  uat_bizevents_key_vault_name  = "${local.prefix}-u-${local.domain}-kv"
-  prod_bizevents_key_vault_name = "${local.prefix}-p-${local.domain}-kv"
-
   dev_key_vault_resource_group  = "${local.prefix}-d-sec-rg"
   uat_key_vault_resource_group  = "${local.prefix}-u-sec-rg"
   prod_key_vault_resource_group = "${local.prefix}-p-sec-rg"
 
-  dev_bizevents_key_vault_resource_group  = "${local.prefix}-d-${local.domain}-sec-rg"
-  uat_bizevents_key_vault_resource_group  = "${local.prefix}-u-${local.domain}-sec-rg"
-  prod_bizevents_key_vault_resource_group = "${local.prefix}-p-${local.domain}-sec-rg"
+
+  # 🔐 KV DOMAIN
+  dev_biz_key_vault_name  = "${local.prefix}-d-${local.domain}-kv"
+  uat_biz_key_vault_name  = "${local.prefix}-u-${local.domain}-kv"
+  prod_biz_key_vault_name = "${local.prefix}-p-${local.domain}-kv"
+
+  dev_biz_key_vault_resource_group  = "${local.prefix}-d-${local.domain}-sec-rg"
+  uat_biz_key_vault_resource_group  = "${local.prefix}-u-${local.domain}-sec-rg"
+  prod_biz_key_vault_resource_group = "${local.prefix}-p-${local.domain}-sec-rg"
 
   # ☁️ VNET
   dev_vnet_rg  = "${local.prefix}-d-vnet-rg"
@@ -82,7 +89,7 @@ locals {
 
   #tfsec:ignore:general-secrets-no-plaintext-exposure
   #tfsec:ignore:GEN002
-  tlscert_renew_token = "v1"
+  tlscert_renew_token = "v2"
 
   # TODO azure devops terraform provider does not support SonarCloud service endpoint
   azuredevops_serviceendpoint_sonarcloud_id = "9182be64-d387-465d-9acc-e79e802910c8"
