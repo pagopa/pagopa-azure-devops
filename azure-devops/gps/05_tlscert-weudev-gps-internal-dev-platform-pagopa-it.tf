@@ -90,4 +90,8 @@ module "tlscert-weudev-gps-internal-dev-platform-pagopa-it-cert_az" {
       exclude = []
     }
   }
+
+  depends_on = [
+    module.letsencrypt_dev
+  ]
 }

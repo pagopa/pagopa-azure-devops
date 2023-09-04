@@ -1,7 +1,6 @@
 #
 # ⛩ Service connection 🔐 KV-GPS@DEV 🟢
 #
-#tfsec:ignore:GEN003
 module "DEV-GPS-TLS-CERT-SERVICE-CONN" {
 
   providers = {
@@ -49,7 +48,6 @@ module "letsencrypt_dev" {
 #
 # ⛩ Service connection 🔐 KV-GPS@UAT 🟢
 #
-#tfsec:ignore:GEN003
 module "UAT-GPS-TLS-CERT-SERVICE-CONN" {
   providers = {
     azurerm = azurerm.uat
@@ -96,7 +94,6 @@ module "letsencrypt_uat" {
 #
 # ⛩ Service connection 🔐 KV-GPS@PROD 🟢
 #
-#tfsec:ignore:GEN003
 module "PROD-GPS-TLS-CERT-SERVICE-CONN" {
 
   providers = {
