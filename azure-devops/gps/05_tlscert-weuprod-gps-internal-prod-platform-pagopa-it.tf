@@ -46,13 +46,13 @@ module "tlscert-weuprod-gps-internal-prod-platform-pagopa-it-cert_az" {
   source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_tls_cert?ref=v2.6.5"
   count  = var.tlscert-weuprod-gps-internal-prod-platform-pagopa-it.pipeline.enable_tls_cert == true ? 1 : 0
 
-  project_id = azuredevops_project.project.id
+  project_id = data.azuredevops_project.project.id
   repository = var.tlscert-weuprod-gps-internal-prod-platform-pagopa-it.repository
   name       = "${var.tlscert-weuprod-gps-internal-prod-platform-pagopa-it.pipeline.dns_record_name}.${var.tlscert-weuprod-gps-internal-prod-platform-pagopa-it.pipeline.dns_zone_name}"
   #tfsec:ignore:GEN003
   renew_token                  = local.tlscert_renew_token
   path                         = var.tlscert-weuprod-gps-internal-prod-platform-pagopa-it.pipeline.path
-  github_service_connection_id = azuredevops_serviceendpoint_github.azure-devops-github-ro.id
+  github_service_connection_id = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_rw_id
 
   dns_record_name         = var.tlscert-weuprod-gps-internal-prod-platform-pagopa-it.pipeline.dns_record_name
   dns_zone_name           = var.tlscert-weuprod-gps-internal-prod-platform-pagopa-it.pipeline.dns_zone_name
