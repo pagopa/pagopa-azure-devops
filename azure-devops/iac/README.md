@@ -57,7 +57,6 @@
 | <a name="module_qi_dev_secrets"></a> [qi\_dev\_secrets](#module\_qi\_dev\_secrets) | git::https://github.com/pagopa/azurerm.git//key_vault_secrets_query | v2.18.9 |
 | <a name="module_qi_iac_code_review"></a> [qi\_iac\_code\_review](#module\_qi\_iac\_code\_review) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review | v2.6.2 |
 | <a name="module_qi_iac_deploy"></a> [qi\_iac\_deploy](#module\_qi\_iac\_deploy) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy | v2.6.2 |
-| <a name="module_qi_prod_secrets"></a> [qi\_prod\_secrets](#module\_qi\_prod\_secrets) | git::https://github.com/pagopa/azurerm.git//key_vault_secrets_query | v2.18.9 |
 | <a name="module_qi_uat_secrets"></a> [qi\_uat\_secrets](#module\_qi\_uat\_secrets) | git::https://github.com/pagopa/azurerm.git//key_vault_secrets_query | v2.18.9 |
 | <a name="module_secrets"></a> [secrets](#module\_secrets) | git::https://github.com/pagopa/azurerm.git//key_vault_secrets_query | v2.0.4 |
 | <a name="module_selfcare_dev_secrets"></a> [selfcare\_dev\_secrets](#module\_selfcare\_dev\_secrets) | git::https://github.com/pagopa/azurerm.git//key_vault_secrets_query | v2.18.9 |
