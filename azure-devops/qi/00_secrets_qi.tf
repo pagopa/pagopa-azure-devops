@@ -16,20 +16,20 @@ module "qi_dev_secrets" {
   ]
 }
 
-# module "qi_uat_secrets" {
+module "qi_uat_secrets" {
 
-#   providers = {
-#     azurerm = azurerm.uat
-#   }
+  providers = {
+    azurerm = azurerm.uat
+  }
 
-#   source = "git::https://github.com/pagopa/azurerm.git//key_vault_secrets_query?ref=v2.0.4"
+  source = "git::https://github.com/pagopa/azurerm.git//key_vault_secrets_query?ref=v2.0.4"
 
-#   resource_group = local.uat_qi_key_vault_resource_group
-#   key_vault_name = local.uat_qi_key_vault_name
+  resource_group = local.uat_qi_key_vault_resource_group
+  key_vault_name = local.uat_qi_key_vault_name
 
-#   secrets = [
-#     "pagopa-u-weu-uat-aks-azure-devops-sa-token",
-#     "pagopa-u-weu-uat-aks-azure-devops-sa-cacrt",
-#     "pagopa-u-weu-uat-aks-apiserver-url"
-#   ]
-# }
+  secrets = [
+    "pagopa-u-weu-uat-aks-azure-devops-sa-token",
+    "pagopa-u-weu-uat-aks-azure-devops-sa-cacrt",
+    "pagopa-u-weu-uat-aks-apiserver-url"
+  ]
+}
