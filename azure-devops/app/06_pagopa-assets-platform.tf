@@ -70,7 +70,7 @@ locals {
 #   )
 
 #   service_connection_ids_authorization = [
-#     azuredevops_serviceendpoint_github.azure-devops-github-ro.id
+#     azuredevops_serviceendpoint_github.azure-devops-github-rw.id
 #   ]
 # }
 
@@ -80,7 +80,7 @@ module "pagopa-platform-cdn-assets_deploy" {
 
   project_id                   = azuredevops_project.project.id
   repository                   = var.pagopa-platform-cdn-assets.repository
-  github_service_connection_id = azuredevops_serviceendpoint_github.azure-devops-github-ro.id
+  github_service_connection_id = azuredevops_serviceendpoint_github.azure-devops-github-rw.id
 
   variables = merge(
     local.pagopa-platform-cdn-assets-variables,
@@ -93,7 +93,7 @@ module "pagopa-platform-cdn-assets_deploy" {
   )
 
   service_connection_ids_authorization = [
-    azuredevops_serviceendpoint_github.azure-devops-github-ro.id,
+    azuredevops_serviceendpoint_github.azure-devops-github-rw.id,
     azuredevops_serviceendpoint_azurerm.PROD-SERVICE-CONN.id,
   ]
 }

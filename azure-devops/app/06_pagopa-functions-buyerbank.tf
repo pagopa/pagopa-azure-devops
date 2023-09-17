@@ -69,7 +69,7 @@ module "pagopa-functions-buyerbank_code_review" {
   )
 
   service_connection_ids_authorization = [
-    azuredevops_serviceendpoint_github.azure-devops-github-ro.id
+    azuredevops_serviceendpoint_github.azure-devops-github-rw.id
   ]
 }
 
@@ -79,7 +79,7 @@ module "pagopa-functions-buyerbank_deploy" {
 
   project_id                   = azuredevops_project.project.id
   repository                   = var.pagopa-functions-buyerbank.repository
-  github_service_connection_id = azuredevops_serviceendpoint_github.azure-devops-github-ro.id
+  github_service_connection_id = azuredevops_serviceendpoint_github.azure-devops-github-rw.id
 
   variables = merge(
     local.pagopa-functions-buyerbank-variables,
@@ -92,7 +92,7 @@ module "pagopa-functions-buyerbank_deploy" {
   )
 
   service_connection_ids_authorization = [
-    azuredevops_serviceendpoint_github.azure-devops-github-ro.id,
+    azuredevops_serviceendpoint_github.azure-devops-github-rw.id,
     azuredevops_serviceendpoint_azurerm.DEV-SERVICE-CONN.id,
     azuredevops_serviceendpoint_azurerm.UAT-SERVICE-CONN.id,
     azuredevops_serviceendpoint_azurerm.PROD-SERVICE-CONN.id,

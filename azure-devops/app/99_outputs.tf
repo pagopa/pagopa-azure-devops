@@ -27,11 +27,11 @@ output "service_endpoint_azure_devops_github_pr_id" {
 }
 
 output "service_endpoint_azure_devops_github_ro_id" {
-  value = azuredevops_serviceendpoint_github.azure-devops-github-ro.id
+  value = azuredevops_serviceendpoint_github.azure-devops-github-rw.id
 }
 
 output "service_endpoint_azure_devops_github_rw_id" {
-  value = azuredevops_serviceendpoint_github.azure-devops-github-ro.id
+  value = azuredevops_serviceendpoint_github.azure-devops-github-rw.id
 }
 
 output "service_endpoint_azure_dev_id" {
