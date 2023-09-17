@@ -84,7 +84,7 @@ module "pagopa-afm-marketplace-fe_code_review" {
   )
 
   service_connection_ids_authorization = [
-    azuredevops_serviceendpoint_github.azure-devops-github-rw.id,
+    azuredevops_serviceendpoint_github.azure-devops-github-ro.id,
     local.azuredevops_serviceendpoint_sonarcloud_id,
   ]
 }
@@ -95,7 +95,7 @@ module "pagopa-afm-marketplace-fe_deploy" {
 
   project_id                   = azuredevops_project.project.id
   repository                   = var.pagopa-afm-marketplace-fe.repository
-  github_service_connection_id = azuredevops_serviceendpoint_github.azure-devops-github-rw.id
+  github_service_connection_id = azuredevops_serviceendpoint_github.azure-devops-github-ro.id
 
   variables = merge(
     local.pagopa-afm-marketplace-fe-variables,
@@ -108,7 +108,7 @@ module "pagopa-afm-marketplace-fe_deploy" {
   )
 
   service_connection_ids_authorization = [
-    azuredevops_serviceendpoint_github.azure-devops-github-rw.id,
+    azuredevops_serviceendpoint_github.azure-devops-github-ro.id,
     azuredevops_serviceendpoint_azurerm.DEV-SERVICE-CONN.id,
   ]
 }

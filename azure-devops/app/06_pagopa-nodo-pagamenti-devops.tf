@@ -75,7 +75,7 @@ module "pagopa-nodo4-nodo-dei-pagamenti-devops_code_review" {
 
   project_id                   = azuredevops_project.project.id
   repository                   = var.pagopa-nodo4-nodo-dei-pagamenti-devops.repository
-  github_service_connection_id = azuredevops_serviceendpoint_github.azure-devops-github-rw.id
+  github_service_connection_id = azuredevops_serviceendpoint_github.azure-devops-github-ro.id
 
   pull_request_trigger_use_yaml = true
 
@@ -90,7 +90,7 @@ module "pagopa-nodo4-nodo-dei-pagamenti-devops_code_review" {
   )
 
   service_connection_ids_authorization = [
-    azuredevops_serviceendpoint_github.azure-devops-github-rw.id,
+    azuredevops_serviceendpoint_github.azure-devops-github-ro.id,
     local.azuredevops_serviceendpoint_sonarcloud_id,
   ]
 }
@@ -101,7 +101,7 @@ module "pagopa-nodo4-nodo-dei-pagamenti-devops_deploy" {
 
   project_id                   = azuredevops_project.project.id
   repository                   = var.pagopa-nodo4-nodo-dei-pagamenti-devops.repository
-  github_service_connection_id = azuredevops_serviceendpoint_github.azure-devops-github-rw.id
+  github_service_connection_id = azuredevops_serviceendpoint_github.azure-devops-github-ro.id
 
   ci_trigger_use_yaml = true
 
@@ -116,7 +116,7 @@ module "pagopa-nodo4-nodo-dei-pagamenti-devops_deploy" {
   )
 
   service_connection_ids_authorization = [
-    azuredevops_serviceendpoint_github.azure-devops-github-rw.id,
+    azuredevops_serviceendpoint_github.azure-devops-github-ro.id,
     azuredevops_serviceendpoint_azurecr.acr_docker_registry_dev.id,
     azuredevops_serviceendpoint_dockerregistry.sia-docker-registry-dev.id,
     azuredevops_serviceendpoint_azurecr.acr_docker_registry_uat.id,

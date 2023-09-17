@@ -113,7 +113,7 @@ module "pagopa-api-config-fe_code_review" {
   )
 
   service_connection_ids_authorization = [
-    azuredevops_serviceendpoint_github.azure-devops-github-rw.id,
+    azuredevops_serviceendpoint_github.azure-devops-github-ro.id,
     local.azuredevops_serviceendpoint_sonarcloud_id,
   ]
 }
@@ -124,7 +124,7 @@ module "pagopa-api-config-fe_deploy" {
 
   project_id                   = azuredevops_project.project.id
   repository                   = var.pagopa-api-config-fe.repository
-  github_service_connection_id = azuredevops_serviceendpoint_github.azure-devops-github-rw.id
+  github_service_connection_id = azuredevops_serviceendpoint_github.azure-devops-github-ro.id
 
   variables = merge(
     local.pagopa-api-config-fe-variables,
@@ -137,7 +137,7 @@ module "pagopa-api-config-fe_deploy" {
   )
 
   service_connection_ids_authorization = [
-    azuredevops_serviceendpoint_github.azure-devops-github-rw.id,
+    azuredevops_serviceendpoint_github.azure-devops-github-ro.id,
     azuredevops_serviceendpoint_azurerm.DEV-SERVICE-CONN.id,
     azuredevops_serviceendpoint_azurerm.UAT-SERVICE-CONN.id,
   ]
