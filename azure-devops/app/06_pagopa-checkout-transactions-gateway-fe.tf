@@ -77,7 +77,7 @@ module "pagopa-checkout-transactions-gateway-fe_deploy" {
 
   project_id                   = azuredevops_project.project.id
   repository                   = var.pagopa-checkout-transactions-gateway-fe.repository
-  github_service_connection_id = azuredevops_serviceendpoint_github.azure-devops-github-ro.id
+  github_service_connection_id = azuredevops_serviceendpoint_github.azure-devops-github-rw.id
 
   variables = merge(
     local.pagopa-checkout-transactions-gateway-fe-variables,

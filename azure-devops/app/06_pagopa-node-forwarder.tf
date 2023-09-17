@@ -128,7 +128,7 @@ module "pagopa-node-forwarder_deploy" {
 
   project_id                   = azuredevops_project.project.id
   repository                   = var.pagopa-node-forwarder.repository
-  github_service_connection_id = azuredevops_serviceendpoint_github.azure-devops-github-ro.id
+  github_service_connection_id = azuredevops_serviceendpoint_github.azure-devops-github-rw.id
 
   variables = merge(
     local.pagopa-node-forwarder-variables,
@@ -154,7 +154,7 @@ module "pagopa-node-forwarder_performance_test" {
 
   project_id                   = azuredevops_project.project.id
   repository                   = var.pagopa-node-forwarder.repository
-  github_service_connection_id = azuredevops_serviceendpoint_github.azure-devops-github-ro.id
+  github_service_connection_id = azuredevops_serviceendpoint_github.azure-devops-github-rw.id
   path                         = var.pagopa-node-forwarder.repository.name
   pipeline_name                = var.pagopa-node-forwarder.pipeline.performance_test.name
   pipeline_yml_filename        = var.pagopa-node-forwarder.pipeline.performance_test.pipeline_yml_filename

@@ -105,7 +105,7 @@ module "pagopa-iuv-generator_deploy" {
 
   project_id                   = azuredevops_project.project.id
   repository                   = var.pagopa-iuv-generator.repository
-  github_service_connection_id = azuredevops_serviceendpoint_github.azure-devops-github-ro.id
+  github_service_connection_id = azuredevops_serviceendpoint_github.azure-devops-github-rw.id
 
   variables = merge(
     local.pagopa-iuv-generator-variables,
