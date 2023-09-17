@@ -103,7 +103,7 @@ module "pagopa-reporting-fdr_code_review" {
   )
 
   service_connection_ids_authorization = [
-    azuredevops_serviceendpoint_github.azure-devops-github-ro.id,
+    azuredevops_serviceendpoint_github.azure-devops-github-rw.id,
     local.azuredevops_serviceendpoint_sonarcloud_id,
   ]
 }
@@ -114,7 +114,7 @@ module "pagopa-reporting-fdr_deploy" {
 
   project_id                   = azuredevops_project.project.id
   repository                   = var.pagopa-reporting-fdr.repository
-  github_service_connection_id = azuredevops_serviceendpoint_github.azure-devops-github-ro.id
+  github_service_connection_id = azuredevops_serviceendpoint_github.azure-devops-github-rw.id
 
   variables = merge(
     local.pagopa-reporting-fdr-variables,
@@ -127,7 +127,7 @@ module "pagopa-reporting-fdr_deploy" {
   )
 
   service_connection_ids_authorization = [
-    azuredevops_serviceendpoint_github.azure-devops-github-ro.id,
+    azuredevops_serviceendpoint_github.azure-devops-github-rw.id,
     azuredevops_serviceendpoint_azurerm.DEV-SERVICE-CONN.id,
     azuredevops_serviceendpoint_azurerm.UAT-SERVICE-CONN.id,
     azuredevops_serviceendpoint_azurerm.PROD-SERVICE-CONN.id,
