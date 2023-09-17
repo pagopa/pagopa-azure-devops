@@ -22,7 +22,8 @@ module "receipts_dev_secrets" {
     "cosmos-receipt-connection-string",
     "receipts-storage-account-connection-string",
     "apikey-service-receipt",
-    "receipts-storage-account-pkey"
+    "receipts-storage-account-pkey",
+    "cosmos-biz-event-d-connection-string",
   ]
 }
 
@@ -49,7 +50,8 @@ module "receipts_uat_secrets" {
     "cosmos-receipt-connection-string",
     "receipts-storage-account-connection-string",
     "apikey-service-receipt",
-    "receipts-storage-account-pkey"
+    "receipts-storage-account-pkey",
+    "cosmos-biz-event-u-connection-string",
   ]
 }
 

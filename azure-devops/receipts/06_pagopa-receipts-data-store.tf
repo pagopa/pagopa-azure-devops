@@ -37,10 +37,15 @@ locals {
     DEV_BIZEVENT_COSMOS_DB_SUBSCRIPTION_KEY = module.receipts_dev_secrets.values["cosmos-bizevent-pkey"].value
     DEV_RECEIPT_COSMOS_DB_SUBSCRIPTION_KEY  = module.receipts_dev_secrets.values["cosmos-receipt-pkey"].value
     DEV_BLOB_STORAGE_CONNECTION_STRING      = module.receipts_dev_secrets.values["receipts-storage-account-connection-string"].value
+    DEV_RECEIPT_COSMOS_DB_CONNECTION_STRING = module.receipts_dev_secrets.values["cosmos-receipt-connection-string"].value
+    DEV_BIZ_COSMOS_DB_CONNECTION_STRING     = module.receipts_dev_secrets.values["cosmos-biz-event-d-connection-string"].value
 
     UAT_BIZEVENT_COSMOS_DB_SUBSCRIPTION_KEY = module.receipts_uat_secrets.values["cosmos-bizevent-pkey"].value
     UAT_RECEIPT_COSMOS_DB_SUBSCRIPTION_KEY  = module.receipts_uat_secrets.values["cosmos-receipt-pkey"].value
     UAT_BLOB_STORAGE_CONNECTION_STRING      = module.receipts_uat_secrets.values["receipts-storage-account-connection-string"].value
+    UAT_RECEIPT_COSMOS_DB_CONNECTION_STRING = module.receipts_uat_secrets.values["cosmos-receipt-connection-string"].value
+    UAT_BIZ_COSMOS_DB_CONNECTION_STRING     = module.receipts_uat_secrets.values["cosmos-biz-event-u-connection-string"].value
+
   }
 }
 
