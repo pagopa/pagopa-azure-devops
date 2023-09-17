@@ -34,11 +34,11 @@ locals {
   }
   # performance secrets
   pagopa-receipt-pdf-generator-variables_secret_performance_test = {
-    DEV_RECEIPT_QUEUE_SUBSCRIPTION_KEY = module.receipts_dev_secrets.values["receipts-storage-account-pkey"].value
-    DEV_RECEIPT_COSMOS_DB_SUBSCRIPTION_KEY  = module.receipts_dev_secrets.values["cosmos-receipt-pkey"].value
+    DEV_RECEIPT_QUEUE_SUBSCRIPTION_KEY     = module.receipts_dev_secrets.values["receipts-storage-account-pkey"].value
+    DEV_RECEIPT_COSMOS_DB_SUBSCRIPTION_KEY = module.receipts_dev_secrets.values["cosmos-receipt-pkey"].value
 
-    UAT_RECEIPT_QUEUE_SUBSCRIPTION_KEY = module.receipts_uat_secrets.values["receipts-storage-account-pkey"].value
-    UAT_RECEIPT_COSMOS_DB_SUBSCRIPTION_KEY  = module.receipts_uat_secrets.values["cosmos-receipt-pkey"].value
+    UAT_RECEIPT_QUEUE_SUBSCRIPTION_KEY     = module.receipts_uat_secrets.values["receipts-storage-account-pkey"].value
+    UAT_RECEIPT_COSMOS_DB_SUBSCRIPTION_KEY = module.receipts_uat_secrets.values["cosmos-receipt-pkey"].value
   }
 }
 
