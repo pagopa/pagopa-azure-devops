@@ -124,7 +124,7 @@ module "pagopa-api-config-fe_deploy" {
 
   project_id                   = azuredevops_project.project.id
   repository                   = var.pagopa-api-config-fe.repository
-  github_service_connection_id = azuredevops_serviceendpoint_github.azure-devops-github-rw.id
+  github_service_connection_id = azuredevops_serviceendpoint_github.azure-devops-github-ro.id
 
   variables = merge(
     local.pagopa-api-config-fe-variables,

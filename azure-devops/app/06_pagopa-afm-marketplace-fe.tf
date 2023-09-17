@@ -95,7 +95,7 @@ module "pagopa-afm-marketplace-fe_deploy" {
 
   project_id                   = azuredevops_project.project.id
   repository                   = var.pagopa-afm-marketplace-fe.repository
-  github_service_connection_id = azuredevops_serviceendpoint_github.azure-devops-github-rw.id
+  github_service_connection_id = azuredevops_serviceendpoint_github.azure-devops-github-ro.id
 
   variables = merge(
     local.pagopa-afm-marketplace-fe-variables,
