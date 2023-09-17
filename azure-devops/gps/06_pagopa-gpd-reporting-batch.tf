@@ -83,25 +83,6 @@ locals {
     TF_APPINSIGHTS_SERVICE_CONN_PROD = module.PROD-APPINSIGHTS-SERVICE-CONN.service_endpoint_name
     TF_APPINSIGHTS_RESOURCE_ID_PROD  = data.azurerm_application_insights.application_insights_prod.id
   }
-
-  # deploy secrets
-  pagopa-gpd-reporting-batch-variables_secret_deploy = {
-    # integration test secrets - dev environment
-    DEV_API_CONFIG_SUBSCRIPTION_KEY       = module.gps_dev_secrets.values["gpd-d-apiconfig-subscription-key"].value
-    DEV_GPD_SUBSCRIPTION_KEY              = module.gps_dev_secrets.values["gpd-d-gpd-subscription-key"].value
-    DEV_PAYMENTS_REST_SUBSCRIPTION_KEY    = module.gps_dev_secrets.values["gpd-d-payments-rest-subscription-key"].value
-    DEV_PAYMENTS_SOAP_SUBSCRIPTION_KEY    = module.gps_dev_secrets.values["gpd-d-payments-soap-subscription-key"].value
-    DEV_REPORTING_SUBSCRIPTION_KEY        = module.gps_dev_secrets.values["gpd-d-reporting-subscription-key"].value
-    DEV_REPORTING_BATCH_CONNECTION_STRING = module.gps_dev_secrets.values["gpd-d-reporting-batch-connection-string"].value
-
-    # integration test secrets - uat environment
-    UAT_API_CONFIG_SUBSCRIPTION_KEY       = module.gps_uat_secrets.values["gpd-u-apiconfig-subscription-key"].value
-    UAT_GPD_SUBSCRIPTION_KEY              = module.gps_uat_secrets.values["gpd-u-gpd-subscription-key"].value
-    UAT_PAYMENTS_REST_SUBSCRIPTION_KEY    = module.gps_uat_secrets.values["gpd-u-payments-rest-subscription-key"].value
-    UAT_PAYMENTS_SOAP_SUBSCRIPTION_KEY    = module.gps_uat_secrets.values["gpd-u-payments-soap-subscription-key"].value
-    UAT_REPORTING_SUBSCRIPTION_KEY        = module.gps_uat_secrets.values["gpd-u-reporting-subscription-key"].value
-    UAT_REPORTING_BATCH_CONNECTION_STRING = module.gps_uat_secrets.values["gpd-u-reporting-batch-connection-string"].value
-  }
 }
 
 module "pagopa-gpd-reporting-batch_code_review" {
@@ -127,38 +108,5 @@ module "pagopa-gpd-reporting-batch_code_review" {
   service_connection_ids_authorization = [
     data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_ro_id,
     local.azuredevops_serviceendpoint_sonarcloud_id
-  ]
-}
-
-module "pagopa-gpd-reporting-batch_deploy" {
-  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy?ref=v2.2.0"
-  count  = var.pagopa-gpd-reporting-batch.pipeline.enable_deploy == true ? 1 : 0
-
-  project_id                   = data.azuredevops_project.project.id
-  repository                   = var.pagopa-gpd-reporting-batch.repository
-  github_service_connection_id = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_rw_id
-  path                         = "${local.domain}\\pagopa-gpd-reporting-batch-service"
-
-  variables = merge(
-    local.pagopa-gpd-reporting-batch-variables,
-    local.pagopa-gpd-reporting-batch-variables_deploy,
-  )
-
-  variables_secret = merge(
-    local.pagopa-gpd-reporting-batch-variables_secret,
-    local.pagopa-gpd-reporting-batch-variables_secret_deploy,
-  )
-
-  service_connection_ids_authorization = [
-    data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_ro_id,
-    data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_dev_id,
-    data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_uat_id,
-    data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_prod_id,
-    data.terraform_remote_state.app.outputs.service_endpoint_azure_dev_id,
-    data.terraform_remote_state.app.outputs.service_endpoint_azure_uat_id,
-    data.terraform_remote_state.app.outputs.service_endpoint_azure_prod_id,
-    module.DEV-APPINSIGHTS-SERVICE-CONN.service_endpoint_id,
-    module.UAT-APPINSIGHTS-SERVICE-CONN.service_endpoint_id,
-    module.PROD-APPINSIGHTS-SERVICE-CONN.service_endpoint_id
   ]
 }
