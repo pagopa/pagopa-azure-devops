@@ -197,41 +197,41 @@ resource "azurerm_key_vault_access_policy" "UAT-ECOMMERCE-TLS-CERT-SERVICE-CONN_
 }
 
 #
-# ⛩ Service connection 2 🔐 KV-GPS@DEV 🟢
+# ⛩ Service connection 2 🔐 KV-ECOMMERCE@PROD 🟢
 #
 #tfsec:ignore:GEN003
-module "DEV-GPS-TLS-CERT-SERVICE-CONN" {
+module "PROD-ECOMMERCE-TLS-CERT-SERVICE-CONN" {
   depends_on = [azuredevops_project.project]
-  source     = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_azurerm_limited?ref=v2.6.5"
+  source     = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_azurerm_limited?ref=v2.0.5"
   providers = {
-    azurerm = azurerm.dev
+    azurerm = azurerm.prod
   }
 
   project_id = azuredevops_project.project.id
   #tfsec:ignore:general-secrets-no-plaintext-exposure
   renew_token       = local.tlscert_renew_token
-  name              = "${local.prefix}-gps-d-tls-cert-kv-policy"
+  name              = "${local.prefix}-ecommerce-p-tls-cert-kv-policy"
   tenant_id         = module.secrets.values["TENANTID"].value
-  subscription_id   = module.secrets.values["DEV-SUBSCRIPTION-ID"].value
-  subscription_name = var.dev_subscription_name
+  subscription_id   = module.secrets.values["PROD-SUBSCRIPTION-ID"].value
+  subscription_name = var.prod_subscription_name
 
-  credential_subcription              = var.dev_subscription_name
-  credential_key_vault_name           = local.dev_gps_key_vault_name
-  credential_key_vault_resource_group = local.dev_gps_key_vault_resource_group
+  credential_subcription              = var.prod_subscription_name
+  credential_key_vault_name           = local.prod_ecommerce_key_vault_name
+  credential_key_vault_resource_group = local.prod_ecommerce_key_vault_resource_group
 }
 
-data "azurerm_key_vault" "kv_gps_dev" {
-  provider            = azurerm.dev
-  name                = local.dev_gps_key_vault_name
-  resource_group_name = local.dev_gps_key_vault_resource_group
+data "azurerm_key_vault" "kv_ecommerce_prod" {
+  provider            = azurerm.prod
+  name                = local.prod_ecommerce_key_vault_name
+  resource_group_name = local.prod_ecommerce_key_vault_resource_group
 }
 
-resource "azurerm_key_vault_access_policy" "DEV-GPS-TLS-CERT-SERVICE-CONN_kv_dev" {
-  provider = azurerm.dev
+resource "azurerm_key_vault_access_policy" "PROD-ECOMMERCE-TLS-CERT-SERVICE-CONN_kv_prod" {
+  provider = azurerm.prod
 
-  key_vault_id = data.azurerm_key_vault.kv_gps_dev.id
+  key_vault_id = data.azurerm_key_vault.kv_ecommerce_prod.id
   tenant_id    = module.secrets.values["TENANTID"].value
-  object_id    = module.DEV-GPS-TLS-CERT-SERVICE-CONN.service_principal_object_id
+  object_id    = module.PROD-ECOMMERCE-TLS-CERT-SERVICE-CONN.service_principal_object_id
 
   certificate_permissions = ["Get", "Import"]
 }
@@ -317,86 +317,6 @@ resource "azurerm_key_vault_access_policy" "DEV-AFM-TLS-CERT-SERVICE-CONN_kv_dev
 }
 
 #
-# ⛩ Service connection 3 🔐 KV-BIZEVENTS@DEV 🟢
-#
-#tfsec:ignore:GEN003
-module "DEV-BIZEVENTS-TLS-CERT-SERVICE-CONN" {
-  depends_on = [azuredevops_project.project]
-  source     = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_azurerm_limited?ref=v2.6.5"
-  providers = {
-    azurerm = azurerm.dev
-  }
-
-  project_id = azuredevops_project.project.id
-  #tfsec:ignore:general-secrets-no-plaintext-exposure
-  renew_token       = local.tlscert_renew_token
-  name              = "${local.prefix}-bizevents-d-tls-cert-kv-policy"
-  tenant_id         = module.secrets.values["TENANTID"].value
-  subscription_id   = module.secrets.values["DEV-SUBSCRIPTION-ID"].value
-  subscription_name = var.dev_subscription_name
-
-  credential_subcription              = var.dev_subscription_name
-  credential_key_vault_name           = local.dev_biz_events_key_vault_name
-  credential_key_vault_resource_group = local.dev_biz_events_key_vault_resource_group
-}
-
-data "azurerm_key_vault" "kv_biz_events_dev" {
-  provider            = azurerm.dev
-  name                = local.dev_biz_events_key_vault_name
-  resource_group_name = local.dev_biz_events_key_vault_resource_group
-}
-
-resource "azurerm_key_vault_access_policy" "DEV-BIZEVENTS-TLS-CERT-SERVICE-CONN_kv_dev" {
-  provider = azurerm.dev
-
-  key_vault_id = data.azurerm_key_vault.kv_biz_events_dev.id
-  tenant_id    = module.secrets.values["TENANTID"].value
-  object_id    = module.DEV-BIZEVENTS-TLS-CERT-SERVICE-CONN.service_principal_object_id
-
-  certificate_permissions = ["Get", "Import"]
-}
-
-#
-# ⛩ Service connection 2 🔐 KV-GPS@UAT 🟢
-#
-#tfsec:ignore:GEN003
-module "UAT-GPS-TLS-CERT-SERVICE-CONN" {
-  depends_on = [azuredevops_project.project]
-  source     = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_azurerm_limited?ref=v2.6.5"
-  providers = {
-    azurerm = azurerm.uat
-  }
-
-  project_id = azuredevops_project.project.id
-  #tfsec:ignore:general-secrets-no-plaintext-exposure
-  renew_token       = local.tlscert_renew_token
-  name              = "${local.prefix}-gps-u-tls-cert-kv-policy"
-  tenant_id         = module.secrets.values["TENANTID"].value
-  subscription_id   = module.secrets.values["UAT-SUBSCRIPTION-ID"].value
-  subscription_name = var.uat_subscription_name
-
-  credential_subcription              = var.uat_subscription_name
-  credential_key_vault_name           = local.uat_gps_key_vault_name
-  credential_key_vault_resource_group = local.uat_gps_key_vault_resource_group
-}
-
-data "azurerm_key_vault" "kv_gps_uat" {
-  provider            = azurerm.uat
-  name                = local.uat_gps_key_vault_name
-  resource_group_name = local.uat_gps_key_vault_resource_group
-}
-
-resource "azurerm_key_vault_access_policy" "UAT-GPS-TLS-CERT-SERVICE-CONN_kv_uat" {
-  provider = azurerm.uat
-
-  key_vault_id = data.azurerm_key_vault.kv_gps_uat.id
-  tenant_id    = module.secrets.values["TENANTID"].value
-  object_id    = module.UAT-GPS-TLS-CERT-SERVICE-CONN.service_principal_object_id
-
-  certificate_permissions = ["Get", "Import"]
-}
-
-#
 # ⛩ Service connection 3 🔐 KV-SHARED@UAT 🟢
 #
 #tfsec:ignore:GEN003
@@ -437,45 +357,6 @@ resource "azurerm_key_vault_access_policy" "UAT-SHARED-TLS-CERT-SERVICE-CONN_kv_
 }
 
 #
-# ⛩ Service connection 3 🔐 KV-BIZEVENTS@UAT 🟢
-#
-#tfsec:ignore:GEN003
-module "UAT-BIZEVENTS-TLS-CERT-SERVICE-CONN" {
-  depends_on = [azuredevops_project.project]
-  source     = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_azurerm_limited?ref=v2.6.5"
-  providers = {
-    azurerm = azurerm.uat
-  }
-
-  project_id = azuredevops_project.project.id
-  #tfsec:ignore:general-secrets-no-plaintext-exposure
-  renew_token       = local.tlscert_renew_token
-  name              = "${local.prefix}-bizevents-u-tls-cert-kv-policy"
-  tenant_id         = module.secrets.values["TENANTID"].value
-  subscription_id   = module.secrets.values["UAT-SUBSCRIPTION-ID"].value
-  subscription_name = var.uat_subscription_name
-
-  credential_subcription              = var.uat_subscription_name
-  credential_key_vault_name           = local.uat_biz_events_key_vault_name
-  credential_key_vault_resource_group = local.uat_biz_events_key_vault_resource_group
-}
-
-data "azurerm_key_vault" "kv_biz_events_uat" {
-  provider            = azurerm.uat
-  name                = local.uat_biz_events_key_vault_name
-  resource_group_name = local.uat_biz_events_key_vault_resource_group
-}
-
-resource "azurerm_key_vault_access_policy" "UAT-BIZEVENTS-TLS-CERT-SERVICE-CONN_kv_uat" {
-  provider = azurerm.uat
-
-  key_vault_id = data.azurerm_key_vault.kv_biz_events_uat.id
-  tenant_id    = module.secrets.values["TENANTID"].value
-  object_id    = module.UAT-BIZEVENTS-TLS-CERT-SERVICE-CONN.service_principal_object_id
-
-  certificate_permissions = ["Get", "Import"]
-}
-#
 # ⛩ Service connection 3 🔐 KV-AFM@UAT 🟢
 #
 #tfsec:ignore:GEN003
@@ -511,46 +392,6 @@ resource "azurerm_key_vault_access_policy" "UAT-AFM-TLS-CERT-SERVICE-CONN_kv_uat
   key_vault_id = data.azurerm_key_vault.kv_afm_uat.id
   tenant_id    = module.secrets.values["TENANTID"].value
   object_id    = module.UAT-AFM-TLS-CERT-SERVICE-CONN.service_principal_object_id
-
-  certificate_permissions = ["Get", "Import"]
-}
-
-#
-# ⛩ Service connection 2 🔐 KV-GPS@PROD 🟢
-#
-#tfsec:ignore:GEN003
-module "PROD-GPS-TLS-CERT-SERVICE-CONN" {
-  depends_on = [azuredevops_project.project]
-  source     = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_azurerm_limited?ref=v2.6.5"
-  providers = {
-    azurerm = azurerm.prod
-  }
-
-  project_id = azuredevops_project.project.id
-  #tfsec:ignore:general-secrets-no-plaintext-exposure
-  renew_token       = local.tlscert_renew_token
-  name              = "${local.prefix}-gps-p-tls-cert-kv-policy"
-  tenant_id         = module.secrets.values["TENANTID"].value
-  subscription_id   = module.secrets.values["PROD-SUBSCRIPTION-ID"].value
-  subscription_name = var.prod_subscription_name
-
-  credential_subcription              = var.prod_subscription_name
-  credential_key_vault_name           = local.prod_gps_key_vault_name
-  credential_key_vault_resource_group = local.prod_gps_key_vault_resource_group
-}
-
-data "azurerm_key_vault" "kv_gps_prod" {
-  provider            = azurerm.prod
-  name                = local.prod_gps_key_vault_name
-  resource_group_name = local.prod_gps_key_vault_resource_group
-}
-
-resource "azurerm_key_vault_access_policy" "PROD-GPS-TLS-CERT-SERVICE-CONN_kv_prod" {
-  provider = azurerm.prod
-
-  key_vault_id = data.azurerm_key_vault.kv_gps_prod.id
-  tenant_id    = module.secrets.values["TENANTID"].value
-  object_id    = module.PROD-GPS-TLS-CERT-SERVICE-CONN.service_principal_object_id
 
   certificate_permissions = ["Get", "Import"]
 }
@@ -756,43 +597,4 @@ resource "azurerm_key_vault_access_policy" "PROD-KIBANA-TLS-CERT-SERVICE-CONN_kv
 
   certificate_permissions = ["Get", "Import"]
 
-}
-#
-# ⛩ Service connection 3 🔐 KV-BIZEVENTS@PROD 🟢
-#
-#tfsec:ignore:GEN003
-module "PROD-BIZEVENTS-TLS-CERT-SERVICE-CONN" {
-  depends_on = [azuredevops_project.project]
-  source     = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_azurerm_limited?ref=v2.6.5"
-  providers = {
-    azurerm = azurerm.prod
-  }
-
-  project_id = azuredevops_project.project.id
-  #tfsec:ignore:general-secrets-no-plaintext-exposure
-  renew_token       = local.tlscert_renew_token
-  name              = "${local.prefix}-bizevents-p-tls-cert-kv-policy"
-  tenant_id         = module.secrets.values["TENANTID"].value
-  subscription_id   = module.secrets.values["PROD-SUBSCRIPTION-ID"].value
-  subscription_name = var.prod_subscription_name
-
-  credential_subcription              = var.prod_subscription_name
-  credential_key_vault_name           = local.prod_biz_events_key_vault_name
-  credential_key_vault_resource_group = local.prod_biz_events_key_vault_resource_group
-}
-
-data "azurerm_key_vault" "kv_biz_events_prod" {
-  provider            = azurerm.prod
-  name                = local.prod_biz_events_key_vault_name
-  resource_group_name = local.prod_biz_events_key_vault_resource_group
-}
-
-resource "azurerm_key_vault_access_policy" "PROD-BIZEVENTS-TLS-CERT-SERVICE-CONN_kv_prod" {
-  provider = azurerm.prod
-
-  key_vault_id = data.azurerm_key_vault.kv_biz_events_prod.id
-  tenant_id    = module.secrets.values["TENANTID"].value
-  object_id    = module.PROD-BIZEVENTS-TLS-CERT-SERVICE-CONN.service_principal_object_id
-
-  certificate_permissions = ["Get", "Import"]
 }

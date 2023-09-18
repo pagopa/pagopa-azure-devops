@@ -145,4 +145,20 @@ locals {
   uat_fdr_key_vault_name  = "${local.prefix}-u-fdr-kv"
   prod_fdr_key_vault_name = "${local.prefix}-p-fdr-kv"
 
+  dev_aca_key_vault_resource_group  = "${local.prefix}-d-aca-sec-rg"
+  uat_aca_key_vault_resource_group  = "${local.prefix}-u-aca-sec-rg"
+  prod_aca_key_vault_resource_group = "${local.prefix}-p-aca-sec-rg"
+
+  dev_aca_key_vault_name  = "${local.prefix}-d-aca-kv"
+  uat_aca_key_vault_name  = "${local.prefix}-u-aca-kv"
+  prod_aca_key_vault_name = "${local.prefix}-p-aca-kv"
+
+  dev_qi_key_vault_resource_group  = "${local.prefix}-d-qi-sec-rg"
+  uat_qi_key_vault_resource_group  = "${local.prefix}-u-qi-sec-rg"
+  prod_qi_key_vault_resource_group = "${local.prefix}-p-qi-sec-rg"
+
+  dev_qi_key_vault_name  = "${local.prefix}-d-qi-kv"
+  uat_qi_key_vault_name  = "${local.prefix}-u-qi-kv"
+  prod_qi_key_vault_name = "${local.prefix}-p-qi-kv"
+
 }

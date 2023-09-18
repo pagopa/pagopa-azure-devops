@@ -10,8 +10,8 @@ module "bizevents_dev_secrets" {
     azurerm = azurerm.dev
   }
 
-  resource_group = local.dev_bizevents_key_vault_resource_group
-  key_vault_name = local.dev_bizevents_key_vault_name
+  resource_group = local.dev_biz_key_vault_resource_group
+  key_vault_name = local.dev_biz_key_vault_name
 
   secrets = [
     "pagopa-d-weu-dev-aks-azure-devops-sa-token",
@@ -33,8 +33,8 @@ module "bizevents_uat_secrets" {
     azurerm = azurerm.uat
   }
 
-  resource_group = local.uat_bizevents_key_vault_resource_group
-  key_vault_name = local.uat_bizevents_key_vault_name
+  resource_group = local.uat_biz_key_vault_resource_group
+  key_vault_name = local.uat_biz_key_vault_name
 
   secrets = [
     "pagopa-u-weu-uat-aks-azure-devops-sa-token",
@@ -56,8 +56,8 @@ module "bizevents_prod_secrets" {
     azurerm = azurerm.prod
   }
 
-  resource_group = local.prod_bizevents_key_vault_resource_group
-  key_vault_name = local.prod_bizevents_key_vault_name
+  resource_group = local.prod_biz_key_vault_resource_group
+  key_vault_name = local.prod_biz_key_vault_name
 
   secrets = [
     "pagopa-p-weu-prod-aks-azure-devops-sa-token",

@@ -31,11 +31,11 @@ locals {
     tf_aks_uat_name                  = var.aks_uat_platform_name
     tf_uat_azure_service_connection  = azuredevops_serviceendpoint_azurerm.UAT-SERVICE-CONN.service_endpoint_name
 
-    # tf_prod_aks_apiserver_url         = module.ecommerce_prod_secrets.values["pagopa-p-weu-prod-aks-apiserver-url"].value,
-    # tf_prod_aks_azure_devops_sa_cacrt = module.ecommerce_prod_secrets.values["pagopa-p-weu-prod-aks-azure-devops-sa-cacrt"].value,
-    # tf_prod_aks_azure_devops_sa_token = base64decode(module.ecommerce_prod_secrets.values["pagopa-p-weu-prod-aks-azure-devops-sa-token"].value),
-    # tf_aks_prod_name                  = var.aks_prod_platform_name
-    tf_prod_azure_service_connection = azuredevops_serviceendpoint_azurerm.PROD-SERVICE-CONN.service_endpoint_name
+    tf_prod_aks_apiserver_url         = module.ecommerce_prod_secrets.values["pagopa-p-weu-prod-aks-apiserver-url"].value,
+    tf_prod_aks_azure_devops_sa_cacrt = module.ecommerce_prod_secrets.values["pagopa-p-weu-prod-aks-azure-devops-sa-cacrt"].value,
+    tf_prod_aks_azure_devops_sa_token = base64decode(module.ecommerce_prod_secrets.values["pagopa-p-weu-prod-aks-azure-devops-sa-token"].value),
+    tf_aks_prod_name                  = var.aks_prod_platform_name
+    tf_prod_azure_service_connection  = azuredevops_serviceendpoint_azurerm.PROD-SERVICE-CONN.service_endpoint_name
   }
   # global secrets
   ecommerce_iac_variables_secret = {}
@@ -48,7 +48,9 @@ locals {
   # deploy vars
   ecommerce_iac_variables_deploy = {}
   # deploy secrets
-  ecommerce_iac_variables_secret_deploy = {}
+  ecommerce_iac_variables_secret_deploy = {
+    AZURE_DEVOPS_GITHUB_PR_TOKEN = module.secrets.values["azure-devops-github-pr-TOKEN"].value
+  }
 }
 
 module "ecommerce_iac_code_review" {

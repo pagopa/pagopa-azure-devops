@@ -16,6 +16,7 @@ MODE="$2"
 pids=()
 
 array=(
+    'azure-devops::aca'
     'azure-devops::afm'
     'azure-devops::app'
     'azure-devops::bizevents'
