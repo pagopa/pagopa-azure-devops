@@ -51,7 +51,7 @@ locals {
     uat_container_registry_service_conn  = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_uat_id
     prod_container_registry_service_conn = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_prod_id
 
-    image_repository_name = replace(var.pagopa-nodo-re-to-tablestorage.repository.name, "-", "")
+    image_repository_name = replace(var.pagopa-nodo-re-to-datastore.repository.name, "-", "")
 
     dev_container_namespace  = "pagopadcommonacr.azurecr.io"
     uat_container_namespace  = "pagopaucommonacr.azurecr.io"

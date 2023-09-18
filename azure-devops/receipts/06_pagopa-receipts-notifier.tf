@@ -34,9 +34,9 @@ locals {
   }
   # performance secrets
   pagopa-receipt-pdf-notifier-variables_secret_performance_test = {
-    DEV_RECEIPT_COSMOS_DB_SUBSCRIPTION_KEY  = module.receipts_dev_secrets.values["cosmos-receipt-pkey"].value
+    DEV_RECEIPT_COSMOS_DB_SUBSCRIPTION_KEY = module.receipts_dev_secrets.values["cosmos-receipt-pkey"].value
 
-    UAT_RECEIPT_COSMOS_DB_SUBSCRIPTION_KEY  = module.receipts_uat_secrets.values["cosmos-receipt-pkey"].value
+    UAT_RECEIPT_COSMOS_DB_SUBSCRIPTION_KEY = module.receipts_uat_secrets.values["cosmos-receipt-pkey"].value
   }
 }
 
