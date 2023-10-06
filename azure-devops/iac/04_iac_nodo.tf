@@ -28,6 +28,10 @@ variable "nodo_iac" {
         name                  = "web-bo-db-schema-pipelines"
         pipeline_yml_filename = "web-bo-db-schema-pipelines.yml"
       }
+      sync_schema_cfg_grant = {
+        name                  = "sync-schema-cfg-grant-pipelines"
+        pipeline_yml_filename = "nodo-sync-grant-schema-cfg-pipelines.yml"
+      }
 
     }
   }
