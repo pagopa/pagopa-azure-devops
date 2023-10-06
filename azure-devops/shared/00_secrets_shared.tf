@@ -49,7 +49,8 @@ module "shared_uat_secrets" {
     "auth-u-integrationtest-external-subkey",
     "auth-u-integrationtest-valid-subkey",
     "auth-u-integrationtest-invalid-subkey",
-    "pdf-engine-u-perftest-subkey"
+    "pdf-engine-u-perftest-subkey",
+    "pdf-engine-node-u-perftest-subkey"
   ]
 }
 

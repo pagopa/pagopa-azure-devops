@@ -31,7 +31,13 @@ locals {
 
   # performance vars
   pagopa-receipt-pdf-generator-variables_performance_test = {
+    TF_DEV_AZURE_SERVICE_CONNECTION = azuredevops_serviceendpoint_azurerm.DEV-SERVICE-CONN.service_endpoint_name
+    # TF_DEV_AZURE_SERVICE_CONNECTION        = module.secrets.values["DEV-SUBSCRIPTION-ID"].value
+
+    TF_UAT_AZURE_SERVICE_CONNECTION = azuredevops_serviceendpoint_azurerm.UAT-SERVICE-CONN.service_endpoint_name
+    # TF_UAT_AZURE_SERVICE_CONNECTION        = module.secrets.values["UAT-SUBSCRIPTION-ID"].value
   }
+
   # performance secrets
   pagopa-receipt-pdf-generator-variables_secret_performance_test = {
     DEV_RECEIPT_QUEUE_SUBSCRIPTION_KEY     = module.receipts_dev_secrets.values["receipts-storage-account-pkey"].value
@@ -39,6 +45,7 @@ locals {
 
     UAT_RECEIPT_QUEUE_SUBSCRIPTION_KEY     = module.receipts_uat_secrets.values["receipts-storage-account-pkey"].value
     UAT_RECEIPT_COSMOS_DB_SUBSCRIPTION_KEY = module.receipts_uat_secrets.values["cosmos-receipt-pkey"].value
+
   }
 }
 
@@ -66,5 +73,7 @@ module "pagopa-receipt-pdf-generator_performance_test" {
 
   service_connection_ids_authorization = [
     data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_ro_id,
+    azuredevops_serviceendpoint_azurerm.DEV-SERVICE-CONN.id,
+    azuredevops_serviceendpoint_azurerm.UAT-SERVICE-CONN.id,
   ]
 }
