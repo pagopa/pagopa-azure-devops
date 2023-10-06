@@ -79,7 +79,7 @@ module "tlscert-uat-api-uat-platform-pagopa-it-cert_az" {
   ]
 
   schedules = {
-    days_to_build              = ["Mon"]
+    days_to_build              = ["Wed"]
     schedule_only_with_changes = false
     start_hours                = 5
     start_minutes              = 0

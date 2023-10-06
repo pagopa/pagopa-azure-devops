@@ -79,7 +79,7 @@ module "tlscert-dev-dev-wisp2-pagopa-it-cert_az" {
   ]
 
   schedules = {
-    days_to_build              = ["Mon"]
+    days_to_build              = ["Wed"]
     schedule_only_with_changes = false
     start_hours                = 9
     start_minutes              = 30
