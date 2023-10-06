@@ -51,7 +51,7 @@ module "tlscert-prod-wfesp-pagopa-gov-it-cert_az" {
   #tfsec:ignore:GEN003
   renew_token                  = local.tlscert_renew_token
   path                         = var.tlscert-prod-wfesp-pagopa-gov-it.pipeline.path
-  github_service_connection_id = azuredevops_serviceendpoint_github.azure-devops-github-ro.id
+  github_service_connection_id = azuredevops_serviceendpoint_github.azure-devops-github-rw.id
 
   dns_record_name         = var.tlscert-prod-wfesp-pagopa-gov-it.pipeline.dns_record_name
   dns_zone_name           = var.tlscert-prod-wfesp-pagopa-gov-it.pipeline.dns_zone_name
@@ -79,7 +79,7 @@ module "tlscert-prod-wfesp-pagopa-gov-it-cert_az" {
   ]
 
   schedules = {
-    days_to_build              = ["Mon"]
+    days_to_build              = ["Wed"]
     schedule_only_with_changes = false
     start_hours                = 16
     start_minutes              = 35
