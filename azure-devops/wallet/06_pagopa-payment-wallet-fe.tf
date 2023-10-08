@@ -30,7 +30,7 @@ locals {
   }
   # deploy vars
   pagopa-payment-wallet-fe-variables_deploy = {
-    github_connection       = local.srv_endpoint_github_rw
+    github_connection       = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_rw_name
     dev_azure_subscription  = data.terraform_remote_state.app.outputs.service_endpoint_azure_dev_name
     uat_azure_subscription  = data.terraform_remote_state.app.outputs.service_endpoint_azure_uat_name
     prod_azure_subscription = data.terraform_remote_state.app.outputs.service_endpoint_azure_prod_name
