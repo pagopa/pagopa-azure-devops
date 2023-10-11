@@ -18,6 +18,8 @@
 | <a name="module_UAT-WALLET-TLS-CERT-SERVICE-CONN"></a> [UAT-WALLET-TLS-CERT-SERVICE-CONN](#module\_UAT-WALLET-TLS-CERT-SERVICE-CONN) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_azurerm_limited | v2.6.5 |
 | <a name="module_letsencrypt_dev"></a> [letsencrypt\_dev](#module\_letsencrypt\_dev) | git::https://github.com/pagopa/azurerm.git//letsencrypt_credential | v3.12.0 |
 | <a name="module_letsencrypt_uat"></a> [letsencrypt\_uat](#module\_letsencrypt\_uat) | git::https://github.com/pagopa/azurerm.git//letsencrypt_credential | v2.18.0 |
+| <a name="module_pagopa-payment-wallet-fe_code_review"></a> [pagopa-payment-wallet-fe\_code\_review](#module\_pagopa-payment-wallet-fe\_code\_review) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review | v2.2.0 |
+| <a name="module_pagopa-payment-wallet-fe_deploy"></a> [pagopa-payment-wallet-fe\_deploy](#module\_pagopa-payment-wallet-fe\_deploy) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy | v2.2.0 |
 | <a name="module_pagopa-wallet-service_code_review"></a> [pagopa-wallet-service\_code\_review](#module\_pagopa-wallet-service\_code\_review) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review | v2.2.0 |
 | <a name="module_pagopa-wallet-service_deploy"></a> [pagopa-wallet-service\_deploy](#module\_pagopa-wallet-service\_deploy) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy | v2.2.0 |
 | <a name="module_secrets"></a> [secrets](#module\_secrets) | git::https://github.com/pagopa/azurerm.git//key_vault_secrets_query | v2.0.4 |
@@ -46,6 +48,7 @@
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_dev_subscription_name"></a> [dev\_subscription\_name](#input\_dev\_subscription\_name) | DEV Subscription name | `string` | n/a | yes |
+| <a name="input_pagopa-payment-wallet-fe"></a> [pagopa-payment-wallet-fe](#input\_pagopa-payment-wallet-fe) | n/a | `map` | <pre>{<br>  "repository": {<br>    "branch_name": "refs/heads/main",<br>    "name": "pagopa-wallet-fe",<br>    "organization": "pagopa",<br>    "pipelines_path": ".devops",<br>    "yml_prefix_name": "pagopa"<br>  }<br>}</pre> | no |
 | <a name="input_pagopa-wallet-service"></a> [pagopa-wallet-service](#input\_pagopa-wallet-service) | n/a | `map` | <pre>{<br>  "pipeline": {<br>    "enable_code_review": true,<br>    "enable_deploy": true,<br>    "sonarcloud": {<br>      "org": "pagopa",<br>      "project_key": "pagopa_pagopa-wallet-service",<br>      "project_name": "pagopa-wallet-service",<br>      "service_connection": "SONARCLOUD-SERVICE-CONN"<br>    }<br>  },<br>  "repository": {<br>    "branch_name": "refs/heads/main",<br>    "name": "pagopa-wallet-service",<br>    "organization": "pagopa",<br>    "pipelines_path": ".devops",<br>    "yml_prefix_name": null<br>  }<br>}</pre> | no |
 | <a name="input_pipeline_environments"></a> [pipeline\_environments](#input\_pipeline\_environments) | List of environments pipeline to create | `list(any)` | n/a | yes |
 | <a name="input_prod_subscription_name"></a> [prod\_subscription\_name](#input\_prod\_subscription\_name) | PROD Subscription name | `string` | n/a | yes |
