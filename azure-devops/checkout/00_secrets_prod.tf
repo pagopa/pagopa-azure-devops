@@ -24,5 +24,6 @@ module "secrets" {
     "DEV-CHECKOUT-CAPTCHA-ID",
     "UAT-CHECKOUT-CAPTCHA-ID",
     "PROD-CHECKOUT-CAPTCHA-ID",
+    "checkout-test-npg-api-key"
   ]
 }

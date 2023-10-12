@@ -30,7 +30,7 @@ locals {
   }
   # code_review secrets
   pagopa-checkout-fe-variables_secret_code_review = {
-
+    checkout-test-npg-api-key = module.secrets.values["checkout-test-npg-api-key"].value
   }
   # deploy vars
   pagopa-checkout-fe-variables_deploy = {
