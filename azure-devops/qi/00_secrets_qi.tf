@@ -33,3 +33,20 @@ module "qi_uat_secrets" {
     "pagopa-u-weu-uat-aks-apiserver-url"
   ]
 }
+module "qi_prod_secrets" {
+
+  providers = {
+    azurerm = azurerm.prod
+  }
+
+  source = "git::https://github.com/pagopa/azurerm.git//key_vault_secrets_query?ref=v2.0.4"
+
+  resource_group = local.prod_qi_key_vault_resource_group
+  key_vault_name = local.prod_qi_key_vault_name
+
+  secrets = [
+    "pagopa-p-weu-prod-aks-azure-devops-sa-token",
+    "pagopa-p-weu-prod-aks-azure-devops-sa-cacrt",
+    "pagopa-p-weu-prod-aks-apiserver-url"
+  ]
+}
