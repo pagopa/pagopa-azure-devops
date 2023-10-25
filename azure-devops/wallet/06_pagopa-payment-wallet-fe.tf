@@ -5,7 +5,7 @@ variable "pagopa-payment-wallet-fe" {
       name            = "pagopa-wallet-fe"
       branch_name     = "refs/heads/main"
       pipelines_path  = ".devops"
-      yml_prefix_name = null
+      yml_prefix_name = "pagopa"
     }
     pipeline = {
       enable_code_review = true
