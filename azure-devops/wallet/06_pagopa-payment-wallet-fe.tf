@@ -5,7 +5,18 @@ variable "pagopa-payment-wallet-fe" {
       name            = "pagopa-wallet-fe"
       branch_name     = "refs/heads/main"
       pipelines_path  = ".devops"
-      yml_prefix_name = "pagopa"
+      yml_prefix_name = null
+    }
+    pipeline = {
+      enable_code_review = true
+      enable_deploy      = true
+      sonarcloud = {
+        # TODO azure devops terraform provider does not support SonarCloud service endpoint
+        service_connection = "SONARCLOUD-SERVICE-CONN"
+        org                = "pagopa"
+        project_key        = "pagopa_pagopa-wallet-fe"
+        project_name       = "pagopa-wallet-fe"
+      }
     }
   }
 }
@@ -22,7 +33,11 @@ locals {
   }
   # code_review vars
   pagopa-payment-wallet-fe-variables_code_review = {
-
+    danger_github_api_token = "skip"
+    sonarcloud_service_conn = var.pagopa-payment-wallet-fe.pipeline.sonarcloud.service_connection
+    sonarcloud_org          = var.pagopa-payment-wallet-fe.pipeline.sonarcloud.org
+    sonarcloud_project_key  = var.pagopa-payment-wallet-fe.pipeline.sonarcloud.project_key
+    sonarcloud_project_name = var.pagopa-payment-wallet-fe.pipeline.sonarcloud.project_name
   }
   # code_review secrets
   pagopa-payment-wallet-fe-variables_secret_code_review = {
@@ -66,7 +81,8 @@ module "pagopa-payment-wallet-fe_code_review" {
   )
 
   service_connection_ids_authorization = [
-    data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_ro_id
+    data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_ro_id,
+    local.azuredevops_serviceendpoint_sonarcloud_id
   ]
 }
 
