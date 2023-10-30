@@ -65,12 +65,11 @@ locals {
   }
   # deploy secrets
   pagopa-aca-service-variables_secret_deploy = {
-    git_mail         = module.secrets.values["azure-devops-github-EMAIL"].value
-    git_username     = module.secrets.values["azure-devops-github-USERNAME"].value
-    tenant_id        = module.secrets.values["TENANTID"].value
-    aca_api_key_dev  = module.aca_dev_secrets.values["aca-api-key"].value
-    aca_api_key_uat  = module.aca_uat_secrets.values["aca-api-key"].value
-    aca_api_key_prod = module.aca_prod_secrets.values["aca-api-key"].value
+    git_mail        = module.secrets.values["azure-devops-github-EMAIL"].value
+    git_username    = module.secrets.values["azure-devops-github-USERNAME"].value
+    tenant_id       = module.secrets.values["TENANTID"].value
+    aca_api_key_dev = module.aca_dev_secrets.values["aca-api-key"].value
+    aca_api_key_uat = module.aca_uat_secrets.values["aca-api-key"].value
   }
 }
 
