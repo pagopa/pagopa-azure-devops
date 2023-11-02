@@ -90,3 +90,51 @@ module "letsencrypt_uat" {
   key_vault_name    = local.uat_aca_key_vault_name
   subscription_name = var.uat_subscription_name
 }
+
+#
+# PROD
+#
+module "PROD-ACA-TLS-CERT-SERVICE-CONN" {
+  providers = {
+    azurerm = azurerm.prod
+  }
+
+  depends_on = [data.azuredevops_project.project]
+  source     = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_azurerm_limited?ref=v2.7.0"
+
+  project_id        = data.azuredevops_project.project.id
+  name              = "${local.prefix}-p-${local.domain}-tls-cert"
+  tenant_id         = module.secrets.values["TENANTID"].value
+  subscription_name = var.prod_subscription_name
+  subscription_id   = module.secrets.values["PROD-SUBSCRIPTION-ID"].value
+  #tfsec:ignore:GEN003
+  renew_token = local.tlscert_renew_token
+
+  credential_subcription              = var.prod_subscription_name
+  credential_key_vault_name           = local.prod_aca_key_vault_name
+  credential_key_vault_resource_group = local.prod_aca_key_vault_resource_group
+}
+
+resource "azurerm_key_vault_access_policy" "PROD-ACA-TLS-CERT-SERVICE-CONN_kv_access_policy" {
+  provider     = azurerm.prod
+  key_vault_id = data.azurerm_key_vault.domain_kv_prod.id
+  tenant_id    = module.secrets.values["TENANTID"].value
+  object_id    = module.PROD-ACA-TLS-CERT-SERVICE-CONN.service_principal_object_id
+
+  certificate_permissions = ["Get", "Import"]
+}
+
+# create let's encrypt credential used to create SSL certificates
+module "letsencrypt_prod" {
+  source = "git::https://github.com/pagopa/azurerm.git//letsencrypt_credential?ref=v3.12.0"
+
+  providers = {
+    azurerm = azurerm.prod
+  }
+  prefix            = local.prefix
+  env               = "p"
+  key_vault_name    = local.prod_aca_key_vault_name
+  subscription_name = var.prod_subscription_name
+}
+
+
