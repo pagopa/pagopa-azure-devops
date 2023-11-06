@@ -18,5 +18,6 @@ module "secrets" {
     "TENANTID",
     "DEV-SUBSCRIPTION-ID",
     "UAT-SUBSCRIPTION-ID",
+    "PROD-SUBSCRIPTION-ID",
   ]
 }
