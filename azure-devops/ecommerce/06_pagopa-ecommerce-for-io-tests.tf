@@ -9,7 +9,7 @@ variable "pagopa-ecommerce-tests" {
       pipeline_yml_filename = "api-tests-ecommerce-for-io.yaml"
     }
     pipeline = {
-       name = "api-tests-ecommerce-for-io"
+      name = "api-tests-ecommerce-for-io"
     }
   }
 }
@@ -37,7 +37,7 @@ locals {
 
 module "pagopa-api-tests-ecommerce-for-io" {
   source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_generic?ref=v2.6.3"
- 
+
   project_id                   = data.azuredevops_project.project.id
   repository                   = var.pagopa-ecommerce-tests.repository
   github_service_connection_id = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_ro_id
