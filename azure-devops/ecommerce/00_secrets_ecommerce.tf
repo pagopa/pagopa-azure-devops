@@ -21,7 +21,8 @@ module "ecommerce_dev_secrets" {
     "notifications-service-testing-mail",
     "helpdesk-service-testing-api-key",
     "helpdesk-service-testing-email",
-    "helpdesk-service-testing-fiscalCode"
+    "helpdesk-service-testing-fiscalCode",
+    "wallet-token-test-key"
   ]
 }
 
@@ -45,7 +46,8 @@ module "ecommerce_uat_secrets" {
     "notifications-service-testing-mail",
     "helpdesk-service-testing-api-key",
     "helpdesk-service-testing-email",
-    "helpdesk-service-testing-fiscalCode"
+    "helpdesk-service-testing-fiscalCode",
+    "wallet-token-test-key"
   ]
 }
 
