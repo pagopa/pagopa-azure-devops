@@ -65,9 +65,9 @@ locals {
   }
   # deploy secrets
   pagopa-wallet-service-variables_secret_deploy = {
-    git_mail     = module.secrets.values["azure-devops-github-EMAIL"].value
-    git_username = module.secrets.values["azure-devops-github-USERNAME"].value
-    tenant_id    = module.secrets.values["TENANTID"].value
+    git_mail              = module.secrets.values["azure-devops-github-EMAIL"].value
+    git_username          = module.secrets.values["azure-devops-github-USERNAME"].value
+    tenant_id             = module.secrets.values["TENANTID"].value
     wallet_token_test_dev = module.wallet_dev_secrets.values["wallet-token-test-key"].value
     wallet_token_test_uat = module.wallet_uat_secrets.values["wallet-token-test-key"].value
   }
