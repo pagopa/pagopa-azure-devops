@@ -2,7 +2,7 @@ variable "pagopa-ecommerce-api-tests" {
   default = {
     repository = {
       organization          = "pagopa"
-      name                  = "pagopa-ecommerce-api-tests-variables"
+      name                  = "pagopa-ecommerce-tests"
       branch_name           = "refs/heads/main"
       pipelines_path        = ".devops"
       yml_prefix_name       = null
@@ -41,7 +41,7 @@ module "pagopa-api-tests-ecommerce-for-io" {
   project_id                   = data.azuredevops_project.project.id
   repository                   = var.pagopa-ecommerce-api-tests.repository
   github_service_connection_id = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_ro_id
-  path                         = "${local.domain}\\pagopa-ecommerce-api-tests-variables"
+  path                         = "${local.domain}\\pagopa-ecommerce-tests"
   pipeline_name                = var.pagopa-ecommerce-api-tests.pipeline.name
   pipeline_yml_filename        = var.pagopa-ecommerce-api-tests.repository.pipeline_yml_filename
 
