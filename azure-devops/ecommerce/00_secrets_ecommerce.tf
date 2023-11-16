@@ -22,7 +22,10 @@ module "ecommerce_dev_secrets" {
     "helpdesk-service-testing-api-key",
     "helpdesk-service-testing-email",
     "helpdesk-service-testing-fiscalCode",
-    "wallet-token-test-key"
+    "wallet-token-test-key",
+    "wallet-token-test-creditcard-key",
+    "wallet-token-test-bancomatpay-key",
+    "wallet-token-test-paypal-key"
   ]
 }
 
@@ -47,7 +50,10 @@ module "ecommerce_uat_secrets" {
     "helpdesk-service-testing-api-key",
     "helpdesk-service-testing-email",
     "helpdesk-service-testing-fiscalCode",
-    "wallet-token-test-key"
+    "wallet-token-test-key",
+    "wallet-token-test-creditcard-key",
+    "wallet-token-test-bancomatpay-key",
+    "wallet-token-test-paypal-key"
   ]
 }
 

@@ -29,8 +29,10 @@ locals {
 
   }
   # soak secrets
- pagopa-ecommerce-api-tests-variables_secret_soak = {
-    wallet_token_test = module.ecommerce_uat_secrets.values["wallet-token-test-key"].value
+  pagopa-ecommerce-api-tests-variables_secret_soak = {
+    wallet_token_test_credicard = module.ecommerce_uat_secrets.values["wallet-token-test-creditcard-key"].value,
+    wallet_token_test_bancomatpay = module.ecommerce_uat_secrets.values["wallet-token-test-bancomatpay-key"].value,
+    wallet_token_test_paypal = module.ecommerce_uat_secrets.values["wallet-token-test-paypal-key"].value,
   }
 
 }
