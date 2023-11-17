@@ -49,7 +49,7 @@ locals {
   pagopa-fdr-nodo-service-variables_secret_code_review = {
     lightbend_key_dev = module.fdr_dev_secrets.values["lightbend-key"].value
     lightbend_key_uat = module.fdr_dev_secrets.values["lightbend-key"].value
-    #    lightbend_key_prod = module.fdr_dev_secrets.values["lightbend-key"].value
+#    lightbend_key_prod = module.fdr_dev_secrets.values["lightbend-key"].value
   }
   # deploy vars
   pagopa-fdr-nodo-service-variables_deploy = {
@@ -65,17 +65,26 @@ locals {
 
     dev_container_registry_service_conn = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_dev_id
     uat_container_registry_service_conn = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_uat_id
-    #    prod_container_registry_service_conn = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_prod_id
+#    prod_container_registry_service_conn = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_prod_id
 
     # aks section
     k8s_namespace               = "fdr"
     dev_kubernetes_service_conn = azuredevops_serviceendpoint_kubernetes.aks_dev.id
     uat_kubernetes_service_conn = azuredevops_serviceendpoint_kubernetes.aks_uat.id
-    #    prod_kubernetes_service_conn = azuredevops_serviceendpoint_kubernetes.aks_prod.id
+#    prod_kubernetes_service_conn = azuredevops_serviceendpoint_kubernetes.aks_prod.id
 
     dev_container_namespace = "pagopadcommonacr.azurecr.io"
     uat_container_namespace = "pagopaucommonacr.azurecr.io"
-    #    prod_container_namespace = "pagopapcommonacr.azurecr.io"
+#    prod_container_namespace = "pagopapcommonacr.azurecr.io"
+
+    TF_APPINSIGHTS_SERVICE_CONN_DEV = module.DEV-APPINSIGHTS-SERVICE-CONN.service_endpoint_name
+    TF_APPINSIGHTS_RESOURCE_ID_DEV  = data.azurerm_application_insights.application_insights_dev.id
+
+    TF_APPINSIGHTS_SERVICE_CONN_UAT = module.UAT-APPINSIGHTS-SERVICE-CONN.service_endpoint_name
+    TF_APPINSIGHTS_RESOURCE_ID_UAT  = data.azurerm_application_insights.application_insights_uat.id
+
+#    TF_APPINSIGHTS_SERVICE_CONN_PROD = module.PROD-APPINSIGHTS-SERVICE-CONN.service_endpoint_name
+#    TF_APPINSIGHTS_RESOURCE_ID_PROD  = data.azurerm_application_insights.application_insights_prod.id
 
     # fdr variables of cd pipeline
     deploy-pool-dev = "pagopa-dev-linux"
@@ -86,7 +95,7 @@ locals {
   pagopa-fdr-nodo-service-variables_secret_deploy = {
     lightbend_key_dev = module.fdr_dev_secrets.values["lightbend-key"].value
     lightbend_key_uat = module.fdr_dev_secrets.values["lightbend-key"].value
-    #    lightbend_key_prod = module.fdr_dev_secrets.values["lightbend-key"].value
+#    lightbend_key_prod = module.fdr_dev_secrets.values["lightbend-key"].value
   }
 
   # integration vars
@@ -113,7 +122,7 @@ locals {
     k8s_namespace               = "fdr"
     dev_kubernetes_service_conn = azuredevops_serviceendpoint_kubernetes.aks_dev.id
     uat_kubernetes_service_conn = azuredevops_serviceendpoint_kubernetes.aks_uat.id
-    #    prod_kubernetes_service_conn = azuredevops_serviceendpoint_kubernetes.aks_prod.id
+#    prod_kubernetes_service_conn = azuredevops_serviceendpoint_kubernetes.aks_prod.id
 
   }
   # performance secrets
