@@ -1,4 +1,4 @@
-variable "tlscert-uat-apix-uat-platform-pagopa-it" {
+variable "tlscert-uat-fdr-uat-platform-pagopa-it" {
   default = {
     repository = {
       organization   = "pagopa"
@@ -9,7 +9,7 @@ variable "tlscert-uat-apix-uat-platform-pagopa-it" {
     pipeline = {
       enable_tls_cert         = true
       path                    = "TLS-Certificates\\UAT"
-      dns_record_name         = "apix"
+      dns_record_name         = "fdr"
       dns_zone_name           = "uat.platform.pagopa.it"
       dns_zone_resource_group = "pagopa-u-vnet-rg"
       # common variables to all pipelines
@@ -25,53 +25,53 @@ variable "tlscert-uat-apix-uat-platform-pagopa-it" {
 }
 
 locals {
-  tlscert-uat-apix-uat-platform-pagopa-it = {
+  tlscert-uat-fdr-uat-platform-pagopa-it = {
     tenant_id         = module.secrets.values["TENANTID"].value
     subscription_name = "UAT-PAGOPA"
     subscription_id   = module.secrets.values["UAT-SUBSCRIPTION-ID"].value
   }
-  tlscert-uat-apix-uat-platform-pagopa-it-variables = {
+  tlscert-uat-fdr-uat-platform-pagopa-it-variables = {
     KEY_VAULT_SERVICE_CONNECTION = module.UAT-TLS-CERT-SERVICE-CONN.service_endpoint_name
   }
-  tlscert-uat-apix-uat-platform-pagopa-it-variables_secret = {
+  tlscert-uat-fdr-uat-platform-pagopa-it-variables_secret = {
   }
 }
 
-module "tlscert-uat-apix-uat-platform-pagopa-it-cert_az" {
+module "tlscert-uat-fdr-uat-platform-pagopa-it-cert_az" {
   providers = {
     azurerm = azurerm.uat
   }
 
   source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_tls_cert?ref=v2.6.5"
-  count  = var.tlscert-uat-apix-uat-platform-pagopa-it.pipeline.enable_tls_cert == true ? 1 : 0
+  count  = var.tlscert-uat-fdr-uat-platform-pagopa-it.pipeline.enable_tls_cert == true ? 1 : 0
 
   project_id = azuredevops_project.project.id
-  repository = var.tlscert-uat-apix-uat-platform-pagopa-it.repository
-  name       = "${var.tlscert-uat-apix-uat-platform-pagopa-it.pipeline.dns_record_name}.${var.tlscert-uat-apix-uat-platform-pagopa-it.pipeline.dns_zone_name}"
+  repository = var.tlscert-uat-fdr-uat-platform-pagopa-it.repository
+  name       = "${var.tlscert-uat-fdr-uat-platform-pagopa-it.pipeline.dns_record_name}.${var.tlscert-uat-fdr-uat-platform-pagopa-it.pipeline.dns_zone_name}"
   #tfsec:ignore:GEN003
   renew_token                  = local.tlscert_renew_token
-  path                         = var.tlscert-uat-apix-uat-platform-pagopa-it.pipeline.path
+  path                         = var.tlscert-uat-fdr-uat-platform-pagopa-it.pipeline.path
   github_service_connection_id = azuredevops_serviceendpoint_github.azure-devops-github-rw.id
 
-  dns_record_name         = var.tlscert-uat-apix-uat-platform-pagopa-it.pipeline.dns_record_name
-  dns_zone_name           = var.tlscert-uat-apix-uat-platform-pagopa-it.pipeline.dns_zone_name
-  dns_zone_resource_group = var.tlscert-uat-apix-uat-platform-pagopa-it.pipeline.dns_zone_resource_group
-  tenant_id               = local.tlscert-uat-apix-uat-platform-pagopa-it.tenant_id
-  subscription_name       = local.tlscert-uat-apix-uat-platform-pagopa-it.subscription_name
-  subscription_id         = local.tlscert-uat-apix-uat-platform-pagopa-it.subscription_id
+  dns_record_name         = var.tlscert-uat-fdr-uat-platform-pagopa-it.pipeline.dns_record_name
+  dns_zone_name           = var.tlscert-uat-fdr-uat-platform-pagopa-it.pipeline.dns_zone_name
+  dns_zone_resource_group = var.tlscert-uat-fdr-uat-platform-pagopa-it.pipeline.dns_zone_resource_group
+  tenant_id               = local.tlscert-uat-fdr-uat-platform-pagopa-it.tenant_id
+  subscription_name       = local.tlscert-uat-fdr-uat-platform-pagopa-it.subscription_name
+  subscription_id         = local.tlscert-uat-fdr-uat-platform-pagopa-it.subscription_id
 
   credential_subcription              = var.uat_subscription_name
   credential_key_vault_name           = local.uat_key_vault_name
   credential_key_vault_resource_group = local.uat_key_vault_resource_group
 
   variables = merge(
-    var.tlscert-uat-apix-uat-platform-pagopa-it.pipeline.variables,
-    local.tlscert-uat-apix-uat-platform-pagopa-it-variables,
+    var.tlscert-uat-fdr-uat-platform-pagopa-it.pipeline.variables,
+    local.tlscert-uat-fdr-uat-platform-pagopa-it-variables,
   )
 
   variables_secret = merge(
-    var.tlscert-uat-apix-uat-platform-pagopa-it.pipeline.variables_secret,
-    local.tlscert-uat-apix-uat-platform-pagopa-it-variables_secret,
+    var.tlscert-uat-fdr-uat-platform-pagopa-it.pipeline.variables_secret,
+    local.tlscert-uat-fdr-uat-platform-pagopa-it-variables_secret,
   )
 
   service_connection_ids_authorization = [
