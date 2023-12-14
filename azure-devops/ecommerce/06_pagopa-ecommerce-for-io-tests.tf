@@ -21,15 +21,15 @@ locals {
     default_branch   = var.pagopa-ecommerce-api-tests.repository.branch_name
   }
   # global secrets
- pagopa-ecommerce-api-tests-variables_secret = {
+  pagopa-ecommerce-api-tests-variables_secret = {
 
   }
   # soak vars
- pagopa-ecommerce-api-tests-variables_soak = {
+  pagopa-ecommerce-api-tests-variables_soak = {
 
   }
   # soak secrets
- pagopa-ecommerce-api-tests-variables_secret_soak = {
+  pagopa-ecommerce-api-tests-variables_secret_soak = {
     wallet_token_test = module.ecommerce_uat_secrets.values["wallet-token-test-key"].value
   }
 
