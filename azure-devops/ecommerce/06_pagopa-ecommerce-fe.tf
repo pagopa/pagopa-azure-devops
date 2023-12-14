@@ -33,16 +33,16 @@ locals {
   }
   # deploy vars
   pagopa-ecommerce-fe-variables_deploy = {
-    git_mail                 = module.secrets.values["azure-devops-github-EMAIL"].value
-    git_username             = module.secrets.values["azure-devops-github-USERNAME"].value
-    github_connection        = local.srv_endpoint_github_rw
-    dev_azure_subscription   = data.terraform_remote_state.app.outputs.service_endpoint_azure_dev_name
-    uat_azure_subscription   = data.terraform_remote_state.app.outputs.service_endpoint_azure_uat_name
-    prod_azure_subscription  = data.terraform_remote_state.app.outputs.service_endpoint_azure_prod_name
-    cache_version_id         = "v1"
-    ecommerce_api_host_dev    = "https://api.dev.platform.pagopa.it"
-    ecommerce_api_host_uat    = "https://api.uat.platform.pagopa.it"
-    ecommerce_api_host_prod   = "https://api.platform.pagopa.it"
+    git_mail                = module.secrets.values["azure-devops-github-EMAIL"].value
+    git_username            = module.secrets.values["azure-devops-github-USERNAME"].value
+    github_connection       = local.srv_endpoint_github_rw
+    dev_azure_subscription  = data.terraform_remote_state.app.outputs.service_endpoint_azure_dev_name
+    uat_azure_subscription  = data.terraform_remote_state.app.outputs.service_endpoint_azure_uat_name
+    prod_azure_subscription = data.terraform_remote_state.app.outputs.service_endpoint_azure_prod_name
+    cache_version_id        = "v1"
+    ecommerce_api_host_dev  = "https://api.dev.platform.pagopa.it"
+    ecommerce_api_host_uat  = "https://api.uat.platform.pagopa.it"
+    ecommerce_api_host_prod = "https://api.platform.pagopa.it"
   }
   # deploy secrets
   pagopa-ecommerce-fe-variables_secret_deploy = {
