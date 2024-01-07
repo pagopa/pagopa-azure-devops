@@ -90,7 +90,7 @@ module "pagopa-afm-marketplace-fe_code_review" {
 }
 
 module "pagopa-afm-marketplace-fe_deploy" {
-  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy?ref=v2.0.4"
+  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy?ref=v4.1.4"
   count  = var.pagopa-afm-marketplace-fe.pipeline.enable_deploy == true ? 1 : 0
 
   project_id                   = azuredevops_project.project.id
