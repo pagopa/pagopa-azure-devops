@@ -64,6 +64,7 @@ module "pagopa-mock-ec_code_review" {
   project_id                   = azuredevops_project.project.id
   repository                   = var.pagopa-mock-ec.repository
   github_service_connection_id = azuredevops_serviceendpoint_github.azure-devops-github-pr.id
+  path                         = var.pagopa-mock-ec.repository.name
 
   variables = merge(
     local.pagopa-mock-ec-variables,
@@ -87,6 +88,8 @@ module "pagopa-mock-ec_deploy" {
   project_id                   = azuredevops_project.project.id
   repository                   = var.pagopa-mock-ec.repository
   github_service_connection_id = azuredevops_serviceendpoint_github.azure-devops-github-rw.id
+  path                         = var.pagopa-mock-ec.repository.name
+
 
   variables = merge(
     local.pagopa-mock-ec-variables,

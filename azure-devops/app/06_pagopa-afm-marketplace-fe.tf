@@ -72,6 +72,7 @@ module "pagopa-afm-marketplace-fe_code_review" {
   project_id                   = azuredevops_project.project.id
   repository                   = var.pagopa-afm-marketplace-fe.repository
   github_service_connection_id = azuredevops_serviceendpoint_github.azure-devops-github-pr.id
+    path                         = var.pagopa-afm-marketplace-fe.repository.name
 
   variables = merge(
     local.pagopa-afm-marketplace-fe-variables,
@@ -96,6 +97,8 @@ module "pagopa-afm-marketplace-fe_deploy" {
   project_id                   = azuredevops_project.project.id
   repository                   = var.pagopa-afm-marketplace-fe.repository
   github_service_connection_id = azuredevops_serviceendpoint_github.azure-devops-github-rw.id
+    path                         = var.pagopa-afm-marketplace-fe.repository.name
+
 
   variables = merge(
     local.pagopa-afm-marketplace-fe-variables,

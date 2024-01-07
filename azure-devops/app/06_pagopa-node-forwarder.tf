@@ -105,6 +105,7 @@ module "pagopa-node-forwarder_code_review" {
   project_id                   = azuredevops_project.project.id
   repository                   = var.pagopa-node-forwarder.repository
   github_service_connection_id = azuredevops_serviceendpoint_github.azure-devops-github-pr.id
+  path                         = var.pagopa-node-forwarder.repository.name
 
   variables = merge(
     local.pagopa-node-forwarder-variables,
@@ -129,6 +130,7 @@ module "pagopa-node-forwarder_deploy" {
   project_id                   = azuredevops_project.project.id
   repository                   = var.pagopa-node-forwarder.repository
   github_service_connection_id = azuredevops_serviceendpoint_github.azure-devops-github-rw.id
+  path                         = var.pagopa-node-forwarder.repository.name
 
   variables = merge(
     local.pagopa-node-forwarder-variables,
@@ -149,7 +151,7 @@ module "pagopa-node-forwarder_deploy" {
 }
 
 module "pagopa-node-forwarder_performance_test" {
-  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_generic?ref=v2.6.3"
+  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_generic?ref=v4.1.4"
   count  = var.pagopa-node-forwarder.pipeline.performance_test.enabled == true ? 1 : 0
 
   project_id                   = azuredevops_project.project.id

@@ -57,6 +57,7 @@ module "pagopa-functions-buyerbank_code_review" {
   project_id                   = azuredevops_project.project.id
   repository                   = var.pagopa-functions-buyerbank.repository
   github_service_connection_id = azuredevops_serviceendpoint_github.azure-devops-github-pr.id
+  path                         = var.pagopa-functions-buyerbank.repository.name
 
   variables = merge(
     local.pagopa-functions-buyerbank-variables,
@@ -80,6 +81,8 @@ module "pagopa-functions-buyerbank_deploy" {
   project_id                   = azuredevops_project.project.id
   repository                   = var.pagopa-functions-buyerbank.repository
   github_service_connection_id = azuredevops_serviceendpoint_github.azure-devops-github-rw.id
+  path                         = var.pagopa-functions-buyerbank.repository.name
+
 
   variables = merge(
     local.pagopa-functions-buyerbank-variables,

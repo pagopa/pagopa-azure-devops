@@ -88,6 +88,7 @@ module "pagopa-canone-unico_code_review" {
   project_id                   = azuredevops_project.project.id
   repository                   = var.pagopa-canone-unico.repository
   github_service_connection_id = azuredevops_serviceendpoint_github.azure-devops-github-pr.id
+  path                         = var.pagopa-canone-unico.repository.name
 
   variables = merge(
     local.pagopa-canone-unico-variables,
@@ -112,6 +113,7 @@ module "pagopa-canone-unico_deploy" {
   project_id                   = azuredevops_project.project.id
   repository                   = var.pagopa-canone-unico.repository
   github_service_connection_id = azuredevops_serviceendpoint_github.azure-devops-github-rw.id
+  path                         = var.pagopa-canone-unico.repository.name
 
   variables = merge(
     local.pagopa-canone-unico-variables,

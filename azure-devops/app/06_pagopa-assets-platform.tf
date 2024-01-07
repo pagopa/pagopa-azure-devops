@@ -81,6 +81,8 @@ module "pagopa-platform-cdn-assets_deploy" {
   project_id                   = azuredevops_project.project.id
   repository                   = var.pagopa-platform-cdn-assets.repository
   github_service_connection_id = azuredevops_serviceendpoint_github.azure-devops-github-rw.id
+        path                         = var.pagopa-platform-cdn-assets.repository.name
+
 
   variables = merge(
     local.pagopa-platform-cdn-assets-variables,

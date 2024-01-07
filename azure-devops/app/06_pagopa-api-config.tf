@@ -97,6 +97,7 @@ module "pagopa-api-config_code_review" {
   project_id                   = azuredevops_project.project.id
   repository                   = var.pagopa-api-config.repository
   github_service_connection_id = azuredevops_serviceendpoint_github.azure-devops-github-pr.id
+        path                         = var.pagopa-api-config.repository.name
 
   variables = merge(
     local.pagopa-api-config-variables,
@@ -121,6 +122,8 @@ module "pagopa-api-config_deploy" {
   project_id                   = azuredevops_project.project.id
   repository                   = var.pagopa-api-config.repository
   github_service_connection_id = azuredevops_serviceendpoint_github.azure-devops-github-rw.id
+        path                         = var.pagopa-api-config.repository.name
+
 
   variables = merge(
     local.pagopa-api-config-variables,
