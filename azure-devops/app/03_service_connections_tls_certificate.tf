@@ -14,7 +14,7 @@ module "DEV-TLS-CERT-SERVICE-CONN" {
   renew_token       = local.tlscert_renew_token
   name              = "${local.prefix}-d-tls-cert-kv-policy"
   tenant_id         = data.azurerm_client_config.current.tenant_id
-  subscription_id   = module.secrets.values["DEV-SUBSCRIPTION-ID"].value
+  subscription_id   = data.azurerm_subscriptions.dev.subscriptions[0].subscription_id
   subscription_name = var.dev_subscription_name
 
   credential_subcription              = var.dev_subscription_name
@@ -54,7 +54,7 @@ module "UAT-TLS-CERT-SERVICE-CONN" {
   renew_token       = local.tlscert_renew_token
   name              = "${local.prefix}-u-tls-cert-kv-policy"
   tenant_id         = data.azurerm_client_config.current.tenant_id
-  subscription_id   = module.secrets.values["UAT-SUBSCRIPTION-ID"].value
+  subscription_id   = data.azurerm_subscriptions.uat.subscriptions[0].subscription_id
   subscription_name = var.uat_subscription_name
 
   credential_subcription              = var.uat_subscription_name
@@ -93,7 +93,7 @@ module "PROD-TLS-CERT-SERVICE-CONN" {
   renew_token       = local.tlscert_renew_token
   name              = "${local.prefix}-p-tls-cert-kv-policy"
   tenant_id         = data.azurerm_client_config.current.tenant_id
-  subscription_id   = module.secrets.values["PROD-SUBSCRIPTION-ID"].value
+  subscription_id   = data.azurerm_subscriptions.prod.subscriptions[0].subscription_id
   subscription_name = var.prod_subscription_name
 
   credential_subcription              = var.prod_subscription_name
@@ -132,7 +132,7 @@ module "DEV-ECOMMERCE-TLS-CERT-SERVICE-CONN" {
   renew_token       = local.tlscert_renew_token
   name              = "${local.prefix}-ecommerce-d-tls-cert-kv-policy"
   tenant_id         = data.azurerm_client_config.current.tenant_id
-  subscription_id   = module.secrets.values["DEV-SUBSCRIPTION-ID"].value
+  subscription_id   = data.azurerm_subscriptions.dev.subscriptions[0].subscription_id
   subscription_name = var.dev_subscription_name
 
   credential_subcription              = var.dev_subscription_name
@@ -172,7 +172,7 @@ module "UAT-ECOMMERCE-TLS-CERT-SERVICE-CONN" {
   renew_token       = local.tlscert_renew_token
   name              = "${local.prefix}-ecommerce-u-tls-cert-kv-policy"
   tenant_id         = data.azurerm_client_config.current.tenant_id
-  subscription_id   = module.secrets.values["UAT-SUBSCRIPTION-ID"].value
+  subscription_id   = data.azurerm_subscriptions.uat.subscriptions[0].subscription_id
   subscription_name = var.uat_subscription_name
 
   credential_subcription              = var.uat_subscription_name
@@ -212,7 +212,7 @@ module "PROD-ECOMMERCE-TLS-CERT-SERVICE-CONN" {
   renew_token       = local.tlscert_renew_token
   name              = "${local.prefix}-ecommerce-p-tls-cert-kv-policy"
   tenant_id         = data.azurerm_client_config.current.tenant_id
-  subscription_id   = module.secrets.values["PROD-SUBSCRIPTION-ID"].value
+  subscription_id   = data.azurerm_subscriptions.prod.subscriptions[0].subscription_id
   subscription_name = var.prod_subscription_name
 
   credential_subcription              = var.prod_subscription_name
@@ -252,7 +252,7 @@ module "DEV-SHARED-TLS-CERT-SERVICE-CONN" {
   renew_token       = local.tlscert_renew_token
   name              = "${local.prefix}-shared-d-tls-cert-kv-policy"
   tenant_id         = data.azurerm_client_config.current.tenant_id
-  subscription_id   = module.secrets.values["DEV-SUBSCRIPTION-ID"].value
+  subscription_id   = data.azurerm_subscriptions.dev.subscriptions[0].subscription_id
   subscription_name = var.dev_subscription_name
 
   credential_subcription              = var.dev_subscription_name
@@ -292,7 +292,7 @@ module "DEV-AFM-TLS-CERT-SERVICE-CONN" {
   renew_token       = local.tlscert_renew_token
   name              = "${local.prefix}-afm-d-tls-cert-kv-policy"
   tenant_id         = data.azurerm_client_config.current.tenant_id
-  subscription_id   = module.secrets.values["DEV-SUBSCRIPTION-ID"].value
+  subscription_id   = data.azurerm_subscriptions.dev.subscriptions[0].subscription_id
   subscription_name = var.dev_subscription_name
 
   credential_subcription              = var.dev_subscription_name
@@ -332,7 +332,7 @@ module "UAT-SHARED-TLS-CERT-SERVICE-CONN" {
   renew_token       = local.tlscert_renew_token
   name              = "${local.prefix}-shared-u-tls-cert-kv-policy"
   tenant_id         = data.azurerm_client_config.current.tenant_id
-  subscription_id   = module.secrets.values["UAT-SUBSCRIPTION-ID"].value
+  subscription_id   = data.azurerm_subscriptions.uat.subscriptions[0].subscription_id
   subscription_name = var.uat_subscription_name
 
   credential_subcription              = var.uat_subscription_name
@@ -372,7 +372,7 @@ module "UAT-AFM-TLS-CERT-SERVICE-CONN" {
   renew_token       = local.tlscert_renew_token
   name              = "${local.prefix}-afm-u-tls-cert-kv-policy"
   tenant_id         = data.azurerm_client_config.current.tenant_id
-  subscription_id   = module.secrets.values["UAT-SUBSCRIPTION-ID"].value
+  subscription_id   = data.azurerm_subscriptions.uat.subscriptions[0].subscription_id
   subscription_name = var.uat_subscription_name
 
   credential_subcription              = var.uat_subscription_name
@@ -412,7 +412,7 @@ module "PROD-SHARED-TLS-CERT-SERVICE-CONN" {
   renew_token       = local.tlscert_renew_token
   name              = "${local.prefix}-shared-p-tls-cert-kv-policy"
   tenant_id         = data.azurerm_client_config.current.tenant_id
-  subscription_id   = module.secrets.values["PROD-SUBSCRIPTION-ID"].value
+  subscription_id   = data.azurerm_subscriptions.prod.subscriptions[0].subscription_id
   subscription_name = var.prod_subscription_name
 
   credential_subcription              = var.prod_subscription_name
@@ -452,7 +452,7 @@ module "PROD-AFM-TLS-CERT-SERVICE-CONN" {
   renew_token       = local.tlscert_renew_token
   name              = "${local.prefix}-afm-p-tls-cert-kv-policy"
   tenant_id         = data.azurerm_client_config.current.tenant_id
-  subscription_id   = module.secrets.values["PROD-SUBSCRIPTION-ID"].value
+  subscription_id   = data.azurerm_subscriptions.prod.subscriptions[0].subscription_id
   subscription_name = var.prod_subscription_name
 
   credential_subcription              = var.prod_subscription_name
@@ -492,7 +492,7 @@ module "DEV-KIBANA-TLS-CERT-SERVICE-CONN" {
   renew_token       = local.tlscert_renew_token_kibana
   name              = "${local.prefix}-kibana-d-tls-cert-kv-policy"
   tenant_id         = data.azurerm_client_config.current.tenant_id
-  subscription_id   = module.secrets.values["DEV-SUBSCRIPTION-ID"].value
+  subscription_id   = data.azurerm_subscriptions.dev.subscriptions[0].subscription_id
   subscription_name = var.dev_subscription_name
 
   credential_subcription              = var.dev_subscription_name
@@ -533,7 +533,7 @@ module "UAT-KIBANA-TLS-CERT-SERVICE-CONN" {
   renew_token       = local.tlscert_renew_token_kibana
   name              = "${local.prefix}-kibana-u-tls-cert-kv-policy"
   tenant_id         = data.azurerm_client_config.current.tenant_id
-  subscription_id   = module.secrets.values["UAT-SUBSCRIPTION-ID"].value
+  subscription_id   = data.azurerm_subscriptions.uat.subscriptions[0].subscription_id
   subscription_name = var.uat_subscription_name
 
   credential_subcription              = var.uat_subscription_name
@@ -574,7 +574,7 @@ module "PROD-KIBANA-TLS-CERT-SERVICE-CONN" {
   renew_token       = local.tlscert_renew_token_kibana
   name              = "${local.prefix}-kibana-p-tls-cert-kv-policy"
   tenant_id         = data.azurerm_client_config.current.tenant_id
-  subscription_id   = module.secrets.values["PROD-SUBSCRIPTION-ID"].value
+  subscription_id   = data.azurerm_subscriptions.prod.subscriptions[0].subscription_id
   subscription_name = var.prod_subscription_name
 
   credential_subcription              = var.prod_subscription_name

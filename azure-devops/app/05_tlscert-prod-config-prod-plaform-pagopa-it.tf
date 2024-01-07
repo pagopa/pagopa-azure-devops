@@ -28,7 +28,7 @@ locals {
   tlscert-prod-config-prod-platform-pagopa-it = {
     tenant_id         = data.azurerm_client_config.current.tenant_id
     subscription_name = "PROD-PAGOPA"
-    subscription_id   = module.secrets.values["PROD-SUBSCRIPTION-ID"].value
+    subscription_id   = data.azurerm_subscriptions.prod.subscriptions[0].subscription_id
   }
   tlscert-prod-config-prod-platform-pagopa-it-variables = {
     KEY_VAULT_SERVICE_CONNECTION = module.PROD-TLS-CERT-SERVICE-CONN.service_endpoint_name

@@ -28,7 +28,7 @@ locals {
   tlscert-uat-portal-uat-platform-pagopa-it = {
     tenant_id         = data.azurerm_client_config.current.tenant_id
     subscription_name = "UAT-PAGOPA"
-    subscription_id   = module.secrets.values["UAT-SUBSCRIPTION-ID"].value
+    subscription_id   = data.azurerm_subscriptions.uat.subscriptions[0].subscription_id
   }
   tlscert-uat-portal-uat-platform-pagopa-it-variables = {
     KEY_VAULT_CERT_NAME          = "${replace(var.tlscert-uat-portal-uat-platform-pagopa-it.pipeline.dns_record_name, ".", "-")}-${replace(var.tlscert-uat-portal-uat-platform-pagopa-it.pipeline.dns_zone_name, ".", "-")}"

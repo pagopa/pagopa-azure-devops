@@ -2,9 +2,9 @@ locals {
   prefix           = "pagopa"
   azure_devops_org = "pagopaspa"
 
-  dev_subscription_name = "dev_pagopa"
-  uat_subscription_name = "uat_pagopa"
-  prod_subscription_name = "prod_pagopa"
+  dev_subscription_name = "dev-pagopa"
+  uat_subscription_name = "uat-pagopa"
+  prod_subscription_name = "prod-pagopa"
 
   # 🔐 KV
   dev_key_vault_azdo_name  = "${local.prefix}-d-azdo-weu-kv"
