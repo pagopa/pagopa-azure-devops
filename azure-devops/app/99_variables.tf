@@ -2,6 +2,10 @@ locals {
   prefix           = "pagopa"
   azure_devops_org = "pagopaspa"
 
+  dev_subscription_name = "dev_pagopa"
+  uat_subscription_name = "uat_pagopa"
+  prod_subscription_name = "prod_pagopa"
+
   # 🔐 KV
   dev_key_vault_azdo_name  = "${local.prefix}-d-azdo-weu-kv"
   uat_key_vault_azdo_name  = "${local.prefix}-u-azdo-weu-kv"
@@ -107,6 +111,7 @@ locals {
   # TODO azure devops terraform provider does not support SonarCloud service endpoint
   azuredevops_serviceendpoint_sonarcloud_id = "9182be64-d387-465d-9acc-e79e802910c8"
 }
+
 
 
 variable "dev_subscription_name" {

@@ -61,7 +61,7 @@ locals {
     prod_fn_name                = "pagopa-p-fn-canoneunico"
     prod_fn_resource_group_name = "pagopa-p-canoneunico-rg"
 
-    tenant_id = module.secrets.values["TENANTID"].value
+    tenant_id = data.azurerm_client_config.current.tenant_id
 
     # acr section
     image_repository = "canone-unico"

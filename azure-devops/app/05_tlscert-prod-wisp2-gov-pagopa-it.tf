@@ -26,7 +26,7 @@ variable "tlscert-prod-wisp2-pagopa-gov-it" {
 
 locals {
   tlscert-prod-wisp2-pagopa-gov-it = {
-    tenant_id         = module.secrets.values["TENANTID"].value
+    tenant_id         = data.azurerm_client_config.current.tenant_id
     subscription_name = "ORG"
     subscription_id   = module.secrets.values["ORG-SUBSCRIPTION-ID"].value
   }

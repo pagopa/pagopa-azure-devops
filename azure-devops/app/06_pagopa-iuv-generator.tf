@@ -55,7 +55,7 @@ locals {
     prod_azure_subscription = azuredevops_serviceendpoint_azurerm.PROD-SERVICE-CONN.service_endpoint_name
     prod_web_app_name       = "pagopa-p"
 
-    tenant_id = module.secrets.values["TENANTID"].value
+    tenant_id = data.azurerm_client_config.current.tenant_id
 
     # acr section
     image_repository = "iuv-generator"

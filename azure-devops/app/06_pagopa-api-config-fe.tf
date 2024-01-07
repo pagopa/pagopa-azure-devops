@@ -50,7 +50,7 @@ locals {
 
     blob_container_name     = "$web"
     apim_basepath_apiconfig = "/apiconfig/api"
-    apiconfig_tenant        = format("https://login.microsoftonline.com/%s", module.secrets.values["TENANTID"].value),
+    apiconfig_tenant        = format("https://login.microsoftonline.com/%s", data.azurerm_client_config.current.tenant_id),
 
     dev_apiconfig_scopes  = "api://pagopa-d-apiconfig-be/access-apiconfig-be"
     uat_apiconfig_scopes  = "api://pagopa-u-apiconfig-be/access-apiconfig-be"

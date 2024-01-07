@@ -64,7 +64,7 @@ locals {
     prod_web_app_name                = "pagopa-p-fn-reportingfdr"
     prod_web_app_resource_group_name = "pagopa-p-reporting-fdr-rg"
 
-    tenant_id = module.secrets.values["TENANTID"].value
+    tenant_id = data.azurerm_client_config.current.tenant_id
 
     # acr section
     image_repository = "reporting-fdr"

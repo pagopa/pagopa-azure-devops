@@ -26,7 +26,7 @@ variable "tlscert-uat-portal-uat-platform-pagopa-it" {
 
 locals {
   tlscert-uat-portal-uat-platform-pagopa-it = {
-    tenant_id         = module.secrets.values["TENANTID"].value
+    tenant_id         = data.azurerm_client_config.current.tenant_id
     subscription_name = "UAT-PAGOPA"
     subscription_id   = module.secrets.values["UAT-SUBSCRIPTION-ID"].value
   }

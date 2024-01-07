@@ -13,7 +13,7 @@ module "DEV-TLS-CERT-SERVICE-CONN" {
   #tfsec:ignore:general-secrets-no-plaintext-exposure
   renew_token       = local.tlscert_renew_token
   name              = "${local.prefix}-d-tls-cert-kv-policy"
-  tenant_id         = module.secrets.values["TENANTID"].value
+  tenant_id         = data.azurerm_client_config.current.tenant_id
   subscription_id   = module.secrets.values["DEV-SUBSCRIPTION-ID"].value
   subscription_name = var.dev_subscription_name
 
@@ -32,7 +32,7 @@ resource "azurerm_key_vault_access_policy" "DEV-TLS-CERT-SERVICE-CONN_kv_dev" {
   provider = azurerm.dev
 
   key_vault_id = data.azurerm_key_vault.kv_dev.id
-  tenant_id    = module.secrets.values["TENANTID"].value
+  tenant_id    = data.azurerm_client_config.current.tenant_id
   object_id    = module.DEV-TLS-CERT-SERVICE-CONN.service_principal_object_id
 
   certificate_permissions = ["Get", "Import"]
@@ -53,7 +53,7 @@ module "UAT-TLS-CERT-SERVICE-CONN" {
   #tfsec:ignore:general-secrets-no-plaintext-exposure
   renew_token       = local.tlscert_renew_token
   name              = "${local.prefix}-u-tls-cert-kv-policy"
-  tenant_id         = module.secrets.values["TENANTID"].value
+  tenant_id         = data.azurerm_client_config.current.tenant_id
   subscription_id   = module.secrets.values["UAT-SUBSCRIPTION-ID"].value
   subscription_name = var.uat_subscription_name
 
@@ -71,7 +71,7 @@ data "azurerm_key_vault" "kv_uat" {
 resource "azurerm_key_vault_access_policy" "UAT-TLS-CERT-SERVICE-CONN_kv_uat" {
   provider     = azurerm.uat
   key_vault_id = data.azurerm_key_vault.kv_uat.id
-  tenant_id    = module.secrets.values["TENANTID"].value
+  tenant_id    = data.azurerm_client_config.current.tenant_id
   object_id    = module.UAT-TLS-CERT-SERVICE-CONN.service_principal_object_id
 
   certificate_permissions = ["Get", "Import"]
@@ -92,7 +92,7 @@ module "PROD-TLS-CERT-SERVICE-CONN" {
   #tfsec:ignore:general-secrets-no-plaintext-exposure
   renew_token       = local.tlscert_renew_token
   name              = "${local.prefix}-p-tls-cert-kv-policy"
-  tenant_id         = module.secrets.values["TENANTID"].value
+  tenant_id         = data.azurerm_client_config.current.tenant_id
   subscription_id   = module.secrets.values["PROD-SUBSCRIPTION-ID"].value
   subscription_name = var.prod_subscription_name
 
@@ -110,7 +110,7 @@ data "azurerm_key_vault" "kv_prod" {
 resource "azurerm_key_vault_access_policy" "PROD-TLS-CERT-SERVICE-CONN_kv_prod" {
   provider     = azurerm.prod
   key_vault_id = data.azurerm_key_vault.kv_prod.id
-  tenant_id    = module.secrets.values["TENANTID"].value
+  tenant_id    = data.azurerm_client_config.current.tenant_id
   object_id    = module.PROD-TLS-CERT-SERVICE-CONN.service_principal_object_id
 
   certificate_permissions = ["Get", "Import"]
@@ -131,7 +131,7 @@ module "DEV-ECOMMERCE-TLS-CERT-SERVICE-CONN" {
   #tfsec:ignore:general-secrets-no-plaintext-exposure
   renew_token       = local.tlscert_renew_token
   name              = "${local.prefix}-ecommerce-d-tls-cert-kv-policy"
-  tenant_id         = module.secrets.values["TENANTID"].value
+  tenant_id         = data.azurerm_client_config.current.tenant_id
   subscription_id   = module.secrets.values["DEV-SUBSCRIPTION-ID"].value
   subscription_name = var.dev_subscription_name
 
@@ -150,7 +150,7 @@ resource "azurerm_key_vault_access_policy" "DEV-ECOMMERCE-TLS-CERT-SERVICE-CONN_
   provider = azurerm.dev
 
   key_vault_id = data.azurerm_key_vault.kv_ecommerce_dev.id
-  tenant_id    = module.secrets.values["TENANTID"].value
+  tenant_id    = data.azurerm_client_config.current.tenant_id
   object_id    = module.DEV-ECOMMERCE-TLS-CERT-SERVICE-CONN.service_principal_object_id
 
   certificate_permissions = ["Get", "Import"]
@@ -171,7 +171,7 @@ module "UAT-ECOMMERCE-TLS-CERT-SERVICE-CONN" {
   #tfsec:ignore:general-secrets-no-plaintext-exposure
   renew_token       = local.tlscert_renew_token
   name              = "${local.prefix}-ecommerce-u-tls-cert-kv-policy"
-  tenant_id         = module.secrets.values["TENANTID"].value
+  tenant_id         = data.azurerm_client_config.current.tenant_id
   subscription_id   = module.secrets.values["UAT-SUBSCRIPTION-ID"].value
   subscription_name = var.uat_subscription_name
 
@@ -190,7 +190,7 @@ resource "azurerm_key_vault_access_policy" "UAT-ECOMMERCE-TLS-CERT-SERVICE-CONN_
   provider = azurerm.uat
 
   key_vault_id = data.azurerm_key_vault.kv_ecommerce_uat.id
-  tenant_id    = module.secrets.values["TENANTID"].value
+  tenant_id    = data.azurerm_client_config.current.tenant_id
   object_id    = module.UAT-ECOMMERCE-TLS-CERT-SERVICE-CONN.service_principal_object_id
 
   certificate_permissions = ["Get", "Import"]
@@ -211,7 +211,7 @@ module "PROD-ECOMMERCE-TLS-CERT-SERVICE-CONN" {
   #tfsec:ignore:general-secrets-no-plaintext-exposure
   renew_token       = local.tlscert_renew_token
   name              = "${local.prefix}-ecommerce-p-tls-cert-kv-policy"
-  tenant_id         = module.secrets.values["TENANTID"].value
+  tenant_id         = data.azurerm_client_config.current.tenant_id
   subscription_id   = module.secrets.values["PROD-SUBSCRIPTION-ID"].value
   subscription_name = var.prod_subscription_name
 
@@ -230,7 +230,7 @@ resource "azurerm_key_vault_access_policy" "PROD-ECOMMERCE-TLS-CERT-SERVICE-CONN
   provider = azurerm.prod
 
   key_vault_id = data.azurerm_key_vault.kv_ecommerce_prod.id
-  tenant_id    = module.secrets.values["TENANTID"].value
+  tenant_id    = data.azurerm_client_config.current.tenant_id
   object_id    = module.PROD-ECOMMERCE-TLS-CERT-SERVICE-CONN.service_principal_object_id
 
   certificate_permissions = ["Get", "Import"]
@@ -251,7 +251,7 @@ module "DEV-SHARED-TLS-CERT-SERVICE-CONN" {
   #tfsec:ignore:general-secrets-no-plaintext-exposure
   renew_token       = local.tlscert_renew_token
   name              = "${local.prefix}-shared-d-tls-cert-kv-policy"
-  tenant_id         = module.secrets.values["TENANTID"].value
+  tenant_id         = data.azurerm_client_config.current.tenant_id
   subscription_id   = module.secrets.values["DEV-SUBSCRIPTION-ID"].value
   subscription_name = var.dev_subscription_name
 
@@ -270,7 +270,7 @@ resource "azurerm_key_vault_access_policy" "DEV-SHARED-TLS-CERT-SERVICE-CONN_kv_
   provider = azurerm.dev
 
   key_vault_id = data.azurerm_key_vault.kv_shared_dev.id
-  tenant_id    = module.secrets.values["TENANTID"].value
+  tenant_id    = data.azurerm_client_config.current.tenant_id
   object_id    = module.DEV-SHARED-TLS-CERT-SERVICE-CONN.service_principal_object_id
 
   certificate_permissions = ["Get", "Import"]
@@ -291,7 +291,7 @@ module "DEV-AFM-TLS-CERT-SERVICE-CONN" {
   #tfsec:ignore:general-secrets-no-plaintext-exposure
   renew_token       = local.tlscert_renew_token
   name              = "${local.prefix}-afm-d-tls-cert-kv-policy"
-  tenant_id         = module.secrets.values["TENANTID"].value
+  tenant_id         = data.azurerm_client_config.current.tenant_id
   subscription_id   = module.secrets.values["DEV-SUBSCRIPTION-ID"].value
   subscription_name = var.dev_subscription_name
 
@@ -310,7 +310,7 @@ resource "azurerm_key_vault_access_policy" "DEV-AFM-TLS-CERT-SERVICE-CONN_kv_dev
   provider = azurerm.dev
 
   key_vault_id = data.azurerm_key_vault.kv_afm_dev.id
-  tenant_id    = module.secrets.values["TENANTID"].value
+  tenant_id    = data.azurerm_client_config.current.tenant_id
   object_id    = module.DEV-AFM-TLS-CERT-SERVICE-CONN.service_principal_object_id
 
   certificate_permissions = ["Get", "Import"]
@@ -331,7 +331,7 @@ module "UAT-SHARED-TLS-CERT-SERVICE-CONN" {
   #tfsec:ignore:general-secrets-no-plaintext-exposure
   renew_token       = local.tlscert_renew_token
   name              = "${local.prefix}-shared-u-tls-cert-kv-policy"
-  tenant_id         = module.secrets.values["TENANTID"].value
+  tenant_id         = data.azurerm_client_config.current.tenant_id
   subscription_id   = module.secrets.values["UAT-SUBSCRIPTION-ID"].value
   subscription_name = var.uat_subscription_name
 
@@ -350,7 +350,7 @@ resource "azurerm_key_vault_access_policy" "UAT-SHARED-TLS-CERT-SERVICE-CONN_kv_
   provider = azurerm.uat
 
   key_vault_id = data.azurerm_key_vault.kv_shared_uat.id
-  tenant_id    = module.secrets.values["TENANTID"].value
+  tenant_id    = data.azurerm_client_config.current.tenant_id
   object_id    = module.UAT-SHARED-TLS-CERT-SERVICE-CONN.service_principal_object_id
 
   certificate_permissions = ["Get", "Import"]
@@ -371,7 +371,7 @@ module "UAT-AFM-TLS-CERT-SERVICE-CONN" {
   #tfsec:ignore:general-secrets-no-plaintext-exposure
   renew_token       = local.tlscert_renew_token
   name              = "${local.prefix}-afm-u-tls-cert-kv-policy"
-  tenant_id         = module.secrets.values["TENANTID"].value
+  tenant_id         = data.azurerm_client_config.current.tenant_id
   subscription_id   = module.secrets.values["UAT-SUBSCRIPTION-ID"].value
   subscription_name = var.uat_subscription_name
 
@@ -390,7 +390,7 @@ resource "azurerm_key_vault_access_policy" "UAT-AFM-TLS-CERT-SERVICE-CONN_kv_uat
   provider = azurerm.uat
 
   key_vault_id = data.azurerm_key_vault.kv_afm_uat.id
-  tenant_id    = module.secrets.values["TENANTID"].value
+  tenant_id    = data.azurerm_client_config.current.tenant_id
   object_id    = module.UAT-AFM-TLS-CERT-SERVICE-CONN.service_principal_object_id
 
   certificate_permissions = ["Get", "Import"]
@@ -411,7 +411,7 @@ module "PROD-SHARED-TLS-CERT-SERVICE-CONN" {
   #tfsec:ignore:general-secrets-no-plaintext-exposure
   renew_token       = local.tlscert_renew_token
   name              = "${local.prefix}-shared-p-tls-cert-kv-policy"
-  tenant_id         = module.secrets.values["TENANTID"].value
+  tenant_id         = data.azurerm_client_config.current.tenant_id
   subscription_id   = module.secrets.values["PROD-SUBSCRIPTION-ID"].value
   subscription_name = var.prod_subscription_name
 
@@ -430,7 +430,7 @@ resource "azurerm_key_vault_access_policy" "PROD-SHARED-TLS-CERT-SERVICE-CONN_kv
   provider = azurerm.prod
 
   key_vault_id = data.azurerm_key_vault.kv_shared_prod.id
-  tenant_id    = module.secrets.values["TENANTID"].value
+  tenant_id    = data.azurerm_client_config.current.tenant_id
   object_id    = module.PROD-SHARED-TLS-CERT-SERVICE-CONN.service_principal_object_id
 
   certificate_permissions = ["Get", "Import"]
@@ -451,7 +451,7 @@ module "PROD-AFM-TLS-CERT-SERVICE-CONN" {
   #tfsec:ignore:general-secrets-no-plaintext-exposure
   renew_token       = local.tlscert_renew_token
   name              = "${local.prefix}-afm-p-tls-cert-kv-policy"
-  tenant_id         = module.secrets.values["TENANTID"].value
+  tenant_id         = data.azurerm_client_config.current.tenant_id
   subscription_id   = module.secrets.values["PROD-SUBSCRIPTION-ID"].value
   subscription_name = var.prod_subscription_name
 
@@ -470,7 +470,7 @@ resource "azurerm_key_vault_access_policy" "PROD-AFM-TLS-CERT-SERVICE-CONN_kv_pr
   provider = azurerm.prod
 
   key_vault_id = data.azurerm_key_vault.kv_afm_prod.id
-  tenant_id    = module.secrets.values["TENANTID"].value
+  tenant_id    = data.azurerm_client_config.current.tenant_id
   object_id    = module.PROD-AFM-TLS-CERT-SERVICE-CONN.service_principal_object_id
 
   certificate_permissions = ["Get", "Import"]
@@ -491,7 +491,7 @@ module "DEV-KIBANA-TLS-CERT-SERVICE-CONN" {
   #tfsec:ignore:general-secrets-no-plaintext-exposure
   renew_token       = local.tlscert_renew_token_kibana
   name              = "${local.prefix}-kibana-d-tls-cert-kv-policy"
-  tenant_id         = module.secrets.values["TENANTID"].value
+  tenant_id         = data.azurerm_client_config.current.tenant_id
   subscription_id   = module.secrets.values["DEV-SUBSCRIPTION-ID"].value
   subscription_name = var.dev_subscription_name
 
@@ -510,7 +510,7 @@ resource "azurerm_key_vault_access_policy" "DEV-KIBANA-TLS-CERT-SERVICE-CONN_kv_
   provider = azurerm.dev
 
   key_vault_id = data.azurerm_key_vault.kv_kibana_dev.id
-  tenant_id    = module.secrets.values["TENANTID"].value
+  tenant_id    = data.azurerm_client_config.current.tenant_id
   object_id    = module.DEV-KIBANA-TLS-CERT-SERVICE-CONN.service_principal_object_id
 
   certificate_permissions = ["Get", "Import"]
@@ -532,7 +532,7 @@ module "UAT-KIBANA-TLS-CERT-SERVICE-CONN" {
   #tfsec:ignore:general-secrets-no-plaintext-exposure
   renew_token       = local.tlscert_renew_token_kibana
   name              = "${local.prefix}-kibana-u-tls-cert-kv-policy"
-  tenant_id         = module.secrets.values["TENANTID"].value
+  tenant_id         = data.azurerm_client_config.current.tenant_id
   subscription_id   = module.secrets.values["UAT-SUBSCRIPTION-ID"].value
   subscription_name = var.uat_subscription_name
 
@@ -551,7 +551,7 @@ resource "azurerm_key_vault_access_policy" "UAT-KIBANA-TLS-CERT-SERVICE-CONN_kv_
   provider = azurerm.uat
 
   key_vault_id = data.azurerm_key_vault.kv_kibana_uat.id
-  tenant_id    = module.secrets.values["TENANTID"].value
+  tenant_id    = data.azurerm_client_config.current.tenant_id
   object_id    = module.UAT-KIBANA-TLS-CERT-SERVICE-CONN.service_principal_object_id
 
   certificate_permissions = ["Get", "Import"]
@@ -573,7 +573,7 @@ module "PROD-KIBANA-TLS-CERT-SERVICE-CONN" {
   #tfsec:ignore:general-secrets-no-plaintext-exposure
   renew_token       = local.tlscert_renew_token_kibana
   name              = "${local.prefix}-kibana-p-tls-cert-kv-policy"
-  tenant_id         = module.secrets.values["TENANTID"].value
+  tenant_id         = data.azurerm_client_config.current.tenant_id
   subscription_id   = module.secrets.values["PROD-SUBSCRIPTION-ID"].value
   subscription_name = var.prod_subscription_name
 
@@ -592,7 +592,7 @@ resource "azurerm_key_vault_access_policy" "PROD-KIBANA-TLS-CERT-SERVICE-CONN_kv
   provider = azurerm.prod
 
   key_vault_id = data.azurerm_key_vault.kv_kibana_prod.id
-  tenant_id    = module.secrets.values["TENANTID"].value
+  tenant_id    = data.azurerm_client_config.current.tenant_id
   object_id    = module.PROD-KIBANA-TLS-CERT-SERVICE-CONN.service_principal_object_id
 
   certificate_permissions = ["Get", "Import"]
