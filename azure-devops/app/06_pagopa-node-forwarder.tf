@@ -99,7 +99,7 @@ locals {
 }
 
 module "pagopa-node-forwarder_code_review" {
-  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review?ref=v2.0.4"
+  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review?ref=v4.1.4"
   count  = var.pagopa-node-forwarder.pipeline.enable_code_review == true ? 1 : 0
 
   project_id                   = azuredevops_project.project.id

@@ -1,28 +1,3 @@
-variable "dev_subscription_name" {
-  type        = string
-  description = "DEV Subscription name"
-}
-
-variable "uat_subscription_name" {
-  type        = string
-  description = "UAT Subscription name"
-}
-
-variable "prod_subscription_name" {
-  type        = string
-  description = "PROD Subscription name"
-}
-
-variable "project_name_prefix" {
-  type        = string
-  description = "Project name prefix (e.g. userregistry)"
-}
-
-variable "pipeline_environments" {
-  type        = list(any)
-  description = "List of environments pipeline to create"
-}
-
 locals {
   prefix           = "pagopa"
   azure_devops_org = "pagopaspa"
@@ -131,4 +106,30 @@ locals {
 
   # TODO azure devops terraform provider does not support SonarCloud service endpoint
   azuredevops_serviceendpoint_sonarcloud_id = "9182be64-d387-465d-9acc-e79e802910c8"
+}
+
+
+variable "dev_subscription_name" {
+  type        = string
+  description = "DEV Subscription name"
+}
+
+variable "uat_subscription_name" {
+  type        = string
+  description = "UAT Subscription name"
+}
+
+variable "prod_subscription_name" {
+  type        = string
+  description = "PROD Subscription name"
+}
+
+variable "project_name_prefix" {
+  type        = string
+  description = "Project name prefix (e.g. userregistry)"
+}
+
+variable "pipeline_environments" {
+  type        = list(any)
+  description = "List of environments pipeline to create"
 }
