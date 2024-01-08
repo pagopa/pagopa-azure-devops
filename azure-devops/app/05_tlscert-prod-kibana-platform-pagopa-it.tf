@@ -43,14 +43,11 @@ module "tlscert-prod-kibana-platform-pagopa-it-cert_az" {
     azurerm = azurerm.prod
   }
 
-  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_tls_cert?ref=v4.1.4"
+  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_tls_cert_federated?ref=v4.1.4"
   count  = var.tlscert-prod-kibana-platform-pagopa-it.pipeline.enable_tls_cert == true ? 1 : 0
 
   project_id = azuredevops_project.project.id
   repository = var.tlscert-prod-kibana-platform-pagopa-it.repository
-  name       = "${var.tlscert-prod-kibana-platform-pagopa-it.pipeline.dns_record_name}.${var.tlscert-prod-kibana-platform-pagopa-it.pipeline.dns_zone_name}"
-  #tfsec:ignore:GEN003
-  renew_token                  = local.tlscert_renew_token
   path                         = var.tlscert-prod-kibana-platform-pagopa-it.pipeline.path
   github_service_connection_id = azuredevops_serviceendpoint_github.azure-devops-github-rw.id
 
@@ -61,7 +58,7 @@ module "tlscert-prod-kibana-platform-pagopa-it-cert_az" {
   subscription_name       = local.tlscert-prod-kibana-platform-pagopa-it.subscription_name
   subscription_id         = local.tlscert-prod-kibana-platform-pagopa-it.subscription_id
 
-  credential_subcription              = var.prod_subscription_name
+  location = var.location
   credential_key_vault_name           = local.prod_key_vault_name
   credential_key_vault_resource_group = local.prod_key_vault_resource_group
 
