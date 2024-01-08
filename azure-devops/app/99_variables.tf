@@ -112,6 +112,9 @@ locals {
   azuredevops_serviceendpoint_sonarcloud_id = "9182be64-d387-465d-9acc-e79e802910c8"
 }
 
+variable "location" {
+  type    = string
+}
 
 
 variable "dev_subscription_name" {
