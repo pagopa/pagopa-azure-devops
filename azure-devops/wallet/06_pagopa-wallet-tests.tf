@@ -29,7 +29,8 @@ locals {
   }
   # api-tests secrets
   pagopa-wallet-tests-variables_secret_code_review = {
-
+    user_wallet_token_dev = module.wallet_dev_secrets.values["wallet-token-test-key"].value
+    user_wallet_token_uat = module.wallet_uat_secrets.values["wallet-token-test-key"].value
   }
 }
 
