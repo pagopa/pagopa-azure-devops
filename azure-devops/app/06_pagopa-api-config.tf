@@ -61,7 +61,7 @@ locals {
     prod_web_app_name                = "pagopa-p-app-api-config"
     prod_web_app_resource_group_name = "pagopa-p-api-config-rg"
 
-    tenant_id                         = module.secrets.values["TENANTID"].value
+    tenant_id                         = data.azurerm_client_config.current.tenant_id
     dev_apiconfig_client_fe_id        = module.secrets.values["DEV-APICONFIG-CLIENT-ID"].value
     dev_apiconfig_client_fe_secret    = module.secrets.values["DEV-APICONFIG-CLIENT-SECRECT"].value
     dev_apiconfig_client_be_resource  = module.secrets.values["DEV-APICONFIG-BE-CLIENT-ID"].value
@@ -91,12 +91,13 @@ locals {
 }
 
 module "pagopa-api-config_code_review" {
-  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review?ref=v2.0.4"
+  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review?ref=v4.1.4"
   count  = var.pagopa-api-config.pipeline.enable_code_review == true ? 1 : 0
 
   project_id                   = azuredevops_project.project.id
   repository                   = var.pagopa-api-config.repository
   github_service_connection_id = azuredevops_serviceendpoint_github.azure-devops-github-pr.id
+  path                         = var.pagopa-api-config.repository.name
 
   variables = merge(
     local.pagopa-api-config-variables,
@@ -115,12 +116,14 @@ module "pagopa-api-config_code_review" {
 }
 
 module "pagopa-api-config_deploy" {
-  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy?ref=v2.0.4"
+  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy?ref=v4.1.4"
   count  = var.pagopa-api-config.pipeline.enable_deploy == true ? 1 : 0
 
   project_id                   = azuredevops_project.project.id
   repository                   = var.pagopa-api-config.repository
   github_service_connection_id = azuredevops_serviceendpoint_github.azure-devops-github-rw.id
+  path                         = var.pagopa-api-config.repository.name
+
 
   variables = merge(
     local.pagopa-api-config-variables,

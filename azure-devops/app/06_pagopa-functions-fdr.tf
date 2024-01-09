@@ -64,7 +64,7 @@ locals {
     prod_web_app_name                = "pagopa-p-fn-reportingfdr"
     prod_web_app_resource_group_name = "pagopa-p-reporting-fdr-rg"
 
-    tenant_id = module.secrets.values["TENANTID"].value
+    tenant_id = data.azurerm_client_config.current.tenant_id
 
     # acr section
     image_repository = "reporting-fdr"
@@ -85,12 +85,13 @@ locals {
 }
 
 module "pagopa-reporting-fdr_code_review" {
-  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review?ref=v2.0.4"
+  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review?ref=v4.1.4"
   count  = var.pagopa-reporting-fdr.pipeline.enable_code_review == true ? 1 : 0
 
   project_id                   = azuredevops_project.project.id
   repository                   = var.pagopa-reporting-fdr.repository
   github_service_connection_id = azuredevops_serviceendpoint_github.azure-devops-github-pr.id
+  path                         = var.pagopa-reporting-fdr.repository.name
 
   variables = merge(
     local.pagopa-reporting-fdr-variables,
@@ -109,12 +110,14 @@ module "pagopa-reporting-fdr_code_review" {
 }
 
 module "pagopa-reporting-fdr_deploy" {
-  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy?ref=v2.0.4"
+  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy?ref=v4.1.4"
   count  = var.pagopa-reporting-fdr.pipeline.enable_deploy == true ? 1 : 0
 
   project_id                   = azuredevops_project.project.id
   repository                   = var.pagopa-reporting-fdr.repository
   github_service_connection_id = azuredevops_serviceendpoint_github.azure-devops-github-rw.id
+  path                         = var.pagopa-reporting-fdr.repository.name
+
 
   variables = merge(
     local.pagopa-reporting-fdr-variables,

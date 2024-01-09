@@ -50,7 +50,7 @@ locals {
 
     blob_container_name     = "$web"
     apim_basepath_apiconfig = "/apiconfig/api"
-    apiconfig_tenant        = format("https://login.microsoftonline.com/%s", module.secrets.values["TENANTID"].value),
+    apiconfig_tenant        = format("https://login.microsoftonline.com/%s", data.azurerm_client_config.current.tenant_id),
 
     dev_apiconfig_scopes  = "api://pagopa-d-apiconfig-be/access-apiconfig-be"
     uat_apiconfig_scopes  = "api://pagopa-u-apiconfig-be/access-apiconfig-be"
@@ -95,12 +95,14 @@ locals {
 }
 
 module "pagopa-api-config-fe_code_review" {
-  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review?ref=v2.0.4"
+  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review?ref=v4.1.4"
   count  = var.pagopa-api-config-fe.pipeline.enable_code_review == true ? 1 : 0
 
   project_id                   = azuredevops_project.project.id
   repository                   = var.pagopa-api-config-fe.repository
   github_service_connection_id = azuredevops_serviceendpoint_github.azure-devops-github-pr.id
+  path                         = var.pagopa-api-config-fe.repository.name
+
 
   variables = merge(
     local.pagopa-api-config-fe-variables,
@@ -119,12 +121,13 @@ module "pagopa-api-config-fe_code_review" {
 }
 
 module "pagopa-api-config-fe_deploy" {
-  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy?ref=v2.0.4"
+  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy?ref=v4.1.4"
   count  = var.pagopa-api-config-fe.pipeline.enable_deploy == true ? 1 : 0
 
   project_id                   = azuredevops_project.project.id
   repository                   = var.pagopa-api-config-fe.repository
   github_service_connection_id = azuredevops_serviceendpoint_github.azure-devops-github-rw.id
+  path                         = var.pagopa-api-config-fe.repository.name
 
   variables = merge(
     local.pagopa-api-config-fe-variables,
