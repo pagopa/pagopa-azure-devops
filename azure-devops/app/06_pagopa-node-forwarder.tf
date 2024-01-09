@@ -69,7 +69,7 @@ locals {
     prod_web_app_name                = "pagopa-p-app-node-forwarder"
     prod_web_app_resource_group_name = "pagopa-p-node-forwarder-rg"
 
-    tenant_id = module.secrets.values["TENANTID"].value
+    tenant_id = data.azurerm_client_config.current.tenant_id
 
     # acr section
     image_repository = "pagopanodeforwarder"
@@ -99,12 +99,13 @@ locals {
 }
 
 module "pagopa-node-forwarder_code_review" {
-  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review?ref=v2.0.4"
+  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review?ref=v4.1.4"
   count  = var.pagopa-node-forwarder.pipeline.enable_code_review == true ? 1 : 0
 
   project_id                   = azuredevops_project.project.id
   repository                   = var.pagopa-node-forwarder.repository
   github_service_connection_id = azuredevops_serviceendpoint_github.azure-devops-github-pr.id
+  path                         = var.pagopa-node-forwarder.repository.name
 
   variables = merge(
     local.pagopa-node-forwarder-variables,
@@ -123,12 +124,13 @@ module "pagopa-node-forwarder_code_review" {
 }
 
 module "pagopa-node-forwarder_deploy" {
-  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy?ref=v2.0.4"
+  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy?ref=v4.1.4"
   count  = var.pagopa-node-forwarder.pipeline.enable_deploy == true ? 1 : 0
 
   project_id                   = azuredevops_project.project.id
   repository                   = var.pagopa-node-forwarder.repository
   github_service_connection_id = azuredevops_serviceendpoint_github.azure-devops-github-rw.id
+  path                         = var.pagopa-node-forwarder.repository.name
 
   variables = merge(
     local.pagopa-node-forwarder-variables,
@@ -149,7 +151,7 @@ module "pagopa-node-forwarder_deploy" {
 }
 
 module "pagopa-node-forwarder_performance_test" {
-  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_generic?ref=v2.6.3"
+  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_generic?ref=v4.1.4"
   count  = var.pagopa-node-forwarder.pipeline.performance_test.enabled == true ? 1 : 0
 
   project_id                   = azuredevops_project.project.id

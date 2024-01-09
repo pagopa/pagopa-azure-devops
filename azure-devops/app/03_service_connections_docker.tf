@@ -1,4 +1,4 @@
-# 🟢 DEV service connection for azure container registry 
+# 🟢 DEV service connection for azure container registry
 resource "azuredevops_serviceendpoint_azurecr" "acr_docker_registry_dev" {
   depends_on = [azuredevops_project.project]
 
@@ -9,11 +9,11 @@ resource "azuredevops_serviceendpoint_azurecr" "acr_docker_registry_dev" {
   azurecr_name          = local.docker_registry_name_dev
 
   azurecr_subscription_name = var.dev_subscription_name
-  azurecr_spn_tenantid      = module.secrets.values["TENANTID"].value
-  azurecr_subscription_id   = module.secrets.values["DEV-SUBSCRIPTION-ID"].value
+  azurecr_spn_tenantid      = data.azurerm_client_config.current.tenant_id
+  azurecr_subscription_id   = data.azurerm_subscriptions.dev.subscriptions[0].subscription_id
 }
 
-# 🟨 UAT service connection for azure container registry 
+# 🟨 UAT service connection for azure container registry
 resource "azuredevops_serviceendpoint_azurecr" "acr_docker_registry_uat" {
   depends_on = [azuredevops_project.project]
 
@@ -24,8 +24,8 @@ resource "azuredevops_serviceendpoint_azurecr" "acr_docker_registry_uat" {
   resource_group = local.docker_registry_rg_name_uat
 
   azurecr_subscription_name = var.uat_subscription_name
-  azurecr_spn_tenantid      = module.secrets.values["TENANTID"].value
-  azurecr_subscription_id   = module.secrets.values["UAT-SUBSCRIPTION-ID"].value
+  azurecr_spn_tenantid      = data.azurerm_client_config.current.tenant_id
+  azurecr_subscription_id   = data.azurerm_subscriptions.uat.subscriptions[0].subscription_id
 }
 
 # 🛑 PROD service connection for azure container registry
@@ -39,6 +39,6 @@ resource "azuredevops_serviceendpoint_azurecr" "acr_docker_registry_prod" {
   resource_group = local.docker_registry_rg_name_prod
 
   azurecr_subscription_name = var.prod_subscription_name
-  azurecr_spn_tenantid      = module.secrets.values["TENANTID"].value
-  azurecr_subscription_id   = module.secrets.values["PROD-SUBSCRIPTION-ID"].value
+  azurecr_spn_tenantid      = data.azurerm_client_config.current.tenant_id
+  azurecr_subscription_id   = data.azurerm_subscriptions.prod.subscriptions[0].subscription_id
 }

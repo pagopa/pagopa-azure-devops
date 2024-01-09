@@ -61,12 +61,13 @@ locals {
 }
 
 module "pagopa-nodo-dei-pagamenti-test_code_review" {
-  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review?ref=v2.0.4"
+  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review?ref=v4.1.4"
   count  = var.pagopa-nodo-dei-pagamenti-test.pipeline.enable_code_review == true ? 1 : 0
 
   project_id                   = azuredevops_project.project.id
   repository                   = var.pagopa-nodo-dei-pagamenti-test.repository
   github_service_connection_id = azuredevops_serviceendpoint_github.azure-devops-github-rw.id
+  path                         = var.pagopa-nodo-dei-pagamenti-test.repository.name
 
   pull_request_trigger_use_yaml = true
 
@@ -87,12 +88,14 @@ module "pagopa-nodo-dei-pagamenti-test_code_review" {
 }
 
 module "pagopa-nodo-dei-pagamenti-test_deploy" {
-  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy?ref=v2.0.4"
+  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy?ref=v4.1.4"
   count  = var.pagopa-nodo-dei-pagamenti-test.pipeline.enable_deploy == true ? 1 : 0
 
   project_id                   = azuredevops_project.project.id
   repository                   = var.pagopa-nodo-dei-pagamenti-test.repository
   github_service_connection_id = azuredevops_serviceendpoint_github.azure-devops-github-rw.id
+  path                         = var.pagopa-nodo-dei-pagamenti-test.repository.name
+
 
   ci_trigger_use_yaml = true
 

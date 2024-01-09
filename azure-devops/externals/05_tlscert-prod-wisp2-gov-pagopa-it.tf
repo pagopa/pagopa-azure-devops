@@ -26,12 +26,12 @@ variable "tlscert-prod-wisp2-pagopa-gov-it" {
 
 locals {
   tlscert-prod-wisp2-pagopa-gov-it = {
-    tenant_id         = module.secrets.values["TENANTID"].value
+    tenant_id         = data.azurerm_client_config.current.tenant_id
     subscription_name = "ORG"
     subscription_id   = module.secrets.values["ORG-SUBSCRIPTION-ID"].value
   }
   tlscert-prod-wisp2-pagopa-gov-it-variables = {
-    KEY_VAULT_SERVICE_CONNECTION = module.PROD-TLS-CERT-SERVICE-CONN.service_endpoint_name
+    KEY_VAULT_SERVICE_CONNECTION = module.PROD-EXTERNALS-TLS-CERT-SERVICE-CONN.service_endpoint_name
   }
   tlscert-prod-wisp2-pagopa-gov-it-variables_secret = {
   }
@@ -42,16 +42,13 @@ module "tlscert-prod-wisp2-pagopa-gov-it-cert_az" {
     azurerm = azurerm.prod
   }
 
-  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_tls_cert?ref=v2.6.5"
+  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_tls_cert_federated?ref=v4.1.4"
   count  = var.tlscert-prod-wisp2-pagopa-gov-it.pipeline.enable_tls_cert == true ? 1 : 0
 
-  project_id = azuredevops_project.project.id
-  repository = var.tlscert-prod-wisp2-pagopa-gov-it.repository
-  name       = "${var.tlscert-prod-wisp2-pagopa-gov-it.pipeline.dns_record_name}.${var.tlscert-prod-wisp2-pagopa-gov-it.pipeline.dns_zone_name}"
-  #tfsec:ignore:GEN003
-  renew_token                  = local.tlscert_renew_token
+  project_id                   = data.azuredevops_project.project.id
+  repository                   = var.tlscert-prod-wisp2-pagopa-gov-it.repository
   path                         = var.tlscert-prod-wisp2-pagopa-gov-it.pipeline.path
-  github_service_connection_id = azuredevops_serviceendpoint_github.azure-devops-github-rw.id
+  github_service_connection_id = data.azuredevops_serviceendpoint_github.azure-devops-github-rw.id
 
   dns_record_name         = var.tlscert-prod-wisp2-pagopa-gov-it.pipeline.dns_record_name
   dns_zone_name           = var.tlscert-prod-wisp2-pagopa-gov-it.pipeline.dns_zone_name
@@ -60,7 +57,7 @@ module "tlscert-prod-wisp2-pagopa-gov-it-cert_az" {
   subscription_name       = local.tlscert-prod-wisp2-pagopa-gov-it.subscription_name
   subscription_id         = local.tlscert-prod-wisp2-pagopa-gov-it.subscription_id
 
-  credential_subcription              = var.prod_subscription_name
+  location                            = var.location
   credential_key_vault_name           = local.prod_key_vault_name
   credential_key_vault_resource_group = local.prod_key_vault_resource_group
 
@@ -75,7 +72,7 @@ module "tlscert-prod-wisp2-pagopa-gov-it-cert_az" {
   )
 
   service_connection_ids_authorization = [
-    module.PROD-TLS-CERT-SERVICE-CONN.service_endpoint_id,
+    module.PROD-EXTERNALS-TLS-CERT-SERVICE-CONN.service_endpoint_id,
   ]
 
   schedules = {

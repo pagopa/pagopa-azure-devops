@@ -26,9 +26,9 @@ variable "tlscert-uat-checkout-pagopa-it" {
 
 locals {
   tlscert-uat-checkout-pagopa-it = {
-    tenant_id         = module.secrets.values["TENANTID"].value
+    tenant_id         = data.azurerm_client_config.current.tenant_id
     subscription_name = "UAT-PAGOPA"
-    subscription_id   = module.secrets.values["UAT-SUBSCRIPTION-ID"].value
+    subscription_id   = data.azurerm_subscriptions.uat.subscriptions[0].subscription_id
   }
   tlscert-uat-checkout-pagopa-it-variables = {
     KEY_VAULT_SERVICE_CONNECTION = module.UAT-TLS-CERT-SERVICE-CONN.service_endpoint_name
@@ -43,14 +43,11 @@ module "tlscert-uat-checkout-pagopa-it-cert_az" {
     azurerm = azurerm.uat
   }
 
-  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_tls_cert?ref=v2.6.5"
+  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_tls_cert_federated?ref=v4.1.4"
   count  = var.tlscert-uat-checkout-pagopa-it.pipeline.enable_tls_cert == true ? 1 : 0
 
-  project_id = azuredevops_project.project.id
-  repository = var.tlscert-uat-checkout-pagopa-it.repository
-  name       = "${var.tlscert-uat-checkout-pagopa-it.pipeline.dns_record_name}.${var.tlscert-uat-checkout-pagopa-it.pipeline.dns_zone_name}"
-  #tfsec:ignore:GEN003
-  renew_token                  = "v2" // local.tlscert_renew_token
+  project_id                   = azuredevops_project.project.id
+  repository                   = var.tlscert-uat-checkout-pagopa-it.repository
   path                         = var.tlscert-uat-checkout-pagopa-it.pipeline.path
   github_service_connection_id = azuredevops_serviceendpoint_github.azure-devops-github-rw.id
 
@@ -61,7 +58,7 @@ module "tlscert-uat-checkout-pagopa-it-cert_az" {
   subscription_name       = local.tlscert-uat-checkout-pagopa-it.subscription_name
   subscription_id         = local.tlscert-uat-checkout-pagopa-it.subscription_id
 
-  credential_subcription              = var.uat_subscription_name
+  location                            = var.location
   credential_key_vault_name           = local.uat_key_vault_name
   credential_key_vault_resource_group = local.uat_key_vault_resource_group
 

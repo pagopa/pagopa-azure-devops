@@ -4,22 +4,21 @@
 #tfsec:ignore:GEN003
 module "DEV-TLS-CERT-SERVICE-CONN" {
   depends_on = [azuredevops_project.project]
-  source     = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_azurerm_limited?ref=v2.6.5"
+  source     = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated?ref=v4.1.5"
   providers = {
     azurerm = azurerm.dev
   }
 
   project_id = azuredevops_project.project.id
   #tfsec:ignore:general-secrets-no-plaintext-exposure
-  renew_token       = local.tlscert_renew_token
-  name              = "${local.prefix}-d-tls-cert-kv-policy"
-  tenant_id         = module.secrets.values["TENANTID"].value
-  subscription_id   = module.secrets.values["DEV-SUBSCRIPTION-ID"].value
+  name              = "${local.prefix}-d-${local.domain}-azdo-tls-cert-kv-policy"
+  tenant_id         = data.azurerm_client_config.current.tenant_id
+  subscription_id   = data.azurerm_subscriptions.dev.subscriptions[0].subscription_id
   subscription_name = var.dev_subscription_name
 
-  credential_subcription              = var.dev_subscription_name
-  credential_key_vault_name           = local.dev_key_vault_name
-  credential_key_vault_resource_group = local.dev_key_vault_resource_group
+  location            = var.location
+  resource_group_name = local.dev_identity_rg_name
+
 }
 
 data "azurerm_key_vault" "kv_dev" {
@@ -32,7 +31,7 @@ resource "azurerm_key_vault_access_policy" "DEV-TLS-CERT-SERVICE-CONN_kv_dev" {
   provider = azurerm.dev
 
   key_vault_id = data.azurerm_key_vault.kv_dev.id
-  tenant_id    = module.secrets.values["TENANTID"].value
+  tenant_id    = data.azurerm_client_config.current.tenant_id
   object_id    = module.DEV-TLS-CERT-SERVICE-CONN.service_principal_object_id
 
   certificate_permissions = ["Get", "Import"]
@@ -44,22 +43,21 @@ resource "azurerm_key_vault_access_policy" "DEV-TLS-CERT-SERVICE-CONN_kv_dev" {
 #tfsec:ignore:GEN003
 module "UAT-TLS-CERT-SERVICE-CONN" {
   depends_on = [azuredevops_project.project]
-  source     = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_azurerm_limited?ref=v2.6.5"
+  source     = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated?ref=v4.1.5"
   providers = {
     azurerm = azurerm.uat
   }
 
   project_id = azuredevops_project.project.id
   #tfsec:ignore:general-secrets-no-plaintext-exposure
-  renew_token       = local.tlscert_renew_token
-  name              = "${local.prefix}-u-tls-cert-kv-policy"
-  tenant_id         = module.secrets.values["TENANTID"].value
-  subscription_id   = module.secrets.values["UAT-SUBSCRIPTION-ID"].value
+  name              = "${local.prefix}-u-${local.domain}-azdo-tls-cert-kv-policy"
+  tenant_id         = data.azurerm_client_config.current.tenant_id
+  subscription_id   = data.azurerm_subscriptions.uat.subscriptions[0].subscription_id
   subscription_name = var.uat_subscription_name
 
-  credential_subcription              = var.uat_subscription_name
-  credential_key_vault_name           = local.uat_key_vault_name
-  credential_key_vault_resource_group = local.uat_key_vault_resource_group
+
+  location            = var.location
+  resource_group_name = local.uat_identity_rg_name
 }
 
 data "azurerm_key_vault" "kv_uat" {
@@ -71,7 +69,7 @@ data "azurerm_key_vault" "kv_uat" {
 resource "azurerm_key_vault_access_policy" "UAT-TLS-CERT-SERVICE-CONN_kv_uat" {
   provider     = azurerm.uat
   key_vault_id = data.azurerm_key_vault.kv_uat.id
-  tenant_id    = module.secrets.values["TENANTID"].value
+  tenant_id    = data.azurerm_client_config.current.tenant_id
   object_id    = module.UAT-TLS-CERT-SERVICE-CONN.service_principal_object_id
 
   certificate_permissions = ["Get", "Import"]
@@ -83,22 +81,20 @@ resource "azurerm_key_vault_access_policy" "UAT-TLS-CERT-SERVICE-CONN_kv_uat" {
 #tfsec:ignore:GEN003
 module "PROD-TLS-CERT-SERVICE-CONN" {
   depends_on = [azuredevops_project.project]
-  source     = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_azurerm_limited?ref=v2.6.5"
+  source     = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated?ref=v4.1.5"
   providers = {
     azurerm = azurerm.prod
   }
 
   project_id = azuredevops_project.project.id
   #tfsec:ignore:general-secrets-no-plaintext-exposure
-  renew_token       = local.tlscert_renew_token
-  name              = "${local.prefix}-p-tls-cert-kv-policy"
-  tenant_id         = module.secrets.values["TENANTID"].value
-  subscription_id   = module.secrets.values["PROD-SUBSCRIPTION-ID"].value
+  name              = "${local.prefix}-p-${local.domain}-azdo-tls-cert-kv-policy"
+  tenant_id         = data.azurerm_client_config.current.tenant_id
+  subscription_id   = data.azurerm_subscriptions.prod.subscriptions[0].subscription_id
   subscription_name = var.prod_subscription_name
 
-  credential_subcription              = var.prod_subscription_name
-  credential_key_vault_name           = local.prod_key_vault_name
-  credential_key_vault_resource_group = local.prod_key_vault_resource_group
+  location            = var.location
+  resource_group_name = local.prod_identity_rg_name
 }
 
 data "azurerm_key_vault" "kv_prod" {
@@ -110,7 +106,7 @@ data "azurerm_key_vault" "kv_prod" {
 resource "azurerm_key_vault_access_policy" "PROD-TLS-CERT-SERVICE-CONN_kv_prod" {
   provider     = azurerm.prod
   key_vault_id = data.azurerm_key_vault.kv_prod.id
-  tenant_id    = module.secrets.values["TENANTID"].value
+  tenant_id    = data.azurerm_client_config.current.tenant_id
   object_id    = module.PROD-TLS-CERT-SERVICE-CONN.service_principal_object_id
 
   certificate_permissions = ["Get", "Import"]
@@ -122,22 +118,20 @@ resource "azurerm_key_vault_access_policy" "PROD-TLS-CERT-SERVICE-CONN_kv_prod" 
 #tfsec:ignore:GEN003
 module "DEV-ECOMMERCE-TLS-CERT-SERVICE-CONN" {
   depends_on = [azuredevops_project.project]
-  source     = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_azurerm_limited?ref=v2.6.5"
+  source     = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated?ref=v4.1.5"
   providers = {
     azurerm = azurerm.dev
   }
 
   project_id = azuredevops_project.project.id
   #tfsec:ignore:general-secrets-no-plaintext-exposure
-  renew_token       = local.tlscert_renew_token
-  name              = "${local.prefix}-ecommerce-d-tls-cert-kv-policy"
-  tenant_id         = module.secrets.values["TENANTID"].value
-  subscription_id   = module.secrets.values["DEV-SUBSCRIPTION-ID"].value
+  name              = "${local.prefix}-ecommerce-d-${local.domain}-azdo-tls-cert-kv-policy"
+  tenant_id         = data.azurerm_client_config.current.tenant_id
+  subscription_id   = data.azurerm_subscriptions.dev.subscriptions[0].subscription_id
   subscription_name = var.dev_subscription_name
 
-  credential_subcription              = var.dev_subscription_name
-  credential_key_vault_name           = local.dev_ecommerce_key_vault_name
-  credential_key_vault_resource_group = local.dev_ecommerce_key_vault_resource_group
+  location            = var.location
+  resource_group_name = local.dev_identity_rg_name
 }
 
 data "azurerm_key_vault" "kv_ecommerce_dev" {
@@ -150,7 +144,7 @@ resource "azurerm_key_vault_access_policy" "DEV-ECOMMERCE-TLS-CERT-SERVICE-CONN_
   provider = azurerm.dev
 
   key_vault_id = data.azurerm_key_vault.kv_ecommerce_dev.id
-  tenant_id    = module.secrets.values["TENANTID"].value
+  tenant_id    = data.azurerm_client_config.current.tenant_id
   object_id    = module.DEV-ECOMMERCE-TLS-CERT-SERVICE-CONN.service_principal_object_id
 
   certificate_permissions = ["Get", "Import"]
@@ -162,22 +156,20 @@ resource "azurerm_key_vault_access_policy" "DEV-ECOMMERCE-TLS-CERT-SERVICE-CONN_
 #tfsec:ignore:GEN003
 module "UAT-ECOMMERCE-TLS-CERT-SERVICE-CONN" {
   depends_on = [azuredevops_project.project]
-  source     = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_azurerm_limited?ref=v2.0.5"
+  source     = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated?ref=v4.1.5"
   providers = {
     azurerm = azurerm.uat
   }
 
   project_id = azuredevops_project.project.id
   #tfsec:ignore:general-secrets-no-plaintext-exposure
-  renew_token       = local.tlscert_renew_token
-  name              = "${local.prefix}-ecommerce-u-tls-cert-kv-policy"
-  tenant_id         = module.secrets.values["TENANTID"].value
-  subscription_id   = module.secrets.values["UAT-SUBSCRIPTION-ID"].value
+  name              = "${local.prefix}-ecommerce-u-${local.domain}-azdo-tls-cert-kv-policy"
+  tenant_id         = data.azurerm_client_config.current.tenant_id
+  subscription_id   = data.azurerm_subscriptions.uat.subscriptions[0].subscription_id
   subscription_name = var.uat_subscription_name
 
-  credential_subcription              = var.uat_subscription_name
-  credential_key_vault_name           = local.uat_ecommerce_key_vault_name
-  credential_key_vault_resource_group = local.uat_ecommerce_key_vault_resource_group
+  location            = var.location
+  resource_group_name = local.uat_identity_rg_name
 }
 
 data "azurerm_key_vault" "kv_ecommerce_uat" {
@@ -190,7 +182,7 @@ resource "azurerm_key_vault_access_policy" "UAT-ECOMMERCE-TLS-CERT-SERVICE-CONN_
   provider = azurerm.uat
 
   key_vault_id = data.azurerm_key_vault.kv_ecommerce_uat.id
-  tenant_id    = module.secrets.values["TENANTID"].value
+  tenant_id    = data.azurerm_client_config.current.tenant_id
   object_id    = module.UAT-ECOMMERCE-TLS-CERT-SERVICE-CONN.service_principal_object_id
 
   certificate_permissions = ["Get", "Import"]
@@ -202,22 +194,19 @@ resource "azurerm_key_vault_access_policy" "UAT-ECOMMERCE-TLS-CERT-SERVICE-CONN_
 #tfsec:ignore:GEN003
 module "PROD-ECOMMERCE-TLS-CERT-SERVICE-CONN" {
   depends_on = [azuredevops_project.project]
-  source     = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_azurerm_limited?ref=v2.0.5"
+  source     = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated?ref=v4.1.5"
   providers = {
     azurerm = azurerm.prod
   }
 
   project_id = azuredevops_project.project.id
   #tfsec:ignore:general-secrets-no-plaintext-exposure
-  renew_token       = local.tlscert_renew_token
-  name              = "${local.prefix}-ecommerce-p-tls-cert-kv-policy"
-  tenant_id         = module.secrets.values["TENANTID"].value
-  subscription_id   = module.secrets.values["PROD-SUBSCRIPTION-ID"].value
-  subscription_name = var.prod_subscription_name
-
-  credential_subcription              = var.prod_subscription_name
-  credential_key_vault_name           = local.prod_ecommerce_key_vault_name
-  credential_key_vault_resource_group = local.prod_ecommerce_key_vault_resource_group
+  name                = "${local.prefix}-ecommerce-p-${local.domain}-azdo-tls-cert-kv-policy"
+  tenant_id           = data.azurerm_client_config.current.tenant_id
+  subscription_id     = data.azurerm_subscriptions.prod.subscriptions[0].subscription_id
+  subscription_name   = var.prod_subscription_name
+  location            = var.location
+  resource_group_name = local.prod_identity_rg_name
 }
 
 data "azurerm_key_vault" "kv_ecommerce_prod" {
@@ -230,7 +219,7 @@ resource "azurerm_key_vault_access_policy" "PROD-ECOMMERCE-TLS-CERT-SERVICE-CONN
   provider = azurerm.prod
 
   key_vault_id = data.azurerm_key_vault.kv_ecommerce_prod.id
-  tenant_id    = module.secrets.values["TENANTID"].value
+  tenant_id    = data.azurerm_client_config.current.tenant_id
   object_id    = module.PROD-ECOMMERCE-TLS-CERT-SERVICE-CONN.service_principal_object_id
 
   certificate_permissions = ["Get", "Import"]
@@ -242,22 +231,21 @@ resource "azurerm_key_vault_access_policy" "PROD-ECOMMERCE-TLS-CERT-SERVICE-CONN
 #tfsec:ignore:GEN003
 module "DEV-SHARED-TLS-CERT-SERVICE-CONN" {
   depends_on = [azuredevops_project.project]
-  source     = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_azurerm_limited?ref=v2.6.5"
+  source     = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated?ref=v4.1.5"
   providers = {
     azurerm = azurerm.dev
   }
 
   project_id = azuredevops_project.project.id
   #tfsec:ignore:general-secrets-no-plaintext-exposure
-  renew_token       = local.tlscert_renew_token
-  name              = "${local.prefix}-shared-d-tls-cert-kv-policy"
-  tenant_id         = module.secrets.values["TENANTID"].value
-  subscription_id   = module.secrets.values["DEV-SUBSCRIPTION-ID"].value
+  name              = "${local.prefix}-shared-d-${local.domain}-azdo-tls-cert-kv-policy"
+  tenant_id         = data.azurerm_client_config.current.tenant_id
+  subscription_id   = data.azurerm_subscriptions.dev.subscriptions[0].subscription_id
   subscription_name = var.dev_subscription_name
 
-  credential_subcription              = var.dev_subscription_name
-  credential_key_vault_name           = local.dev_shared_key_vault_name
-  credential_key_vault_resource_group = local.dev_shared_key_vault_resource_group
+
+  location            = var.location
+  resource_group_name = local.dev_identity_rg_name
 }
 
 data "azurerm_key_vault" "kv_shared_dev" {
@@ -270,7 +258,7 @@ resource "azurerm_key_vault_access_policy" "DEV-SHARED-TLS-CERT-SERVICE-CONN_kv_
   provider = azurerm.dev
 
   key_vault_id = data.azurerm_key_vault.kv_shared_dev.id
-  tenant_id    = module.secrets.values["TENANTID"].value
+  tenant_id    = data.azurerm_client_config.current.tenant_id
   object_id    = module.DEV-SHARED-TLS-CERT-SERVICE-CONN.service_principal_object_id
 
   certificate_permissions = ["Get", "Import"]
@@ -282,22 +270,20 @@ resource "azurerm_key_vault_access_policy" "DEV-SHARED-TLS-CERT-SERVICE-CONN_kv_
 #tfsec:ignore:GEN003
 module "DEV-AFM-TLS-CERT-SERVICE-CONN" {
   depends_on = [azuredevops_project.project]
-  source     = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_azurerm_limited?ref=v2.6.5"
+  source     = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated?ref=v4.1.5"
   providers = {
     azurerm = azurerm.dev
   }
 
   project_id = azuredevops_project.project.id
   #tfsec:ignore:general-secrets-no-plaintext-exposure
-  renew_token       = local.tlscert_renew_token
-  name              = "${local.prefix}-afm-d-tls-cert-kv-policy"
-  tenant_id         = module.secrets.values["TENANTID"].value
-  subscription_id   = module.secrets.values["DEV-SUBSCRIPTION-ID"].value
+  name              = "${local.prefix}-afm-d-${local.domain}-azdo-tls-cert-kv-policy"
+  tenant_id         = data.azurerm_client_config.current.tenant_id
+  subscription_id   = data.azurerm_subscriptions.dev.subscriptions[0].subscription_id
   subscription_name = var.dev_subscription_name
 
-  credential_subcription              = var.dev_subscription_name
-  credential_key_vault_name           = local.dev_afm_key_vault_name
-  credential_key_vault_resource_group = local.dev_afm_key_vault_resource_group
+  location            = var.location
+  resource_group_name = local.dev_identity_rg_name
 }
 
 data "azurerm_key_vault" "kv_afm_dev" {
@@ -310,7 +296,7 @@ resource "azurerm_key_vault_access_policy" "DEV-AFM-TLS-CERT-SERVICE-CONN_kv_dev
   provider = azurerm.dev
 
   key_vault_id = data.azurerm_key_vault.kv_afm_dev.id
-  tenant_id    = module.secrets.values["TENANTID"].value
+  tenant_id    = data.azurerm_client_config.current.tenant_id
   object_id    = module.DEV-AFM-TLS-CERT-SERVICE-CONN.service_principal_object_id
 
   certificate_permissions = ["Get", "Import"]
@@ -322,22 +308,20 @@ resource "azurerm_key_vault_access_policy" "DEV-AFM-TLS-CERT-SERVICE-CONN_kv_dev
 #tfsec:ignore:GEN003
 module "UAT-SHARED-TLS-CERT-SERVICE-CONN" {
   depends_on = [azuredevops_project.project]
-  source     = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_azurerm_limited?ref=v2.6.5"
+  source     = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated?ref=v4.1.5"
   providers = {
     azurerm = azurerm.uat
   }
 
   project_id = azuredevops_project.project.id
   #tfsec:ignore:general-secrets-no-plaintext-exposure
-  renew_token       = local.tlscert_renew_token
-  name              = "${local.prefix}-shared-u-tls-cert-kv-policy"
-  tenant_id         = module.secrets.values["TENANTID"].value
-  subscription_id   = module.secrets.values["UAT-SUBSCRIPTION-ID"].value
+  name              = "${local.prefix}-shared-u-${local.domain}-azdo-tls-cert-kv-policy"
+  tenant_id         = data.azurerm_client_config.current.tenant_id
+  subscription_id   = data.azurerm_subscriptions.uat.subscriptions[0].subscription_id
   subscription_name = var.uat_subscription_name
 
-  credential_subcription              = var.uat_subscription_name
-  credential_key_vault_name           = local.uat_shared_key_vault_name
-  credential_key_vault_resource_group = local.uat_shared_key_vault_resource_group
+  location            = var.location
+  resource_group_name = local.uat_identity_rg_name
 }
 
 data "azurerm_key_vault" "kv_shared_uat" {
@@ -350,7 +334,7 @@ resource "azurerm_key_vault_access_policy" "UAT-SHARED-TLS-CERT-SERVICE-CONN_kv_
   provider = azurerm.uat
 
   key_vault_id = data.azurerm_key_vault.kv_shared_uat.id
-  tenant_id    = module.secrets.values["TENANTID"].value
+  tenant_id    = data.azurerm_client_config.current.tenant_id
   object_id    = module.UAT-SHARED-TLS-CERT-SERVICE-CONN.service_principal_object_id
 
   certificate_permissions = ["Get", "Import"]
@@ -362,22 +346,20 @@ resource "azurerm_key_vault_access_policy" "UAT-SHARED-TLS-CERT-SERVICE-CONN_kv_
 #tfsec:ignore:GEN003
 module "UAT-AFM-TLS-CERT-SERVICE-CONN" {
   depends_on = [azuredevops_project.project]
-  source     = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_azurerm_limited?ref=v2.6.5"
+  source     = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated?ref=v4.1.5"
   providers = {
     azurerm = azurerm.uat
   }
 
   project_id = azuredevops_project.project.id
   #tfsec:ignore:general-secrets-no-plaintext-exposure
-  renew_token       = local.tlscert_renew_token
-  name              = "${local.prefix}-afm-u-tls-cert-kv-policy"
-  tenant_id         = module.secrets.values["TENANTID"].value
-  subscription_id   = module.secrets.values["UAT-SUBSCRIPTION-ID"].value
-  subscription_name = var.uat_subscription_name
+  name                = "${local.prefix}-afm-u-${local.domain}-azdo-tls-cert-kv-policy"
+  tenant_id           = data.azurerm_client_config.current.tenant_id
+  subscription_id     = data.azurerm_subscriptions.uat.subscriptions[0].subscription_id
+  subscription_name   = var.uat_subscription_name
+  location            = var.location
+  resource_group_name = local.uat_identity_rg_name
 
-  credential_subcription              = var.uat_subscription_name
-  credential_key_vault_name           = local.uat_afm_key_vault_name
-  credential_key_vault_resource_group = local.uat_afm_key_vault_resource_group
 }
 
 data "azurerm_key_vault" "kv_afm_uat" {
@@ -390,7 +372,7 @@ resource "azurerm_key_vault_access_policy" "UAT-AFM-TLS-CERT-SERVICE-CONN_kv_uat
   provider = azurerm.uat
 
   key_vault_id = data.azurerm_key_vault.kv_afm_uat.id
-  tenant_id    = module.secrets.values["TENANTID"].value
+  tenant_id    = data.azurerm_client_config.current.tenant_id
   object_id    = module.UAT-AFM-TLS-CERT-SERVICE-CONN.service_principal_object_id
 
   certificate_permissions = ["Get", "Import"]
@@ -402,22 +384,19 @@ resource "azurerm_key_vault_access_policy" "UAT-AFM-TLS-CERT-SERVICE-CONN_kv_uat
 #tfsec:ignore:GEN003
 module "PROD-SHARED-TLS-CERT-SERVICE-CONN" {
   depends_on = [azuredevops_project.project]
-  source     = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_azurerm_limited?ref=v2.6.5"
+  source     = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated?ref=v4.1.5"
   providers = {
     azurerm = azurerm.prod
   }
 
   project_id = azuredevops_project.project.id
   #tfsec:ignore:general-secrets-no-plaintext-exposure
-  renew_token       = local.tlscert_renew_token
-  name              = "${local.prefix}-shared-p-tls-cert-kv-policy"
-  tenant_id         = module.secrets.values["TENANTID"].value
-  subscription_id   = module.secrets.values["PROD-SUBSCRIPTION-ID"].value
-  subscription_name = var.prod_subscription_name
-
-  credential_subcription              = var.prod_subscription_name
-  credential_key_vault_name           = local.prod_shared_key_vault_name
-  credential_key_vault_resource_group = local.prod_shared_key_vault_resource_group
+  name                = "${local.prefix}-shared-p-${local.domain}-azdo-tls-cert-kv-policy"
+  tenant_id           = data.azurerm_client_config.current.tenant_id
+  subscription_id     = data.azurerm_subscriptions.prod.subscriptions[0].subscription_id
+  subscription_name   = var.prod_subscription_name
+  location            = var.location
+  resource_group_name = local.prod_identity_rg_name
 }
 
 data "azurerm_key_vault" "kv_shared_prod" {
@@ -430,7 +409,7 @@ resource "azurerm_key_vault_access_policy" "PROD-SHARED-TLS-CERT-SERVICE-CONN_kv
   provider = azurerm.prod
 
   key_vault_id = data.azurerm_key_vault.kv_shared_prod.id
-  tenant_id    = module.secrets.values["TENANTID"].value
+  tenant_id    = data.azurerm_client_config.current.tenant_id
   object_id    = module.PROD-SHARED-TLS-CERT-SERVICE-CONN.service_principal_object_id
 
   certificate_permissions = ["Get", "Import"]
@@ -442,22 +421,19 @@ resource "azurerm_key_vault_access_policy" "PROD-SHARED-TLS-CERT-SERVICE-CONN_kv
 #tfsec:ignore:GEN003
 module "PROD-AFM-TLS-CERT-SERVICE-CONN" {
   depends_on = [azuredevops_project.project]
-  source     = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_azurerm_limited?ref=v2.6.5"
+  source     = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated?ref=v4.1.5"
   providers = {
     azurerm = azurerm.prod
   }
 
   project_id = azuredevops_project.project.id
   #tfsec:ignore:general-secrets-no-plaintext-exposure
-  renew_token       = local.tlscert_renew_token
-  name              = "${local.prefix}-afm-p-tls-cert-kv-policy"
-  tenant_id         = module.secrets.values["TENANTID"].value
-  subscription_id   = module.secrets.values["PROD-SUBSCRIPTION-ID"].value
-  subscription_name = var.prod_subscription_name
-
-  credential_subcription              = var.prod_subscription_name
-  credential_key_vault_name           = local.prod_afm_key_vault_name
-  credential_key_vault_resource_group = local.prod_afm_key_vault_resource_group
+  name                = "${local.prefix}-afm-p-${local.domain}-azdo-tls-cert-kv-policy"
+  tenant_id           = data.azurerm_client_config.current.tenant_id
+  subscription_id     = data.azurerm_subscriptions.prod.subscriptions[0].subscription_id
+  subscription_name   = var.prod_subscription_name
+  location            = var.location
+  resource_group_name = local.prod_identity_rg_name
 }
 
 data "azurerm_key_vault" "kv_afm_prod" {
@@ -470,7 +446,7 @@ resource "azurerm_key_vault_access_policy" "PROD-AFM-TLS-CERT-SERVICE-CONN_kv_pr
   provider = azurerm.prod
 
   key_vault_id = data.azurerm_key_vault.kv_afm_prod.id
-  tenant_id    = module.secrets.values["TENANTID"].value
+  tenant_id    = data.azurerm_client_config.current.tenant_id
   object_id    = module.PROD-AFM-TLS-CERT-SERVICE-CONN.service_principal_object_id
 
   certificate_permissions = ["Get", "Import"]
@@ -482,22 +458,21 @@ resource "azurerm_key_vault_access_policy" "PROD-AFM-TLS-CERT-SERVICE-CONN_kv_pr
 #tfsec:ignore:GEN003
 module "DEV-KIBANA-TLS-CERT-SERVICE-CONN" {
   depends_on = [azuredevops_project.project]
-  source     = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_azurerm_limited?ref=v2.6.5"
+  source     = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated?ref=v4.1.5"
   providers = {
     azurerm = azurerm.dev
   }
 
   project_id = azuredevops_project.project.id
   #tfsec:ignore:general-secrets-no-plaintext-exposure
-  renew_token       = local.tlscert_renew_token_kibana
-  name              = "${local.prefix}-kibana-d-tls-cert-kv-policy"
-  tenant_id         = module.secrets.values["TENANTID"].value
-  subscription_id   = module.secrets.values["DEV-SUBSCRIPTION-ID"].value
+  name              = "${local.prefix}-kibana-d-${local.domain}-azdo-tls-cert-kv-policy"
+  tenant_id         = data.azurerm_client_config.current.tenant_id
+  subscription_id   = data.azurerm_subscriptions.dev.subscriptions[0].subscription_id
   subscription_name = var.dev_subscription_name
 
-  credential_subcription              = var.dev_subscription_name
-  credential_key_vault_name           = local.dev_kibana_key_vault_name
-  credential_key_vault_resource_group = local.dev_kibana_key_vault_resource_group
+
+  location            = var.location
+  resource_group_name = local.dev_identity_rg_name
 }
 
 data "azurerm_key_vault" "kv_kibana_dev" {
@@ -510,7 +485,7 @@ resource "azurerm_key_vault_access_policy" "DEV-KIBANA-TLS-CERT-SERVICE-CONN_kv_
   provider = azurerm.dev
 
   key_vault_id = data.azurerm_key_vault.kv_kibana_dev.id
-  tenant_id    = module.secrets.values["TENANTID"].value
+  tenant_id    = data.azurerm_client_config.current.tenant_id
   object_id    = module.DEV-KIBANA-TLS-CERT-SERVICE-CONN.service_principal_object_id
 
   certificate_permissions = ["Get", "Import"]
@@ -523,22 +498,19 @@ resource "azurerm_key_vault_access_policy" "DEV-KIBANA-TLS-CERT-SERVICE-CONN_kv_
 #tfsec:ignore:GEN003
 module "UAT-KIBANA-TLS-CERT-SERVICE-CONN" {
   depends_on = [azuredevops_project.project]
-  source     = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_azurerm_limited?ref=v2.6.5"
+  source     = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated?ref=v4.1.5"
   providers = {
     azurerm = azurerm.uat
   }
 
   project_id = azuredevops_project.project.id
   #tfsec:ignore:general-secrets-no-plaintext-exposure
-  renew_token       = local.tlscert_renew_token_kibana
-  name              = "${local.prefix}-kibana-u-tls-cert-kv-policy"
-  tenant_id         = module.secrets.values["TENANTID"].value
-  subscription_id   = module.secrets.values["UAT-SUBSCRIPTION-ID"].value
-  subscription_name = var.uat_subscription_name
-
-  credential_subcription              = var.uat_subscription_name
-  credential_key_vault_name           = local.uat_kibana_key_vault_name
-  credential_key_vault_resource_group = local.uat_kibana_key_vault_resource_group
+  name                = "${local.prefix}-kibana-u-${local.domain}-azdo-tls-cert-kv-policy"
+  tenant_id           = data.azurerm_client_config.current.tenant_id
+  subscription_id     = data.azurerm_subscriptions.uat.subscriptions[0].subscription_id
+  subscription_name   = var.uat_subscription_name
+  location            = var.location
+  resource_group_name = local.uat_identity_rg_name
 }
 
 data "azurerm_key_vault" "kv_kibana_uat" {
@@ -551,7 +523,7 @@ resource "azurerm_key_vault_access_policy" "UAT-KIBANA-TLS-CERT-SERVICE-CONN_kv_
   provider = azurerm.uat
 
   key_vault_id = data.azurerm_key_vault.kv_kibana_uat.id
-  tenant_id    = module.secrets.values["TENANTID"].value
+  tenant_id    = data.azurerm_client_config.current.tenant_id
   object_id    = module.UAT-KIBANA-TLS-CERT-SERVICE-CONN.service_principal_object_id
 
   certificate_permissions = ["Get", "Import"]
@@ -564,22 +536,19 @@ resource "azurerm_key_vault_access_policy" "UAT-KIBANA-TLS-CERT-SERVICE-CONN_kv_
 #tfsec:ignore:GEN003
 module "PROD-KIBANA-TLS-CERT-SERVICE-CONN" {
   depends_on = [azuredevops_project.project]
-  source     = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_azurerm_limited?ref=v2.6.5"
+  source     = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated?ref=v4.1.5"
   providers = {
     azurerm = azurerm.prod
   }
 
   project_id = azuredevops_project.project.id
   #tfsec:ignore:general-secrets-no-plaintext-exposure
-  renew_token       = local.tlscert_renew_token_kibana
-  name              = "${local.prefix}-kibana-p-tls-cert-kv-policy"
-  tenant_id         = module.secrets.values["TENANTID"].value
-  subscription_id   = module.secrets.values["PROD-SUBSCRIPTION-ID"].value
-  subscription_name = var.prod_subscription_name
-
-  credential_subcription              = var.prod_subscription_name
-  credential_key_vault_name           = local.prod_kibana_key_vault_name
-  credential_key_vault_resource_group = local.prod_kibana_key_vault_resource_group
+  name                = "${local.prefix}-kibana-p-${local.domain}-azdo-tls-cert-kv-policy"
+  tenant_id           = data.azurerm_client_config.current.tenant_id
+  subscription_id     = data.azurerm_subscriptions.prod.subscriptions[0].subscription_id
+  subscription_name   = var.prod_subscription_name
+  location            = var.location
+  resource_group_name = local.prod_identity_rg_name
 }
 
 data "azurerm_key_vault" "kv_kibana_prod" {
@@ -592,7 +561,7 @@ resource "azurerm_key_vault_access_policy" "PROD-KIBANA-TLS-CERT-SERVICE-CONN_kv
   provider = azurerm.prod
 
   key_vault_id = data.azurerm_key_vault.kv_kibana_prod.id
-  tenant_id    = module.secrets.values["TENANTID"].value
+  tenant_id    = data.azurerm_client_config.current.tenant_id
   object_id    = module.PROD-KIBANA-TLS-CERT-SERVICE-CONN.service_principal_object_id
 
   certificate_permissions = ["Get", "Import"]

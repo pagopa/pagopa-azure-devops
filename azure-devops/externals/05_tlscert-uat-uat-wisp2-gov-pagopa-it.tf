@@ -26,12 +26,12 @@ variable "tlscert-uat-uat-wisp2-gov-pagopa-it" {
 
 locals {
   tlscert-uat-uat-wisp2-gov-pagopa-it = {
-    tenant_id         = module.secrets.values["TENANTID"].value
+    tenant_id         = data.azurerm_client_config.current.tenant_id
     subscription_name = "ORG"
     subscription_id   = module.secrets.values["ORG-SUBSCRIPTION-ID"].value
   }
   tlscert-uat-uat-wisp2-gov-pagopa-it-variables = {
-    KEY_VAULT_SERVICE_CONNECTION = module.UAT-TLS-CERT-SERVICE-CONN.service_endpoint_name
+    KEY_VAULT_SERVICE_CONNECTION = module.UAT-EXTERNALS-TLS-CERT-SERVICE-CONN.service_endpoint_name
   }
   tlscert-uat-uat-wisp2-gov-pagopa-it-variables_secret = {
   }
@@ -43,16 +43,13 @@ module "tlscert-uat-uat-wisp2-gov-pagopa-it-cert_az" {
     azurerm = azurerm.uat
   }
 
-  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_tls_cert?ref=v2.6.5"
+  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_tls_cert_federated?ref=v4.1.4"
   count  = var.tlscert-uat-uat-wisp2-gov-pagopa-it.pipeline.enable_tls_cert == true ? 1 : 0
 
-  project_id = azuredevops_project.project.id
-  repository = var.tlscert-uat-uat-wisp2-gov-pagopa-it.repository
-  name       = "${var.tlscert-uat-uat-wisp2-gov-pagopa-it.pipeline.dns_record_name}.${var.tlscert-uat-uat-wisp2-gov-pagopa-it.pipeline.dns_zone_name}"
-  #tfsec:ignore:GEN003
-  renew_token                  = local.tlscert_renew_token
+  project_id                   = data.azuredevops_project.project.id
+  repository                   = var.tlscert-uat-uat-wisp2-gov-pagopa-it.repository
   path                         = var.tlscert-uat-uat-wisp2-gov-pagopa-it.pipeline.path
-  github_service_connection_id = azuredevops_serviceendpoint_github.azure-devops-github-rw.id
+  github_service_connection_id = data.azuredevops_serviceendpoint_github.azure-devops-github-rw.id
 
   dns_record_name         = var.tlscert-uat-uat-wisp2-gov-pagopa-it.pipeline.dns_record_name
   dns_zone_name           = var.tlscert-uat-uat-wisp2-gov-pagopa-it.pipeline.dns_zone_name
@@ -61,7 +58,7 @@ module "tlscert-uat-uat-wisp2-gov-pagopa-it-cert_az" {
   subscription_name       = local.tlscert-uat-uat-wisp2-gov-pagopa-it.subscription_name
   subscription_id         = local.tlscert-uat-uat-wisp2-gov-pagopa-it.subscription_id
 
-  credential_subcription              = var.uat_subscription_name
+  location                            = var.location
   credential_key_vault_name           = local.uat_key_vault_name
   credential_key_vault_resource_group = local.uat_key_vault_resource_group
 
@@ -76,7 +73,7 @@ module "tlscert-uat-uat-wisp2-gov-pagopa-it-cert_az" {
   )
 
   service_connection_ids_authorization = [
-    module.UAT-TLS-CERT-SERVICE-CONN.service_endpoint_id,
+    module.UAT-EXTERNALS-TLS-CERT-SERVICE-CONN.service_endpoint_id,
   ]
 
   schedules = {

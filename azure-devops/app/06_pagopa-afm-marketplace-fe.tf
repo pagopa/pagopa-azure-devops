@@ -66,12 +66,13 @@ locals {
 }
 
 module "pagopa-afm-marketplace-fe_code_review" {
-  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review?ref=v2.0.4"
+  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review?ref=v4.1.4"
   count  = var.pagopa-afm-marketplace-fe.pipeline.enable_code_review == true ? 1 : 0
 
   project_id                   = azuredevops_project.project.id
   repository                   = var.pagopa-afm-marketplace-fe.repository
   github_service_connection_id = azuredevops_serviceendpoint_github.azure-devops-github-pr.id
+  path                         = var.pagopa-afm-marketplace-fe.repository.name
 
   variables = merge(
     local.pagopa-afm-marketplace-fe-variables,
@@ -90,12 +91,14 @@ module "pagopa-afm-marketplace-fe_code_review" {
 }
 
 module "pagopa-afm-marketplace-fe_deploy" {
-  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy?ref=v2.0.4"
+  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy?ref=v4.1.4"
   count  = var.pagopa-afm-marketplace-fe.pipeline.enable_deploy == true ? 1 : 0
 
   project_id                   = azuredevops_project.project.id
   repository                   = var.pagopa-afm-marketplace-fe.repository
   github_service_connection_id = azuredevops_serviceendpoint_github.azure-devops-github-rw.id
+  path                         = var.pagopa-afm-marketplace-fe.repository.name
+
 
   variables = merge(
     local.pagopa-afm-marketplace-fe-variables,
