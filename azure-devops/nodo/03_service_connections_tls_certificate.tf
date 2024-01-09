@@ -8,19 +8,17 @@ module "DEV-NODO-TLS-CERT-SERVICE-CONN" {
   }
 
   depends_on = [data.azuredevops_project.project]
-  source     = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_azurerm_limited?ref=v2.6.5"
+  source     = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated?ref=v4.1.5"
 
   project_id        = data.azuredevops_project.project.id
   name              = "${local.prefix}-d-${local.domain}-tls-cert"
   tenant_id         = module.secrets.values["TENANTID"].value
   subscription_name = var.dev_subscription_name
   subscription_id   = module.secrets.values["DEV-SUBSCRIPTION-ID"].value
-  #tfsec:ignore:GEN003
-  renew_token = local.tlscert_renew_token
 
-  credential_subcription              = var.dev_subscription_name
-  credential_key_vault_name           = local.dev_nodo_key_vault_name
-  credential_key_vault_resource_group = local.dev_nodo_key_vault_resource_group
+    location            = var.location
+  resource_group_name = local.dev_identity_rg_name
+
 }
 
 resource "azurerm_key_vault_access_policy" "DEV-NODO-TLS-CERT-SERVICE-CONN_kv_access_policy" {
@@ -55,19 +53,16 @@ module "UAT-NODO-TLS-CERT-SERVICE-CONN" {
   }
 
   depends_on = [data.azuredevops_project.project]
-  source     = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_azurerm_limited?ref=v2.6.5"
+  source     = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated?ref=v4.1.5"
 
   project_id        = data.azuredevops_project.project.id
   name              = "${local.prefix}-u-${local.domain}-tls-cert"
   tenant_id         = module.secrets.values["TENANTID"].value
   subscription_name = var.uat_subscription_name
   subscription_id   = module.secrets.values["UAT-SUBSCRIPTION-ID"].value
-  #tfsec:ignore:GEN003
-  renew_token = local.tlscert_renew_token
 
-  credential_subcription              = var.uat_subscription_name
-  credential_key_vault_name           = local.uat_nodo_key_vault_name
-  credential_key_vault_resource_group = local.uat_nodo_key_vault_resource_group
+    location            = var.location
+  resource_group_name = local.uat_identity_rg_name
 }
 
 resource "azurerm_key_vault_access_policy" "UAT-NODO-TLS-CERT-SERVICE-CONN_kv_access_policy" {
@@ -102,19 +97,16 @@ module "PROD-NODO-TLS-CERT-SERVICE-CONN" {
   }
 
   depends_on = [data.azuredevops_project.project]
-  source     = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_azurerm_limited?ref=v2.6.5"
+  source     = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated?ref=v4.1.5"
 
   project_id        = data.azuredevops_project.project.id
   name              = "${local.prefix}-p-${local.domain}-tls-cert"
   tenant_id         = module.secrets.values["TENANTID"].value
   subscription_name = var.prod_subscription_name
   subscription_id   = module.secrets.values["PROD-SUBSCRIPTION-ID"].value
-  #tfsec:ignore:GEN003
-  renew_token = local.tlscert_renew_token
 
-  credential_subcription              = var.prod_subscription_name
-  credential_key_vault_name           = local.prod_nodo_key_vault_name
-  credential_key_vault_resource_group = local.prod_nodo_key_vault_resource_group
+    location            = var.location
+  resource_group_name = local.prod_identity_rg_name
 }
 
 resource "azurerm_key_vault_access_policy" "PROD-NODO-TLS-CERT-SERVICE-CONN_kv_access_policy" {
