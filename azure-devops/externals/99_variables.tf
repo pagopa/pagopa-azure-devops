@@ -1,6 +1,7 @@
 locals {
   prefix           = "pagopa"
   azure_devops_org = "pagopaspa"
+  domain = "externals"
 
   dev_subscription_name = "dev-pagopa"
   uat_subscription_name = "uat-pagopa"
