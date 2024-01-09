@@ -3,7 +3,7 @@
 #
 #tfsec:ignore:GEN003
 module "DEV-APPINSIGHTS-SERVICE-CONN" {
-  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_azurerm_limited?ref=v2.6.5"
+  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_azurerm_limited?ref=v4.1.5"
   providers = {
     azurerm = azurerm.dev
   }
@@ -39,7 +39,7 @@ resource "azurerm_role_assignment" "appinsights_component_contributor_dev" {
 #
 #tfsec:ignore:GEN003
 module "UAT-APPINSIGHTS-SERVICE-CONN" {
-  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_azurerm_limited?ref=v2.6.5"
+  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_azurerm_limited?ref=v4.1.5"
   providers = {
     azurerm = azurerm.uat
   }
@@ -75,7 +75,7 @@ resource "azurerm_role_assignment" "appinsights_component_contributor_uat" {
 #
 #tfsec:ignore:GEN003
 module "PROD-APPINSIGHTS-SERVICE-CONN" {
-  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_azurerm_limited?ref=v2.6.5"
+  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_azurerm_limited?ref=v4.1.5"
   providers = {
     azurerm = azurerm.prod
   }
