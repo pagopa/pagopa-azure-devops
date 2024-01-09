@@ -1,14 +1,14 @@
 locals {
   prefix           = "pagopa"
   azure_devops_org = "pagopaspa"
-  domain = "core"
+  domain           = "core"
 
-  dev_subscription_name = "dev-pagopa"
-  uat_subscription_name = "uat-pagopa"
+  dev_subscription_name  = "dev-pagopa"
+  uat_subscription_name  = "uat-pagopa"
   prod_subscription_name = "prod-pagopa"
 
-  dev_identity_rg_name = "${local.prefix}-d-identity-rg"
-  uat_identity_rg_name = "${local.prefix}-u-identity-rg"
+  dev_identity_rg_name  = "${local.prefix}-d-identity-rg"
+  uat_identity_rg_name  = "${local.prefix}-u-identity-rg"
   prod_identity_rg_name = "${local.prefix}-p-identity-rg"
 
   # 🔐 KV
@@ -118,7 +118,7 @@ locals {
 }
 
 variable "location" {
-  type    = string
+  type = string
 }
 
 

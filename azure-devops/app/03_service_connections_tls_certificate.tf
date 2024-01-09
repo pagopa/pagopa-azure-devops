@@ -4,7 +4,7 @@
 #tfsec:ignore:GEN003
 module "DEV-TLS-CERT-SERVICE-CONN" {
   depends_on = [azuredevops_project.project]
-  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated?ref=v4.1.5"
+  source     = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated?ref=v4.1.5"
   providers = {
     azurerm = azurerm.dev
   }
@@ -16,7 +16,7 @@ module "DEV-TLS-CERT-SERVICE-CONN" {
   subscription_id   = data.azurerm_subscriptions.dev.subscriptions[0].subscription_id
   subscription_name = var.dev_subscription_name
 
-  location = var.location
+  location            = var.location
   resource_group_name = local.dev_identity_rg_name
 
 }
@@ -56,7 +56,7 @@ module "UAT-TLS-CERT-SERVICE-CONN" {
   subscription_name = var.uat_subscription_name
 
 
-    location = var.location
+  location            = var.location
   resource_group_name = local.uat_identity_rg_name
 }
 
@@ -93,7 +93,7 @@ module "PROD-TLS-CERT-SERVICE-CONN" {
   subscription_id   = data.azurerm_subscriptions.prod.subscriptions[0].subscription_id
   subscription_name = var.prod_subscription_name
 
-    location = var.location
+  location            = var.location
   resource_group_name = local.prod_identity_rg_name
 }
 
@@ -130,7 +130,7 @@ module "DEV-ECOMMERCE-TLS-CERT-SERVICE-CONN" {
   subscription_id   = data.azurerm_subscriptions.dev.subscriptions[0].subscription_id
   subscription_name = var.dev_subscription_name
 
-    location = var.location
+  location            = var.location
   resource_group_name = local.dev_identity_rg_name
 }
 
@@ -168,7 +168,7 @@ module "UAT-ECOMMERCE-TLS-CERT-SERVICE-CONN" {
   subscription_id   = data.azurerm_subscriptions.uat.subscriptions[0].subscription_id
   subscription_name = var.uat_subscription_name
 
-    location = var.location
+  location            = var.location
   resource_group_name = local.uat_identity_rg_name
 }
 
@@ -201,11 +201,11 @@ module "PROD-ECOMMERCE-TLS-CERT-SERVICE-CONN" {
 
   project_id = azuredevops_project.project.id
   #tfsec:ignore:general-secrets-no-plaintext-exposure
-  name              = "${local.prefix}-ecommerce-p-${local.domain}-azdo-tls-cert-kv-policy"
-  tenant_id         = data.azurerm_client_config.current.tenant_id
-  subscription_id   = data.azurerm_subscriptions.prod.subscriptions[0].subscription_id
-  subscription_name = var.prod_subscription_name
-    location = var.location
+  name                = "${local.prefix}-ecommerce-p-${local.domain}-azdo-tls-cert-kv-policy"
+  tenant_id           = data.azurerm_client_config.current.tenant_id
+  subscription_id     = data.azurerm_subscriptions.prod.subscriptions[0].subscription_id
+  subscription_name   = var.prod_subscription_name
+  location            = var.location
   resource_group_name = local.prod_identity_rg_name
 }
 
@@ -244,7 +244,7 @@ module "DEV-SHARED-TLS-CERT-SERVICE-CONN" {
   subscription_name = var.dev_subscription_name
 
 
-    location = var.location
+  location            = var.location
   resource_group_name = local.dev_identity_rg_name
 }
 
@@ -282,7 +282,7 @@ module "DEV-AFM-TLS-CERT-SERVICE-CONN" {
   subscription_id   = data.azurerm_subscriptions.dev.subscriptions[0].subscription_id
   subscription_name = var.dev_subscription_name
 
-    location = var.location
+  location            = var.location
   resource_group_name = local.dev_identity_rg_name
 }
 
@@ -320,7 +320,7 @@ module "UAT-SHARED-TLS-CERT-SERVICE-CONN" {
   subscription_id   = data.azurerm_subscriptions.uat.subscriptions[0].subscription_id
   subscription_name = var.uat_subscription_name
 
-    location = var.location
+  location            = var.location
   resource_group_name = local.uat_identity_rg_name
 }
 
@@ -353,11 +353,11 @@ module "UAT-AFM-TLS-CERT-SERVICE-CONN" {
 
   project_id = azuredevops_project.project.id
   #tfsec:ignore:general-secrets-no-plaintext-exposure
-  name              = "${local.prefix}-afm-u-${local.domain}-azdo-tls-cert-kv-policy"
-  tenant_id         = data.azurerm_client_config.current.tenant_id
-  subscription_id   = data.azurerm_subscriptions.uat.subscriptions[0].subscription_id
-  subscription_name = var.uat_subscription_name
-    location = var.location
+  name                = "${local.prefix}-afm-u-${local.domain}-azdo-tls-cert-kv-policy"
+  tenant_id           = data.azurerm_client_config.current.tenant_id
+  subscription_id     = data.azurerm_subscriptions.uat.subscriptions[0].subscription_id
+  subscription_name   = var.uat_subscription_name
+  location            = var.location
   resource_group_name = local.uat_identity_rg_name
 
 }
@@ -391,11 +391,11 @@ module "PROD-SHARED-TLS-CERT-SERVICE-CONN" {
 
   project_id = azuredevops_project.project.id
   #tfsec:ignore:general-secrets-no-plaintext-exposure
-  name              = "${local.prefix}-shared-p-${local.domain}-azdo-tls-cert-kv-policy"
-  tenant_id         = data.azurerm_client_config.current.tenant_id
-  subscription_id   = data.azurerm_subscriptions.prod.subscriptions[0].subscription_id
-  subscription_name = var.prod_subscription_name
-    location = var.location
+  name                = "${local.prefix}-shared-p-${local.domain}-azdo-tls-cert-kv-policy"
+  tenant_id           = data.azurerm_client_config.current.tenant_id
+  subscription_id     = data.azurerm_subscriptions.prod.subscriptions[0].subscription_id
+  subscription_name   = var.prod_subscription_name
+  location            = var.location
   resource_group_name = local.prod_identity_rg_name
 }
 
@@ -428,11 +428,11 @@ module "PROD-AFM-TLS-CERT-SERVICE-CONN" {
 
   project_id = azuredevops_project.project.id
   #tfsec:ignore:general-secrets-no-plaintext-exposure
-  name              = "${local.prefix}-afm-p-${local.domain}-azdo-tls-cert-kv-policy"
-  tenant_id         = data.azurerm_client_config.current.tenant_id
-  subscription_id   = data.azurerm_subscriptions.prod.subscriptions[0].subscription_id
-  subscription_name = var.prod_subscription_name
-    location = var.location
+  name                = "${local.prefix}-afm-p-${local.domain}-azdo-tls-cert-kv-policy"
+  tenant_id           = data.azurerm_client_config.current.tenant_id
+  subscription_id     = data.azurerm_subscriptions.prod.subscriptions[0].subscription_id
+  subscription_name   = var.prod_subscription_name
+  location            = var.location
   resource_group_name = local.prod_identity_rg_name
 }
 
@@ -471,7 +471,7 @@ module "DEV-KIBANA-TLS-CERT-SERVICE-CONN" {
   subscription_name = var.dev_subscription_name
 
 
-    location = var.location
+  location            = var.location
   resource_group_name = local.dev_identity_rg_name
 }
 
@@ -505,11 +505,11 @@ module "UAT-KIBANA-TLS-CERT-SERVICE-CONN" {
 
   project_id = azuredevops_project.project.id
   #tfsec:ignore:general-secrets-no-plaintext-exposure
-  name              = "${local.prefix}-kibana-u-${local.domain}-azdo-tls-cert-kv-policy"
-  tenant_id         = data.azurerm_client_config.current.tenant_id
-  subscription_id   = data.azurerm_subscriptions.uat.subscriptions[0].subscription_id
-  subscription_name = var.uat_subscription_name
-    location = var.location
+  name                = "${local.prefix}-kibana-u-${local.domain}-azdo-tls-cert-kv-policy"
+  tenant_id           = data.azurerm_client_config.current.tenant_id
+  subscription_id     = data.azurerm_subscriptions.uat.subscriptions[0].subscription_id
+  subscription_name   = var.uat_subscription_name
+  location            = var.location
   resource_group_name = local.uat_identity_rg_name
 }
 
@@ -543,11 +543,11 @@ module "PROD-KIBANA-TLS-CERT-SERVICE-CONN" {
 
   project_id = azuredevops_project.project.id
   #tfsec:ignore:general-secrets-no-plaintext-exposure
-  name              = "${local.prefix}-kibana-p-${local.domain}-azdo-tls-cert-kv-policy"
-  tenant_id         = data.azurerm_client_config.current.tenant_id
-  subscription_id   = data.azurerm_subscriptions.prod.subscriptions[0].subscription_id
-  subscription_name = var.prod_subscription_name
-    location = var.location
+  name                = "${local.prefix}-kibana-p-${local.domain}-azdo-tls-cert-kv-policy"
+  tenant_id           = data.azurerm_client_config.current.tenant_id
+  subscription_id     = data.azurerm_subscriptions.prod.subscriptions[0].subscription_id
+  subscription_name   = var.prod_subscription_name
+  location            = var.location
   resource_group_name = local.prod_identity_rg_name
 }
 

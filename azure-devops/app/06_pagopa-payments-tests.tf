@@ -40,7 +40,7 @@ module "pagopa-payments-tests_code_review" {
   project_id                   = azuredevops_project.project.id
   repository                   = var.pagopa-payments-tests.repository
   github_service_connection_id = azuredevops_serviceendpoint_github.azure-devops-github-rw.id
-  path = var.pagopa-payments-tests.repository.name
+  path                         = var.pagopa-payments-tests.repository.name
 
   variables = merge(
     local.pagopa-payments-tests-variables,

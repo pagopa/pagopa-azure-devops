@@ -71,7 +71,7 @@ module "pagopa-mock-payment-gateway_code_review" {
   project_id                   = azuredevops_project.project.id
   repository                   = var.pagopa-mock-payment-gateway.repository
   github_service_connection_id = azuredevops_serviceendpoint_github.azure-devops-github-rw.id
-    path                         = var.pagopa-mock-payment-gateway.repository.name
+  path                         = var.pagopa-mock-payment-gateway.repository.name
 
   variables = merge(
     local.pagopa-mock-payment-gateway-variables,
@@ -96,7 +96,7 @@ module "pagopa-mock-payment-gateway_deploy" {
   project_id                   = azuredevops_project.project.id
   repository                   = var.pagopa-mock-payment-gateway.repository
   github_service_connection_id = azuredevops_serviceendpoint_github.azure-devops-github-rw.id
-    path                         = var.pagopa-mock-payment-gateway.repository.name
+  path                         = var.pagopa-mock-payment-gateway.repository.name
 
 
   variables = merge(

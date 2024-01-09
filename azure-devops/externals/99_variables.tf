@@ -1,10 +1,10 @@
 locals {
   prefix           = "pagopa"
   azure_devops_org = "pagopaspa"
-  domain = "externals"
+  domain           = "externals"
 
-  dev_subscription_name = "dev-pagopa"
-  uat_subscription_name = "uat-pagopa"
+  dev_subscription_name  = "dev-pagopa"
+  uat_subscription_name  = "uat-pagopa"
   prod_subscription_name = "prod-pagopa"
 
   # 🔐 KV
@@ -75,7 +75,7 @@ locals {
 }
 
 variable "location" {
-  type    = string
+  type = string
 }
 
 

@@ -4,7 +4,7 @@
 #tfsec:ignore:GEN003
 module "DEV-EXTERNALS-TLS-CERT-SERVICE-CONN" {
   depends_on = [data.azuredevops_project.project]
-  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated?ref=v4.1.5"
+  source     = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated?ref=v4.1.5"
   providers = {
     azurerm = azurerm.dev
   }
@@ -16,7 +16,7 @@ module "DEV-EXTERNALS-TLS-CERT-SERVICE-CONN" {
   subscription_id   = data.azurerm_subscriptions.dev.subscriptions[0].subscription_id
   subscription_name = var.dev_subscription_name
 
-  location = var.location
+  location            = var.location
   resource_group_name = local.dev_key_vault_resource_group
 
 }
@@ -56,7 +56,7 @@ module "UAT-EXTERNALS-TLS-CERT-SERVICE-CONN" {
   subscription_name = var.uat_subscription_name
 
 
-    location = var.location
+  location            = var.location
   resource_group_name = local.uat_key_vault_resource_group
 }
 
@@ -93,7 +93,7 @@ module "PROD-EXTERNALS-TLS-CERT-SERVICE-CONN" {
   subscription_id   = data.azurerm_subscriptions.prod.subscriptions[0].subscription_id
   subscription_name = var.prod_subscription_name
 
-    location = var.location
+  location            = var.location
   resource_group_name = local.prod_key_vault_resource_group
 }
 

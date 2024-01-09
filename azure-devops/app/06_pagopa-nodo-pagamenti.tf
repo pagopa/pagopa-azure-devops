@@ -76,7 +76,7 @@ module "pagopa-nodo4-nodo-dei-pagamenti_code_review" {
   project_id                   = azuredevops_project.project.id
   repository                   = var.pagopa-nodo4-nodo-dei-pagamenti.repository
   github_service_connection_id = azuredevops_serviceendpoint_github.azure-devops-github-rw.id
-      path                         = var.pagopa-nodo4-nodo-dei-pagamenti.repository.name
+  path                         = var.pagopa-nodo4-nodo-dei-pagamenti.repository.name
 
   pull_request_trigger_use_yaml = true
 
@@ -103,7 +103,7 @@ module "pagopa-nodo4-nodo-dei-pagamenti_deploy" {
   project_id                   = azuredevops_project.project.id
   repository                   = var.pagopa-nodo4-nodo-dei-pagamenti.repository
   github_service_connection_id = azuredevops_serviceendpoint_github.azure-devops-github-rw.id
-      path                         = var.pagopa-nodo4-nodo-dei-pagamenti.repository.name
+  path                         = var.pagopa-nodo4-nodo-dei-pagamenti.repository.name
 
 
   ci_trigger_use_yaml = true

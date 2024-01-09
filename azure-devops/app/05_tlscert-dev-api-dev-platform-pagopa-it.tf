@@ -59,7 +59,7 @@ module "tlscert-dev-api-dev-platform-pagopa-it-cert_az" {
   subscription_name       = local.tlscert-dev-api-dev-platform-pagopa-it.subscription_name
   subscription_id         = local.tlscert-dev-api-dev-platform-pagopa-it.subscription_id
 
-  location = var.location
+  location                            = var.location
   credential_key_vault_name           = local.dev_key_vault_name
   credential_key_vault_resource_group = local.dev_key_vault_resource_group
 

@@ -46,8 +46,8 @@ module "tlscert-weuprod-kibana-internal-prod-platform-pagopa-it-cert_az" {
   source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_tls_cert_federated?ref=v4.1.4"
   count  = var.tlscert-weuprod-kibana-internal-prod-platform-pagopa-it.pipeline.enable_tls_cert == true ? 1 : 0
 
-  project_id = azuredevops_project.project.id
-  repository = var.tlscert-weuprod-kibana-internal-prod-platform-pagopa-it.repository
+  project_id                   = azuredevops_project.project.id
+  repository                   = var.tlscert-weuprod-kibana-internal-prod-platform-pagopa-it.repository
   path                         = var.tlscert-weuprod-kibana-internal-prod-platform-pagopa-it.pipeline.path
   github_service_connection_id = azuredevops_serviceendpoint_github.azure-devops-github-rw.id
 
@@ -58,7 +58,7 @@ module "tlscert-weuprod-kibana-internal-prod-platform-pagopa-it-cert_az" {
   subscription_name       = local.tlscert-weuprod-kibana-internal-prod-platform-pagopa-it.subscription_name
   subscription_id         = local.tlscert-weuprod-kibana-internal-prod-platform-pagopa-it.subscription_id
 
-  location = var.location
+  location                            = var.location
   credential_key_vault_name           = local.prod_kibana_key_vault_name
   credential_key_vault_resource_group = local.prod_kibana_key_vault_resource_group
 

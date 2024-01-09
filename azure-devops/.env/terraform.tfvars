@@ -1,4 +1,4 @@
-location       = "westeurope"
+location = "westeurope"
 
 dev_subscription_name  = "DEV-PAGOPA"
 uat_subscription_name  = "UAT-PAGOPA"

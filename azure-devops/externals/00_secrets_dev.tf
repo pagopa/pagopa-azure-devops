@@ -1,5 +1,5 @@
 module "pagopa-node-forwarder_dev_secrets" {
-source = "git::https://github.com/pagopa/terraform-azurerm-v3.git//key_vault_secrets_query?ref=v7.30.0"
+  source = "git::https://github.com/pagopa/terraform-azurerm-v3.git//key_vault_secrets_query?ref=v7.30.0"
   providers = {
     azurerm = azurerm.dev
   }
@@ -13,7 +13,7 @@ source = "git::https://github.com/pagopa/terraform-azurerm-v3.git//key_vault_sec
 }
 
 module "pagopa-debt-position_dev_secrets" {
-source = "git::https://github.com/pagopa/terraform-azurerm-v3.git//key_vault_secrets_query?ref=v7.30.0"
+  source = "git::https://github.com/pagopa/terraform-azurerm-v3.git//key_vault_secrets_query?ref=v7.30.0"
 
   providers = {
     azurerm = azurerm.dev
