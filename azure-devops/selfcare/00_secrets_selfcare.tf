@@ -5,7 +5,7 @@ module "selfcare_dev_secrets" {
     azurerm = azurerm.dev
   }
 
-  source = "git::https://github.com/pagopa/azurerm.git//key_vault_secrets_query?ref=v2.0.4"
+  source = "git::https://github.com/pagopa/terraform-azurerm-v3.git//key_vault_secrets_query?ref=v7.30.0"
 
   resource_group = local.dev_selfcare_key_vault_resource_group
   key_vault_name = local.dev_selfcare_key_vault_name
@@ -22,7 +22,7 @@ module "selfcare_dev_secrets" {
 
 # UAT
 module "selfcare_uat_secrets" {
-  source = "git::https://github.com/pagopa/azurerm.git//key_vault_secrets_query?ref=v2.0.4"
+  source = "git::https://github.com/pagopa/terraform-azurerm-v3.git//key_vault_secrets_query?ref=v7.30.0"
 
   providers = {
     azurerm = azurerm.uat
@@ -43,7 +43,7 @@ module "selfcare_uat_secrets" {
 
 # PROD
 module "selfcare_prod_secrets" {
-  source = "git::https://github.com/pagopa/azurerm.git//key_vault_secrets_query?ref=v2.0.4"
+  source = "git::https://github.com/pagopa/terraform-azurerm-v3.git//key_vault_secrets_query?ref=v7.30.0"
 
   providers = {
     azurerm = azurerm.prod

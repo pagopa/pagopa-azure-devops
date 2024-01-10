@@ -5,31 +5,30 @@
 
 | Name | Version |
 |------|---------|
-| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.1.5 |
-| <a name="requirement_azuredevops"></a> [azuredevops](#requirement\_azuredevops) | >= 0.2.0 |
-| <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) | >= 2.98.0 |
-| <a name="requirement_time"></a> [time](#requirement\_time) | >= 0.7.0, < 0.8.0 |
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.3.5 |
+| <a name="requirement_azuredevops"></a> [azuredevops](#requirement\_azuredevops) | ~> 0.10.0 |
+| <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) | <= 3.85.0 |
 
 ## Modules
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_DEV-WALLET-TLS-CERT-SERVICE-CONN"></a> [DEV-WALLET-TLS-CERT-SERVICE-CONN](#module\_DEV-WALLET-TLS-CERT-SERVICE-CONN) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_azurerm_limited | v2.6.5 |
-| <a name="module_UAT-WALLET-TLS-CERT-SERVICE-CONN"></a> [UAT-WALLET-TLS-CERT-SERVICE-CONN](#module\_UAT-WALLET-TLS-CERT-SERVICE-CONN) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_azurerm_limited | v2.6.5 |
+| <a name="module_DEV-WALLET-TLS-CERT-SERVICE-CONN"></a> [DEV-WALLET-TLS-CERT-SERVICE-CONN](#module\_DEV-WALLET-TLS-CERT-SERVICE-CONN) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated | v4.1.5 |
+| <a name="module_UAT-WALLET-TLS-CERT-SERVICE-CONN"></a> [UAT-WALLET-TLS-CERT-SERVICE-CONN](#module\_UAT-WALLET-TLS-CERT-SERVICE-CONN) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated | v4.1.5 |
 | <a name="module_letsencrypt_dev"></a> [letsencrypt\_dev](#module\_letsencrypt\_dev) | git::https://github.com/pagopa/azurerm.git//letsencrypt_credential | v3.12.0 |
 | <a name="module_letsencrypt_uat"></a> [letsencrypt\_uat](#module\_letsencrypt\_uat) | git::https://github.com/pagopa/azurerm.git//letsencrypt_credential | v2.18.0 |
-| <a name="module_pagopa-payment-wallet-fe_code_review"></a> [pagopa-payment-wallet-fe\_code\_review](#module\_pagopa-payment-wallet-fe\_code\_review) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review | v2.2.0 |
-| <a name="module_pagopa-payment-wallet-fe_deploy"></a> [pagopa-payment-wallet-fe\_deploy](#module\_pagopa-payment-wallet-fe\_deploy) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy | v2.2.0 |
-| <a name="module_pagopa-wallet-service_code_review"></a> [pagopa-wallet-service\_code\_review](#module\_pagopa-wallet-service\_code\_review) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review | v2.2.0 |
-| <a name="module_pagopa-wallet-service_deploy"></a> [pagopa-wallet-service\_deploy](#module\_pagopa-wallet-service\_deploy) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy | v2.2.0 |
-| <a name="module_pagopa-wallet-tests_code_review"></a> [pagopa-wallet-tests\_code\_review](#module\_pagopa-wallet-tests\_code\_review) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review | v2.2.0 |
-| <a name="module_secrets"></a> [secrets](#module\_secrets) | git::https://github.com/pagopa/azurerm.git//key_vault_secrets_query | v2.0.4 |
-| <a name="module_tlscert-dev-payment-wallet-pagopa-it-cert_az"></a> [tlscert-dev-payment-wallet-pagopa-it-cert\_az](#module\_tlscert-dev-payment-wallet-pagopa-it-cert\_az) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_tls_cert | v2.6.5 |
-| <a name="module_tlscert-uat-payment-wallet-pagopa-it-cert_az"></a> [tlscert-uat-payment-wallet-pagopa-it-cert\_az](#module\_tlscert-uat-payment-wallet-pagopa-it-cert\_az) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_tls_cert | v2.6.5 |
-| <a name="module_tlscert-weudev-wallet-internal-dev-platform-pagopa-it-cert_az"></a> [tlscert-weudev-wallet-internal-dev-platform-pagopa-it-cert\_az](#module\_tlscert-weudev-wallet-internal-dev-platform-pagopa-it-cert\_az) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_tls_cert | v2.6.5 |
-| <a name="module_tlscert-weuuat-wallet-internal-uat-platform-pagopa-it-cert_az"></a> [tlscert-weuuat-wallet-internal-uat-platform-pagopa-it-cert\_az](#module\_tlscert-weuuat-wallet-internal-uat-platform-pagopa-it-cert\_az) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_tls_cert | v2.0.4 |
-| <a name="module_wallet_dev_secrets"></a> [wallet\_dev\_secrets](#module\_wallet\_dev\_secrets) | git::https://github.com/pagopa/azurerm.git//key_vault_secrets_query | v2.0.4 |
-| <a name="module_wallet_uat_secrets"></a> [wallet\_uat\_secrets](#module\_wallet\_uat\_secrets) | git::https://github.com/pagopa/azurerm.git//key_vault_secrets_query | v2.0.4 |
+| <a name="module_pagopa-payment-wallet-fe_code_review"></a> [pagopa-payment-wallet-fe\_code\_review](#module\_pagopa-payment-wallet-fe\_code\_review) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review | v4.1.5 |
+| <a name="module_pagopa-payment-wallet-fe_deploy"></a> [pagopa-payment-wallet-fe\_deploy](#module\_pagopa-payment-wallet-fe\_deploy) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy | v4.1.5 |
+| <a name="module_pagopa-wallet-service_code_review"></a> [pagopa-wallet-service\_code\_review](#module\_pagopa-wallet-service\_code\_review) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review | v4.1.5 |
+| <a name="module_pagopa-wallet-service_deploy"></a> [pagopa-wallet-service\_deploy](#module\_pagopa-wallet-service\_deploy) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy | v4.1.5 |
+| <a name="module_pagopa-wallet-tests_code_review"></a> [pagopa-wallet-tests\_code\_review](#module\_pagopa-wallet-tests\_code\_review) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review | v4.1.5 |
+| <a name="module_secrets"></a> [secrets](#module\_secrets) | git::https://github.com/pagopa/terraform-azurerm-v3.git//key_vault_secrets_query | v7.30.0 |
+| <a name="module_tlscert-dev-payment-wallet-pagopa-it-cert_az"></a> [tlscert-dev-payment-wallet-pagopa-it-cert\_az](#module\_tlscert-dev-payment-wallet-pagopa-it-cert\_az) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_tls_cert_federated | v4.1.5 |
+| <a name="module_tlscert-uat-payment-wallet-pagopa-it-cert_az"></a> [tlscert-uat-payment-wallet-pagopa-it-cert\_az](#module\_tlscert-uat-payment-wallet-pagopa-it-cert\_az) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_tls_cert_federated | v4.1.5 |
+| <a name="module_tlscert-weudev-wallet-internal-dev-platform-pagopa-it-cert_az"></a> [tlscert-weudev-wallet-internal-dev-platform-pagopa-it-cert\_az](#module\_tlscert-weudev-wallet-internal-dev-platform-pagopa-it-cert\_az) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_tls_cert_federated | v4.1.5 |
+| <a name="module_tlscert-weuuat-wallet-internal-uat-platform-pagopa-it-cert_az"></a> [tlscert-weuuat-wallet-internal-uat-platform-pagopa-it-cert\_az](#module\_tlscert-weuuat-wallet-internal-uat-platform-pagopa-it-cert\_az) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_tls_cert_federated | v4.1.5 |
+| <a name="module_wallet_dev_secrets"></a> [wallet\_dev\_secrets](#module\_wallet\_dev\_secrets) | git::https://github.com/pagopa/terraform-azurerm-v3.git//key_vault_secrets_query | v7.30.0 |
+| <a name="module_wallet_uat_secrets"></a> [wallet\_uat\_secrets](#module\_wallet\_uat\_secrets) | git::https://github.com/pagopa/terraform-azurerm-v3.git//key_vault_secrets_query | v7.30.0 |
 
 ## Resources
 
@@ -40,8 +39,12 @@
 | [azurerm_key_vault_access_policy.DEV-WALLET-TLS-CERT-SERVICE-CONN_kv_access_policy](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/key_vault_access_policy) | resource |
 | [azurerm_key_vault_access_policy.UAT-WALLET-TLS-CERT-SERVICE-CONN_kv_access_policy](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/key_vault_access_policy) | resource |
 | [azuredevops_project.project](https://registry.terraform.io/providers/microsoft/azuredevops/latest/docs/data-sources/project) | data source |
+| [azurerm_client_config.current](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/data-sources/client_config) | data source |
 | [azurerm_key_vault.domain_kv_dev](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/data-sources/key_vault) | data source |
 | [azurerm_key_vault.domain_kv_uat](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/data-sources/key_vault) | data source |
+| [azurerm_subscriptions.dev](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/data-sources/subscriptions) | data source |
+| [azurerm_subscriptions.prod](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/data-sources/subscriptions) | data source |
+| [azurerm_subscriptions.uat](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/data-sources/subscriptions) | data source |
 | [terraform_remote_state.app](https://registry.terraform.io/providers/hashicorp/terraform/latest/docs/data-sources/remote_state) | data source |
 
 ## Inputs
@@ -49,6 +52,7 @@
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_dev_subscription_name"></a> [dev\_subscription\_name](#input\_dev\_subscription\_name) | DEV Subscription name | `string` | n/a | yes |
+| <a name="input_location"></a> [location](#input\_location) | n/a | `string` | n/a | yes |
 | <a name="input_pagopa-payment-wallet-fe"></a> [pagopa-payment-wallet-fe](#input\_pagopa-payment-wallet-fe) | n/a | `map` | <pre>{<br>  "pipeline": {<br>    "enable_code_review": true,<br>    "enable_deploy": true,<br>    "sonarcloud": {<br>      "org": "pagopa",<br>      "project_key": "pagopa_pagopa-wallet-fe",<br>      "project_name": "pagopa-wallet-fe",<br>      "service_connection": "SONARCLOUD-SERVICE-CONN"<br>    }<br>  },<br>  "repository": {<br>    "branch_name": "refs/heads/main",<br>    "name": "pagopa-wallet-fe",<br>    "organization": "pagopa",<br>    "pipelines_path": ".devops",<br>    "yml_prefix_name": "pagopa"<br>  }<br>}</pre> | no |
 | <a name="input_pagopa-wallet-service"></a> [pagopa-wallet-service](#input\_pagopa-wallet-service) | n/a | `map` | <pre>{<br>  "pipeline": {<br>    "enable_code_review": true,<br>    "enable_deploy": true,<br>    "sonarcloud": {<br>      "org": "pagopa",<br>      "project_key": "pagopa_pagopa-wallet-service",<br>      "project_name": "pagopa-wallet-service",<br>      "service_connection": "SONARCLOUD-SERVICE-CONN"<br>    }<br>  },<br>  "repository": {<br>    "branch_name": "refs/heads/main",<br>    "name": "pagopa-wallet-service",<br>    "organization": "pagopa",<br>    "pipelines_path": ".devops",<br>    "yml_prefix_name": null<br>  }<br>}</pre> | no |
 | <a name="input_pagopa-wallet-tests"></a> [pagopa-wallet-tests](#input\_pagopa-wallet-tests) | n/a | `map` | <pre>{<br>  "pipeline": {<br>    "enable_code_review": true<br>  },<br>  "repository": {<br>    "branch_name": "refs/heads/main",<br>    "name": "pagopa-wallet-tests",<br>    "organization": "pagopa",<br>    "pipelines_path": ".devops",<br>    "yml_prefix_name": null<br>  }<br>}</pre> | no |

@@ -52,7 +52,7 @@ locals {
     git_mail          = module.secrets.values["azure-devops-github-EMAIL"].value
     git_username      = module.secrets.values["azure-devops-github-USERNAME"].value
     github_connection = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_rw_name
-    tenant_id         = module.secrets.values["TENANTID"].value
+    tenant_id         = data.azurerm_client_config.current.tenant_id
 
     # acr section
     image_repository_name                = replace(var.pagopa-selfcare-backoffice-backend.repository.name, "-", "")
@@ -64,17 +64,17 @@ locals {
     dev_azure_client_secret            = module.selfcare_dev_secrets.values["pagopa-selfcare-d-azure-client-secret"].value
     dev_azure_client_id                = module.selfcare_dev_secrets.values["pagopa-selfcare-d-azure-client-id"].value
     dev_selfcare-apim-external-api-key = module.selfcare_dev_secrets.values["selfcare-d-apim-external-api-key"].value
-    dev_subscription_id                = module.secrets.values["DEV-SUBSCRIPTION-ID"].value
+    dev_subscription_id                = data.azurerm_subscriptions.dev.subscriptions[0].subscription_id
 
     uat_azure_client_secret            = module.selfcare_uat_secrets.values["pagopa-selfcare-u-azure-client-secret"].value
     uat_azure_client_id                = module.selfcare_uat_secrets.values["pagopa-selfcare-u-azure-client-id"].value
     uat_selfcare-apim-external-api-key = module.selfcare_uat_secrets.values["selfcare-u-apim-external-api-key"].value
-    uat_subscription_id                = module.secrets.values["UAT-SUBSCRIPTION-ID"].value
+    uat_subscription_id                = data.azurerm_subscriptions.uat.subscriptions[0].subscription_id
 
     prod_azure_client_secret            = module.selfcare_prod_secrets.values["pagopa-selfcare-p-azure-client-secret"].value
     prod_azure_client_id                = module.selfcare_prod_secrets.values["pagopa-selfcare-p-azure-client-id"].value
     prod_selfcare-apim-external-api-key = module.selfcare_prod_secrets.values["selfcare-p-apim-external-api-key"].value
-    prod_subscription_id                = module.secrets.values["PROD-SUBSCRIPTION-ID"].value
+    prod_subscription_id                = data.azurerm_subscriptions.prod.subscriptions[0].subscription_id
 
     # aks section
 
@@ -119,7 +119,7 @@ locals {
 }
 
 module "pagopa-selfcare-backoffice-backend_code_review" {
-  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review?ref=v2.2.0"
+  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review?ref=v4.1.5"
   count  = var.pagopa-selfcare-backoffice-backend.pipeline.enable_code_review == true ? 1 : 0
 
   project_id                   = data.azuredevops_project.project.id
@@ -146,7 +146,7 @@ module "pagopa-selfcare-backoffice-backend_code_review" {
 }
 
 module "pagopa-selfcare-backoffice-backend_deploy" {
-  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy?ref=v2.2.0"
+  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy?ref=v4.1.5"
   count  = var.pagopa-selfcare-backoffice-backend.pipeline.enable_deploy == true ? 1 : 0
 
   project_id                   = data.azuredevops_project.project.id

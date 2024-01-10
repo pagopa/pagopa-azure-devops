@@ -8,16 +8,13 @@ module "DEV-APPINSIGHTS-SERVICE-CONN" {
     azurerm = azurerm.dev
   }
 
-  project_id = data.azuredevops_project.project.id
-  #tfsec:ignore:general-secrets-no-plaintext-exposure
-  name              = "${local.prefix}-d-${local.domain}-appinsights"
-  tenant_id         = data.azurerm_client_config.current.tenant_id
-  subscription_id   = data.azurerm_subscriptions.dev.subscriptions[0].subscription_id
-  subscription_name = var.dev_subscription_name
-
+  project_id          = data.azuredevops_project.project.id
+  name                = "${local.prefix}-d-${local.domain}-appinsights"
+  tenant_id           = data.azurerm_client_config.current.tenant_id
+  subscription_id     = data.azurerm_subscriptions.dev.subscriptions[0].subscription_id
+  subscription_name   = var.dev_subscription_name
   location            = var.location
   resource_group_name = local.dev_identity_rg_name
-
 }
 
 data "azurerm_application_insights" "application_insights_dev" {
@@ -43,8 +40,7 @@ module "UAT-APPINSIGHTS-SERVICE-CONN" {
     azurerm = azurerm.uat
   }
 
-  project_id = data.azuredevops_project.project.id
-  #tfsec:ignore:general-secrets-no-plaintext-exposure
+  project_id        = data.azuredevops_project.project.id
   name              = "${local.prefix}-u-${local.domain}-appinsights"
   tenant_id         = data.azurerm_client_config.current.tenant_id
   subscription_id   = data.azurerm_subscriptions.uat.subscriptions[0].subscription_id
@@ -68,7 +64,7 @@ resource "azurerm_role_assignment" "appinsights_component_contributor_uat" {
 }
 
 #
-# ⛩ Service connection 2 🔐 KV@OPROD 🛑
+# ⛩ Service connection 2 🔐 KV@PROD 🛑
 #
 #tfsec:ignore:GEN003
 module "PROD-APPINSIGHTS-SERVICE-CONN" {
@@ -77,8 +73,7 @@ module "PROD-APPINSIGHTS-SERVICE-CONN" {
     azurerm = azurerm.prod
   }
 
-  project_id = data.azuredevops_project.project.id
-  #tfsec:ignore:general-secrets-no-plaintext-exposure
+  project_id        = data.azuredevops_project.project.id
   name              = "${local.prefix}-p-${local.domain}-appinsights"
   tenant_id         = data.azurerm_client_config.current.tenant_id
   subscription_id   = data.azurerm_subscriptions.prod.subscriptions[0].subscription_id
@@ -86,7 +81,6 @@ module "PROD-APPINSIGHTS-SERVICE-CONN" {
 
   location            = var.location
   resource_group_name = local.prod_identity_rg_name
-
 }
 
 data "azurerm_application_insights" "application_insights_prod" {

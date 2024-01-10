@@ -5,45 +5,45 @@
 
 | Name | Version |
 |------|---------|
-| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.1.5 |
-| <a name="requirement_azuredevops"></a> [azuredevops](#requirement\_azuredevops) | >= 0.2.0 |
-| <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) | >= 2.98.0 |
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.3.5 |
+| <a name="requirement_azuredevops"></a> [azuredevops](#requirement\_azuredevops) | ~> 0.10.0 |
+| <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) | <= 3.85.0 |
 
 ## Modules
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_DEV-APPINSIGHTS-SERVICE-CONN"></a> [DEV-APPINSIGHTS-SERVICE-CONN](#module\_DEV-APPINSIGHTS-SERVICE-CONN) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_azurerm_limited | v2.6.5 |
-| <a name="module_DEV-NODO-TLS-CERT-SERVICE-CONN"></a> [DEV-NODO-TLS-CERT-SERVICE-CONN](#module\_DEV-NODO-TLS-CERT-SERVICE-CONN) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_azurerm_limited | v2.6.5 |
-| <a name="module_PROD-APPINSIGHTS-SERVICE-CONN"></a> [PROD-APPINSIGHTS-SERVICE-CONN](#module\_PROD-APPINSIGHTS-SERVICE-CONN) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_azurerm_limited | v2.6.5 |
-| <a name="module_PROD-NODO-TLS-CERT-SERVICE-CONN"></a> [PROD-NODO-TLS-CERT-SERVICE-CONN](#module\_PROD-NODO-TLS-CERT-SERVICE-CONN) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_azurerm_limited | v2.6.5 |
-| <a name="module_UAT-APPINSIGHTS-SERVICE-CONN"></a> [UAT-APPINSIGHTS-SERVICE-CONN](#module\_UAT-APPINSIGHTS-SERVICE-CONN) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_azurerm_limited | v2.6.5 |
-| <a name="module_UAT-NODO-TLS-CERT-SERVICE-CONN"></a> [UAT-NODO-TLS-CERT-SERVICE-CONN](#module\_UAT-NODO-TLS-CERT-SERVICE-CONN) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_azurerm_limited | v2.6.5 |
+| <a name="module_DEV-APPINSIGHTS-SERVICE-CONN"></a> [DEV-APPINSIGHTS-SERVICE-CONN](#module\_DEV-APPINSIGHTS-SERVICE-CONN) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated | v4.1.5 |
+| <a name="module_DEV-NODO-TLS-CERT-SERVICE-CONN"></a> [DEV-NODO-TLS-CERT-SERVICE-CONN](#module\_DEV-NODO-TLS-CERT-SERVICE-CONN) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated | v4.1.5 |
+| <a name="module_PROD-APPINSIGHTS-SERVICE-CONN"></a> [PROD-APPINSIGHTS-SERVICE-CONN](#module\_PROD-APPINSIGHTS-SERVICE-CONN) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated | v4.1.5 |
+| <a name="module_PROD-NODO-TLS-CERT-SERVICE-CONN"></a> [PROD-NODO-TLS-CERT-SERVICE-CONN](#module\_PROD-NODO-TLS-CERT-SERVICE-CONN) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated | v4.1.5 |
+| <a name="module_UAT-APPINSIGHTS-SERVICE-CONN"></a> [UAT-APPINSIGHTS-SERVICE-CONN](#module\_UAT-APPINSIGHTS-SERVICE-CONN) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated | v4.1.5 |
+| <a name="module_UAT-NODO-TLS-CERT-SERVICE-CONN"></a> [UAT-NODO-TLS-CERT-SERVICE-CONN](#module\_UAT-NODO-TLS-CERT-SERVICE-CONN) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated | v4.1.5 |
 | <a name="module_letsencrypt_dev"></a> [letsencrypt\_dev](#module\_letsencrypt\_dev) | git::https://github.com/pagopa/azurerm.git//letsencrypt_credential | v2.18.0 |
 | <a name="module_letsencrypt_prod"></a> [letsencrypt\_prod](#module\_letsencrypt\_prod) | git::https://github.com/pagopa/azurerm.git//letsencrypt_credential | v2.18.0 |
 | <a name="module_letsencrypt_uat"></a> [letsencrypt\_uat](#module\_letsencrypt\_uat) | git::https://github.com/pagopa/azurerm.git//letsencrypt_credential | v2.18.0 |
-| <a name="module_nodo_dev_secrets"></a> [nodo\_dev\_secrets](#module\_nodo\_dev\_secrets) | git::https://github.com/pagopa/azurerm.git//key_vault_secrets_query | v2.0.4 |
-| <a name="module_nodo_prod_secrets"></a> [nodo\_prod\_secrets](#module\_nodo\_prod\_secrets) | git::https://github.com/pagopa/azurerm.git//key_vault_secrets_query | v2.0.4 |
-| <a name="module_nodo_uat_secrets"></a> [nodo\_uat\_secrets](#module\_nodo\_uat\_secrets) | git::https://github.com/pagopa/azurerm.git//key_vault_secrets_query | v2.0.4 |
-| <a name="module_pagopa-firmatore-service_deploy"></a> [pagopa-firmatore-service\_deploy](#module\_pagopa-firmatore-service\_deploy) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy | v2.2.0 |
-| <a name="module_pagopa-mock-ec-prf-service_deploy"></a> [pagopa-mock-ec-prf-service\_deploy](#module\_pagopa-mock-ec-prf-service\_deploy) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy | v2.2.0 |
-| <a name="module_pagopa-mock-ec-service_deploy"></a> [pagopa-mock-ec-service\_deploy](#module\_pagopa-mock-ec-service\_deploy) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy | v2.2.0 |
-| <a name="module_pagopa-mock-pm-service_deploy"></a> [pagopa-mock-pm-service\_deploy](#module\_pagopa-mock-pm-service\_deploy) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy | v2.2.0 |
-| <a name="module_pagopa-mock-psp-prf-service_deploy"></a> [pagopa-mock-psp-prf-service\_deploy](#module\_pagopa-mock-psp-prf-service\_deploy) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy | v2.2.0 |
-| <a name="module_pagopa-mock-psp-service_deploy"></a> [pagopa-mock-psp-service\_deploy](#module\_pagopa-mock-psp-service\_deploy) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy | v2.2.0 |
-| <a name="module_pagopa-nodo-re-to-datastore_deploy"></a> [pagopa-nodo-re-to-datastore\_deploy](#module\_pagopa-nodo-re-to-datastore\_deploy) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy | v2.7.0 |
-| <a name="module_pagopa-nodo-re-to-tablestorage_deploy"></a> [pagopa-nodo-re-to-tablestorage\_deploy](#module\_pagopa-nodo-re-to-tablestorage\_deploy) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy | v2.7.0 |
-| <a name="module_pagopa-nodo-service_code_review"></a> [pagopa-nodo-service\_code\_review](#module\_pagopa-nodo-service\_code\_review) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review | v2.7.0 |
-| <a name="module_pagopa-nodo-service_deploy"></a> [pagopa-nodo-service\_deploy](#module\_pagopa-nodo-service\_deploy) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy | v2.2.0 |
-| <a name="module_pagopa-nodo-service_integration_test"></a> [pagopa-nodo-service\_integration\_test](#module\_pagopa-nodo-service\_integration\_test) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_generic | v2.6.3 |
-| <a name="module_pagopa-nodo-service_performance_test"></a> [pagopa-nodo-service\_performance\_test](#module\_pagopa-nodo-service\_performance\_test) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_generic | v2.6.3 |
-| <a name="module_pagopa-nodo-service_suspend_job"></a> [pagopa-nodo-service\_suspend\_job](#module\_pagopa-nodo-service\_suspend\_job) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_generic | v2.6.3 |
-| <a name="module_pagopa-web-bo-service_deploy"></a> [pagopa-web-bo-service\_deploy](#module\_pagopa-web-bo-service\_deploy) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy | v2.2.0 |
-| <a name="module_pagopa-wfesp-service_deploy"></a> [pagopa-wfesp-service\_deploy](#module\_pagopa-wfesp-service\_deploy) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy | v2.2.0 |
-| <a name="module_secrets"></a> [secrets](#module\_secrets) | git::https://github.com/pagopa/azurerm.git//key_vault_secrets_query | v2.0.4 |
-| <a name="module_tlscert-weudev-nodo-internal-dev-platform-pagopa-it-cert_az"></a> [tlscert-weudev-nodo-internal-dev-platform-pagopa-it-cert\_az](#module\_tlscert-weudev-nodo-internal-dev-platform-pagopa-it-cert\_az) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_tls_cert | v2.6.5 |
-| <a name="module_tlscert-weuprod-nodo-internal-platform-pagopa-it-cert_az"></a> [tlscert-weuprod-nodo-internal-platform-pagopa-it-cert\_az](#module\_tlscert-weuprod-nodo-internal-platform-pagopa-it-cert\_az) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_tls_cert | v2.6.5 |
-| <a name="module_tlscert-weuuat-nodo-internal-uat-platform-pagopa-it-cert_az"></a> [tlscert-weuuat-nodo-internal-uat-platform-pagopa-it-cert\_az](#module\_tlscert-weuuat-nodo-internal-uat-platform-pagopa-it-cert\_az) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_tls_cert | v2.6.5 |
+| <a name="module_nodo_dev_secrets"></a> [nodo\_dev\_secrets](#module\_nodo\_dev\_secrets) | git::https://github.com/pagopa/terraform-azurerm-v3.git//key_vault_secrets_query | v7.30.0 |
+| <a name="module_nodo_prod_secrets"></a> [nodo\_prod\_secrets](#module\_nodo\_prod\_secrets) | git::https://github.com/pagopa/terraform-azurerm-v3.git//key_vault_secrets_query | v7.30.0 |
+| <a name="module_nodo_uat_secrets"></a> [nodo\_uat\_secrets](#module\_nodo\_uat\_secrets) | git::https://github.com/pagopa/terraform-azurerm-v3.git//key_vault_secrets_query | v7.30.0 |
+| <a name="module_pagopa-firmatore-service_deploy"></a> [pagopa-firmatore-service\_deploy](#module\_pagopa-firmatore-service\_deploy) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy | v4.1.5 |
+| <a name="module_pagopa-mock-ec-prf-service_deploy"></a> [pagopa-mock-ec-prf-service\_deploy](#module\_pagopa-mock-ec-prf-service\_deploy) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy | v4.1.5 |
+| <a name="module_pagopa-mock-ec-service_deploy"></a> [pagopa-mock-ec-service\_deploy](#module\_pagopa-mock-ec-service\_deploy) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy | v4.1.5 |
+| <a name="module_pagopa-mock-pm-service_deploy"></a> [pagopa-mock-pm-service\_deploy](#module\_pagopa-mock-pm-service\_deploy) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy | v4.1.5 |
+| <a name="module_pagopa-mock-psp-prf-service_deploy"></a> [pagopa-mock-psp-prf-service\_deploy](#module\_pagopa-mock-psp-prf-service\_deploy) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy | v4.1.5 |
+| <a name="module_pagopa-mock-psp-service_deploy"></a> [pagopa-mock-psp-service\_deploy](#module\_pagopa-mock-psp-service\_deploy) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy | v4.1.5 |
+| <a name="module_pagopa-nodo-re-to-datastore_deploy"></a> [pagopa-nodo-re-to-datastore\_deploy](#module\_pagopa-nodo-re-to-datastore\_deploy) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy | v4.1.5 |
+| <a name="module_pagopa-nodo-re-to-tablestorage_deploy"></a> [pagopa-nodo-re-to-tablestorage\_deploy](#module\_pagopa-nodo-re-to-tablestorage\_deploy) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy | v4.1.5 |
+| <a name="module_pagopa-nodo-service_code_review"></a> [pagopa-nodo-service\_code\_review](#module\_pagopa-nodo-service\_code\_review) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review | v4.1.5 |
+| <a name="module_pagopa-nodo-service_deploy"></a> [pagopa-nodo-service\_deploy](#module\_pagopa-nodo-service\_deploy) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy | v4.1.5 |
+| <a name="module_pagopa-nodo-service_integration_test"></a> [pagopa-nodo-service\_integration\_test](#module\_pagopa-nodo-service\_integration\_test) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_generic | v4.1.5 |
+| <a name="module_pagopa-nodo-service_performance_test"></a> [pagopa-nodo-service\_performance\_test](#module\_pagopa-nodo-service\_performance\_test) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_generic | v4.1.5 |
+| <a name="module_pagopa-nodo-service_suspend_job"></a> [pagopa-nodo-service\_suspend\_job](#module\_pagopa-nodo-service\_suspend\_job) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_generic | v4.1.5 |
+| <a name="module_pagopa-web-bo-service_deploy"></a> [pagopa-web-bo-service\_deploy](#module\_pagopa-web-bo-service\_deploy) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy | v4.1.5 |
+| <a name="module_pagopa-wfesp-service_deploy"></a> [pagopa-wfesp-service\_deploy](#module\_pagopa-wfesp-service\_deploy) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy | v4.1.5 |
+| <a name="module_secrets"></a> [secrets](#module\_secrets) | git::https://github.com/pagopa/terraform-azurerm-v3.git//key_vault_secrets_query | v7.30.0 |
+| <a name="module_tlscert-weudev-nodo-internal-dev-platform-pagopa-it-cert_az"></a> [tlscert-weudev-nodo-internal-dev-platform-pagopa-it-cert\_az](#module\_tlscert-weudev-nodo-internal-dev-platform-pagopa-it-cert\_az) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_tls_cert_federated | v4.1.5 |
+| <a name="module_tlscert-weuprod-nodo-internal-platform-pagopa-it-cert_az"></a> [tlscert-weuprod-nodo-internal-platform-pagopa-it-cert\_az](#module\_tlscert-weuprod-nodo-internal-platform-pagopa-it-cert\_az) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_tls_cert_federated | v4.1.5 |
+| <a name="module_tlscert-weuuat-nodo-internal-uat-platform-pagopa-it-cert_az"></a> [tlscert-weuuat-nodo-internal-uat-platform-pagopa-it-cert\_az](#module\_tlscert-weuuat-nodo-internal-uat-platform-pagopa-it-cert\_az) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_tls_cert_federated | v4.1.5 |
 
 ## Resources
 
@@ -63,9 +63,13 @@
 | [azurerm_application_insights.application_insights_dev](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/data-sources/application_insights) | data source |
 | [azurerm_application_insights.application_insights_prod](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/data-sources/application_insights) | data source |
 | [azurerm_application_insights.application_insights_uat](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/data-sources/application_insights) | data source |
+| [azurerm_client_config.current](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/data-sources/client_config) | data source |
 | [azurerm_key_vault.domain_kv_dev](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/data-sources/key_vault) | data source |
 | [azurerm_key_vault.domain_kv_prod](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/data-sources/key_vault) | data source |
 | [azurerm_key_vault.domain_kv_uat](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/data-sources/key_vault) | data source |
+| [azurerm_subscriptions.dev](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/data-sources/subscriptions) | data source |
+| [azurerm_subscriptions.prod](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/data-sources/subscriptions) | data source |
+| [azurerm_subscriptions.uat](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/data-sources/subscriptions) | data source |
 | [terraform_remote_state.app](https://registry.terraform.io/providers/hashicorp/terraform/latest/docs/data-sources/remote_state) | data source |
 
 ## Inputs
@@ -73,6 +77,7 @@
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_dev_subscription_name"></a> [dev\_subscription\_name](#input\_dev\_subscription\_name) | DEV Subscription name | `string` | n/a | yes |
+| <a name="input_location"></a> [location](#input\_location) | n/a | `string` | n/a | yes |
 | <a name="input_pagopa-firmatore-service"></a> [pagopa-firmatore-service](#input\_pagopa-firmatore-service) | n/a | `map` | <pre>{<br>  "pipeline": {<br>    "enable_code_review": false,<br>    "enable_deploy": true<br>  },<br>  "repository": {<br>    "branch_name": "refs/heads/develop",<br>    "name": "pagopa-firmatore",<br>    "organization": "pagopa",<br>    "pipelines_path": ".devops",<br>    "yml_prefix_name": null<br>  }<br>}</pre> | no |
 | <a name="input_pagopa-mock-ec-prf-service"></a> [pagopa-mock-ec-prf-service](#input\_pagopa-mock-ec-prf-service) | n/a | `map` | <pre>{<br>  "pipeline": {<br>    "enable_code_review": false,<br>    "enable_deploy": true<br>  },<br>  "repository": {<br>    "branch_name": "refs/heads/feature/mock-ec-pf",<br>    "name": "pagopa-nodo-dei-pagamenti-test",<br>    "organization": "pagopa",<br>    "pipelines_path": ".devops",<br>    "yml_prefix_name": null<br>  }<br>}</pre> | no |
 | <a name="input_pagopa-mock-ec-service"></a> [pagopa-mock-ec-service](#input\_pagopa-mock-ec-service) | n/a | `map` | <pre>{<br>  "pipeline": {<br>    "enable_code_review": false,<br>    "enable_deploy": true<br>  },<br>  "repository": {<br>    "branch_name": "refs/heads/develop",<br>    "name": "pagopa-mock-ec",<br>    "organization": "pagopa",<br>    "pipelines_path": ".devops",<br>    "yml_prefix_name": null<br>  }<br>}</pre> | no |
