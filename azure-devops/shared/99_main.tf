@@ -1,12 +1,12 @@
 terraform {
-  required_version = ">= 1.1.5"
+  required_version = ">= 1.3.5"
   required_providers {
     azuredevops = {
       source  = "microsoft/azuredevops"
-      version = ">= 0.2.0"
+      version = "~> 0.10.0"
     }
     azurerm = {
-      version = ">= 2.98.0"
+      version = "<= 3.85.0"
     }
   }
   backend "azurerm" {}
@@ -23,7 +23,7 @@ provider "azurerm" {
     }
   }
   alias           = "dev"
-  subscription_id = module.secrets.values["DEV-SUBSCRIPTION-ID"].value
+  subscription_id = data.azurerm_subscriptions.dev.subscriptions[0].subscription_id
 }
 
 provider "azurerm" {
@@ -33,7 +33,7 @@ provider "azurerm" {
     }
   }
   alias           = "uat"
-  subscription_id = module.secrets.values["UAT-SUBSCRIPTION-ID"].value
+  subscription_id = data.azurerm_subscriptions.uat.subscriptions[0].subscription_id
 }
 
 provider "azurerm" {
@@ -43,7 +43,7 @@ provider "azurerm" {
     }
   }
   alias           = "prod"
-  subscription_id = module.secrets.values["PROD-SUBSCRIPTION-ID"].value
+  subscription_id = data.azurerm_subscriptions.prod.subscriptions[0].subscription_id
 }
 
 data "terraform_remote_state" "app" {
