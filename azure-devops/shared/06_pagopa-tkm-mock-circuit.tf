@@ -63,7 +63,7 @@ locals {
   pagopa-tkm-mock-circuit-variables_secret_deploy = {
     git_mail     = module.secrets.values["azure-devops-github-EMAIL"].value
     git_username = module.secrets.values["azure-devops-github-USERNAME"].value
-    tenant_id    = module.secrets.values["TENANTID"].value
+    tenant_id    = data.azurerm_client_config.current.tenant_id
   }
 }
 
