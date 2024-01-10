@@ -5,40 +5,40 @@
 
 | Name | Version |
 |------|---------|
-| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.1.5 |
-| <a name="requirement_azuredevops"></a> [azuredevops](#requirement\_azuredevops) | >= 0.2.0 |
-| <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) | >= 2.98.0 |
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.3.5 |
+| <a name="requirement_azuredevops"></a> [azuredevops](#requirement\_azuredevops) | ~> 0.10.0 |
+| <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) | <= 3.85.0 |
 | <a name="requirement_time"></a> [time](#requirement\_time) | >= 0.7.0, < 0.8.0 |
 
 ## Modules
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_DEV-APPINSIGHTS-SERVICE-CONN"></a> [DEV-APPINSIGHTS-SERVICE-CONN](#module\_DEV-APPINSIGHTS-SERVICE-CONN) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_azurerm_limited | v2.0.5 |
-| <a name="module_DEV-SELC-TLS-CERT-SERVICE-CONN"></a> [DEV-SELC-TLS-CERT-SERVICE-CONN](#module\_DEV-SELC-TLS-CERT-SERVICE-CONN) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_azurerm_limited | v2.6.5 |
-| <a name="module_PROD-APPINSIGHTS-SERVICE-CONN"></a> [PROD-APPINSIGHTS-SERVICE-CONN](#module\_PROD-APPINSIGHTS-SERVICE-CONN) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_azurerm_limited | v2.0.5 |
-| <a name="module_PROD-SELC-TLS-CERT-SERVICE-CONN"></a> [PROD-SELC-TLS-CERT-SERVICE-CONN](#module\_PROD-SELC-TLS-CERT-SERVICE-CONN) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_azurerm_limited | v2.6.5 |
-| <a name="module_UAT-APPINSIGHTS-SERVICE-CONN"></a> [UAT-APPINSIGHTS-SERVICE-CONN](#module\_UAT-APPINSIGHTS-SERVICE-CONN) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_azurerm_limited | v2.0.5 |
-| <a name="module_UAT-SELC-TLS-CERT-SERVICE-CONN"></a> [UAT-SELC-TLS-CERT-SERVICE-CONN](#module\_UAT-SELC-TLS-CERT-SERVICE-CONN) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_azurerm_limited | v2.6.5 |
+| <a name="module_DEV-APPINSIGHTS-SERVICE-CONN"></a> [DEV-APPINSIGHTS-SERVICE-CONN](#module\_DEV-APPINSIGHTS-SERVICE-CONN) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated | v4.1.5 |
+| <a name="module_DEV-SELC-TLS-CERT-SERVICE-CONN"></a> [DEV-SELC-TLS-CERT-SERVICE-CONN](#module\_DEV-SELC-TLS-CERT-SERVICE-CONN) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated | v4.1.5 |
+| <a name="module_PROD-APPINSIGHTS-SERVICE-CONN"></a> [PROD-APPINSIGHTS-SERVICE-CONN](#module\_PROD-APPINSIGHTS-SERVICE-CONN) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated | v4.1.5 |
+| <a name="module_PROD-SELC-TLS-CERT-SERVICE-CONN"></a> [PROD-SELC-TLS-CERT-SERVICE-CONN](#module\_PROD-SELC-TLS-CERT-SERVICE-CONN) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated | v4.1.5 |
+| <a name="module_UAT-APPINSIGHTS-SERVICE-CONN"></a> [UAT-APPINSIGHTS-SERVICE-CONN](#module\_UAT-APPINSIGHTS-SERVICE-CONN) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated | v4.1.5 |
+| <a name="module_UAT-SELC-TLS-CERT-SERVICE-CONN"></a> [UAT-SELC-TLS-CERT-SERVICE-CONN](#module\_UAT-SELC-TLS-CERT-SERVICE-CONN) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated | v4.1.5 |
 | <a name="module_letsencrypt_dev"></a> [letsencrypt\_dev](#module\_letsencrypt\_dev) | git::https://github.com/pagopa/azurerm.git//letsencrypt_credential | v2.18.0 |
 | <a name="module_letsencrypt_prod"></a> [letsencrypt\_prod](#module\_letsencrypt\_prod) | git::https://github.com/pagopa/azurerm.git//letsencrypt_credential | v2.18.0 |
 | <a name="module_letsencrypt_uat"></a> [letsencrypt\_uat](#module\_letsencrypt\_uat) | git::https://github.com/pagopa/azurerm.git//letsencrypt_credential | v2.18.0 |
-| <a name="module_pagopa-selfcare-backoffice-backend_code_review"></a> [pagopa-selfcare-backoffice-backend\_code\_review](#module\_pagopa-selfcare-backoffice-backend\_code\_review) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review | v2.2.0 |
-| <a name="module_pagopa-selfcare-backoffice-backend_deploy"></a> [pagopa-selfcare-backoffice-backend\_deploy](#module\_pagopa-selfcare-backoffice-backend\_deploy) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy | v2.2.0 |
-| <a name="module_pagopa-selfcare-frontend_code_review"></a> [pagopa-selfcare-frontend\_code\_review](#module\_pagopa-selfcare-frontend\_code\_review) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review | v2.2.0 |
-| <a name="module_pagopa-selfcare-frontend_deploy"></a> [pagopa-selfcare-frontend\_deploy](#module\_pagopa-selfcare-frontend\_deploy) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy | v2.2.0 |
-| <a name="module_pagopa-selfcare-ms-notification-manager_code_review"></a> [pagopa-selfcare-ms-notification-manager\_code\_review](#module\_pagopa-selfcare-ms-notification-manager\_code\_review) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review | v2.2.0 |
-| <a name="module_pagopa-selfcare-ms-notification-manager_deploy"></a> [pagopa-selfcare-ms-notification-manager\_deploy](#module\_pagopa-selfcare-ms-notification-manager\_deploy) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy | v2.2.0 |
-| <a name="module_secrets"></a> [secrets](#module\_secrets) | git::https://github.com/pagopa/azurerm.git//key_vault_secrets_query | v2.0.4 |
-| <a name="module_selfcare_dev_secrets"></a> [selfcare\_dev\_secrets](#module\_selfcare\_dev\_secrets) | git::https://github.com/pagopa/azurerm.git//key_vault_secrets_query | v2.0.4 |
-| <a name="module_selfcare_prod_secrets"></a> [selfcare\_prod\_secrets](#module\_selfcare\_prod\_secrets) | git::https://github.com/pagopa/azurerm.git//key_vault_secrets_query | v2.0.4 |
-| <a name="module_selfcare_uat_secrets"></a> [selfcare\_uat\_secrets](#module\_selfcare\_uat\_secrets) | git::https://github.com/pagopa/azurerm.git//key_vault_secrets_query | v2.0.4 |
-| <a name="module_tlscert-selfcare-dev-platform-pagopa-it-cert_az"></a> [tlscert-selfcare-dev-platform-pagopa-it-cert\_az](#module\_tlscert-selfcare-dev-platform-pagopa-it-cert\_az) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_tls_cert | v2.6.5 |
-| <a name="module_tlscert-selfcare-prod-platform-pagopa-it-cert_az"></a> [tlscert-selfcare-prod-platform-pagopa-it-cert\_az](#module\_tlscert-selfcare-prod-platform-pagopa-it-cert\_az) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_tls_cert | v2.6.5 |
-| <a name="module_tlscert-selfcare-uat-platform-pagopa-it-cert_az"></a> [tlscert-selfcare-uat-platform-pagopa-it-cert\_az](#module\_tlscert-selfcare-uat-platform-pagopa-it-cert\_az) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_tls_cert | v2.6.5 |
-| <a name="module_tlscert-weudev-selfcare-internal-dev-platform-pagopa-it-cert_az"></a> [tlscert-weudev-selfcare-internal-dev-platform-pagopa-it-cert\_az](#module\_tlscert-weudev-selfcare-internal-dev-platform-pagopa-it-cert\_az) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_tls_cert | v2.6.5 |
-| <a name="module_tlscert-weuprod-selfcare-internal-prod-platform-pagopa-it-cert_az"></a> [tlscert-weuprod-selfcare-internal-prod-platform-pagopa-it-cert\_az](#module\_tlscert-weuprod-selfcare-internal-prod-platform-pagopa-it-cert\_az) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_tls_cert | v2.6.5 |
-| <a name="module_tlscert-weuuat-selfcare-internal-uat-platform-pagopa-it-cert_az"></a> [tlscert-weuuat-selfcare-internal-uat-platform-pagopa-it-cert\_az](#module\_tlscert-weuuat-selfcare-internal-uat-platform-pagopa-it-cert\_az) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_tls_cert | v2.6.5 |
+| <a name="module_pagopa-selfcare-backoffice-backend_code_review"></a> [pagopa-selfcare-backoffice-backend\_code\_review](#module\_pagopa-selfcare-backoffice-backend\_code\_review) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review | v4.1.5 |
+| <a name="module_pagopa-selfcare-backoffice-backend_deploy"></a> [pagopa-selfcare-backoffice-backend\_deploy](#module\_pagopa-selfcare-backoffice-backend\_deploy) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy | v4.1.5 |
+| <a name="module_pagopa-selfcare-frontend_code_review"></a> [pagopa-selfcare-frontend\_code\_review](#module\_pagopa-selfcare-frontend\_code\_review) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review | v4.1.5 |
+| <a name="module_pagopa-selfcare-frontend_deploy"></a> [pagopa-selfcare-frontend\_deploy](#module\_pagopa-selfcare-frontend\_deploy) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy | v4.1.5 |
+| <a name="module_pagopa-selfcare-ms-notification-manager_code_review"></a> [pagopa-selfcare-ms-notification-manager\_code\_review](#module\_pagopa-selfcare-ms-notification-manager\_code\_review) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review | v4.1.5 |
+| <a name="module_pagopa-selfcare-ms-notification-manager_deploy"></a> [pagopa-selfcare-ms-notification-manager\_deploy](#module\_pagopa-selfcare-ms-notification-manager\_deploy) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy | v4.1.5 |
+| <a name="module_secrets"></a> [secrets](#module\_secrets) | git::https://github.com/pagopa/terraform-azurerm-v3.git//key_vault_secrets_query | v7.30.0 |
+| <a name="module_selfcare_dev_secrets"></a> [selfcare\_dev\_secrets](#module\_selfcare\_dev\_secrets) | git::https://github.com/pagopa/terraform-azurerm-v3.git//key_vault_secrets_query | v7.30.0 |
+| <a name="module_selfcare_prod_secrets"></a> [selfcare\_prod\_secrets](#module\_selfcare\_prod\_secrets) | git::https://github.com/pagopa/terraform-azurerm-v3.git//key_vault_secrets_query | v7.30.0 |
+| <a name="module_selfcare_uat_secrets"></a> [selfcare\_uat\_secrets](#module\_selfcare\_uat\_secrets) | git::https://github.com/pagopa/terraform-azurerm-v3.git//key_vault_secrets_query | v7.30.0 |
+| <a name="module_tlscert-selfcare-dev-platform-pagopa-it-cert_az"></a> [tlscert-selfcare-dev-platform-pagopa-it-cert\_az](#module\_tlscert-selfcare-dev-platform-pagopa-it-cert\_az) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_tls_cert_federated | v4.1.5 |
+| <a name="module_tlscert-selfcare-prod-platform-pagopa-it-cert_az"></a> [tlscert-selfcare-prod-platform-pagopa-it-cert\_az](#module\_tlscert-selfcare-prod-platform-pagopa-it-cert\_az) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_tls_cert_federated | v4.1.5 |
+| <a name="module_tlscert-selfcare-uat-platform-pagopa-it-cert_az"></a> [tlscert-selfcare-uat-platform-pagopa-it-cert\_az](#module\_tlscert-selfcare-uat-platform-pagopa-it-cert\_az) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_tls_cert_federated | v4.1.5 |
+| <a name="module_tlscert-weudev-selfcare-internal-dev-platform-pagopa-it-cert_az"></a> [tlscert-weudev-selfcare-internal-dev-platform-pagopa-it-cert\_az](#module\_tlscert-weudev-selfcare-internal-dev-platform-pagopa-it-cert\_az) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_tls_cert_federated | v4.1.5 |
+| <a name="module_tlscert-weuprod-selfcare-internal-prod-platform-pagopa-it-cert_az"></a> [tlscert-weuprod-selfcare-internal-prod-platform-pagopa-it-cert\_az](#module\_tlscert-weuprod-selfcare-internal-prod-platform-pagopa-it-cert\_az) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_tls_cert_federated | v4.1.5 |
+| <a name="module_tlscert-weuuat-selfcare-internal-uat-platform-pagopa-it-cert_az"></a> [tlscert-weuuat-selfcare-internal-uat-platform-pagopa-it-cert\_az](#module\_tlscert-weuuat-selfcare-internal-uat-platform-pagopa-it-cert\_az) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_tls_cert_federated | v4.1.5 |
 
 ## Resources
 
@@ -57,9 +57,13 @@
 | [azurerm_application_insights.application_insights_dev](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/data-sources/application_insights) | data source |
 | [azurerm_application_insights.application_insights_prod](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/data-sources/application_insights) | data source |
 | [azurerm_application_insights.application_insights_uat](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/data-sources/application_insights) | data source |
+| [azurerm_client_config.current](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/data-sources/client_config) | data source |
 | [azurerm_key_vault.domain_kv_dev](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/data-sources/key_vault) | data source |
 | [azurerm_key_vault.domain_kv_prod](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/data-sources/key_vault) | data source |
 | [azurerm_key_vault.domain_kv_uat](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/data-sources/key_vault) | data source |
+| [azurerm_subscriptions.dev](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/data-sources/subscriptions) | data source |
+| [azurerm_subscriptions.prod](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/data-sources/subscriptions) | data source |
+| [azurerm_subscriptions.uat](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/data-sources/subscriptions) | data source |
 | [terraform_remote_state.app](https://registry.terraform.io/providers/hashicorp/terraform/latest/docs/data-sources/remote_state) | data source |
 
 ## Inputs
@@ -67,6 +71,7 @@
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_dev_subscription_name"></a> [dev\_subscription\_name](#input\_dev\_subscription\_name) | DEV Subscription name | `string` | n/a | yes |
+| <a name="input_location"></a> [location](#input\_location) | n/a | `string` | n/a | yes |
 | <a name="input_pagopa-selfcare-backoffice-backend"></a> [pagopa-selfcare-backoffice-backend](#input\_pagopa-selfcare-backoffice-backend) | n/a | `map` | <pre>{<br>  "pipeline": {<br>    "enable_code_review": true,<br>    "enable_deploy": true,<br>    "sonarcloud": {<br>      "org": "pagopa",<br>      "project_key": "pagopa_pagopa-selfcare-ms-backoffice-backend",<br>      "project_name": "pagopa-selfcare-ms-backoffice-backend",<br>      "service_connection": "SONARCLOUD-SERVICE-CONN"<br>    }<br>  },<br>  "repository": {<br>    "branch_name": "refs/heads/main",<br>    "name": "pagopa-selfcare-ms-backoffice-backend",<br>    "organization": "pagopa",<br>    "pipelines_path": ".devops",<br>    "yml_prefix_name": "pagopa"<br>  }<br>}</pre> | no |
 | <a name="input_pagopa-selfcare-frontend"></a> [pagopa-selfcare-frontend](#input\_pagopa-selfcare-frontend) | n/a | `map` | <pre>{<br>  "pipeline": {<br>    "enable_code_review": true,<br>    "enable_deploy": true,<br>    "sonarcloud": {<br>      "org": "pagopa",<br>      "project_key": "pagopa_pagopa-selfcare-frontend",<br>      "project_name": "pagopa-selfcare-frontend",<br>      "service_connection": "SONARCLOUD-SERVICE-CONN"<br>    }<br>  },<br>  "repository": {<br>    "branch_name": "refs/heads/main",<br>    "name": "pagopa-selfcare-frontend",<br>    "organization": "pagopa",<br>    "pipelines_path": ".devops",<br>    "yml_prefix_name": "pagopa"<br>  }<br>}</pre> | no |
 | <a name="input_pagopa-selfcare-ms-notification-manager"></a> [pagopa-selfcare-ms-notification-manager](#input\_pagopa-selfcare-ms-notification-manager) | n/a | `map` | <pre>{<br>  "pipeline": {<br>    "enable_code_review": true,<br>    "enable_deploy": true,<br>    "sonarcloud": {<br>      "org": "pagopa",<br>      "project_key": "pagopa_pagopa-selfcare-ms-notification-manager",<br>      "project_name": "pagopa-selfcare-ms-notification-manager",<br>      "service_connection": "SONARCLOUD-SERVICE-CONN"<br>    }<br>  },<br>  "repository": {<br>    "branch_name": "refs/heads/main",<br>    "name": "selfcare-ms-notification-manager",<br>    "organization": "pagopa",<br>    "pipelines_path": ".devops",<br>    "yml_prefix_name": "pagopa"<br>  }<br>}</pre> | no |

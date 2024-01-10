@@ -26,9 +26,9 @@ variable "tlscert-selfcare-dev-platform-pagopa-it" {
 
 locals {
   tlscert-selfcare-dev-platform-pagopa-it = {
-    tenant_id         = module.secrets.values["TENANTID"].value
+    tenant_id         = data.azurerm_client_config.current.tenant_id
     subscription_name = "DEV-PAGOPA"
-    subscription_id   = module.secrets.values["DEV-SUBSCRIPTION-ID"].value
+    subscription_id   = data.azurerm_subscriptions.dev.subscriptions[0].subscription_id
   }
   tlscert-selfcare-dev-platform-pagopa-it-variables = {
     KEY_VAULT_SERVICE_CONNECTION = module.DEV-SELC-TLS-CERT-SERVICE-CONN.service_endpoint_name
@@ -43,14 +43,11 @@ module "tlscert-selfcare-dev-platform-pagopa-it-cert_az" {
     azurerm = azurerm.dev
   }
 
-  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_tls_cert?ref=v2.6.5"
+  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_tls_cert_federated?ref=v4.1.5"
   count  = var.tlscert-selfcare-dev-platform-pagopa-it.pipeline.enable_tls_cert == true ? 1 : 0
 
-  project_id = data.azuredevops_project.project.id
-  repository = var.tlscert-selfcare-dev-platform-pagopa-it.repository
-  name       = "${var.tlscert-selfcare-dev-platform-pagopa-it.pipeline.dns_record_name}.${var.tlscert-selfcare-dev-platform-pagopa-it.pipeline.dns_zone_name}"
-  #tfsec:ignore:GEN003
-  renew_token                  = local.tlscert_renew_token
+  project_id                   = data.azuredevops_project.project.id
+  repository                   = var.tlscert-selfcare-dev-platform-pagopa-it.repository
   path                         = var.tlscert-selfcare-dev-platform-pagopa-it.pipeline.path
   github_service_connection_id = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_ro_id
 
@@ -61,7 +58,7 @@ module "tlscert-selfcare-dev-platform-pagopa-it-cert_az" {
   subscription_name       = local.tlscert-selfcare-dev-platform-pagopa-it.subscription_name
   subscription_id         = local.tlscert-selfcare-dev-platform-pagopa-it.subscription_id
 
-  credential_subcription              = var.dev_subscription_name
+  location                            = var.location
   credential_key_vault_name           = local.dev_selfcare_key_vault_name
   credential_key_vault_resource_group = local.dev_selfcare_key_vault_resource_group
 
