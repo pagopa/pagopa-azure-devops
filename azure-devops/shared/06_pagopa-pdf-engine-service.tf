@@ -92,7 +92,7 @@ locals {
 
 
 module "pagopa-pdf-engine-service_deploy" {
-  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy?ref=v2.2.0"
+  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy?ref=v4.1.5"
   count  = var.pagopa-pdf-engine.pipeline.enable_deploy == true ? 1 : 0
 
   project_id                   = data.azuredevops_project.project.id
@@ -126,7 +126,7 @@ module "pagopa-pdf-engine-service_deploy" {
 
 
 module "pagopa-pdf-engine_performance_test" {
-  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_generic?ref=v2.6.3"
+  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_generic?ref=v4.1.5"
   count  = var.pagopa-pdf-engine.pipeline.performance_test.enabled == true ? 1 : 0
 
   project_id                   = data.azuredevops_project.project.id

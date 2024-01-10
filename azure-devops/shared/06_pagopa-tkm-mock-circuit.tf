@@ -68,7 +68,7 @@ locals {
 }
 
 module "pagopa-tkm-mock-circuit_code_review" {
-  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review?ref=v2.6.5"
+  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review?ref=v4.1.5"
   count  = var.pagopa-tkm-mock-circuit.pipeline.enable_code_review == true ? 1 : 0
 
   project_id                   = data.azuredevops_project.project.id
@@ -95,7 +95,7 @@ module "pagopa-tkm-mock-circuit_code_review" {
 }
 
 module "pagopa-tkm-mock-circuit_deploy" {
-  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy?ref=v2.2.0"
+  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy?ref=v4.1.5"
   count  = var.pagopa-tkm-mock-circuit.pipeline.enable_deploy == true ? 1 : 0
 
   project_id                   = data.azuredevops_project.project.id

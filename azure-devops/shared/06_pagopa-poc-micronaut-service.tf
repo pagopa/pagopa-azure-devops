@@ -74,7 +74,7 @@ locals {
 }
 
 module "pagopa-poc-micronaut_code_review" {
-  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review?ref=v2.2.0"
+  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review?ref=v4.1.5"
   count  = var.pagopa-poc-micronaut.pipeline.enable_code_review == true ? 1 : 0
 
   project_id                   = data.azuredevops_project.project.id
@@ -99,7 +99,7 @@ module "pagopa-poc-micronaut_code_review" {
 }
 
 module "pagopa-poc-micronaut_deploy" {
-  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy?ref=v2.2.0"
+  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy?ref=v4.1.5"
   count  = var.pagopa-poc-micronaut.pipeline.enable_deploy == true ? 1 : 0
 
   project_id                   = data.azuredevops_project.project.id
@@ -126,7 +126,7 @@ module "pagopa-poc-micronaut_deploy" {
 }
 
 module "pagopa-poc-micronaut_performance_test" {
-  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_generic?ref=v2.6.3"
+  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_generic?ref=v4.1.5"
   count  = var.pagopa-poc-micronaut.pipeline.performance_test.enabled == true ? 1 : 0
 
   project_id                   = data.azuredevops_project.project.id
