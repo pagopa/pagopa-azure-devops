@@ -46,8 +46,8 @@ module "tlscert-selfcare-uat-platform-pagopa-it-cert_az" {
   source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_tls_cert_federated?ref=v4.1.5"
   count  = var.tlscert-selfcare-uat-platform-pagopa-it.pipeline.enable_tls_cert == true ? 1 : 0
 
-  project_id = data.azuredevops_project.project.id
-  repository = var.tlscert-selfcare-uat-platform-pagopa-it.repository
+  project_id                   = data.azuredevops_project.project.id
+  repository                   = var.tlscert-selfcare-uat-platform-pagopa-it.repository
   path                         = var.tlscert-selfcare-uat-platform-pagopa-it.pipeline.path
   github_service_connection_id = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_ro_id
 
@@ -58,7 +58,7 @@ module "tlscert-selfcare-uat-platform-pagopa-it-cert_az" {
   subscription_name       = local.tlscert-selfcare-uat-platform-pagopa-it.subscription_name
   subscription_id         = local.tlscert-selfcare-uat-platform-pagopa-it.subscription_id
 
-location = var.location
+  location                            = var.location
   credential_key_vault_name           = local.uat_selfcare_key_vault_name
   credential_key_vault_resource_group = local.uat_selfcare_key_vault_resource_group
 
