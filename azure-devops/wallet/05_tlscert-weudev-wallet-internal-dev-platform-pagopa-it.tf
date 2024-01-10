@@ -26,9 +26,9 @@ variable "tlscert-weudev-wallet-internal-dev-platform-pagopa-it" {
 
 locals {
   tlscert-weudev-wallet-internal-dev-platform-pagopa-it = {
-    tenant_id         = module.secrets.values["TENANTID"].value
+    tenant_id         = data.azurerm_client_config.current.tenant_id
     subscription_name = "DEV-PAGOPA"
-    subscription_id   = module.secrets.values["DEV-SUBSCRIPTION-ID"].value
+    subscription_id   = data.azurerm_subscriptions.dev.subscriptions[0].subscription_id
   }
   tlscert-weudev-wallet-internal-dev-platform-pagopa-it-variables = {
     KEY_VAULT_SERVICE_CONNECTION = module.DEV-WALLET-TLS-CERT-SERVICE-CONN.service_endpoint_name

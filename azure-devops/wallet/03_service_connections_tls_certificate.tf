@@ -12,9 +12,9 @@ module "DEV-WALLET-TLS-CERT-SERVICE-CONN" {
 
   project_id        = data.azuredevops_project.project.id
   name              = "${local.prefix}-d-${local.domain}-tls-cert"
-  tenant_id         = module.secrets.values["TENANTID"].value
+  tenant_id         = data.azurerm_client_config.current.tenant_id
   subscription_name = var.dev_subscription_name
-  subscription_id   = module.secrets.values["DEV-SUBSCRIPTION-ID"].value
+  subscription_id   = data.azurerm_subscriptions.dev.subscriptions[0].subscription_id
   #tfsec:ignore:GEN003
   renew_token = local.tlscert_renew_token
 
@@ -26,7 +26,7 @@ module "DEV-WALLET-TLS-CERT-SERVICE-CONN" {
 resource "azurerm_key_vault_access_policy" "DEV-WALLET-TLS-CERT-SERVICE-CONN_kv_access_policy" {
   provider     = azurerm.dev
   key_vault_id = data.azurerm_key_vault.domain_kv_dev.id
-  tenant_id    = module.secrets.values["TENANTID"].value
+  tenant_id    = data.azurerm_client_config.current.tenant_id
   object_id    = module.DEV-WALLET-TLS-CERT-SERVICE-CONN.service_principal_object_id
 
   certificate_permissions = ["Get", "Import"]
@@ -58,9 +58,9 @@ module "UAT-WALLET-TLS-CERT-SERVICE-CONN" {
 
   project_id        = data.azuredevops_project.project.id
   name              = "${local.prefix}-u-${local.domain}-tls-cert"
-  tenant_id         = module.secrets.values["TENANTID"].value
+  tenant_id         = data.azurerm_client_config.current.tenant_id
   subscription_name = var.uat_subscription_name
-  subscription_id   = module.secrets.values["UAT-SUBSCRIPTION-ID"].value
+  subscription_id   = data.azurerm_subscriptions.uat.subscriptions[0].subscription_id
   #tfsec:ignore:GEN003
   renew_token = local.tlscert_renew_token
 
@@ -72,7 +72,7 @@ module "UAT-WALLET-TLS-CERT-SERVICE-CONN" {
 resource "azurerm_key_vault_access_policy" "UAT-WALLET-TLS-CERT-SERVICE-CONN_kv_access_policy" {
   provider     = azurerm.uat
   key_vault_id = data.azurerm_key_vault.domain_kv_uat.id
-  tenant_id    = module.secrets.values["TENANTID"].value
+  tenant_id    = data.azurerm_client_config.current.tenant_id
   object_id    = module.UAT-WALLET-TLS-CERT-SERVICE-CONN.service_principal_object_id
 
   certificate_permissions = ["Get", "Import"]
