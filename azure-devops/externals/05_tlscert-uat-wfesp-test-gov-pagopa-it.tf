@@ -15,7 +15,6 @@ variable "tlscert-uat-wfesp-test-gov-pagopa-it" {
       # common variables to all pipelines
       variables = {
         CERT_NAME_EXPIRE_SECONDS = "2592000" #30 days
-        KEY_VAULT_NAME           = "pagopa-u-kv"
       }
       # common secret variables to all pipelines
       variables_secret = {
@@ -32,13 +31,13 @@ locals {
   }
   tlscert-uat-wfesp-test-gov-pagopa-it-variables = {
     KEY_VAULT_SERVICE_CONNECTION = module.UAT-EXTERNALS-TLS-CERT-SERVICE-CONN.service_endpoint_name
+    KEY_VAULT_NAME           = "pagopa-u-kv"
   }
   tlscert-uat-wfesp-test-gov-pagopa-it-variables_secret = {
   }
 }
 
 module "tlscert-uat-wfesp-test-gov-pagopa-it-cert_az" {
-
   providers = {
     azurerm = azurerm.uat
   }
@@ -49,7 +48,7 @@ module "tlscert-uat-wfesp-test-gov-pagopa-it-cert_az" {
   project_id                   = data.azuredevops_project.project.id
   repository                   = var.tlscert-uat-wfesp-test-gov-pagopa-it.repository
   path                         = var.tlscert-uat-wfesp-test-gov-pagopa-it.pipeline.path
-  github_service_connection_id = data.azuredevops_serviceendpoint_github.azure-devops-github-rw.id
+  github_service_connection_id = data.azuredevops_serviceendpoint_github.azure-devops-github-ro.id
 
   dns_record_name         = var.tlscert-uat-wfesp-test-gov-pagopa-it.pipeline.dns_record_name
   dns_zone_name           = var.tlscert-uat-wfesp-test-gov-pagopa-it.pipeline.dns_zone_name

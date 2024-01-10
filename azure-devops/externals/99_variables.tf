@@ -6,6 +6,7 @@ locals {
   dev_subscription_name  = "dev-pagopa"
   uat_subscription_name  = "uat-pagopa"
   prod_subscription_name = "prod-pagopa"
+  org_subscription_name = "org"
 
   # 🔐 KV
   dev_key_vault_azdo_name  = "${local.prefix}-d-azdo-weu-kv"

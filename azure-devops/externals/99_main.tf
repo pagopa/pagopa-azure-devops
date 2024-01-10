@@ -45,3 +45,13 @@ provider "azurerm" {
   alias           = "prod"
   subscription_id = data.azurerm_subscriptions.prod.subscriptions[0].subscription_id
 }
+
+provider "azurerm" {
+  features {
+    key_vault {
+      purge_soft_delete_on_destroy = false
+    }
+  }
+  alias           = "org"
+  subscription_id = data.azurerm_subscriptions.prod.subscriptions[0].subscription_id
+}
