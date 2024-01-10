@@ -15,9 +15,9 @@ module "secrets" {
     "azure-devops-github-pr-TOKEN",
     "azure-devops-github-EMAIL",
     "azure-devops-github-USERNAME",
-    "TENANTID",
-    "DEV-SUBSCRIPTION-ID",
-    "UAT-SUBSCRIPTION-ID",
-    "PROD-SUBSCRIPTION-ID"
+    # "TENANTID",
+    # "DEV-SUBSCRIPTION-ID",
+    # "UAT-SUBSCRIPTION-ID",
+    # "PROD-SUBSCRIPTION-ID"
   ]
 }
