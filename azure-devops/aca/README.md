@@ -6,30 +6,30 @@
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.1.5 |
-| <a name="requirement_azuredevops"></a> [azuredevops](#requirement\_azuredevops) | >= 0.2.0 |
-| <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) | >= 2.98.0 |
+| <a name="requirement_azuredevops"></a> [azuredevops](#requirement\_azuredevops) | <= 0.10.0 |
+| <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) | <= 3.85.0 |
 | <a name="requirement_time"></a> [time](#requirement\_time) | >= 0.7.0, < 0.8.0 |
 
 ## Modules
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_DEV-ACA-TLS-CERT-SERVICE-CONN"></a> [DEV-ACA-TLS-CERT-SERVICE-CONN](#module\_DEV-ACA-TLS-CERT-SERVICE-CONN) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_azurerm_limited | v2.7.0 |
-| <a name="module_PROD-ACA-TLS-CERT-SERVICE-CONN"></a> [PROD-ACA-TLS-CERT-SERVICE-CONN](#module\_PROD-ACA-TLS-CERT-SERVICE-CONN) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_azurerm_limited | v2.7.0 |
-| <a name="module_UAT-ACA-TLS-CERT-SERVICE-CONN"></a> [UAT-ACA-TLS-CERT-SERVICE-CONN](#module\_UAT-ACA-TLS-CERT-SERVICE-CONN) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_azurerm_limited | v2.7.0 |
-| <a name="module_aca_dev_secrets"></a> [aca\_dev\_secrets](#module\_aca\_dev\_secrets) | git::https://github.com/pagopa/azurerm.git//key_vault_secrets_query | v2.0.4 |
-| <a name="module_aca_prod_secrets"></a> [aca\_prod\_secrets](#module\_aca\_prod\_secrets) | git::https://github.com/pagopa/azurerm.git//key_vault_secrets_query | v2.0.4 |
-| <a name="module_aca_uat_secrets"></a> [aca\_uat\_secrets](#module\_aca\_uat\_secrets) | git::https://github.com/pagopa/azurerm.git//key_vault_secrets_query | v2.0.4 |
-| <a name="module_letsencrypt_dev"></a> [letsencrypt\_dev](#module\_letsencrypt\_dev) | git::https://github.com/pagopa/azurerm.git//letsencrypt_credential | v3.12.0 |
-| <a name="module_letsencrypt_prod"></a> [letsencrypt\_prod](#module\_letsencrypt\_prod) | git::https://github.com/pagopa/azurerm.git//letsencrypt_credential | v3.12.0 |
-| <a name="module_letsencrypt_uat"></a> [letsencrypt\_uat](#module\_letsencrypt\_uat) | git::https://github.com/pagopa/azurerm.git//letsencrypt_credential | v3.12.0 |
-| <a name="module_pagopa-aca-service_code_review"></a> [pagopa-aca-service\_code\_review](#module\_pagopa-aca-service\_code\_review) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review | v2.2.0 |
-| <a name="module_pagopa-aca-service_deploy"></a> [pagopa-aca-service\_deploy](#module\_pagopa-aca-service\_deploy) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy | v2.2.0 |
-| <a name="module_pagopa-aca-tests_soak"></a> [pagopa-aca-tests\_soak](#module\_pagopa-aca-tests\_soak) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_generic | v2.6.3 |
-| <a name="module_secrets"></a> [secrets](#module\_secrets) | git::https://github.com/pagopa/azurerm.git//key_vault_secrets_query | v2.0.4 |
-| <a name="module_tlscert-weudev-aca-internal-dev-platform-pagopa-it-cert_az"></a> [tlscert-weudev-aca-internal-dev-platform-pagopa-it-cert\_az](#module\_tlscert-weudev-aca-internal-dev-platform-pagopa-it-cert\_az) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_tls_cert | v2.7.0 |
-| <a name="module_tlscert-weuprod-aca-internal-prod-platform-pagopa-it-cert_az"></a> [tlscert-weuprod-aca-internal-prod-platform-pagopa-it-cert\_az](#module\_tlscert-weuprod-aca-internal-prod-platform-pagopa-it-cert\_az) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_tls_cert | v2.7.0 |
-| <a name="module_tlscert-weuuat-aca-internal-uat-platform-pagopa-it-cert_az"></a> [tlscert-weuuat-aca-internal-uat-platform-pagopa-it-cert\_az](#module\_tlscert-weuuat-aca-internal-uat-platform-pagopa-it-cert\_az) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_tls_cert | v2.7.0 |
+| <a name="module_DEV-ACA-TLS-CERT-SERVICE-CONN"></a> [DEV-ACA-TLS-CERT-SERVICE-CONN](#module\_DEV-ACA-TLS-CERT-SERVICE-CONN) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated | v4.1.5 |
+| <a name="module_PROD-ACA-TLS-CERT-SERVICE-CONN"></a> [PROD-ACA-TLS-CERT-SERVICE-CONN](#module\_PROD-ACA-TLS-CERT-SERVICE-CONN) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated | v4.1.5 |
+| <a name="module_UAT-ACA-TLS-CERT-SERVICE-CONN"></a> [UAT-ACA-TLS-CERT-SERVICE-CONN](#module\_UAT-ACA-TLS-CERT-SERVICE-CONN) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated | v4.1.5 |
+| <a name="module_aca_dev_secrets"></a> [aca\_dev\_secrets](#module\_aca\_dev\_secrets) | git::https://github.com/pagopa/terraform-azurerm-v3.git//key_vault_secrets_query | v7.39.0 |
+| <a name="module_aca_prod_secrets"></a> [aca\_prod\_secrets](#module\_aca\_prod\_secrets) | git::https://github.com/pagopa/terraform-azurerm-v3.git//key_vault_secrets_query | v7.39.0 |
+| <a name="module_aca_uat_secrets"></a> [aca\_uat\_secrets](#module\_aca\_uat\_secrets) | git::https://github.com/pagopa/terraform-azurerm-v3.git//key_vault_secrets_query | v7.39.0 |
+| <a name="module_letsencrypt_dev"></a> [letsencrypt\_dev](#module\_letsencrypt\_dev) | git::https://github.com/pagopa/terraform-azurerm-v3.git//letsencrypt_credential | v7.39.0 |
+| <a name="module_letsencrypt_prod"></a> [letsencrypt\_prod](#module\_letsencrypt\_prod) | git::https://github.com/pagopa/terraform-azurerm-v3.git//letsencrypt_credential | v7.39.0 |
+| <a name="module_letsencrypt_uat"></a> [letsencrypt\_uat](#module\_letsencrypt\_uat) | git::https://github.com/pagopa/terraform-azurerm-v3.git//letsencrypt_credential | v7.39.0 |
+| <a name="module_pagopa-aca-service_code_review"></a> [pagopa-aca-service\_code\_review](#module\_pagopa-aca-service\_code\_review) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review | v4.1.5 |
+| <a name="module_pagopa-aca-service_deploy"></a> [pagopa-aca-service\_deploy](#module\_pagopa-aca-service\_deploy) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy | v4.1.5 |
+| <a name="module_pagopa-aca-tests_soak"></a> [pagopa-aca-tests\_soak](#module\_pagopa-aca-tests\_soak) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_generic | v4.1.5 |
+| <a name="module_secrets"></a> [secrets](#module\_secrets) | git::https://github.com/pagopa/terraform-azurerm-v3.git//key_vault_secrets_query | v7.39.0 |
+| <a name="module_tlscert-weudev-aca-internal-dev-platform-pagopa-it-cert_az"></a> [tlscert-weudev-aca-internal-dev-platform-pagopa-it-cert\_az](#module\_tlscert-weudev-aca-internal-dev-platform-pagopa-it-cert\_az) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_tls_cert_federated | v4.1.5 |
+| <a name="module_tlscert-weuprod-aca-internal-prod-platform-pagopa-it-cert_az"></a> [tlscert-weuprod-aca-internal-prod-platform-pagopa-it-cert\_az](#module\_tlscert-weuprod-aca-internal-prod-platform-pagopa-it-cert\_az) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_tls_cert_federated | v4.1.5 |
+| <a name="module_tlscert-weuuat-aca-internal-uat-platform-pagopa-it-cert_az"></a> [tlscert-weuuat-aca-internal-uat-platform-pagopa-it-cert\_az](#module\_tlscert-weuuat-aca-internal-uat-platform-pagopa-it-cert\_az) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_tls_cert_federated | v4.1.5 |
 
 ## Resources
 
@@ -42,9 +42,13 @@
 | [azurerm_key_vault_access_policy.PROD-ACA-TLS-CERT-SERVICE-CONN_kv_access_policy](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/key_vault_access_policy) | resource |
 | [azurerm_key_vault_access_policy.UAT-ACA-TLS-CERT-SERVICE-CONN_kv_access_policy](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/key_vault_access_policy) | resource |
 | [azuredevops_project.project](https://registry.terraform.io/providers/microsoft/azuredevops/latest/docs/data-sources/project) | data source |
+| [azurerm_client_config.current](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/data-sources/client_config) | data source |
 | [azurerm_key_vault.domain_kv_dev](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/data-sources/key_vault) | data source |
 | [azurerm_key_vault.domain_kv_prod](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/data-sources/key_vault) | data source |
 | [azurerm_key_vault.domain_kv_uat](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/data-sources/key_vault) | data source |
+| [azurerm_subscriptions.dev](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/data-sources/subscriptions) | data source |
+| [azurerm_subscriptions.prod](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/data-sources/subscriptions) | data source |
+| [azurerm_subscriptions.uat](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/data-sources/subscriptions) | data source |
 | [terraform_remote_state.app](https://registry.terraform.io/providers/hashicorp/terraform/latest/docs/data-sources/remote_state) | data source |
 
 ## Inputs
