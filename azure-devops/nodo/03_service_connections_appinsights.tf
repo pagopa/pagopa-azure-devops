@@ -15,7 +15,7 @@ module "DEV-APPINSIGHTS-SERVICE-CONN" {
   subscription_id   = data.azurerm_subscriptions.dev.subscriptions[0].subscription_id
   subscription_name = var.dev_subscription_name
 
-    location            = var.location
+  location            = var.location
   resource_group_name = local.dev_identity_rg_name
 
 }
@@ -84,7 +84,7 @@ module "PROD-APPINSIGHTS-SERVICE-CONN" {
   subscription_id   = data.azurerm_subscriptions.prod.subscriptions[0].subscription_id
   subscription_name = var.prod_subscription_name
 
-    location            = var.location
+  location            = var.location
   resource_group_name = local.prod_identity_rg_name
 
 }

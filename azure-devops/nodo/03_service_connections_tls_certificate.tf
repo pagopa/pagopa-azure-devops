@@ -16,7 +16,7 @@ module "DEV-NODO-TLS-CERT-SERVICE-CONN" {
   subscription_name = var.dev_subscription_name
   subscription_id   = data.azurerm_subscriptions.dev.subscriptions[0].subscription_id
 
-    location            = var.location
+  location            = var.location
   resource_group_name = local.dev_identity_rg_name
 
 }
@@ -61,7 +61,7 @@ module "UAT-NODO-TLS-CERT-SERVICE-CONN" {
   subscription_name = var.uat_subscription_name
   subscription_id   = data.azurerm_subscriptions.uat.subscriptions[0].subscription_id
 
-    location            = var.location
+  location            = var.location
   resource_group_name = local.uat_identity_rg_name
 }
 
@@ -105,7 +105,7 @@ module "PROD-NODO-TLS-CERT-SERVICE-CONN" {
   subscription_name = var.prod_subscription_name
   subscription_id   = data.azurerm_subscriptions.prod.subscriptions[0].subscription_id
 
-    location            = var.location
+  location            = var.location
   resource_group_name = local.prod_identity_rg_name
 }
 
