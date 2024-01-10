@@ -11,8 +11,8 @@ module "DEV-APPINSIGHTS-SERVICE-CONN" {
   project_id = data.azuredevops_project.project.id
   #tfsec:ignore:general-secrets-no-plaintext-exposure
   name              = "${local.prefix}-d-${local.domain}-appinsights"
-  tenant_id         = module.secrets.values["TENANTID"].value
-  subscription_id   = module.secrets.values["DEV-SUBSCRIPTION-ID"].value
+  tenant_id         = data.azurerm_client_config.current.tenant_id
+  subscription_id   = data.azurerm_subscriptions.dev.subscriptions[0].subscription_id
   subscription_name = var.dev_subscription_name
 
     location            = var.location
@@ -46,8 +46,8 @@ module "UAT-APPINSIGHTS-SERVICE-CONN" {
   project_id = data.azuredevops_project.project.id
   #tfsec:ignore:general-secrets-no-plaintext-exposure
   name              = "${local.prefix}-u-${local.domain}-appinsights"
-  tenant_id         = module.secrets.values["TENANTID"].value
-  subscription_id   = module.secrets.values["UAT-SUBSCRIPTION-ID"].value
+  tenant_id         = data.azurerm_client_config.current.tenant_id
+  subscription_id   = data.azurerm_subscriptions.uat.subscriptions[0].subscription_id
   subscription_name = var.uat_subscription_name
 
   location            = var.location
@@ -80,8 +80,8 @@ module "PROD-APPINSIGHTS-SERVICE-CONN" {
   project_id = data.azuredevops_project.project.id
   #tfsec:ignore:general-secrets-no-plaintext-exposure
   name              = "${local.prefix}-p-${local.domain}-appinsights"
-  tenant_id         = module.secrets.values["TENANTID"].value
-  subscription_id   = module.secrets.values["PROD-SUBSCRIPTION-ID"].value
+  tenant_id         = data.azurerm_client_config.current.tenant_id
+  subscription_id   = data.azurerm_subscriptions.prod.subscriptions[0].subscription_id
   subscription_name = var.prod_subscription_name
 
     location            = var.location

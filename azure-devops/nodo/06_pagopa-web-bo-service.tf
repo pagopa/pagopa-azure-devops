@@ -30,7 +30,7 @@ locals {
     git_email         = module.secrets.values["azure-devops-github-EMAIL"].value
     git_username      = module.secrets.values["azure-devops-github-USERNAME"].value
     github_connection = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_rw_name
-    tenant_id         = module.secrets.values["TENANTID"].value
+    tenant_id         = data.azurerm_client_config.current.tenant_id
 
     # acr section
     image_repository_name                     = replace(var.pagopa-web-bo-service.repository.name, "-", "")
