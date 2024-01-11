@@ -26,9 +26,9 @@
 #
 #locals {
 #  tlscert-weuuat-mock-internal-uat-platform-pagopa-it = {
-#    tenant_id         = module.secrets.values["TENANTID"].value
+#    tenant_id         = data.azurerm_client_config.current.tenant_id
 #    subscription_name = "UAT-PAGOPA"
-#    subscription_id   = module.secrets.values["UAT-SUBSCRIPTION-ID"].value
+#    subscription_id   = data.azurerm_subscriptions.uat.subscriptions[0].subscription_id
 #  }
 #  tlscert-weuuat-mock-internal-uat-platform-pagopa-it-variables = {
 #    KEY_VAULT_SERVICE_CONNECTION = module.UAT-MOCK-TLS-CERT-SERVICE-CONN.service_endpoint_name
