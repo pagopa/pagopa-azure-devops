@@ -42,7 +42,7 @@ locals {
 
 
 module "pagopa-receipt-pdf-notifier_performance_test" {
-  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_generic?ref=v2.6.3"
+  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_generic?ref=v4.1.5"
   count  = var.pagopa-receipt-pdf-notifier.pipeline.performance_test.enabled == true ? 1 : 0
 
   project_id                   = data.azuredevops_project.project.id

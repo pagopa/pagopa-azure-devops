@@ -32,10 +32,10 @@ locals {
   # performance vars
   pagopa-receipt-pdf-generator-variables_performance_test = {
     TF_DEV_AZURE_SERVICE_CONNECTION = azuredevops_serviceendpoint_azurerm.DEV-SERVICE-CONN.service_endpoint_name
-    # TF_DEV_AZURE_SERVICE_CONNECTION        = module.secrets.values["DEV-SUBSCRIPTION-ID"].value
+    # TF_DEV_AZURE_SERVICE_CONNECTION        = data.azurerm_subscriptions.dev.subscriptions[0].subscription_id
 
     TF_UAT_AZURE_SERVICE_CONNECTION = azuredevops_serviceendpoint_azurerm.UAT-SERVICE-CONN.service_endpoint_name
-    # TF_UAT_AZURE_SERVICE_CONNECTION        = module.secrets.values["UAT-SUBSCRIPTION-ID"].value
+    # TF_UAT_AZURE_SERVICE_CONNECTION        = data.azurerm_subscriptions.uat.subscriptions[0].subscription_id
   }
 
   # performance secrets
@@ -51,7 +51,7 @@ locals {
 
 
 module "pagopa-receipt-pdf-generator_performance_test" {
-  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_generic?ref=v2.6.3"
+  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_generic?ref=v4.1.5"
   count  = var.pagopa-receipt-pdf-generator.pipeline.performance_test.enabled == true ? 1 : 0
 
   project_id                   = data.azuredevops_project.project.id

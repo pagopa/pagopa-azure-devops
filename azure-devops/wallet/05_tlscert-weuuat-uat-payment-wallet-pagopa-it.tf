@@ -77,7 +77,7 @@ module "tlscert-uat-payment-wallet-pagopa-it-cert_az" {
   ]
 
   schedules = {
-    days_to_build              = ["Mon"]
+    days_to_build              = ["Thu"]
     schedule_only_with_changes = false
     start_hours                = 8
     start_minutes              = 0
