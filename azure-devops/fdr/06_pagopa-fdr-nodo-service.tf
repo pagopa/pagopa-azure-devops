@@ -56,7 +56,7 @@ locals {
     git_email         = module.secrets.values["azure-devops-github-EMAIL"].value
     git_username      = module.secrets.values["azure-devops-github-USERNAME"].value
     github_connection = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_rw_name
-    tenant_id         = module.secrets.values["TENANTID"].value
+    tenant_id         = data.azurerm_client_config.current.tenant_id
 
     # acr section
     image_repository_name                     = replace(var.pagopa-fdr-nodo-service.repository.name, "-", "")
@@ -122,7 +122,7 @@ locals {
 }
 
 module "pagopa-fdr-nodo-service_code_review" {
-  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review?ref=v2.7.0"
+  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review?ref=v4.1.5"
   count  = var.pagopa-fdr-nodo-service.pipeline.enable_code_review == true ? 1 : 0
 
   project_id = data.azuredevops_project.project.id
@@ -151,7 +151,7 @@ module "pagopa-fdr-nodo-service_code_review" {
 }
 
 module "pagopa-fdr-nodo-service_deploy" {
-  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy?ref=v2.2.0"
+  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy?ref=v4.1.5"
   count  = var.pagopa-fdr-nodo-service.pipeline.enable_deploy == true ? 1 : 0
 
   project_id                   = data.azuredevops_project.project.id
@@ -184,7 +184,7 @@ module "pagopa-fdr-nodo-service_deploy" {
 }
 
 module "pagopa-fdr-nodo-service_suspend_job" {
-  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_generic?ref=v2.6.3"
+  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_generic?ref=v4.1.5"
   count  = var.pagopa-fdr-nodo-service.pipeline.suspend_job.enabled == true ? 1 : 0
 
   project_id                   = data.azuredevops_project.project.id

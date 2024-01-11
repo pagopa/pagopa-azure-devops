@@ -4,7 +4,7 @@
 
 module "fdr_dev_secrets" {
 
-  source = "git::https://github.com/pagopa/azurerm.git//key_vault_secrets_query?ref=v2.0.4"
+  source = "git::https://github.com/pagopa/terraform-azurerm-v3.git//key_vault_secrets_query?ref=v7.39.0"
 
   providers = {
     azurerm = azurerm.dev
@@ -26,7 +26,7 @@ module "fdr_dev_secrets" {
 #
 
 module "fdr_uat_secrets" {
-  source = "git::https://github.com/pagopa/azurerm.git//key_vault_secrets_query?ref=v2.0.4"
+  source = "git::https://github.com/pagopa/terraform-azurerm-v3.git//key_vault_secrets_query?ref=v7.39.0"
 
   providers = {
     azurerm = azurerm.uat
@@ -49,7 +49,7 @@ module "fdr_uat_secrets" {
 # #
 
 # module "fdr_prod_secrets" {
-#   source = "git::https://github.com/pagopa/azurerm.git//key_vault_secrets_query?ref=v2.0.4"
+#   source = "git::https://github.com/pagopa/terraform-azurerm-v3.git//key_vault_secrets_query?ref=v7.39.0"
 
 #   providers = {
 #     azurerm = azurerm.prod
