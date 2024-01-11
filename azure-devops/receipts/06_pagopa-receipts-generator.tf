@@ -32,10 +32,10 @@ locals {
   # performance vars
   pagopa-receipt-pdf-generator-variables_performance_test = {
     TF_DEV_AZURE_SERVICE_CONNECTION = azuredevops_serviceendpoint_azurerm.DEV-SERVICE-CONN.service_endpoint_name
-    # TF_DEV_AZURE_SERVICE_CONNECTION        = module.secrets.values["DEV-SUBSCRIPTION-ID"].value
+    # TF_DEV_AZURE_SERVICE_CONNECTION        = data.azurerm_subscriptions.dev.subscriptions[0].subscription_id
 
     TF_UAT_AZURE_SERVICE_CONNECTION = azuredevops_serviceendpoint_azurerm.UAT-SERVICE-CONN.service_endpoint_name
-    # TF_UAT_AZURE_SERVICE_CONNECTION        = module.secrets.values["UAT-SUBSCRIPTION-ID"].value
+    # TF_UAT_AZURE_SERVICE_CONNECTION        = data.azurerm_subscriptions.uat.subscriptions[0].subscription_id
   }
 
   # performance secrets
