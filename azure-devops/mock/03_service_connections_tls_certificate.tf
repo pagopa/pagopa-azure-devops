@@ -10,11 +10,11 @@ module "DEV-MOCK-TLS-CERT-SERVICE-CONN" {
   depends_on = [data.azuredevops_project.project]
   source     = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated?ref=v4.1.5"
 
-  project_id        = data.azuredevops_project.project.id
-  name              = "${local.prefix}-d-${local.domain}-tls-cert"
-  tenant_id         = data.azurerm_client_config.current.tenant_id
-  subscription_name = var.dev_subscription_name
-  subscription_id   = data.azurerm_subscriptions.dev.subscriptions[0].subscription_id
+  project_id          = data.azuredevops_project.project.id
+  name                = "${local.prefix}-d-${local.domain}-tls-cert"
+  tenant_id           = data.azurerm_client_config.current.tenant_id
+  subscription_name   = var.dev_subscription_name
+  subscription_id     = data.azurerm_subscriptions.dev.subscriptions[0].subscription_id
   location            = var.location
   resource_group_name = local.dev_identity_rg_name
 }

@@ -8,7 +8,7 @@ module "DEV-APPINSIGHTS-SERVICE-CONN" {
     azurerm = azurerm.dev
   }
 
-  project_id = data.azuredevops_project.project.id
+  project_id        = data.azuredevops_project.project.id
   name              = "${local.prefix}-d-${local.domain}-appinsights"
   tenant_id         = data.azurerm_client_config.current.tenant_id
   subscription_id   = data.azurerm_subscriptions.dev.subscriptions[0].subscription_id
