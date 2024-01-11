@@ -5,37 +5,37 @@
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.1.5 |
-| <a name="requirement_azuredevops"></a> [azuredevops](#requirement\_azuredevops) | >= 0.2.0 |
-| <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) | >= 2.98.0 |
+| <a name="requirement_azuredevops"></a> [azuredevops](#requirement\_azuredevops) | <= 0.10.0 |
+| <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) | <= 3.85.0 |
 
 ## Modules
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_ecommerce_dev_secrets"></a> [ecommerce\_dev\_secrets](#module\_ecommerce\_dev\_secrets) | git::https://github.com/pagopa/azurerm.git//key_vault_secrets_query | v2.0.4 |
-| <a name="module_ecommerce_prod_secrets"></a> [ecommerce\_prod\_secrets](#module\_ecommerce\_prod\_secrets) | git::https://github.com/pagopa/azurerm.git//key_vault_secrets_query | v2.0.4 |
-| <a name="module_ecommerce_uat_secrets"></a> [ecommerce\_uat\_secrets](#module\_ecommerce\_uat\_secrets) | git::https://github.com/pagopa/azurerm.git//key_vault_secrets_query | v2.0.4 |
-| <a name="module_pagopa-api-tests-ecommerce-for-io"></a> [pagopa-api-tests-ecommerce-for-io](#module\_pagopa-api-tests-ecommerce-for-io) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_generic | v2.6.3 |
-| <a name="module_pagopa-ecommerce-ecommerce-commons_code_review"></a> [pagopa-ecommerce-ecommerce-commons\_code\_review](#module\_pagopa-ecommerce-ecommerce-commons\_code\_review) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review | v2.2.0 |
-| <a name="module_pagopa-ecommerce-ecommerce-commons_deploy"></a> [pagopa-ecommerce-ecommerce-commons\_deploy](#module\_pagopa-ecommerce-ecommerce-commons\_deploy) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy | v2.2.0 |
-| <a name="module_pagopa-ecommerce-event-dispatcher-service_code_review"></a> [pagopa-ecommerce-event-dispatcher-service\_code\_review](#module\_pagopa-ecommerce-event-dispatcher-service\_code\_review) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review | v2.4.0 |
-| <a name="module_pagopa-ecommerce-event-dispatcher-service_deploy"></a> [pagopa-ecommerce-event-dispatcher-service\_deploy](#module\_pagopa-ecommerce-event-dispatcher-service\_deploy) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy | v2.4.0 |
-| <a name="module_pagopa-ecommerce-fe_code_review"></a> [pagopa-ecommerce-fe\_code\_review](#module\_pagopa-ecommerce-fe\_code\_review) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review | v2.2.0 |
-| <a name="module_pagopa-ecommerce-fe_deploy"></a> [pagopa-ecommerce-fe\_deploy](#module\_pagopa-ecommerce-fe\_deploy) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy | v2.2.0 |
-| <a name="module_pagopa-ecommerce-helpdesk-service_code_review"></a> [pagopa-ecommerce-helpdesk-service\_code\_review](#module\_pagopa-ecommerce-helpdesk-service\_code\_review) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review | v2.2.0 |
-| <a name="module_pagopa-ecommerce-helpdesk-service_deploy"></a> [pagopa-ecommerce-helpdesk-service\_deploy](#module\_pagopa-ecommerce-helpdesk-service\_deploy) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy | v2.2.0 |
-| <a name="module_pagopa-ecommerce-notifications-service_code_review"></a> [pagopa-ecommerce-notifications-service\_code\_review](#module\_pagopa-ecommerce-notifications-service\_code\_review) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review | v2.2.0 |
-| <a name="module_pagopa-ecommerce-notifications-service_deploy"></a> [pagopa-ecommerce-notifications-service\_deploy](#module\_pagopa-ecommerce-notifications-service\_deploy) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy | v2.2.0 |
-| <a name="module_pagopa-ecommerce-payment-methods-service_code_review"></a> [pagopa-ecommerce-payment-methods-service\_code\_review](#module\_pagopa-ecommerce-payment-methods-service\_code\_review) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review | v2.2.0 |
-| <a name="module_pagopa-ecommerce-payment-methods-service_deploy"></a> [pagopa-ecommerce-payment-methods-service\_deploy](#module\_pagopa-ecommerce-payment-methods-service\_deploy) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy | v2.2.0 |
-| <a name="module_pagopa-ecommerce-payment-requests-service_code_review"></a> [pagopa-ecommerce-payment-requests-service\_code\_review](#module\_pagopa-ecommerce-payment-requests-service\_code\_review) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review | v2.2.0 |
-| <a name="module_pagopa-ecommerce-payment-requests-service_deploy"></a> [pagopa-ecommerce-payment-requests-service\_deploy](#module\_pagopa-ecommerce-payment-requests-service\_deploy) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy | v2.2.0 |
-| <a name="module_pagopa-ecommerce-tests_soak"></a> [pagopa-ecommerce-tests\_soak](#module\_pagopa-ecommerce-tests\_soak) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_generic | v2.6.3 |
-| <a name="module_pagopa-ecommerce-transactions-scheduler-service_code_review"></a> [pagopa-ecommerce-transactions-scheduler-service\_code\_review](#module\_pagopa-ecommerce-transactions-scheduler-service\_code\_review) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review | v2.2.0 |
-| <a name="module_pagopa-ecommerce-transactions-scheduler-service_deploy"></a> [pagopa-ecommerce-transactions-scheduler-service\_deploy](#module\_pagopa-ecommerce-transactions-scheduler-service\_deploy) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy | v2.2.0 |
-| <a name="module_pagopa-ecommerce-transactions-service_code_review"></a> [pagopa-ecommerce-transactions-service\_code\_review](#module\_pagopa-ecommerce-transactions-service\_code\_review) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review | v2.2.0 |
-| <a name="module_pagopa-ecommerce-transactions-service_deploy"></a> [pagopa-ecommerce-transactions-service\_deploy](#module\_pagopa-ecommerce-transactions-service\_deploy) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy | v2.2.0 |
-| <a name="module_secrets"></a> [secrets](#module\_secrets) | git::https://github.com/pagopa/azurerm.git//key_vault_secrets_query | v2.0.4 |
+| <a name="module_ecommerce_dev_secrets"></a> [ecommerce\_dev\_secrets](#module\_ecommerce\_dev\_secrets) | git::https://github.com/pagopa/terraform-azurerm-v3.git//key_vault_secrets_query | v7.39.0 |
+| <a name="module_ecommerce_prod_secrets"></a> [ecommerce\_prod\_secrets](#module\_ecommerce\_prod\_secrets) | git::https://github.com/pagopa/terraform-azurerm-v3.git//key_vault_secrets_query | v7.39.0 |
+| <a name="module_ecommerce_uat_secrets"></a> [ecommerce\_uat\_secrets](#module\_ecommerce\_uat\_secrets) | git::https://github.com/pagopa/terraform-azurerm-v3.git//key_vault_secrets_query | v7.39.0 |
+| <a name="module_pagopa-api-tests-ecommerce-for-io"></a> [pagopa-api-tests-ecommerce-for-io](#module\_pagopa-api-tests-ecommerce-for-io) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_generic | v4.1.5 |
+| <a name="module_pagopa-ecommerce-ecommerce-commons_code_review"></a> [pagopa-ecommerce-ecommerce-commons\_code\_review](#module\_pagopa-ecommerce-ecommerce-commons\_code\_review) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review | v4.1.5 |
+| <a name="module_pagopa-ecommerce-ecommerce-commons_deploy"></a> [pagopa-ecommerce-ecommerce-commons\_deploy](#module\_pagopa-ecommerce-ecommerce-commons\_deploy) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy | v4.1.5 |
+| <a name="module_pagopa-ecommerce-event-dispatcher-service_code_review"></a> [pagopa-ecommerce-event-dispatcher-service\_code\_review](#module\_pagopa-ecommerce-event-dispatcher-service\_code\_review) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review | v4.1.5 |
+| <a name="module_pagopa-ecommerce-event-dispatcher-service_deploy"></a> [pagopa-ecommerce-event-dispatcher-service\_deploy](#module\_pagopa-ecommerce-event-dispatcher-service\_deploy) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy | v4.1.5 |
+| <a name="module_pagopa-ecommerce-fe_code_review"></a> [pagopa-ecommerce-fe\_code\_review](#module\_pagopa-ecommerce-fe\_code\_review) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review | v4.1.5 |
+| <a name="module_pagopa-ecommerce-fe_deploy"></a> [pagopa-ecommerce-fe\_deploy](#module\_pagopa-ecommerce-fe\_deploy) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy | v4.1.5 |
+| <a name="module_pagopa-ecommerce-helpdesk-service_code_review"></a> [pagopa-ecommerce-helpdesk-service\_code\_review](#module\_pagopa-ecommerce-helpdesk-service\_code\_review) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review | v4.1.5 |
+| <a name="module_pagopa-ecommerce-helpdesk-service_deploy"></a> [pagopa-ecommerce-helpdesk-service\_deploy](#module\_pagopa-ecommerce-helpdesk-service\_deploy) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy | v4.1.5 |
+| <a name="module_pagopa-ecommerce-notifications-service_code_review"></a> [pagopa-ecommerce-notifications-service\_code\_review](#module\_pagopa-ecommerce-notifications-service\_code\_review) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review | v4.1.5 |
+| <a name="module_pagopa-ecommerce-notifications-service_deploy"></a> [pagopa-ecommerce-notifications-service\_deploy](#module\_pagopa-ecommerce-notifications-service\_deploy) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy | v4.1.5 |
+| <a name="module_pagopa-ecommerce-payment-methods-service_code_review"></a> [pagopa-ecommerce-payment-methods-service\_code\_review](#module\_pagopa-ecommerce-payment-methods-service\_code\_review) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review | v4.1.5 |
+| <a name="module_pagopa-ecommerce-payment-methods-service_deploy"></a> [pagopa-ecommerce-payment-methods-service\_deploy](#module\_pagopa-ecommerce-payment-methods-service\_deploy) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy | v4.1.5 |
+| <a name="module_pagopa-ecommerce-payment-requests-service_code_review"></a> [pagopa-ecommerce-payment-requests-service\_code\_review](#module\_pagopa-ecommerce-payment-requests-service\_code\_review) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review | v4.1.5 |
+| <a name="module_pagopa-ecommerce-payment-requests-service_deploy"></a> [pagopa-ecommerce-payment-requests-service\_deploy](#module\_pagopa-ecommerce-payment-requests-service\_deploy) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy | v4.1.5 |
+| <a name="module_pagopa-ecommerce-tests_soak"></a> [pagopa-ecommerce-tests\_soak](#module\_pagopa-ecommerce-tests\_soak) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_generic | v4.1.5 |
+| <a name="module_pagopa-ecommerce-transactions-scheduler-service_code_review"></a> [pagopa-ecommerce-transactions-scheduler-service\_code\_review](#module\_pagopa-ecommerce-transactions-scheduler-service\_code\_review) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review | v4.1.5 |
+| <a name="module_pagopa-ecommerce-transactions-scheduler-service_deploy"></a> [pagopa-ecommerce-transactions-scheduler-service\_deploy](#module\_pagopa-ecommerce-transactions-scheduler-service\_deploy) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy | v4.1.5 |
+| <a name="module_pagopa-ecommerce-transactions-service_code_review"></a> [pagopa-ecommerce-transactions-service\_code\_review](#module\_pagopa-ecommerce-transactions-service\_code\_review) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review | v4.1.5 |
+| <a name="module_pagopa-ecommerce-transactions-service_deploy"></a> [pagopa-ecommerce-transactions-service\_deploy](#module\_pagopa-ecommerce-transactions-service\_deploy) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy | v4.1.5 |
+| <a name="module_secrets"></a> [secrets](#module\_secrets) | git::https://github.com/pagopa/terraform-azurerm-v3.git//key_vault_secrets_query | v7.39.0 |
 
 ## Resources
 
@@ -45,6 +45,10 @@
 | [azuredevops_serviceendpoint_kubernetes.aks_prod](https://registry.terraform.io/providers/microsoft/azuredevops/latest/docs/resources/serviceendpoint_kubernetes) | resource |
 | [azuredevops_serviceendpoint_kubernetes.aks_uat](https://registry.terraform.io/providers/microsoft/azuredevops/latest/docs/resources/serviceendpoint_kubernetes) | resource |
 | [azuredevops_project.project](https://registry.terraform.io/providers/microsoft/azuredevops/latest/docs/data-sources/project) | data source |
+| [azurerm_client_config.current](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/data-sources/client_config) | data source |
+| [azurerm_subscriptions.dev](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/data-sources/subscriptions) | data source |
+| [azurerm_subscriptions.prod](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/data-sources/subscriptions) | data source |
+| [azurerm_subscriptions.uat](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/data-sources/subscriptions) | data source |
 | [terraform_remote_state.app](https://registry.terraform.io/providers/hashicorp/terraform/latest/docs/data-sources/remote_state) | data source |
 
 ## Inputs
