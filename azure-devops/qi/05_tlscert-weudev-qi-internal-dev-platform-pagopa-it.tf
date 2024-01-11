@@ -43,7 +43,7 @@ module "tlscert-weudev-qi-internal-dev-platform-pagopa-it-cert_az" {
     azurerm = azurerm.dev
   }
 
-  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_tls_cert?ref=v2.7.0"
+  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_tls_cert?ref=v4.1.5"
   count  = var.tlscert-weudev-qi-internal-dev-platform-pagopa-it.pipeline.enable_tls_cert == true ? 1 : 0
 
   project_id = data.azuredevops_project.project.id
@@ -80,7 +80,7 @@ module "tlscert-weudev-qi-internal-dev-platform-pagopa-it-cert_az" {
   ]
 
   schedules = {
-    days_to_build              = ["Mon"]
+    days_to_build              = ["Thu"]
     schedule_only_with_changes = false
     start_hours                = 3
     start_minutes              = 0
