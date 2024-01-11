@@ -77,7 +77,7 @@ module "tlscert-weudev-wallet-internal-dev-platform-pagopa-it-cert_az" {
   ]
 
   schedules = {
-    days_to_build              = ["Mon"]
+    days_to_build              = ["Thu"]
     schedule_only_with_changes = false
     start_hours                = 3
     start_minutes              = 0

@@ -5,35 +5,35 @@
 
 | Name | Version |
 |------|---------|
-| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.1.5 |
-| <a name="requirement_azuredevops"></a> [azuredevops](#requirement\_azuredevops) | >= 0.2.0 |
-| <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) | >= 2.98.0 |
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.3.5 |
+| <a name="requirement_azuredevops"></a> [azuredevops](#requirement\_azuredevops) | ~> 0.10.0 |
+| <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) | <= 3.85.0 |
 | <a name="requirement_time"></a> [time](#requirement\_time) | >= 0.7.0, < 0.8.0 |
 
 ## Modules
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_DEV-APPINSIGHTS-SERVICE-CONN"></a> [DEV-APPINSIGHTS-SERVICE-CONN](#module\_DEV-APPINSIGHTS-SERVICE-CONN) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_azurerm_limited | v2.6.5 |
-| <a name="module_DEV-RECEIPTS-TLS-CERT-SERVICE-CONN"></a> [DEV-RECEIPTS-TLS-CERT-SERVICE-CONN](#module\_DEV-RECEIPTS-TLS-CERT-SERVICE-CONN) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_azurerm_limited | v2.6.5 |
-| <a name="module_PROD-APPINSIGHTS-SERVICE-CONN"></a> [PROD-APPINSIGHTS-SERVICE-CONN](#module\_PROD-APPINSIGHTS-SERVICE-CONN) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_azurerm_limited | v2.6.5 |
-| <a name="module_PROD-RECEIPTS-TLS-CERT-SERVICE-CONN"></a> [PROD-RECEIPTS-TLS-CERT-SERVICE-CONN](#module\_PROD-RECEIPTS-TLS-CERT-SERVICE-CONN) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_azurerm_limited | v2.6.5 |
-| <a name="module_UAT-APPINSIGHTS-SERVICE-CONN"></a> [UAT-APPINSIGHTS-SERVICE-CONN](#module\_UAT-APPINSIGHTS-SERVICE-CONN) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_azurerm_limited | v2.6.5 |
-| <a name="module_UAT-RECEIPTS-TLS-CERT-SERVICE-CONN"></a> [UAT-RECEIPTS-TLS-CERT-SERVICE-CONN](#module\_UAT-RECEIPTS-TLS-CERT-SERVICE-CONN) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_azurerm_limited | v2.6.5 |
+| <a name="module_DEV-APPINSIGHTS-SERVICE-CONN"></a> [DEV-APPINSIGHTS-SERVICE-CONN](#module\_DEV-APPINSIGHTS-SERVICE-CONN) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated | v4.1.5 |
+| <a name="module_DEV-RECEIPTS-TLS-CERT-SERVICE-CONN"></a> [DEV-RECEIPTS-TLS-CERT-SERVICE-CONN](#module\_DEV-RECEIPTS-TLS-CERT-SERVICE-CONN) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated | v4.1.5 |
+| <a name="module_PROD-APPINSIGHTS-SERVICE-CONN"></a> [PROD-APPINSIGHTS-SERVICE-CONN](#module\_PROD-APPINSIGHTS-SERVICE-CONN) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated | v4.1.5 |
+| <a name="module_PROD-RECEIPTS-TLS-CERT-SERVICE-CONN"></a> [PROD-RECEIPTS-TLS-CERT-SERVICE-CONN](#module\_PROD-RECEIPTS-TLS-CERT-SERVICE-CONN) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated | v4.1.5 |
+| <a name="module_UAT-APPINSIGHTS-SERVICE-CONN"></a> [UAT-APPINSIGHTS-SERVICE-CONN](#module\_UAT-APPINSIGHTS-SERVICE-CONN) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated | v4.1.5 |
+| <a name="module_UAT-RECEIPTS-TLS-CERT-SERVICE-CONN"></a> [UAT-RECEIPTS-TLS-CERT-SERVICE-CONN](#module\_UAT-RECEIPTS-TLS-CERT-SERVICE-CONN) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated | v4.1.5 |
 | <a name="module_letsencrypt_dev"></a> [letsencrypt\_dev](#module\_letsencrypt\_dev) | git::https://github.com/pagopa/azurerm.git//letsencrypt_credential | v3.12.0 |
 | <a name="module_letsencrypt_prod"></a> [letsencrypt\_prod](#module\_letsencrypt\_prod) | git::https://github.com/pagopa/azurerm.git//letsencrypt_credential | v2.18.0 |
 | <a name="module_letsencrypt_uat"></a> [letsencrypt\_uat](#module\_letsencrypt\_uat) | git::https://github.com/pagopa/azurerm.git//letsencrypt_credential | v2.18.0 |
-| <a name="module_pagopa-receipt-pdf-datastore_performance_test"></a> [pagopa-receipt-pdf-datastore\_performance\_test](#module\_pagopa-receipt-pdf-datastore\_performance\_test) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_generic | v2.6.3 |
-| <a name="module_pagopa-receipt-pdf-generator_performance_test"></a> [pagopa-receipt-pdf-generator\_performance\_test](#module\_pagopa-receipt-pdf-generator\_performance\_test) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_generic | v2.6.3 |
-| <a name="module_pagopa-receipt-pdf-notifier_performance_test"></a> [pagopa-receipt-pdf-notifier\_performance\_test](#module\_pagopa-receipt-pdf-notifier\_performance\_test) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_generic | v2.6.3 |
-| <a name="module_pagopa-receipt-pdf-service_performance_test"></a> [pagopa-receipt-pdf-service\_performance\_test](#module\_pagopa-receipt-pdf-service\_performance\_test) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_generic | v2.6.3 |
-| <a name="module_receipts_dev_secrets"></a> [receipts\_dev\_secrets](#module\_receipts\_dev\_secrets) | git::https://github.com/pagopa/azurerm.git//key_vault_secrets_query | v2.0.4 |
-| <a name="module_receipts_prod_secrets"></a> [receipts\_prod\_secrets](#module\_receipts\_prod\_secrets) | git::https://github.com/pagopa/azurerm.git//key_vault_secrets_query | v2.0.4 |
-| <a name="module_receipts_uat_secrets"></a> [receipts\_uat\_secrets](#module\_receipts\_uat\_secrets) | git::https://github.com/pagopa/azurerm.git//key_vault_secrets_query | v2.0.4 |
-| <a name="module_secrets"></a> [secrets](#module\_secrets) | git::https://github.com/pagopa/azurerm.git//key_vault_secrets_query | v2.0.4 |
-| <a name="module_tlscert-weudev-receipts-internal-dev-platform-pagopa-it-cert_az"></a> [tlscert-weudev-receipts-internal-dev-platform-pagopa-it-cert\_az](#module\_tlscert-weudev-receipts-internal-dev-platform-pagopa-it-cert\_az) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_tls_cert | v2.6.5 |
-| <a name="module_tlscert-weuprod-receipts-internal-prod-platform-pagopa-it-cert_az"></a> [tlscert-weuprod-receipts-internal-prod-platform-pagopa-it-cert\_az](#module\_tlscert-weuprod-receipts-internal-prod-platform-pagopa-it-cert\_az) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_tls_cert | v2.6.5 |
-| <a name="module_tlscert-weuuat-receipts-internal-uat-platform-pagopa-it-cert_az"></a> [tlscert-weuuat-receipts-internal-uat-platform-pagopa-it-cert\_az](#module\_tlscert-weuuat-receipts-internal-uat-platform-pagopa-it-cert\_az) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_tls_cert | v2.6.5 |
+| <a name="module_pagopa-receipt-pdf-datastore_performance_test"></a> [pagopa-receipt-pdf-datastore\_performance\_test](#module\_pagopa-receipt-pdf-datastore\_performance\_test) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_generic | v4.1.5 |
+| <a name="module_pagopa-receipt-pdf-generator_performance_test"></a> [pagopa-receipt-pdf-generator\_performance\_test](#module\_pagopa-receipt-pdf-generator\_performance\_test) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_generic | v4.1.5 |
+| <a name="module_pagopa-receipt-pdf-notifier_performance_test"></a> [pagopa-receipt-pdf-notifier\_performance\_test](#module\_pagopa-receipt-pdf-notifier\_performance\_test) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_generic | v4.1.5 |
+| <a name="module_pagopa-receipt-pdf-service_performance_test"></a> [pagopa-receipt-pdf-service\_performance\_test](#module\_pagopa-receipt-pdf-service\_performance\_test) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_generic | v4.1.5 |
+| <a name="module_receipts_dev_secrets"></a> [receipts\_dev\_secrets](#module\_receipts\_dev\_secrets) | git::https://github.com/pagopa/terraform-azurerm-v3.git//key_vault_secrets_query | v7.30.0 |
+| <a name="module_receipts_prod_secrets"></a> [receipts\_prod\_secrets](#module\_receipts\_prod\_secrets) | git::https://github.com/pagopa/terraform-azurerm-v3.git//key_vault_secrets_query | v7.30.0 |
+| <a name="module_receipts_uat_secrets"></a> [receipts\_uat\_secrets](#module\_receipts\_uat\_secrets) | git::https://github.com/pagopa/terraform-azurerm-v3.git//key_vault_secrets_query | v7.30.0 |
+| <a name="module_secrets"></a> [secrets](#module\_secrets) | git::https://github.com/pagopa/terraform-azurerm-v3.git//key_vault_secrets_query | v7.30.0 |
+| <a name="module_tlscert-weudev-receipts-internal-dev-platform-pagopa-it-cert_az"></a> [tlscert-weudev-receipts-internal-dev-platform-pagopa-it-cert\_az](#module\_tlscert-weudev-receipts-internal-dev-platform-pagopa-it-cert\_az) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_tls_cert_federated | v4.1.5 |
+| <a name="module_tlscert-weuprod-receipts-internal-prod-platform-pagopa-it-cert_az"></a> [tlscert-weuprod-receipts-internal-prod-platform-pagopa-it-cert\_az](#module\_tlscert-weuprod-receipts-internal-prod-platform-pagopa-it-cert\_az) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_tls_cert_federated | v4.1.5 |
+| <a name="module_tlscert-weuuat-receipts-internal-uat-platform-pagopa-it-cert_az"></a> [tlscert-weuuat-receipts-internal-uat-platform-pagopa-it-cert\_az](#module\_tlscert-weuuat-receipts-internal-uat-platform-pagopa-it-cert\_az) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_tls_cert_federated | v4.1.5 |
 
 ## Resources
 
@@ -55,9 +55,13 @@
 | [azurerm_application_insights.application_insights_dev](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/data-sources/application_insights) | data source |
 | [azurerm_application_insights.application_insights_prod](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/data-sources/application_insights) | data source |
 | [azurerm_application_insights.application_insights_uat](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/data-sources/application_insights) | data source |
+| [azurerm_client_config.current](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/data-sources/client_config) | data source |
 | [azurerm_key_vault.domain_kv_dev](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/data-sources/key_vault) | data source |
 | [azurerm_key_vault.domain_kv_prod](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/data-sources/key_vault) | data source |
 | [azurerm_key_vault.domain_kv_uat](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/data-sources/key_vault) | data source |
+| [azurerm_subscriptions.dev](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/data-sources/subscriptions) | data source |
+| [azurerm_subscriptions.prod](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/data-sources/subscriptions) | data source |
+| [azurerm_subscriptions.uat](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/data-sources/subscriptions) | data source |
 | [terraform_remote_state.app](https://registry.terraform.io/providers/hashicorp/terraform/latest/docs/data-sources/remote_state) | data source |
 
 ## Inputs
@@ -65,6 +69,7 @@
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_dev_subscription_name"></a> [dev\_subscription\_name](#input\_dev\_subscription\_name) | DEV Subscription name | `string` | n/a | yes |
+| <a name="input_location"></a> [location](#input\_location) | n/a | `string` | n/a | yes |
 | <a name="input_pagopa-receipt-pdf-datastore"></a> [pagopa-receipt-pdf-datastore](#input\_pagopa-receipt-pdf-datastore) | n/a | `map` | <pre>{<br>  "pipeline": {<br>    "enable_deploy": true,<br>    "performance_test": {<br>      "enabled": true,<br>      "name": "performance-test-receipt-pdf-datastore-pipeline",<br>      "pipeline_yml_filename": "performance-test-pipelines.yml"<br>    }<br>  },<br>  "repository": {<br>    "branch_name": "refs/heads/main",<br>    "name": "pagopa-receipt-pdf-datastore",<br>    "organization": "pagopa",<br>    "pipelines_path": ".devops",<br>    "yml_prefix_name": null<br>  }<br>}</pre> | no |
 | <a name="input_pagopa-receipt-pdf-generator"></a> [pagopa-receipt-pdf-generator](#input\_pagopa-receipt-pdf-generator) | n/a | `map` | <pre>{<br>  "pipeline": {<br>    "enable_deploy": true,<br>    "performance_test": {<br>      "enabled": true,<br>      "name": "performance-test-receipt-pdf-generator-pipeline",<br>      "pipeline_yml_filename": "performance-test-pipelines.yml"<br>    }<br>  },<br>  "repository": {<br>    "branch_name": "refs/heads/main",<br>    "name": "pagopa-receipt-pdf-generator",<br>    "organization": "pagopa",<br>    "pipelines_path": ".devops",<br>    "yml_prefix_name": null<br>  }<br>}</pre> | no |
 | <a name="input_pagopa-receipt-pdf-notifier"></a> [pagopa-receipt-pdf-notifier](#input\_pagopa-receipt-pdf-notifier) | n/a | `map` | <pre>{<br>  "pipeline": {<br>    "enable_deploy": true,<br>    "performance_test": {<br>      "enabled": true,<br>      "name": "performance-test-receipt-pdf-notifier-pipeline",<br>      "pipeline_yml_filename": "performance-test-pipelines.yml"<br>    }<br>  },<br>  "repository": {<br>    "branch_name": "refs/heads/main",<br>    "name": "pagopa-receipt-pdf-notifier",<br>    "organization": "pagopa",<br>    "pipelines_path": ".devops",<br>    "yml_prefix_name": null<br>  }<br>}</pre> | no |

@@ -26,9 +26,9 @@ variable "tlscert-weuuat-receipts-internal-uat-platform-pagopa-it" {
 
 locals {
   tlscert-weuuat-receipts-internal-uat-platform-pagopa-it = {
-    tenant_id         = module.secrets.values["TENANTID"].value
+    tenant_id         = data.azurerm_client_config.current.tenant_id
     subscription_name = "UAT-PAGOPA"
-    subscription_id   = module.secrets.values["UAT-SUBSCRIPTION-ID"].value
+    subscription_id   = data.azurerm_subscriptions.uat.subscriptions[0].subscription_id
   }
   tlscert-weuuat-receipts-internal-uat-platform-pagopa-it-variables = {
     KEY_VAULT_SERVICE_CONNECTION = module.UAT-RECEIPTS-TLS-CERT-SERVICE-CONN.service_endpoint_name
@@ -43,14 +43,11 @@ module "tlscert-weuuat-receipts-internal-uat-platform-pagopa-it-cert_az" {
     azurerm = azurerm.uat
   }
 
-  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_tls_cert?ref=v2.6.5"
+  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_tls_cert_federated?ref=v4.1.5"
   count  = var.tlscert-weuuat-receipts-internal-uat-platform-pagopa-it.pipeline.enable_tls_cert == true ? 1 : 0
 
-  project_id = data.azuredevops_project.project.id
-  repository = var.tlscert-weuuat-receipts-internal-uat-platform-pagopa-it.repository
-  name       = "${var.tlscert-weuuat-receipts-internal-uat-platform-pagopa-it.pipeline.dns_record_name}.${var.tlscert-weuuat-receipts-internal-uat-platform-pagopa-it.pipeline.dns_zone_name}"
-  #tfsec:ignore:GEN003
-  renew_token                  = local.tlscert_renew_token
+  project_id                   = data.azuredevops_project.project.id
+  repository                   = var.tlscert-weuuat-receipts-internal-uat-platform-pagopa-it.repository
   path                         = var.tlscert-weuuat-receipts-internal-uat-platform-pagopa-it.pipeline.path
   github_service_connection_id = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_ro_id
 
@@ -61,7 +58,7 @@ module "tlscert-weuuat-receipts-internal-uat-platform-pagopa-it-cert_az" {
   subscription_name       = local.tlscert-weuuat-receipts-internal-uat-platform-pagopa-it.subscription_name
   subscription_id         = local.tlscert-weuuat-receipts-internal-uat-platform-pagopa-it.subscription_id
 
-  credential_subcription              = var.uat_subscription_name
+  location                            = var.location
   credential_key_vault_name           = local.uat_receipts_key_vault_name
   credential_key_vault_resource_group = local.uat_receipts_key_vault_resource_group
 
@@ -80,7 +77,7 @@ module "tlscert-weuuat-receipts-internal-uat-platform-pagopa-it-cert_az" {
   ]
 
   schedules = {
-    days_to_build              = ["Mon"]
+    days_to_build              = ["Thu"]
     schedule_only_with_changes = false
     start_hours                = 3
     start_minutes              = 0

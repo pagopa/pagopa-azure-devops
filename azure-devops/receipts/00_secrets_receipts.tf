@@ -4,7 +4,7 @@
 
 module "receipts_dev_secrets" {
 
-  source = "git::https://github.com/pagopa/azurerm.git//key_vault_secrets_query?ref=v2.0.4"
+  source = "git::https://github.com/pagopa/terraform-azurerm-v3.git//key_vault_secrets_query?ref=v7.30.0"
 
   providers = {
     azurerm = azurerm.dev
@@ -32,7 +32,7 @@ module "receipts_dev_secrets" {
 #
 
 module "receipts_uat_secrets" {
-  source = "git::https://github.com/pagopa/azurerm.git//key_vault_secrets_query?ref=v2.0.4"
+  source = "git::https://github.com/pagopa/terraform-azurerm-v3.git//key_vault_secrets_query?ref=v7.30.0"
 
   providers = {
     azurerm = azurerm.uat
@@ -61,7 +61,7 @@ module "receipts_uat_secrets" {
 #
 
 module "receipts_prod_secrets" {
-  source = "git::https://github.com/pagopa/azurerm.git//key_vault_secrets_query?ref=v2.0.4"
+  source = "git::https://github.com/pagopa/terraform-azurerm-v3.git//key_vault_secrets_query?ref=v7.30.0"
 
   providers = {
     azurerm = azurerm.prod
