@@ -1,41 +1,16 @@
-variable "dev_subscription_name" {
-  type        = string
-  description = "DEV Subscription name"
-}
-
-variable "uat_subscription_name" {
-  type        = string
-  description = "UAT Subscription name"
-}
-
-variable "prod_subscription_name" {
-  type        = string
-  description = "PROD Subscription name"
-}
-
-variable "project_name" {
-  type        = string
-  description = "Project name (e.g. pagoPA platform)"
-}
-
-variable "pipeline_environments" {
-  type        = list(any)
-  description = "List of environments pipeline to create"
-}
-
-variable "terraform_remote_state_app" {
-  type = object({
-    resource_group_name  = string,
-    storage_account_name = string,
-    container_name       = string,
-    key                  = string
-  })
-}
-
 locals {
   prefix           = "pagopa"
   azure_devops_org = "pagopaspa"
   domain           = "qi"
+
+
+  dev_subscription_name  = "dev-pagopa"
+  uat_subscription_name  = "uat-pagopa"
+  prod_subscription_name = "prod-pagopa"
+
+  dev_identity_rg_name  = "${local.prefix}-d-identity-rg"
+  uat_identity_rg_name  = "${local.prefix}-u-identity-rg"
+  prod_identity_rg_name = "${local.prefix}-p-identity-rg"
 
   # 🔐 KV
   dev_key_vault_azdo_name  = "${local.prefix}-d-azdo-weu-kv"
@@ -87,3 +62,42 @@ locals {
   # TODO azure devops terraform provider does not support SonarCloud service endpoint
   azuredevops_serviceendpoint_sonarcloud_id = "9182be64-d387-465d-9acc-e79e802910c8"
 }
+
+variable "dev_subscription_name" {
+  type        = string
+  description = "DEV Subscription name"
+}
+
+variable "uat_subscription_name" {
+  type        = string
+  description = "UAT Subscription name"
+}
+
+variable "prod_subscription_name" {
+  type        = string
+  description = "PROD Subscription name"
+}
+
+variable "project_name" {
+  type        = string
+  description = "Project name (e.g. pagoPA platform)"
+}
+
+variable "pipeline_environments" {
+  type        = list(any)
+  description = "List of environments pipeline to create"
+}
+
+variable "terraform_remote_state_app" {
+  type = object({
+    resource_group_name  = string,
+    storage_account_name = string,
+    container_name       = string,
+    key                  = string
+  })
+}
+
+variable "location" {
+  type = string
+}
+
