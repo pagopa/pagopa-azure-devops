@@ -8,7 +8,7 @@ module "DEV-MOCK-TLS-CERT-SERVICE-CONN" {
   }
 
   depends_on = [data.azuredevops_project.project]
-  source     = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_azurerm_limited?ref=v2.6.5"
+  source     = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_azurerm_limited?ref=v4.1.5"
 
   project_id        = data.azuredevops_project.project.id
   name              = "${local.prefix}-d-${local.domain}-tls-cert"
@@ -34,7 +34,7 @@ resource "azurerm_key_vault_access_policy" "DEV-MOCK-TLS-CERT-SERVICE-CONN_kv_ac
 
 # create let's encrypt credential used to create SSL certificates
 module "letsencrypt_dev" {
-  source = "git::https://github.com/pagopa/azurerm.git//letsencrypt_credential?ref=v3.12.0"
+  source = "git::https://github.com/pagopa/terraform-azurerm-v3.git//letsencrypt_credential?ref=v7.30.0"
 
   providers = {
     azurerm = azurerm.dev
@@ -55,7 +55,7 @@ module "letsencrypt_dev" {
 #  }
 #
 #  depends_on = [data.azuredevops_project.project]
-#  source     = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_azurerm_limited?ref=v2.6.5"
+#  source     = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_azurerm_limited?ref=v4.1.5"
 #
 #  project_id        = data.azuredevops_project.project.id
 #  name              = "${local.prefix}-u-${local.domain}-tls-cert"
