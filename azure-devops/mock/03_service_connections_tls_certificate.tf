@@ -8,25 +8,21 @@ module "DEV-MOCK-TLS-CERT-SERVICE-CONN" {
   }
 
   depends_on = [data.azuredevops_project.project]
-  source     = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_azurerm_limited?ref=v2.6.5"
+  source     = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated?ref=v4.1.5"
 
-  project_id        = data.azuredevops_project.project.id
-  name              = "${local.prefix}-d-${local.domain}-tls-cert"
-  tenant_id         = module.secrets.values["TENANTID"].value
-  subscription_name = var.dev_subscription_name
-  subscription_id   = module.secrets.values["DEV-SUBSCRIPTION-ID"].value
-  #tfsec:ignore:GEN003
-  renew_token = local.tlscert_renew_token
-
-  credential_subcription              = var.dev_subscription_name
-  credential_key_vault_name           = local.dev_mock_key_vault_name
-  credential_key_vault_resource_group = local.dev_mock_key_vault_resource_group
+  project_id          = data.azuredevops_project.project.id
+  name                = "${local.prefix}-d-${local.domain}-tls-cert"
+  tenant_id           = data.azurerm_client_config.current.tenant_id
+  subscription_name   = var.dev_subscription_name
+  subscription_id     = data.azurerm_subscriptions.dev.subscriptions[0].subscription_id
+  location            = var.location
+  resource_group_name = local.dev_identity_rg_name
 }
 
 resource "azurerm_key_vault_access_policy" "DEV-MOCK-TLS-CERT-SERVICE-CONN_kv_access_policy" {
   provider     = azurerm.dev
   key_vault_id = data.azurerm_key_vault.domain_kv_dev.id
-  tenant_id    = module.secrets.values["TENANTID"].value
+  tenant_id    = data.azurerm_client_config.current.tenant_id
   object_id    = module.DEV-MOCK-TLS-CERT-SERVICE-CONN.service_principal_object_id
 
   certificate_permissions = ["Get", "Import"]
@@ -34,7 +30,7 @@ resource "azurerm_key_vault_access_policy" "DEV-MOCK-TLS-CERT-SERVICE-CONN_kv_ac
 
 # create let's encrypt credential used to create SSL certificates
 module "letsencrypt_dev" {
-  source = "git::https://github.com/pagopa/azurerm.git//letsencrypt_credential?ref=v3.12.0"
+  source = "git::https://github.com/pagopa/terraform-azurerm-v3.git//letsencrypt_credential?ref=v7.30.0"
 
   providers = {
     azurerm = azurerm.dev
@@ -44,50 +40,3 @@ module "letsencrypt_dev" {
   key_vault_name    = local.dev_mock_key_vault_name
   subscription_name = var.dev_subscription_name
 }
-
-#
-# UAT
-#
-#module "UAT-MOCK-TLS-CERT-SERVICE-CONN" {
-#
-#  providers = {
-#    azurerm = azurerm.uat
-#  }
-#
-#  depends_on = [data.azuredevops_project.project]
-#  source     = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_azurerm_limited?ref=v2.6.5"
-#
-#  project_id        = data.azuredevops_project.project.id
-#  name              = "${local.prefix}-u-${local.domain}-tls-cert"
-#  tenant_id         = module.secrets.values["TENANTID"].value
-#  subscription_name = var.uat_subscription_name
-#  subscription_id   = module.secrets.values["UAT-SUBSCRIPTION-ID"].value
-#  #tfsec:ignore:GEN003
-#  renew_token = local.tlscert_renew_token
-#
-#  credential_subcription              = var.uat_subscription_name
-#  credential_key_vault_name           = local.uat_mock_key_vault_name
-#  credential_key_vault_resource_group = local.uat_mock_key_vault_resource_group
-#}
-#
-#resource "azurerm_key_vault_access_policy" "UAT-MOCK-TLS-CERT-SERVICE-CONN_kv_access_policy" {
-#  provider     = azurerm.uat
-#  key_vault_id = data.azurerm_key_vault.domain_kv_uat.id
-#  tenant_id    = module.secrets.values["TENANTID"].value
-#  object_id    = module.UAT-MOCK-TLS-CERT-SERVICE-CONN.service_principal_object_id
-#
-#  certificate_permissions = ["Get", "Import"]
-#}
-#
-## create let's encrypt credential used to create SSL certificates
-#module "letsencrypt_uat" {
-#  source = "git::https://github.com/pagopa/azurerm.git//letsencrypt_credential?ref=v2.18.0"
-#
-#  providers = {
-#    azurerm = azurerm.uat
-#  }
-#  prefix            = local.prefix
-#  env               = "u"
-#  key_vault_name    = local.uat_mock_key_vault_name
-#  subscription_name = var.uat_subscription_name
-#}

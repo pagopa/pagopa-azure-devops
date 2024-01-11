@@ -4,7 +4,7 @@
 
 module "mock_dev_secrets" {
 
-  source = "git::https://github.com/pagopa/azurerm.git//key_vault_secrets_query?ref=v2.0.4"
+  source = "git::https://github.com/pagopa/terraform-azurerm-v3.git//key_vault_secrets_query?ref=v7.30.0"
 
   providers = {
     azurerm = azurerm.dev
@@ -25,7 +25,7 @@ module "mock_dev_secrets" {
 #
 
 #module "mock_uat_secrets" {
-#  source = "git::https://github.com/pagopa/azurerm.git//key_vault_secrets_query?ref=v2.0.4"
+#  source = "git::https://github.com/pagopa/terraform-azurerm-v3.git//key_vault_secrets_query?ref=v7.30.0"
 #
 #  providers = {
 #    azurerm = azurerm.uat
