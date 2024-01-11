@@ -8,7 +8,8 @@ module "ecommerce_dev_secrets" {
     azurerm = azurerm.dev
   }
 
-  source = "git::https://github.com/pagopa/azurerm.git//key_vault_secrets_query?ref=v2.0.4"
+  source = "git::https://github.com/pagopa/terraform-azurerm-v3.git//key_vault_secrets_query?ref=v7.39.0"
+
 
   resource_group = local.dev_ecommerce_key_vault_resource_group
   key_vault_name = local.dev_ecommerce_key_vault_name
@@ -32,7 +33,7 @@ module "ecommerce_uat_secrets" {
     azurerm = azurerm.uat
   }
 
-  source = "git::https://github.com/pagopa/azurerm.git//key_vault_secrets_query?ref=v2.0.4"
+  source = "git::https://github.com/pagopa/terraform-azurerm-v3.git//key_vault_secrets_query?ref=v7.39.0"
 
   resource_group = local.uat_ecommerce_key_vault_resource_group
   key_vault_name = local.uat_ecommerce_key_vault_name
@@ -57,7 +58,7 @@ module "ecommerce_prod_secrets" {
     azurerm = azurerm.prod
   }
 
-  source = "git::https://github.com/pagopa/azurerm.git//key_vault_secrets_query?ref=v2.0.4"
+  source = "git::https://github.com/pagopa/terraform-azurerm-v3.git//key_vault_secrets_query?ref=v7.39.0"
 
   resource_group = local.prod_ecommerce_key_vault_resource_group
   key_vault_name = local.prod_ecommerce_key_vault_name
