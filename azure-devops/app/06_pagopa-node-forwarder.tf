@@ -56,16 +56,16 @@ locals {
     github_connection               = azuredevops_serviceendpoint_github.azure-devops-github-rw.service_endpoint_name
     healthcheck_endpoint            = "/actuator/info"
     dev_deploy_type                 = "production_slot" #or staging_slot_and_swap
-    dev_azure_subscription          = azuredevops_serviceendpoint_azurerm.DEV-SERVICE-CONN.service_endpoint_name
+    dev_azure_subscription          = module.DEV-AZURERM-SERVICE-CONN.service_endpoint_name
     dev_web_app_name                = "pagopa-d-app-node-forwarder"
     dev_web_app_resource_group_name = "pagopa-d-node-forwarder-rg"
 
     uat_deploy_type                  = "production_slot" #or staging_slot_and_swap
-    uat_azure_subscription           = azuredevops_serviceendpoint_azurerm.UAT-SERVICE-CONN.service_endpoint_name
+    uat_azure_subscription           = module.UAT-AZURERM-SERVICE-CONN.service_endpoint_name
     uat_web_app_name                 = "pagopa-u-app-node-forwarder"
     uat_web_app_resource_group_name  = "pagopa-u-node-forwarder-rg"
     prod_deploy_type                 = "production_slot" #or staging_slot_and_swap
-    prod_azure_subscription          = azuredevops_serviceendpoint_azurerm.PROD-SERVICE-CONN.service_endpoint_name
+    prod_azure_subscription          = module.PROD-AZURERM-SERVICE-CONN.service_endpoint_name
     prod_web_app_name                = "pagopa-p-app-node-forwarder"
     prod_web_app_resource_group_name = "pagopa-p-node-forwarder-rg"
 
@@ -144,9 +144,9 @@ module "pagopa-node-forwarder_deploy" {
 
   service_connection_ids_authorization = [
     azuredevops_serviceendpoint_github.azure-devops-github-ro.id,
-    azuredevops_serviceendpoint_azurerm.DEV-SERVICE-CONN.id,
-    azuredevops_serviceendpoint_azurerm.UAT-SERVICE-CONN.id,
-    azuredevops_serviceendpoint_azurerm.PROD-SERVICE-CONN.id,
+    module.DEV-AZURERM-SERVICE-CONN.service_endpoint_id,
+    module.UAT-AZURERM-SERVICE-CONN.service_endpoint_id,
+    module.PROD-AZURERM-SERVICE-CONN.service_endpoint_id,
   ]
 }
 

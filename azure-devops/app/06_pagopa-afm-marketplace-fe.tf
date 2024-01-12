@@ -112,6 +112,6 @@ module "pagopa-afm-marketplace-fe_deploy" {
 
   service_connection_ids_authorization = [
     azuredevops_serviceendpoint_github.azure-devops-github-ro.id,
-    azuredevops_serviceendpoint_azurerm.DEV-SERVICE-CONN.id,
+    module.DEV-AZURERM-SERVICE-CONN.service_endpoint_id,
   ]
 }
