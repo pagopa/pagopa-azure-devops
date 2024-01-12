@@ -13,16 +13,19 @@
 | Name | Source | Version |
 |------|--------|---------|
 | <a name="module_DEV-AFM-TLS-CERT-SERVICE-CONN"></a> [DEV-AFM-TLS-CERT-SERVICE-CONN](#module\_DEV-AFM-TLS-CERT-SERVICE-CONN) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated | v4.1.5 |
+| <a name="module_DEV-AZURERM-SERVICE-CONN"></a> [DEV-AZURERM-SERVICE-CONN](#module\_DEV-AZURERM-SERVICE-CONN) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated | v4.1.5 |
 | <a name="module_DEV-ECOMMERCE-TLS-CERT-SERVICE-CONN"></a> [DEV-ECOMMERCE-TLS-CERT-SERVICE-CONN](#module\_DEV-ECOMMERCE-TLS-CERT-SERVICE-CONN) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated | v4.1.5 |
 | <a name="module_DEV-KIBANA-TLS-CERT-SERVICE-CONN"></a> [DEV-KIBANA-TLS-CERT-SERVICE-CONN](#module\_DEV-KIBANA-TLS-CERT-SERVICE-CONN) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated | v4.1.5 |
 | <a name="module_DEV-SHARED-TLS-CERT-SERVICE-CONN"></a> [DEV-SHARED-TLS-CERT-SERVICE-CONN](#module\_DEV-SHARED-TLS-CERT-SERVICE-CONN) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated | v4.1.5 |
 | <a name="module_DEV-TLS-CERT-SERVICE-CONN"></a> [DEV-TLS-CERT-SERVICE-CONN](#module\_DEV-TLS-CERT-SERVICE-CONN) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated | v4.1.5 |
 | <a name="module_PROD-AFM-TLS-CERT-SERVICE-CONN"></a> [PROD-AFM-TLS-CERT-SERVICE-CONN](#module\_PROD-AFM-TLS-CERT-SERVICE-CONN) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated | v4.1.5 |
+| <a name="module_PROD-AZURERM-SERVICE-CONN"></a> [PROD-AZURERM-SERVICE-CONN](#module\_PROD-AZURERM-SERVICE-CONN) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated | v4.1.5 |
 | <a name="module_PROD-ECOMMERCE-TLS-CERT-SERVICE-CONN"></a> [PROD-ECOMMERCE-TLS-CERT-SERVICE-CONN](#module\_PROD-ECOMMERCE-TLS-CERT-SERVICE-CONN) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated | v4.1.5 |
 | <a name="module_PROD-KIBANA-TLS-CERT-SERVICE-CONN"></a> [PROD-KIBANA-TLS-CERT-SERVICE-CONN](#module\_PROD-KIBANA-TLS-CERT-SERVICE-CONN) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated | v4.1.5 |
 | <a name="module_PROD-SHARED-TLS-CERT-SERVICE-CONN"></a> [PROD-SHARED-TLS-CERT-SERVICE-CONN](#module\_PROD-SHARED-TLS-CERT-SERVICE-CONN) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated | v4.1.5 |
 | <a name="module_PROD-TLS-CERT-SERVICE-CONN"></a> [PROD-TLS-CERT-SERVICE-CONN](#module\_PROD-TLS-CERT-SERVICE-CONN) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated | v4.1.5 |
 | <a name="module_UAT-AFM-TLS-CERT-SERVICE-CONN"></a> [UAT-AFM-TLS-CERT-SERVICE-CONN](#module\_UAT-AFM-TLS-CERT-SERVICE-CONN) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated | v4.1.5 |
+| <a name="module_UAT-AZURERM-SERVICE-CONN"></a> [UAT-AZURERM-SERVICE-CONN](#module\_UAT-AZURERM-SERVICE-CONN) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated | v4.1.5 |
 | <a name="module_UAT-ECOMMERCE-TLS-CERT-SERVICE-CONN"></a> [UAT-ECOMMERCE-TLS-CERT-SERVICE-CONN](#module\_UAT-ECOMMERCE-TLS-CERT-SERVICE-CONN) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated | v4.1.5 |
 | <a name="module_UAT-KIBANA-TLS-CERT-SERVICE-CONN"></a> [UAT-KIBANA-TLS-CERT-SERVICE-CONN](#module\_UAT-KIBANA-TLS-CERT-SERVICE-CONN) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated | v4.1.5 |
 | <a name="module_UAT-SHARED-TLS-CERT-SERVICE-CONN"></a> [UAT-SHARED-TLS-CERT-SERVICE-CONN](#module\_UAT-SHARED-TLS-CERT-SERVICE-CONN) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated | v4.1.5 |
@@ -112,9 +115,6 @@
 | [azuredevops_serviceendpoint_azurecr.acr_docker_registry_dev](https://registry.terraform.io/providers/microsoft/azuredevops/latest/docs/resources/serviceendpoint_azurecr) | resource |
 | [azuredevops_serviceendpoint_azurecr.acr_docker_registry_prod](https://registry.terraform.io/providers/microsoft/azuredevops/latest/docs/resources/serviceendpoint_azurecr) | resource |
 | [azuredevops_serviceendpoint_azurecr.acr_docker_registry_uat](https://registry.terraform.io/providers/microsoft/azuredevops/latest/docs/resources/serviceendpoint_azurecr) | resource |
-| [azuredevops_serviceendpoint_azurerm.DEV-SERVICE-CONN](https://registry.terraform.io/providers/microsoft/azuredevops/latest/docs/resources/serviceendpoint_azurerm) | resource |
-| [azuredevops_serviceendpoint_azurerm.PROD-SERVICE-CONN](https://registry.terraform.io/providers/microsoft/azuredevops/latest/docs/resources/serviceendpoint_azurerm) | resource |
-| [azuredevops_serviceendpoint_azurerm.UAT-SERVICE-CONN](https://registry.terraform.io/providers/microsoft/azuredevops/latest/docs/resources/serviceendpoint_azurerm) | resource |
 | [azuredevops_serviceendpoint_dockerregistry.sia-docker-registry-dev](https://registry.terraform.io/providers/microsoft/azuredevops/latest/docs/resources/serviceendpoint_dockerregistry) | resource |
 | [azuredevops_serviceendpoint_dockerregistry.sia-docker-registry-prod](https://registry.terraform.io/providers/microsoft/azuredevops/latest/docs/resources/serviceendpoint_dockerregistry) | resource |
 | [azuredevops_serviceendpoint_dockerregistry.sia-docker-registry-uat](https://registry.terraform.io/providers/microsoft/azuredevops/latest/docs/resources/serviceendpoint_dockerregistry) | resource |
@@ -137,6 +137,9 @@
 | [azurerm_key_vault_access_policy.UAT-KIBANA-TLS-CERT-SERVICE-CONN_kv_uat](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/key_vault_access_policy) | resource |
 | [azurerm_key_vault_access_policy.UAT-SHARED-TLS-CERT-SERVICE-CONN_kv_uat](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/key_vault_access_policy) | resource |
 | [azurerm_key_vault_access_policy.UAT-TLS-CERT-SERVICE-CONN_kv_uat](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/key_vault_access_policy) | resource |
+| [azurerm_role_assignment.dev_azurerm](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/role_assignment) | resource |
+| [azurerm_role_assignment.prod_azurerm](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/role_assignment) | resource |
+| [azurerm_role_assignment.uat_azurerm](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/role_assignment) | resource |
 | [azurerm_client_config.current](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/data-sources/client_config) | data source |
 | [azurerm_key_vault.kv_afm_dev](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/data-sources/key_vault) | data source |
 | [azurerm_key_vault.kv_afm_prod](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/data-sources/key_vault) | data source |

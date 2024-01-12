@@ -16,8 +16,8 @@ locals {
   srv_endpoint_github_rw = "io-azure-devops-github-rw"
   srv_endpoint_github_pr = "io-azure-devops-github-pr"
 
-  dev_azurerm_endpoint_name = "PAGOPA-D-CORE-AZDO-AZURERM-SERVICE-CONN"
-  uat_azurerm_endpoint_name = "PAGOPA-U-CORE-AZDO-AZURERM-SERVICE-CONN"
+  dev_azurerm_endpoint_name  = "PAGOPA-D-CORE-AZDO-AZURERM-SERVICE-CONN"
+  uat_azurerm_endpoint_name  = "PAGOPA-U-CORE-AZDO-AZURERM-SERVICE-CONN"
   prod_azurerm_endpoint_name = "PAGOPA-P-CORE-AZDO-AZURERM-SERVICE-CONN"
 
 
