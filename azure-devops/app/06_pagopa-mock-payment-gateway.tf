@@ -50,11 +50,11 @@ locals {
     github_connection                             = azuredevops_serviceendpoint_github.azure-devops-github-rw.service_endpoint_name
     healthcheck_endpoint                          = "/actuator/health" #todo
     dev_deploy_type                               = "production_slot"  #or staging_slot_and_swap
-    dev_azure_subscription                        = azuredevops_serviceendpoint_azurerm.DEV-SERVICE-CONN.service_endpoint_name
+    dev_azure_subscription                        = module.DEV-AZURERM-SERVICE-CONN.service_endpoint_name
     dev_healthcheck_container_resource_group_name = "NA"
     dev_healthcheck_container_vnet                = "NA"
     uat_deploy_type                               = "production_slot" #or staging_slot_and_swap
-    uat_azure_subscription                        = azuredevops_serviceendpoint_azurerm.UAT-SERVICE-CONN.service_endpoint_name
+    uat_azure_subscription                        = module.UAT-AZURERM-SERVICE-CONN.service_endpoint_name
     uat_healthcheck_container_resource_group_name = "NA"
     uat_healthcheck_container_vnet                = "NA"
   }
@@ -111,7 +111,7 @@ module "pagopa-mock-payment-gateway_deploy" {
 
   service_connection_ids_authorization = [
     azuredevops_serviceendpoint_github.azure-devops-github-ro.id,
-    azuredevops_serviceendpoint_azurerm.DEV-SERVICE-CONN.id,
-    azuredevops_serviceendpoint_azurerm.UAT-SERVICE-CONN.id,
+    module.DEV-AZURERM-SERVICE-CONN.service_endpoint_id,
+    module.UAT-AZURERM-SERVICE-CONN.service_endpoint_id,
   ]
 }

@@ -123,8 +123,6 @@ module "pagopa-wallet-service_deploy" {
     # azuredevops_serviceendpoint_azurecr.acr_aks_uat.id,
     # azuredevops_serviceendpoint_azurecr.acr_aks_prod.id,
     data.terraform_remote_state.app.outputs.service_endpoint_azure_dev_id,
-    # azuredevops_serviceendpoint_azurerm.UAT-SERVICE-CONN.id,
-    # azuredevops_serviceendpoint_azurerm.PROD-SERVICE-CONN.id,
   ]
 }
 

@@ -16,6 +16,11 @@ locals {
   srv_endpoint_github_rw = "io-azure-devops-github-rw"
   srv_endpoint_github_pr = "io-azure-devops-github-pr"
 
+  dev_azurerm_endpoint_name  = "PAGOPA-D-CORE-AZDO-AZURERM-SERVICE-CONN"
+  uat_azurerm_endpoint_name  = "PAGOPA-U-CORE-AZDO-AZURERM-SERVICE-CONN"
+  prod_azurerm_endpoint_name = "PAGOPA-P-CORE-AZDO-AZURERM-SERVICE-CONN"
+
+
   # 🔐 KV AZDO
   dev_key_vault_azdo_name  = "${local.prefix}-d-azdo-weu-kv"
   uat_key_vault_azdo_name  = "${local.prefix}-u-azdo-weu-kv"
