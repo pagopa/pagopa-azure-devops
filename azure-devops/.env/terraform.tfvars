@@ -17,6 +17,6 @@ service_connection_dev_azurerm_name  = "PAGOPA-CORE-D-AZDO-AZURERM-SERVICE-CONN"
 service_connection_uat_azurerm_name  = "PAGOPA-CORE-U-AZDO-AZURERM-SERVICE-CONN"
 service_connection_prod_azurerm_name = "PAGOPA-CORE-P-AZDO-AZURERM-SERVICE-CONN"
 
-service_connection_dev_acr_name = "pagopa-azurecr-dev"
-service_connection_uat_acr_name = "pagopa-azurecr-uat"
+service_connection_dev_acr_name  = "pagopa-azurecr-dev"
+service_connection_uat_acr_name  = "pagopa-azurecr-uat"
 service_connection_prod_acr_name = "pagopa-azurecr-prod"

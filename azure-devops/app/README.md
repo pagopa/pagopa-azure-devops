@@ -12,24 +12,24 @@
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_DEV-AFM-TLS-CERT-SERVICE-CONN"></a> [DEV-AFM-TLS-CERT-SERVICE-CONN](#module\_DEV-AFM-TLS-CERT-SERVICE-CONN) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated | v4.1.5 |
-| <a name="module_DEV-AZURERM-SERVICE-CONN"></a> [DEV-AZURERM-SERVICE-CONN](#module\_DEV-AZURERM-SERVICE-CONN) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated | v4.1.5 |
-| <a name="module_DEV-ECOMMERCE-TLS-CERT-SERVICE-CONN"></a> [DEV-ECOMMERCE-TLS-CERT-SERVICE-CONN](#module\_DEV-ECOMMERCE-TLS-CERT-SERVICE-CONN) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated | v4.1.5 |
-| <a name="module_DEV-KIBANA-TLS-CERT-SERVICE-CONN"></a> [DEV-KIBANA-TLS-CERT-SERVICE-CONN](#module\_DEV-KIBANA-TLS-CERT-SERVICE-CONN) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated | v4.1.5 |
-| <a name="module_DEV-SHARED-TLS-CERT-SERVICE-CONN"></a> [DEV-SHARED-TLS-CERT-SERVICE-CONN](#module\_DEV-SHARED-TLS-CERT-SERVICE-CONN) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated | v4.1.5 |
-| <a name="module_DEV-TLS-CERT-SERVICE-CONN"></a> [DEV-TLS-CERT-SERVICE-CONN](#module\_DEV-TLS-CERT-SERVICE-CONN) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated | v4.1.5 |
-| <a name="module_PROD-AFM-TLS-CERT-SERVICE-CONN"></a> [PROD-AFM-TLS-CERT-SERVICE-CONN](#module\_PROD-AFM-TLS-CERT-SERVICE-CONN) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated | v4.1.5 |
-| <a name="module_PROD-AZURERM-SERVICE-CONN"></a> [PROD-AZURERM-SERVICE-CONN](#module\_PROD-AZURERM-SERVICE-CONN) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated | v4.1.5 |
-| <a name="module_PROD-ECOMMERCE-TLS-CERT-SERVICE-CONN"></a> [PROD-ECOMMERCE-TLS-CERT-SERVICE-CONN](#module\_PROD-ECOMMERCE-TLS-CERT-SERVICE-CONN) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated | v4.1.5 |
-| <a name="module_PROD-KIBANA-TLS-CERT-SERVICE-CONN"></a> [PROD-KIBANA-TLS-CERT-SERVICE-CONN](#module\_PROD-KIBANA-TLS-CERT-SERVICE-CONN) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated | v4.1.5 |
-| <a name="module_PROD-SHARED-TLS-CERT-SERVICE-CONN"></a> [PROD-SHARED-TLS-CERT-SERVICE-CONN](#module\_PROD-SHARED-TLS-CERT-SERVICE-CONN) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated | v4.1.5 |
-| <a name="module_PROD-TLS-CERT-SERVICE-CONN"></a> [PROD-TLS-CERT-SERVICE-CONN](#module\_PROD-TLS-CERT-SERVICE-CONN) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated | v4.1.5 |
-| <a name="module_UAT-AFM-TLS-CERT-SERVICE-CONN"></a> [UAT-AFM-TLS-CERT-SERVICE-CONN](#module\_UAT-AFM-TLS-CERT-SERVICE-CONN) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated | v4.1.5 |
-| <a name="module_UAT-AZURERM-SERVICE-CONN"></a> [UAT-AZURERM-SERVICE-CONN](#module\_UAT-AZURERM-SERVICE-CONN) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated | v4.1.5 |
-| <a name="module_UAT-ECOMMERCE-TLS-CERT-SERVICE-CONN"></a> [UAT-ECOMMERCE-TLS-CERT-SERVICE-CONN](#module\_UAT-ECOMMERCE-TLS-CERT-SERVICE-CONN) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated | v4.1.5 |
-| <a name="module_UAT-KIBANA-TLS-CERT-SERVICE-CONN"></a> [UAT-KIBANA-TLS-CERT-SERVICE-CONN](#module\_UAT-KIBANA-TLS-CERT-SERVICE-CONN) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated | v4.1.5 |
-| <a name="module_UAT-SHARED-TLS-CERT-SERVICE-CONN"></a> [UAT-SHARED-TLS-CERT-SERVICE-CONN](#module\_UAT-SHARED-TLS-CERT-SERVICE-CONN) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated | v4.1.5 |
-| <a name="module_UAT-TLS-CERT-SERVICE-CONN"></a> [UAT-TLS-CERT-SERVICE-CONN](#module\_UAT-TLS-CERT-SERVICE-CONN) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated | v4.1.5 |
+| <a name="module_DEV-AFM-TLS-CERT-SERVICE-CONN"></a> [DEV-AFM-TLS-CERT-SERVICE-CONN](#module\_DEV-AFM-TLS-CERT-SERVICE-CONN) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated | v4.2.1 |
+| <a name="module_DEV-AZURERM-SERVICE-CONN"></a> [DEV-AZURERM-SERVICE-CONN](#module\_DEV-AZURERM-SERVICE-CONN) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated | v4.2.1 |
+| <a name="module_DEV-ECOMMERCE-TLS-CERT-SERVICE-CONN"></a> [DEV-ECOMMERCE-TLS-CERT-SERVICE-CONN](#module\_DEV-ECOMMERCE-TLS-CERT-SERVICE-CONN) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated | v4.2.1 |
+| <a name="module_DEV-KIBANA-TLS-CERT-SERVICE-CONN"></a> [DEV-KIBANA-TLS-CERT-SERVICE-CONN](#module\_DEV-KIBANA-TLS-CERT-SERVICE-CONN) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated | v4.2.1 |
+| <a name="module_DEV-SHARED-TLS-CERT-SERVICE-CONN"></a> [DEV-SHARED-TLS-CERT-SERVICE-CONN](#module\_DEV-SHARED-TLS-CERT-SERVICE-CONN) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated | v4.2.1 |
+| <a name="module_DEV-TLS-CERT-SERVICE-CONN"></a> [DEV-TLS-CERT-SERVICE-CONN](#module\_DEV-TLS-CERT-SERVICE-CONN) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated | v4.2.1 |
+| <a name="module_PROD-AFM-TLS-CERT-SERVICE-CONN"></a> [PROD-AFM-TLS-CERT-SERVICE-CONN](#module\_PROD-AFM-TLS-CERT-SERVICE-CONN) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated | v4.2.1 |
+| <a name="module_PROD-AZURERM-SERVICE-CONN"></a> [PROD-AZURERM-SERVICE-CONN](#module\_PROD-AZURERM-SERVICE-CONN) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated | v4.2.1 |
+| <a name="module_PROD-ECOMMERCE-TLS-CERT-SERVICE-CONN"></a> [PROD-ECOMMERCE-TLS-CERT-SERVICE-CONN](#module\_PROD-ECOMMERCE-TLS-CERT-SERVICE-CONN) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated | v4.2.1 |
+| <a name="module_PROD-KIBANA-TLS-CERT-SERVICE-CONN"></a> [PROD-KIBANA-TLS-CERT-SERVICE-CONN](#module\_PROD-KIBANA-TLS-CERT-SERVICE-CONN) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated | v4.2.1 |
+| <a name="module_PROD-SHARED-TLS-CERT-SERVICE-CONN"></a> [PROD-SHARED-TLS-CERT-SERVICE-CONN](#module\_PROD-SHARED-TLS-CERT-SERVICE-CONN) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated | v4.2.1 |
+| <a name="module_PROD-TLS-CERT-SERVICE-CONN"></a> [PROD-TLS-CERT-SERVICE-CONN](#module\_PROD-TLS-CERT-SERVICE-CONN) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated | v4.2.1 |
+| <a name="module_UAT-AFM-TLS-CERT-SERVICE-CONN"></a> [UAT-AFM-TLS-CERT-SERVICE-CONN](#module\_UAT-AFM-TLS-CERT-SERVICE-CONN) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated | v4.2.1 |
+| <a name="module_UAT-AZURERM-SERVICE-CONN"></a> [UAT-AZURERM-SERVICE-CONN](#module\_UAT-AZURERM-SERVICE-CONN) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated | v4.2.1 |
+| <a name="module_UAT-ECOMMERCE-TLS-CERT-SERVICE-CONN"></a> [UAT-ECOMMERCE-TLS-CERT-SERVICE-CONN](#module\_UAT-ECOMMERCE-TLS-CERT-SERVICE-CONN) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated | v4.2.1 |
+| <a name="module_UAT-KIBANA-TLS-CERT-SERVICE-CONN"></a> [UAT-KIBANA-TLS-CERT-SERVICE-CONN](#module\_UAT-KIBANA-TLS-CERT-SERVICE-CONN) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated | v4.2.1 |
+| <a name="module_UAT-SHARED-TLS-CERT-SERVICE-CONN"></a> [UAT-SHARED-TLS-CERT-SERVICE-CONN](#module\_UAT-SHARED-TLS-CERT-SERVICE-CONN) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated | v4.2.1 |
+| <a name="module_UAT-TLS-CERT-SERVICE-CONN"></a> [UAT-TLS-CERT-SERVICE-CONN](#module\_UAT-TLS-CERT-SERVICE-CONN) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated | v4.2.1 |
 | <a name="module_pagopa-afm-marketplace-fe_code_review"></a> [pagopa-afm-marketplace-fe\_code\_review](#module\_pagopa-afm-marketplace-fe\_code\_review) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review | v4.1.4 |
 | <a name="module_pagopa-afm-marketplace-fe_deploy"></a> [pagopa-afm-marketplace-fe\_deploy](#module\_pagopa-afm-marketplace-fe\_deploy) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy | v4.1.4 |
 | <a name="module_pagopa-api-config-fe_code_review"></a> [pagopa-api-config-fe\_code\_review](#module\_pagopa-api-config-fe\_code\_review) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review | v4.1.4 |
@@ -109,9 +109,6 @@
 | [azuredevops_environment.environments](https://registry.terraform.io/providers/microsoft/azuredevops/latest/docs/resources/environment) | resource |
 | [azuredevops_project.project](https://registry.terraform.io/providers/microsoft/azuredevops/latest/docs/resources/project) | resource |
 | [azuredevops_project_features.project_features](https://registry.terraform.io/providers/microsoft/azuredevops/latest/docs/resources/project_features) | resource |
-| [azuredevops_serviceendpoint_azurecr.acr_aks_dev](https://registry.terraform.io/providers/microsoft/azuredevops/latest/docs/resources/serviceendpoint_azurecr) | resource |
-| [azuredevops_serviceendpoint_azurecr.acr_aks_prod](https://registry.terraform.io/providers/microsoft/azuredevops/latest/docs/resources/serviceendpoint_azurecr) | resource |
-| [azuredevops_serviceendpoint_azurecr.acr_aks_uat](https://registry.terraform.io/providers/microsoft/azuredevops/latest/docs/resources/serviceendpoint_azurecr) | resource |
 | [azuredevops_serviceendpoint_azurecr.acr_docker_registry_dev](https://registry.terraform.io/providers/microsoft/azuredevops/latest/docs/resources/serviceendpoint_azurecr) | resource |
 | [azuredevops_serviceendpoint_azurecr.acr_docker_registry_prod](https://registry.terraform.io/providers/microsoft/azuredevops/latest/docs/resources/serviceendpoint_azurecr) | resource |
 | [azuredevops_serviceendpoint_azurecr.acr_docker_registry_uat](https://registry.terraform.io/providers/microsoft/azuredevops/latest/docs/resources/serviceendpoint_azurecr) | resource |
@@ -228,12 +225,6 @@
 |------|-------------|
 | <a name="output_service_endpoint_azure_dev_id"></a> [service\_endpoint\_azure\_dev\_id](#output\_service\_endpoint\_azure\_dev\_id) | n/a |
 | <a name="output_service_endpoint_azure_dev_name"></a> [service\_endpoint\_azure\_dev\_name](#output\_service\_endpoint\_azure\_dev\_name) | n/a |
-| <a name="output_service_endpoint_azure_devops_acr_aks_dev_id"></a> [service\_endpoint\_azure\_devops\_acr\_aks\_dev\_id](#output\_service\_endpoint\_azure\_devops\_acr\_aks\_dev\_id) | n/a |
-| <a name="output_service_endpoint_azure_devops_acr_aks_dev_name"></a> [service\_endpoint\_azure\_devops\_acr\_aks\_dev\_name](#output\_service\_endpoint\_azure\_devops\_acr\_aks\_dev\_name) | n/a |
-| <a name="output_service_endpoint_azure_devops_acr_aks_prod_id"></a> [service\_endpoint\_azure\_devops\_acr\_aks\_prod\_id](#output\_service\_endpoint\_azure\_devops\_acr\_aks\_prod\_id) | n/a |
-| <a name="output_service_endpoint_azure_devops_acr_aks_prod_name"></a> [service\_endpoint\_azure\_devops\_acr\_aks\_prod\_name](#output\_service\_endpoint\_azure\_devops\_acr\_aks\_prod\_name) | n/a |
-| <a name="output_service_endpoint_azure_devops_acr_aks_uat_id"></a> [service\_endpoint\_azure\_devops\_acr\_aks\_uat\_id](#output\_service\_endpoint\_azure\_devops\_acr\_aks\_uat\_id) | n/a |
-| <a name="output_service_endpoint_azure_devops_acr_aks_uat_name"></a> [service\_endpoint\_azure\_devops\_acr\_aks\_uat\_name](#output\_service\_endpoint\_azure\_devops\_acr\_aks\_uat\_name) | n/a |
 | <a name="output_service_endpoint_azure_devops_github_pr_id"></a> [service\_endpoint\_azure\_devops\_github\_pr\_id](#output\_service\_endpoint\_azure\_devops\_github\_pr\_id) | n/a |
 | <a name="output_service_endpoint_azure_devops_github_ro_id"></a> [service\_endpoint\_azure\_devops\_github\_ro\_id](#output\_service\_endpoint\_azure\_devops\_github\_ro\_id) | n/a |
 | <a name="output_service_endpoint_azure_devops_github_rw_id"></a> [service\_endpoint\_azure\_devops\_github\_rw\_id](#output\_service\_endpoint\_azure\_devops\_github\_rw\_id) | n/a |

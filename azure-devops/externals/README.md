@@ -12,9 +12,9 @@
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_DEV-EXTERNALS-TLS-CERT-SERVICE-CONN"></a> [DEV-EXTERNALS-TLS-CERT-SERVICE-CONN](#module\_DEV-EXTERNALS-TLS-CERT-SERVICE-CONN) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated | v4.1.5 |
-| <a name="module_PROD-EXTERNALS-TLS-CERT-SERVICE-CONN"></a> [PROD-EXTERNALS-TLS-CERT-SERVICE-CONN](#module\_PROD-EXTERNALS-TLS-CERT-SERVICE-CONN) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated | v4.1.5 |
-| <a name="module_UAT-EXTERNALS-TLS-CERT-SERVICE-CONN"></a> [UAT-EXTERNALS-TLS-CERT-SERVICE-CONN](#module\_UAT-EXTERNALS-TLS-CERT-SERVICE-CONN) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated | v4.1.5 |
+| <a name="module_DEV-EXTERNALS-TLS-CERT-SERVICE-CONN"></a> [DEV-EXTERNALS-TLS-CERT-SERVICE-CONN](#module\_DEV-EXTERNALS-TLS-CERT-SERVICE-CONN) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated | v4.2.1 |
+| <a name="module_PROD-EXTERNALS-TLS-CERT-SERVICE-CONN"></a> [PROD-EXTERNALS-TLS-CERT-SERVICE-CONN](#module\_PROD-EXTERNALS-TLS-CERT-SERVICE-CONN) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated | v4.2.1 |
+| <a name="module_UAT-EXTERNALS-TLS-CERT-SERVICE-CONN"></a> [UAT-EXTERNALS-TLS-CERT-SERVICE-CONN](#module\_UAT-EXTERNALS-TLS-CERT-SERVICE-CONN) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated | v4.2.1 |
 | <a name="module_pagopa-debt-position_dev_secrets"></a> [pagopa-debt-position\_dev\_secrets](#module\_pagopa-debt-position\_dev\_secrets) | git::https://github.com/pagopa/terraform-azurerm-v3.git//key_vault_secrets_query | v7.30.0 |
 | <a name="module_pagopa-debt-position_uat_secrets"></a> [pagopa-debt-position\_uat\_secrets](#module\_pagopa-debt-position\_uat\_secrets) | git::https://github.com/pagopa/terraform-azurerm-v3.git//key_vault_secrets_query | v7.30.0 |
 | <a name="module_pagopa-node-forwarder_dev_secrets"></a> [pagopa-node-forwarder\_dev\_secrets](#module\_pagopa-node-forwarder\_dev\_secrets) | git::https://github.com/pagopa/terraform-azurerm-v3.git//key_vault_secrets_query | v7.30.0 |
