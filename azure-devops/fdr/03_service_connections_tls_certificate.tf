@@ -54,7 +54,7 @@ module "UAT-FDR-TLS-CERT-SERVICE-CONN" {
   source     = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated?ref=v4.1.5"
 
   project_id          = data.azuredevops_project.project.id
-  name                = "${local.prefix}-u-${local.domain}-tls-cert"
+  name                = "${local.prefix}-u-${local.domain}-tls-cert-azdo"
   tenant_id           = data.azurerm_client_config.current.tenant_id
   subscription_name   = var.uat_subscription_name
   subscription_id     = data.azurerm_subscriptions.uat.subscriptions[0].subscription_id
@@ -97,7 +97,7 @@ module "PROD-FDR-TLS-CERT-SERVICE-CONN" {
   source     = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated?ref=v4.1.5"
 
   project_id          = data.azuredevops_project.project.id
-  name                = "${local.prefix}-p-${local.domain}-tls-cert"
+  name                = "${local.prefix}-p-${local.domain}-tls-cert-azdo"
   tenant_id           = data.azurerm_client_config.current.tenant_id
   subscription_name   = var.prod_subscription_name
   subscription_id     = data.azurerm_subscriptions.prod.subscriptions[0].subscription_id
