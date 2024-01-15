@@ -9,7 +9,7 @@ module "DEV-APPINSIGHTS-SERVICE-CONN" {
   }
 
   project_id        = data.azuredevops_project.project.id
-  name              = "${local.prefix}-d-${local.domain}-appinsights"
+  name              = "${local.prefix}-d-${local.domain}-appinsights-azdo"
   tenant_id         = data.azurerm_client_config.current.tenant_id
   subscription_id   = data.azurerm_subscriptions.dev.subscriptions[0].subscription_id
   subscription_name = var.dev_subscription_name
@@ -43,7 +43,7 @@ module "UAT-APPINSIGHTS-SERVICE-CONN" {
   }
 
   project_id        = data.azuredevops_project.project.id
-  name              = "${local.prefix}-u-${local.domain}-appinsights"
+  name              = "${local.prefix}-u-${local.domain}-appinsights-azdo"
   tenant_id         = data.azurerm_client_config.current.tenant_id
   subscription_id   = data.azurerm_subscriptions.uat.subscriptions[0].subscription_id
   subscription_name = var.uat_subscription_name
@@ -76,7 +76,7 @@ resource "azurerm_role_assignment" "appinsights_component_contributor_uat" {
 #   }
 #
 #   project_id = data.azuredevops_project.project.id
-#   name              = "${local.prefix}-p-${local.domain}-appinsights"
+#   name              = "${local.prefix}-p-${local.domain}-appinsights-azdo"
 #   tenant_id         = data.azurerm_client_config.current.tenant_id
 #   subscription_id   = data.azurerm_subscriptions.prod.subscriptions[0].subscription_id
 #   subscription_name = var.prod_subscription_name
