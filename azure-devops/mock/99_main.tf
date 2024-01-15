@@ -28,24 +28,3 @@ provider "azurerm" {
   alias           = "dev"
   subscription_id = data.azurerm_subscriptions.dev.subscriptions[0].subscription_id
 }
-
-#provider "azurerm" {
-#  features {
-#    key_vault {
-#      purge_soft_delete_on_destroy = false
-#    }
-#  }
-#  alias           = "uat"
-#  subscription_id = data.azurerm_subscriptions.uat.subscriptions[0].subscription_id
-#}
-
-data "terraform_remote_state" "app" {
-  backend = "azurerm"
-
-  config = {
-    resource_group_name  = var.terraform_remote_state_app.resource_group_name
-    storage_account_name = var.terraform_remote_state_app.storage_account_name
-    container_name       = var.terraform_remote_state_app.container_name
-    key                  = var.terraform_remote_state_app.key
-  }
-}

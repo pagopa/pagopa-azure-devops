@@ -87,15 +87,44 @@ variable "pipeline_environments" {
   description = "List of environments pipeline to create"
 }
 
-variable "terraform_remote_state_app" {
-  type = object({
-    resource_group_name  = string,
-    storage_account_name = string,
-    container_name       = string,
-    key                  = string
-  })
-}
 
 variable "location" {
   type = string
 }
+
+#
+# AZURERM
+#
+variable "service_connection_dev_azurerm_name" {
+  type        = string
+  description = "Azurerm service connection DEV name"
+}
+
+variable "service_connection_uat_azurerm_name" {
+  type        = string
+  description = "Azurerm service connection UAT name"
+}
+
+variable "service_connection_prod_azurerm_name" {
+  type        = string
+  description = "Azurerm service connection PROD name"
+}
+
+#
+# ACR
+#
+variable "service_connection_dev_acr_name" {
+  type        = string
+  description = "ACR service connection DEV name"
+}
+
+variable "service_connection_uat_acr_name" {
+  type        = string
+  description = "ACR service connection UAT name"
+}
+
+variable "service_connection_prod_acr_name" {
+  type        = string
+  description = "ACR service connection PROD name"
+}
+
