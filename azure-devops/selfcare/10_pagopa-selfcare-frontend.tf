@@ -46,7 +46,7 @@ locals {
   pagopa-selfcare-frontend-variables_deploy = {
     git_mail          = module.secrets.values["azure-devops-github-EMAIL"].value
     git_username      = module.secrets.values["azure-devops-github-USERNAME"].value
-    github_connection = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_rw_name
+    github_connection = data.azuredevops_serviceendpoint_github.github_rw.service_endpoint_name
 
     blob_container_name = "$web"
     # apim_basepath_selfcare_marketplace_be      = "selfcare-marketplace/api"
@@ -58,7 +58,7 @@ locals {
     dev_profile_name_cdn_azure          = "pagopa-d-selfcare-cdn-profile"
     dev_storage_account_name            = "pagopadselfcaresa"
     dev_resource_group_azure            = "pagopa-d-fe-rg"
-    dev_azure_subscription              = data.terraform_remote_state.app.outputs.service_endpoint_azure_dev_id
+    dev_azure_subscription              = data.azuredevops_serviceendpoint_azurerm.dev.id
     dev_react_app_url_fe_login          = "https://dev.selfcare.pagopa.it/auth"
     dev_react_app_url_fe_landing        = "https://dev.selfcare.pagopa.it/auth/logout"
     dev_react_app_url_fe_assistance     = "https://dev.selfcare.pagopa.it/assistenza"
@@ -79,7 +79,7 @@ locals {
     uat_profile_name_cdn_azure          = "pagopa-u-selfcare-cdn-profile"
     uat_storage_account_name            = "pagopauselfcaresa"
     uat_resource_group_azure            = "pagopa-u-fe-rg"
-    uat_azure_subscription              = data.terraform_remote_state.app.outputs.service_endpoint_azure_uat_id
+    uat_azure_subscription              = data.azuredevops_serviceendpoint_azurerm.uat.id
     uat_react_app_url_fe_login          = "https://uat.selfcare.pagopa.it/auth"
     uat_react_app_url_fe_landing        = "https://uat.selfcare.pagopa.it/auth/logout"
     uat_react_app_url_fe_assistance     = "https://uat.selfcare.pagopa.it/assistenza"
@@ -100,7 +100,7 @@ locals {
     prod_profile_name_cdn_azure          = "pagopa-p-selfcare-cdn-profile"
     prod_storage_account_name            = "pagopapselfcaresa"
     prod_resource_group_azure            = "pagopa-p-fe-rg"
-    prod_azure_subscription              = data.terraform_remote_state.app.outputs.service_endpoint_azure_prod_id
+    prod_azure_subscription              = data.azuredevops_serviceendpoint_azurerm.prod.id
     prod_react_app_url_fe_login          = "https://selfcare.pagopa.it/auth"
     prod_react_app_url_fe_landing        = "https://selfcare.pagopa.it/auth/logout"
     prod_react_app_url_fe_assistance     = "https://selfcare.pagopa.it/assistenza"
@@ -120,13 +120,13 @@ locals {
 }
 
 module "pagopa-selfcare-frontend_code_review" {
-  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review?ref=v4.1.5"
+  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review?ref=v4.2.1"
   count  = var.pagopa-selfcare-frontend.pipeline.enable_code_review == true ? 1 : 0
 
   project_id = data.azuredevops_project.project.id
   repository = var.pagopa-selfcare-frontend.repository
   # github_service_connection_id = data.azuredevops_serviceendpoint_github.azure-devops-github-pr.id
-  github_service_connection_id = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_pr_id
+  github_service_connection_id = data.azuredevops_serviceendpoint_github.github_pr.service_endpoint_id
   path                         = "${local.domain}\\pagopa-selfcare-backoffice-frontend"
 
   variables = merge(
@@ -141,18 +141,18 @@ module "pagopa-selfcare-frontend_code_review" {
 
   service_connection_ids_authorization = [
 
-    data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_ro_id,
+    data.azuredevops_serviceendpoint_github.github_ro.id,
     local.azuredevops_serviceendpoint_sonarcloud_id,
   ]
 }
 
 module "pagopa-selfcare-frontend_deploy" {
-  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy?ref=v4.1.5"
+  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy?ref=v4.2.1"
   count  = var.pagopa-selfcare-frontend.pipeline.enable_deploy == true ? 1 : 0
 
   project_id                   = data.azuredevops_project.project.id
   repository                   = var.pagopa-selfcare-frontend.repository
-  github_service_connection_id = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_pr_id
+  github_service_connection_id = data.azuredevops_serviceendpoint_github.github_pr.service_endpoint_id
   path                         = "${local.domain}\\pagopa-selfcare-backoffice-frontend"
 
   variables = merge(
@@ -166,9 +166,9 @@ module "pagopa-selfcare-frontend_deploy" {
   )
 
   service_connection_ids_authorization = [
-    data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_ro_id,
-    data.terraform_remote_state.app.outputs.service_endpoint_azure_dev_id,
-    data.terraform_remote_state.app.outputs.service_endpoint_azure_uat_id,
-    data.terraform_remote_state.app.outputs.service_endpoint_azure_prod_id,
+    data.azuredevops_serviceendpoint_github.github_ro.id,
+    data.azuredevops_serviceendpoint_azurerm.dev.id,
+    data.azuredevops_serviceendpoint_azurerm.uat.id,
+    data.azuredevops_serviceendpoint_azurerm.prod.id,
   ]
 }
