@@ -49,11 +49,11 @@ locals {
 
     # acr section
     k8s_image_repository_name            = replace(var.pagopa-aca-service.repository.name, "-", "")
-    dev_container_registry_service_conn  = data.azuredevops_serviceendpoint_azurecr.dev.project_id
+    dev_container_registry_service_conn  = data.azuredevops_serviceendpoint_azurecr.dev.id
     dev_container_registry_name          = data.azuredevops_serviceendpoint_azurecr.dev.service_endpoint_name
-    uat_container_registry_service_conn  = data.azuredevops_serviceendpoint_azurecr.uat.project_id
+    uat_container_registry_service_conn  = data.azuredevops_serviceendpoint_azurecr.uat.id
     uat_container_registry_name          = data.azuredevops_serviceendpoint_azurecr.uat.service_endpoint_name
-    prod_container_registry_service_conn = data.azuredevops_serviceendpoint_azurecr.prod.project_id
+    prod_container_registry_service_conn = data.azuredevops_serviceendpoint_azurecr.prod.id
     prod_container_registry_name         = data.azuredevops_serviceendpoint_azurecr.prod.service_endpoint_name
 
     # aks section
@@ -77,12 +77,12 @@ locals {
 }
 
 module "pagopa-aca-service_code_review" {
-  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review?ref=v4.1.5"
+  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review?ref=v4.2.1"
   count  = var.pagopa-aca-service.pipeline.enable_code_review == true ? 1 : 0
 
   project_id                   = data.azuredevops_project.project.id
   repository                   = var.pagopa-aca-service.repository
-  github_service_connection_id = data.azuredevops_serviceendpoint_github.github_pr.service_endpoint_id
+  github_service_connection_id = data.azuredevops_serviceendpoint_github.github_pr.id
   path                         = "${local.domain}\\pagopa-aca-service"
 
   variables = merge(
@@ -96,18 +96,18 @@ module "pagopa-aca-service_code_review" {
   )
 
   service_connection_ids_authorization = [
-    data.azuredevops_serviceendpoint_github.github_ro.service_endpoint_id,
+    data.azuredevops_serviceendpoint_github.github_ro.id,
     local.azuredevops_serviceendpoint_sonarcloud_id
   ]
 }
 
 module "pagopa-aca-service_deploy" {
-  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy?ref=v4.1.5"
+  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy?ref=v4.2.1"
   count  = var.pagopa-aca-service.pipeline.enable_deploy == true ? 1 : 0
 
   project_id                   = data.azuredevops_project.project.id
   repository                   = var.pagopa-aca-service.repository
-  github_service_connection_id = data.azuredevops_serviceendpoint_github.github_rw.service_endpoint_id
+  github_service_connection_id = data.azuredevops_serviceendpoint_github.github_rw.id
   path                         = "${local.domain}\\pagopa-aca-service"
 
   variables = merge(
@@ -121,13 +121,13 @@ module "pagopa-aca-service_deploy" {
   )
 
   service_connection_ids_authorization = [
-    data.azuredevops_serviceendpoint_github.github_ro.service_endpoint_id,
-    data.azuredevops_serviceendpoint_azurecr.dev.project_id,
-    data.azuredevops_serviceendpoint_azurecr.uat.project_id,
-    data.azuredevops_serviceendpoint_azurecr.prod.project_id,
-    data.azuredevops_serviceendpoint_azurerm.dev.project_id,
-    data.azuredevops_serviceendpoint_azurerm.uat.project_id,
-    data.azuredevops_serviceendpoint_azurerm.prod.project_id,
+    data.azuredevops_serviceendpoint_github.github_ro.id,
+    data.azuredevops_serviceendpoint_azurerm.dev.id,
+    data.azuredevops_serviceendpoint_azurerm.uat.id,
+    data.azuredevops_serviceendpoint_azurerm.prod.id,
+    data.azuredevops_serviceendpoint_azurecr.dev.id,
+    data.azuredevops_serviceendpoint_azurecr.uat.id,
+    data.azuredevops_serviceendpoint_azurecr.prod.id,
   ]
 }
 
