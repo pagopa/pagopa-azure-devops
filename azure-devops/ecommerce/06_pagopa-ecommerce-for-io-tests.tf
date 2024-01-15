@@ -36,11 +36,11 @@ locals {
 }
 
 module "pagopa-api-tests-ecommerce-for-io" {
-  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_generic?ref=v4.1.5"
+  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_generic?ref=v4.2.1"
 
   project_id                   = data.azuredevops_project.project.id
   repository                   = var.pagopa-ecommerce-api-tests.repository
-  github_service_connection_id = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_ro_id
+  github_service_connection_id = data.azuredevops_serviceendpoint_github.github_ro.id
   path                         = "${local.domain}\\pagopa-ecommerce-tests"
   pipeline_name                = var.pagopa-ecommerce-api-tests.pipeline.name
   pipeline_yml_filename        = var.pagopa-ecommerce-api-tests.repository.pipeline_yml_filename
@@ -56,6 +56,6 @@ module "pagopa-api-tests-ecommerce-for-io" {
   )
 
   service_connection_ids_authorization = [
-    data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_ro_id,
+    data.azuredevops_serviceendpoint_github.github_ro.id,
   ]
 }
