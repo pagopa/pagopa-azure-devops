@@ -32,7 +32,7 @@ resource "azurerm_key_vault_access_policy" "DEV-NODO-TLS-CERT-SERVICE-CONN_kv_ac
 
 # create let's encrypt credential used to create SSL certificates
 module "letsencrypt_dev" {
-  source = "git::https://github.com/pagopa/azurerm.git//letsencrypt_credential?ref=v2.18.0"
+  source = "git::https://github.com/pagopa/terraform-azurerm-v3.git//letsencrypt_credential?ref=v7.30.0"
 
   providers = {
     azurerm = azurerm.dev
@@ -76,7 +76,7 @@ resource "azurerm_key_vault_access_policy" "UAT-NODO-TLS-CERT-SERVICE-CONN_kv_ac
 
 # create let's encrypt credential used to create SSL certificates
 module "letsencrypt_uat" {
-  source = "git::https://github.com/pagopa/azurerm.git//letsencrypt_credential?ref=v2.18.0"
+  source = "git::https://github.com/pagopa/terraform-azurerm-v3.git//letsencrypt_credential?ref=v7.30.0"
 
   providers = {
     azurerm = azurerm.uat
@@ -120,7 +120,7 @@ resource "azurerm_key_vault_access_policy" "PROD-NODO-TLS-CERT-SERVICE-CONN_kv_a
 
 # create let's encrypt credential used to create SSL certificates
 module "letsencrypt_prod" {
-  source = "git::https://github.com/pagopa/azurerm.git//letsencrypt_credential?ref=v2.18.0"
+  source = "git::https://github.com/pagopa/terraform-azurerm-v3.git//letsencrypt_credential?ref=v7.30.0"
 
   providers = {
     azurerm = azurerm.prod
