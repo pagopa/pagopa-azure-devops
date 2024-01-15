@@ -3,7 +3,7 @@ terraform {
   required_providers {
     azuredevops = {
       source  = "microsoft/azuredevops"
-      version = "<= 0.10.0"
+      version = "<= 0.11.0"
     }
     azurerm = {
       version = "<= 3.85.0"
@@ -47,15 +47,4 @@ provider "azurerm" {
   }
   alias           = "prod"
   subscription_id = data.azurerm_subscriptions.prod.subscriptions[0].subscription_id
-}
-
-data "terraform_remote_state" "app" {
-  backend = "azurerm"
-
-  config = {
-    resource_group_name  = var.terraform_remote_state_app.resource_group_name
-    storage_account_name = var.terraform_remote_state_app.storage_account_name
-    container_name       = var.terraform_remote_state_app.container_name
-    key                  = var.terraform_remote_state_app.key
-  }
 }
