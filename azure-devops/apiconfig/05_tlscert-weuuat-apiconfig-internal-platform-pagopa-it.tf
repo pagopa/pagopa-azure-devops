@@ -43,13 +43,13 @@ module "tlscert-weuuat-apiconfig-internal-uat-platform-pagopa-it-cert_az" {
     azurerm = azurerm.uat
   }
 
-  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_tls_cert_federated?ref=v4.1.5"
+  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_tls_cert_federated?ref=v4.2.1"
   count  = var.tlscert-weuuat-apiconfig-internal-uat-platform-pagopa-it.pipeline.enable_tls_cert == true ? 1 : 0
 
   project_id                   = data.azuredevops_project.project.id
   repository                   = var.tlscert-weuuat-apiconfig-internal-uat-platform-pagopa-it.repository
   path                         = var.tlscert-weuuat-apiconfig-internal-uat-platform-pagopa-it.pipeline.path
-  github_service_connection_id = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_rw_id
+  github_service_connection_id = data.azuredevops_serviceendpoint_github.github_rw.service_endpoint_id
 
   dns_record_name         = var.tlscert-weuuat-apiconfig-internal-uat-platform-pagopa-it.pipeline.dns_record_name
   dns_zone_name           = var.tlscert-weuuat-apiconfig-internal-uat-platform-pagopa-it.pipeline.dns_zone_name
