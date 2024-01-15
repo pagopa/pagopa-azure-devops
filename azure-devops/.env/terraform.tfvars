@@ -13,9 +13,10 @@ aks_dev_platform_name  = "pagopa-d-weu-dev-aks"
 aks_uat_platform_name  = "pagopa-u-weu-uat-aks"
 aks_prod_platform_name = "pagopa-p-weu-prod-aks"
 
-terraform_remote_state_app = {
-  resource_group_name  = "io-infra-rg"
-  storage_account_name = "pagopainfraterraformprod"
-  container_name       = "azuredevopsstate"
-  key                  = "app-projects.terraform.tfstate"
-}
+service_connection_dev_azurerm_name  = "PAGOPA-D-CORE-AZDO-AZURERM-SERVICE-CONN"
+service_connection_uat_azurerm_name  = "PAGOPA-U-CORE-AZDO-AZURERM-SERVICE-CONN"
+service_connection_prod_azurerm_name = "PAGOPA-P-CORE-AZDO-AZURERM-SERVICE-CONN"
+
+service_connection_dev_acr_name = "pagopa-aks-cr-dev"
+service_connection_uat_acr_name = "pagopa-aks-cr-uat"
+service_connection_prod_acr_name = "pagopa-aks-cr-prod"
