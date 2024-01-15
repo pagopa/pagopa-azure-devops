@@ -39,17 +39,17 @@ locals {
   }
 
   pagopa-nodo-re-to-datastore-variables_deploy = {
-    dev_azure_subscription  = data.terraform_remote_state.app.outputs.service_endpoint_azure_dev_name
-    uat_azure_subscription  = data.terraform_remote_state.app.outputs.service_endpoint_azure_uat_name
-    prod_azure_subscription = data.terraform_remote_state.app.outputs.service_endpoint_azure_prod_name
+    dev_azure_subscription  = data.azuredevops_serviceendpoint_azurerm.dev.service_endpoint_name
+    uat_azure_subscription  = data.azuredevops_serviceendpoint_azurerm.uat.service_endpoint_name
+    prod_azure_subscription = data.azuredevops_serviceendpoint_azurerm.prod.service_endpoint_name
 
     git_email         = module.secrets.values["azure-devops-github-EMAIL"].value
     git_username      = module.secrets.values["azure-devops-github-USERNAME"].value
-    github_connection = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_rw_name
+    github_connection = data.azuredevops_serviceendpoint_github.github_rw.service_endpoint_name
 
-    dev_container_registry_service_conn  = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_dev_id
-    uat_container_registry_service_conn  = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_uat_id
-    prod_container_registry_service_conn = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_prod_id
+    dev_container_registry_service_conn  = data.azuredevops_serviceendpoint_azurecr.dev.id
+    uat_container_registry_service_conn  = data.azuredevops_serviceendpoint_azurecr.uat.id
+    prod_container_registry_service_conn = data.azuredevops_serviceendpoint_azurecr.prod.id
 
     image_repository_name = replace(var.pagopa-nodo-re-to-datastore.repository.name, "-", "")
 
@@ -63,12 +63,12 @@ locals {
 }
 
 module "pagopa-nodo-re-to-datastore_deploy" {
-  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy?ref=v4.1.5"
+  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy?ref=v4.2.1"
   count  = var.pagopa-nodo-re-to-datastore.pipeline.enable_deploy == true ? 1 : 0
 
   project_id                   = data.azuredevops_project.project.id
   repository                   = var.pagopa-nodo-re-to-datastore.repository
-  github_service_connection_id = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_rw_id
+  github_service_connection_id = data.azuredevops_serviceendpoint_github.github_rw.service_endpoint_id
   path                         = "${local.domain}\\pagopa-nodo-re-to-datastore-service"
 
   variables = merge(
@@ -82,13 +82,13 @@ module "pagopa-nodo-re-to-datastore_deploy" {
   )
 
   service_connection_ids_authorization = [
-    data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_ro_id,
-    data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_dev_id,
-    data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_uat_id,
-    data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_prod_id,
-    data.terraform_remote_state.app.outputs.service_endpoint_azure_dev_id,
-    data.terraform_remote_state.app.outputs.service_endpoint_azure_uat_id,
-    data.terraform_remote_state.app.outputs.service_endpoint_azure_prod_id,
+    data.azuredevops_serviceendpoint_github.github_ro.id,
+    data.azuredevops_serviceendpoint_azurecr.dev.id,
+    data.azuredevops_serviceendpoint_azurecr.uat.id,
+    data.azuredevops_serviceendpoint_azurecr.prod.id,
+    data.azuredevops_serviceendpoint_azurerm.dev.id,
+    data.azuredevops_serviceendpoint_azurerm.uat.id,
+    data.azuredevops_serviceendpoint_azurerm.prod.id,
     module.DEV-APPINSIGHTS-SERVICE-CONN.service_endpoint_id,
     module.UAT-APPINSIGHTS-SERVICE-CONN.service_endpoint_id,
     module.PROD-APPINSIGHTS-SERVICE-CONN.service_endpoint_id

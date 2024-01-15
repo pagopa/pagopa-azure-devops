@@ -29,14 +29,14 @@ locals {
   pagopa-mock-ec-service-variables_deploy = {
     git_email         = module.secrets.values["azure-devops-github-EMAIL"].value
     git_username      = module.secrets.values["azure-devops-github-USERNAME"].value
-    github_connection = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_rw_name
+    github_connection = data.azuredevops_serviceendpoint_github.github_rw.service_endpoint_name
     tenant_id         = data.azurerm_client_config.current.tenant_id
 
     # acr section
     image_repository_name = replace(var.pagopa-mock-ec-service.repository.name, "-", "")
     repository            = replace(var.pagopa-mock-ec-service.repository.name, "-", "")
 
-    dev_container_registry_service_conn = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_dev_id
+    dev_container_registry_service_conn = data.azuredevops_serviceendpoint_azurecr.dev.id
 
     # aks section
     k8s_namespace               = "nodo"
@@ -57,12 +57,12 @@ locals {
 
 
 module "pagopa-mock-ec-service_deploy" {
-  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy?ref=v4.1.5"
+  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy?ref=v4.2.1"
   count  = var.pagopa-mock-ec-service.pipeline.enable_deploy == true ? 1 : 0
 
   project_id                   = data.azuredevops_project.project.id
   repository                   = var.pagopa-mock-ec-service.repository
-  github_service_connection_id = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_rw_id
+  github_service_connection_id = data.azuredevops_serviceendpoint_github.github_rw.service_endpoint_id
   path                         = "${local.domain}\\pagopa-mock-ec-service"
 
   variables = merge(
@@ -76,9 +76,9 @@ module "pagopa-mock-ec-service_deploy" {
   )
 
   service_connection_ids_authorization = [
-    data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_ro_id,
-    data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_dev_id,
-    data.terraform_remote_state.app.outputs.service_endpoint_azure_dev_id,
+    data.azuredevops_serviceendpoint_github.github_ro.id,
+    data.azuredevops_serviceendpoint_azurecr.dev.id,
+    data.azuredevops_serviceendpoint_azurerm.dev.id,
     module.DEV-APPINSIGHTS-SERVICE-CONN.service_endpoint_id
   ]
 }
