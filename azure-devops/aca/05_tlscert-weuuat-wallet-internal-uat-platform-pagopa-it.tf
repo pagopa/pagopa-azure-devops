@@ -49,7 +49,7 @@ module "tlscert-weuuat-aca-internal-uat-platform-pagopa-it-cert_az" {
   project_id                   = data.azuredevops_project.project.id
   repository                   = var.tlscert-weuuat-aca-internal-uat-platform-pagopa-it.repository
   path                         = var.tlscert-weuuat-aca-internal-uat-platform-pagopa-it.pipeline.path
-  github_service_connection_id = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_ro_id
+  github_service_connection_id = data.azuredevops_serviceendpoint_github.github_ro.service_endpoint_id
 
   dns_record_name         = var.tlscert-weuuat-aca-internal-uat-platform-pagopa-it.pipeline.dns_record_name
   dns_zone_name           = var.tlscert-weuuat-aca-internal-uat-platform-pagopa-it.pipeline.dns_zone_name

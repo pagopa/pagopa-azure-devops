@@ -45,16 +45,16 @@ locals {
   }
   # deploy vars
   pagopa-aca-service-variables_deploy = {
-    github_connection = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_rw_name
+    github_connection = data.azuredevops_serviceendpoint_github.github_rw.service_endpoint_name
 
     # acr section
     k8s_image_repository_name            = replace(var.pagopa-aca-service.repository.name, "-", "")
-    dev_container_registry_service_conn  = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_dev_id
-    dev_container_registry_name          = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_dev_name
-    uat_container_registry_service_conn  = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_uat_id
-    uat_container_registry_name          = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_uat_name
-    prod_container_registry_service_conn = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_prod_id
-    prod_container_registry_name         = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_prod_name
+    dev_container_registry_service_conn  = data.azuredevops_serviceendpoint_azurecr.dev.project_id
+    dev_container_registry_name          = data.azuredevops_serviceendpoint_azurecr.dev.service_endpoint_name
+    uat_container_registry_service_conn  = data.azuredevops_serviceendpoint_azurecr.uat.project_id
+    uat_container_registry_name          = data.azuredevops_serviceendpoint_azurecr.uat.service_endpoint_name
+    prod_container_registry_service_conn = data.azuredevops_serviceendpoint_azurecr.prod.project_id
+    prod_container_registry_name         = data.azuredevops_serviceendpoint_azurecr.prod.service_endpoint_name
 
     # aks section
     dev_kubernetes_service_conn  = azuredevops_serviceendpoint_kubernetes.aks_dev.id
@@ -82,7 +82,7 @@ module "pagopa-aca-service_code_review" {
 
   project_id                   = data.azuredevops_project.project.id
   repository                   = var.pagopa-aca-service.repository
-  github_service_connection_id = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_pr_id
+  github_service_connection_id = data.azuredevops_serviceendpoint_github.github_pr.service_endpoint_id
   path                         = "${local.domain}\\pagopa-aca-service"
 
   variables = merge(
@@ -96,7 +96,7 @@ module "pagopa-aca-service_code_review" {
   )
 
   service_connection_ids_authorization = [
-    data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_ro_id,
+    data.azuredevops_serviceendpoint_github.github_ro.service_endpoint_id,
     local.azuredevops_serviceendpoint_sonarcloud_id
   ]
 }
@@ -107,7 +107,7 @@ module "pagopa-aca-service_deploy" {
 
   project_id                   = data.azuredevops_project.project.id
   repository                   = var.pagopa-aca-service.repository
-  github_service_connection_id = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_rw_id
+  github_service_connection_id = data.azuredevops_serviceendpoint_github.github_rw.service_endpoint_id
   path                         = "${local.domain}\\pagopa-aca-service"
 
   variables = merge(
@@ -121,13 +121,13 @@ module "pagopa-aca-service_deploy" {
   )
 
   service_connection_ids_authorization = [
-    data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_ro_id,
-    data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_dev_id,
-    data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_uat_id,
-    data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_prod_id,
-    data.terraform_remote_state.app.outputs.service_endpoint_azure_dev_id,
-    data.terraform_remote_state.app.outputs.service_endpoint_azure_uat_id,
-    data.terraform_remote_state.app.outputs.service_endpoint_azure_prod_id,
+    data.azuredevops_serviceendpoint_github.github_ro.service_endpoint_id,
+    data.azuredevops_serviceendpoint_azurecr.dev.project_id,
+    data.azuredevops_serviceendpoint_azurecr.uat.project_id,
+    data.azuredevops_serviceendpoint_azurecr.prod.project_id,
+    data.azuredevops_serviceendpoint_azurerm.dev.project_id,
+    data.azuredevops_serviceendpoint_azurerm.uat.project_id,
+    data.azuredevops_serviceendpoint_azurerm.prod.project_id,
   ]
 }
 

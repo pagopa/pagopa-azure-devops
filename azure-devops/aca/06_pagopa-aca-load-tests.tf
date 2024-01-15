@@ -43,7 +43,7 @@ module "pagopa-aca-tests_soak" {
 
   project_id                   = data.azuredevops_project.project.id
   repository                   = var.pagopa-aca-tests.repository
-  github_service_connection_id = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_ro_id
+  github_service_connection_id = data.azuredevops_serviceendpoint_github.github_ro.service_endpoint_id
   path                         = "${local.domain}\\pagopa-aca-tests"
   pipeline_name                = var.pagopa-aca-tests.pipeline.name
   pipeline_yml_filename        = var.pagopa-aca-tests.repository.pipeline_yml_filename
@@ -59,6 +59,6 @@ module "pagopa-aca-tests_soak" {
   )
 
   service_connection_ids_authorization = [
-    data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_ro_id,
+    data.azuredevops_serviceendpoint_github.github_ro.service_endpoint_id,
   ]
 }
