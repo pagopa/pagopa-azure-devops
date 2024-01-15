@@ -41,7 +41,7 @@ locals {
     sonarcloud_project_key  = var.pagopa-gpd-reporting-batch.pipeline.sonarcloud.project_key
     sonarcloud_project_name = var.pagopa-gpd-reporting-batch.pipeline.sonarcloud.project_name
 
-    dev_container_registry_service_conn = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_dev_id
+    dev_container_registry_service_conn = data.azuredevops_serviceendpoint_azurecr.dev.id
   }
   # code_review secrets
   pagopa-gpd-reporting-batch-variables_secret_code_review = {
@@ -53,18 +53,18 @@ locals {
   pagopa-gpd-reporting-batch-variables_deploy = {
     git_mail          = module.secrets.values["azure-devops-github-EMAIL"].value
     git_username      = module.secrets.values["azure-devops-github-USERNAME"].value
-    github_connection = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_rw_name
+    github_connection = data.azuredevops_serviceendpoint_github.github_rw.service_endpoint_name
     tenant_id         = data.azurerm_client_config.current.tenant_id
 
-    dev_azure_subscription  = data.terraform_remote_state.app.outputs.service_endpoint_azure_dev_name
-    uat_azure_subscription  = data.terraform_remote_state.app.outputs.service_endpoint_azure_uat_name
-    prod_azure_subscription = data.terraform_remote_state.app.outputs.service_endpoint_azure_prod_name
+    dev_azure_subscription  = data.azuredevops_serviceendpoint_azurerm.dev.service_endpoint_name
+    uat_azure_subscription  = data.azuredevops_serviceendpoint_azurerm.uat.service_endpoint_name
+    prod_azure_subscription = data.azuredevops_serviceendpoint_azurerm.prod.service_endpoint_name
 
     # acr section
     image_repository_name                = replace(var.pagopa-gpd-reporting-batch.repository.name, "-", "")
-    dev_container_registry_service_conn  = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_dev_id
-    uat_container_registry_service_conn  = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_uat_id
-    prod_container_registry_service_conn = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_prod_id
+    dev_container_registry_service_conn  = data.azuredevops_serviceendpoint_azurecr.dev.id
+    uat_container_registry_service_conn  = data.azuredevops_serviceendpoint_azurecr.uat.id
+    prod_container_registry_service_conn = data.azuredevops_serviceendpoint_azurecr.prod.id
 
     dev_container_namespace  = "pagopadcommonacr.azurecr.io"
     uat_container_namespace  = "pagopaucommonacr.azurecr.io"
@@ -86,12 +86,12 @@ locals {
 }
 
 module "pagopa-gpd-reporting-batch_code_review" {
-  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review?ref=v4.1.5"
+  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review?ref=v4.2.1"
   count  = var.pagopa-gpd-reporting-batch.pipeline.enable_code_review == true ? 1 : 0
 
   project_id                   = data.azuredevops_project.project.id
   repository                   = var.pagopa-gpd-reporting-batch.repository
-  github_service_connection_id = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_pr_id
+  github_service_connection_id = data.azuredevops_serviceendpoint_github.github_pr.service_endpoint_id
   path                         = "${local.domain}\\pagopa-gpd-reporting-batch-service"
 
 
@@ -106,7 +106,7 @@ module "pagopa-gpd-reporting-batch_code_review" {
   )
 
   service_connection_ids_authorization = [
-    data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_ro_id,
+    data.azuredevops_serviceendpoint_github.github_ro.id,
     local.azuredevops_serviceendpoint_sonarcloud_id
   ]
 }
