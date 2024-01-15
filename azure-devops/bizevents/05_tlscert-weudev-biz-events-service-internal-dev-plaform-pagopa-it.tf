@@ -77,7 +77,7 @@ module "tlscert-weudev-biz-events-service-internal-dev-platform-pagopa-it-cert_a
   ]
 
   schedules = {
-    days_to_build              = ["Mon"]
+    days_to_build              = ["Fri"]
     schedule_only_with_changes = false
     start_hours                = 3
     start_minutes              = 5

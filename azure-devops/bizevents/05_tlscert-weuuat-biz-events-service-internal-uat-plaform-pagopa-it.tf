@@ -77,7 +77,7 @@ module "tlscert-weuuat-biz-events-service-internal-uat-platform-pagopa-it-cert_a
   ]
 
   schedules = {
-    days_to_build              = ["Mon"]
+    days_to_build              = ["Fri"]
     schedule_only_with_changes = false
     start_hours                = 3
     start_minutes              = 5
