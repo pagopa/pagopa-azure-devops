@@ -3,6 +3,16 @@ locals {
   azure_devops_org = "pagopaspa"
   domain           = "aca"
 
+  dev_subscription_name  = "dev-pagopa"
+  uat_subscription_name  = "uat-pagopa"
+  prod_subscription_name = "prod-pagopa"
+
+  dev_identity_rg_name   = "pagopa-d-identity-rg"
+  uat_identity_rg_name   = "pagopa-u-identity-rg"
+  prod_identity_rg_name  = "pagopa-p-identity-rg"
+
+  location               = "westeurope"
+
   # 🔐 KV
   dev_key_vault_azdo_name  = "${local.prefix}-d-azdo-weu-kv"
   uat_key_vault_azdo_name  = "${local.prefix}-u-azdo-weu-kv"
