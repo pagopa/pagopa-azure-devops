@@ -13,9 +13,9 @@ aks_dev_platform_name  = "pagopa-d-weu-dev-aks"
 aks_uat_platform_name  = "pagopa-u-weu-uat-aks"
 aks_prod_platform_name = "pagopa-p-weu-prod-aks"
 
-service_connection_dev_azurerm_name  = "PAGOPA-CORE-D-AZDO-AZURERM-SERVICE-CONN"
-service_connection_uat_azurerm_name  = "PAGOPA-CORE-U-AZDO-AZURERM-SERVICE-CONN"
-service_connection_prod_azurerm_name = "PAGOPA-CORE-P-AZDO-AZURERM-SERVICE-CONN"
+service_connection_dev_azurerm_name  = "DEV-PAGOPA-SERVICE-CONN"
+service_connection_uat_azurerm_name  = "UAT-PAGOPA-SERVICE-CONN"
+service_connection_prod_azurerm_name = "PROD-PAGOPA-SERVICE-CONN"
 
 service_connection_dev_acr_name  = "pagopa-azurecr-dev"
 service_connection_uat_acr_name  = "pagopa-azurecr-uat"
