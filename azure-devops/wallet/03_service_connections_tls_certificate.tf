@@ -8,10 +8,10 @@ module "DEV-WALLET-TLS-CERT-SERVICE-CONN" {
   }
 
   depends_on = [data.azuredevops_project.project]
-  source     = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated?ref=v4.1.5"
+  source     = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated?ref=v4.2.1"
 
   project_id        = data.azuredevops_project.project.id
-  name              = "${local.prefix}-d-${local.domain}-tls-cert"
+  name              = "${local.prefix}-${local.domain}-d-tls-cert-azdo"
   tenant_id         = data.azurerm_client_config.current.tenant_id
   subscription_name = var.dev_subscription_name
   subscription_id   = data.azurerm_subscriptions.dev.subscriptions[0].subscription_id
@@ -31,7 +31,7 @@ resource "azurerm_key_vault_access_policy" "DEV-WALLET-TLS-CERT-SERVICE-CONN_kv_
 
 # create let's encrypt credential used to create SSL certificates
 module "letsencrypt_dev" {
-  source = "git::https://github.com/pagopa/azurerm.git//letsencrypt_credential?ref=v3.12.0"
+  source = "git::https://github.com/pagopa/terraform-azurerm-v3.git//letsencrypt_credential?ref=v7.30.0"
 
   providers = {
     azurerm = azurerm.dev
@@ -51,10 +51,10 @@ module "UAT-WALLET-TLS-CERT-SERVICE-CONN" {
   }
 
   depends_on = [data.azuredevops_project.project]
-  source     = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated?ref=v4.1.5"
+  source     = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated?ref=v4.2.1"
 
   project_id        = data.azuredevops_project.project.id
-  name              = "${local.prefix}-u-${local.domain}-tls-cert"
+  name              = "${local.prefix}-${local.domain}-u-tls-cert-azdo"
   tenant_id         = data.azurerm_client_config.current.tenant_id
   subscription_name = var.uat_subscription_name
   subscription_id   = data.azurerm_subscriptions.uat.subscriptions[0].subscription_id
@@ -74,7 +74,7 @@ resource "azurerm_key_vault_access_policy" "UAT-WALLET-TLS-CERT-SERVICE-CONN_kv_
 
 # create let's encrypt credential used to create SSL certificates
 module "letsencrypt_uat" {
-  source = "git::https://github.com/pagopa/azurerm.git//letsencrypt_credential?ref=v2.18.0"
+  source = "git::https://github.com/pagopa/terraform-azurerm-v3.git//letsencrypt_credential?ref=v7.30.0"
 
   providers = {
     azurerm = azurerm.uat

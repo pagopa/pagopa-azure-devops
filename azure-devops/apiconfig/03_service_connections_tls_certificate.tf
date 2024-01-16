@@ -8,10 +8,10 @@ module "DEV-APICONFIG-TLS-CERT-SERVICE-CONN" {
   }
 
   depends_on = [data.azuredevops_project.project]
-  source     = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated?ref=v4.1.5"
+  source     = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated?ref=v4.2.1"
 
   project_id          = data.azuredevops_project.project.id
-  name                = "${local.prefix}-d-${local.domain}-tls-cert"
+  name                = "${local.prefix}-${local.domain}-d-tls-cert-azdo"
   tenant_id           = data.azurerm_client_config.current.tenant_id
   subscription_name   = var.dev_subscription_name
   subscription_id     = data.azurerm_subscriptions.dev.subscriptions[0].subscription_id
@@ -50,10 +50,10 @@ module "UAT-APICONFIG-TLS-CERT-SERVICE-CONN" {
   }
 
   depends_on = [data.azuredevops_project.project]
-  source     = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated?ref=v4.1.5"
+  source     = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated?ref=v4.2.1"
 
   project_id          = data.azuredevops_project.project.id
-  name                = "${local.prefix}-u-${local.domain}-tls-cert"
+  name                = "${local.prefix}-${local.domain}-u-tls-cert-azdo"
   tenant_id           = data.azurerm_client_config.current.tenant_id
   subscription_name   = var.uat_subscription_name
   subscription_id     = data.azurerm_subscriptions.uat.subscriptions[0].subscription_id
@@ -93,10 +93,10 @@ module "PROD-APICONFIG-TLS-CERT-SERVICE-CONN" {
   }
 
   depends_on = [data.azuredevops_project.project]
-  source     = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated?ref=v4.1.5"
+  source     = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated?ref=v4.2.1"
 
   project_id        = data.azuredevops_project.project.id
-  name              = "${local.prefix}-p-${local.domain}-tls-cert"
+  name              = "${local.prefix}-${local.domain}-p-tls-cert-azdo"
   tenant_id         = data.azurerm_client_config.current.tenant_id
   subscription_name = var.prod_subscription_name
   subscription_id   = data.azurerm_subscriptions.prod.subscriptions[0].subscription_id

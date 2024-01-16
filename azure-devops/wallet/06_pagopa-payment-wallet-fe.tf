@@ -45,10 +45,10 @@ locals {
   }
   # deploy vars
   pagopa-payment-wallet-fe-variables_deploy = {
-    github_connection       = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_rw_name
-    dev_azure_subscription  = data.terraform_remote_state.app.outputs.service_endpoint_azure_dev_name
-    uat_azure_subscription  = data.terraform_remote_state.app.outputs.service_endpoint_azure_uat_name
-    prod_azure_subscription = data.terraform_remote_state.app.outputs.service_endpoint_azure_prod_name
+    github_connection       = data.azuredevops_serviceendpoint_github.github_rw.service_endpoint_name
+    dev_azure_subscription  = data.azuredevops_serviceendpoint_azurerm.dev.service_endpoint_name
+    uat_azure_subscription  = data.azuredevops_serviceendpoint_azurerm.uat.service_endpoint_name
+    prod_azure_subscription = data.azuredevops_serviceendpoint_azurerm.prod.service_endpoint_name
     cache_version_id        = "v1"
     api_host_dev            = "https://api.dev.platform.pagopa.it"
     api_host_uat            = "https://api.uat.platform.pagopa.it"
@@ -62,11 +62,11 @@ locals {
 }
 
 module "pagopa-payment-wallet-fe_code_review" {
-  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review?ref=v4.1.5"
+  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review?ref=v4.2.1"
 
   project_id                   = data.azuredevops_project.project.id
   repository                   = var.pagopa-payment-wallet-fe.repository
-  github_service_connection_id = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_pr_id
+  github_service_connection_id = data.azuredevops_serviceendpoint_github.github_pr.service_endpoint_id
 
   path = "${local.domain}\\pagopa-payment-wallet-fe"
 
@@ -81,17 +81,17 @@ module "pagopa-payment-wallet-fe_code_review" {
   )
 
   service_connection_ids_authorization = [
-    data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_ro_id,
+    data.azuredevops_serviceendpoint_github.github_ro.id,
     local.azuredevops_serviceendpoint_sonarcloud_id
   ]
 }
 
 module "pagopa-payment-wallet-fe_deploy" {
-  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy?ref=v4.1.5"
+  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy?ref=v4.2.1"
 
   project_id                   = data.azuredevops_project.project.id
   repository                   = var.pagopa-payment-wallet-fe.repository
-  github_service_connection_id = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_rw_id
+  github_service_connection_id = data.azuredevops_serviceendpoint_github.github_rw.service_endpoint_id
 
   path = "${local.domain}\\pagopa-payment-wallet-fe"
 
@@ -106,9 +106,9 @@ module "pagopa-payment-wallet-fe_deploy" {
   )
 
   service_connection_ids_authorization = [
-    data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_ro_id,
-    data.terraform_remote_state.app.outputs.service_endpoint_azure_dev_id,
-    data.terraform_remote_state.app.outputs.service_endpoint_azure_uat_id,
-    #data.terraform_remote_state.app.outputs.service_endpoint_azure_prod_id,
+    data.azuredevops_serviceendpoint_github.github_ro.id,
+    data.azuredevops_serviceendpoint_azurerm.dev.id,
+    data.azuredevops_serviceendpoint_azurerm.uat.id,
+    #data.azuredevops_serviceendpoint_azurerm.prod.id,
   ]
 }

@@ -39,12 +39,12 @@ locals {
 }
 
 module "pagopa-debt-position_performance_test" {
-  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_generic?ref=v4.1.5"
+  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_generic?ref=v4.2.1"
   count  = var.pagopa-debt-position.pipeline.performance_test.enabled == true ? 1 : 0
 
   project_id                   = data.azuredevops_project.project.id
   repository                   = var.pagopa-debt-position.repository
-  github_service_connection_id = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_rw_id
+  github_service_connection_id = data.azuredevops_serviceendpoint_github.github_rw.service_endpoint_id
   path                         = "${local.domain}\\pagopa-gpd-core"
   pipeline_name                = var.pagopa-debt-position.pipeline.performance_test.name
   pipeline_yml_filename        = var.pagopa-debt-position.pipeline.performance_test.pipeline_yml_filename
@@ -60,6 +60,6 @@ module "pagopa-debt-position_performance_test" {
   )
 
   service_connection_ids_authorization = [
-    data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_ro_id,
+    data.azuredevops_serviceendpoint_github.github_ro.id,
   ]
 }

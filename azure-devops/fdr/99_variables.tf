@@ -1,37 +1,3 @@
-variable "dev_subscription_name" {
-  type        = string
-  description = "DEV Subscription name"
-}
-
-variable "uat_subscription_name" {
-  type        = string
-  description = "UAT Subscription name"
-}
-
-variable "prod_subscription_name" {
-  type        = string
-  description = "PROD Subscription name"
-}
-
-variable "project_name" {
-  type        = string
-  description = "Project name (e.g. pagoPA platform)"
-}
-
-variable "pipeline_environments" {
-  type        = list(any)
-  description = "List of environments pipeline to create"
-}
-
-variable "terraform_remote_state_app" {
-  type = object({
-    resource_group_name  = string,
-    storage_account_name = string,
-    container_name       = string,
-    key                  = string
-  })
-}
-
 locals {
   prefix           = "pagopa"
   azure_devops_org = "pagopaspa"
@@ -102,3 +68,66 @@ locals {
   uat_appinsights_resource_group  = "${local.prefix}-u-monitor-rg"
   prod_appinsights_resource_group = "${local.prefix}-p-monitor-rg"
 }
+
+
+variable "dev_subscription_name" {
+  type        = string
+  description = "DEV Subscription name"
+}
+
+variable "uat_subscription_name" {
+  type        = string
+  description = "UAT Subscription name"
+}
+
+variable "prod_subscription_name" {
+  type        = string
+  description = "PROD Subscription name"
+}
+
+variable "project_name" {
+  type        = string
+  description = "Project name (e.g. pagoPA platform)"
+}
+
+variable "pipeline_environments" {
+  type        = list(any)
+  description = "List of environments pipeline to create"
+}
+
+#
+# AZURERM
+#
+variable "service_connection_dev_azurerm_name" {
+  type        = string
+  description = "Azurerm service connection DEV name"
+}
+
+variable "service_connection_uat_azurerm_name" {
+  type        = string
+  description = "Azurerm service connection UAT name"
+}
+
+variable "service_connection_prod_azurerm_name" {
+  type        = string
+  description = "Azurerm service connection PROD name"
+}
+
+#
+# ACR
+#
+variable "service_connection_dev_acr_name" {
+  type        = string
+  description = "ACR service connection DEV name"
+}
+
+variable "service_connection_uat_acr_name" {
+  type        = string
+  description = "ACR service connection UAT name"
+}
+
+variable "service_connection_prod_acr_name" {
+  type        = string
+  description = "ACR service connection PROD name"
+}
+

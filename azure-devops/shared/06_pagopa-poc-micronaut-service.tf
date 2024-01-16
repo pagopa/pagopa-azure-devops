@@ -42,7 +42,7 @@ locals {
     sonarcloud_project_key  = var.pagopa-poc-micronaut.pipeline.sonarcloud.project_key
     sonarcloud_project_name = var.pagopa-poc-micronaut.pipeline.sonarcloud.project_name
 
-    dev_container_registry = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_dev_id
+    dev_container_registry = data.azuredevops_serviceendpoint_azurecr.dev.id
   }
   # code_review secrets
   pagopa-poc-micronaut-variables_secret_code_review = {
@@ -51,12 +51,12 @@ locals {
   pagopa-poc-micronaut-variables_deploy = {
     git_mail          = module.secrets.values["azure-devops-github-EMAIL"].value
     git_username      = module.secrets.values["azure-devops-github-USERNAME"].value
-    github_connection = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_rw_name
+    github_connection = data.azuredevops_serviceendpoint_github.github_rw.service_endpoint_name
     tenant_id         = data.azurerm_client_config.current.tenant_id
 
     # acr section
     image_repository       = replace(var.pagopa-poc-micronaut.repository.name, "-", "")
-    dev_container_registry = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_dev_id
+    dev_container_registry = data.azuredevops_serviceendpoint_azurecr.dev.id
 
     # aks section
     k8s_namespace               = "shared"
@@ -74,12 +74,12 @@ locals {
 }
 
 module "pagopa-poc-micronaut_code_review" {
-  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review?ref=v4.1.5"
+  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review?ref=v4.2.1"
   count  = var.pagopa-poc-micronaut.pipeline.enable_code_review == true ? 1 : 0
 
   project_id                   = data.azuredevops_project.project.id
   repository                   = var.pagopa-poc-micronaut.repository
-  github_service_connection_id = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_pr_id
+  github_service_connection_id = data.azuredevops_serviceendpoint_github.github_pr.service_endpoint_id
   path                         = "${local.domain}\\pagopa-poc-micronaut"
 
   variables = merge(
@@ -93,18 +93,18 @@ module "pagopa-poc-micronaut_code_review" {
   )
 
   service_connection_ids_authorization = [
-    data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_ro_id,
+    data.azuredevops_serviceendpoint_github.github_ro.id,
     local.azuredevops_serviceendpoint_sonarcloud_id
   ]
 }
 
 module "pagopa-poc-micronaut_deploy" {
-  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy?ref=v4.1.5"
+  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy?ref=v4.2.1"
   count  = var.pagopa-poc-micronaut.pipeline.enable_deploy == true ? 1 : 0
 
   project_id                   = data.azuredevops_project.project.id
   repository                   = var.pagopa-poc-micronaut.repository
-  github_service_connection_id = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_rw_id
+  github_service_connection_id = data.azuredevops_serviceendpoint_github.github_rw.service_endpoint_id
   path                         = "${local.domain}\\pagopa-poc-micronaut"
 
   variables = merge(
@@ -118,20 +118,20 @@ module "pagopa-poc-micronaut_deploy" {
   )
 
   service_connection_ids_authorization = [
-    data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_ro_id,
-    data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_acr_aks_dev_id,
-    data.terraform_remote_state.app.outputs.service_endpoint_azure_dev_id,
+    data.azuredevops_serviceendpoint_github.github_ro.id,
+    data.azuredevops_serviceendpoint_azurecr.dev.id,
+    data.azuredevops_serviceendpoint_azurerm.dev.id,
     module.DEV-APPINSIGHTS-SERVICE-CONN.service_endpoint_id
   ]
 }
 
 module "pagopa-poc-micronaut_performance_test" {
-  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_generic?ref=v4.1.5"
+  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_generic?ref=v4.2.1"
   count  = var.pagopa-poc-micronaut.pipeline.performance_test.enabled == true ? 1 : 0
 
   project_id                   = data.azuredevops_project.project.id
   repository                   = var.pagopa-poc-micronaut.repository
-  github_service_connection_id = data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_ro_id
+  github_service_connection_id = data.azuredevops_serviceendpoint_github.github_ro.id
   path                         = "${local.domain}\\pagopa-poc-micronaut"
   pipeline_name                = var.pagopa-poc-micronaut.pipeline.performance_test.name
   pipeline_yml_filename        = var.pagopa-poc-micronaut.pipeline.performance_test.pipeline_yml_filename
@@ -147,6 +147,6 @@ module "pagopa-poc-micronaut_performance_test" {
   )
 
   service_connection_ids_authorization = [
-    data.terraform_remote_state.app.outputs.service_endpoint_azure_devops_github_ro_id,
+    data.azuredevops_serviceendpoint_github.github_ro.id,
   ]
 }

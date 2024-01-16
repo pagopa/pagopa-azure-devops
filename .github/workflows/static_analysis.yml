@@ -2,56 +2,15 @@ name: Static Analysis
 
 on:
   push:
-    branches-ignore:
+    branches:
       - main
 
 jobs:
   static_analysis:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
 
     steps:
-      - uses: actions/checkout@v2
-
-      - name: init_terraform_folders
-        env:
-          FOLDERS: >
-            azure-devops/afm
-            azure-devops/apiconfig
-            azure-devops/app
-            azure-devops/bizevents
-            azure-devops/ecommerce
-            azure-devops/gps
-            azure-devops/iac
-            azure-devops/selfcare
-            azure-devops/shared
-        run: |
-          pids=()
-
-          TAG=$(cat .terraform-version)
-          for f in $FOLDERS; do
-            pushd "$(pwd)/${f}"
-              sed -i -e 's/  backend "azurerm" {}//g' 99_main.tf # use local backend
-              docker run -v $(pwd):/tmp -w /tmp hashicorp/terraform:$TAG init &
-              pids+=($!)
-            popd
-
-          done
-
-          # Wait for each specific process to terminate.
-          # Instead of this loop, a single call to 'wait' would wait for all the jobs
-          # to terminate, but it would not give us their exit status.
-          #
-          for pid in "${pids[@]}"; do
-            #
-            # Waiting on a specific PID makes the wait command return with the exit
-            # status of that process. Because of the 'set -e' setting, any exit status
-            # other than zero causes the current shell to terminate with that exit
-            # status as well.
-            #
-            wait "$pid"
-          done
-
-      - name: run_pre_commit_terraform
-        run: |
-          TAG=v1.71.0
-          docker run -v $(pwd):/lint -w /lint ghcr.io/antonbabenko/pre-commit-terraform:$TAG run -a
+      - name: Static Analysis
+        uses: pagopa/eng-github-actions-iac-template/azure/terraform-static-analysis@59c12b7a846423d62c27c9905686a7a1fd71c003 # v1.7.0
+        with:
+          precommit_version: 'v1.86.0@sha256:a1ffb8fff155934c1937580eeab8b3f68726485cd54025d2f911b0c21a9becba'

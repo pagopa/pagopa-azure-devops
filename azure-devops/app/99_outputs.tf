@@ -1,22 +1,22 @@
-output "service_endpoint_azure_devops_acr_aks_dev_id" {
-  value = azuredevops_serviceendpoint_azurecr.acr_aks_dev.id
-}
-output "service_endpoint_azure_devops_acr_aks_uat_id" {
-  value = azuredevops_serviceendpoint_azurecr.acr_aks_uat.id
-}
-output "service_endpoint_azure_devops_acr_aks_prod_id" {
-  value = azuredevops_serviceendpoint_azurecr.acr_aks_prod.id
-}
+# output "service_endpoint_azure_devops_acr_aks_dev_id" {
+#   value = azuredevops_serviceendpoint_azurecr.acr_aks_dev.id
+# }
+# output "service_endpoint_azure_devops_acr_aks_uat_id" {
+#   value = azuredevops_serviceendpoint_azurecr.acr_aks_uat.id
+# }
+# output "service_endpoint_azure_devops_acr_aks_prod_id" {
+#   value = azuredevops_serviceendpoint_azurecr.acr_aks_prod.id
+# }
 
-output "service_endpoint_azure_devops_acr_aks_dev_name" {
-  value = azuredevops_serviceendpoint_azurecr.acr_aks_dev.service_endpoint_name
-}
-output "service_endpoint_azure_devops_acr_aks_uat_name" {
-  value = azuredevops_serviceendpoint_azurecr.acr_aks_uat.service_endpoint_name
-}
-output "service_endpoint_azure_devops_acr_aks_prod_name" {
-  value = azuredevops_serviceendpoint_azurecr.acr_aks_prod.service_endpoint_name
-}
+# output "service_endpoint_azure_devops_acr_aks_dev_name" {
+#   value = azuredevops_serviceendpoint_azurecr.acr_aks_dev.service_endpoint_name
+# }
+# output "service_endpoint_azure_devops_acr_aks_uat_name" {
+#   value = azuredevops_serviceendpoint_azurecr.acr_aks_uat.service_endpoint_name
+# }
+# output "service_endpoint_azure_devops_acr_aks_prod_name" {
+#   value = azuredevops_serviceendpoint_azurecr.acr_aks_prod.service_endpoint_name
+# }
 
 output "service_endpoint_azure_devops_github_rw_name" {
   value = azuredevops_serviceendpoint_github.azure-devops-github-rw.service_endpoint_name

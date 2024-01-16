@@ -49,7 +49,7 @@ provider "registry.terraform.io/hashicorp/time" {
 
 provider "registry.terraform.io/microsoft/azuredevops" {
   version     = "0.10.0"
-  constraints = "~> 0.10.0"
+  constraints = ">= 0.10.0, ~> 0.10.0, <= 0.12.0"
   hashes = [
     "h1:GazdScTk4i4y9aIsvsO7GYkHYPYJBfaddaU+VlkLnZg=",
     "h1:GwFmEDohB4JeBGMMvSOdSw7SHxh1xZqQUfko7eaW+l4=",
