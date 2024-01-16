@@ -5,29 +5,36 @@ on:
     branches-ignore:
       - main
 
+inputs:
+  precommit_version:
+    required: false
+    description: Version of pre-commit-terraform release
+    default: 'v1.83.5@sha256:fed35dd9347aa3dd3e59a870dbc4500245dae26910d84065a6f66fe61afceaa8'
+
 jobs:
   static_analysis:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - name: ⚡ Checkout code
+        uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
 
-      - name: init_terraform_folders
-        env:
-          FOLDERS: >
-            azure-devops/afm
-            azure-devops/apiconfig
-            azure-devops/app
-            azure-devops/bizevents
-            azure-devops/ecommerce
-            azure-devops/gps
-            azure-devops/iac
-            azure-devops/selfcare
-            azure-devops/shared
+      - name: 🏁 Init terraform folders
+        id: init_terraform_folders
+        shell: bash
         run: |
+          echo -e "\n+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-"
+          echo    "+ 🏁 INIT TERRAFORM FOLDERS 🏁 +"
+          echo -e "+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-\n"
+
+          FOLDERS=$(grep -rl --include='*.tf' --exclude-dir='.terraform' '^' . | xargs -I{} dirname {} | sort -u)
+          echo "FOLDERS=${FOLDERS}"
+
           pids=()
 
           TAG=$(cat .terraform-version)
+          docker pull hashicorp/terraform:$TAG
+
           for f in $FOLDERS; do
             pushd "$(pwd)/${f}"
               sed -i -e 's/  backend "azurerm" {}//g' 99_main.tf # use local backend
@@ -51,7 +58,23 @@ jobs:
             wait "$pid"
           done
 
-      - name: run_pre_commit_terraform
+      - name: Show precommit version
+        shell: bash
         run: |
-          TAG=v1.71.0
+          echo -e "\n+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+"
+          echo    "+ 1️⃣  SHOW PRECOMMIT VERSION 1️⃣  +"
+          echo -e "+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+\n"
+
+          TAG=${{ inputs.precommit_version }}
+          docker run --rm --entrypoint cat ghcr.io/antonbabenko/pre-commit-terraform:$TAG /usr/bin/tools_versions_info
+
+      - name: 🚨 Run precommit
+        id: run_precommit
+        shell: bash
+        run: |
+          echo -e "\n+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+"
+          echo    "+- 🚨 PRECOMMIT TERRAFORM 🚨 -+"
+          echo -e "+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+\n"
+
+          TAG=${{ inputs.precommit_version }}
           docker run -v $(pwd):/lint -w /lint ghcr.io/antonbabenko/pre-commit-terraform:$TAG run -a
