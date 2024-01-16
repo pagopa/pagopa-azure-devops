@@ -43,7 +43,7 @@ module "tlscert-weudev-aca-internal-dev-platform-pagopa-it-cert_az" {
     azurerm = azurerm.dev
   }
 
-  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_tls_cert_federated?ref=v4.2.1"
+  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_tls_cert_federated?ref=v5.0.0"
   count  = var.tlscert-weudev-aca-internal-dev-platform-pagopa-it.pipeline.enable_tls_cert == true ? 1 : 0
 
   project_id                   = data.azuredevops_project.project.id
@@ -60,6 +60,7 @@ module "tlscert-weudev-aca-internal-dev-platform-pagopa-it-cert_az" {
   location                            = local.location
   credential_key_vault_name           = local.dev_aca_key_vault_name
   credential_key_vault_resource_group = local.dev_aca_key_vault_resource_group
+  managed_identity_resource_group_name = local.dev_identity_rg_name
 
   variables = merge(
     var.tlscert-weudev-aca-internal-dev-platform-pagopa-it.pipeline.variables,

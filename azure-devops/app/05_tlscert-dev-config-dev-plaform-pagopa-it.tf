@@ -43,7 +43,7 @@ module "tlscert-dev-config-dev-platform-pagopa-it-cert_az" {
     azurerm = azurerm.dev
   }
 
-  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_tls_cert_federated?ref=v4.1.4"
+  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_tls_cert_federated?ref=v5.0.0"
   count  = var.tlscert-dev-config-dev-platform-pagopa-it.pipeline.enable_tls_cert == true ? 1 : 0
 
   project_id = azuredevops_project.project.id
@@ -58,6 +58,8 @@ module "tlscert-dev-config-dev-platform-pagopa-it-cert_az" {
   tenant_id               = local.tlscert-dev-config-dev-platform-pagopa-it.tenant_id
   subscription_name       = local.tlscert-dev-config-dev-platform-pagopa-it.subscription_name
   subscription_id         = local.tlscert-dev-config-dev-platform-pagopa-it.subscription_id
+    managed_identity_resource_group_name = local.dev_identity_rg_name
+
 
   location                            = var.location
   credential_key_vault_name           = local.dev_key_vault_name
