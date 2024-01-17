@@ -57,6 +57,8 @@ module "tlscert-weudev-kibana-internal-dev-platform-pagopa-it-cert_az" {
   tenant_id               = local.tlscert-weudev-kibana-internal-dev-platform-pagopa-it.tenant_id
   subscription_name       = local.tlscert-weudev-kibana-internal-dev-platform-pagopa-it.subscription_name
   subscription_id         = local.tlscert-weudev-kibana-internal-dev-platform-pagopa-it.subscription_id
+      managed_identity_resource_group_name = local.dev_identity_rg_name
+
 
   location                            = var.location
   credential_key_vault_name           = local.dev_kibana_key_vault_name
