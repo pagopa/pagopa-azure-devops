@@ -31,10 +31,10 @@ locals {
 
   # performance vars
   pagopa-receipt-pdf-generator-variables_performance_test = {
-    TF_DEV_AZURE_SERVICE_CONNECTION = data.azuredevops_serviceendpoint_azurerm.DEV-AZURERM-SERVICE-CONN.service_endpoint_name
+    TF_DEV_AZURE_SERVICE_CONNECTION = data.azuredevops_serviceendpoint_azurerm.dev.service_endpoint_name
     # TF_DEV_AZURE_SERVICE_CONNECTION        = data.azurerm_subscriptions.dev.subscriptions[0].subscription_id
 
-    TF_UAT_AZURE_SERVICE_CONNECTION = data.azuredevops_serviceendpoint_azurerm.UAT-AZURERM-SERVICE-CONN.service_endpoint_name
+    TF_UAT_AZURE_SERVICE_CONNECTION = data.azuredevops_serviceendpoint_azurerm.uat.service_endpoint_name
     # TF_UAT_AZURE_SERVICE_CONNECTION        = data.azurerm_subscriptions.uat.subscriptions[0].subscription_id
   }
 
@@ -73,7 +73,7 @@ module "pagopa-receipt-pdf-generator_performance_test" {
 
   service_connection_ids_authorization = [
     data.azuredevops_serviceendpoint_github.github_ro.id,
-    data.azuredevops_serviceendpoint_azurerm.DEV-AZURERM-SERVICE-CONN.service_endpoint_id,
-    data.azuredevops_serviceendpoint_azurerm.UAT-AZURERM-SERVICE-CONN.service_endpoint_id,
+    data.azuredevops_serviceendpoint_azurerm.dev.service_endpoint_id,
+    data.azuredevops_serviceendpoint_azurerm.uat.service_endpoint_id,
   ]
 }

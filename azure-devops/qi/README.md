@@ -25,9 +25,9 @@
 | <a name="module_qi_prod_secrets"></a> [qi\_prod\_secrets](#module\_qi\_prod\_secrets) | git::https://github.com/pagopa/terraform-azurerm-v3.git//key_vault_secrets_query | v7.30.0 |
 | <a name="module_qi_uat_secrets"></a> [qi\_uat\_secrets](#module\_qi\_uat\_secrets) | git::https://github.com/pagopa/terraform-azurerm-v3.git//key_vault_secrets_query | v7.30.0 |
 | <a name="module_secrets"></a> [secrets](#module\_secrets) | git::https://github.com/pagopa/terraform-azurerm-v3.git//key_vault_secrets_query | v7.30.0 |
-| <a name="module_tlscert-weudev-qi-internal-dev-platform-pagopa-it-cert_az"></a> [tlscert-weudev-qi-internal-dev-platform-pagopa-it-cert\_az](#module\_tlscert-weudev-qi-internal-dev-platform-pagopa-it-cert\_az) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_tls_cert_federated | v4.2.1 |
-| <a name="module_tlscert-weuprod-qi-internal-prod-platform-pagopa-it-cert_az"></a> [tlscert-weuprod-qi-internal-prod-platform-pagopa-it-cert\_az](#module\_tlscert-weuprod-qi-internal-prod-platform-pagopa-it-cert\_az) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_tls_cert_federated | v4.2.1 |
-| <a name="module_tlscert-weuuat-qi-internal-uat-platform-pagopa-it-cert_az"></a> [tlscert-weuuat-qi-internal-uat-platform-pagopa-it-cert\_az](#module\_tlscert-weuuat-qi-internal-uat-platform-pagopa-it-cert\_az) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_tls_cert_federated | v4.2.1 |
+| <a name="module_tlscert-weudev-qi-internal-dev-platform-pagopa-it-cert_az"></a> [tlscert-weudev-qi-internal-dev-platform-pagopa-it-cert\_az](#module\_tlscert-weudev-qi-internal-dev-platform-pagopa-it-cert\_az) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_tls_cert_federated | v5.0.0 |
+| <a name="module_tlscert-weuprod-qi-internal-prod-platform-pagopa-it-cert_az"></a> [tlscert-weuprod-qi-internal-prod-platform-pagopa-it-cert\_az](#module\_tlscert-weuprod-qi-internal-prod-platform-pagopa-it-cert\_az) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_tls_cert_federated | v5.0.0 |
+| <a name="module_tlscert-weuuat-qi-internal-uat-platform-pagopa-it-cert_az"></a> [tlscert-weuuat-qi-internal-uat-platform-pagopa-it-cert\_az](#module\_tlscert-weuuat-qi-internal-uat-platform-pagopa-it-cert\_az) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_tls_cert_federated | v5.0.0 |
 
 ## Resources
 

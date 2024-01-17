@@ -146,3 +146,21 @@ variable "pipeline_environments" {
   type        = list(any)
   description = "List of environments pipeline to create"
 }
+
+#
+# AZURERM
+#
+variable "service_connection_dev_azurerm_name" {
+  type        = string
+  description = "Azurerm service connection DEV name"
+}
+
+variable "service_connection_uat_azurerm_name" {
+  type        = string
+  description = "Azurerm service connection UAT name"
+}
+
+variable "service_connection_prod_azurerm_name" {
+  type        = string
+  description = "Azurerm service connection PROD name"
+}

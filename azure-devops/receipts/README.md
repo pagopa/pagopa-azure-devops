@@ -32,9 +32,9 @@
 | <a name="module_receipts_prod_secrets"></a> [receipts\_prod\_secrets](#module\_receipts\_prod\_secrets) | git::https://github.com/pagopa/terraform-azurerm-v3.git//key_vault_secrets_query | v7.30.0 |
 | <a name="module_receipts_uat_secrets"></a> [receipts\_uat\_secrets](#module\_receipts\_uat\_secrets) | git::https://github.com/pagopa/terraform-azurerm-v3.git//key_vault_secrets_query | v7.30.0 |
 | <a name="module_secrets"></a> [secrets](#module\_secrets) | git::https://github.com/pagopa/terraform-azurerm-v3.git//key_vault_secrets_query | v7.30.0 |
-| <a name="module_tlscert-weudev-receipts-internal-dev-platform-pagopa-it-cert_az"></a> [tlscert-weudev-receipts-internal-dev-platform-pagopa-it-cert\_az](#module\_tlscert-weudev-receipts-internal-dev-platform-pagopa-it-cert\_az) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_tls_cert_federated | v4.2.1 |
-| <a name="module_tlscert-weuprod-receipts-internal-prod-platform-pagopa-it-cert_az"></a> [tlscert-weuprod-receipts-internal-prod-platform-pagopa-it-cert\_az](#module\_tlscert-weuprod-receipts-internal-prod-platform-pagopa-it-cert\_az) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_tls_cert_federated | v4.2.1 |
-| <a name="module_tlscert-weuuat-receipts-internal-uat-platform-pagopa-it-cert_az"></a> [tlscert-weuuat-receipts-internal-uat-platform-pagopa-it-cert\_az](#module\_tlscert-weuuat-receipts-internal-uat-platform-pagopa-it-cert\_az) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_tls_cert_federated | v4.2.1 |
+| <a name="module_tlscert-weudev-receipts-internal-dev-platform-pagopa-it-cert_az"></a> [tlscert-weudev-receipts-internal-dev-platform-pagopa-it-cert\_az](#module\_tlscert-weudev-receipts-internal-dev-platform-pagopa-it-cert\_az) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_tls_cert_federated | v5.0.0 |
+| <a name="module_tlscert-weuprod-receipts-internal-prod-platform-pagopa-it-cert_az"></a> [tlscert-weuprod-receipts-internal-prod-platform-pagopa-it-cert\_az](#module\_tlscert-weuprod-receipts-internal-prod-platform-pagopa-it-cert\_az) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_tls_cert_federated | v5.0.0 |
+| <a name="module_tlscert-weuuat-receipts-internal-uat-platform-pagopa-it-cert_az"></a> [tlscert-weuuat-receipts-internal-uat-platform-pagopa-it-cert\_az](#module\_tlscert-weuuat-receipts-internal-uat-platform-pagopa-it-cert\_az) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_tls_cert_federated | v5.0.0 |
 
 ## Resources
 
@@ -54,8 +54,6 @@
 | [azuredevops_serviceendpoint_azurecr.dev](https://registry.terraform.io/providers/microsoft/azuredevops/latest/docs/data-sources/serviceendpoint_azurecr) | data source |
 | [azuredevops_serviceendpoint_azurecr.prod](https://registry.terraform.io/providers/microsoft/azuredevops/latest/docs/data-sources/serviceendpoint_azurecr) | data source |
 | [azuredevops_serviceendpoint_azurecr.uat](https://registry.terraform.io/providers/microsoft/azuredevops/latest/docs/data-sources/serviceendpoint_azurecr) | data source |
-| [azuredevops_serviceendpoint_azurerm.DEV-AZURERM-SERVICE-CONN](https://registry.terraform.io/providers/microsoft/azuredevops/latest/docs/data-sources/serviceendpoint_azurerm) | data source |
-| [azuredevops_serviceendpoint_azurerm.UAT-AZURERM-SERVICE-CONN](https://registry.terraform.io/providers/microsoft/azuredevops/latest/docs/data-sources/serviceendpoint_azurerm) | data source |
 | [azuredevops_serviceendpoint_azurerm.dev](https://registry.terraform.io/providers/microsoft/azuredevops/latest/docs/data-sources/serviceendpoint_azurerm) | data source |
 | [azuredevops_serviceendpoint_azurerm.prod](https://registry.terraform.io/providers/microsoft/azuredevops/latest/docs/data-sources/serviceendpoint_azurerm) | data source |
 | [azuredevops_serviceendpoint_azurerm.uat](https://registry.terraform.io/providers/microsoft/azuredevops/latest/docs/data-sources/serviceendpoint_azurerm) | data source |

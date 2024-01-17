@@ -20,7 +20,7 @@
 | <a name="module_letsencrypt_dev"></a> [letsencrypt\_dev](#module\_letsencrypt\_dev) | git::https://github.com/pagopa/terraform-azurerm-v3.git//letsencrypt_credential | v7.30.0 |
 | <a name="module_mock_dev_secrets"></a> [mock\_dev\_secrets](#module\_mock\_dev\_secrets) | git::https://github.com/pagopa/terraform-azurerm-v3.git//key_vault_secrets_query | v7.30.0 |
 | <a name="module_secrets"></a> [secrets](#module\_secrets) | git::https://github.com/pagopa/terraform-azurerm-v3.git//key_vault_secrets_query | v7.30.0 |
-| <a name="module_tlscert-weudev-mock-internal-dev-platform-pagopa-it-cert_az"></a> [tlscert-weudev-mock-internal-dev-platform-pagopa-it-cert\_az](#module\_tlscert-weudev-mock-internal-dev-platform-pagopa-it-cert\_az) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_tls_cert_federated | v4.2.1 |
+| <a name="module_tlscert-weudev-mock-internal-dev-platform-pagopa-it-cert_az"></a> [tlscert-weudev-mock-internal-dev-platform-pagopa-it-cert\_az](#module\_tlscert-weudev-mock-internal-dev-platform-pagopa-it-cert\_az) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_tls_cert_federated | v5.0.0 |
 
 ## Resources
 
