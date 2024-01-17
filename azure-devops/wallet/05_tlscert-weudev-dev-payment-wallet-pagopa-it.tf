@@ -79,7 +79,7 @@ module "tlscert-dev-payment-wallet-pagopa-it-cert_az" {
   ]
 
   schedules = {
-    days_to_build              = ["Thu"]
+    days_to_build              = ["Fri"]
     schedule_only_with_changes = false
     start_hours                = 8
     start_minutes              = 0
