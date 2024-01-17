@@ -57,6 +57,7 @@ module "tlscert-uat-uat-wisp2-gov-pagopa-it-cert_az" {
   tenant_id               = local.tlscert-uat-uat-wisp2-gov-pagopa-it.tenant_id
   subscription_name       = local.tlscert-uat-uat-wisp2-gov-pagopa-it.subscription_name
   subscription_id         = local.tlscert-uat-uat-wisp2-gov-pagopa-it.subscription_id
+  managed_identity_resource_group_name = local.uat_identity_rg_name
 
   location                            = var.location
   credential_key_vault_name           = local.uat_key_vault_name
