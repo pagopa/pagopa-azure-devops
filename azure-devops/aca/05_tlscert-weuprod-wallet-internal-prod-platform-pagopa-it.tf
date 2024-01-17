@@ -51,14 +51,14 @@ module "tlscert-weuprod-aca-internal-prod-platform-pagopa-it-cert_az" {
   path                         = var.tlscert-weuprod-aca-internal-prod-platform-pagopa-it.pipeline.path
   github_service_connection_id = data.azuredevops_serviceendpoint_github.github_ro.id
 
-  dns_record_name         = var.tlscert-weuprod-aca-internal-prod-platform-pagopa-it.pipeline.dns_record_name
-  dns_zone_name           = var.tlscert-weuprod-aca-internal-prod-platform-pagopa-it.pipeline.dns_zone_name
-  dns_zone_resource_group = var.tlscert-weuprod-aca-internal-prod-platform-pagopa-it.pipeline.dns_zone_resource_group
-  tenant_id               = local.tlscert-weuprod-aca-internal-prod-platform-pagopa-it.tenant_id
-  subscription_name       = local.tlscert-weuprod-aca-internal-prod-platform-pagopa-it.subscription_name
-  subscription_id         = local.tlscert-weuprod-aca-internal-prod-platform-pagopa-it.subscription_id
-  location                = local.location
-    managed_identity_resource_group_name = local.prod_identity_rg_name
+  dns_record_name                      = var.tlscert-weuprod-aca-internal-prod-platform-pagopa-it.pipeline.dns_record_name
+  dns_zone_name                        = var.tlscert-weuprod-aca-internal-prod-platform-pagopa-it.pipeline.dns_zone_name
+  dns_zone_resource_group              = var.tlscert-weuprod-aca-internal-prod-platform-pagopa-it.pipeline.dns_zone_resource_group
+  tenant_id                            = local.tlscert-weuprod-aca-internal-prod-platform-pagopa-it.tenant_id
+  subscription_name                    = local.tlscert-weuprod-aca-internal-prod-platform-pagopa-it.subscription_name
+  subscription_id                      = local.tlscert-weuprod-aca-internal-prod-platform-pagopa-it.subscription_id
+  location                             = local.location
+  managed_identity_resource_group_name = local.prod_identity_rg_name
 
 
   credential_key_vault_name           = local.prod_aca_key_vault_name

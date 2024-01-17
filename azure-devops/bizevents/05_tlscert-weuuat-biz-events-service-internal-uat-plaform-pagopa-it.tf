@@ -51,13 +51,13 @@ module "tlscert-weuuat-biz-events-service-internal-uat-platform-pagopa-it-cert_a
   path                         = var.tlscert-weuuat-biz-events-service-internal-uat-platform-pagopa-it.pipeline.path
   github_service_connection_id = data.azuredevops_serviceendpoint_github.github_rw.service_endpoint_id
 
-  dns_record_name         = var.tlscert-weuuat-biz-events-service-internal-uat-platform-pagopa-it.pipeline.dns_record_name
-  dns_zone_name           = var.tlscert-weuuat-biz-events-service-internal-uat-platform-pagopa-it.pipeline.dns_zone_name
-  dns_zone_resource_group = var.tlscert-weuuat-biz-events-service-internal-uat-platform-pagopa-it.pipeline.dns_zone_resource_group
-  tenant_id               = local.tlscert-weuuat-biz-events-service-internal-uat-platform-pagopa-it.tenant_id
-  subscription_name       = local.tlscert-weuuat-biz-events-service-internal-uat-platform-pagopa-it.subscription_name
-  subscription_id         = local.tlscert-weuuat-biz-events-service-internal-uat-platform-pagopa-it.subscription_id
-      managed_identity_resource_group_name = local.uat_identity_rg_name
+  dns_record_name                      = var.tlscert-weuuat-biz-events-service-internal-uat-platform-pagopa-it.pipeline.dns_record_name
+  dns_zone_name                        = var.tlscert-weuuat-biz-events-service-internal-uat-platform-pagopa-it.pipeline.dns_zone_name
+  dns_zone_resource_group              = var.tlscert-weuuat-biz-events-service-internal-uat-platform-pagopa-it.pipeline.dns_zone_resource_group
+  tenant_id                            = local.tlscert-weuuat-biz-events-service-internal-uat-platform-pagopa-it.tenant_id
+  subscription_name                    = local.tlscert-weuuat-biz-events-service-internal-uat-platform-pagopa-it.subscription_name
+  subscription_id                      = local.tlscert-weuuat-biz-events-service-internal-uat-platform-pagopa-it.subscription_id
+  managed_identity_resource_group_name = local.uat_identity_rg_name
 
 
   credential_key_vault_name           = local.uat_biz_key_vault_name

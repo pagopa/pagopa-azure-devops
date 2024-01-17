@@ -7,11 +7,11 @@ locals {
   uat_subscription_name  = "uat-pagopa"
   prod_subscription_name = "prod-pagopa"
 
-  dev_identity_rg_name   = "pagopa-d-identity-rg"
-  uat_identity_rg_name   = "pagopa-u-identity-rg"
-  prod_identity_rg_name  = "pagopa-p-identity-rg"
+  dev_identity_rg_name  = "pagopa-d-identity-rg"
+  uat_identity_rg_name  = "pagopa-u-identity-rg"
+  prod_identity_rg_name = "pagopa-p-identity-rg"
 
-  location               = "westeurope"
+  location = "westeurope"
 
   # 🔐 KV
   dev_key_vault_azdo_name  = "${local.prefix}-d-azdo-weu-kv"

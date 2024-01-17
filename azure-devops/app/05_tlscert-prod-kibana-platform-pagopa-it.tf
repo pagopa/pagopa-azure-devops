@@ -51,12 +51,12 @@ module "tlscert-prod-kibana-platform-pagopa-it-cert_az" {
   path                         = var.tlscert-prod-kibana-platform-pagopa-it.pipeline.path
   github_service_connection_id = azuredevops_serviceendpoint_github.azure-devops-github-rw.id
 
-  dns_record_name         = var.tlscert-prod-kibana-platform-pagopa-it.pipeline.dns_record_name
-  dns_zone_name           = var.tlscert-prod-kibana-platform-pagopa-it.pipeline.dns_zone_name
-  dns_zone_resource_group = var.tlscert-prod-kibana-platform-pagopa-it.pipeline.dns_zone_resource_group
-  tenant_id               = local.tlscert-prod-kibana-platform-pagopa-it.tenant_id
-  subscription_name       = local.tlscert-prod-kibana-platform-pagopa-it.subscription_name
-  subscription_id         = local.tlscert-prod-kibana-platform-pagopa-it.subscription_id
+  dns_record_name                      = var.tlscert-prod-kibana-platform-pagopa-it.pipeline.dns_record_name
+  dns_zone_name                        = var.tlscert-prod-kibana-platform-pagopa-it.pipeline.dns_zone_name
+  dns_zone_resource_group              = var.tlscert-prod-kibana-platform-pagopa-it.pipeline.dns_zone_resource_group
+  tenant_id                            = local.tlscert-prod-kibana-platform-pagopa-it.tenant_id
+  subscription_name                    = local.tlscert-prod-kibana-platform-pagopa-it.subscription_name
+  subscription_id                      = local.tlscert-prod-kibana-platform-pagopa-it.subscription_id
   managed_identity_resource_group_name = local.prod_identity_rg_name
 
   location                            = var.location
