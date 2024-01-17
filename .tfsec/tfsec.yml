@@ -1,0 +1,4 @@
+---
+exclude:
+  - azure-devops/**/.terraform/*
+  - azure-devops/**/*.md
