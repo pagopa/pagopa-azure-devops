@@ -5,7 +5,7 @@ module "apim_backup" {
   repository                   = var.apim_backup.repository
   github_service_connection_id = azuredevops_serviceendpoint_github.azure-devops-github-pr.id
   path                         = "backups"
-  pipeline_name_prefix                = "backup-apim"
+  pipeline_name_prefix         = "backup-apim"
 
   ci_trigger_use_yaml = false
 
