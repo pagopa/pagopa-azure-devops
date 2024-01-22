@@ -159,7 +159,7 @@ module "nodo_iac_deploy" {
 }
 
 module "nodo_iac_db_migration" {
-  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_generic?ref=v2.6.3"
+  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_generic?ref=v5.0.0"
 
   project_id                   = azuredevops_project.project.id
   repository                   = var.nodo_iac.repository
@@ -186,7 +186,7 @@ module "nodo_iac_db_migration" {
 }
 
 module "nodo_iac_db_schema" {
-  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_generic?ref=v2.6.3"
+  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_generic?ref=v5.0.0"
 
   project_id                   = azuredevops_project.project.id
   repository                   = var.nodo_iac.repository
@@ -214,7 +214,7 @@ module "nodo_iac_db_schema" {
 
 # WEB-BO infra (PLAN+APPLY )& db migration
 module "nodo_iac_web_bo_db_migration" {
-  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_generic?ref=v2.6.3"
+  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_generic?ref=v5.0.0"
 
   project_id                   = azuredevops_project.project.id
   repository                   = var.nodo_iac.repository
@@ -241,7 +241,7 @@ module "nodo_iac_web_bo_db_migration" {
 }
 
 module "nodo_iac_web_bo_db_schema" {
-  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_generic?ref=v2.6.3"
+  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_generic?ref=v5.0.0"
 
   project_id                   = azuredevops_project.project.id
   repository                   = var.nodo_iac.repository
