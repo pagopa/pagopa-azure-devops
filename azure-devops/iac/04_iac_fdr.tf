@@ -73,7 +73,7 @@ locals {
 
 # fdr infra (PLAN+APPLY ) & db creation+migration
 module "fdr_iac_code_review" {
-  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review?ref=v2.6.2"
+  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review?ref=v5.0.0"
   count  = var.fdr_iac.pipeline.enable_code_review == true ? 1 : 0
   path   = var.fdr_iac.pipeline.path
 
@@ -104,7 +104,7 @@ module "fdr_iac_code_review" {
 }
 
 module "fdr_iac_deploy" {
-  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy?ref=v2.6.2"
+  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy?ref=v5.0.0"
   count  = var.fdr_iac.pipeline.enable_deploy == true ? 1 : 0
   path   = var.fdr_iac.pipeline.path
 
