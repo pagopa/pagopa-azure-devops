@@ -2,7 +2,7 @@
 # ⛩ Service connections
 #
 
-module "DEV-AZURERM-IAC-SERVICE-CONN" {
+module "DEV-AZURERM-IAC-DEPLOY-SERVICE-CONN" {
   depends_on = [azuredevops_project.project]
   source     = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated?ref=v5.0.0"
   providers = {
@@ -11,7 +11,7 @@ module "DEV-AZURERM-IAC-SERVICE-CONN" {
 
   project_id = azuredevops_project.project.id
   #tfsec:ignore:general-secrets-no-plaintext-exposure
-  name = "AZDO-DEV-PAGOPA-IAC"
+  name = "azdo-dev-pagopa-iac-deploy"
 
   tenant_id         = data.azurerm_client_config.current.tenant_id
   subscription_id   = data.azurerm_subscriptions.dev.subscriptions[0].subscription_id
@@ -37,7 +37,7 @@ resource "azuredevops_serviceendpoint_azurerm" "DEV-SERVICE-CONN" {
 # UAT
 #
 
-module "UAT-AZURERM-IAC-SERVICE-CONN" {
+module "UAT-AZURERM-IAC-DEPLOY-SERVICE-CONN" {
   depends_on = [azuredevops_project.project]
   source     = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated?ref=v5.0.0"
   providers = {
@@ -46,7 +46,7 @@ module "UAT-AZURERM-IAC-SERVICE-CONN" {
 
   project_id = azuredevops_project.project.id
   #tfsec:ignore:general-secrets-no-plaintext-exposure
-  name = "AZDO-UAT-PAGOPA-IAC"
+  name = "azdo-uat-pagopa-iac-deploy"
 
   tenant_id         = data.azurerm_client_config.current.tenant_id
   subscription_id   = data.azurerm_subscriptions.uat.subscriptions[0].subscription_id
@@ -71,7 +71,7 @@ resource "azuredevops_serviceendpoint_azurerm" "UAT-SERVICE-CONN" {
 #
 # PROD
 #
-module "PROD-AZURERM-IAC-SERVICE-CONN" {
+module "PROD-AZURERM-IAC-DEPLOY-SERVICE-CONN" {
   depends_on = [azuredevops_project.project]
   source     = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated?ref=v5.0.0"
   providers = {
@@ -80,7 +80,7 @@ module "PROD-AZURERM-IAC-SERVICE-CONN" {
 
   project_id = azuredevops_project.project.id
   #tfsec:ignore:general-secrets-no-plaintext-exposure
-  name = "AZDO-PROD-PAGOPA-IAC"
+  name = "azdo-prod-pagopa-iac-deploy"
 
   tenant_id         = data.azurerm_client_config.current.tenant_id
   subscription_id   = data.azurerm_subscriptions.prod.subscriptions[0].subscription_id

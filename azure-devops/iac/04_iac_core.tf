@@ -27,7 +27,12 @@ locals {
 
   # code_review vars
   iac_core-variables_code_review = {
-
+    TF_POOL_NAME_DEV: "pagopa-dev-linux-infra",
+    TF_POOL_NAME_UAT: "pagopa-uat-linux-infra",
+    TF_POOL_NAME_PROD: "pagopa-prod-linux-infra",
+    TF_AZURE_SERVICE_CONNECTION_PLAN_NAME_DEV: "AZDO-DEV-PAGOPA-IAC-PLAN-SERVICE-CONN",
+    TF_AZURE_SERVICE_CONNECTION_PLAN_NAME_UAT: "AZDO-UAT-PAGOPA-IAC-PLAN-SERVICE-CONN",
+    TF_AZURE_SERVICE_CONNECTION_PLAN_NAME_PROD: "AZDO-PROD-PAGOPA-IAC-PLAN-SERVICE-CONN",
   }
   # code_review secrets
   iac_core-variables_secret_code_review = {
@@ -36,6 +41,10 @@ locals {
 
   # deploy vars
   iac_core-variables_deploy = {
+        #APPLY
+    TF_AZURE_SERVICE_CONNECTION_APPLY_NAME_DEV: "AZDO-DEV-PAGOPA-IAC-DEPLOY-SERVICE-CONN",
+    TF_AZURE_SERVICE_CONNECTION_APPLY_NAME_UAT: "AZDO-UAT-PAGOPA-IAC-DEPLOY-SERVICE-CONN",
+    TF_AZURE_SERVICE_CONNECTION_APPLY_NAME_PROD:"AZDO-PROD-PAGOPA-IAC-DEPLOY-SERVICE-CONN",
 
   }
   # deploy secrets
@@ -70,9 +79,9 @@ module "iac_core_code_review" {
 
   service_connection_ids_authorization = [
     azuredevops_serviceendpoint_github.azure-devops-github-ro.id,
-    azuredevops_serviceendpoint_azurerm.DEV-SERVICE-CONN.id,
-    azuredevops_serviceendpoint_azurerm.UAT-SERVICE-CONN.id,
-    azuredevops_serviceendpoint_azurerm.PROD-SERVICE-CONN.id,
+    module.DEV-AZURERM-IAC-PLAN-SERVICE-CONN.service_endpoint_id,
+    module.UAT-AZURERM-IAC-PLAN-SERVICE-CONN.service_endpoint_id,
+    module.PROD-AZURERM-IAC-PLAN-SERVICE-CONN.service_endpoint_id,
   ]
 }
 
@@ -104,8 +113,12 @@ module "iac_core_deploy" {
 
   service_connection_ids_authorization = [
     azuredevops_serviceendpoint_github.azure-devops-github-ro.id,
-    azuredevops_serviceendpoint_azurerm.DEV-SERVICE-CONN.id,
-    azuredevops_serviceendpoint_azurerm.UAT-SERVICE-CONN.id,
-    azuredevops_serviceendpoint_azurerm.PROD-SERVICE-CONN.id,
+    module.DEV-AZURERM-IAC-PLAN-SERVICE-CONN.service_endpoint_id,
+    module.UAT-AZURERM-IAC-PLAN-SERVICE-CONN.service_endpoint_id,
+    module.PROD-AZURERM-IAC-PLAN-SERVICE-CONN.service_endpoint_id,
+
+    module.DEV-AZURERM-IAC-DEPLOY-SERVICE-CONN.service_endpoint_id,
+    module.UAT-AZURERM-IAC-DEPLOY-SERVICE-CONN.service_endpoint_id,
+    module.PROD-AZURERM-IAC-DEPLOY-SERVICE-CONN.service_endpoint_id,
   ]
 }

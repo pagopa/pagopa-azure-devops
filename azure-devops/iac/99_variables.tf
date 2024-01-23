@@ -171,3 +171,6 @@ variable "apim_backup" {
   }
 }
 
+variable "location" {
+  type = string
+}
