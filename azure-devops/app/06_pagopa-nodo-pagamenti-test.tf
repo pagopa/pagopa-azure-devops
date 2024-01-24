@@ -61,7 +61,7 @@ locals {
 }
 
 module "pagopa-nodo-dei-pagamenti-test_code_review" {
-  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review?ref=v4.1.4"
+  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review?ref=v5.1.1"
   count  = var.pagopa-nodo-dei-pagamenti-test.pipeline.enable_code_review == true ? 1 : 0
 
   project_id                   = azuredevops_project.project.id
