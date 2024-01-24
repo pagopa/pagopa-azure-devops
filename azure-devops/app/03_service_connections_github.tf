@@ -43,3 +43,19 @@ resource "azuredevops_serviceendpoint_github" "azure-devops-github-rw" {
     ignore_changes = [description, authorization]
   }
 }
+
+
+
+# # Github service connection (read-only)
+resource "azuredevops_serviceendpoint_github" "pipelines-azure-devops-github-rw" {
+  depends_on = [azuredevops_project.project]
+
+  project_id            = azuredevops_project.project.id
+  service_endpoint_name = "pipelines-azure-devops-github-rw"
+  auth_personal {
+    personal_access_token = module.secrets.values["azure-devops-github-rw-TOKEN"].value
+  }
+  lifecycle {
+    ignore_changes = [description, authorization]
+  }
+}
