@@ -27,12 +27,12 @@ locals {
 
   # code_review vars
   iac_core-variables_code_review = {
-    TF_POOL_NAME_DEV: "pagopa-dev-linux-infra",
-    TF_POOL_NAME_UAT: "pagopa-uat-linux-infra",
-    TF_POOL_NAME_PROD: "pagopa-prod-linux-infra",
-    TF_AZURE_SERVICE_CONNECTION_PLAN_NAME_DEV: "AZDO-DEV-PAGOPA-IAC-PLAN-SERVICE-CONN",
-    TF_AZURE_SERVICE_CONNECTION_PLAN_NAME_UAT: "AZDO-UAT-PAGOPA-IAC-PLAN-SERVICE-CONN",
-    TF_AZURE_SERVICE_CONNECTION_PLAN_NAME_PROD: "AZDO-PROD-PAGOPA-IAC-PLAN-SERVICE-CONN",
+    TF_POOL_NAME_DEV : "pagopa-dev-linux-infra",
+    TF_POOL_NAME_UAT : "pagopa-uat-linux-infra",
+    TF_POOL_NAME_PROD : "pagopa-prod-linux-infra",
+    TF_AZURE_SERVICE_CONNECTION_PLAN_NAME_DEV : "AZDO-DEV-PAGOPA-IAC-PLAN-SERVICE-CONN",
+    TF_AZURE_SERVICE_CONNECTION_PLAN_NAME_UAT : "AZDO-UAT-PAGOPA-IAC-PLAN-SERVICE-CONN",
+    TF_AZURE_SERVICE_CONNECTION_PLAN_NAME_PROD : "AZDO-PROD-PAGOPA-IAC-PLAN-SERVICE-CONN",
   }
   # code_review secrets
   iac_core-variables_secret_code_review = {
@@ -41,10 +41,10 @@ locals {
 
   # deploy vars
   iac_core-variables_deploy = {
-        #APPLY
-    TF_AZURE_SERVICE_CONNECTION_APPLY_NAME_DEV: "AZDO-DEV-PAGOPA-IAC-DEPLOY-SERVICE-CONN",
-    TF_AZURE_SERVICE_CONNECTION_APPLY_NAME_UAT: "AZDO-UAT-PAGOPA-IAC-DEPLOY-SERVICE-CONN",
-    TF_AZURE_SERVICE_CONNECTION_APPLY_NAME_PROD:"AZDO-PROD-PAGOPA-IAC-DEPLOY-SERVICE-CONN",
+    #APPLY
+    TF_AZURE_SERVICE_CONNECTION_APPLY_NAME_DEV : "AZDO-DEV-PAGOPA-IAC-DEPLOY-SERVICE-CONN",
+    TF_AZURE_SERVICE_CONNECTION_APPLY_NAME_UAT : "AZDO-UAT-PAGOPA-IAC-DEPLOY-SERVICE-CONN",
+    TF_AZURE_SERVICE_CONNECTION_APPLY_NAME_PROD : "AZDO-PROD-PAGOPA-IAC-DEPLOY-SERVICE-CONN",
 
   }
   # deploy secrets
@@ -57,7 +57,7 @@ locals {
 # Code review
 #
 module "iac_core_code_review" {
-  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review?ref=v5.0.0"
+  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review?ref=v5.2.0"
   count  = var.iac_core.pipeline.enable_code_review == true ? 1 : 0
 
   project_id                   = azuredevops_project.project.id
@@ -89,7 +89,7 @@ module "iac_core_code_review" {
 # DEPLOY
 #
 module "iac_core_deploy" {
-  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy?ref=v5.0.0"
+  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy?ref=v5.2.0"
   count  = var.iac_core.pipeline.enable_deploy == true ? 1 : 0
 
   project_id                   = azuredevops_project.project.id

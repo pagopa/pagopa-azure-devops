@@ -3,7 +3,7 @@
 #
 
 module "shared_dev_secrets" {
-  source = "git::https://github.com/pagopa/terraform-azurerm-v3.git//key_vault_secrets_query?ref=v7.39.0"
+  source = "git::https://github.com/pagopa/terraform-azurerm-v3.git//key_vault_secrets_query?ref=v7.47.2"
 
   providers = {
     azurerm = azurerm.dev
@@ -20,7 +20,7 @@ module "shared_dev_secrets" {
 }
 
 module "shared_uat_secrets" {
-  source = "git::https://github.com/pagopa/terraform-azurerm-v3.git//key_vault_secrets_query?ref=v7.39.0"
+  source = "git::https://github.com/pagopa/terraform-azurerm-v3.git//key_vault_secrets_query?ref=v7.47.2"
 
   providers = {
     azurerm = azurerm.uat
@@ -37,7 +37,7 @@ module "shared_uat_secrets" {
 }
 
 module "shared_prod_secrets" {
-  source = "git::https://github.com/pagopa/terraform-azurerm-v3.git//key_vault_secrets_query?ref=v7.39.0"
+  source = "git::https://github.com/pagopa/terraform-azurerm-v3.git//key_vault_secrets_query?ref=v7.47.2"
 
   providers = {
     azurerm = azurerm.prod

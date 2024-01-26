@@ -52,7 +52,7 @@ locals {
 }
 
 module "wallet_iac_code_review" {
-  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review?ref=v5.0.0"
+  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review?ref=v5.2.0"
   count  = var.wallet_iac.pipeline.enable_code_review == true ? 1 : 0
   path   = var.wallet_iac.pipeline.path
 
@@ -83,7 +83,7 @@ module "wallet_iac_code_review" {
 }
 
 module "wallet_iac_deploy" {
-  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy?ref=v5.0.0"
+  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy?ref=v5.2.0"
   count  = var.wallet_iac.pipeline.enable_deploy == true ? 1 : 0
   path   = var.wallet_iac.pipeline.path
 
