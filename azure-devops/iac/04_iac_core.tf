@@ -48,7 +48,7 @@ locals {
 # Code review
 #
 module "iac_core_code_review" {
-  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review?ref=v2.6.3"
+  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review?ref=v5.1.1"
   count  = var.iac_core.pipeline.enable_code_review == true ? 1 : 0
 
   project_id                   = azuredevops_project.project.id
@@ -80,7 +80,7 @@ module "iac_core_code_review" {
 # DEPLOY
 #
 module "iac_core_deploy" {
-  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy?ref=v2.6.3"
+  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy?ref=v5.0.0"
   count  = var.iac_core.pipeline.enable_deploy == true ? 1 : 0
 
   project_id                   = azuredevops_project.project.id

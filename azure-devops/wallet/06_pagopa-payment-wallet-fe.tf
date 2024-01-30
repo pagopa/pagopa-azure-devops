@@ -62,7 +62,7 @@ locals {
 }
 
 module "pagopa-payment-wallet-fe_code_review" {
-  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review?ref=v4.2.1"
+  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review?ref=v5.1.1"
 
   project_id                   = data.azuredevops_project.project.id
   repository                   = var.pagopa-payment-wallet-fe.repository

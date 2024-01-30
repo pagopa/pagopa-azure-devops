@@ -18,13 +18,22 @@ pids=()
 array=(
     'azure-devops::aca'
     'azure-devops::afm'
+    'azure-devops::apiconfig'
     'azure-devops::app'
     'azure-devops::bizevents'
+    'azure-devops::checkout'
     'azure-devops::ecommerce'
+    'azure-devops::externals'
+    'azure-devops::fdr'
     'azure-devops::gps'
     'azure-devops::iac'
+    'azure-devops::mock'
+    'azure-devops::nodo'
+    'azure-devops::qi'
+    'azure-devops::receipts'
     'azure-devops::selfcare'
     'azure-devops::shared'
+    'azure-devops::wallet'
 )
 
 function rm_terraform {

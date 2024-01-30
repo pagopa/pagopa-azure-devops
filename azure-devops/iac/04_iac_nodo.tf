@@ -96,7 +96,7 @@ locals {
 
 # NODO infra (PLAN+APPLY ) & db creation+migration
 module "nodo_iac_code_review" {
-  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review?ref=v2.6.2"
+  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review?ref=v5.1.1"
   count  = var.nodo_iac.pipeline.enable_code_review == true ? 1 : 0
   path   = var.nodo_iac.pipeline.path
 
@@ -127,7 +127,7 @@ module "nodo_iac_code_review" {
 }
 
 module "nodo_iac_deploy" {
-  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy?ref=v2.6.2"
+  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy?ref=v5.0.0"
   count  = var.nodo_iac.pipeline.enable_deploy == true ? 1 : 0
   path   = var.nodo_iac.pipeline.path
 
@@ -159,7 +159,7 @@ module "nodo_iac_deploy" {
 }
 
 module "nodo_iac_db_migration" {
-  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_generic?ref=v2.6.3"
+  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_generic?ref=v5.0.0"
 
   project_id                   = azuredevops_project.project.id
   repository                   = var.nodo_iac.repository
@@ -186,7 +186,7 @@ module "nodo_iac_db_migration" {
 }
 
 module "nodo_iac_db_schema" {
-  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_generic?ref=v2.6.3"
+  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_generic?ref=v5.0.0"
 
   project_id                   = azuredevops_project.project.id
   repository                   = var.nodo_iac.repository
@@ -214,7 +214,7 @@ module "nodo_iac_db_schema" {
 
 # WEB-BO infra (PLAN+APPLY )& db migration
 module "nodo_iac_web_bo_db_migration" {
-  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_generic?ref=v2.6.3"
+  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_generic?ref=v5.0.0"
 
   project_id                   = azuredevops_project.project.id
   repository                   = var.nodo_iac.repository
@@ -241,7 +241,7 @@ module "nodo_iac_web_bo_db_migration" {
 }
 
 module "nodo_iac_web_bo_db_schema" {
-  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_generic?ref=v2.6.3"
+  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_generic?ref=v5.0.0"
 
   project_id                   = azuredevops_project.project.id
   repository                   = var.nodo_iac.repository
