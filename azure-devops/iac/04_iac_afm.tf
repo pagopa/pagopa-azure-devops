@@ -52,7 +52,7 @@ locals {
 }
 
 module "afm_iac_code_review" {
-  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review?ref=v5.4.0"
+  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review?ref=v5.5.0"
   count  = var.afm_iac.pipeline.enable_code_review == true ? 1 : 0
   path   = var.afm_iac.pipeline.path
 
@@ -83,7 +83,7 @@ module "afm_iac_code_review" {
 }
 
 module "afm_iac_deploy" {
-  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy?ref=v5.4.0"
+  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy?ref=v5.5.0"
   count  = var.afm_iac.pipeline.enable_deploy == true ? 1 : 0
   path   = var.afm_iac.pipeline.path
 
