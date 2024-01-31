@@ -5,7 +5,7 @@ locals {
 
   #tfsec:ignore:general-secrets-no-plaintext-exposure
   #tfsec:ignore:GEN002
-  tlscert_renew_token        = "v3"
+  tlscert_renew_token = "v3"
 
   dev_subscription_name  = "dev-pagopa"
   uat_subscription_name  = "uat-pagopa"
