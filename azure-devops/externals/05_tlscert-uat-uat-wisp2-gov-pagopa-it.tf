@@ -31,7 +31,7 @@ locals {
     subscription_id   = module.secrets.values["ORG-SUBSCRIPTION-ID"].value
   }
   tlscert-uat-uat-wisp2-gov-pagopa-it-variables = {
-    KEY_VAULT_SERVICE_CONNECTION = module.UAT-EXTERNALS-TLS-CERT-SERVICE-CONN.service_endpoint_name
+    KEY_VAULT_SERVICE_CONNECTION = module.UAT-TLS-CERT-EXTERNALS-SERVICE-CONN.service_endpoint_name
   }
   tlscert-uat-uat-wisp2-gov-pagopa-it-variables_secret = {
   }
@@ -74,7 +74,7 @@ module "tlscert-uat-uat-wisp2-gov-pagopa-it-cert_az" {
   )
 
   service_connection_ids_authorization = [
-    module.UAT-EXTERNALS-TLS-CERT-SERVICE-CONN.service_endpoint_id,
+    module.UAT-TLS-CERT-EXTERNALS-SERVICE-CONN.service_endpoint_id,
   ]
 
   schedules = {
