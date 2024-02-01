@@ -15,12 +15,12 @@
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_pagopa-checkout-fe_code_review"></a> [pagopa-checkout-fe\_code\_review](#module\_pagopa-checkout-fe\_code\_review) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review | v4.2.1 |
+| <a name="module_pagopa-checkout-fe_code_review"></a> [pagopa-checkout-fe\_code\_review](#module\_pagopa-checkout-fe\_code\_review) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review | v5.1.1 |
 | <a name="module_pagopa-checkout-fe_deploy"></a> [pagopa-checkout-fe\_deploy](#module\_pagopa-checkout-fe\_deploy) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy | v4.2.1 |
-| <a name="module_pagopa-checkout-tests_code_review"></a> [pagopa-checkout-tests\_code\_review](#module\_pagopa-checkout-tests\_code\_review) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review | v4.2.1 |
-| <a name="module_pagopa-functions-checkout_code_review"></a> [pagopa-functions-checkout\_code\_review](#module\_pagopa-functions-checkout\_code\_review) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review | v4.2.1 |
+| <a name="module_pagopa-checkout-tests_code_review"></a> [pagopa-checkout-tests\_code\_review](#module\_pagopa-checkout-tests\_code\_review) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review | v5.1.1 |
+| <a name="module_pagopa-functions-checkout_code_review"></a> [pagopa-functions-checkout\_code\_review](#module\_pagopa-functions-checkout\_code\_review) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review | v5.1.1 |
 | <a name="module_pagopa-functions-checkout_deploy"></a> [pagopa-functions-checkout\_deploy](#module\_pagopa-functions-checkout\_deploy) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy | v4.2.1 |
-| <a name="module_pagopa-proxy_code_review"></a> [pagopa-proxy\_code\_review](#module\_pagopa-proxy\_code\_review) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review | v4.2.1 |
+| <a name="module_pagopa-proxy_code_review"></a> [pagopa-proxy\_code\_review](#module\_pagopa-proxy\_code\_review) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review | v5.1.1 |
 | <a name="module_pagopa-proxy_deploy"></a> [pagopa-proxy\_deploy](#module\_pagopa-proxy\_deploy) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy | v4.2.1 |
 | <a name="module_secrets"></a> [secrets](#module\_secrets) | git::https://github.com/pagopa/terraform-azurerm-v3.git//key_vault_secrets_query | v7.39.0 |
 
