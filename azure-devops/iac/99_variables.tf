@@ -6,6 +6,10 @@ locals {
   uat_subscription_name  = "uat-pagopa"
   prod_subscription_name = "prod-pagopa"
 
+  dev_key_vault_name  = "${local.prefix}-d-kv"
+  uat_key_vault_name  = "${local.prefix}-u-kv"
+  prod_key_vault_name = "${local.prefix}-p-kv"
+
   dev_identity_rg_name  = "${local.prefix}-d-identity-rg"
   uat_identity_rg_name  = "${local.prefix}-u-identity-rg"
   prod_identity_rg_name = "${local.prefix}-p-identity-rg"
@@ -131,6 +135,7 @@ locals {
     "API Management Service Contributor",
   ]
 
+  tlscert_renew_token        = "v3"
 }
 
 variable "dev_subscription_name" {
