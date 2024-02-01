@@ -30,9 +30,9 @@ locals {
     TF_POOL_NAME_DEV : "pagopa-dev-linux-infra",
     TF_POOL_NAME_UAT : "pagopa-uat-linux-infra",
     TF_POOL_NAME_PROD : "pagopa-prod-linux-infra",
-    TF_AZURE_SERVICE_CONNECTION_PLAN_NAME_DEV : "AZDO-DEV-PAGOPA-IAC-PLAN-SERVICE-CONN",
-    TF_AZURE_SERVICE_CONNECTION_PLAN_NAME_UAT : "AZDO-UAT-PAGOPA-IAC-PLAN-SERVICE-CONN",
-    TF_AZURE_SERVICE_CONNECTION_PLAN_NAME_PROD : "AZDO-PROD-PAGOPA-IAC-PLAN-SERVICE-CONN",
+    TF_AZURE_SERVICE_CONNECTION_PLAN_NAME_DEV : "PAGOPA-LEGACY-DEV-PLAN-SERVICE-CONN",
+    TF_AZURE_SERVICE_CONNECTION_PLAN_NAME_UAT : "PAGOPA-LEGACY-UAT-PLAN-SERVICE-CONN",
+    TF_AZURE_SERVICE_CONNECTION_PLAN_NAME_PROD : "PAGOPA-LEGACY-PROD-PLAN-SERVICE-CONN",
   }
   # code_review secrets
   iac_core-variables_secret_code_review = {
@@ -42,9 +42,9 @@ locals {
   # deploy vars
   iac_core-variables_deploy = {
     #APPLY
-    TF_AZURE_SERVICE_CONNECTION_APPLY_NAME_DEV : "AZDO-DEV-PAGOPA-IAC-DEPLOY-SERVICE-CONN",
-    TF_AZURE_SERVICE_CONNECTION_APPLY_NAME_UAT : "AZDO-UAT-PAGOPA-IAC-DEPLOY-SERVICE-CONN",
-    TF_AZURE_SERVICE_CONNECTION_APPLY_NAME_PROD : "AZDO-PROD-PAGOPA-IAC-DEPLOY-SERVICE-CONN",
+    TF_AZURE_SERVICE_CONNECTION_APPLY_NAME_DEV : "DEV-PAGOPA-LEGACY",
+    TF_AZURE_SERVICE_CONNECTION_APPLY_NAME_UAT : "UAT-PAGOPA-LEGACY",
+    TF_AZURE_SERVICE_CONNECTION_APPLY_NAME_PROD : "PROD-PAGOPA-LEGACY",
 
   }
   # deploy secrets
@@ -113,12 +113,12 @@ module "iac_core_deploy" {
 
   service_connection_ids_authorization = [
     azuredevops_serviceendpoint_github.azure-devops-github-ro.id,
-    module.DEV-AZURERM-IAC-PLAN-SERVICE-CONN.service_endpoint_id,
-    module.UAT-AZURERM-IAC-PLAN-SERVICE-CONN.service_endpoint_id,
-    module.PROD-AZURERM-IAC-PLAN-SERVICE-CONN.service_endpoint_id,
+    module.DEV-PAGOPA-LEGACY-PLAN-SERVICE-CONN.service_endpoint_id,
+    module.UAT-PAGOPA-LEGACY-PLAN-SERVICE-CONN.service_endpoint_id,
+    module.PROD-PAGOPA-LEGACY-PLAN-SERVICE-CONN.service_endpoint_id,
 
-    module.DEV-AZURERM-IAC-DEPLOY-SERVICE-CONN.service_endpoint_id,
-    module.UAT-AZURERM-IAC-DEPLOY-SERVICE-CONN.service_endpoint_id,
-    module.PROD-AZURERM-IAC-DEPLOY-SERVICE-CONN.service_endpoint_id,
+    azuredevops_serviceendpoint_azurerm.DEV-PAGOPA-LEGACY.id,
+    azuredevops_serviceendpoint_azurerm.UAT-PAGOPA-LEGACY.id,
+    azuredevops_serviceendpoint_azurerm.PROD-PAGOPA-LEGACY.id,
   ]
 }
