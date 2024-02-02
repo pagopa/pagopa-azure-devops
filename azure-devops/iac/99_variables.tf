@@ -128,6 +128,7 @@ locals {
     "Storage File Data SMB Share Reader",
     "Storage Queue Data Reader",
     "Storage Table Data Reader",
+    "Virtual Machine Contributor",
     "PagoPA Export Deployments Template",
     "Key Vault Secrets User",
     "DocumentDB Account Contributor",
