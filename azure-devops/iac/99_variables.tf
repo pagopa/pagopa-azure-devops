@@ -123,7 +123,6 @@ locals {
   iac_plan_permissions = [
     "PagoPA IaC Reader",
     "Reader",
-    "Contributor",
     "Reader and Data Access",
     "Storage Blob Data Reader",
     "Storage File Data SMB Share Reader",
