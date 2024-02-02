@@ -128,7 +128,7 @@ locals {
     "Storage File Data SMB Share Reader",
     "Storage Queue Data Reader",
     "Storage Table Data Reader",
-    "Virtual Machine Contributor",
+    "Virtual Machine Contributor", #Microsoft.Storage/storageAccounts/listKeys/action
     "PagoPA Export Deployments Template",
     "Key Vault Secrets User",
     "DocumentDB Account Contributor",
