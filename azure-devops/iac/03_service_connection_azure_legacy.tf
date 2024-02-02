@@ -3,45 +3,49 @@
 #
 
 # DEV service connection
-resource "azuredevops_serviceendpoint_azurerm" "DEV-PAGOPA-LEGACY" {
+resource "azuredevops_serviceendpoint_azurerm" "DEV-PAGOPA-IAC-LEGACY" {
   depends_on = [azuredevops_project.project]
 
   project_id                = azuredevops_project.project.id
-  service_endpoint_name     = "DEV-PAGOPA-LEGACY-SERVICE-CONN"
-  description               = "DEV-PAGOPA-LEGACY Service connection"
-  azurerm_subscription_name = "DEV-PAGOPA-LEGACY"
+  service_endpoint_name     = "DEV-PAGOPA-IAC-LEGACY-SERVICE-CONN"
+  description               = "DEV-PAGOPA-IAC-LEGACY Service connection"
+  azurerm_subscription_name = "DEV-PAGOPA-IAC-LEGACY"
   azurerm_spn_tenantid      = data.azurerm_client_config.current.tenant_id
   azurerm_subscription_id   = data.azurerm_subscriptions.dev.subscriptions[0].subscription_id
 }
 
 # UAT service connection
-resource "azuredevops_serviceendpoint_azurerm" "UAT-PAGOPA-LEGACY" {
+resource "azuredevops_serviceendpoint_azurerm" "UAT-PAGOPA-IAC-LEGACY" {
   depends_on = [azuredevops_project.project]
 
   project_id                = azuredevops_project.project.id
-  service_endpoint_name     = "UAT-PAGOPA-LEGACY-SERVICE-CONN"
-  description               = "UAT-PAGOPA-LEGACY Service connection"
-  azurerm_subscription_name = "UAT-PAGOPA-LEGACY"
+  service_endpoint_name     = "UAT-PAGOPA-IAC-LEGACY-SERVICE-CONN"
+  description               = "UAT-PAGOPA-IAC-LEGACY Service connection"
+  azurerm_subscription_name = "UAT-PAGOPA-IAC-LEGACY"
   azurerm_spn_tenantid      = data.azurerm_client_config.current.tenant_id
   azurerm_subscription_id   = data.azurerm_subscriptions.uat.subscriptions[0].subscription_id
 }
 
 # PROD service connection
-resource "azuredevops_serviceendpoint_azurerm" "PROD-PAGOPA-LEGACY" {
+resource "azuredevops_serviceendpoint_azurerm" "PROD-PAGOPA-IAC-LEGACY" {
   depends_on = [azuredevops_project.project]
 
   project_id                = azuredevops_project.project.id
-  service_endpoint_name     = "PROD-PAGOPA-LEGACY-SERVICE-CONN"
-  description               = "PROD-PAGOPA-LEGACY Service connection"
-  azurerm_subscription_name = "PROD-PAGOPA-LEGACY"
+  service_endpoint_name     = "PROD-PAGOPA-IAC-LEGACY-SERVICE-CONN"
+  description               = "PROD-PAGOPA-IAC-LEGACY Service connection"
+  azurerm_subscription_name = "PROD-PAGOPA-IAC-LEGACY"
   azurerm_spn_tenantid      = data.azurerm_client_config.current.tenant_id
   azurerm_subscription_id   = data.azurerm_subscriptions.prod.subscriptions[0].subscription_id
 }
 
 #
+# PLAN
+#
+
+#
 # DEV
 #
-module "DEV-PAGOPA-LEGACY-PLAN-SERVICE-CONN" {
+module "DEV-PAGOPA-IAC-LEGACY-PLAN-SERVICE-CONN" {
 
   providers = {
     azurerm = azurerm.dev
@@ -50,7 +54,7 @@ module "DEV-PAGOPA-LEGACY-PLAN-SERVICE-CONN" {
   depends_on = [azuredevops_project.project]
   source     = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_azurerm_plan?ref=v5.5.0"
 
-  name_suffix                 = "pagopa-legacy-dev"
+  name_suffix                 = "PAGOPA-IAC-LEGACY-dev"
   iac_aad_group_name          = "azure-devops-iac-service-connection"
   password_time_rotation_days = 365
   renew_token                 = "v2"
@@ -67,7 +71,7 @@ module "DEV-PAGOPA-LEGACY-PLAN-SERVICE-CONN" {
 #
 # UAT
 #
-module "UAT-PAGOPA-LEGACY-PLAN-SERVICE-CONN" {
+module "UAT-PAGOPA-IAC-LEGACY-PLAN-SERVICE-CONN" {
 
   providers = {
     azurerm = azurerm.uat
@@ -76,7 +80,7 @@ module "UAT-PAGOPA-LEGACY-PLAN-SERVICE-CONN" {
   depends_on = [azuredevops_project.project]
   source     = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_azurerm_plan?ref=v5.5.0"
 
-  name_suffix                 = "pagopa-legacy-uat"
+  name_suffix                 = "PAGOPA-IAC-LEGACY-uat"
   iac_aad_group_name          = "azure-devops-iac-service-connection"
   password_time_rotation_days = 365
   renew_token                 = "v2"
@@ -93,7 +97,7 @@ module "UAT-PAGOPA-LEGACY-PLAN-SERVICE-CONN" {
 #
 # PROD
 #
-module "PROD-PAGOPA-LEGACY-PLAN-SERVICE-CONN" {
+module "PROD-PAGOPA-IAC-LEGACY-PLAN-SERVICE-CONN" {
 
   providers = {
     azurerm = azurerm.prod
@@ -102,7 +106,7 @@ module "PROD-PAGOPA-LEGACY-PLAN-SERVICE-CONN" {
   depends_on = [azuredevops_project.project]
   source     = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_azurerm_plan?ref=v5.5.0"
 
-  name_suffix                 = "pagopa-legacy-prod"
+  name_suffix                 = "PAGOPA-IAC-LEGACY-prod"
   iac_aad_group_name          = "azure-devops-iac-service-connection"
   password_time_rotation_days = 365
   renew_token                 = "v2"
