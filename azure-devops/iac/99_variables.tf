@@ -135,7 +135,7 @@ locals {
     "API Management Service Contributor",
   ]
 
-  tlscert_renew_token        = "v3"
+  tlscert_renew_token = "v3"
 }
 
 variable "dev_subscription_name" {

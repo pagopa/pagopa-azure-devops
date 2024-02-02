@@ -8,9 +8,9 @@ variable "iac_next_core" {
       yml_prefix_name = "next-core"
     }
     pipeline = {
-      enable_code_review = true
-      enable_deploy      = true
-      path_name          = "next-core-infra"
+      enable_code_review   = true
+      enable_deploy        = true
+      path_name            = "next-core-infra"
       pipeline_name_prefix = "next-core-infra"
     }
   }
@@ -65,7 +65,7 @@ module "iac_next_core_code_review" {
   repository                   = var.iac_next_core.repository
   github_service_connection_id = azuredevops_serviceendpoint_github.azure-devops-github-pr.id
   path                         = var.iac_next_core.pipeline.path_name
-  pipeline_name_prefix = var.iac_next_core.pipeline.pipeline_name_prefix
+  pipeline_name_prefix         = var.iac_next_core.pipeline.pipeline_name_prefix
 
   pull_request_trigger_use_yaml = true
 
@@ -98,7 +98,7 @@ module "iac_next_core_deploy" {
   repository                   = var.iac_next_core.repository
   github_service_connection_id = azuredevops_serviceendpoint_github.azure-devops-github-pr.id
   path                         = var.iac_next_core.pipeline.path_name
-  pipeline_name_prefix = var.iac_next_core.pipeline.pipeline_name_prefix
+  pipeline_name_prefix         = var.iac_next_core.pipeline.pipeline_name_prefix
 
   ci_trigger_use_yaml           = false
   pull_request_trigger_use_yaml = false
