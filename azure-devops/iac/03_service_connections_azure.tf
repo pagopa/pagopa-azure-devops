@@ -21,16 +21,10 @@ module "DEV-AZURERM-IAC-DEPLOY-SERVICE-CONN" {
   resource_group_name = local.dev_identity_rg_name
 }
 
-# 🟢 DEV service connection
-resource "azuredevops_serviceendpoint_azurerm" "DEV-SERVICE-CONN" {
-  depends_on = [azuredevops_project.project]
-
-  project_id                = azuredevops_project.project.id
-  service_endpoint_name     = "${var.dev_subscription_name}-SERVICE-CONN"
-  description               = "${var.dev_subscription_name} Service connection"
-  azurerm_subscription_name = var.dev_subscription_name
-  azurerm_spn_tenantid      = module.secrets.values["TENANTID"].value
-  azurerm_subscription_id   = module.secrets.values["DEV-SUBSCRIPTION-ID"].value
+resource "azurerm_role_assignment" "dev_apply_permissions" {
+  scope                = data.azurerm_subscriptions.dev.subscriptions[0].id
+  role_definition_name = "Contributor"
+  principal_id         = module.DEV-AZURERM-IAC-DEPLOY-SERVICE-CONN.identity_principal_id
 }
 
 #
@@ -56,16 +50,10 @@ module "UAT-AZURERM-IAC-DEPLOY-SERVICE-CONN" {
   resource_group_name = local.uat_identity_rg_name
 }
 
-# 🟨 UAT service connection
-resource "azuredevops_serviceendpoint_azurerm" "UAT-SERVICE-CONN" {
-  depends_on = [azuredevops_project.project]
-
-  project_id                = azuredevops_project.project.id
-  service_endpoint_name     = "${var.uat_subscription_name}-SERVICE-CONN"
-  description               = "${var.uat_subscription_name} Service connection"
-  azurerm_subscription_name = var.uat_subscription_name
-  azurerm_spn_tenantid      = module.secrets.values["TENANTID"].value
-  azurerm_subscription_id   = module.secrets.values["UAT-SUBSCRIPTION-ID"].value
+resource "azurerm_role_assignment" "uat_apply_permissions" {
+  scope                = data.azurerm_subscriptions.uat.subscriptions[0].id
+  role_definition_name = "Contributor"
+  principal_id         = module.UAT-AZURERM-IAC-DEPLOY-SERVICE-CONN.identity_principal_id
 }
 
 #
@@ -90,14 +78,8 @@ module "PROD-AZURERM-IAC-DEPLOY-SERVICE-CONN" {
   resource_group_name = local.prod_identity_rg_name
 }
 
-# 🛑 PROD service connection
-resource "azuredevops_serviceendpoint_azurerm" "PROD-SERVICE-CONN" {
-  depends_on = [azuredevops_project.project]
-
-  project_id                = azuredevops_project.project.id
-  service_endpoint_name     = "${var.prod_subscription_name}-SERVICE-CONN"
-  description               = "${var.prod_subscription_name} Service connection"
-  azurerm_subscription_name = var.prod_subscription_name
-  azurerm_spn_tenantid      = module.secrets.values["TENANTID"].value
-  azurerm_subscription_id   = module.secrets.values["PROD-SUBSCRIPTION-ID"].value
+resource "azurerm_role_assignment" "prod_apply_permissions" {
+  scope                = data.azurerm_subscriptions.prod.subscriptions[0].id
+  role_definition_name = "Contributor"
+  principal_id         = module.PROD-AZURERM-IAC-DEPLOY-SERVICE-CONN.identity_principal_id
 }
