@@ -18,7 +18,9 @@ variable "iac_core" {
 locals {
   # global vars
   iac_core-variables = {
-
+    TF_POOL_NAME_DEV : "pagopa-dev-linux-infra",
+    TF_POOL_NAME_UAT : "pagopa-uat-linux-infra",
+    TF_POOL_NAME_PROD : "pagopa-prod-linux-infra",
   }
   # global secrets
   iac_core-variables_secret = {
@@ -27,9 +29,6 @@ locals {
 
   # code_review vars
   iac_core-variables_code_review = {
-    TF_POOL_NAME_DEV : "pagopa-dev-linux-infra",
-    TF_POOL_NAME_UAT : "pagopa-uat-linux-infra",
-    TF_POOL_NAME_PROD : "pagopa-prod-linux-infra",
     TF_AZURE_SERVICE_CONNECTION_PLAN_NAME_DEV : module.DEV-PAGOPA-IAC-LEGACY-PLAN-SERVICE-CONN.service_endpoint_name,
     TF_AZURE_SERVICE_CONNECTION_PLAN_NAME_UAT : module.UAT-PAGOPA-IAC-LEGACY-PLAN-SERVICE-CONN.service_endpoint_name,
     TF_AZURE_SERVICE_CONNECTION_PLAN_NAME_PROD : module.PROD-PAGOPA-IAC-LEGACY-PLAN-SERVICE-CONN.service_endpoint_name,
@@ -64,6 +63,8 @@ module "iac_core_code_review" {
   repository                   = var.iac_core.repository
   github_service_connection_id = azuredevops_serviceendpoint_github.azure-devops-github-pr.id
   path                         = var.iac_core.pipeline.path_name
+  pipeline_name_prefix         = var.iac_core.repository.yml_prefix_name
+
 
   pull_request_trigger_use_yaml = true
 
@@ -96,6 +97,7 @@ module "iac_core_deploy" {
   repository                   = var.iac_core.repository
   github_service_connection_id = azuredevops_serviceendpoint_github.azure-devops-github-pr.id
   path                         = var.iac_core.pipeline.path_name
+  pipeline_name_prefix         = var.iac_core.repository.yml_prefix_name
 
   ci_trigger_use_yaml           = false
   pull_request_trigger_use_yaml = false
@@ -104,6 +106,7 @@ module "iac_core_deploy" {
   variables = merge(
     local.iac_core-variables,
     local.iac_core-variables_deploy,
+    local.iac_core-variables_code_review,
   )
 
   variables_secret = merge(
