@@ -1,5 +1,5 @@
 module "apim_backup" {
-  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy?ref=v5.0.0"
+  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy?ref=v5.5.0"
 
   project_id                   = azuredevops_project.project.id
   repository                   = var.apim_backup.repository
@@ -21,7 +21,7 @@ module "apim_backup" {
   variables_secret = {}
 
   service_connection_ids_authorization = [
-    azuredevops_serviceendpoint_azurerm.PROD-SERVICE-CONN.id,
+    azuredevops_serviceendpoint_azurerm.PROD-PAGOPA-IAC-LEGACY.id,
   ]
 
   schedules = {
