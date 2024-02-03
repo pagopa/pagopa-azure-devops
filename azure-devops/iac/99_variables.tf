@@ -61,7 +61,7 @@ locals {
   uat_gps_key_vault_name  = "${local.prefix}-u-gps-kv"
   prod_gps_key_vault_name = "${local.prefix}-p-gps-kv"
 
-### ECOMMERCE
+  ### ECOMMERCE
   dev_ecommerce_key_vault_resource_group  = "${local.prefix}-d-ecommerce-sec-rg"
   uat_ecommerce_key_vault_resource_group  = "${local.prefix}-u-ecommerce-sec-rg"
   prod_ecommerce_key_vault_resource_group = "${local.prefix}-p-ecommerce-sec-rg"
@@ -70,7 +70,7 @@ locals {
   uat_ecommerce_key_vault_name  = "${local.prefix}-u-ecommerce-kv"
   prod_ecommerce_key_vault_name = "${local.prefix}-p-ecommerce-kv"
 
-### ELK
+  ### ELK
   dev_elk_key_vault_name  = "${local.prefix}-d-elk-kv"
   uat_elk_key_vault_name  = "${local.prefix}-u-elk-kv"
   prod_elk_key_vault_name = "${local.prefix}-p-elk-kv"
@@ -79,7 +79,7 @@ locals {
   uat_elk_key_vault_resource_group  = "${local.prefix}-u-elk-sec-rg"
   prod_elk_key_vault_resource_group = "${local.prefix}-p-elk-sec-rg"
 
-### SELFCARE
+  ### SELFCARE
   dev_selfcare_key_vault_resource_group  = "${local.prefix}-d-selfcare-sec-rg"
   uat_selfcare_key_vault_resource_group  = "${local.prefix}-u-selfcare-sec-rg"
   prod_selfcare_key_vault_resource_group = "${local.prefix}-p-selfcare-sec-rg"

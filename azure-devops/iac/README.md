@@ -14,13 +14,13 @@
 |------|--------|---------|
 | <a name="module_DEV-AZURERM-IAC-DEPLOY-SERVICE-CONN"></a> [DEV-AZURERM-IAC-DEPLOY-SERVICE-CONN](#module\_DEV-AZURERM-IAC-DEPLOY-SERVICE-CONN) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated | v5.5.0 |
 | <a name="module_DEV-AZURERM-IAC-PLAN-SERVICE-CONN"></a> [DEV-AZURERM-IAC-PLAN-SERVICE-CONN](#module\_DEV-AZURERM-IAC-PLAN-SERVICE-CONN) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated | v5.5.0 |
-| <a name="module_DEV-PAGOPA-LEGACY-PLAN-SERVICE-CONN"></a> [DEV-PAGOPA-LEGACY-PLAN-SERVICE-CONN](#module\_DEV-PAGOPA-LEGACY-PLAN-SERVICE-CONN) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_azurerm_plan | v5.5.0 |
+| <a name="module_DEV-PAGOPA-IAC-LEGACY-PLAN-SERVICE-CONN"></a> [DEV-PAGOPA-IAC-LEGACY-PLAN-SERVICE-CONN](#module\_DEV-PAGOPA-IAC-LEGACY-PLAN-SERVICE-CONN) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_azurerm_plan | v5.5.0 |
 | <a name="module_PROD-AZURERM-IAC-DEPLOY-SERVICE-CONN"></a> [PROD-AZURERM-IAC-DEPLOY-SERVICE-CONN](#module\_PROD-AZURERM-IAC-DEPLOY-SERVICE-CONN) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated | v5.5.0 |
 | <a name="module_PROD-AZURERM-IAC-PLAN-SERVICE-CONN"></a> [PROD-AZURERM-IAC-PLAN-SERVICE-CONN](#module\_PROD-AZURERM-IAC-PLAN-SERVICE-CONN) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated | v5.5.0 |
-| <a name="module_PROD-PAGOPA-LEGACY-PLAN-SERVICE-CONN"></a> [PROD-PAGOPA-LEGACY-PLAN-SERVICE-CONN](#module\_PROD-PAGOPA-LEGACY-PLAN-SERVICE-CONN) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_azurerm_plan | v5.5.0 |
+| <a name="module_PROD-PAGOPA-IAC-LEGACY-PLAN-SERVICE-CONN"></a> [PROD-PAGOPA-IAC-LEGACY-PLAN-SERVICE-CONN](#module\_PROD-PAGOPA-IAC-LEGACY-PLAN-SERVICE-CONN) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_azurerm_plan | v5.5.0 |
 | <a name="module_UAT-AZURERM-IAC-DEPLOY-SERVICE-CONN"></a> [UAT-AZURERM-IAC-DEPLOY-SERVICE-CONN](#module\_UAT-AZURERM-IAC-DEPLOY-SERVICE-CONN) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated | v5.5.0 |
 | <a name="module_UAT-AZURERM-IAC-PLAN-SERVICE-CONN"></a> [UAT-AZURERM-IAC-PLAN-SERVICE-CONN](#module\_UAT-AZURERM-IAC-PLAN-SERVICE-CONN) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated | v5.5.0 |
-| <a name="module_UAT-PAGOPA-LEGACY-PLAN-SERVICE-CONN"></a> [UAT-PAGOPA-LEGACY-PLAN-SERVICE-CONN](#module\_UAT-PAGOPA-LEGACY-PLAN-SERVICE-CONN) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_azurerm_plan | v5.5.0 |
+| <a name="module_UAT-PAGOPA-IAC-LEGACY-PLAN-SERVICE-CONN"></a> [UAT-PAGOPA-IAC-LEGACY-PLAN-SERVICE-CONN](#module\_UAT-PAGOPA-IAC-LEGACY-PLAN-SERVICE-CONN) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_azurerm_plan | v5.5.0 |
 | <a name="module_aca_dev_secrets"></a> [aca\_dev\_secrets](#module\_aca\_dev\_secrets) | git::https://github.com/pagopa/terraform-azurerm-v3.git//key_vault_secrets_query | v7.48.0 |
 | <a name="module_aca_iac_code_review"></a> [aca\_iac\_code\_review](#module\_aca\_iac\_code\_review) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review | v5.5.0 |
 | <a name="module_aca_iac_deploy"></a> [aca\_iac\_deploy](#module\_aca\_iac\_deploy) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy | v5.5.0 |
@@ -93,18 +93,18 @@
 | [azuredevops_environment.environments](https://registry.terraform.io/providers/microsoft/azuredevops/latest/docs/resources/environment) | resource |
 | [azuredevops_project.project](https://registry.terraform.io/providers/microsoft/azuredevops/latest/docs/resources/project) | resource |
 | [azuredevops_project_features.project_features](https://registry.terraform.io/providers/microsoft/azuredevops/latest/docs/resources/project_features) | resource |
-| [azuredevops_serviceendpoint_azurerm.DEV-PAGOPA-LEGACY](https://registry.terraform.io/providers/microsoft/azuredevops/latest/docs/resources/serviceendpoint_azurerm) | resource |
-| [azuredevops_serviceendpoint_azurerm.DEV-SERVICE-CONN](https://registry.terraform.io/providers/microsoft/azuredevops/latest/docs/resources/serviceendpoint_azurerm) | resource |
-| [azuredevops_serviceendpoint_azurerm.PROD-PAGOPA-LEGACY](https://registry.terraform.io/providers/microsoft/azuredevops/latest/docs/resources/serviceendpoint_azurerm) | resource |
-| [azuredevops_serviceendpoint_azurerm.PROD-SERVICE-CONN](https://registry.terraform.io/providers/microsoft/azuredevops/latest/docs/resources/serviceendpoint_azurerm) | resource |
-| [azuredevops_serviceendpoint_azurerm.UAT-PAGOPA-LEGACY](https://registry.terraform.io/providers/microsoft/azuredevops/latest/docs/resources/serviceendpoint_azurerm) | resource |
-| [azuredevops_serviceendpoint_azurerm.UAT-SERVICE-CONN](https://registry.terraform.io/providers/microsoft/azuredevops/latest/docs/resources/serviceendpoint_azurerm) | resource |
+| [azuredevops_serviceendpoint_azurerm.DEV-PAGOPA-IAC-LEGACY](https://registry.terraform.io/providers/microsoft/azuredevops/latest/docs/resources/serviceendpoint_azurerm) | resource |
+| [azuredevops_serviceendpoint_azurerm.PROD-PAGOPA-IAC-LEGACY](https://registry.terraform.io/providers/microsoft/azuredevops/latest/docs/resources/serviceendpoint_azurerm) | resource |
+| [azuredevops_serviceendpoint_azurerm.UAT-PAGOPA-IAC-LEGACY](https://registry.terraform.io/providers/microsoft/azuredevops/latest/docs/resources/serviceendpoint_azurerm) | resource |
 | [azuredevops_serviceendpoint_github.azure-devops-github-pr](https://registry.terraform.io/providers/microsoft/azuredevops/latest/docs/resources/serviceendpoint_github) | resource |
 | [azuredevops_serviceendpoint_github.azure-devops-github-ro](https://registry.terraform.io/providers/microsoft/azuredevops/latest/docs/resources/serviceendpoint_github) | resource |
 | [azuredevops_serviceendpoint_github.azure-devops-github-rw](https://registry.terraform.io/providers/microsoft/azuredevops/latest/docs/resources/serviceendpoint_github) | resource |
 | [azuredevops_team.external_team](https://registry.terraform.io/providers/microsoft/azuredevops/latest/docs/resources/team) | resource |
+| [azurerm_role_assignment.dev_apply_permissions](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/role_assignment) | resource |
 | [azurerm_role_assignment.dev_plan_permissions](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/role_assignment) | resource |
+| [azurerm_role_assignment.prod_apply_permissions](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/role_assignment) | resource |
 | [azurerm_role_assignment.prod_plan_permissions](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/role_assignment) | resource |
+| [azurerm_role_assignment.uat_apply_permissions](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/role_assignment) | resource |
 | [azurerm_role_assignment.uat_plan_permissions](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/role_assignment) | resource |
 | [azurerm_client_config.current](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/data-sources/client_config) | data source |
 | [azurerm_subscriptions.dev](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/data-sources/subscriptions) | data source |
