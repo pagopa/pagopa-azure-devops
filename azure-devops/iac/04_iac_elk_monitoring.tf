@@ -18,10 +18,24 @@ variable "iac_elk_monitoring" {
 locals {
   # global vars
   iac_elk_monitoring-variables = {
-        TF_POOL_NAME_DEV : "pagopa-dev-linux-infra",
+    TF_POOL_NAME_DEV : "pagopa-dev-linux-infra",
     TF_POOL_NAME_UAT : "pagopa-uat-linux-infra",
     TF_POOL_NAME_PROD : "pagopa-prod-linux-infra",
 
+    tf_dev_aks_apiserver_url         = module.elk_dev_secrets.values["pagopa-d-weu-dev-aks-apiserver-url"].value,
+    tf_dev_aks_azure_devops_sa_cacrt = module.elk_dev_secrets.values["pagopa-d-weu-dev-aks-azure-devops-sa-cacrt"].value,
+    tf_dev_aks_azure_devops_sa_token = base64decode(module.elk_dev_secrets.values["pagopa-d-weu-dev-aks-azure-devops-sa-token"].value),
+    tf_aks_dev_name                  = var.aks_dev_platform_name
+
+    tf_uat_aks_apiserver_url         = module.elk_uat_secrets.values["pagopa-u-weu-uat-aks-apiserver-url"].value,
+    tf_uat_aks_azure_devops_sa_cacrt = module.elk_uat_secrets.values["pagopa-u-weu-uat-aks-azure-devops-sa-cacrt"].value,
+    tf_uat_aks_azure_devops_sa_token = base64decode(module.elk_uat_secrets.values["pagopa-u-weu-uat-aks-azure-devops-sa-token"].value),
+    tf_aks_uat_name                  = var.aks_uat_platform_name
+
+    tf_prod_aks_apiserver_url         = module.elk_prod_secrets.values["pagopa-p-weu-prod-aks-apiserver-url"].value,
+    tf_prod_aks_azure_devops_sa_cacrt = module.elk_prod_secrets.values["pagopa-p-weu-prod-aks-azure-devops-sa-cacrt"].value,
+    tf_prod_aks_azure_devops_sa_token = base64decode(module.elk_prod_secrets.values["pagopa-p-weu-prod-aks-azure-devops-sa-token"].value),
+    tf_aks_prod_name                  = var.aks_prod_platform_name
   }
   # global secrets
   iac_elk_monitoring-variables_secret = {
@@ -45,7 +59,6 @@ locals {
     TF_AZURE_SERVICE_CONNECTION_APPLY_NAME_DEV : azuredevops_serviceendpoint_azurerm.DEV-PAGOPA-IAC-LEGACY.service_endpoint_name,
     TF_AZURE_SERVICE_CONNECTION_APPLY_NAME_UAT : azuredevops_serviceendpoint_azurerm.UAT-PAGOPA-IAC-LEGACY.service_endpoint_name,
     TF_AZURE_SERVICE_CONNECTION_APPLY_NAME_PROD : azuredevops_serviceendpoint_azurerm.PROD-PAGOPA-IAC-LEGACY.service_endpoint_name,
-
   }
   # deploy secrets
   iac_elk_monitoring-variables_secret_deploy = {
