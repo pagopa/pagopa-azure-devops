@@ -21,7 +21,7 @@ module "apim_backup" {
   variables_secret = {}
 
   service_connection_ids_authorization = [
-    azuredevops_serviceendpoint_azurerm.PROD-SERVICE-CONN.id,
+    azuredevops_serviceendpoint_azurerm.PROD-PAGOPA-IAC-LEGACY.id,
   ]
 
   schedules = {

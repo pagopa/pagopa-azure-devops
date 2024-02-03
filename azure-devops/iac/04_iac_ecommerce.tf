@@ -23,19 +23,19 @@ locals {
     tf_dev_aks_azure_devops_sa_cacrt = module.ecommerce_dev_secrets.values["pagopa-d-weu-dev-aks-azure-devops-sa-cacrt"].value,
     tf_dev_aks_azure_devops_sa_token = base64decode(module.ecommerce_dev_secrets.values["pagopa-d-weu-dev-aks-azure-devops-sa-token"].value),
     tf_aks_dev_name                  = var.aks_dev_platform_name
-    tf_dev_azure_service_connection  = azuredevops_serviceendpoint_azurerm.DEV-SERVICE-CONN.service_endpoint_name
+    tf_dev_azure_service_connection  = azuredevops_serviceendpoint_azurerm.DEV-PAGOPA-IAC-LEGACY.service_endpoint_name
 
     tf_uat_aks_apiserver_url         = module.ecommerce_uat_secrets.values["pagopa-u-weu-uat-aks-apiserver-url"].value,
     tf_uat_aks_azure_devops_sa_cacrt = module.ecommerce_uat_secrets.values["pagopa-u-weu-uat-aks-azure-devops-sa-cacrt"].value,
     tf_uat_aks_azure_devops_sa_token = base64decode(module.ecommerce_uat_secrets.values["pagopa-u-weu-uat-aks-azure-devops-sa-token"].value),
     tf_aks_uat_name                  = var.aks_uat_platform_name
-    tf_uat_azure_service_connection  = azuredevops_serviceendpoint_azurerm.UAT-SERVICE-CONN.service_endpoint_name
+    tf_uat_azure_service_connection  = azuredevops_serviceendpoint_azurerm.UAT-PAGOPA-IAC-LEGACY.service_endpoint_name
 
     tf_prod_aks_apiserver_url         = module.ecommerce_prod_secrets.values["pagopa-p-weu-prod-aks-apiserver-url"].value,
     tf_prod_aks_azure_devops_sa_cacrt = module.ecommerce_prod_secrets.values["pagopa-p-weu-prod-aks-azure-devops-sa-cacrt"].value,
     tf_prod_aks_azure_devops_sa_token = base64decode(module.ecommerce_prod_secrets.values["pagopa-p-weu-prod-aks-azure-devops-sa-token"].value),
     tf_aks_prod_name                  = var.aks_prod_platform_name
-    tf_prod_azure_service_connection  = azuredevops_serviceendpoint_azurerm.PROD-SERVICE-CONN.service_endpoint_name
+    tf_prod_azure_service_connection  = azuredevops_serviceendpoint_azurerm.PROD-PAGOPA-IAC-LEGACY.service_endpoint_name
   }
   # global secrets
   ecommerce_iac_variables_secret = {}
@@ -78,9 +78,9 @@ module "ecommerce_iac_code_review" {
 
   service_connection_ids_authorization = [
     azuredevops_serviceendpoint_github.azure-devops-github-ro.id,
-    azuredevops_serviceendpoint_azurerm.DEV-SERVICE-CONN.id,
-    azuredevops_serviceendpoint_azurerm.UAT-SERVICE-CONN.id,
-    azuredevops_serviceendpoint_azurerm.PROD-SERVICE-CONN.id,
+    azuredevops_serviceendpoint_azurerm.DEV-PAGOPA-IAC-LEGACY.id,
+    azuredevops_serviceendpoint_azurerm.UAT-PAGOPA-IAC-LEGACY.id,
+    azuredevops_serviceendpoint_azurerm.PROD-PAGOPA-IAC-LEGACY.id,
   ]
 }
 
@@ -110,8 +110,8 @@ module "ecommerce_iac_deploy" {
 
   service_connection_ids_authorization = [
     azuredevops_serviceendpoint_github.azure-devops-github-ro.id,
-    azuredevops_serviceendpoint_azurerm.DEV-SERVICE-CONN.id,
-    azuredevops_serviceendpoint_azurerm.UAT-SERVICE-CONN.id,
-    azuredevops_serviceendpoint_azurerm.PROD-SERVICE-CONN.id,
+    azuredevops_serviceendpoint_azurerm.DEV-PAGOPA-IAC-LEGACY.id,
+    azuredevops_serviceendpoint_azurerm.UAT-PAGOPA-IAC-LEGACY.id,
+    azuredevops_serviceendpoint_azurerm.PROD-PAGOPA-IAC-LEGACY.id,
   ]
 }

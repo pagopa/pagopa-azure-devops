@@ -19,9 +19,9 @@ variable "checkout_iac" {
 locals {
   # global vars
   checkout_iac_variables = {
-    tf_dev_azure_service_connection  = azuredevops_serviceendpoint_azurerm.DEV-SERVICE-CONN.service_endpoint_name
-    tf_uat_azure_service_connection  = azuredevops_serviceendpoint_azurerm.UAT-SERVICE-CONN.service_endpoint_name
-    tf_prod_azure_service_connection = azuredevops_serviceendpoint_azurerm.PROD-SERVICE-CONN.service_endpoint_name
+    tf_dev_azure_service_connection  = azuredevops_serviceendpoint_azurerm.DEV-PAGOPA-IAC-LEGACY.service_endpoint_name
+    tf_uat_azure_service_connection  = azuredevops_serviceendpoint_azurerm.UAT-PAGOPA-IAC-LEGACY.service_endpoint_name
+    tf_prod_azure_service_connection = azuredevops_serviceendpoint_azurerm.PROD-PAGOPA-IAC-LEGACY.service_endpoint_name
   }
   # global secrets
   checkout_iac_variables_secret = {}
@@ -62,9 +62,9 @@ module "checkout_iac_code_review" {
 
   service_connection_ids_authorization = [
     azuredevops_serviceendpoint_github.azure-devops-github-ro.id,
-    azuredevops_serviceendpoint_azurerm.DEV-SERVICE-CONN.id,
-    azuredevops_serviceendpoint_azurerm.UAT-SERVICE-CONN.id,
-    azuredevops_serviceendpoint_azurerm.PROD-SERVICE-CONN.id,
+    azuredevops_serviceendpoint_azurerm.DEV-PAGOPA-IAC-LEGACY.id,
+    azuredevops_serviceendpoint_azurerm.UAT-PAGOPA-IAC-LEGACY.id,
+    azuredevops_serviceendpoint_azurerm.PROD-PAGOPA-IAC-LEGACY.id,
   ]
 }
 
@@ -94,8 +94,8 @@ module "checkout_iac_deploy" {
 
   service_connection_ids_authorization = [
     azuredevops_serviceendpoint_github.azure-devops-github-ro.id,
-    azuredevops_serviceendpoint_azurerm.DEV-SERVICE-CONN.id,
-    azuredevops_serviceendpoint_azurerm.UAT-SERVICE-CONN.id,
-    azuredevops_serviceendpoint_azurerm.PROD-SERVICE-CONN.id,
+    azuredevops_serviceendpoint_azurerm.DEV-PAGOPA-IAC-LEGACY.id,
+    azuredevops_serviceendpoint_azurerm.UAT-PAGOPA-IAC-LEGACY.id,
+    azuredevops_serviceendpoint_azurerm.PROD-PAGOPA-IAC-LEGACY.id,
   ]
 }
