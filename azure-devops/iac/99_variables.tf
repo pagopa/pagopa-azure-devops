@@ -146,6 +146,10 @@ locals {
     "API Management Service Contributor",
   ]
 
+  iac_plan_legacy_permissions = [
+    "PagoPA Platform IaC Reader"
+  ]
+
   tlscert_renew_token = "v3"
 }
 
