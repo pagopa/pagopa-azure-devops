@@ -19,9 +19,6 @@ variable "aca_iac" {
 locals {
   # global vars
   aca_iac_variables = {
-    TF_POOL_NAME_DEV : "pagopa-dev-linux-infra",
-    TF_POOL_NAME_UAT : "pagopa-uat-linux-infra",
-    TF_POOL_NAME_PROD : "pagopa-prod-linux-infra",
     tf_dev_aks_apiserver_url         = module.aca_dev_secrets.values["pagopa-d-weu-dev-aks-apiserver-url"].value,
     tf_dev_aks_azure_devops_sa_cacrt = module.aca_dev_secrets.values["pagopa-d-weu-dev-aks-azure-devops-sa-cacrt"].value,
     tf_dev_aks_azure_devops_sa_token = base64decode(module.aca_dev_secrets.values["pagopa-d-weu-dev-aks-azure-devops-sa-token"].value),
@@ -37,6 +34,9 @@ locals {
     tf_prod_aks_azure_devops_sa_token = base64decode(module.aca_prod_secrets.values["pagopa-p-weu-prod-aks-azure-devops-sa-token"].value),
     tf_aks_prod_name                  = var.aks_prod_platform_name
 
+    TF_POOL_NAME_DEV : "pagopa-dev-linux-infra",
+    TF_POOL_NAME_UAT : "pagopa-uat-linux-infra",
+    TF_POOL_NAME_PROD : "pagopa-prod-linux-infra",
     #PLAN
     TF_AZURE_SERVICE_CONNECTION_PLAN_NAME_DEV : module.DEV-PAGOPA-IAC-LEGACY-PLAN-SERVICE-CONN.service_endpoint_name,
     TF_AZURE_SERVICE_CONNECTION_PLAN_NAME_UAT : module.UAT-PAGOPA-IAC-LEGACY-PLAN-SERVICE-CONN.service_endpoint_name,
