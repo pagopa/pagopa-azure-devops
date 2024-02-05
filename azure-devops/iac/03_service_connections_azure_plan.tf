@@ -2,7 +2,7 @@
 # ⛩ Service connections
 #
 
-module "DEV-AZURERM-IAC-DEPLOY-SERVICE-CONN" {
+module "DEV-AZURERM-IAC-PLAN-SERVICE-CONN" {
   depends_on = [azuredevops_project.project]
   source     = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated?ref=v5.5.0"
   providers = {
@@ -11,7 +11,7 @@ module "DEV-AZURERM-IAC-DEPLOY-SERVICE-CONN" {
 
   project_id = azuredevops_project.project.id
   #tfsec:ignore:general-secrets-no-plaintext-exposure
-  name = "azdo-dev-pagopa-iac-deploy"
+  name = "azdo-dev-pagopa-iac-plan"
 
   tenant_id         = data.azurerm_client_config.current.tenant_id
   subscription_id   = data.azurerm_subscriptions.dev.subscriptions[0].subscription_id
@@ -21,17 +21,20 @@ module "DEV-AZURERM-IAC-DEPLOY-SERVICE-CONN" {
   resource_group_name = local.dev_identity_rg_name
 }
 
-resource "azurerm_role_assignment" "dev_apply_permissions" {
+
+resource "azurerm_role_assignment" "dev_plan_permissions" {
+  for_each = toset(local.iac_plan_permissions)
+
   scope                = data.azurerm_subscriptions.dev.subscriptions[0].id
-  role_definition_name = "Contributor"
-  principal_id         = module.DEV-AZURERM-IAC-DEPLOY-SERVICE-CONN.identity_principal_id
+  role_definition_name = each.key
+  principal_id         = module.DEV-AZURERM-IAC-PLAN-SERVICE-CONN.identity_principal_id
 }
 
 #
 # UAT
 #
 
-module "UAT-AZURERM-IAC-DEPLOY-SERVICE-CONN" {
+module "UAT-AZURERM-IAC-PLAN-SERVICE-CONN" {
   depends_on = [azuredevops_project.project]
   source     = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated?ref=v5.5.0"
   providers = {
@@ -40,7 +43,7 @@ module "UAT-AZURERM-IAC-DEPLOY-SERVICE-CONN" {
 
   project_id = azuredevops_project.project.id
   #tfsec:ignore:general-secrets-no-plaintext-exposure
-  name = "azdo-uat-pagopa-iac-deploy"
+  name = "azdo-uat-pagopa-iac-plan"
 
   tenant_id         = data.azurerm_client_config.current.tenant_id
   subscription_id   = data.azurerm_subscriptions.uat.subscriptions[0].subscription_id
@@ -50,16 +53,18 @@ module "UAT-AZURERM-IAC-DEPLOY-SERVICE-CONN" {
   resource_group_name = local.uat_identity_rg_name
 }
 
-resource "azurerm_role_assignment" "uat_apply_permissions" {
+resource "azurerm_role_assignment" "uat_plan_permissions" {
+  for_each = toset(local.iac_plan_permissions)
+
   scope                = data.azurerm_subscriptions.uat.subscriptions[0].id
-  role_definition_name = "Contributor"
-  principal_id         = module.UAT-AZURERM-IAC-DEPLOY-SERVICE-CONN.identity_principal_id
+  role_definition_name = each.key
+  principal_id         = module.UAT-AZURERM-IAC-PLAN-SERVICE-CONN.identity_principal_id
 }
 
 #
 # PROD
 #
-module "PROD-AZURERM-IAC-DEPLOY-SERVICE-CONN" {
+module "PROD-AZURERM-IAC-PLAN-SERVICE-CONN" {
   depends_on = [azuredevops_project.project]
   source     = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated?ref=v5.5.0"
   providers = {
@@ -68,7 +73,7 @@ module "PROD-AZURERM-IAC-DEPLOY-SERVICE-CONN" {
 
   project_id = azuredevops_project.project.id
   #tfsec:ignore:general-secrets-no-plaintext-exposure
-  name = "azdo-prod-pagopa-iac-deploy"
+  name = "azdo-prod-pagopa-iac-plan"
 
   tenant_id         = data.azurerm_client_config.current.tenant_id
   subscription_id   = data.azurerm_subscriptions.prod.subscriptions[0].subscription_id
@@ -78,8 +83,10 @@ module "PROD-AZURERM-IAC-DEPLOY-SERVICE-CONN" {
   resource_group_name = local.prod_identity_rg_name
 }
 
-resource "azurerm_role_assignment" "prod_apply_permissions" {
+resource "azurerm_role_assignment" "prod_plan_permissions" {
+  for_each = toset(local.iac_plan_permissions)
+
   scope                = data.azurerm_subscriptions.prod.subscriptions[0].id
-  role_definition_name = "Contributor"
-  principal_id         = module.PROD-AZURERM-IAC-DEPLOY-SERVICE-CONN.identity_principal_id
+  role_definition_name = each.key
+  principal_id         = module.PROD-AZURERM-IAC-PLAN-SERVICE-CONN.identity_principal_id
 }

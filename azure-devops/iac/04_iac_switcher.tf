@@ -17,7 +17,7 @@ variable "switcher_iac" {
 locals {
   # deploy vars
   iac-variables_switcher = {
-    TF_AZURE_SERVICE_CONNECTION_NAME = azuredevops_serviceendpoint_azurerm.DEV-SERVICE-CONN.service_endpoint_name
+    TF_AZURE_SERVICE_CONNECTION_NAME = azuredevops_serviceendpoint_azurerm.DEV-PAGOPA-IAC-LEGACY.service_endpoint_name
     TF_AZURE_DEVOPS_POOL_AGENT_NAME : "pagopa-dev-linux-infra"
   }
   # deploy secrets
@@ -35,7 +35,7 @@ module "iac_resource_switcher" {
     azurerm = azurerm.dev
   }
 
-  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_resource_switcher?ref=v3.9.0"
+  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_resource_switcher?ref=v5.5.0"
   path   = var.switcher_iac.pipeline.path
 
   project_id                   = azuredevops_project.project.id
@@ -57,7 +57,7 @@ module "iac_resource_switcher" {
 
   service_connection_ids_authorization = [
     azuredevops_serviceendpoint_github.azure-devops-github-ro.id,
-    azuredevops_serviceendpoint_azurerm.DEV-SERVICE-CONN.id,
+    azuredevops_serviceendpoint_azurerm.DEV-PAGOPA-IAC-LEGACY.id,
   ]
 
   schedule_configuration = {

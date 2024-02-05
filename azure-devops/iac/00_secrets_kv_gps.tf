@@ -3,7 +3,7 @@
 #
 
 module "gps_dev_secrets" {
-  source = "git::https://github.com/pagopa/terraform-azurerm-v3.git//key_vault_secrets_query?ref=v7.39.0"
+  source = "git::https://github.com/pagopa/terraform-azurerm-v3.git//key_vault_secrets_query?ref=v7.48.0"
 
   providers = {
     azurerm = azurerm.dev
@@ -20,7 +20,7 @@ module "gps_dev_secrets" {
 }
 
 module "gps_uat_secrets" {
-  source = "git::https://github.com/pagopa/terraform-azurerm-v3.git//key_vault_secrets_query?ref=v7.39.0"
+  source = "git::https://github.com/pagopa/terraform-azurerm-v3.git//key_vault_secrets_query?ref=v7.48.0"
 
   providers = {
     azurerm = azurerm.uat
@@ -37,7 +37,7 @@ module "gps_uat_secrets" {
 }
 
 module "gps_prod_secrets" {
-  source = "git::https://github.com/pagopa/terraform-azurerm-v3.git//key_vault_secrets_query?ref=v7.39.0"
+  source = "git::https://github.com/pagopa/terraform-azurerm-v3.git//key_vault_secrets_query?ref=v7.48.0"
 
   providers = {
     azurerm = azurerm.prod

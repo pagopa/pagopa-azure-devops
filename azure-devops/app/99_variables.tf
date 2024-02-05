@@ -61,10 +61,10 @@ locals {
   uat_afm_key_vault_resource_group  = "${local.prefix}-u-afm-sec-rg"
   prod_afm_key_vault_resource_group = "${local.prefix}-p-afm-sec-rg"
 
-
   dev_kibana_key_vault_resource_group  = "${local.prefix}-d-elk-sec-rg"
   uat_kibana_key_vault_resource_group  = "${local.prefix}-u-elk-sec-rg"
   prod_kibana_key_vault_resource_group = "${local.prefix}-p-elk-sec-rg"
+
   # ☁️ VNET
   dev_vnet_rg  = "${local.prefix}-d-vnet-rg"
   uat_vnet_rg  = "${local.prefix}-u-vnet-rg"
@@ -108,6 +108,7 @@ locals {
   #tfsec:ignore:GEN002
   tlscert_renew_token        = "v3"
   tlscert_renew_token_kibana = "v2"
+
   # Service connections/ End points
   srv_endpoint_github_ro = "io-azure-devops-github-ro"
   srv_endpoint_github_rw = "io-azure-devops-github-rw"
