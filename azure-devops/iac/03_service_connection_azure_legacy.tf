@@ -52,7 +52,7 @@ module "DEV-PAGOPA-IAC-LEGACY-PLAN-SERVICE-CONN" {
   }
 
   depends_on = [azuredevops_project.project]
-  source     = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_azurerm_plan?ref=v5.5.0"
+  source     = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_azurerm_plan?ref=v6.0.0"
 
   name_suffix                 = "PAGOPA-IAC-LEGACY-dev"
   iac_aad_group_name          = "azure-devops-iac-service-connection"
@@ -78,7 +78,7 @@ module "UAT-PAGOPA-IAC-LEGACY-PLAN-SERVICE-CONN" {
   }
 
   depends_on = [azuredevops_project.project]
-  source     = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_azurerm_plan?ref=v5.5.0"
+  source     = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_azurerm_plan?ref=v6.0.0"
 
   name_suffix                 = "PAGOPA-IAC-LEGACY-uat"
   iac_aad_group_name          = "azure-devops-iac-service-connection"
@@ -104,7 +104,7 @@ module "PROD-PAGOPA-IAC-LEGACY-PLAN-SERVICE-CONN" {
   }
 
   depends_on = [azuredevops_project.project]
-  source     = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_azurerm_plan?ref=v5.5.0"
+  source     = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_azurerm_plan?ref=v6.0.0"
 
   name_suffix                 = "PAGOPA-IAC-LEGACY-prod"
   iac_aad_group_name          = "azure-devops-iac-service-connection"
