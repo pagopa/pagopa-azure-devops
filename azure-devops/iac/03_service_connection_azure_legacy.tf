@@ -59,13 +59,19 @@ module "DEV-PAGOPA-IAC-LEGACY-PLAN-SERVICE-CONN" {
   password_time_rotation_days = 365
   renew_token                 = "v2"
 
-
   project_id      = azuredevops_project.project.id
   tenant_id       = data.azurerm_client_config.current.tenant_id
   subscription_id = data.azurerm_subscriptions.dev.subscriptions[0].subscription_id
 
   credential_key_vault_name           = local.dev_key_vault_name
   credential_key_vault_resource_group = local.dev_key_vault_resource_group
+}
+
+resource "azurerm_role_assignment" "plan_legacy_iac_dev" {
+
+  scope                = data.azurerm_subscriptions.dev.subscriptions[0].id
+  role_definition_name = "PagoPA Platform Dev IaC Reader"
+  principal_id         = module.DEV-PAGOPA-IAC-LEGACY-PLAN-SERVICE-CONN.service_principal_object_id
 }
 
 #
@@ -85,13 +91,19 @@ module "UAT-PAGOPA-IAC-LEGACY-PLAN-SERVICE-CONN" {
   password_time_rotation_days = 365
   renew_token                 = "v2"
 
-
   project_id      = azuredevops_project.project.id
   tenant_id       = data.azurerm_client_config.current.tenant_id
   subscription_id = data.azurerm_subscriptions.uat.subscriptions[0].subscription_id
 
   credential_key_vault_name           = local.uat_key_vault_name
   credential_key_vault_resource_group = local.uat_key_vault_resource_group
+}
+
+resource "azurerm_role_assignment" "plan_legacy_iac_uat" {
+
+  scope                = data.azurerm_subscriptions.uat.subscriptions[0].id
+  role_definition_name = "PagoPA Platform Uat IaC Reader"
+  principal_id         = module.UAT-PAGOPA-IAC-LEGACY-PLAN-SERVICE-CONN.service_principal_object_id
 }
 
 #
@@ -111,11 +123,17 @@ module "PROD-PAGOPA-IAC-LEGACY-PLAN-SERVICE-CONN" {
   password_time_rotation_days = 365
   renew_token                 = "v2"
 
-
   project_id      = azuredevops_project.project.id
   tenant_id       = data.azurerm_client_config.current.tenant_id
   subscription_id = data.azurerm_subscriptions.prod.subscriptions[0].subscription_id
 
   credential_key_vault_name           = local.prod_key_vault_name
   credential_key_vault_resource_group = local.prod_key_vault_resource_group
+}
+
+resource "azurerm_role_assignment" "plan_legacy_iac_prod" {
+
+  scope                = data.azurerm_subscriptions.prod.subscriptions[0].id
+  role_definition_name = "PagoPA Platform Prod IaC Reader"
+  principal_id         = module.PROD-PAGOPA-IAC-LEGACY-PLAN-SERVICE-CONN.service_principal_object_id
 }
