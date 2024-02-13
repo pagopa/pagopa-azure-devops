@@ -23,10 +23,9 @@ module "DEV-AZURERM-IAC-PLAN-SERVICE-CONN" {
 
 
 resource "azurerm_role_assignment" "dev_plan_permissions" {
-  for_each = toset(local.iac_plan_permissions)
 
   scope                = data.azurerm_subscriptions.dev.subscriptions[0].id
-  role_definition_name = each.key
+  role_definition_name = "PagoPA Platform Dev IaC Reader"
   principal_id         = module.DEV-AZURERM-IAC-PLAN-SERVICE-CONN.identity_principal_id
 }
 
@@ -54,10 +53,9 @@ module "UAT-AZURERM-IAC-PLAN-SERVICE-CONN" {
 }
 
 resource "azurerm_role_assignment" "uat_plan_permissions" {
-  for_each = toset(local.iac_plan_permissions)
 
   scope                = data.azurerm_subscriptions.uat.subscriptions[0].id
-  role_definition_name = each.key
+  role_definition_name = "PagoPA Platform Uat IaC Reader"
   principal_id         = module.UAT-AZURERM-IAC-PLAN-SERVICE-CONN.identity_principal_id
 }
 
@@ -84,9 +82,8 @@ module "PROD-AZURERM-IAC-PLAN-SERVICE-CONN" {
 }
 
 resource "azurerm_role_assignment" "prod_plan_permissions" {
-  for_each = toset(local.iac_plan_permissions)
 
   scope                = data.azurerm_subscriptions.prod.subscriptions[0].id
-  role_definition_name = each.key
+  role_definition_name = "PagoPA Platform Prod IaC Reader"
   principal_id         = module.PROD-AZURERM-IAC-PLAN-SERVICE-CONN.identity_principal_id
 }
