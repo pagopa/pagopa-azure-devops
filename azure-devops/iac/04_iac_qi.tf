@@ -19,19 +19,19 @@ variable "qi_iac" {
 locals {
   # global vars
   qi_iac_variables = {
-    tf_dev_aks_apiserver_url         = module.qui_dev_secrets.values["pagopa-d-weu-dev-aks-apiserver-url"].value,
-    tf_dev_aks_azure_devops_sa_cacrt = module.qui_dev_secrets.values["pagopa-d-weu-dev-aks-azure-devops-sa-cacrt"].value,
-    tf_dev_aks_azure_devops_sa_token = base64decode(module.qui_dev_secrets.values["pagopa-d-weu-dev-aks-azure-devops-sa-token"].value),
+    tf_dev_aks_apiserver_url         = module.qi_dev_secrets.values["pagopa-d-weu-dev-aks-apiserver-url"].value,
+    tf_dev_aks_azure_devops_sa_cacrt = module.qi_dev_secrets.values["pagopa-d-weu-dev-aks-azure-devops-sa-cacrt"].value,
+    tf_dev_aks_azure_devops_sa_token = base64decode(module.qi_dev_secrets.values["pagopa-d-weu-dev-aks-azure-devops-sa-token"].value),
     tf_aks_dev_name                  = var.aks_dev_platform_name
 
-    tf_uat_aks_apiserver_url         = module.qui_uat_secrets.values["pagopa-u-weu-uat-aks-apiserver-url"].value,
-    tf_uat_aks_azure_devops_sa_cacrt = module.qui_uat_secrets.values["pagopa-u-weu-uat-aks-azure-devops-sa-cacrt"].value,
-    tf_uat_aks_azure_devops_sa_token = base64decode(module.qui_uat_secrets.values["pagopa-u-weu-uat-aks-azure-devops-sa-token"].value),
+    tf_uat_aks_apiserver_url         = module.qi_uat_secrets.values["pagopa-u-weu-uat-aks-apiserver-url"].value,
+    tf_uat_aks_azure_devops_sa_cacrt = module.qi_uat_secrets.values["pagopa-u-weu-uat-aks-azure-devops-sa-cacrt"].value,
+    tf_uat_aks_azure_devops_sa_token = base64decode(module.qi_uat_secrets.values["pagopa-u-weu-uat-aks-azure-devops-sa-token"].value),
     tf_aks_uat_name                  = var.aks_uat_platform_name
 
-    tf_prod_aks_apiserver_url         = module.qui_prod_secrets.values["pagopa-p-weu-prod-aks-apiserver-url"].value,
-    tf_prod_aks_azure_devops_sa_cacrt = module.qui_prod_secrets.values["pagopa-p-weu-prod-aks-azure-devops-sa-cacrt"].value,
-    tf_prod_aks_azure_devops_sa_token = base64decode(module.qui_prod_secrets.values["pagopa-p-weu-prod-aks-azure-devops-sa-token"].value),
+    tf_prod_aks_apiserver_url         = module.qi_prod_secrets.values["pagopa-p-weu-prod-aks-apiserver-url"].value,
+    tf_prod_aks_azure_devops_sa_cacrt = module.qi_prod_secrets.values["pagopa-p-weu-prod-aks-azure-devops-sa-cacrt"].value,
+    tf_prod_aks_azure_devops_sa_token = base64decode(module.qi_prod_secrets.values["pagopa-p-weu-prod-aks-azure-devops-sa-token"].value),
     tf_aks_prod_name                  = var.aks_prod_platform_name
 
     TF_POOL_NAME_DEV  = "pagopa-dev-linux-infra",
