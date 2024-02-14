@@ -28,15 +28,16 @@ locals {
   uat_key_vault_resource_group  = "${local.prefix}-u-sec-rg"
   prod_key_vault_resource_group = "${local.prefix}-p-sec-rg"
 
-  # 🔐 KV Domain
-  dev_shared_key_vault_resource_group  = "${local.prefix}-d-shared-sec-rg"
-  uat_shared_key_vault_resource_group  = "${local.prefix}-u-shared-sec-rg"
-  prod_shared_key_vault_resource_group = "${local.prefix}-p-shared-sec-rg"
+  ### ACA
+  dev_aca_key_vault_resource_group  = "${local.prefix}-d-aca-sec-rg"
+  uat_aca_key_vault_resource_group  = "${local.prefix}-u-aca-sec-rg"
+  prod_aca_key_vault_resource_group = "${local.prefix}-p-aca-sec-rg"
 
-  dev_shared_key_vault_name  = "${local.prefix}-d-shared-kv"
-  uat_shared_key_vault_name  = "${local.prefix}-u-shared-kv"
-  prod_shared_key_vault_name = "${local.prefix}-p-shared-kv"
+  dev_aca_key_vault_name  = "${local.prefix}-d-aca-kv"
+  uat_aca_key_vault_name  = "${local.prefix}-u-aca-kv"
+  prod_aca_key_vault_name = "${local.prefix}-p-aca-kv"
 
+  ### AFM
   dev_afm_key_vault_resource_group  = "${local.prefix}-d-afm-sec-rg"
   uat_afm_key_vault_resource_group  = "${local.prefix}-u-afm-sec-rg"
   prod_afm_key_vault_resource_group = "${local.prefix}-p-afm-sec-rg"
@@ -45,6 +46,16 @@ locals {
   uat_afm_key_vault_name  = "${local.prefix}-u-afm-kv"
   prod_afm_key_vault_name = "${local.prefix}-p-afm-kv"
 
+  ### APICONFIG
+  dev_apiconfig_key_vault_resource_group  = "${local.prefix}-d-apiconfig-sec-rg"
+  uat_apiconfig_key_vault_resource_group  = "${local.prefix}-u-apiconfig-sec-rg"
+  prod_apiconfig_key_vault_resource_group = "${local.prefix}-p-apiconfig-sec-rg"
+
+  dev_apiconfig_key_vault_name  = "${local.prefix}-d-apiconfig-kv"
+  uat_apiconfig_key_vault_name  = "${local.prefix}-u-apiconfig-kv"
+  prod_apiconfig_key_vault_name = "${local.prefix}-p-apiconfig-kv"
+
+  ### BIZEVENTS
   dev_bizevents_key_vault_resource_group  = "${local.prefix}-d-bizevents-sec-rg"
   uat_bizevents_key_vault_resource_group  = "${local.prefix}-u-bizevents-sec-rg"
   prod_bizevents_key_vault_resource_group = "${local.prefix}-p-bizevents-sec-rg"
@@ -53,6 +64,7 @@ locals {
   uat_bizevents_key_vault_name  = "${local.prefix}-u-bizevents-kv"
   prod_bizevents_key_vault_name = "${local.prefix}-p-bizevents-kv"
 
+  ### GPS
   dev_gps_key_vault_resource_group  = "${local.prefix}-d-gps-sec-rg"
   uat_gps_key_vault_resource_group  = "${local.prefix}-u-gps-sec-rg"
   prod_gps_key_vault_resource_group = "${local.prefix}-p-gps-sec-rg"
@@ -79,6 +91,33 @@ locals {
   uat_elk_key_vault_resource_group  = "${local.prefix}-u-elk-sec-rg"
   prod_elk_key_vault_resource_group = "${local.prefix}-p-elk-sec-rg"
 
+  ### FDR
+  dev_fdr_key_vault_resource_group  = "${local.prefix}-d-fdr-sec-rg"
+  uat_fdr_key_vault_resource_group  = "${local.prefix}-u-fdr-sec-rg"
+  prod_fdr_key_vault_resource_group = "${local.prefix}-p-fdr-sec-rg"
+
+  dev_fdr_key_vault_name  = "${local.prefix}-d-fdr-kv"
+  uat_fdr_key_vault_name  = "${local.prefix}-u-fdr-kv"
+  prod_fdr_key_vault_name = "${local.prefix}-p-fdr-kv"
+
+  ### NODO
+  dev_nodo_key_vault_resource_group  = "${local.prefix}-d-nodo-sec-rg"
+  uat_nodo_key_vault_resource_group  = "${local.prefix}-u-nodo-sec-rg"
+  prod_nodo_key_vault_resource_group = "${local.prefix}-p-nodo-sec-rg"
+
+  dev_nodo_key_vault_name  = "${local.prefix}-d-nodo-kv"
+  uat_nodo_key_vault_name  = "${local.prefix}-u-nodo-kv"
+  prod_nodo_key_vault_name = "${local.prefix}-p-nodo-kv"
+
+  ### MOCK
+  dev_mock_key_vault_resource_group  = "${local.prefix}-d-mock-sec-rg"
+  uat_mock_key_vault_resource_group  = "${local.prefix}-u-mock-sec-rg"
+  prod_mock_key_vault_resource_group = "${local.prefix}-p-mock-sec-rg"
+
+  dev_mock_key_vault_name  = "${local.prefix}-d-mock-kv"
+  uat_mock_key_vault_name  = "${local.prefix}-u-mock-kv"
+  prod_mock_key_vault_name = "${local.prefix}-p-mock-kv"
+
   ### SELFCARE
   dev_selfcare_key_vault_resource_group  = "${local.prefix}-d-selfcare-sec-rg"
   uat_selfcare_key_vault_resource_group  = "${local.prefix}-u-selfcare-sec-rg"
@@ -88,14 +127,16 @@ locals {
   uat_selfcare_key_vault_name  = "${local.prefix}-u-selfcare-kv"
   prod_selfcare_key_vault_name = "${local.prefix}-p-selfcare-kv"
 
-  dev_nodo_key_vault_resource_group  = "${local.prefix}-d-nodo-sec-rg"
-  uat_nodo_key_vault_resource_group  = "${local.prefix}-u-nodo-sec-rg"
-  prod_nodo_key_vault_resource_group = "${local.prefix}-p-nodo-sec-rg"
+  ### SHARED
+  dev_shared_key_vault_resource_group  = "${local.prefix}-d-shared-sec-rg"
+  uat_shared_key_vault_resource_group  = "${local.prefix}-u-shared-sec-rg"
+  prod_shared_key_vault_resource_group = "${local.prefix}-p-shared-sec-rg"
 
-  dev_nodo_key_vault_name  = "${local.prefix}-d-nodo-kv"
-  uat_nodo_key_vault_name  = "${local.prefix}-u-nodo-kv"
-  prod_nodo_key_vault_name = "${local.prefix}-p-nodo-kv"
+  dev_shared_key_vault_name  = "${local.prefix}-d-shared-kv"
+  uat_shared_key_vault_name  = "${local.prefix}-u-shared-kv"
+  prod_shared_key_vault_name = "${local.prefix}-p-shared-kv"
 
+  ### WALLET
   dev_wallet_key_vault_resource_group  = "${local.prefix}-d-wallet-sec-rg"
   uat_wallet_key_vault_resource_group  = "${local.prefix}-u-wallet-sec-rg"
   prod_wallet_key_vault_resource_group = "${local.prefix}-p-wallet-sec-rg"
@@ -104,22 +145,7 @@ locals {
   uat_wallet_key_vault_name  = "${local.prefix}-u-wallet-kv"
   prod_wallet_key_vault_name = "${local.prefix}-p-wallet-kv"
 
-  dev_fdr_key_vault_resource_group  = "${local.prefix}-d-fdr-sec-rg"
-  uat_fdr_key_vault_resource_group  = "${local.prefix}-u-fdr-sec-rg"
-  prod_fdr_key_vault_resource_group = "${local.prefix}-p-fdr-sec-rg"
-
-  dev_fdr_key_vault_name  = "${local.prefix}-d-fdr-kv"
-  uat_fdr_key_vault_name  = "${local.prefix}-u-fdr-kv"
-  prod_fdr_key_vault_name = "${local.prefix}-p-fdr-kv"
-
-  dev_aca_key_vault_resource_group  = "${local.prefix}-d-aca-sec-rg"
-  uat_aca_key_vault_resource_group  = "${local.prefix}-u-aca-sec-rg"
-  prod_aca_key_vault_resource_group = "${local.prefix}-p-aca-sec-rg"
-
-  dev_aca_key_vault_name  = "${local.prefix}-d-aca-kv"
-  uat_aca_key_vault_name  = "${local.prefix}-u-aca-kv"
-  prod_aca_key_vault_name = "${local.prefix}-p-aca-kv"
-
+  ### QI
   dev_qi_key_vault_resource_group  = "${local.prefix}-d-qi-sec-rg"
   uat_qi_key_vault_resource_group  = "${local.prefix}-u-qi-sec-rg"
   prod_qi_key_vault_resource_group = "${local.prefix}-p-qi-sec-rg"
@@ -127,6 +153,15 @@ locals {
   dev_qi_key_vault_name  = "${local.prefix}-d-qi-kv"
   uat_qi_key_vault_name  = "${local.prefix}-u-qi-kv"
   prod_qi_key_vault_name = "${local.prefix}-p-qi-kv"
+
+  ### RECEIPTS
+  dev_receipts_key_vault_resource_group  = "${local.prefix}-d-receipts-sec-rg"
+  uat_receipts_key_vault_resource_group  = "${local.prefix}-u-receipts-sec-rg"
+  prod_receipts_key_vault_resource_group = "${local.prefix}-p-receipts-sec-rg"
+
+  dev_receipts_key_vault_name  = "${local.prefix}-d-receipts-kv"
+  uat_receipts_key_vault_name  = "${local.prefix}-u-receipts-kv"
+  prod_receipts_key_vault_name = "${local.prefix}-p-receipts-kv"
 
   tlscert_renew_token = "v3"
 }
