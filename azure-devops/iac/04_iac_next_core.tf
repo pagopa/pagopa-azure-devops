@@ -22,6 +22,9 @@ locals {
     TF_POOL_NAME_DEV : "pagopa-dev-linux-infra",
     TF_POOL_NAME_UAT : "pagopa-uat-linux-infra",
     TF_POOL_NAME_PROD : "pagopa-prod-linux-infra",
+    TF_AZURE_SERVICE_CONNECTION_PLAN_NAME_DEV : module.DEV-AZURERM-IAC-PLAN-SERVICE-CONN.service_endpoint_name,
+    TF_AZURE_SERVICE_CONNECTION_PLAN_NAME_UAT : module.UAT-AZURERM-IAC-PLAN-SERVICE-CONN.service_endpoint_name,
+    TF_AZURE_SERVICE_CONNECTION_PLAN_NAME_PROD : module.PROD-AZURERM-IAC-PLAN-SERVICE-CONN.service_endpoint_name,
   }
   # global secrets
   iac_next_core-variables_secret = {
@@ -30,9 +33,6 @@ locals {
 
   # code_review vars
   iac_next_core-variables_code_review = {
-    TF_AZURE_SERVICE_CONNECTION_PLAN_NAME_DEV : module.DEV-AZURERM-IAC-PLAN-SERVICE-CONN.service_endpoint_name,
-    TF_AZURE_SERVICE_CONNECTION_PLAN_NAME_UAT : module.UAT-AZURERM-IAC-PLAN-SERVICE-CONN.service_endpoint_name,
-    TF_AZURE_SERVICE_CONNECTION_PLAN_NAME_PROD : module.PROD-AZURERM-IAC-PLAN-SERVICE-CONN.service_endpoint_name,
   }
   # code_review secrets
   iac_next_core-variables_secret_code_review = {
@@ -106,7 +106,6 @@ module "iac_next_core_deploy" {
   variables = merge(
     local.iac_next_core-variables,
     local.iac_next_core-variables_deploy,
-    local.iac_next_core-variables_code_review,
   )
 
   variables_secret = merge(
