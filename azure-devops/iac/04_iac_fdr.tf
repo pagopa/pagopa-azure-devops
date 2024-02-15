@@ -158,6 +158,9 @@ module "fdr_iac_db_migration" {
   pipeline_name                = var.fdr_iac.pipeline.db_migration.name
   pipeline_yml_filename        = var.fdr_iac.pipeline.db_migration.pipeline_yml_filename
 
+  ci_trigger_use_yaml           = false
+  pull_request_trigger_use_yaml = false
+
   variables = merge(
     local.fdr_iac_variables,
     local.fdr_iac_variables_db_migration,
@@ -184,6 +187,9 @@ module "fdr_iac_db_schema" {
   path                         = var.fdr_iac.pipeline.path
   pipeline_name                = var.fdr_iac.pipeline.db_schema.name
   pipeline_yml_filename        = var.fdr_iac.pipeline.db_schema.pipeline_yml_filename
+
+  ci_trigger_use_yaml           = false
+  pull_request_trigger_use_yaml = false
 
   variables = merge(
     local.fdr_iac_variables,
