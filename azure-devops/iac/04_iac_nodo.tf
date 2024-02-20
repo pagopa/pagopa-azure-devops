@@ -40,19 +40,19 @@ variable "nodo_iac" {
 locals {
   # global vars
   nodo_iac_variables = {
-    tf_dev_aks_apiserver_url         = module.aca_dev_secrets.values["pagopa-d-weu-dev-aks-apiserver-url"].value,
-    tf_dev_aks_azure_devops_sa_cacrt = module.aca_dev_secrets.values["pagopa-d-weu-dev-aks-azure-devops-sa-cacrt"].value,
-    tf_dev_aks_azure_devops_sa_token = base64decode(module.aca_dev_secrets.values["pagopa-d-weu-dev-aks-azure-devops-sa-token"].value),
+    tf_dev_aks_apiserver_url         = module.nodo_dev_secrets.values["pagopa-d-weu-dev-aks-apiserver-url"].value,
+    tf_dev_aks_azure_devops_sa_cacrt = module.nodo_dev_secrets.values["pagopa-d-weu-dev-aks-azure-devops-sa-cacrt"].value,
+    tf_dev_aks_azure_devops_sa_token = base64decode(module.nodo_dev_secrets.values["pagopa-d-weu-dev-aks-azure-devops-sa-token"].value),
     tf_aks_dev_name                  = var.aks_dev_platform_name
 
-    tf_uat_aks_apiserver_url         = module.aca_uat_secrets.values["pagopa-u-weu-uat-aks-apiserver-url"].value,
-    tf_uat_aks_azure_devops_sa_cacrt = module.aca_uat_secrets.values["pagopa-u-weu-uat-aks-azure-devops-sa-cacrt"].value,
-    tf_uat_aks_azure_devops_sa_token = base64decode(module.aca_uat_secrets.values["pagopa-u-weu-uat-aks-azure-devops-sa-token"].value),
+    tf_uat_aks_apiserver_url         = module.nodo_uat_secrets.values["pagopa-u-weu-uat-aks-apiserver-url"].value,
+    tf_uat_aks_azure_devops_sa_cacrt = module.nodo_uat_secrets.values["pagopa-u-weu-uat-aks-azure-devops-sa-cacrt"].value,
+    tf_uat_aks_azure_devops_sa_token = base64decode(module.nodo_uat_secrets.values["pagopa-u-weu-uat-aks-azure-devops-sa-token"].value),
     tf_aks_uat_name                  = var.aks_uat_platform_name
 
-    tf_prod_aks_apiserver_url         = module.aca_prod_secrets.values["pagopa-p-weu-prod-aks-apiserver-url"].value,
-    tf_prod_aks_azure_devops_sa_cacrt = module.aca_prod_secrets.values["pagopa-p-weu-prod-aks-azure-devops-sa-cacrt"].value,
-    tf_prod_aks_azure_devops_sa_token = base64decode(module.aca_prod_secrets.values["pagopa-p-weu-prod-aks-azure-devops-sa-token"].value),
+    tf_prod_aks_apiserver_url         = module.nodo_prod_secrets.values["pagopa-p-weu-prod-aks-apiserver-url"].value,
+    tf_prod_aks_azure_devops_sa_cacrt = module.nodo_prod_secrets.values["pagopa-p-weu-prod-aks-azure-devops-sa-cacrt"].value,
+    tf_prod_aks_azure_devops_sa_token = base64decode(module.nodo_prod_secrets.values["pagopa-p-weu-prod-aks-azure-devops-sa-token"].value),
     tf_aks_prod_name                  = var.aks_prod_platform_name
 
     TF_POOL_NAME_DEV  = "pagopa-dev-linux-infra",
