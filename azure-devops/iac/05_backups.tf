@@ -10,12 +10,12 @@ module "apim_backup" {
   ci_trigger_use_yaml = false
 
   variables = {
-    apim_name                 = "pagopa-p-apim"
-    apim_rg                   = "pagopa-p-api-rg"
-    storage_account_name      = "pagopapbackupstorage"
-    backup_name               = "apim-backup"
-    storage_account_container = "apim"
-    storage_account_rg        = "pagopa-p-data-rg"
+    apim_name                                   = "pagopa-p-apim"
+    apim_rg                                     = "pagopa-p-api-rg"
+    storage_account_name                        = "pagopapbackupstorage"
+    backup_name                                 = "apim-backup"
+    storage_account_container                   = "apim"
+    storage_account_rg                          = "pagopa-p-data-rg"
     TF_AZURE_SERVICE_CONNECTION_APPLY_NAME_PROD = module.PROD-AZURERM-IAC-DEPLOY-SERVICE-CONN.service_endpoint_name
   }
 
