@@ -49,6 +49,7 @@ locals {
     TF_AZURE_SERVICE_CONNECTION_PLAN_NAME_DEV  = module.DEV-AZURERM-IAC-PLAN-SERVICE-CONN.service_endpoint_name,
     TF_AZURE_SERVICE_CONNECTION_PLAN_NAME_UAT  = module.UAT-AZURERM-IAC-PLAN-SERVICE-CONN.service_endpoint_name,
     TF_AZURE_SERVICE_CONNECTION_PLAN_NAME_PROD = module.PROD-AZURERM-IAC-PLAN-SERVICE-CONN.service_endpoint_name,
+
     #APPLY
     TF_AZURE_SERVICE_CONNECTION_APPLY_NAME_DEV  = module.DEV-AZURERM-IAC-DEPLOY-SERVICE-CONN.service_endpoint_name,
     TF_AZURE_SERVICE_CONNECTION_APPLY_NAME_UAT  = module.UAT-AZURERM-IAC-DEPLOY-SERVICE-CONN.service_endpoint_name,
@@ -163,9 +164,9 @@ module "fdr_iac_db_migration" {
 
   service_connection_ids_authorization = [
     azuredevops_serviceendpoint_github.azure-devops-github-ro.id,
-    azuredevops_serviceendpoint_azurerm.DEV-PAGOPA-IAC-LEGACY.id,
-    azuredevops_serviceendpoint_azurerm.UAT-PAGOPA-IAC-LEGACY.id,
-    azuredevops_serviceendpoint_azurerm.PROD-PAGOPA-IAC-LEGACY.id,
+    module.DEV-AZURERM-IAC-PLAN-SERVICE-CONN.service_endpoint_id,
+    module.UAT-AZURERM-IAC-PLAN-SERVICE-CONN.service_endpoint_id,
+    module.PROD-AZURERM-IAC-PLAN-SERVICE-CONN.service_endpoint_id,
   ]
 }
 
@@ -190,8 +191,8 @@ module "fdr_iac_db_schema" {
 
   service_connection_ids_authorization = [
     azuredevops_serviceendpoint_github.azure-devops-github-ro.id,
-    azuredevops_serviceendpoint_azurerm.DEV-PAGOPA-IAC-LEGACY.id,
-    azuredevops_serviceendpoint_azurerm.UAT-PAGOPA-IAC-LEGACY.id,
-    azuredevops_serviceendpoint_azurerm.PROD-PAGOPA-IAC-LEGACY.id,
+    module.DEV-AZURERM-IAC-PLAN-SERVICE-CONN.service_endpoint_id,
+    module.UAT-AZURERM-IAC-PLAN-SERVICE-CONN.service_endpoint_id,
+    module.PROD-AZURERM-IAC-PLAN-SERVICE-CONN.service_endpoint_id,
   ]
 }
