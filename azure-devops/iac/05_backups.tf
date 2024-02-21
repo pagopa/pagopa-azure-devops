@@ -16,12 +16,13 @@ module "apim_backup" {
     backup_name               = "apim-backup"
     storage_account_container = "apim"
     storage_account_rg        = "pagopa-p-data-rg"
+    TF_AZURE_SERVICE_CONNECTION_APPLY_NAME_PROD = module.PROD-AZURERM-IAC-DEPLOY-SERVICE-CONN.service_endpoint_name
   }
 
   variables_secret = {}
 
   service_connection_ids_authorization = [
-    azuredevops_serviceendpoint_azurerm.PROD-PAGOPA-IAC-LEGACY.id,
+    module.PROD-AZURERM-IAC-DEPLOY-SERVICE-CONN.service_endpoint_id,
   ]
 
   schedules = {
