@@ -105,7 +105,7 @@ locals {
 
 # NODO infra (PLAN+APPLY ) & db creation+migration
 module "nodo_iac_code_review" {
-  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review?ref=v6.0.0"
+  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review?ref=v7.0.0"
   count  = var.nodo_iac.pipeline.enable_code_review == true ? 1 : 0
   path   = var.nodo_iac.pipeline.path
 
@@ -115,7 +115,7 @@ module "nodo_iac_code_review" {
 
   pipeline_name_prefix = var.nodo_iac.pipeline.pipeline_name_prefix
 
-  pull_request_trigger_use_yaml = true
+
 
   variables = merge(
     local.nodo_iac_variables,
@@ -136,7 +136,7 @@ module "nodo_iac_code_review" {
 }
 
 module "nodo_iac_deploy" {
-  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy?ref=v6.0.0"
+  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy?ref=v7.0.0"
   count  = var.nodo_iac.pipeline.enable_deploy == true ? 1 : 0
   path   = var.nodo_iac.pipeline.path
 
@@ -146,8 +146,7 @@ module "nodo_iac_deploy" {
 
   pipeline_name_prefix = var.nodo_iac.pipeline.pipeline_name_prefix
 
-  ci_trigger_use_yaml           = false
-  pull_request_trigger_use_yaml = false
+
 
   variables = merge(
     local.nodo_iac_variables,
@@ -172,7 +171,7 @@ module "nodo_iac_deploy" {
 }
 
 module "nodo_iac_db_migration" {
-  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_generic?ref=v6.0.0"
+  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_generic?ref=v7.0.0"
 
   project_id                   = azuredevops_project.project.id
   repository                   = var.nodo_iac.repository
@@ -192,14 +191,14 @@ module "nodo_iac_db_migration" {
 
   service_connection_ids_authorization = [
     azuredevops_serviceendpoint_github.azure-devops-github-ro.id,
-    azuredevops_serviceendpoint_azurerm.DEV-PAGOPA-IAC-LEGACY.id,
-    azuredevops_serviceendpoint_azurerm.UAT-PAGOPA-IAC-LEGACY.id,
-    azuredevops_serviceendpoint_azurerm.PROD-PAGOPA-IAC-LEGACY.id,
+    module.DEV-AZURERM-IAC-PLAN-SERVICE-CONN.service_endpoint_id,
+    module.UAT-AZURERM-IAC-PLAN-SERVICE-CONN.service_endpoint_id,
+    module.PROD-AZURERM-IAC-PLAN-SERVICE-CONN.service_endpoint_id,
   ]
 }
 
 module "nodo_iac_db_schema" {
-  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_generic?ref=v6.0.0"
+  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_generic?ref=v7.0.0"
 
   project_id                   = azuredevops_project.project.id
   repository                   = var.nodo_iac.repository
@@ -219,15 +218,15 @@ module "nodo_iac_db_schema" {
 
   service_connection_ids_authorization = [
     azuredevops_serviceendpoint_github.azure-devops-github-ro.id,
-    azuredevops_serviceendpoint_azurerm.DEV-PAGOPA-IAC-LEGACY.id,
-    azuredevops_serviceendpoint_azurerm.UAT-PAGOPA-IAC-LEGACY.id,
-    azuredevops_serviceendpoint_azurerm.PROD-PAGOPA-IAC-LEGACY.id,
+    module.DEV-AZURERM-IAC-PLAN-SERVICE-CONN.service_endpoint_id,
+    module.UAT-AZURERM-IAC-PLAN-SERVICE-CONN.service_endpoint_id,
+    module.PROD-AZURERM-IAC-PLAN-SERVICE-CONN.service_endpoint_id,
   ]
 }
 
 # WEB-BO infra (PLAN+APPLY )& db migration
 module "nodo_iac_web_bo_db_migration" {
-  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_generic?ref=v6.0.0"
+  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_generic?ref=v7.0.0"
 
   project_id                   = azuredevops_project.project.id
   repository                   = var.nodo_iac.repository
@@ -247,14 +246,14 @@ module "nodo_iac_web_bo_db_migration" {
 
   service_connection_ids_authorization = [
     azuredevops_serviceendpoint_github.azure-devops-github-ro.id,
-    azuredevops_serviceendpoint_azurerm.DEV-PAGOPA-IAC-LEGACY.id,
-    azuredevops_serviceendpoint_azurerm.UAT-PAGOPA-IAC-LEGACY.id,
-    azuredevops_serviceendpoint_azurerm.PROD-PAGOPA-IAC-LEGACY.id,
+    module.DEV-AZURERM-IAC-PLAN-SERVICE-CONN.service_endpoint_id,
+    module.UAT-AZURERM-IAC-PLAN-SERVICE-CONN.service_endpoint_id,
+    module.PROD-AZURERM-IAC-PLAN-SERVICE-CONN.service_endpoint_id,
   ]
 }
 
 module "nodo_iac_web_bo_db_schema" {
-  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_generic?ref=v6.0.0"
+  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_generic?ref=v7.0.0"
 
   project_id                   = azuredevops_project.project.id
   repository                   = var.nodo_iac.repository
@@ -274,8 +273,8 @@ module "nodo_iac_web_bo_db_schema" {
 
   service_connection_ids_authorization = [
     azuredevops_serviceendpoint_github.azure-devops-github-ro.id,
-    azuredevops_serviceendpoint_azurerm.DEV-PAGOPA-IAC-LEGACY.id,
-    azuredevops_serviceendpoint_azurerm.UAT-PAGOPA-IAC-LEGACY.id,
-    azuredevops_serviceendpoint_azurerm.PROD-PAGOPA-IAC-LEGACY.id,
+    module.DEV-AZURERM-IAC-PLAN-SERVICE-CONN.service_endpoint_id,
+    module.UAT-AZURERM-IAC-PLAN-SERVICE-CONN.service_endpoint_id,
+    module.PROD-AZURERM-IAC-PLAN-SERVICE-CONN.service_endpoint_id,
   ]
 }

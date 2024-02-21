@@ -47,7 +47,7 @@ locals {
 }
 
 module "observability_iac_code_review" {
-  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review?ref=v6.0.0"
+  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review?ref=v7.0.0"
   count  = var.observability_iac.pipeline.enable_code_review == true ? 1 : 0
   path   = var.observability_iac.pipeline.path
 
@@ -57,7 +57,7 @@ module "observability_iac_code_review" {
 
   pipeline_name_prefix = var.observability_iac.pipeline.pipeline_name_prefix
 
-  pull_request_trigger_use_yaml = true
+
 
   variables = merge(
     local.observability_iac_variables,
@@ -78,7 +78,7 @@ module "observability_iac_code_review" {
 }
 
 module "observability_iac_deploy" {
-  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy?ref=v6.0.0"
+  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy?ref=v7.0.0"
   count  = var.observability_iac.pipeline.enable_deploy == true ? 1 : 0
   path   = var.observability_iac.pipeline.path
 
@@ -88,8 +88,7 @@ module "observability_iac_deploy" {
 
   pipeline_name_prefix = var.observability_iac.pipeline.pipeline_name_prefix
 
-  ci_trigger_use_yaml           = false
-  pull_request_trigger_use_yaml = false
+
 
   variables = merge(
     local.observability_iac_variables,

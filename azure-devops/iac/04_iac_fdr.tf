@@ -49,6 +49,7 @@ locals {
     TF_AZURE_SERVICE_CONNECTION_PLAN_NAME_DEV  = module.DEV-AZURERM-IAC-PLAN-SERVICE-CONN.service_endpoint_name,
     TF_AZURE_SERVICE_CONNECTION_PLAN_NAME_UAT  = module.UAT-AZURERM-IAC-PLAN-SERVICE-CONN.service_endpoint_name,
     TF_AZURE_SERVICE_CONNECTION_PLAN_NAME_PROD = module.PROD-AZURERM-IAC-PLAN-SERVICE-CONN.service_endpoint_name,
+
     #APPLY
     TF_AZURE_SERVICE_CONNECTION_APPLY_NAME_DEV  = module.DEV-AZURERM-IAC-DEPLOY-SERVICE-CONN.service_endpoint_name,
     TF_AZURE_SERVICE_CONNECTION_APPLY_NAME_UAT  = module.UAT-AZURERM-IAC-DEPLOY-SERVICE-CONN.service_endpoint_name,
@@ -82,17 +83,14 @@ locals {
 
 # fdr infra (PLAN+APPLY ) & db creation+migration
 module "fdr_iac_code_review" {
-  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review?ref=v6.0.0"
+  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review?ref=v7.0.0"
   count  = var.fdr_iac.pipeline.enable_code_review == true ? 1 : 0
   path   = var.fdr_iac.pipeline.path
 
   project_id                   = azuredevops_project.project.id
   repository                   = var.fdr_iac.repository
   github_service_connection_id = azuredevops_serviceendpoint_github.azure-devops-github-pr.id
-
-  pipeline_name_prefix = var.fdr_iac.pipeline.pipeline_name_prefix
-
-  pull_request_trigger_use_yaml = true
+  pipeline_name_prefix         = var.fdr_iac.pipeline.pipeline_name_prefix
 
   variables = merge(
     local.fdr_iac_variables,
@@ -113,7 +111,7 @@ module "fdr_iac_code_review" {
 }
 
 module "fdr_iac_deploy" {
-  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy?ref=v6.0.0"
+  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy?ref=v7.0.0"
   count  = var.fdr_iac.pipeline.enable_deploy == true ? 1 : 0
   path   = var.fdr_iac.pipeline.path
 
@@ -122,9 +120,6 @@ module "fdr_iac_deploy" {
   github_service_connection_id = azuredevops_serviceendpoint_github.azure-devops-github-pr.id
 
   pipeline_name_prefix = var.fdr_iac.pipeline.pipeline_name_prefix
-
-  ci_trigger_use_yaml           = false
-  pull_request_trigger_use_yaml = false
 
   variables = merge(
     local.fdr_iac_variables,
@@ -149,7 +144,7 @@ module "fdr_iac_deploy" {
 }
 
 module "fdr_iac_db_migration" {
-  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_generic?ref=v6.0.0"
+  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_generic?ref=v7.0.0"
 
   project_id                   = azuredevops_project.project.id
   repository                   = var.fdr_iac.repository
@@ -157,9 +152,6 @@ module "fdr_iac_db_migration" {
   path                         = var.fdr_iac.pipeline.path
   pipeline_name                = var.fdr_iac.pipeline.db_migration.name
   pipeline_yml_filename        = var.fdr_iac.pipeline.db_migration.pipeline_yml_filename
-
-  ci_trigger_use_yaml           = false
-  pull_request_trigger_use_yaml = false
 
   variables = merge(
     local.fdr_iac_variables,
@@ -172,14 +164,14 @@ module "fdr_iac_db_migration" {
 
   service_connection_ids_authorization = [
     azuredevops_serviceendpoint_github.azure-devops-github-ro.id,
-    azuredevops_serviceendpoint_azurerm.DEV-PAGOPA-IAC-LEGACY.id,
-    azuredevops_serviceendpoint_azurerm.UAT-PAGOPA-IAC-LEGACY.id,
-    azuredevops_serviceendpoint_azurerm.PROD-PAGOPA-IAC-LEGACY.id,
+    module.DEV-AZURERM-IAC-PLAN-SERVICE-CONN.service_endpoint_id,
+    module.UAT-AZURERM-IAC-PLAN-SERVICE-CONN.service_endpoint_id,
+    module.PROD-AZURERM-IAC-PLAN-SERVICE-CONN.service_endpoint_id,
   ]
 }
 
 module "fdr_iac_db_schema" {
-  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_generic?ref=v6.0.0"
+  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_generic?ref=v7.0.0"
 
   project_id                   = azuredevops_project.project.id
   repository                   = var.fdr_iac.repository
@@ -187,9 +179,6 @@ module "fdr_iac_db_schema" {
   path                         = var.fdr_iac.pipeline.path
   pipeline_name                = var.fdr_iac.pipeline.db_schema.name
   pipeline_yml_filename        = var.fdr_iac.pipeline.db_schema.pipeline_yml_filename
-
-  ci_trigger_use_yaml           = false
-  pull_request_trigger_use_yaml = false
 
   variables = merge(
     local.fdr_iac_variables,
@@ -202,8 +191,8 @@ module "fdr_iac_db_schema" {
 
   service_connection_ids_authorization = [
     azuredevops_serviceendpoint_github.azure-devops-github-ro.id,
-    azuredevops_serviceendpoint_azurerm.DEV-PAGOPA-IAC-LEGACY.id,
-    azuredevops_serviceendpoint_azurerm.UAT-PAGOPA-IAC-LEGACY.id,
-    azuredevops_serviceendpoint_azurerm.PROD-PAGOPA-IAC-LEGACY.id,
+    module.DEV-AZURERM-IAC-PLAN-SERVICE-CONN.service_endpoint_id,
+    module.UAT-AZURERM-IAC-PLAN-SERVICE-CONN.service_endpoint_id,
+    module.PROD-AZURERM-IAC-PLAN-SERVICE-CONN.service_endpoint_id,
   ]
 }

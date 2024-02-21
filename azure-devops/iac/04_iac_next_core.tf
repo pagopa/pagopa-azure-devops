@@ -57,7 +57,7 @@ locals {
 # Code review
 #
 module "iac_next_core_code_review" {
-  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review?ref=v6.0.0"
+  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review?ref=v7.0.0"
   count  = var.iac_next_core.pipeline.enable_code_review == true ? 1 : 0
 
   project_id                   = azuredevops_project.project.id
@@ -66,7 +66,7 @@ module "iac_next_core_code_review" {
   path                         = var.iac_next_core.pipeline.path_name
   pipeline_name_prefix         = var.iac_next_core.pipeline.pipeline_name_prefix
 
-  pull_request_trigger_use_yaml = true
+
 
   variables = merge(
     local.iac_next_core-variables,
@@ -90,7 +90,7 @@ module "iac_next_core_code_review" {
 # DEPLOY
 #
 module "iac_next_core_deploy" {
-  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy?ref=v6.0.0"
+  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy?ref=v7.0.0"
   count  = var.iac_next_core.pipeline.enable_deploy == true ? 1 : 0
 
   project_id                   = azuredevops_project.project.id
@@ -99,8 +99,7 @@ module "iac_next_core_deploy" {
   path                         = var.iac_next_core.pipeline.path_name
   pipeline_name_prefix         = var.iac_next_core.pipeline.pipeline_name_prefix
 
-  ci_trigger_use_yaml           = false
-  pull_request_trigger_use_yaml = false
+
 
 
   variables = merge(

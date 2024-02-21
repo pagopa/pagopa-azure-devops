@@ -4,7 +4,7 @@
 
 module "DEV-AZURERM-IAC-DEPLOY-SERVICE-CONN" {
   depends_on = [azuredevops_project.project]
-  source     = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated?ref=v6.0.0"
+  source     = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated?ref=v7.0.0"
   providers = {
     azurerm = azurerm.dev
   }
@@ -33,7 +33,7 @@ resource "azurerm_role_assignment" "dev_apply_permissions" {
 
 module "UAT-AZURERM-IAC-DEPLOY-SERVICE-CONN" {
   depends_on = [azuredevops_project.project]
-  source     = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated?ref=v6.0.0"
+  source     = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated?ref=v7.0.0"
   providers = {
     azurerm = azurerm.uat
   }
@@ -61,7 +61,7 @@ resource "azurerm_role_assignment" "uat_apply_permissions" {
 #
 module "PROD-AZURERM-IAC-DEPLOY-SERVICE-CONN" {
   depends_on = [azuredevops_project.project]
-  source     = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated?ref=v6.0.0"
+  source     = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated?ref=v7.0.0"
   providers = {
     azurerm = azurerm.prod
   }

@@ -15,10 +15,6 @@ You need to add to the key vault at least this secrets:
 * azure-devops-github-pr-TOKEN
 * azure-devops-github-EMAIL
 * azure-devops-github-USERNAME
-* TENANTID
-* DEV-SUBSCRIPTION-ID
-* UAT-SUBSCRIPTION-ID
-* PROD-SUBSCRIPTION-ID
 * le-private-key-json
 * le-regr-json
 

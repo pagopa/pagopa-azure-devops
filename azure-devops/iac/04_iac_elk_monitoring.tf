@@ -70,7 +70,7 @@
 # # Code review
 # #
 # module "iac_elk_monitoring_code_review" {
-#   source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review?ref=v6.0.0"
+#   source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review?ref=v7.0.0"
 #   count  = var.iac_elk_monitoring.pipeline.enable_code_review == true ? 1 : 0
 
 #   project_id                   = azuredevops_project.project.id
@@ -79,7 +79,7 @@
 #   path                         = var.iac_elk_monitoring.pipeline.path_name
 #   pipeline_name_prefix         = var.iac_elk_monitoring.repository.yml_prefix_name
 
-#   pull_request_trigger_use_yaml = true
+#
 
 #   variables = merge(
 #     local.iac_elk_monitoring-variables,
@@ -103,7 +103,7 @@
 # # DEPLOY
 # #
 # module "iac_elk_monitoring_deploy" {
-#   source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy?ref=v6.0.0"
+#   source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy?ref=v7.0.0"
 #   count  = var.iac_elk_monitoring.pipeline.enable_deploy == true ? 1 : 0
 
 #   project_id                   = azuredevops_project.project.id

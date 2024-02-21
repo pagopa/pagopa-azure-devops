@@ -57,7 +57,7 @@ locals {
 # Code review
 #
 module "iac_checkout_code_review" {
-  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review?ref=v6.0.0"
+  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review?ref=v7.0.0"
   count  = var.iac_checkout.pipeline.enable_code_review == true ? 1 : 0
 
   project_id                   = azuredevops_project.project.id
@@ -67,7 +67,7 @@ module "iac_checkout_code_review" {
   pipeline_name_prefix         = var.iac_checkout.repository.yml_prefix_name
 
 
-  pull_request_trigger_use_yaml = true
+
 
   variables = merge(
     local.iac_checkout-variables,
@@ -91,7 +91,7 @@ module "iac_checkout_code_review" {
 # DEPLOY
 #
 module "iac_checkout_deploy" {
-  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy?ref=v6.0.0"
+  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy?ref=v7.0.0"
   count  = var.iac_checkout.pipeline.enable_deploy == true ? 1 : 0
 
   project_id                   = azuredevops_project.project.id
@@ -100,8 +100,7 @@ module "iac_checkout_deploy" {
   path                         = var.iac_checkout.pipeline.path_name
   pipeline_name_prefix         = var.iac_checkout.repository.yml_prefix_name
 
-  ci_trigger_use_yaml           = false
-  pull_request_trigger_use_yaml = false
+
 
 
   variables = merge(
