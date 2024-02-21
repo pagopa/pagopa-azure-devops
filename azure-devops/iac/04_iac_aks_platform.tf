@@ -81,7 +81,7 @@
 #     pipeline_name_prefix         = var.iac_aks_platform.repository.yml_prefix_name
 
 
-#   pull_request_trigger_use_yaml = true
+#
 
 #   variables = merge(
 #     local.iac_aks_platform-variables,

@@ -71,7 +71,7 @@ module "afm_iac_code_review" {
 
   pipeline_name_prefix = var.afm_iac.pipeline.pipeline_name_prefix
 
-  pull_request_trigger_use_yaml = true
+
 
   variables = merge(
     local.afm_iac_variables,
@@ -102,8 +102,7 @@ module "afm_iac_deploy" {
 
   pipeline_name_prefix = var.afm_iac.pipeline.pipeline_name_prefix
 
-  ci_trigger_use_yaml           = false
-  pull_request_trigger_use_yaml = false
+
 
   variables = merge(
     local.afm_iac_variables,

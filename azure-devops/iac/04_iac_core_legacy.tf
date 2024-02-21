@@ -67,7 +67,7 @@ module "iac_core_code_review" {
   pipeline_name_prefix         = var.iac_core.repository.yml_prefix_name
 
 
-  pull_request_trigger_use_yaml = true
+
 
   variables = merge(
     local.iac_core-variables,
@@ -100,8 +100,7 @@ module "iac_core_deploy" {
   path                         = var.iac_core.pipeline.path_name
   pipeline_name_prefix         = var.iac_core.repository.yml_prefix_name
 
-  ci_trigger_use_yaml           = false
-  pull_request_trigger_use_yaml = false
+
 
 
   variables = merge(

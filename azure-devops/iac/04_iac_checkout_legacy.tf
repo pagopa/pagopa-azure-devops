@@ -67,7 +67,7 @@ module "iac_checkout_code_review" {
   pipeline_name_prefix         = var.iac_checkout.repository.yml_prefix_name
 
 
-  pull_request_trigger_use_yaml = true
+
 
   variables = merge(
     local.iac_checkout-variables,
@@ -100,8 +100,7 @@ module "iac_checkout_deploy" {
   path                         = var.iac_checkout.pipeline.path_name
   pipeline_name_prefix         = var.iac_checkout.repository.yml_prefix_name
 
-  ci_trigger_use_yaml           = false
-  pull_request_trigger_use_yaml = false
+
 
 
   variables = merge(

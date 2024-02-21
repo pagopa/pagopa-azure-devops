@@ -71,8 +71,6 @@ module "aca_iac_code_review" {
 
   pipeline_name_prefix = var.aca_iac.pipeline.pipeline_name_prefix
 
-  pull_request_trigger_use_yaml = true
-
   variables = merge(
     local.aca_iac_variables,
     local.aca_iac_variables_code_review,
@@ -101,9 +99,6 @@ module "aca_iac_deploy" {
   github_service_connection_id = azuredevops_serviceendpoint_github.azure-devops-github-pr.id
 
   pipeline_name_prefix = var.aca_iac.pipeline.pipeline_name_prefix
-
-  ci_trigger_use_yaml           = false
-  pull_request_trigger_use_yaml = false
 
   variables = merge(
     local.aca_iac_variables,

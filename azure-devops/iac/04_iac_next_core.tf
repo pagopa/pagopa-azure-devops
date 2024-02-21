@@ -66,7 +66,7 @@ module "iac_next_core_code_review" {
   path                         = var.iac_next_core.pipeline.path_name
   pipeline_name_prefix         = var.iac_next_core.pipeline.pipeline_name_prefix
 
-  pull_request_trigger_use_yaml = true
+
 
   variables = merge(
     local.iac_next_core-variables,
@@ -99,8 +99,7 @@ module "iac_next_core_deploy" {
   path                         = var.iac_next_core.pipeline.path_name
   pipeline_name_prefix         = var.iac_next_core.pipeline.pipeline_name_prefix
 
-  ci_trigger_use_yaml           = false
-  pull_request_trigger_use_yaml = false
+
 
 
   variables = merge(

@@ -115,7 +115,7 @@ module "nodo_iac_code_review" {
 
   pipeline_name_prefix = var.nodo_iac.pipeline.pipeline_name_prefix
 
-  pull_request_trigger_use_yaml = true
+
 
   variables = merge(
     local.nodo_iac_variables,
@@ -146,8 +146,7 @@ module "nodo_iac_deploy" {
 
   pipeline_name_prefix = var.nodo_iac.pipeline.pipeline_name_prefix
 
-  ci_trigger_use_yaml           = false
-  pull_request_trigger_use_yaml = false
+
 
   variables = merge(
     local.nodo_iac_variables,

@@ -79,7 +79,7 @@
 #   path                         = var.iac_elk_monitoring.pipeline.path_name
 #   pipeline_name_prefix         = var.iac_elk_monitoring.repository.yml_prefix_name
 
-#   pull_request_trigger_use_yaml = true
+#
 
 #   variables = merge(
 #     local.iac_elk_monitoring-variables,
