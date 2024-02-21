@@ -89,7 +89,7 @@ module "fdr_iac_code_review" {
   project_id                   = azuredevops_project.project.id
   repository                   = var.fdr_iac.repository
   github_service_connection_id = azuredevops_serviceendpoint_github.azure-devops-github-pr.id
-  pipeline_name_prefix = var.fdr_iac.pipeline.pipeline_name_prefix
+  pipeline_name_prefix         = var.fdr_iac.pipeline.pipeline_name_prefix
 
   variables = merge(
     local.fdr_iac_variables,
