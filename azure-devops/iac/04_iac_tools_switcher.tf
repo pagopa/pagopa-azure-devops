@@ -8,7 +8,7 @@ variable "switcher_iac" {
       yml_prefix_name = null
     }
     pipeline = {
-      enable = true
+      enable = false
       path   = "switcher"
     }
   }
@@ -36,8 +36,9 @@ module "iac_resource_switcher" {
   }
 
   source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_resource_switcher?ref=v7.0.0"
-  path   = var.switcher_iac.pipeline.path
+  count  = var.switcher_iac.pipeline.enable == true ? 1 : 0
 
+  path                         = var.switcher_iac.pipeline.path
   project_id                   = azuredevops_project.project.id
   repository                   = var.switcher_iac.repository
   github_service_connection_id = azuredevops_serviceendpoint_github.azure-devops-github-rw.id
@@ -50,7 +51,6 @@ module "iac_resource_switcher" {
   variables_secret = merge(
     local.iac_core-variables_secret,
     local.iac-variables_secret_switcher
-
   )
 
   timeout = 50
