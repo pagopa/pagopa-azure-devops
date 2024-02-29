@@ -13,7 +13,8 @@ module "wallet_dev_secrets" {
     "pagopa-d-weu-dev-aks-azure-devops-sa-token",
     "pagopa-d-weu-dev-aks-azure-devops-sa-cacrt",
     "pagopa-d-weu-dev-aks-apiserver-url",
-    "wallet-token-test-key"
+    "wallet-token-test-key",
+    "wallet-migration-api-key-test-dev"
   ]
 }
 
