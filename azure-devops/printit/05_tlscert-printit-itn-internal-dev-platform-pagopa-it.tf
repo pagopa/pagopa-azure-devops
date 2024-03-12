@@ -1,4 +1,4 @@
-variable "tlscert-printit-internal-dev-platform-pagopa-it" {
+variable "tlscert-printit-itn-internal-dev-platform-pagopa-it" {
   default = {
     repository = {
       organization   = "pagopa"
@@ -9,7 +9,7 @@ variable "tlscert-printit-internal-dev-platform-pagopa-it" {
     pipeline = {
       enable_tls_cert         = true
       path                    = "TLS-Certificates\\DEV"
-      dns_record_name         = "printit.internal"
+      dns_record_name         = "printit.itn.internal"
       dns_zone_name           = "dev.platform.pagopa.it"
       dns_zone_resource_group = "pagopa-d-vnet-rg"
       # common variables to all pipelines
@@ -25,51 +25,51 @@ variable "tlscert-printit-internal-dev-platform-pagopa-it" {
 }
 
 locals {
-  tlscert-printit-internal-dev-platform-pagopa-it = {
+  tlscert-printit-itn-internal-dev-platform-pagopa-it = {
     tenant_id         = data.azurerm_client_config.current.tenant_id
     subscription_name = "DEV-PAGOPA"
     subscription_id   = data.azurerm_subscriptions.dev.subscriptions[0].subscription_id
   }
-  tlscert-printit-internal-dev-platform-pagopa-it-variables = {
+  tlscert-printit-itn-internal-dev-platform-pagopa-it-variables = {
     KEY_VAULT_SERVICE_CONNECTION = module.DEV-PRINTIT-TLS-CERT-SERVICE-CONN.service_endpoint_name
   }
-  tlscert-printit-internal-dev-platform-pagopa-it-variables_secret = {
+  tlscert-printit-itn-internal-dev-platform-pagopa-it-variables_secret = {
   }
 }
 
-module "tlscert-printit-internal-dev-platform-pagopa-it-cert_az" {
+module "tlscert-printit-itn-internal-dev-platform-pagopa-it-cert_az" {
 
   providers = {
     azurerm = azurerm.dev
   }
 
   source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_tls_cert_federated?ref=v7.1.0"
-  count  = var.tlscert-printit-internal-dev-platform-pagopa-it.pipeline.enable_tls_cert == true ? 1 : 0
+  count  = var.tlscert-printit-itn-internal-dev-platform-pagopa-it.pipeline.enable_tls_cert == true ? 1 : 0
 
   project_id                   = data.azuredevops_project.project.id
-  repository                   = var.tlscert-printit-internal-dev-platform-pagopa-it.repository
-  path                         = var.tlscert-printit-internal-dev-platform-pagopa-it.pipeline.path
+  repository                   = var.tlscert-printit-itn-internal-dev-platform-pagopa-it.repository
+  path                         = var.tlscert-printit-itn-internal-dev-platform-pagopa-it.pipeline.path
   github_service_connection_id = data.azuredevops_serviceendpoint_github.github_ro.id
 
-  dns_record_name                      = var.tlscert-printit-internal-dev-platform-pagopa-it.pipeline.dns_record_name
-  dns_zone_name                        = var.tlscert-printit-internal-dev-platform-pagopa-it.pipeline.dns_zone_name
-  dns_zone_resource_group              = var.tlscert-printit-internal-dev-platform-pagopa-it.pipeline.dns_zone_resource_group
-  tenant_id                            = local.tlscert-printit-internal-dev-platform-pagopa-it.tenant_id
-  subscription_name                    = local.tlscert-printit-internal-dev-platform-pagopa-it.subscription_name
-  subscription_id                      = local.tlscert-printit-internal-dev-platform-pagopa-it.subscription_id
-  location                             = local.location
+  dns_record_name                      = var.tlscert-printit-itn-internal-dev-platform-pagopa-it.pipeline.dns_record_name
+  dns_zone_name                        = var.tlscert-printit-itn-internal-dev-platform-pagopa-it.pipeline.dns_zone_name
+  dns_zone_resource_group              = var.tlscert-printit-itn-internal-dev-platform-pagopa-it.pipeline.dns_zone_resource_group
+  tenant_id                            = local.tlscert-printit-itn-internal-dev-platform-pagopa-it.tenant_id
+  subscription_name                    = local.tlscert-printit-itn-internal-dev-platform-pagopa-it.subscription_name
+  subscription_id                      = local.tlscert-printit-itn-internal-dev-platform-pagopa-it.subscription_id
+  location                             = local.location_westeurope
   credential_key_vault_name            = local.dev_printit_key_vault_name
   credential_key_vault_resource_group  = local.dev_printit_key_vault_resource_group
   managed_identity_resource_group_name = local.dev_identity_rg_name
 
   variables = merge(
-    var.tlscert-printit-internal-dev-platform-pagopa-it.pipeline.variables,
-    local.tlscert-printit-internal-dev-platform-pagopa-it-variables,
+    var.tlscert-printit-itn-internal-dev-platform-pagopa-it.pipeline.variables,
+    local.tlscert-printit-itn-internal-dev-platform-pagopa-it-variables,
   )
 
   variables_secret = merge(
-    var.tlscert-printit-internal-dev-platform-pagopa-it.pipeline.variables_secret,
-    local.tlscert-printit-internal-dev-platform-pagopa-it-variables_secret,
+    var.tlscert-printit-itn-internal-dev-platform-pagopa-it.pipeline.variables_secret,
+    local.tlscert-printit-itn-internal-dev-platform-pagopa-it-variables_secret,
   )
 
   service_connection_ids_authorization = [

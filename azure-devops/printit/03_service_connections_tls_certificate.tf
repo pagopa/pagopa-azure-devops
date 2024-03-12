@@ -16,7 +16,7 @@ module "DEV-PRINTIT-TLS-CERT-SERVICE-CONN" {
   subscription_name   = var.dev_subscription_name
   subscription_id     = data.azurerm_subscriptions.dev.subscriptions[0].subscription_id
   resource_group_name = local.dev_identity_rg_name
-  location            = local.location
+  location            = local.location_westeurope
 
 }
 
@@ -58,7 +58,7 @@ module "letsencrypt_dev" {
 #  tenant_id           = data.azurerm_client_config.current.tenant_id
 #  subscription_name   = var.uat_subscription_name
 #  subscription_id     = data.azurerm_subscriptions.uat.subscriptions[0].subscription_id
-#  location            = local.location
+#  location            = local.location_westeurope
 #  resource_group_name = local.uat_identity_rg_name
 #}
 #
@@ -100,7 +100,7 @@ module "letsencrypt_dev" {
 #  tenant_id           = data.azurerm_client_config.current.tenant_id
 #  subscription_name   = var.prod_subscription_name
 #  subscription_id     = data.azurerm_subscriptions.prod.subscriptions[0].subscription_id
-#  location            = local.location
+#  location            = local.location_westeurope
 #  resource_group_name = local.prod_identity_rg_name
 #}
 #

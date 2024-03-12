@@ -11,8 +11,9 @@ locals {
   uat_identity_rg_name  = "pagopa-u-identity-rg"
   prod_identity_rg_name = "pagopa-p-identity-rg"
 
-  location = "italynorth"
-  location_short="itn"
+  location            = "italynorth"
+  location_westeurope = "westeurope"
+  location_short      = "itn"
 
   # 🔐 KV
   dev_key_vault_azdo_name  = "${local.prefix}-d-azdo-weu-kv"
