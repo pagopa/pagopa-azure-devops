@@ -1,14 +1,14 @@
 #
 # DEV
 #
-module "DEV-printit-TLS-CERT-SERVICE-CONN" {
+module "DEV-PRINTIT-TLS-CERT-SERVICE-CONN" {
 
   providers = {
     azurerm = azurerm.dev
   }
 
   depends_on = [data.azuredevops_project.project]
-  source     = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated?ref=v4.2.1"
+  source     = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated?ref=v7.1.0"
 
   project_id          = data.azuredevops_project.project.id
   name                = "${local.prefix}-${local.domain}-d-tls-cert-azdo"
@@ -20,18 +20,18 @@ module "DEV-printit-TLS-CERT-SERVICE-CONN" {
 
 }
 
-resource "azurerm_key_vault_access_policy" "DEV-printit-TLS-CERT-SERVICE-CONN_kv_access_policy" {
+resource "azurerm_key_vault_access_policy" "DEV-PRINTIT-TLS-CERT-SERVICE-CONN_kv_access_policy" {
   provider     = azurerm.dev
   key_vault_id = data.azurerm_key_vault.domain_kv_dev.id
   tenant_id    = data.azurerm_client_config.current.tenant_id
-  object_id    = module.DEV-printit-TLS-CERT-SERVICE-CONN.service_principal_object_id
+  object_id    = module.DEV-PRINTIT-TLS-CERT-SERVICE-CONN.service_principal_object_id
 
   certificate_permissions = ["Get", "Import"]
 }
 
 # create let's encrypt credential used to create SSL certificates
 module "letsencrypt_dev" {
-  source = "git::https://github.com/pagopa/terraform-azurerm-v3.git//letsencrypt_credential?ref=v7.67.1"
+  source = "git::https://github.com/pagopa/terraform-azurerm-v3.git//letsencrypt_credential?ref=v7.1.0"
 
   providers = {
     azurerm = azurerm.dev
@@ -42,88 +42,86 @@ module "letsencrypt_dev" {
   subscription_name = var.dev_subscription_name
 }
 
+##
+## UAT
+##
+#module "UAT-PRINTIT-TLS-CERT-SERVICE-CONN" {
+#  providers = {
+#    azurerm = azurerm.uat
+#  }
 #
-# UAT
+#  depends_on = [data.azuredevops_project.project]
+#  source     = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated?ref=v7.1.0"
 #
-module "UAT-printit-TLS-CERT-SERVICE-CONN" {
-  providers = {
-    azurerm = azurerm.uat
-  }
-
-  depends_on = [data.azuredevops_project.project]
-  source     = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated?ref=v4.2.1"
-
-  project_id          = data.azuredevops_project.project.id
-  name                = "${local.prefix}-${local.domain}-u-tls-cert-azdo"
-  tenant_id           = data.azurerm_client_config.current.tenant_id
-  subscription_name   = var.uat_subscription_name
-  subscription_id     = data.azurerm_subscriptions.uat.subscriptions[0].subscription_id
-  location            = local.location
-  resource_group_name = local.uat_identity_rg_name
-}
-
-resource "azurerm_key_vault_access_policy" "UAT-printit-TLS-CERT-SERVICE-CONN_kv_access_policy" {
-  provider     = azurerm.uat
-  key_vault_id = data.azurerm_key_vault.domain_kv_uat.id
-  tenant_id    = data.azurerm_client_config.current.tenant_id
-  object_id    = module.UAT-printit-TLS-CERT-SERVICE-CONN.service_principal_object_id
-
-  certificate_permissions = ["Get", "Import"]
-}
-
-# create let's encrypt credential used to create SSL certificates
-module "letsencrypt_uat" {
-  source = "git::https://github.com/pagopa/terraform-azurerm-v3.git//letsencrypt_credential?ref=v7.67.1"
-
-  providers = {
-    azurerm = azurerm.uat
-  }
-  prefix            = local.prefix
-  env               = "u"
-  key_vault_name    = local.uat_printit_key_vault_name
-  subscription_name = var.uat_subscription_name
-}
-
+#  project_id          = data.azuredevops_project.project.id
+#  name                = "${local.prefix}-${local.domain}-u-tls-cert-azdo"
+#  tenant_id           = data.azurerm_client_config.current.tenant_id
+#  subscription_name   = var.uat_subscription_name
+#  subscription_id     = data.azurerm_subscriptions.uat.subscriptions[0].subscription_id
+#  location            = local.location
+#  resource_group_name = local.uat_identity_rg_name
+#}
 #
-# PROD
+#resource "azurerm_key_vault_access_policy" "UAT-PRINTIT-TLS-CERT-SERVICE-CONN_kv_access_policy" {
+#  provider     = azurerm.uat
+#  key_vault_id = data.azurerm_key_vault.domain_kv_uat.id
+#  tenant_id    = data.azurerm_client_config.current.tenant_id
+#  object_id    = module.UAT-PRINTIT-TLS-CERT-SERVICE-CONN.service_principal_object_id
 #
-module "PROD-printit-TLS-CERT-SERVICE-CONN" {
-  providers = {
-    azurerm = azurerm.prod
-  }
-
-  depends_on = [data.azuredevops_project.project]
-  source     = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated?ref=v4.2.1"
-
-  project_id          = data.azuredevops_project.project.id
-  name                = "${local.prefix}-${local.domain}-p-tls-cert-azdo"
-  tenant_id           = data.azurerm_client_config.current.tenant_id
-  subscription_name   = var.prod_subscription_name
-  subscription_id     = data.azurerm_subscriptions.prod.subscriptions[0].subscription_id
-  location            = local.location
-  resource_group_name = local.prod_identity_rg_name
-}
-
-resource "azurerm_key_vault_access_policy" "PROD-printit-TLS-CERT-SERVICE-CONN_kv_access_policy" {
-  provider     = azurerm.prod
-  key_vault_id = data.azurerm_key_vault.domain_kv_prod.id
-  tenant_id    = data.azurerm_client_config.current.tenant_id
-  object_id    = module.PROD-printit-TLS-CERT-SERVICE-CONN.service_principal_object_id
-
-  certificate_permissions = ["Get", "Import"]
-}
-
-# create let's encrypt credential used to create SSL certificates
-module "letsencrypt_prod" {
-  source = "git::https://github.com/pagopa/terraform-azurerm-v3.git//letsencrypt_credential?ref=v7.67.1"
-
-  providers = {
-    azurerm = azurerm.prod
-  }
-  prefix            = local.prefix
-  env               = "p"
-  key_vault_name    = local.prod_printit_key_vault_name
-  subscription_name = var.prod_subscription_name
-}
-
-
+#  certificate_permissions = ["Get", "Import"]
+#}
+#
+## create let's encrypt credential used to create SSL certificates
+#module "letsencrypt_uat" {
+#  source = "git::https://github.com/pagopa/terraform-azurerm-v3.git//letsencrypt_credential?ref=v7.1.0"
+#
+#  providers = {
+#    azurerm = azurerm.uat
+#  }
+#  prefix            = local.prefix
+#  env               = "u"
+#  key_vault_name    = local.uat_printit_key_vault_name
+#  subscription_name = var.uat_subscription_name
+#}
+#
+##
+## PROD
+##
+#module "PROD-PRINTIT-TLS-CERT-SERVICE-CONN" {
+#  providers = {
+#    azurerm = azurerm.prod
+#  }
+#
+#  depends_on = [data.azuredevops_project.project]
+#  source     = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated?ref=v7.1.0"
+#
+#  project_id          = data.azuredevops_project.project.id
+#  name                = "${local.prefix}-${local.domain}-p-tls-cert-azdo"
+#  tenant_id           = data.azurerm_client_config.current.tenant_id
+#  subscription_name   = var.prod_subscription_name
+#  subscription_id     = data.azurerm_subscriptions.prod.subscriptions[0].subscription_id
+#  location            = local.location
+#  resource_group_name = local.prod_identity_rg_name
+#}
+#
+#resource "azurerm_key_vault_access_policy" "PROD-PRINTIT-TLS-CERT-SERVICE-CONN_kv_access_policy" {
+#  provider     = azurerm.prod
+#  key_vault_id = data.azurerm_key_vault.domain_kv_prod.id
+#  tenant_id    = data.azurerm_client_config.current.tenant_id
+#  object_id    = module.PROD-PRINTIT-TLS-CERT-SERVICE-CONN.service_principal_object_id
+#
+#  certificate_permissions = ["Get", "Import"]
+#}
+#
+## create let's encrypt credential used to create SSL certificates
+#module "letsencrypt_prod" {
+#  source = "git::https://github.com/pagopa/terraform-azurerm-v3.git//letsencrypt_credential?ref=v7.1.0"
+#
+#  providers = {
+#    azurerm = azurerm.prod
+#  }
+#  prefix            = local.prefix
+#  env               = "p"
+#  key_vault_name    = local.prod_printit_key_vault_name
+#  subscription_name = var.prod_subscription_name
+#}
