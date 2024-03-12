@@ -11,24 +11,25 @@ locals {
   uat_identity_rg_name  = "pagopa-u-identity-rg"
   prod_identity_rg_name = "pagopa-p-identity-rg"
 
-  location = "westeurope"
+  location = "italynorth"
+  location_short="itn"
 
   # 🔐 KV
   dev_key_vault_azdo_name  = "${local.prefix}-d-azdo-weu-kv"
   uat_key_vault_azdo_name  = "${local.prefix}-u-azdo-weu-kv"
   prod_key_vault_azdo_name = "${local.prefix}-p-azdo-weu-kv"
 
-  dev_printit_key_vault_name  = "${local.prefix}-d-${local.domain}-kv"
-  uat_printit_key_vault_name  = "${local.prefix}-u-${local.domain}-kv"
-  prod_printit_key_vault_name = "${local.prefix}-p-${local.domain}-kv"
+  dev_printit_key_vault_name  = "${local.prefix}-d-${local.location_short}-${local.domain}-kv"
+  uat_printit_key_vault_name  = "${local.prefix}-u-${local.location_short}-${local.domain}-kv"
+  prod_printit_key_vault_name = "${local.prefix}-p-${local.location_short}-${local.domain}-kv"
 
   dev_key_vault_resource_group  = "${local.prefix}-d-sec-rg"
   uat_key_vault_resource_group  = "${local.prefix}-u-sec-rg"
   prod_key_vault_resource_group = "${local.prefix}-p-sec-rg"
 
-  dev_printit_key_vault_resource_group  = "${local.prefix}-d-${local.domain}-sec-rg"
-  uat_printit_key_vault_resource_group  = "${local.prefix}-u-${local.domain}-sec-rg"
-  prod_printit_key_vault_resource_group = "${local.prefix}-p-${local.domain}-sec-rg"
+  dev_printit_key_vault_resource_group  = "${local.prefix}-d-${local.location_short}-${local.domain}-sec-rg"
+  uat_printit_key_vault_resource_group  = "${local.prefix}-u-${local.location_short}-${local.domain}-sec-rg"
+  prod_printit_key_vault_resource_group = "${local.prefix}-p-${local.location_short}-${local.domain}-sec-rg"
 
   # ☁️ VNET
   dev_vnet_rg  = "${local.prefix}-d-vnet-rg"
