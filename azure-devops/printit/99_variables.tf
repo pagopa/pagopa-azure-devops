@@ -54,9 +54,9 @@ locals {
 
   settings_xml_ro_secure_file_name = "settings-ro.xml"
 
-  srv_endpoint_name_aks_dev  = "${local.prefix}-${local.domain}-aks-dev"
-  srv_endpoint_name_aks_uat  = "${local.prefix}-${local.domain}-aks-uat"
-  srv_endpoint_name_aks_prod = "${local.prefix}-${local.domain}-aks-prod"
+  srv_endpoint_name_aks_dev  = "${local.prefix}-${local.domain}-${local.location_short}-dev-aks"
+  srv_endpoint_name_aks_uat  = "${local.prefix}-${local.domain}-${local.location_short}-uat-aks"
+  srv_endpoint_name_aks_prod = "${local.prefix}-${local.domain}-${local.location_short}-prod-aks"
 
   # TODO azure devops terraform provider does not support SonarCloud service endpoint
   azuredevops_serviceendpoint_sonarcloud_id = "9182be64-d387-465d-9acc-e79e802910c8"
