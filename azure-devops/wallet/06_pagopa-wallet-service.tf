@@ -71,7 +71,7 @@ locals {
     wallet_token_test_dev           = module.wallet_dev_secrets.values["wallet-token-test-key"].value
     wallet_token_test_uat           = module.wallet_uat_secrets.values["wallet-token-test-key"].value
     migration_api_key_test_dev      = module.wallet_dev_secrets.values["wallet-migration-api-key-test-dev"].value
-    migration-wallet-token-test-dev = module.wallet_dev_secrets.values["migration-wallet-token-test-dev"].value
+    migration_wallet_token_test_dev = module.wallet_dev_secrets.values["migration-wallet-token-test-dev"].value
   }
 }
 
