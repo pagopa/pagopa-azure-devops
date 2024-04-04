@@ -1,8 +1,8 @@
-variable "pagopa-wallet-event-dispatcher-service" {
+variable "pagopa-payment-wallet-event-dispatcher-service" {
   default = {
     repository = {
       organization    = "pagopa"
-      name            = "pagopa-wallet-event-dispatcher-service"
+      name            = "pagopa-payment-wallet-event-dispatcher-service"
       branch_name     = "refs/heads/main"
       pipelines_path  = ".devops"
       yml_prefix_name = null
@@ -14,8 +14,8 @@ variable "pagopa-wallet-event-dispatcher-service" {
         # TODO azure devops terraform provider does not support SonarCloud service endpoint
         service_connection = "SONARCLOUD-SERVICE-CONN"
         org                = "pagopa"
-        project_key        = "pagopa_pagopa-wallet-event-dispatcher-service"
-        project_name       = "pagopa-wallet-event-dispatcher-service"
+        project_key        = "pagopa_pagopa-payment-wallet-event-dispatcher-service"
+        project_name       = "pagopa-payment-wallet-event-dispatcher-service"
       }
     }
   }
@@ -23,32 +23,32 @@ variable "pagopa-wallet-event-dispatcher-service" {
 
 locals {
   # global vars
-  pagopa-wallet-event-dispatcher-service-variables = {
+  pagopa-payment-wallet-event-dispatcher-service-variables = {
     cache_version_id = "v1"
-    default_branch   = var.pagopa-wallet-event-dispatcher-service.repository.branch_name
+    default_branch   = var.pagopa-payment-wallet-event-dispatcher-service.repository.branch_name
   }
   # global secrets
-  pagopa-wallet-event-dispatcher-service-variables_secret = {
+  pagopa-payment-wallet-event-dispatcher-service-variables_secret = {
 
   }
   # code_review vars
-  pagopa-wallet-event-dispatcher-service-variables_code_review = {
+  pagopa-payment-wallet-event-dispatcher-service-variables_code_review = {
     danger_github_api_token = "skip"
-    sonarcloud_service_conn = var.pagopa-wallet-event-dispatcher-service.pipeline.sonarcloud.service_connection
-    sonarcloud_org          = var.pagopa-wallet-event-dispatcher-service.pipeline.sonarcloud.org
-    sonarcloud_project_key  = var.pagopa-wallet-event-dispatcher-service.pipeline.sonarcloud.project_key
-    sonarcloud_project_name = var.pagopa-wallet-event-dispatcher-service.pipeline.sonarcloud.project_name
+    sonarcloud_service_conn = var.pagopa-payment-wallet-event-dispatcher-service.pipeline.sonarcloud.service_connection
+    sonarcloud_org          = var.pagopa-payment-wallet-event-dispatcher-service.pipeline.sonarcloud.org
+    sonarcloud_project_key  = var.pagopa-payment-wallet-event-dispatcher-service.pipeline.sonarcloud.project_key
+    sonarcloud_project_name = var.pagopa-payment-wallet-event-dispatcher-service.pipeline.sonarcloud.project_name
   }
   # code_review secrets
-  pagopa-wallet-event-dispatcher-service-variables_secret_code_review = {
+  pagopa-payment-wallet-event-dispatcher-service-variables_secret_code_review = {
 
   }
   # deploy vars
-  pagopa-wallet-event-dispatcher-service-variables_deploy = {
+  pagopa-payment-wallet-event-dispatcher-service-variables_deploy = {
     github_connection = data.azuredevops_serviceendpoint_github.github_rw.service_endpoint_name
 
     # acr section
-    k8s_image_repository_name           = replace(var.pagopa-wallet-event-dispatcher-service.repository.name, "-", "")
+    k8s_image_repository_name           = replace(var.pagopa-payment-wallet-event-dispatcher-service.repository.name, "-", "")
     dev_container_registry_service_conn = data.azuredevops_serviceendpoint_azurecr.dev.id
     dev_container_registry_name         = data.azuredevops_serviceendpoint_azurecr.dev.service_endpoint_name
     uat_container_registry_service_conn = data.azuredevops_serviceendpoint_azurecr.uat.id
@@ -64,30 +64,30 @@ locals {
 
   }
   # deploy secrets
-  pagopa-wallet-event-dispatcher-service-variables_secret_deploy = {
+  pagopa-payment-wallet-event-dispatcher-service-variables_secret_deploy = {
     git_mail     = module.secrets.values["azure-devops-github-EMAIL"].value
     git_username = module.secrets.values["azure-devops-github-USERNAME"].value
     tenant_id    = data.azurerm_client_config.current.tenant_id
   }
 }
 
-module "pagopa-wallet-event-dispatcher-service_code_review" {
+module "pagopa-payment-wallet-event-dispatcher-service_code_review" {
   source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review?ref=v5.1.1"
-  count  = var.pagopa-wallet-event-dispatcher-service.pipeline.enable_code_review == true ? 1 : 0
+  count  = var.pagopa-payment-wallet-event-dispatcher-service.pipeline.enable_code_review == true ? 1 : 0
 
   project_id                   = data.azuredevops_project.project.id
-  repository                   = var.pagopa-wallet-event-dispatcher-service.repository
+  repository                   = var.pagopa-payment-wallet-event-dispatcher-service.repository
   github_service_connection_id = data.azuredevops_serviceendpoint_github.github_pr.service_endpoint_id
-  path                         = "${local.domain}\\pagopa-wallet-event-dispatcher-service"
+  path                         = "${local.domain}\\pagopa-payment-wallet-event-dispatcher-service"
 
   variables = merge(
-    local.pagopa-wallet-event-dispatcher-service-variables,
-    local.pagopa-wallet-event-dispatcher-service-variables_code_review,
+    local.pagopa-payment-wallet-event-dispatcher-service-variables,
+    local.pagopa-payment-wallet-event-dispatcher-service-variables_code_review,
   )
 
   variables_secret = merge(
-    local.pagopa-wallet-event-dispatcher-service-variables_secret,
-    local.pagopa-wallet-event-dispatcher-service-variables_secret_code_review,
+    local.pagopa-payment-wallet-event-dispatcher-service-variables_secret,
+    local.pagopa-payment-wallet-event-dispatcher-service-variables_secret_code_review,
   )
 
   service_connection_ids_authorization = [
@@ -96,23 +96,23 @@ module "pagopa-wallet-event-dispatcher-service_code_review" {
   ]
 }
 
-module "pagopa-wallet-event-dispatcher-service_deploy" {
+module "pagopa-payment-wallet-event-dispatcher-service_deploy" {
   source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy?ref=v4.2.1"
-  count  = var.pagopa-wallet-event-dispatcher-service.pipeline.enable_deploy == true ? 1 : 0
+  count  = var.pagopa-payment-wallet-event-dispatcher-service.pipeline.enable_deploy == true ? 1 : 0
 
   project_id                   = data.azuredevops_project.project.id
-  repository                   = var.pagopa-wallet-event-dispatcher-service.repository
+  repository                   = var.pagopa-payment-wallet-event-dispatcher-service.repository
   github_service_connection_id = data.azuredevops_serviceendpoint_github.github_rw.service_endpoint_id
-  path                         = "${local.domain}\\pagopa-wallet-event-dispatcher-service"
+  path                         = "${local.domain}\\pagopa-payment-wallet-event-dispatcher-service"
 
   variables = merge(
-    local.pagopa-wallet-event-dispatcher-service-variables,
-    local.pagopa-wallet-event-dispatcher-service-variables_deploy,
+    local.pagopa-payment-wallet-event-dispatcher-service-variables,
+    local.pagopa-payment-wallet-event-dispatcher-service-variables_deploy,
   )
 
   variables_secret = merge(
-    local.pagopa-wallet-event-dispatcher-service-variables_secret,
-    local.pagopa-wallet-event-dispatcher-service-variables_secret_deploy,
+    local.pagopa-payment-wallet-event-dispatcher-service-variables_secret,
+    local.pagopa-payment-wallet-event-dispatcher-service-variables_secret_deploy,
   )
 
   service_connection_ids_authorization = [
