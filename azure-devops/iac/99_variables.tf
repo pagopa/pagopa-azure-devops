@@ -222,6 +222,22 @@ variable "apim_backup" {
   }
 }
 
+variable "disaster_recovery" {
+  default = {
+    repository = {
+      organization    = "pagopa"
+      name            = "pagopa-infra"
+      branch_name     = "refs/heads/main"
+      pipelines_path  = ".devops"
+      yml_prefix_name = "disaster-recovery"
+    }
+    pipeline = {
+      enable_code_review = false
+      enable_deploy      = true
+    }
+  }
+}
+
 variable "location" {
   type = string
 }
