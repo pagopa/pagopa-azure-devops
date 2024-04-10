@@ -52,10 +52,9 @@ module "DEV-PAGOPA-IAC-LEGACY-PLAN-SERVICE-CONN" {
   }
 
   depends_on = [azuredevops_project.project]
-  source     = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_azurerm_plan?ref=v7.0.0"
+  source     = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_azurerm_plan?ref=v7.2.0"
 
   name_suffix                 = "PAGOPA-IAC-LEGACY-dev"
-  iac_aad_group_name          = "azure-devops-iac-service-connection"
   password_time_rotation_days = 365
   renew_token                 = "v2"
 
@@ -84,10 +83,9 @@ module "UAT-PAGOPA-IAC-LEGACY-PLAN-SERVICE-CONN" {
   }
 
   depends_on = [azuredevops_project.project]
-  source     = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_azurerm_plan?ref=v7.0.0"
+  source     = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_azurerm_plan?ref=v7.2.0"
 
   name_suffix                 = "PAGOPA-IAC-LEGACY-uat"
-  iac_aad_group_name          = "azure-devops-iac-service-connection"
   password_time_rotation_days = 365
   renew_token                 = "v2"
 
@@ -116,10 +114,9 @@ module "PROD-PAGOPA-IAC-LEGACY-PLAN-SERVICE-CONN" {
   }
 
   depends_on = [azuredevops_project.project]
-  source     = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_azurerm_plan?ref=v7.0.0"
+  source     = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_azurerm_plan?ref=v7.2.0"
 
   name_suffix                 = "PAGOPA-IAC-LEGACY-prod"
-  iac_aad_group_name          = "azure-devops-iac-service-connection"
   password_time_rotation_days = 365
   renew_token                 = "v2"
 
