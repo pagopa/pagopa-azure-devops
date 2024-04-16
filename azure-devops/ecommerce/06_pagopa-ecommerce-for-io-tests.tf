@@ -22,7 +22,8 @@ locals {
   }
   # global secrets
   pagopa-ecommerce-api-tests-variables_secret = {
-
+    dev_wallet_token_test = module.ecommerce_dev_secrets.values["wallet-token-test-key"].value
+    uat_wallet_token_test = module.ecommerce_uat_secrets.values["wallet-token-test-key"].value
   }
   # soak vars
   pagopa-ecommerce-api-tests-variables_soak = {
