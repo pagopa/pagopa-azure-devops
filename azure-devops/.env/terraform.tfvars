@@ -20,3 +20,7 @@ service_connection_prod_azurerm_name = "PROD-PAGOPA-SERVICE-CONN"
 service_connection_dev_acr_name  = "pagopa-azurecr-dev"
 service_connection_uat_acr_name  = "pagopa-azurecr-uat"
 service_connection_prod_acr_name = "pagopa-azurecr-prod"
+
+service_connection_it_dev_acr_name  = "pagopaditncoreacr"
+service_connection_it_uat_acr_name  = "pagopauitncoreacr"
+service_connection_it_prod_acr_name = "pagopapitncoreacr"

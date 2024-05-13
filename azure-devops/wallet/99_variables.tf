@@ -126,3 +126,18 @@ variable "service_connection_prod_acr_name" {
   type        = string
   description = "ACR service connection PROD name"
 }
+
+variable "service_connection_it_dev_acr_name" {
+  type        = string
+  description = "ACR service connection it DEV name"
+}
+
+variable "service_connection_it_uat_acr_name" {
+  type        = string
+  description = "ACR service connection it UAT name"
+}
+
+variable "service_connection_it_prod_acr_name" {
+  type        = string
+  description = "ACR service connection it PROD name"
+}

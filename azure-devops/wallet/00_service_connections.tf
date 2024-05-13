@@ -51,3 +51,18 @@ data "azuredevops_serviceendpoint_azurecr" "prod" {
   project_id            = data.azuredevops_project.project.id
   service_endpoint_name = var.service_connection_prod_acr_name
 }
+
+data "azuredevops_serviceendpoint_azurecr" "it_dev" {
+  project_id            = data.azuredevops_project.project.id
+  service_endpoint_name = var.service_connection_it_dev_acr_name
+}
+
+data "azuredevops_serviceendpoint_azurecr" "it_uat" {
+  project_id            = data.azuredevops_project.project.id
+  service_endpoint_name = var.service_connection_it_uat_acr_name
+}
+
+data "azuredevops_serviceendpoint_azurecr" "it_prod" {
+  project_id            = data.azuredevops_project.project.id
+  service_endpoint_name = var.service_connection_it_prod_acr_name
+}
