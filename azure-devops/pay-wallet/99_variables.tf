@@ -28,9 +28,9 @@ locals {
   uat_key_vault_resource_group  = "${local.prefix}-u-sec-rg"
   prod_key_vault_resource_group = "${local.prefix}-p-sec-rg"
 
-  dev_wallet_key_vault_resource_group  = "${local.prefix}-d-${local.location_short}-${local.domain}-sec-rg"
-  uat_wallet_key_vault_resource_group  = "${local.prefix}-u-${local.location_short}-${local.domain}-sec-rg"
-  prod_wallet_key_vault_resource_group = "${local.prefix}-p-${local.location_short}-${local.domain}-sec-rg"
+  dev_wallet_key_vault_resource_group  = "${local.prefix}-d-${local.domain}-sec-rg"
+  uat_wallet_key_vault_resource_group  = "${local.prefix}-u-${local.domain}-sec-rg"
+  prod_wallet_key_vault_resource_group = "${local.prefix}-p-${local.domain}-sec-rg"
 
   # ☁️ VNET
   dev_vnet_rg  = "${local.prefix}-d-vnet-rg"
