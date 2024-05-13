@@ -51,15 +51,15 @@ locals {
     k8s_image_repository_name           = replace(var.pagopa-wallet-service.repository.name, "-", "")
     dev_container_registry_service_conn = data.azuredevops_serviceendpoint_azurecr.dev.id
     dev_container_registry_name         = data.azuredevops_serviceendpoint_azurecr.dev.service_endpoint_name
-    uat_container_registry_service_conn = data.azuredevops_serviceendpoint_azurecr.uat.id
-    uat_container_registry_name         = data.azuredevops_serviceendpoint_azurecr.uat.service_endpoint_name
+    # uat_container_registry_service_conn = data.azuredevops_serviceendpoint_azurecr.uat.id
+    # uat_container_registry_name         = data.azuredevops_serviceendpoint_azurecr.uat.service_endpoint_name
 
     # aks section
     dev_kubernetes_service_conn = azuredevops_serviceendpoint_kubernetes.aks_dev.id
-    uat_kubernetes_service_conn = azuredevops_serviceendpoint_kubernetes.aks_uat.id
+    # uat_kubernetes_service_conn = azuredevops_serviceendpoint_kubernetes.aks_uat.id
 
     dev_container_namespace = "pagopadcommonacr.azurecr.io"
-    uat_container_namespace = "pagopaucommonacr.azurecr.io"
+    # uat_container_namespace = "pagopaucommonacr.azurecr.io"
     # prod_container_namespace = "pagopapcommonacr.azurecr.io"
 
   }
@@ -69,7 +69,7 @@ locals {
     git_username                     = module.secrets.values["azure-devops-github-USERNAME"].value
     tenant_id                        = data.azurerm_client_config.current.tenant_id
     wallet_token_test_dev            = module.wallet_dev_secrets.values["wallet-token-test-key"].value
-    wallet_token_test_uat            = module.wallet_uat_secrets.values["wallet-token-test-key"].value
+    # wallet_token_test_uat            = module.wallet_uat_secrets.values["wallet-token-test-key"].value
     migration_api_key_test_dev       = module.wallet_dev_secrets.values["wallet-migration-api-key-test-dev"].value
     migration_cstar_api_key_test_dev = module.wallet_dev_secrets.values["wallet-migration-cstar-api-key-test-dev"].value
     migration_wallet_token_test_dev  = module.wallet_dev_secrets.values["migration-wallet-token-test-dev"].value

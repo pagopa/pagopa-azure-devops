@@ -10,9 +10,9 @@ module "wallet_dev_secrets" {
   key_vault_name = local.dev_wallet_key_vault_name
 
   secrets = [
-    "pagopa-d-weu-dev-aks-azure-devops-sa-token",
-    "pagopa-d-weu-dev-aks-azure-devops-sa-cacrt",
-    "pagopa-d-weu-dev-aks-apiserver-url",
+    "pagopa-d-itn-dev-aks-azure-devops-sa-token",
+    "pagopa-d-itn-dev-aks-azure-devops-sa-cacrt",
+    "pagopa-d-itn-dev-aks-apiserver-url",
     "wallet-token-test-key",
     "wallet-migration-api-key-test-dev",
     "wallet-migration-cstar-api-key-test-dev",
@@ -20,21 +20,21 @@ module "wallet_dev_secrets" {
   ]
 }
 
-module "wallet_uat_secrets" {
+# module "wallet_uat_secrets" {
 
-  providers = {
-    azurerm = azurerm.uat
-  }
+#   providers = {
+#     azurerm = azurerm.uat
+#   }
 
-  source = "git::https://github.com/pagopa/terraform-azurerm-v3.git//key_vault_secrets_query?ref=v7.30.0"
+#   source = "git::https://github.com/pagopa/terraform-azurerm-v3.git//key_vault_secrets_query?ref=v7.30.0"
 
-  resource_group = local.uat_wallet_key_vault_resource_group
-  key_vault_name = local.uat_wallet_key_vault_name
+#   resource_group = local.uat_wallet_key_vault_resource_group
+#   key_vault_name = local.uat_wallet_key_vault_name
 
-  secrets = [
-    "pagopa-u-weu-uat-aks-azure-devops-sa-token",
-    "pagopa-u-weu-uat-aks-azure-devops-sa-cacrt",
-    "pagopa-u-weu-uat-aks-apiserver-url",
-    "wallet-token-test-key"
-  ]
-}
+#   secrets = [
+#     "pagopa-u-weu-uat-aks-azure-devops-sa-token",
+#     "pagopa-u-weu-uat-aks-azure-devops-sa-cacrt",
+#     "pagopa-u-weu-uat-aks-apiserver-url",
+#     "wallet-token-test-key"
+#   ]
+# }
