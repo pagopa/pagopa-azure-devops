@@ -38,16 +38,16 @@ locals {
   prod_vnet_rg = "${local.prefix}-p-vnet-rg"
 
   # 📦 ACR DEV FOR AKS
-  aks_cr_rg_name_dev           = "${local.prefix}-d-${local.location_short}-acr-rg"
-  aks_cr_name_dev              = "${local.prefix}d${local.location_short}coreacr"
+  aks_cr_rg_name_dev = "${local.prefix}-d-${local.location_short}-acr-rg"
+  aks_cr_name_dev    = "${local.prefix}d${local.location_short}coreacr"
 
   # 📦 ACR UAT FOR AKS
-  aks_cr_rg_name_uat           = "${local.prefix}-u-${local.location_short}-acr-rg"
-  aks_cr_name_uat              = "${local.prefix}u${local.location_short}coreacr"
+  aks_cr_rg_name_uat = "${local.prefix}-u-${local.location_short}-acr-rg"
+  aks_cr_name_uat    = "${local.prefix}u${local.location_short}coreacr"
 
   # 📦 ACR PROD FOR AKS
-  aks_cr_rg_name_prod           = "${local.prefix}-p-${local.location_short}-acr-rg"
-  aks_cr_name_prod              = "${local.prefix}p${local.location_short}coreacr"
+  aks_cr_rg_name_prod = "${local.prefix}-p-${local.location_short}-acr-rg"
+  aks_cr_name_prod    = "${local.prefix}p${local.location_short}coreacr"
 
   srv_endpoint_name_aks_dev  = "${local.prefix}-${local.domain}-${local.location_short}-dev-aks"
   srv_endpoint_name_aks_uat  = "${local.prefix}-${local.domain}-${local.location_short}-uat-aks"
