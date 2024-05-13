@@ -20,9 +20,9 @@ locals {
   uat_key_vault_azdo_name  = "${local.prefix}-u-azdo-weu-kv"
   prod_key_vault_azdo_name = "${local.prefix}-p-azdo-weu-kv"
 
-  dev_wallet_key_vault_name  = "${local.prefix}-d-${local.location_short}-${local.domain}-kv"
-  uat_wallet_key_vault_name  = "${local.prefix}-u-${local.location_short}-${local.domain}-kv"
-  prod_wallet_key_vault_name = "${local.prefix}-p-${local.location_short}-${local.domain}-kv"
+  dev_wallet_key_vault_name  = "${local.prefix}-d-${local.domain}-kv"
+  uat_wallet_key_vault_name  = "${local.prefix}-u-${local.domain}-kv"
+  prod_wallet_key_vault_name = "${local.prefix}-p-${local.domain}-kv"
 
   dev_key_vault_resource_group  = "${local.prefix}-d-sec-rg"
   uat_key_vault_resource_group  = "${local.prefix}-u-sec-rg"
