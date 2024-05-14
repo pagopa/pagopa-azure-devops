@@ -90,15 +90,27 @@ locals {
   aks_cr_rg_name_dev           = "${local.prefix}-d-container-registry-rg"
   aks_cr_name_dev              = "${local.prefix}dcommonacr"
 
+  srv_endpoint_name_aks_cr_itn_dev = "${local.prefix}-aks-cr-itn-dev"
+  aks_cr_rg_name_itn_dev           = "${local.prefix}-d-itn-acr-rg"
+  aks_cr_name_itn_dev              = "${local.prefix}ditncoreacr"
+
   # 📦 ACR UAT FOR AKS
   srv_endpoint_name_aks_cr_uat = "${local.prefix}-aks-cr-uat"
   aks_cr_rg_name_uat           = "${local.prefix}-u-container-registry-rg"
   aks_cr_name_uat              = "${local.prefix}ucommonacr"
 
+  srv_endpoint_name_aks_cr_itn_uat = "${local.prefix}-aks-cr-itn-uat"
+  aks_cr_rg_name_itn_uat           = "${local.prefix}-u-itn-acr-rg"
+  aks_cr_name_itn_uat              = "${local.prefix}uitncoreacr"
+
   # 📦 ACR PROD FOR AKS
   srv_endpoint_name_aks_cr_prod = "${local.prefix}-aks-cr-prod"
   aks_cr_rg_name_prod           = "${local.prefix}-p-container-registry-rg"
   aks_cr_name_prod              = "${local.prefix}pcommonacr"
+
+  srv_endpoint_name_aks_cr_itn_prod  = "${local.prefix}-aks-cr-itn-prod"
+  aks_cr_rg_name_itn_prod            = "${local.prefix}-p-itn-acr-rg"
+  aks_cr_name_itn_prod               = "${local.prefix}pitncoreacr"
 
   srv_endpoint_name_aks_dev  = "${local.prefix}-aks-dev"
   srv_endpoint_name_aks_uat  = "${local.prefix}-aks-uat"
