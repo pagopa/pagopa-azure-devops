@@ -58,7 +58,7 @@ locals {
     dev_kubernetes_service_conn = azuredevops_serviceendpoint_kubernetes.aks_dev.id
     # uat_kubernetes_service_conn = azuredevops_serviceendpoint_kubernetes.aks_uat.id
 
-    dev_container_namespace = "pagopadcommonacr.azurecr.io"
+    dev_container_namespace = "pagopaditncoreacr.azurecr.io"
     # uat_container_namespace = "pagopaucommonacr.azurecr.io"
     # prod_container_namespace = "pagopapcommonacr.azurecr.io"
 
