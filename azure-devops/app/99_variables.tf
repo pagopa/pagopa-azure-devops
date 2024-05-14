@@ -108,9 +108,9 @@ locals {
   aks_cr_rg_name_prod           = "${local.prefix}-p-container-registry-rg"
   aks_cr_name_prod              = "${local.prefix}pcommonacr"
 
-  srv_endpoint_name_aks_cr_itn_prod  = "${local.prefix}-aks-cr-itn-prod"
-  aks_cr_rg_name_itn_prod            = "${local.prefix}-p-itn-acr-rg"
-  aks_cr_name_itn_prod               = "${local.prefix}pitncoreacr"
+  srv_endpoint_name_aks_cr_itn_prod = "${local.prefix}-aks-cr-itn-prod"
+  aks_cr_rg_name_itn_prod           = "${local.prefix}-p-itn-acr-rg"
+  aks_cr_name_itn_prod              = "${local.prefix}pitncoreacr"
 
   srv_endpoint_name_aks_dev  = "${local.prefix}-aks-dev"
   srv_endpoint_name_aks_uat  = "${local.prefix}-aks-uat"

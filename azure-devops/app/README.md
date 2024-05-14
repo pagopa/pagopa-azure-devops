@@ -111,6 +111,9 @@
 | [azuredevops_serviceendpoint_azurecr.acr_docker_registry_dev](https://registry.terraform.io/providers/microsoft/azuredevops/latest/docs/resources/serviceendpoint_azurecr) | resource |
 | [azuredevops_serviceendpoint_azurecr.acr_docker_registry_prod](https://registry.terraform.io/providers/microsoft/azuredevops/latest/docs/resources/serviceendpoint_azurecr) | resource |
 | [azuredevops_serviceendpoint_azurecr.acr_docker_registry_uat](https://registry.terraform.io/providers/microsoft/azuredevops/latest/docs/resources/serviceendpoint_azurecr) | resource |
+| [azuredevops_serviceendpoint_azurecr.aks_cr_itn_dev](https://registry.terraform.io/providers/microsoft/azuredevops/latest/docs/resources/serviceendpoint_azurecr) | resource |
+| [azuredevops_serviceendpoint_azurecr.aks_cr_itn_prod](https://registry.terraform.io/providers/microsoft/azuredevops/latest/docs/resources/serviceendpoint_azurecr) | resource |
+| [azuredevops_serviceendpoint_azurecr.aks_cr_itn_uat](https://registry.terraform.io/providers/microsoft/azuredevops/latest/docs/resources/serviceendpoint_azurecr) | resource |
 | [azuredevops_serviceendpoint_dockerregistry.sia-docker-registry-dev](https://registry.terraform.io/providers/microsoft/azuredevops/latest/docs/resources/serviceendpoint_dockerregistry) | resource |
 | [azuredevops_serviceendpoint_dockerregistry.sia-docker-registry-prod](https://registry.terraform.io/providers/microsoft/azuredevops/latest/docs/resources/serviceendpoint_dockerregistry) | resource |
 | [azuredevops_serviceendpoint_dockerregistry.sia-docker-registry-uat](https://registry.terraform.io/providers/microsoft/azuredevops/latest/docs/resources/serviceendpoint_dockerregistry) | resource |
