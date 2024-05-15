@@ -70,20 +70,35 @@ locals {
   uat_vnet_rg  = "${local.prefix}-u-vnet-rg"
   prod_vnet_rg = "${local.prefix}-p-vnet-rg"
 
-  # 📦 ACR DEV DOCKER
+  # 📦 🇪🇺 WEST - ACR DEV DOCKER
   srv_endpoint_name_docker_registry_dev = "${local.prefix}-azurecr-dev"
   docker_registry_rg_name_dev           = "${local.prefix}-d-container-registry-rg"
   docker_registry_name_dev              = "${local.prefix}dcommonacr"
 
-  # 📦 ACR UAT DOCKER
+  # 📦 🇮🇹 ITA - ACR DEV DOCKER
+  srv_endpoint_name_docker_registry_italy_dev = "${local.prefix}-azurecr-ita-dev"
+  docker_registry_italy_rg_name_dev           = "${local.prefix}-d-itn-acr-rg"
+  docker_registry_italy_name_dev              = "${local.prefix}ditncoreacr"
+
+  # 📦 🇪🇺 ACR WEU UAT DOCKER
   srv_endpoint_name_docker_registry_uat = "${local.prefix}-azurecr-uat"
   docker_registry_rg_name_uat           = "${local.prefix}-u-container-registry-rg"
   docker_registry_name_uat              = "${local.prefix}ucommonacr"
 
-  # 📦 ACR PROD DOCKER
+  # 📦 🇮🇹 ITA - ACR UAT DOCKER
+  srv_endpoint_name_docker_registry_italy_uat = "${local.prefix}-azurecr-ita-uat"
+  docker_registry_italy_rg_name_uat           = "${local.prefix}-u-itn-acr-rg"
+  docker_registry_italy_name_uat              = "${local.prefix}uitncoreacr"
+
+  # 📦 🇪🇺 WEU - ACR PROD DOCKER
   srv_endpoint_name_docker_registry_prod = "${local.prefix}-azurecr-prod"
   docker_registry_rg_name_prod           = "${local.prefix}-p-container-registry-rg"
   docker_registry_name_prod              = "${local.prefix}pcommonacr"
+
+  # 📦 🇮🇹 ITA - ACR PROD DOCKER
+  srv_endpoint_name_docker_registry_italy_prod = "${local.prefix}-azurecr-ita-prod"
+  docker_registry_italy_rg_name_prod           = "${local.prefix}-p-itn-acr-rg"
+  docker_registry_italy_name_prod              = "${local.prefix}pitncoreacr"
 
   # 📦 ACR DEV FOR AKS
   srv_endpoint_name_aks_cr_dev = "${local.prefix}-aks-cr-dev"
