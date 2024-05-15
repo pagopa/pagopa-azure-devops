@@ -1,3 +1,7 @@
+#
+# 🇪🇺 WEU
+#
+
 # 🟢 DEV service connection for azure container registry
 resource "azuredevops_serviceendpoint_azurecr" "acr_docker_registry_dev" {
   depends_on = [azuredevops_project.project]
