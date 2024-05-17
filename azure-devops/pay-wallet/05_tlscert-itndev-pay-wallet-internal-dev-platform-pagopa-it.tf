@@ -1,4 +1,4 @@
-variable "tlscert-itndev-wallet-internal-dev-platform-pagopa-it" {
+variable "tlscert-itndev-pay-wallet-internal-dev-platform-pagopa-it" {
   default = {
     repository = {
       organization   = "pagopa"
@@ -9,7 +9,7 @@ variable "tlscert-itndev-wallet-internal-dev-platform-pagopa-it" {
     pipeline = {
       enable_tls_cert         = true
       path                    = "TLS-Certificates\\DEV"
-      dns_record_name         = "itndev.wallet.internal"
+      dns_record_name         = "itndev.payment-wallet.internal"
       dns_zone_name           = "dev.platform.pagopa.it"
       dns_zone_resource_group = "pagopa-d-vnet-rg"
       # common variables to all pipelines
@@ -25,38 +25,38 @@ variable "tlscert-itndev-wallet-internal-dev-platform-pagopa-it" {
 }
 
 locals {
-  tlscert-itndev-wallet-internal-dev-platform-pagopa-it = {
+  tlscert-itndev-pay-wallet-internal-dev-platform-pagopa-it = {
     tenant_id         = data.azurerm_client_config.current.tenant_id
     subscription_name = "DEV-PAGOPA"
     subscription_id   = data.azurerm_subscriptions.dev.subscriptions[0].subscription_id
   }
-  tlscert-itndev-wallet-internal-dev-platform-pagopa-it-variables = {
+  tlscert-itndev-pay-wallet-internal-dev-platform-pagopa-it-variables = {
     KEY_VAULT_SERVICE_CONNECTION = module.DEV-WALLET-TLS-CERT-SERVICE-CONN.service_endpoint_name
   }
-  tlscert-itndev-wallet-internal-dev-platform-pagopa-it-variables_secret = {
+  tlscert-itndev-pay-wallet-internal-dev-platform-pagopa-it-variables_secret = {
   }
 }
 
-module "tlscert-itndev-wallet-internal-dev-platform-pagopa-it-cert_az" {
+module "tlscert-itndev-pay-wallet-internal-dev-platform-pagopa-it-cert_az" {
 
   providers = {
     azurerm = azurerm.dev
   }
 
   source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_tls_cert_federated?ref=v5.0.0"
-  count  = var.tlscert-itndev-wallet-internal-dev-platform-pagopa-it.pipeline.enable_tls_cert == true ? 1 : 0
+  count  = var.tlscert-itndev-pay-wallet-internal-dev-platform-pagopa-it.pipeline.enable_tls_cert == true ? 1 : 0
 
   project_id                   = data.azuredevops_project.project.id
-  repository                   = var.tlscert-itndev-wallet-internal-dev-platform-pagopa-it.repository
-  path                         = var.tlscert-itndev-wallet-internal-dev-platform-pagopa-it.pipeline.path
+  repository                   = var.tlscert-itndev-pay-wallet-internal-dev-platform-pagopa-it.repository
+  path                         = var.tlscert-itndev-pay-wallet-internal-dev-platform-pagopa-it.pipeline.path
   github_service_connection_id = data.azuredevops_serviceendpoint_github.github_ro.id
 
-  dns_record_name                      = var.tlscert-itndev-wallet-internal-dev-platform-pagopa-it.pipeline.dns_record_name
-  dns_zone_name                        = var.tlscert-itndev-wallet-internal-dev-platform-pagopa-it.pipeline.dns_zone_name
-  dns_zone_resource_group              = var.tlscert-itndev-wallet-internal-dev-platform-pagopa-it.pipeline.dns_zone_resource_group
-  tenant_id                            = local.tlscert-itndev-wallet-internal-dev-platform-pagopa-it.tenant_id
-  subscription_name                    = local.tlscert-itndev-wallet-internal-dev-platform-pagopa-it.subscription_name
-  subscription_id                      = local.tlscert-itndev-wallet-internal-dev-platform-pagopa-it.subscription_id
+  dns_record_name                      = var.tlscert-itndev-pay-wallet-internal-dev-platform-pagopa-it.pipeline.dns_record_name
+  dns_zone_name                        = var.tlscert-itndev-pay-wallet-internal-dev-platform-pagopa-it.pipeline.dns_zone_name
+  dns_zone_resource_group              = var.tlscert-itndev-pay-wallet-internal-dev-platform-pagopa-it.pipeline.dns_zone_resource_group
+  tenant_id                            = local.tlscert-itndev-pay-wallet-internal-dev-platform-pagopa-it.tenant_id
+  subscription_name                    = local.tlscert-itndev-pay-wallet-internal-dev-platform-pagopa-it.subscription_name
+  subscription_id                      = local.tlscert-itndev-pay-wallet-internal-dev-platform-pagopa-it.subscription_id
   managed_identity_resource_group_name = local.dev_identity_rg_name
 
 
@@ -65,13 +65,13 @@ module "tlscert-itndev-wallet-internal-dev-platform-pagopa-it-cert_az" {
   credential_key_vault_resource_group = local.dev_wallet_key_vault_resource_group
 
   variables = merge(
-    var.tlscert-itndev-wallet-internal-dev-platform-pagopa-it.pipeline.variables,
-    local.tlscert-itndev-wallet-internal-dev-platform-pagopa-it-variables,
+    var.tlscert-itndev-pay-wallet-internal-dev-platform-pagopa-it.pipeline.variables,
+    local.tlscert-itndev-pay-wallet-internal-dev-platform-pagopa-it-variables,
   )
 
   variables_secret = merge(
-    var.tlscert-itndev-wallet-internal-dev-platform-pagopa-it.pipeline.variables_secret,
-    local.tlscert-itndev-wallet-internal-dev-platform-pagopa-it-variables_secret,
+    var.tlscert-itndev-pay-wallet-internal-dev-platform-pagopa-it.pipeline.variables_secret,
+    local.tlscert-itndev-pay-wallet-internal-dev-platform-pagopa-it-variables_secret,
   )
 
   service_connection_ids_authorization = [
