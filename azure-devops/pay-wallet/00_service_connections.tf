@@ -39,7 +39,7 @@ data "azuredevops_serviceendpoint_azurerm" "dev" {
 #
 data "azuredevops_serviceendpoint_azurecr" "dev" {
   project_id            = data.azuredevops_project.project.id
-  service_endpoint_name = var.service_connection_dev_acr_name
+  service_endpoint_name = var.srv_endpoint_name_docker_registry_italy_dev
 }
 
 # data "azuredevops_serviceendpoint_azurecr" "uat" {
