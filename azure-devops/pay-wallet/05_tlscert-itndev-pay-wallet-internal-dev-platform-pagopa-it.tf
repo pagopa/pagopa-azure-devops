@@ -15,7 +15,7 @@ variable "tlscert-itndev-pay-wallet-internal-dev-platform-pagopa-it" {
       # common variables to all pipelines
       variables = {
         CERT_NAME_EXPIRE_SECONDS = "2592000" #30 days
-        KEY_VAULT_NAME           = "pagopa-d-wallet-kv"
+        KEY_VAULT_NAME           = "pagopa-d-pay-wallet-kv"
       }
       # common secret variables to all pipelines
       variables_secret = {
