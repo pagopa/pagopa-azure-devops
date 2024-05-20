@@ -9,7 +9,7 @@ variable "tlscert-itndev-pay-wallet-internal-dev-platform-pagopa-it" {
     pipeline = {
       enable_tls_cert         = true
       path                    = "TLS-Certificates\\DEV"
-      dns_record_name         = "itndev.payment-wallet.internal"
+      dns_record_name         = "itndev.pay-wallet.internal"
       dns_zone_name           = "dev.platform.pagopa.it"
       dns_zone_resource_group = "pagopa-d-vnet-rg"
       # common variables to all pipelines
