@@ -5,7 +5,7 @@ variable "pagopa-payment-wallet-event-dispatcher-service" {
       name            = "pagopa-payment-wallet-event-dispatcher-service"
       branch_name     = "refs/heads/main"
       pipelines_path  = ".devops"
-      yml_prefix_name = null
+      yml_prefix_name = "pay-wallet"
     }
     pipeline = {
       enable_code_review = true
@@ -58,7 +58,7 @@ locals {
     dev_kubernetes_service_conn = azuredevops_serviceendpoint_kubernetes.aks_dev.id
     # uat_kubernetes_service_conn = azuredevops_serviceendpoint_kubernetes.aks_uat.id
 
-    dev_container_namespace = "pagopadcommonacr.azurecr.io"
+    dev_container_namespace = "pagopaditncoreacr.azurecr.io"
     # uat_container_namespace = "pagopaucommonacr.azurecr.io"
     # prod_container_namespace = "pagopapcommonacr.azurecr.io"
 
