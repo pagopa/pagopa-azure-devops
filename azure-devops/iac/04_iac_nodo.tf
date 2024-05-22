@@ -20,6 +20,10 @@ variable "nodo_iac" {
         name                  = "nodo-db-schema-pipelines"
         pipeline_yml_filename = "nodo-db-schema-pipelines.yml"
       }
+      db_partitioned_data_migration = {
+        name                  = "nodo-partitioned-db-data-migration-pipelines"
+        pipeline_yml_filename = "nodo-partitioned-db-data-migration-pipelines.yml"
+      }
       web_bo_db_migration = {
         name                  = "web-bo-db-migration-pipelines"
         pipeline_yml_filename = "web-bo-db-migration-pipelines.yml"
@@ -90,14 +94,19 @@ locals {
   # db-schema secrets
   nodo_iac_variables_secret_db_schema = {}
 
-  # db-migration vars
+  # db-partitioned-data-migration vars
+  nodo_iac_variables_db_partitioned_data_migration = {}
+  # db-partitioned-data-migration secrets
+  nodo_iac_variables_secret_db_partitioned_data_migration = {}
+
+  # db-web-bo-migration vars
   nodo_iac_variables_web_bo_db_migration = {}
-  # db-migration secrets
+  # db-web-bo-migration secrets
   nodo_iac_variables_secret_web_bo_db_migration = {}
 
-  # db-schema vars
+  # db-web-bo-schema vars
   nodo_iac_variables_web_bo_db_schema = {}
-  # db-schema secrets
+  # db-web-bo-schema secrets
   nodo_iac_variables_secret_web_bo_db_schema = {}
 
 }
@@ -114,8 +123,6 @@ module "nodo_iac_code_review" {
   github_service_connection_id = azuredevops_serviceendpoint_github.azure-devops-github-pr.id
 
   pipeline_name_prefix = var.nodo_iac.pipeline.pipeline_name_prefix
-
-
 
   variables = merge(
     local.nodo_iac_variables,
@@ -145,8 +152,6 @@ module "nodo_iac_deploy" {
   github_service_connection_id = azuredevops_serviceendpoint_github.azure-devops-github-pr.id
 
   pipeline_name_prefix = var.nodo_iac.pipeline.pipeline_name_prefix
-
-
 
   variables = merge(
     local.nodo_iac_variables,
@@ -214,6 +219,33 @@ module "nodo_iac_db_schema" {
 
   variables_secret = merge(
     local.nodo_iac_variables_secret_db_schema,
+  )
+
+  service_connection_ids_authorization = [
+    azuredevops_serviceendpoint_github.azure-devops-github-ro.id,
+    module.DEV-AZURERM-IAC-PLAN-SERVICE-CONN.service_endpoint_id,
+    module.UAT-AZURERM-IAC-PLAN-SERVICE-CONN.service_endpoint_id,
+    module.PROD-AZURERM-IAC-PLAN-SERVICE-CONN.service_endpoint_id,
+  ]
+}
+
+module "nodo_iac_db_partitioned_data_migration" {
+  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_generic?ref=v7.0.0"
+
+  project_id                   = azuredevops_project.project.id
+  repository                   = var.nodo_iac.repository
+  github_service_connection_id = azuredevops_serviceendpoint_github.azure-devops-github-pr.id
+  path                         = var.nodo_iac.pipeline.path
+  pipeline_name                = var.nodo_iac.pipeline.db_partitioned_data_migration.name
+  pipeline_yml_filename        = var.nodo_iac.pipeline.db_partitioned_data_migration.pipeline_yml_filename
+
+  variables = merge(
+    local.nodo_iac_variables,
+    local.nodo_iac_variables_db_partitioned_data_migration,
+  )
+
+  variables_secret = merge(
+    local.nodo_iac_variables_secret_db_partitioned_data_migration,
   )
 
   service_connection_ids_authorization = [
