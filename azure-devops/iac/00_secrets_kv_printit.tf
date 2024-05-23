@@ -13,9 +13,9 @@ module "printit_dev_secrets" {
   key_vault_name = local.dev_printit_key_vault_name
 
   secrets = [
-    "pagopa-d-weu-dev-aks-azure-devops-sa-token",
-    "pagopa-d-weu-dev-aks-azure-devops-sa-cacrt",
-    "pagopa-d-weu-dev-aks-apiserver-url"
+    "pagopa-d-itn-dev-aks-azure-devops-sa-token",
+    "pagopa-d-itn-dev-aks-azure-devops-sa-cacrt",
+    "pagopa-d-itn-dev-aks-apiserver-url"
   ]
 }
 
@@ -30,9 +30,9 @@ module "printit_uat_secrets" {
   key_vault_name = local.uat_printit_key_vault_name
 
   secrets = [
-    "pagopa-u-weu-uat-aks-azure-devops-sa-token",
-    "pagopa-u-weu-uat-aks-azure-devops-sa-cacrt",
-    "pagopa-u-weu-uat-aks-apiserver-url"
+    "pagopa-u-itn-uat-aks-azure-devops-sa-token",
+    "pagopa-u-itn-uat-aks-azure-devops-sa-cacrt",
+    "pagopa-u-itn-uat-aks-apiserver-url"
   ]
 }
 
@@ -47,8 +47,8 @@ module "printit_prod_secrets" {
   key_vault_name = local.prod_printit_key_vault_name
 
   secrets = [
-    "pagopa-p-weu-prod-aks-azure-devops-sa-token",
-    "pagopa-p-weu-prod-aks-azure-devops-sa-cacrt",
-    "pagopa-p-weu-prod-aks-apiserver-url"
+    "pagopa-p-itn-prod-aks-azure-devops-sa-token",
+    "pagopa-p-itn-prod-aks-azure-devops-sa-cacrt",
+    "pagopa-p-itn-prod-aks-apiserver-url"
   ]
 }
