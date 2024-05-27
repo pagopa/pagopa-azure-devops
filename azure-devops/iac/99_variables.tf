@@ -163,6 +163,25 @@ locals {
   uat_receipts_key_vault_name  = "${local.prefix}-u-receipts-kv"
   prod_receipts_key_vault_name = "${local.prefix}-p-receipts-kv"
 
+  ### printit
+  dev_printit_key_vault_resource_group  = "${local.prefix}-d-itn-printit-sec-rg"
+  uat_printit_key_vault_resource_group  = "${local.prefix}-u-itn-printit-sec-rg"
+  prod_printit_key_vault_resource_group = "${local.prefix}-p-itn-printit-sec-rg"
+
+  dev_printit_key_vault_name  = "${local.prefix}-d-itn-printit-kv"
+  uat_printit_key_vault_name  = "${local.prefix}-u-itn-printit-kv"
+  prod_printit_key_vault_name = "${local.prefix}-p-itn-printit-kv"
+
+  ### paywallet
+  dev_paywallet_key_vault_resource_group  = "${local.prefix}-d-pay-wallet-sec-rg"
+  uat_paywallet_key_vault_resource_group  = "${local.prefix}-u-pay-wallet-sec-rg"
+  prod_paywallet_key_vault_resource_group = "${local.prefix}-p-pay-wallet-sec-rg"
+
+  dev_paywallet_key_vault_name  = "${local.prefix}-d-pay-wallet-kv"
+  uat_paywallet_key_vault_name  = "${local.prefix}-u-pay-wallet-kv"
+  prod_paywallet_key_vault_name = "${local.prefix}-p-pay-wallet-kv"
+
+
   tlscert_renew_token = "v3"
 }
 
