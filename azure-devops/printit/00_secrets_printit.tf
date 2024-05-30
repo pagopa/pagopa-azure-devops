@@ -15,25 +15,25 @@ module "printit_dev_secrets" {
     "pagopa-d-itn-dev-aks-apiserver-url",
   ]
 }
-#
-#module "printit_uat_secrets" {
-#
-#  providers = {
-#    azurerm = azurerm.uat
-#  }
-#
-#  source = "git::https://github.com/pagopa/terraform-azurerm-v3.git//key_vault_secrets_query?ref=v7.67.1"
-#
-#  resource_group = local.uat_printit_key_vault_resource_group
-#  key_vault_name = local.uat_printit_key_vault_name
-#
-#  secrets = [
-#    "pagopa-u-itn-uat-aks-azure-devops-sa-token",
-#    "pagopa-u-itn-uat-aks-azure-devops-sa-cacrt",
-#    "pagopa-u-itn-uat-aks-apiserver-url",
-#  ]
-#}
-#
+
+module "printit_uat_secrets" {
+
+  providers = {
+    azurerm = azurerm.uat
+  }
+
+  source = "git::https://github.com/pagopa/terraform-azurerm-v3.git//key_vault_secrets_query?ref=v7.67.1"
+
+  resource_group = local.uat_printit_key_vault_resource_group
+  key_vault_name = local.uat_printit_key_vault_name
+
+  secrets = [
+    "pagopa-u-itn-uat-aks-azure-devops-sa-token",
+    "pagopa-u-itn-uat-aks-azure-devops-sa-cacrt",
+    "pagopa-u-itn-uat-aks-apiserver-url",
+  ]
+}
+
 #module "printit_prod_secrets" {
 #
 #  providers = {
