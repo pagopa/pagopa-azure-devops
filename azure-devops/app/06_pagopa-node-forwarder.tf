@@ -51,22 +51,24 @@ locals {
   }
   # deploy vars
   pagopa-node-forwarder-variables_deploy = {
-    git_mail                        = module.secrets.values["azure-devops-github-EMAIL"].value
-    git_username                    = module.secrets.values["azure-devops-github-USERNAME"].value
-    github_connection               = azuredevops_serviceendpoint_github.azure-devops-github-rw.service_endpoint_name
-    healthcheck_endpoint            = "/actuator/info"
+    git_mail             = module.secrets.values["azure-devops-github-EMAIL"].value
+    git_username         = module.secrets.values["azure-devops-github-USERNAME"].value
+    github_connection    = azuredevops_serviceendpoint_github.azure-devops-github-rw.service_endpoint_name
+    healthcheck_endpoint = "/actuator/info"
+
     dev_deploy_type                 = "production_slot" #or staging_slot_and_swap
     dev_azure_subscription          = module.DEV-AZURERM-SERVICE-CONN.service_endpoint_name
     dev_web_app_name                = "pagopa-d-app-node-forwarder"
     dev_web_app_resource_group_name = "pagopa-d-node-forwarder-rg"
 
-    uat_deploy_type                  = "production_slot" #or staging_slot_and_swap
-    uat_azure_subscription           = module.UAT-AZURERM-SERVICE-CONN.service_endpoint_name
-    uat_web_app_name                 = "pagopa-u-app-node-forwarder"
-    uat_web_app_resource_group_name  = "pagopa-u-node-forwarder-rg"
+    uat_deploy_type                 = "production_slot" #or staging_slot_and_swap
+    uat_azure_subscription          = module.UAT-AZURERM-SERVICE-CONN.service_endpoint_name
+    uat_web_app_name                = "pagopa-u-app-node-forwarder"
+    uat_web_app_resource_group_name = "pagopa-u-node-forwarder-rg"
+
     prod_deploy_type                 = "production_slot" #or staging_slot_and_swap
     prod_azure_subscription          = module.PROD-AZURERM-SERVICE-CONN.service_endpoint_name
-    prod_web_app_name                = "pagopa-p-app-node-forwarder"
+    prod_web_app_name                = "pagopa-p-app-node-forwarder-ha"
     prod_web_app_resource_group_name = "pagopa-p-node-forwarder-rg"
 
     tenant_id = data.azurerm_client_config.current.tenant_id
