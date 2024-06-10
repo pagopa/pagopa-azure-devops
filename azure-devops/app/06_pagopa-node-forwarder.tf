@@ -68,7 +68,7 @@ locals {
 
     prod_deploy_type                 = "production_slot" #or staging_slot_and_swap
     prod_azure_subscription          = module.PROD-AZURERM-SERVICE-CONN.service_endpoint_name
-    prod_web_app_name                = "pagopa-p-app-node-forwarder-ha"
+    prod_web_app_name                = "pagopa-p-weu-core-app-node-forwarder-ha"
     prod_web_app_resource_group_name = "pagopa-p-node-forwarder-rg"
 
     tenant_id = data.azurerm_client_config.current.tenant_id
