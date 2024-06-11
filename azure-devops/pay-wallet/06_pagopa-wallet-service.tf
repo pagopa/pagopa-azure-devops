@@ -51,15 +51,15 @@ locals {
     k8s_image_repository_name           = replace(var.pagopa-wallet-service.repository.name, "-", "")
     dev_container_registry_service_conn = data.azuredevops_serviceendpoint_azurecr.dev.id
     dev_container_registry_name         = data.azuredevops_serviceendpoint_azurecr.dev.service_endpoint_name
-    # uat_container_registry_service_conn = data.azuredevops_serviceendpoint_azurecr.uat.id
-    # uat_container_registry_name         = data.azuredevops_serviceendpoint_azurecr.uat.service_endpoint_name
+    uat_container_registry_service_conn = data.azuredevops_serviceendpoint_azurecr.uat.id
+    uat_container_registry_name         = data.azuredevops_serviceendpoint_azurecr.uat.service_endpoint_name
 
     # aks section
     dev_kubernetes_service_conn = azuredevops_serviceendpoint_kubernetes.aks_dev.id
-    # uat_kubernetes_service_conn = azuredevops_serviceendpoint_kubernetes.aks_uat.id
+    uat_kubernetes_service_conn = azuredevops_serviceendpoint_kubernetes.aks_uat.id
 
     dev_container_namespace = "pagopaditncoreacr.azurecr.io"
-    # uat_container_namespace = "pagopaucommonacr.azurecr.io"
+    uat_container_namespace = "pagopauitncoreacr.azurecr.io"
     # prod_container_namespace = "pagopapcommonacr.azurecr.io"
 
   }
@@ -123,9 +123,9 @@ module "pagopa-wallet-service_deploy" {
   service_connection_ids_authorization = [
     data.azuredevops_serviceendpoint_github.github_ro.id,
     data.azuredevops_serviceendpoint_azurecr.dev.id,
-    # azuredevops_serviceendpoint_azurecr.acr_aks_uat.id,
-    # azuredevops_serviceendpoint_azurecr.acr_aks_prod.id,
+    data.azuredevops_serviceendpoint_azurecr.uat.id,
     data.azuredevops_serviceendpoint_azurerm.dev.id,
+    data.azuredevops_serviceendpoint_azurerm.uat.id,
   ]
 }
 
