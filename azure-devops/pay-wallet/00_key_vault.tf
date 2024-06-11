@@ -6,11 +6,11 @@ data "azurerm_key_vault" "domain_kv_dev" {
   name                = local.dev_wallet_key_vault_name
 }
 
-# data "azurerm_key_vault" "domain_kv_uat" {
+data "azurerm_key_vault" "domain_kv_uat" {
 
-#   provider = azurerm.uat
+  provider = azurerm.uat
 
-#   resource_group_name = local.uat_wallet_key_vault_resource_group
-#   name                = local.uat_wallet_key_vault_name
-# }
+  resource_group_name = local.uat_wallet_key_vault_resource_group
+  name                = local.uat_wallet_key_vault_name
+}
 
