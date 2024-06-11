@@ -9,10 +9,10 @@ resource "azuredevops_project" "project" {
 resource "azuredevops_project_features" "project_features" {
   project_id = azuredevops_project.project.id
   features = {
-    "boards"       = "disabled"
+    "boards"       = "enabled"
     "repositories" = "disabled"
     "pipelines"    = "enabled"
-    "testplans"    = "disabled"
+    "testplans"    = "enabled"
     "artifacts"    = "disabled"
   }
 }
