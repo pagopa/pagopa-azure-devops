@@ -39,12 +39,12 @@ data "azuredevops_serviceendpoint_azurerm" "uat" {
 #
 data "azuredevops_serviceendpoint_azurecr" "dev" {
   project_id            = data.azuredevops_project.project.id
-  service_endpoint_name = "pagopa-azurecr-ita-dev" #FIXED in feat-it-acr-service-endpoint
+  service_endpoint_name = "pagopa-azurecr-ita-dev" #FIXED in feat-it-acr-service-endpoint"
 }
 
 data "azuredevops_serviceendpoint_azurecr" "uat" {
   project_id            = data.azuredevops_project.project.id
-  service_endpoint_name = var.service_connection_uat_acr_name
+  service_endpoint_name = "pagopa-azurecr-ita-uat"
 }
 
 # data "azuredevops_serviceendpoint_azurecr" "prod" {
