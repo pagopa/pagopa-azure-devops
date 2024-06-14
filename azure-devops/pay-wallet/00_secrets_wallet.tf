@@ -38,3 +38,21 @@ module "wallet_uat_secrets" {
     "wallet-token-test-key"
   ]
 }
+
+module "wallet_prod_secrets" {
+
+  providers = {
+    azurerm = azurerm.prod
+  }
+
+  source = "git::https://github.com/pagopa/terraform-azurerm-v3.git//key_vault_secrets_query?ref=v7.30.0"
+
+  resource_group = local.prod_wallet_key_vault_resource_group
+  key_vault_name = local.prod_wallet_key_vault_name
+
+  secrets = [
+    "pagopa-p-itn-prod-aks-azure-devops-sa-token",
+    "pagopa-p-itn-prod-aks-azure-devops-sa-cacrt",
+    "pagopa-p-itn-prod-aks-apiserver-url",
+  ]
+}
