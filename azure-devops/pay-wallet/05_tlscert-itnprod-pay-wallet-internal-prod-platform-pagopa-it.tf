@@ -11,11 +11,11 @@ variable "tlscert-itnprod-pay-wallet-internal-prod-platform-pagopa-it" {
       path                    = "TLS-Certificates\\PROD"
       dns_record_name         = "itnprod.pay-wallet.internal"
       dns_zone_name           = "prod.platform.pagopa.it"
-      dns_zone_resource_group = "pagopa-u-vnet-rg"
+      dns_zone_resource_group = "pagopa-p-vnet-rg"
       # common variables to all pipelines
       variables = {
         CERT_NAME_EXPIRE_SECONDS = "2592000" #30 days
-        KEY_VAULT_NAME           = "pagopa-u-pay-wallet-kv"
+        KEY_VAULT_NAME           = "pagopa-p-pay-wallet-kv"
       }
       # common secret variables to all pipelines
       variables_secret = {
