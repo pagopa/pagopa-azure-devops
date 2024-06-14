@@ -54,6 +54,5 @@ module "wallet_prod_secrets" {
     "pagopa-p-itn-prod-aks-azure-devops-sa-token",
     "pagopa-p-itn-prod-aks-azure-devops-sa-cacrt",
     "pagopa-p-itn-prod-aks-apiserver-url",
-    "wallet-token-test-key"
   ]
 }
