@@ -10,7 +10,7 @@ variable "tlscert-itnprod-pay-wallet-internal-prod-platform-pagopa-it" {
       enable_tls_cert         = true
       path                    = "TLS-Certificates\\PROD"
       dns_record_name         = "itnprod.pay-wallet.internal"
-      dns_zone_name           = "prod.platform.pagopa.it"
+      dns_zone_name           = "platform.pagopa.it"
       dns_zone_resource_group = "pagopa-p-vnet-rg"
       # common variables to all pipelines
       variables = {
