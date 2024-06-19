@@ -10,6 +10,9 @@ module "printit_dev_secrets" {
   key_vault_name = local.dev_printit_key_vault_name
 
   secrets = [
+    "pagopa-d-itn-dev-aks-azure-devops-sa-token",
+    "pagopa-d-itn-dev-aks-azure-devops-sa-cacrt",
+    "pagopa-d-itn-dev-aks-apiserver-url",
     "institutions-storage-account-connection-string",
     "notices-storage-account-connection-string",
     "notices-mongo-connection-string",
@@ -28,29 +31,35 @@ module "printit_uat_secrets" {
   key_vault_name = local.uat_printit_key_vault_name
 
   secrets = [
+    "pagopa-u-itn-uat-aks-azure-devops-sa-token",
+    "pagopa-u-itn-uat-aks-azure-devops-sa-cacrt",
+    "pagopa-u-itn-uat-aks-apiserver-url",
     "institutions-storage-account-connection-string",
     "notices-storage-account-connection-string",
     "notices-mongo-connection-string",
   ]
 }
 
-module "printit_prod_secrets" {
+# module "printit_prod_secrets" {
 
-  providers = {
-    azurerm = azurerm.prod
-  }
+#   providers = {
+#     azurerm = azurerm.prod
+#   }
 
-  source = "git::https://github.com/pagopa/terraform-azurerm-v3.git//key_vault_secrets_query?ref=v7.67.1"
+#   source = "git::https://github.com/pagopa/terraform-azurerm-v3.git//key_vault_secrets_query?ref=v7.67.1"
 
-  resource_group = local.prod_printit_key_vault_resource_group
-  key_vault_name = local.prod_printit_key_vault_name
+#   resource_group = local.prod_printit_key_vault_resource_group
+#   key_vault_name = local.prod_printit_key_vault_name
 
-  secrets = [
-    "institutions-storage-account-connection-string",
-    "notices-storage-account-connection-string",
-    "notices-mongo-connection-string",
-  ]
-}
+#   secrets = [
+#     "pagopa-p-itn-prod-aks-azure-devops-sa-token",
+#     "pagopa-p-itn-prod-aks-azure-devops-sa-cacrt",
+#     "pagopa-p-itn-prod-aks-apiserver-url",      
+#     "institutions-storage-account-connection-string",
+#     "notices-storage-account-connection-string",
+#     "notices-mongo-connection-string",
+#   ]
+# }
 
 
 module "general_dev_secrets" {
@@ -72,7 +81,7 @@ module "general_dev_secrets" {
 module "general_uat_secrets" {
 
   providers = {
-    azurerm = azurerm.dev
+    azurerm = azurerm.uat
   }
 
   source = "git::https://github.com/pagopa/terraform-azurerm-v3.git//key_vault_secrets_query?ref=v7.67.1"
