@@ -53,6 +53,10 @@ locals {
     uat_container_namespace  = "pagopaucommonacr.azurecr.io"
     prod_container_namespace = "pagopapcommonacr.azurecr.io"
 
+    itn_dev_container_namespace  = "pagopaditncoreacr.azurecr.io"
+    itn_uat_container_namespace  = "pagopauitncoreacr.azurecr.io"
+    itn_prod_container_namespace = "pagopapitncoreacr.azurecr.io"
+
 
     dev_web_app_name                 = "pagopa-d-weu-shared-app-pdf-engine"
     dev_web_app_resource_group_name  = "pagopa-d-weu-shared-pdf-engine-rg"
