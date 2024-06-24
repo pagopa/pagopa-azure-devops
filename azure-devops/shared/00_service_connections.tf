@@ -51,3 +51,19 @@ data "azuredevops_serviceendpoint_azurecr" "prod" {
   project_id            = data.azuredevops_project.project.id
   service_endpoint_name = var.service_connection_prod_acr_name
 }
+
+data "azuredevops_serviceendpoint_azurecr" "itn_dev" {
+  project_id            = data.azuredevops_project.project.id
+  service_endpoint_name = "pagopa-azurecr-ita-dev"
+}
+
+data "azuredevops_serviceendpoint_azurecr" "itn_uat" {
+  project_id            = data.azuredevops_project.project.id
+  service_endpoint_name = "pagopa-azurecr-ita-uat"
+}
+
+data "azuredevops_serviceendpoint_azurecr" "itn_prod" {
+  project_id            = data.azuredevops_project.project.id
+  service_endpoint_name = "pagopa-azurecr-ita-prod"
+}
+

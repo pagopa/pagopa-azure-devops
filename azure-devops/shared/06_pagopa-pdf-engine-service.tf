@@ -49,6 +49,10 @@ locals {
     uat_container_registry_service_conn  = data.azuredevops_serviceendpoint_azurecr.uat.id
     prod_container_registry_service_conn = data.azuredevops_serviceendpoint_azurecr.prod.id
 
+    itn_dev_container_registry_service_conn  = data.azuredevops_serviceendpoint_azurecr.itn_dev.id
+    itn_uat_container_registry_service_conn  = data.azuredevops_serviceendpoint_azurecr.itn_uat.id
+    itn_prod_container_registry_service_conn = data.azuredevops_serviceendpoint_azurecr.itn_prod.id
+
     dev_container_namespace  = "pagopadcommonacr.azurecr.io"
     uat_container_namespace  = "pagopaucommonacr.azurecr.io"
     prod_container_namespace = "pagopapcommonacr.azurecr.io"
