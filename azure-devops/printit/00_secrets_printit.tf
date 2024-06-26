@@ -4,7 +4,7 @@ module "printit_dev_secrets" {
     azurerm = azurerm.dev
   }
 
-  source = "git::https://github.com/pagopa/terraform-azurerm-v3.git//key_vault_secrets_query?ref=v7.67.1"
+  source = "git::https://github.com/pagopa/terraform-azurerm-v3.git//key_vault_secrets_query?ref=v8.22.0"
 
   resource_group = local.dev_printit_key_vault_resource_group
   key_vault_name = local.dev_printit_key_vault_name
@@ -25,7 +25,7 @@ module "printit_uat_secrets" {
     azurerm = azurerm.uat
   }
 
-  source = "git::https://github.com/pagopa/terraform-azurerm-v3.git//key_vault_secrets_query?ref=v7.67.1"
+  source = "git::https://github.com/pagopa/terraform-azurerm-v3.git//key_vault_secrets_query?ref=v8.22.0"
 
   resource_group = local.uat_printit_key_vault_resource_group
   key_vault_name = local.uat_printit_key_vault_name
@@ -40,26 +40,26 @@ module "printit_uat_secrets" {
   ]
 }
 
-# module "printit_prod_secrets" {
+module "printit_prod_secrets" {
 
-#   providers = {
-#     azurerm = azurerm.prod
-#   }
+  providers = {
+    azurerm = azurerm.prod
+  }
 
-#   source = "git::https://github.com/pagopa/terraform-azurerm-v3.git//key_vault_secrets_query?ref=v7.67.1"
+  source = "git::https://github.com/pagopa/terraform-azurerm-v3.git//key_vault_secrets_query?ref=v8.22.0"
 
-#   resource_group = local.prod_printit_key_vault_resource_group
-#   key_vault_name = local.prod_printit_key_vault_name
+  resource_group = local.prod_printit_key_vault_resource_group
+  key_vault_name = local.prod_printit_key_vault_name
 
-#   secrets = [
-#     "pagopa-p-itn-prod-aks-azure-devops-sa-token",
-#     "pagopa-p-itn-prod-aks-azure-devops-sa-cacrt",
-#     "pagopa-p-itn-prod-aks-apiserver-url",      
-#     "institutions-storage-account-connection-string",
-#     "notices-storage-account-connection-string",
-#     "notices-mongo-connection-string",
-#   ]
-# }
+  secrets = [
+    "pagopa-p-itn-prod-aks-azure-devops-sa-token",
+    "pagopa-p-itn-prod-aks-azure-devops-sa-cacrt",
+    "pagopa-p-itn-prod-aks-apiserver-url",
+    "institutions-storage-account-connection-string",
+    "notices-storage-account-connection-string",
+    "notices-mongo-connection-string",
+  ]
+}
 
 
 module "general_dev_secrets" {
@@ -68,7 +68,7 @@ module "general_dev_secrets" {
     azurerm = azurerm.dev
   }
 
-  source = "git::https://github.com/pagopa/terraform-azurerm-v3.git//key_vault_secrets_query?ref=v7.67.1"
+  source = "git::https://github.com/pagopa/terraform-azurerm-v3.git//key_vault_secrets_query?ref=v8.22.0"
 
   resource_group = "pagopa-d-sec-rg"
   key_vault_name = "pagopa-d-kv"
@@ -84,7 +84,7 @@ module "general_uat_secrets" {
     azurerm = azurerm.uat
   }
 
-  source = "git::https://github.com/pagopa/terraform-azurerm-v3.git//key_vault_secrets_query?ref=v7.67.1"
+  source = "git::https://github.com/pagopa/terraform-azurerm-v3.git//key_vault_secrets_query?ref=v8.22.0"
 
   resource_group = "pagopa-u-sec-rg"
   key_vault_name = "pagopa-u-kv"

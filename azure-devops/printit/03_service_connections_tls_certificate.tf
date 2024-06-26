@@ -31,7 +31,7 @@ resource "azurerm_key_vault_access_policy" "DEV-PRINTIT-TLS-CERT-SERVICE-CONN_kv
 
 # create let's encrypt credential used to create SSL certificates
 module "letsencrypt_dev" {
-  source = "git::https://github.com/pagopa/terraform-azurerm-v3.git//letsencrypt_credential?ref=v9.0.0"
+  source = "git::https://github.com/pagopa/terraform-azurerm-v3.git//letsencrypt_credential?ref=v8.22.0"
 
   providers = {
     azurerm = azurerm.dev
@@ -73,7 +73,7 @@ resource "azurerm_key_vault_access_policy" "UAT-PRINTIT-TLS-CERT-SERVICE-CONN_kv
 
 # create let's encrypt credential used to create SSL certificates
 module "letsencrypt_uat" {
-  source = "git::https://github.com/pagopa/terraform-azurerm-v3.git//letsencrypt_credential?ref=v9.0.0"
+  source = "git::https://github.com/pagopa/terraform-azurerm-v3.git//letsencrypt_credential?ref=v8.22.0"
 
   providers = {
     azurerm = azurerm.uat
@@ -115,7 +115,7 @@ resource "azurerm_key_vault_access_policy" "PROD-PRINTIT-TLS-CERT-SERVICE-CONN_k
 
 # create let's encrypt credential used to create SSL certificates
 module "letsencrypt_prod" {
- source = "git::https://github.com/pagopa/terraform-azurerm-v3.git//letsencrypt_credential?ref=v9.0.0"
+ source = "git::https://github.com/pagopa/terraform-azurerm-v3.git//letsencrypt_credential?ref=v8.22.0"
 
  providers = {
    azurerm = azurerm.prod
