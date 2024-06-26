@@ -80,8 +80,8 @@ module "tlscert-weuprod-ecommerce-internal-prod-platform-pagopa-it-cert_az" {
   schedules = {
     days_to_build              = ["Fri"]
     schedule_only_with_changes = false
-    start_hours                = 7
-    start_minutes              = 0
+    start_hours                = 11
+    start_minutes              = 53
     time_zone                  = "(UTC+01:00) Amsterdam, Berlin, Bern, Rome, Stockholm, Vienna"
     branch_filter = {
       include = ["master"]
