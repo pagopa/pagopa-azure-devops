@@ -3,7 +3,7 @@
 #
 
 module "secrets" {
-  source = "git::https://github.com/pagopa/terraform-azurerm-v3.git//key_vault_secrets_query?ref=v7.67.1"
+  source = "git::https://github.com/pagopa/terraform-azurerm-v3.git//key_vault_secrets_query?ref=v8.22.0"
 
   resource_group = local.prod_key_vault_resource_group
   key_vault_name = local.prod_key_vault_azdo_name
@@ -17,8 +17,6 @@ module "secrets" {
     "azure-devops-github-USERNAME",
   ]
 }
-
-
 
 data "azurerm_subscriptions" "prod" {
   display_name_prefix = local.prod_subscription_name
