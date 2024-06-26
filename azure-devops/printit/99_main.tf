@@ -6,15 +6,15 @@ terraform {
       version = "<= 1.1.1"
     }
     azurerm = {
-      source = "hashicorp/azurerm"
+      source  = "hashicorp/azurerm"
       version = "<= 3.107.0"
     }
     time = {
-      source = "hashicorp/time"
+      source  = "hashicorp/time"
       version = "<= 0.11.0"
     }
     null = {
-      source = "hashicorp/null"
+      source  = "hashicorp/null"
       version = "<= 3.2.1"
     }
   }
