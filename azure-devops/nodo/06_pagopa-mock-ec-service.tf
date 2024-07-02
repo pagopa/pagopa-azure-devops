@@ -42,7 +42,7 @@ locals {
     # aks section
     k8s_namespace               = "nodo"
     dev_kubernetes_service_conn = azuredevops_serviceendpoint_kubernetes.aks_dev.id
-    dev_kubernetes_service_conn = azuredevops_serviceendpoint_kubernetes.aks_uat.id
+    uat_kubernetes_service_conn = azuredevops_serviceendpoint_kubernetes.aks_uat.id
 
     dev_container_namespace = "pagopadcommonacr.azurecr.io"
     uat_container_namespace = "pagopaucommonacr.azurecr.io"
