@@ -37,17 +37,22 @@ locals {
     repository            = replace(var.pagopa-mock-ec-service.repository.name, "-", "")
 
     dev_container_registry_service_conn = data.azuredevops_serviceendpoint_azurecr.dev.id
+    uat_container_registry_service_conn  = data.azuredevops_serviceendpoint_azurecr.uat.id
 
     # aks section
     k8s_namespace               = "nodo"
     dev_kubernetes_service_conn = azuredevops_serviceendpoint_kubernetes.aks_dev.id
+    dev_kubernetes_service_conn = azuredevops_serviceendpoint_kubernetes.aks_uat.id
 
     dev_container_namespace = "pagopadcommonacr.azurecr.io"
+    uat_container_namespace  = "pagopaucommonacr.azurecr.io"
 
     TF_APPINSIGHTS_SERVICE_CONN_DEV = module.DEV-APPINSIGHTS-SERVICE-CONN.service_endpoint_name
     TF_APPINSIGHTS_RESOURCE_ID_DEV  = data.azurerm_application_insights.application_insights_dev.id
-
+    TF_APPINSIGHTS_SERVICE_CONN_UAT = module.UAT-APPINSIGHTS-SERVICE-CONN.service_endpoint_name
+    TF_APPINSIGHTS_RESOURCE_ID_UAT  = data.azurerm_application_insights.application_insights_uat.id
   }
+
   # deploy secrets
   pagopa-mock-ec-service-variables_secret_deploy = {
 
@@ -78,7 +83,10 @@ module "pagopa-mock-ec-service_deploy" {
   service_connection_ids_authorization = [
     data.azuredevops_serviceendpoint_github.github_ro.id,
     data.azuredevops_serviceendpoint_azurecr.dev.id,
+    data.azuredevops_serviceendpoint_azurecr.uat.id,
     data.azuredevops_serviceendpoint_azurerm.dev.id,
-    module.DEV-APPINSIGHTS-SERVICE-CONN.service_endpoint_id
+    data.azuredevops_serviceendpoint_azurerm.uat.id,
+    module.DEV-APPINSIGHTS-SERVICE-CONN.service_endpoint_id,
+    module.UAT-APPINSIGHTS-SERVICE-CONN.service_endpoint_id
   ]
 }
