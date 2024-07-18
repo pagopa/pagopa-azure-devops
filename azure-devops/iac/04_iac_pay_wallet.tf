@@ -19,7 +19,7 @@ variable "pay_wallet_iac" {
 locals {
   # global vars
   pay_wallet_iac_variables = {
-    
+
     tf_aks_dev_name  = var.aks_dev_platform_name,
     tf_aks_uat_name  = var.aks_uat_platform_name,
     tf_aks_prod_name = var.aks_prod_platform_name,
@@ -27,14 +27,14 @@ locals {
     TF_POOL_NAME_DEV  = "pagopa-dev-linux-infra",
     TF_POOL_NAME_UAT  = "pagopa-uat-linux-infra",
     TF_POOL_NAME_PROD = "pagopa-prod-linux-infra",
-    #PLAN                                        
-    TF_AZURE_SERVICE_CONNECTION_PLAN_NAME_DEV  = module.AZDO-DEV-PAGOPA-IAC-PLAN-SERVICE-CONN.service_endpoint_name,
-    TF_AZURE_SERVICE_CONNECTION_PLAN_NAME_UAT  = module.AZDO-UAT-PAGOPA-IAC-PLAN-SERVICE-CONN.service_endpoint_name,
-    TF_AZURE_SERVICE_CONNECTION_PLAN_NAME_PROD = module.AZDO-PROD-PAGOPA-IAC-PLAN-SERVICE-CONN.service_endpoint_name,
+    #PLAN
+    TF_AZURE_SERVICE_CONNECTION_PLAN_NAME_DEV  = module.DEV-AZURERM-IAC-PLAN-SERVICE-CONN.service_endpoint_name,
+    TF_AZURE_SERVICE_CONNECTION_PLAN_NAME_UAT  = module.UAT-AZURERM-IAC-PLAN-SERVICE-CONN.service_endpoint_name,
+    TF_AZURE_SERVICE_CONNECTION_PLAN_NAME_PROD = module.PROD-AZURERM-IAC-PLAN-SERVICE-CONN.service_endpoint_name,
     #APPLY
-    TF_AZURE_SERVICE_CONNECTION_APPLY_NAME_DEV  = module.AZDO-DEV-PAGOPA-IAC-DEPLOY-SERVICE-CONN.service_endpoint_name,
-    TF_AZURE_SERVICE_CONNECTION_APPLY_NAME_UAT  = module.AZDO-UAT-PAGOPA-IAC-DEPLOY-SERVICE-CONN.service_endpoint_name,
-    TF_AZURE_SERVICE_CONNECTION_APPLY_NAME_PROD = module.AZDO-PROD-PAGOPA-IAC-DEPLOY-SERVICE-CONN.service_endpoint_name,
+    TF_AZURE_SERVICE_CONNECTION_APPLY_NAME_DEV  = module.DEV-AZURERM-IAC-DEPLOY-SERVICE-CONN.service_endpoint_name,
+    TF_AZURE_SERVICE_CONNECTION_APPLY_NAME_UAT  = module.UAT-AZURERM-IAC-DEPLOY-SERVICE-CONN.service_endpoint_name,
+    TF_AZURE_SERVICE_CONNECTION_APPLY_NAME_PROD = module.PROD-AZURERM-IAC-DEPLOY-SERVICE-CONN.service_endpoint_name,
   }
   # global secrets
   pay_wallet_iac_variables_secret = {
@@ -45,7 +45,7 @@ locals {
     tf_uat_aks_apiserver_url         = module.paywallet_uat_secrets.values["pagopa-u-itn-uat-aks-apiserver-url"].value,
     tf_uat_aks_azure_devops_sa_cacrt = module.paywallet_uat_secrets.values["pagopa-u-itn-uat-aks-azure-devops-sa-cacrt"].value,
     tf_uat_aks_azure_devops_sa_token = base64decode(module.paywallet_uat_secrets.values["pagopa-u-itn-uat-aks-azure-devops-sa-token"].value),
-    
+
     tf_prod_aks_apiserver_url         = module.paywallet_prod_secrets.values["pagopa-p-itn-prod-aks-apiserver-url"].value,
     tf_prod_aks_azure_devops_sa_cacrt = module.paywallet_prod_secrets.values["pagopa-p-itn-prod-aks-azure-devops-sa-cacrt"].value,
     tf_prod_aks_azure_devops_sa_token = base64decode(module.paywallet_prod_secrets.values["pagopa-p-itn-prod-aks-azure-devops-sa-token"].value),
