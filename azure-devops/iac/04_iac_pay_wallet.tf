@@ -20,9 +20,9 @@ locals {
   # global vars
   pay_wallet_iac_variables = {
 
-    tf_aks_dev_name  = var.aks_dev_platform_name,
-    tf_aks_uat_name  = var.aks_uat_platform_name,
-    tf_aks_prod_name = var.aks_prod_platform_name,
+    tf_aks_dev_name  = "pagopa-d-itn-dev-aks",
+    tf_aks_uat_name  = "pagopa-u-itn-dev-aks",
+    tf_aks_prod_name = "pagopa-p-itn-dev-aks",
 
     TF_POOL_NAME_DEV  = "pagopa-dev-linux-infra",
     TF_POOL_NAME_UAT  = "pagopa-uat-linux-infra",
@@ -35,12 +35,15 @@ locals {
     TF_AZURE_SERVICE_CONNECTION_APPLY_NAME_DEV  = module.DEV-AZURERM-IAC-DEPLOY-SERVICE-CONN.service_endpoint_name,
     TF_AZURE_SERVICE_CONNECTION_APPLY_NAME_UAT  = module.UAT-AZURERM-IAC-DEPLOY-SERVICE-CONN.service_endpoint_name,
     TF_AZURE_SERVICE_CONNECTION_APPLY_NAME_PROD = module.PROD-AZURERM-IAC-DEPLOY-SERVICE-CONN.service_endpoint_name,
+
+
   }
   # global secrets
   pay_wallet_iac_variables_secret = {
     tf_dev_aks_apiserver_url         = module.paywallet_dev_secrets.values["pagopa-d-itn-dev-aks-apiserver-url"].value,
     tf_dev_aks_azure_devops_sa_cacrt = module.paywallet_dev_secrets.values["pagopa-d-itn-dev-aks-azure-devops-sa-cacrt"].value,
     tf_dev_aks_azure_devops_sa_token = base64decode(module.paywallet_dev_secrets.values["pagopa-d-itn-dev-aks-azure-devops-sa-token"].value),
+
 
     tf_uat_aks_apiserver_url         = module.paywallet_uat_secrets.values["pagopa-u-itn-uat-aks-apiserver-url"].value,
     tf_uat_aks_azure_devops_sa_cacrt = module.paywallet_uat_secrets.values["pagopa-u-itn-uat-aks-azure-devops-sa-cacrt"].value,
