@@ -93,3 +93,19 @@ module "general_uat_secrets" {
     "integration-test-subkey",
   ]
 }
+
+module "general_prod_secrets" {
+
+  providers = {
+    azurerm = azurerm.uat
+  }
+
+  source = "git::https://github.com/pagopa/terraform-azurerm-v3.git//key_vault_secrets_query?ref=v7.67.1"
+
+  resource_group = "pagopa-p-sec-rg"
+  key_vault_name = "pagopa-p-kv"
+
+  secrets = [
+    "integration-test-subkey",
+  ]
+}

@@ -17,6 +17,7 @@
 
 | Name | Source | Version |
 |------|--------|---------|
+<<<<<<< HEAD
 | <a name="module_DEV-PRINTIT-TLS-CERT-SERVICE-CONN"></a> [DEV-PRINTIT-TLS-CERT-SERVICE-CONN](#module\_DEV-PRINTIT-TLS-CERT-SERVICE-CONN) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated | v9.0.0 |
 | <a name="module_PROD-PRINTIT-TLS-CERT-SERVICE-CONN"></a> [PROD-PRINTIT-TLS-CERT-SERVICE-CONN](#module\_PROD-PRINTIT-TLS-CERT-SERVICE-CONN) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated | v9.0.0 |
 | <a name="module_UAT-PRINTIT-TLS-CERT-SERVICE-CONN"></a> [UAT-PRINTIT-TLS-CERT-SERVICE-CONN](#module\_UAT-PRINTIT-TLS-CERT-SERVICE-CONN) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated | v9.0.0 |
@@ -33,6 +34,22 @@
 | <a name="module_tlscert-printit-itn-internal-dev-platform-pagopa-it-cert_az"></a> [tlscert-printit-itn-internal-dev-platform-pagopa-it-cert\_az](#module\_tlscert-printit-itn-internal-dev-platform-pagopa-it-cert\_az) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_tls_cert_federated | v9.0.0 |
 | <a name="module_tlscert-printit-itn-internal-prod-platform-pagopa-it-cert_az"></a> [tlscert-printit-itn-internal-prod-platform-pagopa-it-cert\_az](#module\_tlscert-printit-itn-internal-prod-platform-pagopa-it-cert\_az) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_tls_cert_federated | v9.0.0 |
 | <a name="module_tlscert-printit-itn-internal-uat-platform-pagopa-it-cert_az"></a> [tlscert-printit-itn-internal-uat-platform-pagopa-it-cert\_az](#module\_tlscert-printit-itn-internal-uat-platform-pagopa-it-cert\_az) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_tls_cert_federated | v9.0.0 |
+=======
+| <a name="module_DEV-PRINTIT-TLS-CERT-SERVICE-CONN"></a> [DEV-PRINTIT-TLS-CERT-SERVICE-CONN](#module\_DEV-PRINTIT-TLS-CERT-SERVICE-CONN) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated | v7.1.0 |
+| <a name="module_UAT-PRINTIT-TLS-CERT-SERVICE-CONN"></a> [UAT-PRINTIT-TLS-CERT-SERVICE-CONN](#module\_UAT-PRINTIT-TLS-CERT-SERVICE-CONN) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated | v7.1.0 |
+| <a name="module_general_dev_secrets"></a> [general\_dev\_secrets](#module\_general\_dev\_secrets) | git::https://github.com/pagopa/terraform-azurerm-v3.git//key_vault_secrets_query | v7.67.1 |
+| <a name="module_general_prod_secrets"></a> [general\_prod\_secrets](#module\_general\_prod\_secrets) | git::https://github.com/pagopa/terraform-azurerm-v3.git//key_vault_secrets_query | v7.67.1 |
+| <a name="module_general_uat_secrets"></a> [general\_uat\_secrets](#module\_general\_uat\_secrets) | git::https://github.com/pagopa/terraform-azurerm-v3.git//key_vault_secrets_query | v7.67.1 |
+| <a name="module_letsencrypt_dev"></a> [letsencrypt\_dev](#module\_letsencrypt\_dev) | git::https://github.com/pagopa/terraform-azurerm-v3.git//letsencrypt_credential | v7.1.0 |
+| <a name="module_letsencrypt_uat"></a> [letsencrypt\_uat](#module\_letsencrypt\_uat) | git::https://github.com/pagopa/terraform-azurerm-v3.git//letsencrypt_credential | v7.1.0 |
+| <a name="module_pagopa-print-payment-notice-service_performance_test"></a> [pagopa-print-payment-notice-service\_performance\_test](#module\_pagopa-print-payment-notice-service\_performance\_test) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_generic | v4.2.1 |
+| <a name="module_printit_dev_secrets"></a> [printit\_dev\_secrets](#module\_printit\_dev\_secrets) | git::https://github.com/pagopa/terraform-azurerm-v3.git//key_vault_secrets_query | v7.67.1 |
+| <a name="module_printit_prod_secrets"></a> [printit\_prod\_secrets](#module\_printit\_prod\_secrets) | git::https://github.com/pagopa/terraform-azurerm-v3.git//key_vault_secrets_query | v7.67.1 |
+| <a name="module_printit_uat_secrets"></a> [printit\_uat\_secrets](#module\_printit\_uat\_secrets) | git::https://github.com/pagopa/terraform-azurerm-v3.git//key_vault_secrets_query | v7.67.1 |
+| <a name="module_secrets"></a> [secrets](#module\_secrets) | git::https://github.com/pagopa/terraform-azurerm-v3.git//key_vault_secrets_query | v7.67.1 |
+| <a name="module_tlscert-printit-itn-internal-dev-platform-pagopa-it-cert_az"></a> [tlscert-printit-itn-internal-dev-platform-pagopa-it-cert\_az](#module\_tlscert-printit-itn-internal-dev-platform-pagopa-it-cert\_az) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_tls_cert_federated | v7.1.0 |
+| <a name="module_tlscert-printit-itn-internal-uat-platform-pagopa-it-cert_az"></a> [tlscert-printit-itn-internal-uat-platform-pagopa-it-cert\_az](#module\_tlscert-printit-itn-internal-uat-platform-pagopa-it-cert\_az) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_tls_cert_federated | v7.1.0 |
+>>>>>>> c48ebbf (printit prod secrets)
 
 ## Resources
 
