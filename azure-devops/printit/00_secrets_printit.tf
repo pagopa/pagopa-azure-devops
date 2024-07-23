@@ -97,10 +97,10 @@ module "general_uat_secrets" {
 module "general_prod_secrets" {
 
   providers = {
-    azurerm = azurerm.uat
+    azurerm = azurerm.prod
   }
 
-  source = "git::https://github.com/pagopa/terraform-azurerm-v3.git//key_vault_secrets_query?ref=v7.67.1"
+  source = "git::https://github.com/pagopa/terraform-azurerm-v3.git//key_vault_secrets_query?ref=v8.22.0"
 
   resource_group = "pagopa-p-sec-rg"
   key_vault_name = "pagopa-p-kv"
