@@ -58,7 +58,7 @@ locals {
 
     dev_deploy_type                 = "production_slot" #or staging_slot_and_swap
     dev_azure_subscription          = module.DEV-AZURERM-SERVICE-CONN.service_endpoint_name
-    dev_web_app_name                = "pagopa-u-weu-core-app-node-forwarder"
+    dev_web_app_name                = "pagopa-d-weu-core-app-node-forwarder"
     dev_web_app_resource_group_name = "pagopa-d-node-forwarder-rg"
 
     uat_deploy_type                 = "production_slot" #or staging_slot_and_swap
