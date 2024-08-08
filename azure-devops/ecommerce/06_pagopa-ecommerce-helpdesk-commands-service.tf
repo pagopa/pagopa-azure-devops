@@ -68,9 +68,11 @@ locals {
   }
   # deploy secrets
   pagopa-ecommerce-helpdesk-commands-service-variables_secret_deploy = {
-    git_mail     = module.secrets.values["azure-devops-github-EMAIL"].value
-    git_username = module.secrets.values["azure-devops-github-USERNAME"].value
-    tenant_id    = data.azurerm_client_config.current.tenant_id
+    git_mail                     = module.secrets.values["azure-devops-github-EMAIL"].value
+    git_username                 = module.secrets.values["azure-devops-github-USERNAME"].value
+    tenant_id                    = data.azurerm_client_config.current.tenant_id
+    helpdesk_testing_api_key_dev = module.ecommerce_dev_secrets.values["helpdesk-ecommerce-commands-testing-api-key"].value
+    helpdesk_testing_api_key_uat = module.ecommerce_uat_secrets.values["helpdesk-ecommerce-commands-testing-api-key"].value
   }
 }
 
