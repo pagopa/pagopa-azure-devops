@@ -153,7 +153,7 @@ module "pagopa-node-forwarder_deploy" {
 }
 
 module "pagopa-node-forwarder_performance_test" {
-  source = "./.terraform/modules/__azdo__/azuredevops_build_definition_generic?ref=v4.1.4"
+  source = "./.terraform/modules/__azdo__/azuredevops_build_definition_generic"
   count  = var.pagopa-node-forwarder.pipeline.performance_test.enabled == true ? 1 : 0
 
   project_id                   = azuredevops_project.project.id
