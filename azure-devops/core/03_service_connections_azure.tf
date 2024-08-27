@@ -4,7 +4,7 @@
 
 module "DEV-AZURERM-SERVICE-CONN" {
   depends_on = [azuredevops_project.project]
-  source = "./.terraform/modules/__azdo__/azuredevops_serviceendpoint_federated"
+  source     = "./.terraform/modules/__azdo__/azuredevops_serviceendpoint_federated"
 
   providers = {
     azurerm = azurerm.dev
@@ -33,7 +33,7 @@ resource "azurerm_role_assignment" "dev_azurerm" {
 #
 module "UAT-AZURERM-SERVICE-CONN" {
   depends_on = [azuredevops_project.project]
-  source = "./.terraform/modules/__azdo__/azuredevops_serviceendpoint_federated"
+  source     = "./.terraform/modules/__azdo__/azuredevops_serviceendpoint_federated"
   providers = {
     azurerm = azurerm.uat
   }
@@ -61,7 +61,7 @@ resource "azurerm_role_assignment" "uat_azurerm" {
 #
 module "PROD-AZURERM-SERVICE-CONN" {
   depends_on = [azuredevops_project.project]
-  source = "./.terraform/modules/__azdo__/azuredevops_serviceendpoint_federated"
+  source     = "./.terraform/modules/__azdo__/azuredevops_serviceendpoint_federated"
   providers = {
     azurerm = azurerm.prod
   }
