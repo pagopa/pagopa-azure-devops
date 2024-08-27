@@ -42,7 +42,7 @@ module "tlscert-uat-api-uat-platform-pagopa-it-cert_az" {
     azurerm = azurerm.uat
   }
 
-  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_tls_cert_federated?ref=v5.0.0"
+  source = "./.terraform/modules/__azdo__/azuredevops_build_definition_tls_cert_federated"
   count  = var.tlscert-uat-api-uat-platform-pagopa-it.pipeline.enable_tls_cert == true ? 1 : 0
 
   project_id                   = azuredevops_project.project.id

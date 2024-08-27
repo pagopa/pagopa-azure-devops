@@ -101,7 +101,7 @@ locals {
 }
 
 module "pagopa-node-forwarder_code_review" {
-  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review?ref=v5.1.1"
+  source = "./.terraform/modules/__azdo__/azuredevops_build_definition_code_review"
   count  = var.pagopa-node-forwarder.pipeline.enable_code_review == true ? 1 : 0
 
   project_id                   = azuredevops_project.project.id
@@ -126,7 +126,7 @@ module "pagopa-node-forwarder_code_review" {
 }
 
 module "pagopa-node-forwarder_deploy" {
-  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy?ref=v4.1.4"
+  source = "./.terraform/modules/__azdo__/azuredevops_build_definition_deploy"
   count  = var.pagopa-node-forwarder.pipeline.enable_deploy == true ? 1 : 0
 
   project_id                   = azuredevops_project.project.id
@@ -153,7 +153,7 @@ module "pagopa-node-forwarder_deploy" {
 }
 
 module "pagopa-node-forwarder_performance_test" {
-  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_generic?ref=v4.1.4"
+  source = "./.terraform/modules/__azdo__/azuredevops_build_definition_generic?ref=v4.1.4"
   count  = var.pagopa-node-forwarder.pipeline.performance_test.enabled == true ? 1 : 0
 
   project_id                   = azuredevops_project.project.id
