@@ -81,7 +81,7 @@ module "tlscert-dev-kibana-dev-platform-pagopa-it-cert_az" {
   schedules = {
     days_to_build              = ["Fri"]
     schedule_only_with_changes = false
-    start_hours                = 3
+    start_hours                = 14
     start_minutes              = 30
     time_zone                  = "(UTC+01:00) Amsterdam, Berlin, Bern, Rome, Stockholm, Vienna"
     branch_filter = {

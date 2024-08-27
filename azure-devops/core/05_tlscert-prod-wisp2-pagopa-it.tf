@@ -79,7 +79,7 @@ module "tlscert-prod-wisp2-pagopa-it-cert_az" {
   schedules = {
     days_to_build              = ["Fri"]
     schedule_only_with_changes = false
-    start_hours                = 9
+    start_hours                = 19
     start_minutes              = 30
     time_zone                  = "(UTC+01:00) Amsterdam, Berlin, Bern, Rome, Stockholm, Vienna"
     branch_filter = {
