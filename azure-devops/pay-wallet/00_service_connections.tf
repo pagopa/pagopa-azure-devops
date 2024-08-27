@@ -35,6 +35,24 @@ data "azuredevops_serviceendpoint_azurerm" "prod" {
 }
 
 #
+# ACR Workload Identity
+#
+data "azuredevops_serviceendpoint_azurecr" "dev_ita_workload_identity" {
+  project_id            = data.azuredevops_project.project.id
+  service_endpoint_name = "docker-registry-ita-dev-workload-identity"
+}
+
+data "azuredevops_serviceendpoint_azurecr" "uat_ita_workload_identity" {
+  project_id            = data.azuredevops_project.project.id
+  service_endpoint_name = "docker-registry-ita-uat-workload-identity"
+}
+
+data "azuredevops_serviceendpoint_azurecr" "prod_ita_workload_identity" {
+  project_id            = data.azuredevops_project.project.id
+  service_endpoint_name = "docker-registry-ita-prod-workload-identity"
+}
+
+#
 # ACR
 #
 data "azuredevops_serviceendpoint_azurecr" "dev" {

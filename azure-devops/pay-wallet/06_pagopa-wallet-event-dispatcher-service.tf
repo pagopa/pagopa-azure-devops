@@ -49,12 +49,12 @@ locals {
 
     # acr section
     k8s_image_repository_name            = replace(var.pagopa-payment-wallet-event-dispatcher-service.repository.name, "-", "")
-    dev_container_registry_service_conn  = data.azuredevops_serviceendpoint_azurecr.dev.id
-    dev_container_registry_name          = data.azuredevops_serviceendpoint_azurecr.dev.service_endpoint_name
-    uat_container_registry_service_conn  = data.azuredevops_serviceendpoint_azurecr.uat.id
-    uat_container_registry_name          = data.azuredevops_serviceendpoint_azurecr.uat.service_endpoint_name
-    prod_container_registry_service_conn = data.azuredevops_serviceendpoint_azurecr.prod.id
-    prod_container_registry_name         = data.azuredevops_serviceendpoint_azurecr.prod.service_endpoint_name
+    dev_container_registry_service_conn  = data.azuredevops_serviceendpoint_azurecr.dev_ita_workload_identity.id
+    dev_container_registry_name          = data.azuredevops_serviceendpoint_azurecr.dev_ita_workload_identity.service_endpoint_name
+    uat_container_registry_service_conn  = data.azuredevops_serviceendpoint_azurecr.uat_ita_workload_identity.id
+    uat_container_registry_name          = data.azuredevops_serviceendpoint_azurecr.uat_ita_workload_identity.service_endpoint_name
+    prod_container_registry_service_conn = data.azuredevops_serviceendpoint_azurecr.prod_ita_workload_identity.id
+    prod_container_registry_name         = data.azuredevops_serviceendpoint_azurecr.prod_ita_workload_identity.service_endpoint_name
 
     # aks section
     dev_kubernetes_service_conn  = azuredevops_serviceendpoint_kubernetes.aks_dev.id
@@ -120,9 +120,9 @@ module "pagopa-payment-wallet-event-dispatcher-service_deploy" {
 
   service_connection_ids_authorization = [
     data.azuredevops_serviceendpoint_github.github_ro.id,
-    data.azuredevops_serviceendpoint_azurecr.dev.id,
-    data.azuredevops_serviceendpoint_azurecr.uat.id,
-    data.azuredevops_serviceendpoint_azurecr.prod.id,
+    data.azuredevops_serviceendpoint_azurecr.dev_ita_workload_identity.id,
+    data.azuredevops_serviceendpoint_azurecr.uat_ita_workload_identity.id,
+    data.azuredevops_serviceendpoint_azurecr.prod_ita_workload_identity.id,
     data.azuredevops_serviceendpoint_azurerm.dev.id,
     data.azuredevops_serviceendpoint_azurerm.uat.id,
     data.azuredevops_serviceendpoint_azurerm.prod.id,
