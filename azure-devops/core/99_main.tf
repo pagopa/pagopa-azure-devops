@@ -45,3 +45,14 @@ provider "azurerm" {
   alias           = "prod"
   subscription_id = data.azurerm_subscriptions.prod.subscriptions[0].subscription_id
 }
+
+module "__v3__" {
+  # https://github.com/pagopa/terraform-azurerm-v3/releases/tag/v8.39.0
+  source = "git::https://github.com/pagopa/terraform-azurerm-v3.git?ref=e64f39b63d46e8c05470e30eca873f44a0ab7f1b"
+}
+
+module "__azdo__" {
+  # https://github.com/pagopa/azuredevops-tf-modules/releases/tag/v9.1.0
+  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git?ref=157a2b963114da99c5e83341e98f81d3c5f47ed8"
+}
+
