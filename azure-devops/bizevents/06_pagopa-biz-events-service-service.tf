@@ -40,9 +40,29 @@ locals {
   pagopa-biz-events-service-variables_performance_test = {
   }
   # performance secrets
+  # k6 run --env VARS=local.environment.json 
+  # --env TEST_TYPE=./test-types/load.json 
+  # --env API_SUBSCRIPTION_KEY=subkey 
+  # --env TOKENIZER_API_SUBSCRIPTION_KEY=<> 
+  # --env BIZ_COSMOS_ACCOUNT_PRIMARY_KEY=<>
+  # --env RECEIPT_COSMOS_ACCOUNT_PRIMARY_KEY=<>
+  # --env STORAGE_ACCOUNT_PRIMARY_KEY=<> get_pdf_receipt.js
+
   pagopa-biz-events-service-variables_secret_performance_test = {
+    DEV_BIZ_SERVICE_API_SUBSCRIPTION_KEY = module.bizevents_dev_secrets.values["biz-trx-api-key-4-perftest"].value
+    UAT_BIZ_SERVICE_API_SUBSCRIPTION_KEY = module.bizevents_uat_secrets.values["biz-trx-api-key-4-perftest"].value
+
+    DEV_TOKENIZER_API_SUBSCRIPTION_KEY = module.bizevents_dev_secrets.values["tokenizer-api-key"].value
+    UAT_TOKENIZER_API_SUBSCRIPTION_KEY = module.bizevents_uat_secrets.values["tokenizer-api-key"].value
+
     DEV_COSMOS_DB_PRIMARY_KEY = module.bizevents_dev_secrets.values["cosmos-d-biz-key"].value
     UAT_COSMOS_DB_PRIMARY_KEY = module.bizevents_uat_secrets.values["cosmos-u-biz-key"].value
+
+    DEV_RECEIPT_COSMOS_ACCOUNT_PRIMARY_KEY = module.bizevents_dev_secrets.values["cosmos-d-receipt-key"].value
+    UAT_RECEIPT_COSMOS_ACCOUNT_PRIMARY_KEY = module.bizevents_uat_secrets.values["cosmos-u-receipt-key"].value
+
+    DEV_BLOB_STORAGE_ACCOUNT_PRIMARY_KEY = module.bizevents_dev_secrets.values["sa-receipt-key"].value
+    UAT_BLOB_STORAGE_ACCOUNT_PRIMARY_KEY = module.bizevents_uat_secrets.values["sa-receipt-key"].value
   }
 }
 
