@@ -4,6 +4,8 @@ resource "azuredevops_project" "project" {
   visibility         = "public"
   version_control    = "Git"
   work_item_template = "Basic"
+
+  depends_on = [module.__azdo__]
 }
 
 resource "azuredevops_project_features" "project_features" {

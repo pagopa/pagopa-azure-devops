@@ -4,8 +4,7 @@
 
 module "DEV-AZURERM-SERVICE-CONN" {
   depends_on = [azuredevops_project.project]
-  source     = "./.terraform/modules/__azdo__/azuredevops_serviceendpoint_federated"
-
+  source     = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated?ref=v9.1.0"
   providers = {
     azurerm = azurerm.dev
   }
@@ -33,7 +32,7 @@ resource "azurerm_role_assignment" "dev_azurerm" {
 #
 module "UAT-AZURERM-SERVICE-CONN" {
   depends_on = [azuredevops_project.project]
-  source     = "./.terraform/modules/__azdo__/azuredevops_serviceendpoint_federated"
+  source     = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated?ref=v9.1.0"
   providers = {
     azurerm = azurerm.uat
   }
@@ -61,7 +60,7 @@ resource "azurerm_role_assignment" "uat_azurerm" {
 #
 module "PROD-AZURERM-SERVICE-CONN" {
   depends_on = [azuredevops_project.project]
-  source     = "./.terraform/modules/__azdo__/azuredevops_serviceendpoint_federated"
+  source     = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated?ref=v9.1.0"
   providers = {
     azurerm = azurerm.prod
   }
@@ -83,3 +82,4 @@ resource "azurerm_role_assignment" "prod_azurerm" {
   role_definition_name = "Contributor"
   principal_id         = module.PROD-AZURERM-SERVICE-CONN.identity_principal_id
 }
+
