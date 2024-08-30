@@ -34,13 +34,13 @@ locals {
   }
   # performance secrets
   pagopa-wisp-soap-converter-service-variables_secret_performance_test = {
-    DEV_NODO_PA_SUBSCRIPTION_KEY = module.nodo_dev_secrets.values["TODO"].value
-    DEV_PASSWORD                 = module.nodo_dev_secrets.values["TODO"].value
-    DEV_IBAN_VALUE               = module.nodo_dev_secrets.values["TODO"].value
+    DEV_NODO_PA_SUBSCRIPTION_KEY = module.nodo_dev_secrets.values["integration-test-nodo-subscription-key"].value
+    DEV_STATION_PASSWORD         = module.nodo_dev_secrets.values["station-pwd-perf-test"].value
+    DEV_CHANNEL_PASSWORD         = module.nodo_dev_secrets.values["channel-pwd-perf-test"].value
     #####
-    UAT_NODO_PA_SUBSCRIPTION_KEY = module.nodo_uat_secrets.values["TODO"].value
-    DEV_PASSWORD                 = module.nodo_uat_secrets.values["TODO"].value
-    DEV_IBAN_VALUE               = module.nodo_uat_secrets.values["TODO"].value
+    UAT_NODO_PA_SUBSCRIPTION_KEY = module.nodo_uat_secrets.values["integration-test-nodo-subscription-key"].value
+    UAT_STATION_PASSWORD         = module.nodo_uat_secrets.values["station-pwd-perf-test"].value
+    UAT_CHANNEL_PASSWORD         = module.nodo_uat_secrets.values["channel-pwd-perf-test"].value
   }
 
 }
