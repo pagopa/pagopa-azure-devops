@@ -2,8 +2,8 @@ variable "pagopa-wisp-soap-converter-service" {
   default = {
     repository = {
       organization    = "pagopa"
-      name            = "pagopa-wisp-soap-converter"
-      branch_name     = "refs/heads/develop"
+      name            = "pagopa-wisp-converter"
+      branch_name     = "refs/heads/main"
       pipelines_path  = ".devops"
       yml_prefix_name = null
     }
