@@ -17,7 +17,10 @@ module "nodo_dev_secrets" {
     "pagopa-d-weu-dev-aks-azure-devops-sa-token",
     "pagopa-d-weu-dev-aks-azure-devops-sa-cacrt",
     "pagopa-d-weu-dev-aks-apiserver-url",
-    "lightbend-key"
+    "lightbend-key",
+    "integration-test-nodo-subscription-key",
+    "station-pwd-perf-test",
+    "channel-pwd-perf-test"
   ]
 }
 
@@ -39,7 +42,10 @@ module "nodo_uat_secrets" {
     "pagopa-u-weu-uat-aks-azure-devops-sa-token",
     "pagopa-u-weu-uat-aks-azure-devops-sa-cacrt",
     "pagopa-u-weu-uat-aks-apiserver-url",
-    "lightbend-key"
+    "lightbend-key",
+    "integration-test-nodo-subscription-key",
+    "station-pwd-perf-test",
+    "channel-pwd-perf-test"
   ]
 }
 
