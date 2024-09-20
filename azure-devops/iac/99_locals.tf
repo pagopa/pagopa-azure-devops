@@ -2,7 +2,7 @@ locals {
   definitions = [
     {
       name : "next-core-secrets",
-      envs : ["d", "u"],
+      envs : ["d", "u", "p"],
       kv_name : "",
       rg_name : "",
       code_review : true,
