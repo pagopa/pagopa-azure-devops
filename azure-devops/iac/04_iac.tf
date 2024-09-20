@@ -11,9 +11,9 @@ locals {
 
 
   base_iac_variables = {
-    tf_aks_dev_name  = local.aks_dev_platform_name
-    tf_aks_uat_name  = local.aks_uat_platform_name
-    tf_aks_prod_name = local.aks_prod_platform_name
+    tf_aks_dev_name  = var.aks_dev_platform_name
+    tf_aks_uat_name  = var.aks_uat_platform_name
+    tf_aks_prod_name = var.aks_prod_platform_name
 
     TF_POOL_NAME_DEV  = "pagopa-dev-linux-infra",
     TF_POOL_NAME_UAT  = "pagopa-uat-linux-infra",
@@ -48,7 +48,7 @@ module "iac_code_review" {
   for_each = { for d in local.code_review_domains : d.name => d }
   path     = each.value.pipeline_path
 
-  project_id                   = data.azuredevops_project.project.id
+  project_id                   = azuredevops_project.project.id
   repository                   = merge(local.default_repository, each.value.repository)
   github_service_connection_id = azuredevops_serviceendpoint_github.azure-devops-github-pr.id
 
@@ -97,7 +97,7 @@ module "iac_deploy" {
   for_each = { for d in local.deploy_domains : d.name => d }
   path     = each.value.pipeline_path
 
-  project_id                   = data.azuredevops_project.project.id
+  project_id                   = azuredevops_project.project.id
   repository                   = merge(local.default_repository, each.value.repository)
   github_service_connection_id = azuredevops_serviceendpoint_github.azure-devops-github-pr.id
 
