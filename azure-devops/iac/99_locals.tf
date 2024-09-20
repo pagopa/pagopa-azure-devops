@@ -15,5 +15,5 @@ locals {
     },
   ]
 
-  domain_variables = {}
+  definitions_variables = {}
 }

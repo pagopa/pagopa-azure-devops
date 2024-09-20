@@ -72,12 +72,12 @@ module "iac_code_review" {
       tf_prod_aks_azure_devops_sa_token = base64decode(module.prod_secrets[each.value.name].values["pagopa-p-weu-prod-aks-azure-devops-sa-token"].value),
     } : {},
     local.base_iac_variables_code_review,
-    try(local.domain_variables[each.value.name].iac_variables_cr, {})
+    try(local.definitions_variables[each.value.name].iac_variables_cr, {})
   )
 
   variables_secret = merge(
     local.base_iac_variables_secret,
-    try(local.domain_variables[each.value.name].iac_variables_secrets_cr, {})
+    try(local.definitions_variables[each.value.name].iac_variables_secrets_cr, {})
   )
 
   service_connection_ids_authorization = [
@@ -121,12 +121,12 @@ module "iac_deploy" {
       tf_prod_aks_azure_devops_sa_token = base64decode(module.prod_secrets[each.value.name].values["pagopa-p-weu-prod-aks-azure-devops-sa-token"].value),
     } : {},
     local.base_iac_variables_deploy,
-    try(local.domain_variables[each.value.name].iac_variables_deploy, {})
+    try(local.definitions_variables[each.value.name].iac_variables_deploy, {})
   )
 
   variables_secret = merge(
     local.base_iac_variables_secret,
-    try(local.domain_variables[each.value.name].iac_variables_secrets_deploy, {})
+    try(local.definitions_variables[each.value.name].iac_variables_secrets_deploy, {})
   )
 
   service_connection_ids_authorization = [

@@ -23,7 +23,7 @@ definitions =  [
     },
   ]
 
-  domain_variables = {
+  definitions_variables = {
     payhub = {
       iac_variables_cr: {},
       iac_variables_secrets_cr: {},
@@ -59,13 +59,13 @@ any field can be overwritten in the `repository` field
 
 To create pipelines for a new domain simply add the domain configuration to the list and apply the terraform configuration
 
-## domain_variables
+## definitions_variables
 
-If a domain requires additional variables, they can be defined using the `domain_variables` structure; it allows defining different variables and secrets for the code review (`cr`) and deploy pipelines
+If a definitions requires additional variables, they can be defined using the `definitions_variables` structure; it allows defining different variables and secrets for the code review (`cr`) and deploy pipelines
 
 the structure is the following:
 
-- **<domain_name>**: matches the domain name defined in `definitions`
+- **<definitions_name>**: matches the definitions name defined in `definitions`
   - **iac_variables_cr**: variables for code review
   - **iac_variables_secrets_cr**: secrets for code review
   - **iac_variables_deploy**: variables for deploy
