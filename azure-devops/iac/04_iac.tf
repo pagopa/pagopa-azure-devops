@@ -44,7 +44,7 @@ locals {
 # have a look at README.md                       #
 ##################################################
 module "iac_code_review" {
-  source   = "./.terraform/modules/__devops_v0__/azuredevops_build_definition_code_review"
+  source   = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review?ref=v7.0.0"
   for_each = { for d in local.code_review_domains : d.name => d }
   path     = each.value.pipeline_path
 
@@ -93,7 +93,7 @@ module "iac_code_review" {
 # have a look at README.md                       #
 ##################################################
 module "iac_deploy" {
-  source   = "./.terraform/modules/__devops_v0__/azuredevops_build_definition_deploy"
+  source   = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review?ref=v7.0.0"
   for_each = { for d in local.deploy_domains : d.name => d }
   path     = each.value.pipeline_path
 

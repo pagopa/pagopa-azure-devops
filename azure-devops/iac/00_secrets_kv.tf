@@ -3,7 +3,7 @@
 #
 
 module "dev_secrets" {
-  source = "./.terraform/modules/__v3__/key_vault_secrets_query"
+  source = "git::https://github.com/pagopa/terraform-azurerm-v3.git//key_vault_secrets_query?ref=v7.48.0"
 
   for_each = { for d in local.definitions : d.name => d if contains(d.envs, "d") && try(d.kv_name, "") != "" }
 
@@ -22,7 +22,7 @@ module "dev_secrets" {
 }
 
 module "uat_secrets" {
-  source = "./.terraform/modules/__v3__/key_vault_secrets_query"
+  source = "git::https://github.com/pagopa/terraform-azurerm-v3.git//key_vault_secrets_query?ref=v7.48.0"
 
   for_each = { for d in local.definitions : d.name => d if contains(d.envs, "u") && try(d.kv_name, "") != "" }
 
@@ -42,7 +42,7 @@ module "uat_secrets" {
 }
 
 module "prod_secrets" {
-  source = "./.terraform/modules/__v3__/key_vault_secrets_query"
+  source = "git::https://github.com/pagopa/terraform-azurerm-v3.git//key_vault_secrets_query?ref=v7.48.0"
 
   for_each = { for d in local.definitions : d.name => d if contains(d.envs, "p") && try(d.kv_name, "") != "" }
 
