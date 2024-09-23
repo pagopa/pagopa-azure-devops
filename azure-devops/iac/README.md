@@ -1,4 +1,75 @@
 <!-- markdownlint-disable -->
+# IaC pipeline definition
+
+This module defines the iac pipelines (code review and deploy)
+
+The creation of pipeline definition is based on a configuration structure defined in `99_locals.tf` described below
+
+```hcl
+definitions =  [
+    {
+      name: "payhub",
+      envs: ["d"],
+      kv_name: "p4pa-%s-payhub-kv",
+      rg_name: "p4pa-%s-itn-payhub-sec-rg",
+      code_review: true,
+      deploy: true,
+      pipeline_prefix: "payhub-infra",
+      pipeline_path: "payhub-infrastructure",
+      repository: {
+        yml_prefix_name: "payhub"
+        branch_name     = "azdo-iac-pipelines"
+      }
+    },
+  ]
+
+  definitions_variables = {
+    payhub = {
+      iac_variables_cr: {},
+      iac_variables_secrets_cr: {},
+      iac_variables_deploy: {},
+      iac_variables_secrets_deploy: {}
+    }
+  }
+```
+
+## definitions
+The `definitions` section defines the definitions for which the pipelines definitions have to be created:
+
+- **name**: name of the domain
+- **envs**: list of environments (initials) in which the domain resource are available {`d`, `u`, `p`}. Used to avoid failures when a domain keyvault has not been created on a certain environment
+- **kv_name**: name of the domain keyvault. must contain the placeholder string `%s` in place of the environment; will be resolved at run time
+- **rg_name**: resource group name of the domain keyvault. must contain the placeholder string `%s` in place of the environment; will be resolved at run time
+- **code_review**: if true, enables the creation of the code review pipeline
+- **deploy**: if true, enables the creation of the deploy pipeline
+- **pipeline_prefix**: prefix assigned to the pipelines being created
+- **pipeline_path**: AZDO folder path in which the pipelines will be created
+- **repository**: overrides the default respository defined in `04_iac.tf`
+  - **yml_prefix_name**: REQUIRED. prefix used to identify this domain `yaml` files.
+    the default repository configuration is the following:
+```hcl
+default_repository = {
+    organization    = "pagopa"
+    name            = "p4pa-infra"
+    branch_name     = "refs/heads/main"
+    pipelines_path  = ".devops"
+  }
+```
+any field can be overwritten in the `repository` field
+
+To create pipelines for a new domain simply add the domain configuration to the list and apply the terraform configuration
+
+## definitions_variables
+
+If a definitions requires additional variables, they can be defined using the `definitions_variables` structure; it allows defining different variables and secrets for the code review (`cr`) and deploy pipelines
+
+the structure is the following:
+
+- **<definitions_name>**: matches the definitions name defined in `definitions`
+  - **iac_variables_cr**: variables for code review
+  - **iac_variables_secrets_cr**: secrets for code review
+  - **iac_variables_deploy**: variables for deploy
+  - **iac_variables_secrets_deploy**: secrets for deploy<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Requirements
 
@@ -44,6 +115,7 @@
 | <a name="module_bizevents_uat_secrets"></a> [bizevents\_uat\_secrets](#module\_bizevents\_uat\_secrets) | git::https://github.com/pagopa/terraform-azurerm-v3.git//key_vault_secrets_query | v7.48.0 |
 | <a name="module_canoneunico_iac_code_review"></a> [canoneunico\_iac\_code\_review](#module\_canoneunico\_iac\_code\_review) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review | v7.0.0 |
 | <a name="module_canoneunico_iac_deploy"></a> [canoneunico\_iac\_deploy](#module\_canoneunico\_iac\_deploy) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy | v7.0.0 |
+| <a name="module_dev_secrets"></a> [dev\_secrets](#module\_dev\_secrets) | git::https://github.com/pagopa/terraform-azurerm-v3.git//key_vault_secrets_query | v7.48.0 |
 | <a name="module_disaster_recovery"></a> [disaster\_recovery](#module\_disaster\_recovery) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_generic | v7.1.0 |
 | <a name="module_ecommerce_dev_secrets"></a> [ecommerce\_dev\_secrets](#module\_ecommerce\_dev\_secrets) | git::https://github.com/pagopa/terraform-azurerm-v3.git//key_vault_secrets_query | v7.48.0 |
 | <a name="module_ecommerce_iac_code_review"></a> [ecommerce\_iac\_code\_review](#module\_ecommerce\_iac\_code\_review) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review | v7.0.0 |
@@ -64,8 +136,10 @@
 | <a name="module_gps_uat_secrets"></a> [gps\_uat\_secrets](#module\_gps\_uat\_secrets) | git::https://github.com/pagopa/terraform-azurerm-v3.git//key_vault_secrets_query | v7.48.0 |
 | <a name="module_iac_checkout_code_review"></a> [iac\_checkout\_code\_review](#module\_iac\_checkout\_code\_review) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review | v7.0.0 |
 | <a name="module_iac_checkout_deploy"></a> [iac\_checkout\_deploy](#module\_iac\_checkout\_deploy) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy | v7.0.0 |
+| <a name="module_iac_code_review"></a> [iac\_code\_review](#module\_iac\_code\_review) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review | v7.0.0 |
 | <a name="module_iac_core_code_review"></a> [iac\_core\_code\_review](#module\_iac\_core\_code\_review) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review | v7.0.0 |
 | <a name="module_iac_core_deploy"></a> [iac\_core\_deploy](#module\_iac\_core\_deploy) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy | v7.0.0 |
+| <a name="module_iac_deploy"></a> [iac\_deploy](#module\_iac\_deploy) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review | v7.0.0 |
 | <a name="module_iac_next_core_code_review"></a> [iac\_next\_core\_code\_review](#module\_iac\_next\_core\_code\_review) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review | v7.0.0 |
 | <a name="module_iac_next_core_deploy"></a> [iac\_next\_core\_deploy](#module\_iac\_next\_core\_deploy) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy | v7.0.0 |
 | <a name="module_iac_resource_switcher"></a> [iac\_resource\_switcher](#module\_iac\_resource\_switcher) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_resource_switcher | v7.0.0 |
@@ -85,12 +159,15 @@
 | <a name="module_observability_iac_code_review"></a> [observability\_iac\_code\_review](#module\_observability\_iac\_code\_review) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review | v7.0.0 |
 | <a name="module_observability_iac_deploy"></a> [observability\_iac\_deploy](#module\_observability\_iac\_deploy) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy | v7.0.0 |
 | <a name="module_packer_image_iac_deploy"></a> [packer\_image\_iac\_deploy](#module\_packer\_image\_iac\_deploy) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy | v7.1.0 |
+| <a name="module_pay_wallet_iac_code_review"></a> [pay\_wallet\_iac\_code\_review](#module\_pay\_wallet\_iac\_code\_review) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review | v7.0.0 |
+| <a name="module_pay_wallet_iac_deploy"></a> [pay\_wallet\_iac\_deploy](#module\_pay\_wallet\_iac\_deploy) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy | v7.0.0 |
 | <a name="module_paywallet_dev_secrets"></a> [paywallet\_dev\_secrets](#module\_paywallet\_dev\_secrets) | git::https://github.com/pagopa/terraform-azurerm-v3.git//key_vault_secrets_query | v8.13.0 |
 | <a name="module_paywallet_prod_secrets"></a> [paywallet\_prod\_secrets](#module\_paywallet\_prod\_secrets) | git::https://github.com/pagopa/terraform-azurerm-v3.git//key_vault_secrets_query | v8.13.0 |
 | <a name="module_paywallet_uat_secrets"></a> [paywallet\_uat\_secrets](#module\_paywallet\_uat\_secrets) | git::https://github.com/pagopa/terraform-azurerm-v3.git//key_vault_secrets_query | v8.13.0 |
 | <a name="module_printit_dev_secrets"></a> [printit\_dev\_secrets](#module\_printit\_dev\_secrets) | git::https://github.com/pagopa/terraform-azurerm-v3.git//key_vault_secrets_query | v8.13.0 |
 | <a name="module_printit_prod_secrets"></a> [printit\_prod\_secrets](#module\_printit\_prod\_secrets) | git::https://github.com/pagopa/terraform-azurerm-v3.git//key_vault_secrets_query | v8.13.0 |
 | <a name="module_printit_uat_secrets"></a> [printit\_uat\_secrets](#module\_printit\_uat\_secrets) | git::https://github.com/pagopa/terraform-azurerm-v3.git//key_vault_secrets_query | v8.13.0 |
+| <a name="module_prod_secrets"></a> [prod\_secrets](#module\_prod\_secrets) | git::https://github.com/pagopa/terraform-azurerm-v3.git//key_vault_secrets_query | v7.48.0 |
 | <a name="module_qi_dev_secrets"></a> [qi\_dev\_secrets](#module\_qi\_dev\_secrets) | git::https://github.com/pagopa/terraform-azurerm-v3.git//key_vault_secrets_query | v7.48.0 |
 | <a name="module_qi_iac_code_review"></a> [qi\_iac\_code\_review](#module\_qi\_iac\_code\_review) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review | v7.0.0 |
 | <a name="module_qi_iac_deploy"></a> [qi\_iac\_deploy](#module\_qi\_iac\_deploy) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy | v7.0.0 |
@@ -112,9 +189,8 @@
 | <a name="module_shared_iac_deploy"></a> [shared\_iac\_deploy](#module\_shared\_iac\_deploy) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy | v7.0.0 |
 | <a name="module_shared_prod_secrets"></a> [shared\_prod\_secrets](#module\_shared\_prod\_secrets) | git::https://github.com/pagopa/terraform-azurerm-v3.git//key_vault_secrets_query | v7.48.0 |
 | <a name="module_shared_uat_secrets"></a> [shared\_uat\_secrets](#module\_shared\_uat\_secrets) | git::https://github.com/pagopa/terraform-azurerm-v3.git//key_vault_secrets_query | v7.48.0 |
+| <a name="module_uat_secrets"></a> [uat\_secrets](#module\_uat\_secrets) | git::https://github.com/pagopa/terraform-azurerm-v3.git//key_vault_secrets_query | v7.48.0 |
 | <a name="module_wallet_dev_secrets"></a> [wallet\_dev\_secrets](#module\_wallet\_dev\_secrets) | git::https://github.com/pagopa/terraform-azurerm-v3.git//key_vault_secrets_query | v7.48.0 |
-| <a name="module_wallet_iac_code_review"></a> [wallet\_iac\_code\_review](#module\_wallet\_iac\_code\_review) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review | v7.0.0 |
-| <a name="module_wallet_iac_deploy"></a> [wallet\_iac\_deploy](#module\_wallet\_iac\_deploy) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy | v7.0.0 |
 | <a name="module_wallet_uat_secrets"></a> [wallet\_uat\_secrets](#module\_wallet\_uat\_secrets) | git::https://github.com/pagopa/terraform-azurerm-v3.git//key_vault_secrets_query | v7.48.0 |
 
 ## Resources
@@ -171,6 +247,7 @@
 | <a name="input_mock_iac"></a> [mock\_iac](#input\_mock\_iac) | n/a | `map` | <pre>{<br>  "pipeline": {<br>    "enable_code_review": true,<br>    "enable_deploy": true,<br>    "path": "mock-infrastructure",<br>    "pipeline_name_prefix": "mock-infra"<br>  },<br>  "repository": {<br>    "branch_name": "refs/heads/main",<br>    "name": "pagopa-infra",<br>    "organization": "pagopa",<br>    "pipelines_path": ".devops",<br>    "yml_prefix_name": "mock"<br>  }<br>}</pre> | no |
 | <a name="input_nodo_iac"></a> [nodo\_iac](#input\_nodo\_iac) | n/a | `map` | <pre>{<br>  "pipeline": {<br>    "db_migration": {<br>      "name": "nodo-db-migration-pipelines",<br>      "pipeline_yml_filename": "nodo-db-migration-pipelines.yml"<br>    },<br>    "db_partitioned_data_migration": {<br>      "name": "nodo-partitioned-db-data-migration-pipelines",<br>      "pipeline_yml_filename": "nodo-partitioned-db-data-migration-pipelines.yml"<br>    },<br>    "db_schema": {<br>      "name": "nodo-db-schema-pipelines",<br>      "pipeline_yml_filename": "nodo-db-schema-pipelines.yml"<br>    },<br>    "enable_code_review": true,<br>    "enable_deploy": true,<br>    "path": "nodo-infrastructure",<br>    "pipeline_name_prefix": "nodo-infra",<br>    "sync_schema_cfg_grant": {<br>      "name": "sync-schema-cfg-grant-pipelines",<br>      "pipeline_yml_filename": "nodo-sync-grant-schema-cfg-pipelines.yml"<br>    },<br>    "web_bo_db_migration": {<br>      "name": "web-bo-db-migration-pipelines",<br>      "pipeline_yml_filename": "web-bo-db-migration-pipelines.yml"<br>    },<br>    "web_bo_db_schema": {<br>      "name": "web-bo-db-schema-pipelines",<br>      "pipeline_yml_filename": "web-bo-db-schema-pipelines.yml"<br>    }<br>  },<br>  "repository": {<br>    "branch_name": "refs/heads/main",<br>    "name": "pagopa-infra",<br>    "organization": "pagopa",<br>    "pipelines_path": ".devops",<br>    "yml_prefix_name": "nodo"<br>  }<br>}</pre> | no |
 | <a name="input_observability_iac"></a> [observability\_iac](#input\_observability\_iac) | n/a | `map` | <pre>{<br>  "pipeline": {<br>    "enable_code_review": true,<br>    "enable_deploy": true,<br>    "path": "observability-infrastructure",<br>    "pipeline_name_prefix": "observability-infra"<br>  },<br>  "repository": {<br>    "branch_name": "refs/heads/main",<br>    "name": "pagopa-infra",<br>    "organization": "pagopa",<br>    "pipelines_path": ".devops",<br>    "yml_prefix_name": "observability"<br>  }<br>}</pre> | no |
+| <a name="input_pay_wallet_iac"></a> [pay\_wallet\_iac](#input\_pay\_wallet\_iac) | n/a | `map` | <pre>{<br>  "pipeline": {<br>    "enable_code_review": true,<br>    "enable_deploy": true,<br>    "path": "pay-wallet-infrastructure",<br>    "pipeline_name_prefix": "pay-wallet-infra"<br>  },<br>  "repository": {<br>    "branch_name": "refs/heads/main",<br>    "name": "pagopa-infra",<br>    "organization": "pagopa",<br>    "pipelines_path": ".devops",<br>    "yml_prefix_name": "pay-wallet"<br>  }<br>}</pre> | no |
 | <a name="input_pipeline_environments"></a> [pipeline\_environments](#input\_pipeline\_environments) | List of environments pipeline to create | `list(any)` | n/a | yes |
 | <a name="input_prod_subscription_name"></a> [prod\_subscription\_name](#input\_prod\_subscription\_name) | PROD Subscription name | `string` | n/a | yes |
 | <a name="input_project_name_prefix"></a> [project\_name\_prefix](#input\_project\_name\_prefix) | Project name prefix (e.g. userregistry) | `string` | n/a | yes |
@@ -180,7 +257,6 @@
 | <a name="input_shared_iac"></a> [shared\_iac](#input\_shared\_iac) | n/a | `map` | <pre>{<br>  "pipeline": {<br>    "enable_code_review": true,<br>    "enable_deploy": true,<br>    "path": "shared-infrastructure",<br>    "pipeline_name_prefix": "shared-infra"<br>  },<br>  "repository": {<br>    "branch_name": "refs/heads/main",<br>    "name": "pagopa-infra",<br>    "organization": "pagopa",<br>    "pipelines_path": ".devops",<br>    "yml_prefix_name": "shared"<br>  }<br>}</pre> | no |
 | <a name="input_switcher_iac"></a> [switcher\_iac](#input\_switcher\_iac) | n/a | `map` | <pre>{<br>  "pipeline": {<br>    "enable": false,<br>    "path": "switcher"<br>  },<br>  "repository": {<br>    "branch_name": "refs/heads/main",<br>    "name": "eng-common-scripts",<br>    "organization": "pagopa",<br>    "pipelines_path": "devops",<br>    "yml_prefix_name": null<br>  }<br>}</pre> | no |
 | <a name="input_uat_subscription_name"></a> [uat\_subscription\_name](#input\_uat\_subscription\_name) | UAT Subscription name | `string` | n/a | yes |
-| <a name="input_wallet_iac"></a> [wallet\_iac](#input\_wallet\_iac) | n/a | `map` | <pre>{<br>  "pipeline": {<br>    "enable_code_review": true,<br>    "enable_deploy": true,<br>    "path": "wallet-infrastructure",<br>    "pipeline_name_prefix": "wallet-infra"<br>  },<br>  "repository": {<br>    "branch_name": "refs/heads/main",<br>    "name": "pagopa-infra",<br>    "organization": "pagopa",<br>    "pipelines_path": ".devops",<br>    "yml_prefix_name": "wallet"<br>  }<br>}</pre> | no |
 
 ## Outputs
 

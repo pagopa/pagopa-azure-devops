@@ -43,7 +43,7 @@ module "tlscert-printit-itn-internal-uat-platform-pagopa-it-cert_az" {
     azurerm = azurerm.uat
   }
 
-  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_tls_cert_federated?ref=v7.1.0"
+  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_tls_cert_federated?ref=v9.0.0"
   count  = var.tlscert-printit-itn-internal-uat-platform-pagopa-it.pipeline.enable_tls_cert == true ? 1 : 0
 
   project_id                   = data.azuredevops_project.project.id

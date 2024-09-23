@@ -18,7 +18,11 @@ module "bizevents_dev_secrets" {
     "pagopa-d-weu-dev-aks-azure-devops-sa-cacrt",
     "pagopa-d-weu-dev-aks-apiserver-url",
     "cosmos-d-biz-key",
-    "ehub-tx-d-biz-key"
+    "ehub-tx-d-biz-key",
+    "biz-trx-api-key-4-perftest",
+    "tokenizer-api-key",
+    "cosmos-d-receipt-key",
+    "sa-receipt-key"
   ]
 }
 
@@ -41,7 +45,11 @@ module "bizevents_uat_secrets" {
     "pagopa-u-weu-uat-aks-azure-devops-sa-cacrt",
     "pagopa-u-weu-uat-aks-apiserver-url",
     "cosmos-u-biz-key",
-    "ehub-tx-u-biz-key"
+    "ehub-tx-u-biz-key",
+    "biz-trx-api-key-4-perftest",
+    "tokenizer-api-key",
+    "cosmos-u-receipt-key",
+    "sa-receipt-key"
   ]
 }
 
