@@ -29,60 +29,34 @@ resource "azurerm_key_vault_access_policy" "DEV-PAYOPT-TLS-CERT-SERVICE-CONN_kv_
   certificate_permissions = ["Get", "Import"]
 }
 
-# create let's encrypt credential used to create SSL certificates
-# module "letsencrypt_dev" {
-#   source = "git::https://github.com/pagopa/terraform-azurerm-v3.git//letsencrypt_credential?ref=v8.22.0"
+##
+## UAT
+##
+module "UAT-PAYOPT-TLS-CERT-SERVICE-CONN" {
+  providers = {
+    azurerm = azurerm.uat
+  }
 
-#   providers = {
-#     azurerm = azurerm.dev
-#   }
-#   prefix            = local.prefix
-#   env               = "d"
-#   key_vault_name    = local.dev_payopt_key_vault_name
-#   subscription_name = var.dev_subscription_name
-# }
+  depends_on = [data.azuredevops_project.project]
+  source     = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated?ref=v9.0.0"
 
-# ##
-# ## UAT
-# ##
-# module "UAT-PAYOPT-TLS-CERT-SERVICE-CONN" {
-#   providers = {
-#     azurerm = azurerm.uat
-#   }
+  project_id          = data.azuredevops_project.project.id
+  name                = "${local.prefix}-${local.domain}-u-tls-cert-azdo"
+  tenant_id           = data.azurerm_client_config.current.tenant_id
+  subscription_name   = var.uat_subscription_name
+  subscription_id     = data.azurerm_subscriptions.uat.subscriptions[0].subscription_id
+  location            = local.location_westeurope
+  resource_group_name = local.uat_identity_rg_name
+}
 
-#   depends_on = [data.azuredevops_project.project]
-#   source     = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated?ref=v9.0.0"
+resource "azurerm_key_vault_access_policy" "UAT-PAYOPT-TLS-CERT-SERVICE-CONN_kv_access_policy" {
+  provider     = azurerm.uat
+  key_vault_id = data.azurerm_key_vault.domain_kv_uat.id
+  tenant_id    = data.azurerm_client_config.current.tenant_id
+  object_id    = module.UAT-PAYOPT-TLS-CERT-SERVICE-CONN.service_principal_object_id
 
-#   project_id          = data.azuredevops_project.project.id
-#   name                = "${local.prefix}-${local.domain}-u-tls-cert-azdo"
-#   tenant_id           = data.azurerm_client_config.current.tenant_id
-#   subscription_name   = var.uat_subscription_name
-#   subscription_id     = data.azurerm_subscriptions.uat.subscriptions[0].subscription_id
-#   location            = local.location_westeurope
-#   resource_group_name = local.uat_identity_rg_name
-# }
-
-# resource "azurerm_key_vault_access_policy" "UAT-PAYOPT-TLS-CERT-SERVICE-CONN_kv_access_policy" {
-#   provider     = azurerm.uat
-#   key_vault_id = data.azurerm_key_vault.domain_kv_uat.id
-#   tenant_id    = data.azurerm_client_config.current.tenant_id
-#   object_id    = module.UAT-PAYOPT-TLS-CERT-SERVICE-CONN.service_principal_object_id
-
-#   certificate_permissions = ["Get", "Import"]
-# }
-
-# # create let's encrypt credential used to create SSL certificates
-# module "letsencrypt_uat" {
-#   source = "git::https://github.com/pagopa/terraform-azurerm-v3.git//letsencrypt_credential?ref=v8.22.0"
-
-#   providers = {
-#     azurerm = azurerm.uat
-#   }
-#   prefix            = local.prefix
-#   env               = "u"
-#   key_vault_name    = local.uat_payopt_key_vault_name
-#   subscription_name = var.uat_subscription_name
-# }
+  certificate_permissions = ["Get", "Import"]
+}
 
 # #
 # # PROD
@@ -111,17 +85,4 @@ resource "azurerm_key_vault_access_policy" "DEV-PAYOPT-TLS-CERT-SERVICE-CONN_kv_
 #   object_id    = module.PROD-PAYOPT-TLS-CERT-SERVICE-CONN.service_principal_object_id
 
 #   certificate_permissions = ["Get", "Import"]
-# }
-
-# # create let's encrypt credential used to create SSL certificates
-# module "letsencrypt_prod" {
-#   source = "git::https://github.com/pagopa/terraform-azurerm-v3.git//letsencrypt_credential?ref=v8.22.0"
-
-#   providers = {
-#     azurerm = azurerm.prod
-#   }
-#   prefix            = local.prefix
-#   env               = "p"
-#   key_vault_name    = local.prod_payopt_key_vault_name
-#   subscription_name = var.prod_subscription_name
 # }
