@@ -28,8 +28,8 @@ module "ndp_switcher" {
   ci_trigger_use_yaml = false
 
   variables = {
-    TF_AZURE_SERVICE_CONNECTION_APPLY_NAME_DEV = module.DEV-AZURERM-IAC-DEPLOY-SERVICE-CONN.service_endpoint_name
-    TF_AZURE_SERVICE_CONNECTION_APPLY_NAME_UAT = module.UAT-AZURERM-IAC-DEPLOY-SERVICE-CONN.service_endpoint_name
+    TF_AZURE_SERVICE_CONNECTION_APPLY_NAME_DEV  = module.DEV-AZURERM-IAC-DEPLOY-SERVICE-CONN.service_endpoint_name
+    TF_AZURE_SERVICE_CONNECTION_APPLY_NAME_UAT  = module.UAT-AZURERM-IAC-DEPLOY-SERVICE-CONN.service_endpoint_name
     TF_AZURE_SERVICE_CONNECTION_APPLY_NAME_PROD = module.PROD-AZURERM-IAC-DEPLOY-SERVICE-CONN.service_endpoint_name
 
     TF_POOL_NAME_DEV  = "pagopa-dev-linux-infra",
