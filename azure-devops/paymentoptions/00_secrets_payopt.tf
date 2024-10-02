@@ -68,7 +68,7 @@ module "general_dev_secrets" {
   key_vault_name = "pagopa-d-kv"
 
   secrets = [
-    "integration-test-subkey",
+    "apikey-service-payment-options",
   ]
 }
 
@@ -84,7 +84,7 @@ module "general_uat_secrets" {
   key_vault_name = "pagopa-u-kv"
 
   secrets = [
-    "integration-test-subkey",
+    "apikey-service-payment-options",
   ]
 }
 
