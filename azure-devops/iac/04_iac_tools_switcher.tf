@@ -103,7 +103,3 @@ module "iac_resource_switcher" {
     sa_sftp = []
   }
 }
-
-
-
-

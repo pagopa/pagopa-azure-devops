@@ -82,4 +82,3 @@ resource "azurerm_role_assignment" "prod_azurerm" {
   role_definition_name = "Contributor"
   principal_id         = module.PROD-AZURERM-SERVICE-CONN.identity_principal_id
 }
-

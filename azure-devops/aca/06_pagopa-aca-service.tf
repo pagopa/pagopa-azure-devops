@@ -132,4 +132,3 @@ module "pagopa-aca-service_deploy" {
     data.azuredevops_serviceendpoint_azurecr.prod_weu_workload_identity.id,
   ]
 }
-

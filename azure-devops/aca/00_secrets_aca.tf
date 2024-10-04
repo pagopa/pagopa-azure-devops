@@ -55,4 +55,3 @@ module "aca_prod_secrets" {
     "pagopa-p-weu-prod-aks-apiserver-url"
   ]
 }
-

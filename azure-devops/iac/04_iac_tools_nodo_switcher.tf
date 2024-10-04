@@ -44,5 +44,3 @@ module "ndp_switcher" {
   ]
 
 }
-
-

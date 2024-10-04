@@ -127,4 +127,3 @@ module "pagopa-payment-wallet-cdc-service_deploy" {
     # data.azuredevops_serviceendpoint_azurerm.prod.id,
   ]
 }
-

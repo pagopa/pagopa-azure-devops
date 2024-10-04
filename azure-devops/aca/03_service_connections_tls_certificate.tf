@@ -126,5 +126,3 @@ module "letsencrypt_prod" {
   key_vault_name    = local.prod_aca_key_vault_name
   subscription_name = var.prod_subscription_name
 }
-
-

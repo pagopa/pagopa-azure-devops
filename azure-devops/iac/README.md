@@ -70,7 +70,7 @@ the structure is the following:
   - **iac_variables_secrets_cr**: secrets for code review
   - **iac_variables_deploy**: variables for deploy
   - **iac_variables_secrets_deploy**: secrets for deploy<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
-<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
@@ -263,4 +263,4 @@ the structure is the following:
 ## Outputs
 
 No outputs.
-<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+<!-- END_TF_DOCS -->
