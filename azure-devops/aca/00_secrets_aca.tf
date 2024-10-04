@@ -4,7 +4,7 @@ module "aca_dev_secrets" {
     azurerm = azurerm.dev
   }
 
-  source = "git::https://github.com/pagopa/terraform-azurerm-v3.git//key_vault_secrets_query?ref=v7.39.0"
+  source = "./.terraform/modules/__v3__/key_vault_secrets_query"
 
   resource_group = local.dev_aca_key_vault_resource_group
   key_vault_name = local.dev_aca_key_vault_name
@@ -24,7 +24,7 @@ module "aca_uat_secrets" {
     azurerm = azurerm.uat
   }
 
-  source = "git::https://github.com/pagopa/terraform-azurerm-v3.git//key_vault_secrets_query?ref=v7.39.0"
+  source = "./.terraform/modules/__v3__/key_vault_secrets_query"
 
   resource_group = local.uat_aca_key_vault_resource_group
   key_vault_name = local.uat_aca_key_vault_name
@@ -44,7 +44,7 @@ module "aca_prod_secrets" {
     azurerm = azurerm.prod
   }
 
-  source = "git::https://github.com/pagopa/terraform-azurerm-v3.git//key_vault_secrets_query?ref=v7.39.0"
+  source = "./.terraform/modules/__v3__/key_vault_secrets_query"
 
   resource_group = local.prod_aca_key_vault_resource_group
   key_vault_name = local.prod_aca_key_vault_name
@@ -55,4 +55,3 @@ module "aca_prod_secrets" {
     "pagopa-p-weu-prod-aks-apiserver-url"
   ]
 }
-

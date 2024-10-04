@@ -128,4 +128,3 @@ module "pagopa-ecommerce-payment-requests-service_deploy" {
     data.azuredevops_serviceendpoint_azurerm.prod.id,
   ]
 }
-

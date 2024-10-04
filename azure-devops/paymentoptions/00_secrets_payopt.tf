@@ -4,7 +4,7 @@ module "payopt_dev_secrets" {
     azurerm = azurerm.dev
   }
 
-  source = "git::https://github.com/pagopa/terraform-azurerm-v3.git//key_vault_secrets_query?ref=v8.22.0"
+  source = "./.terraform/modules/__v3__/key_vault_secrets_query"
 
   resource_group = local.dev_payopt_key_vault_resource_group
   key_vault_name = local.dev_payopt_key_vault_name
@@ -22,7 +22,7 @@ module "payopt_uat_secrets" {
     azurerm = azurerm.uat
   }
 
-  source = "git::https://github.com/pagopa/terraform-azurerm-v3.git//key_vault_secrets_query?ref=v8.22.0"
+  source = "./.terraform/modules/__v3__/key_vault_secrets_query"
 
   resource_group = local.uat_payopt_key_vault_resource_group
   key_vault_name = local.uat_payopt_key_vault_name

@@ -91,4 +91,3 @@ variable "service_connection_prod_acr_name" {
   type        = string
   description = "ACR service connection PROD name"
 }
-

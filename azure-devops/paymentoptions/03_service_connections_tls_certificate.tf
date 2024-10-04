@@ -8,7 +8,8 @@ module "DEV-PAYOPT-TLS-CERT-SERVICE-CONN" {
   }
 
   depends_on = [data.azuredevops_project.project]
-  source     = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated?ref=v9.0.0"
+  source     = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated?ref=v9.2.1"
+
 
   project_id          = data.azuredevops_project.project.id
   name                = "${local.prefix}-${local.domain}-d-tls-cert-azdo"
@@ -38,7 +39,7 @@ module "UAT-PAYOPT-TLS-CERT-SERVICE-CONN" {
   }
 
   depends_on = [data.azuredevops_project.project]
-  source     = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated?ref=v9.0.0"
+  source     = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated?ref=v9.2.1"
 
   project_id          = data.azuredevops_project.project.id
   name                = "${local.prefix}-${local.domain}-u-tls-cert-azdo"
@@ -67,7 +68,7 @@ resource "azurerm_key_vault_access_policy" "UAT-PAYOPT-TLS-CERT-SERVICE-CONN_kv_
 #   }
 
 #   depends_on = [data.azuredevops_project.project]
-#   source     = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated?ref=v9.0.0"
+#  source     = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated?ref=v9.2.1"
 
 #   project_id          = data.azuredevops_project.project.id
 #   name                = "${local.prefix}-${local.domain}-p-tls-cert-azdo"

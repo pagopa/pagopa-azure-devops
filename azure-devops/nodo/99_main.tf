@@ -47,4 +47,3 @@ provider "azurerm" {
   alias           = "prod"
   subscription_id = data.azurerm_subscriptions.prod.subscriptions[0].subscription_id
 }
-

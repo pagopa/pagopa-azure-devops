@@ -1,5 +1,5 @@
 <!-- markdownlint-disable -->
-<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
@@ -254,4 +254,4 @@
 | <a name="output_service_endpoint_azure_prod_name"></a> [service\_endpoint\_azure\_prod\_name](#output\_service\_endpoint\_azure\_prod\_name) | n/a |
 | <a name="output_service_endpoint_azure_uat_id"></a> [service\_endpoint\_azure\_uat\_id](#output\_service\_endpoint\_azure\_uat\_id) | n/a |
 | <a name="output_service_endpoint_azure_uat_name"></a> [service\_endpoint\_azure\_uat\_name](#output\_service\_endpoint\_azure\_uat\_name) | n/a |
-<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+<!-- END_TF_DOCS -->

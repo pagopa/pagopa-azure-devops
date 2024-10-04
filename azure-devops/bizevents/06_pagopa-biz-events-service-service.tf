@@ -40,10 +40,10 @@ locals {
   pagopa-biz-events-service-variables_performance_test = {
   }
   # performance secrets
-  # k6 run --env VARS=local.environment.json 
-  # --env TEST_TYPE=./test-types/load.json 
-  # --env API_SUBSCRIPTION_KEY=subkey 
-  # --env TOKENIZER_API_SUBSCRIPTION_KEY=<> 
+  # k6 run --env VARS=local.environment.json
+  # --env TEST_TYPE=./test-types/load.json
+  # --env API_SUBSCRIPTION_KEY=subkey
+  # --env TOKENIZER_API_SUBSCRIPTION_KEY=<>
   # --env BIZ_COSMOS_ACCOUNT_PRIMARY_KEY=<>
   # --env RECEIPT_COSMOS_ACCOUNT_PRIMARY_KEY=<>
   # --env STORAGE_ACCOUNT_PRIMARY_KEY=<> get_pdf_receipt.js
