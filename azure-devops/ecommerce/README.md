@@ -1,5 +1,5 @@
 <!-- markdownlint-disable -->
-<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
@@ -37,6 +37,8 @@
 | <a name="module_pagopa-ecommerce-transactions-scheduler-service_deploy"></a> [pagopa-ecommerce-transactions-scheduler-service\_deploy](#module\_pagopa-ecommerce-transactions-scheduler-service\_deploy) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy | v4.2.1 |
 | <a name="module_pagopa-ecommerce-transactions-service_code_review"></a> [pagopa-ecommerce-transactions-service\_code\_review](#module\_pagopa-ecommerce-transactions-service\_code\_review) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review | v5.1.1 |
 | <a name="module_pagopa-ecommerce-transactions-service_deploy"></a> [pagopa-ecommerce-transactions-service\_deploy](#module\_pagopa-ecommerce-transactions-service\_deploy) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy | v4.2.1 |
+| <a name="module_pagopa-ecommerce-user-stats-service_code_review"></a> [pagopa-ecommerce-user-stats-service\_code\_review](#module\_pagopa-ecommerce-user-stats-service\_code\_review) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review | v5.1.1 |
+| <a name="module_pagopa-ecommerce-user-stats-service_deploy"></a> [pagopa-ecommerce-user-stats-service\_deploy](#module\_pagopa-ecommerce-user-stats-service\_deploy) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy | v4.2.1 |
 | <a name="module_secrets"></a> [secrets](#module\_secrets) | git::https://github.com/pagopa/terraform-azurerm-v3.git//key_vault_secrets_query | v7.39.0 |
 
 ## Resources
@@ -86,6 +88,7 @@
 | <a name="input_pagopa-ecommerce-tests"></a> [pagopa-ecommerce-tests](#input\_pagopa-ecommerce-tests) | n/a | `map` | <pre>{<br>  "pipeline": {<br>    "enable_soak": true,<br>    "name": "soak-test-pipeline"<br>  },<br>  "repository": {<br>    "branch_name": "refs/heads/main",<br>    "name": "pagopa-ecommerce-tests",<br>    "organization": "pagopa",<br>    "pipeline_yml_filename": "soaktest.yaml",<br>    "pipelines_path": ".devops",<br>    "yml_prefix_name": null<br>  }<br>}</pre> | no |
 | <a name="input_pagopa-ecommerce-transactions-scheduler-service"></a> [pagopa-ecommerce-transactions-scheduler-service](#input\_pagopa-ecommerce-transactions-scheduler-service) | n/a | `map` | <pre>{<br>  "pipeline": {<br>    "enable_code_review": true,<br>    "enable_deploy": true,<br>    "sonarcloud": {<br>      "org": "pagopa",<br>      "project_key": "pagopa_pagopa-ecommerce-transactions-scheduler-service",<br>      "project_name": "pagopa-ecommerce-transactions-scheduler-service",<br>      "service_connection": "SONARCLOUD-SERVICE-CONN"<br>    }<br>  },<br>  "repository": {<br>    "branch_name": "refs/heads/main",<br>    "name": "pagopa-ecommerce-transactions-scheduler-service",<br>    "organization": "pagopa",<br>    "pipelines_path": ".devops",<br>    "yml_prefix_name": null<br>  }<br>}</pre> | no |
 | <a name="input_pagopa-ecommerce-transactions-service"></a> [pagopa-ecommerce-transactions-service](#input\_pagopa-ecommerce-transactions-service) | n/a | `map` | <pre>{<br>  "pipeline": {<br>    "enable_code_review": true,<br>    "enable_deploy": true,<br>    "sonarcloud": {<br>      "org": "pagopa",<br>      "project_key": "pagopa_pagopa-ecommerce-transactions-service",<br>      "project_name": "pagopa-ecommerce-transactions-service",<br>      "service_connection": "SONARCLOUD-SERVICE-CONN"<br>    }<br>  },<br>  "repository": {<br>    "branch_name": "refs/heads/main",<br>    "name": "pagopa-ecommerce-transactions-service",<br>    "organization": "pagopa",<br>    "pipelines_path": ".devops",<br>    "yml_prefix_name": null<br>  }<br>}</pre> | no |
+| <a name="input_pagopa-ecommerce-user-stats-service"></a> [pagopa-ecommerce-user-stats-service](#input\_pagopa-ecommerce-user-stats-service) | n/a | `map` | <pre>{<br>  "pipeline": {<br>    "enable_code_review": true,<br>    "enable_deploy": true,<br>    "sonarcloud": {<br>      "org": "pagopa",<br>      "project_key": "pagopa_pagopa-ecommerce-user-stats-service",<br>      "project_name": "pagopa-ecommerce-user-stats-service",<br>      "service_connection": "SONARCLOUD-SERVICE-CONN"<br>    }<br>  },<br>  "repository": {<br>    "branch_name": "refs/heads/main",<br>    "name": "pagopa-ecommerce-user-stats-service",<br>    "organization": "pagopa",<br>    "pipelines_path": ".devops",<br>    "yml_prefix_name": null<br>  }<br>}</pre> | no |
 | <a name="input_pagopa-notifications-service"></a> [pagopa-notifications-service](#input\_pagopa-notifications-service) | n/a | `map` | <pre>{<br>  "pipeline": {<br>    "enable_code_review": true,<br>    "enable_deploy": true,<br>    "sonarcloud": {<br>      "org": "pagopa",<br>      "project_key": "pagopa_pagopa-notifications-service",<br>      "project_name": "pagopa-notifications-service",<br>      "service_connection": "SONARCLOUD-SERVICE-CONN"<br>    }<br>  },<br>  "repository": {<br>    "branch_name": "refs/heads/main",<br>    "name": "pagopa-notifications-service",<br>    "organization": "pagopa",<br>    "pipelines_path": ".devops",<br>    "yml_prefix_name": null<br>  }<br>}</pre> | no |
 | <a name="input_pipeline_environments"></a> [pipeline\_environments](#input\_pipeline\_environments) | List of environments pipeline to create | `list(any)` | n/a | yes |
 | <a name="input_prod_subscription_name"></a> [prod\_subscription\_name](#input\_prod\_subscription\_name) | PROD Subscription name | `string` | n/a | yes |
@@ -98,4 +101,4 @@
 ## Outputs
 
 No outputs.
-<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+<!-- END_TF_DOCS -->

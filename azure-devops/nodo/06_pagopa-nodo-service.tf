@@ -281,4 +281,3 @@ module "pagopa-nodo-service_suspend_job" {
     data.azuredevops_serviceendpoint_github.github_ro.id,
   ]
 }
-

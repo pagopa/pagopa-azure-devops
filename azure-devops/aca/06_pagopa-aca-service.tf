@@ -49,12 +49,12 @@ locals {
 
     # acr section
     k8s_image_repository_name            = replace(var.pagopa-aca-service.repository.name, "-", "")
-    dev_container_registry_service_conn  = data.azuredevops_serviceendpoint_azurecr.dev.id
-    dev_container_registry_name          = data.azuredevops_serviceendpoint_azurecr.dev.service_endpoint_name
-    uat_container_registry_service_conn  = data.azuredevops_serviceendpoint_azurecr.uat.id
-    uat_container_registry_name          = data.azuredevops_serviceendpoint_azurecr.uat.service_endpoint_name
-    prod_container_registry_service_conn = data.azuredevops_serviceendpoint_azurecr.prod.id
-    prod_container_registry_name         = data.azuredevops_serviceendpoint_azurecr.prod.service_endpoint_name
+    dev_container_registry_service_conn  = data.azuredevops_serviceendpoint_azurecr.dev_weu_workload_identity.id
+    dev_container_registry_name          = data.azuredevops_serviceendpoint_azurecr.dev_weu_workload_identity.service_endpoint_name
+    uat_container_registry_service_conn  = data.azuredevops_serviceendpoint_azurecr.uat_weu_workload_identity.id
+    uat_container_registry_name          = data.azuredevops_serviceendpoint_azurecr.uat_weu_workload_identity.service_endpoint_name
+    prod_container_registry_service_conn = data.azuredevops_serviceendpoint_azurecr.prod_weu_workload_identity.id
+    prod_container_registry_name         = data.azuredevops_serviceendpoint_azurecr.prod_weu_workload_identity.service_endpoint_name
 
     # aks section
     dev_kubernetes_service_conn  = azuredevops_serviceendpoint_kubernetes.aks_dev.id
@@ -77,8 +77,9 @@ locals {
 }
 
 module "pagopa-aca-service_code_review" {
-  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review?ref=v5.1.1"
-  count  = var.pagopa-aca-service.pipeline.enable_code_review == true ? 1 : 0
+  source = "./.terraform/modules/__azdo__/azuredevops_build_definition_code_review"
+
+  count = var.pagopa-aca-service.pipeline.enable_code_review == true ? 1 : 0
 
   project_id                   = data.azuredevops_project.project.id
   repository                   = var.pagopa-aca-service.repository
@@ -102,8 +103,9 @@ module "pagopa-aca-service_code_review" {
 }
 
 module "pagopa-aca-service_deploy" {
-  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy?ref=v4.2.1"
-  count  = var.pagopa-aca-service.pipeline.enable_deploy == true ? 1 : 0
+  source = "./.terraform/modules/__azdo__/azuredevops_build_definition_deploy"
+
+  count = var.pagopa-aca-service.pipeline.enable_deploy == true ? 1 : 0
 
   project_id                   = data.azuredevops_project.project.id
   repository                   = var.pagopa-aca-service.repository
@@ -125,9 +127,8 @@ module "pagopa-aca-service_deploy" {
     data.azuredevops_serviceendpoint_azurerm.dev.id,
     data.azuredevops_serviceendpoint_azurerm.uat.id,
     data.azuredevops_serviceendpoint_azurerm.prod.id,
-    data.azuredevops_serviceendpoint_azurecr.dev.id,
-    data.azuredevops_serviceendpoint_azurecr.uat.id,
-    data.azuredevops_serviceendpoint_azurecr.prod.id,
+    data.azuredevops_serviceendpoint_azurecr.dev_weu_workload_identity.id,
+    data.azuredevops_serviceendpoint_azurecr.uat_weu_workload_identity.id,
+    data.azuredevops_serviceendpoint_azurecr.prod_weu_workload_identity.id,
   ]
 }
-

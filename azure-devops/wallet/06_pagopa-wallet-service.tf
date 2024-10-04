@@ -128,4 +128,3 @@ module "pagopa-wallet-service_deploy" {
     data.azuredevops_serviceendpoint_azurerm.dev.id,
   ]
 }
-

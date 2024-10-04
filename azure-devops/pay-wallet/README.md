@@ -1,7 +1,7 @@
 # wallet
 
 <!-- markdownlint-disable -->
-<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
@@ -20,6 +20,8 @@
 | <a name="module_letsencrypt_dev"></a> [letsencrypt\_dev](#module\_letsencrypt\_dev) | git::https://github.com/pagopa/terraform-azurerm-v3.git//letsencrypt_credential | v7.30.0 |
 | <a name="module_letsencrypt_prod"></a> [letsencrypt\_prod](#module\_letsencrypt\_prod) | git::https://github.com/pagopa/terraform-azurerm-v3.git//letsencrypt_credential | v7.30.0 |
 | <a name="module_letsencrypt_uat"></a> [letsencrypt\_uat](#module\_letsencrypt\_uat) | git::https://github.com/pagopa/terraform-azurerm-v3.git//letsencrypt_credential | v7.30.0 |
+| <a name="module_pagopa-payment-wallet-cdc-service_code_review"></a> [pagopa-payment-wallet-cdc-service\_code\_review](#module\_pagopa-payment-wallet-cdc-service\_code\_review) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review | v5.1.1 |
+| <a name="module_pagopa-payment-wallet-cdc-service_deploy"></a> [pagopa-payment-wallet-cdc-service\_deploy](#module\_pagopa-payment-wallet-cdc-service\_deploy) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy | v4.2.1 |
 | <a name="module_pagopa-payment-wallet-event-dispatcher-service_code_review"></a> [pagopa-payment-wallet-event-dispatcher-service\_code\_review](#module\_pagopa-payment-wallet-event-dispatcher-service\_code\_review) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review | v5.1.1 |
 | <a name="module_pagopa-payment-wallet-event-dispatcher-service_deploy"></a> [pagopa-payment-wallet-event-dispatcher-service\_deploy](#module\_pagopa-payment-wallet-event-dispatcher-service\_deploy) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy | v4.2.1 |
 | <a name="module_pagopa-payment-wallet-fe_code_review"></a> [pagopa-payment-wallet-fe\_code\_review](#module\_pagopa-payment-wallet-fe\_code\_review) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review | v5.1.1 |
@@ -82,6 +84,7 @@
 | <a name="input_acr_weu_service_connection_workload_identity_uat"></a> [acr\_weu\_service\_connection\_workload\_identity\_uat](#input\_acr\_weu\_service\_connection\_workload\_identity\_uat) | The service connection ID for the WEU UAT workload identity in Azure Container Registry | `string` | `""` | no |
 | <a name="input_dev_subscription_name"></a> [dev\_subscription\_name](#input\_dev\_subscription\_name) | DEV Subscription name | `string` | n/a | yes |
 | <a name="input_location"></a> [location](#input\_location) | n/a | `string` | n/a | yes |
+| <a name="input_pagopa-payment-wallet-cdc-service"></a> [pagopa-payment-wallet-cdc-service](#input\_pagopa-payment-wallet-cdc-service) | n/a | `map` | <pre>{<br>  "pipeline": {<br>    "enable_code_review": true,<br>    "enable_deploy": true,<br>    "sonarcloud": {<br>      "org": "pagopa",<br>      "project_key": "pagopa_pagopa-payment-wallet-cdc-service",<br>      "project_name": "pagopa-payment-wallet-cdc-service",<br>      "service_connection": "SONARCLOUD-SERVICE-CONN"<br>    }<br>  },<br>  "repository": {<br>    "branch_name": "refs/heads/main",<br>    "name": "pagopa-payment-wallet-cdc-service",<br>    "organization": "pagopa",<br>    "pipelines_path": ".devops",<br>    "yml_prefix_name": null<br>  }<br>}</pre> | no |
 | <a name="input_pagopa-payment-wallet-event-dispatcher-service"></a> [pagopa-payment-wallet-event-dispatcher-service](#input\_pagopa-payment-wallet-event-dispatcher-service) | n/a | `map` | <pre>{<br>  "pipeline": {<br>    "enable_code_review": true,<br>    "enable_deploy": true,<br>    "sonarcloud": {<br>      "org": "pagopa",<br>      "project_key": "pagopa_pagopa-payment-wallet-event-dispatcher-service",<br>      "project_name": "pagopa-payment-wallet-event-dispatcher-service",<br>      "service_connection": "SONARCLOUD-SERVICE-CONN"<br>    }<br>  },<br>  "repository": {<br>    "branch_name": "refs/heads/main",<br>    "name": "pagopa-payment-wallet-event-dispatcher-service",<br>    "organization": "pagopa",<br>    "pipelines_path": ".devops",<br>    "yml_prefix_name": "pay-wallet"<br>  }<br>}</pre> | no |
 | <a name="input_pagopa-payment-wallet-fe"></a> [pagopa-payment-wallet-fe](#input\_pagopa-payment-wallet-fe) | n/a | `map` | <pre>{<br>  "pipeline": {<br>    "enable_code_review": true,<br>    "enable_deploy": true,<br>    "sonarcloud": {<br>      "org": "pagopa",<br>      "project_key": "pagopa_pagopa-wallet-fe",<br>      "project_name": "pagopa-wallet-fe",<br>      "service_connection": "SONARCLOUD-SERVICE-CONN"<br>    }<br>  },<br>  "repository": {<br>    "branch_name": "refs/heads/main",<br>    "name": "pagopa-wallet-fe",<br>    "organization": "pagopa",<br>    "pipelines_path": ".devops",<br>    "yml_prefix_name": "pagopa"<br>  }<br>}</pre> | no |
 | <a name="input_pagopa-payment-wallet-helpdesk-service"></a> [pagopa-payment-wallet-helpdesk-service](#input\_pagopa-payment-wallet-helpdesk-service) | n/a | `map` | <pre>{<br>  "pipeline": {<br>    "enable_code_review": false,<br>    "enable_deploy": true,<br>    "sonarcloud": {<br>      "org": "pagopa",<br>      "project_key": "pagopa_pagopa-payment-wallet-helpdesk-service",<br>      "project_name": "pagopa-payment-wallet-helpdesk-service",<br>      "service_connection": "SONARCLOUD-SERVICE-CONN"<br>    }<br>  },<br>  "repository": {<br>    "branch_name": "refs/heads/main",<br>    "name": "pagopa-payment-wallet-helpdesk-service",<br>    "organization": "pagopa",<br>    "pipelines_path": ".devops",<br>    "yml_prefix_name": null<br>  }<br>}</pre> | no |
@@ -106,4 +109,4 @@
 ## Outputs
 
 No outputs.
-<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+<!-- END_TF_DOCS -->

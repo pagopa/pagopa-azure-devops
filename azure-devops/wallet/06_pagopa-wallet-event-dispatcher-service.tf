@@ -123,4 +123,3 @@ module "pagopa-payment-wallet-event-dispatcher-service_deploy" {
     data.azuredevops_serviceendpoint_azurerm.dev.id,
   ]
 }
-
