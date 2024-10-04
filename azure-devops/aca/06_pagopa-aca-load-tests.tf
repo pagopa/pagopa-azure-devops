@@ -38,7 +38,8 @@ locals {
 }
 
 module "pagopa-aca-tests_soak" {
-  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_generic?ref=v4.2.1"
+      source = "./.terraform/modules/__azdo__/azuredevops_build_definition_generic"
+
   count  = var.pagopa-aca-tests.pipeline.enable_soak == true ? 1 : 0
 
   project_id                   = data.azuredevops_project.project.id
