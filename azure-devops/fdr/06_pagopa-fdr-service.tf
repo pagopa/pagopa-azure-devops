@@ -271,4 +271,3 @@ module "pagopa-fdr-service_deploy" {
 #     data.azuredevops_serviceendpoint_github.github_ro.id,
 #   ]
 # }
-

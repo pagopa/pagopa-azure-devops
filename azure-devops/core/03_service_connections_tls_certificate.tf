@@ -567,4 +567,3 @@ resource "azurerm_key_vault_access_policy" "PROD-KIBANA-TLS-CERT-SERVICE-CONN_kv
   certificate_permissions = ["Get", "Import"]
 
 }
-

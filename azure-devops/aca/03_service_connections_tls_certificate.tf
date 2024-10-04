@@ -8,7 +8,7 @@ module "DEV-ACA-TLS-CERT-SERVICE-CONN" {
   }
 
   depends_on = [data.azuredevops_project.project]
-  source     = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated?ref=v4.2.1"
+  source     = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated?ref=v9.2.1"
 
   project_id          = data.azuredevops_project.project.id
   name                = "${local.prefix}-${local.domain}-d-tls-cert-azdo"
@@ -31,7 +31,8 @@ resource "azurerm_key_vault_access_policy" "DEV-ACA-TLS-CERT-SERVICE-CONN_kv_acc
 
 # create let's encrypt credential used to create SSL certificates
 module "letsencrypt_dev" {
-  source = "git::https://github.com/pagopa/terraform-azurerm-v3.git//letsencrypt_credential?ref=v7.39.0"
+  source = "./.terraform/modules/__v3__/letsencrypt_credential"
+
 
   providers = {
     azurerm = azurerm.dev
@@ -51,7 +52,7 @@ module "UAT-ACA-TLS-CERT-SERVICE-CONN" {
   }
 
   depends_on = [data.azuredevops_project.project]
-  source     = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated?ref=v4.2.1"
+  source     = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated?ref=v9.2.1"
 
   project_id          = data.azuredevops_project.project.id
   name                = "${local.prefix}-${local.domain}-u-tls-cert-azdo"
@@ -73,7 +74,7 @@ resource "azurerm_key_vault_access_policy" "UAT-ACA-TLS-CERT-SERVICE-CONN_kv_acc
 
 # create let's encrypt credential used to create SSL certificates
 module "letsencrypt_uat" {
-  source = "git::https://github.com/pagopa/terraform-azurerm-v3.git//letsencrypt_credential?ref=v7.39.0"
+  source = "./.terraform/modules/__v3__/letsencrypt_credential"
 
   providers = {
     azurerm = azurerm.uat
@@ -93,7 +94,7 @@ module "PROD-ACA-TLS-CERT-SERVICE-CONN" {
   }
 
   depends_on = [data.azuredevops_project.project]
-  source     = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated?ref=v4.2.1"
+  source     = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated?ref=v9.2.1"
 
   project_id          = data.azuredevops_project.project.id
   name                = "${local.prefix}-${local.domain}-p-tls-cert-azdo"
@@ -115,7 +116,7 @@ resource "azurerm_key_vault_access_policy" "PROD-ACA-TLS-CERT-SERVICE-CONN_kv_ac
 
 # create let's encrypt credential used to create SSL certificates
 module "letsencrypt_prod" {
-  source = "git::https://github.com/pagopa/terraform-azurerm-v3.git//letsencrypt_credential?ref=v7.39.0"
+  source = "./.terraform/modules/__v3__/letsencrypt_credential"
 
   providers = {
     azurerm = azurerm.prod
@@ -125,5 +126,3 @@ module "letsencrypt_prod" {
   key_vault_name    = local.prod_aca_key_vault_name
   subscription_name = var.prod_subscription_name
 }
-
-

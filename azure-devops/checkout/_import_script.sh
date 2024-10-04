@@ -18,4 +18,3 @@ bash terraform.sh init checkout
 # terraform state rm 'module.pagopa-checkout-tests_code_review[0].azuredevops_build_definition.pipeline'
 # terraform state rm 'module.pagopa-checkout-fe_code_review[0].azuredevops_build_definition.pipeline'
 # terraform state rm 'module.pagopa-checkout-fe_deploy[0].azuredevops_build_definition.pipeline'
-

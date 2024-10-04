@@ -53,4 +53,3 @@ output "service_endpoint_azure_uat_name" {
 output "service_endpoint_azure_prod_name" {
   value = module.PROD-AZURERM-SERVICE-CONN.service_endpoint_name
 }
-
