@@ -31,7 +31,7 @@ resource "azurerm_key_vault_access_policy" "DEV-ACA-TLS-CERT-SERVICE-CONN_kv_acc
 
 # create let's encrypt credential used to create SSL certificates
 module "letsencrypt_dev" {
-    source = "./.terraform/modules/__v3__/letsencrypt_credential"
+  source = "./.terraform/modules/__v3__/letsencrypt_credential"
 
 
   providers = {
@@ -74,7 +74,7 @@ resource "azurerm_key_vault_access_policy" "UAT-ACA-TLS-CERT-SERVICE-CONN_kv_acc
 
 # create let's encrypt credential used to create SSL certificates
 module "letsencrypt_uat" {
-    source = "./.terraform/modules/__v3__/letsencrypt_credential"
+  source = "./.terraform/modules/__v3__/letsencrypt_credential"
 
   providers = {
     azurerm = azurerm.uat
@@ -116,7 +116,7 @@ resource "azurerm_key_vault_access_policy" "PROD-ACA-TLS-CERT-SERVICE-CONN_kv_ac
 
 # create let's encrypt credential used to create SSL certificates
 module "letsencrypt_prod" {
-    source = "./.terraform/modules/__v3__/letsencrypt_credential"
+  source = "./.terraform/modules/__v3__/letsencrypt_credential"
 
   providers = {
     azurerm = azurerm.prod

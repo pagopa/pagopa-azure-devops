@@ -77,9 +77,9 @@ locals {
 }
 
 module "pagopa-aca-service_code_review" {
-    source = "./.terraform/modules/__azdo__/azuredevops_build_definition_code_review"
+  source = "./.terraform/modules/__azdo__/azuredevops_build_definition_code_review"
 
-  count  = var.pagopa-aca-service.pipeline.enable_code_review == true ? 1 : 0
+  count = var.pagopa-aca-service.pipeline.enable_code_review == true ? 1 : 0
 
   project_id                   = data.azuredevops_project.project.id
   repository                   = var.pagopa-aca-service.repository
@@ -103,9 +103,9 @@ module "pagopa-aca-service_code_review" {
 }
 
 module "pagopa-aca-service_deploy" {
-        source = "./.terraform/modules/__azdo__/azuredevops_build_definition_deploy"
+  source = "./.terraform/modules/__azdo__/azuredevops_build_definition_deploy"
 
-  count  = var.pagopa-aca-service.pipeline.enable_deploy == true ? 1 : 0
+  count = var.pagopa-aca-service.pipeline.enable_deploy == true ? 1 : 0
 
   project_id                   = data.azuredevops_project.project.id
   repository                   = var.pagopa-aca-service.repository

@@ -43,9 +43,9 @@ module "tlscert-weuprod-aca-internal-prod-platform-pagopa-it-cert_az" {
     azurerm = azurerm.prod
   }
 
-    source = "./.terraform/modules/__azdo__/azuredevops_build_definition_tls_cert_federated"
+  source = "./.terraform/modules/__azdo__/azuredevops_build_definition_tls_cert_federated"
 
-  count  = var.tlscert-weuprod-aca-internal-prod-platform-pagopa-it.pipeline.enable_tls_cert == true ? 1 : 0
+  count = var.tlscert-weuprod-aca-internal-prod-platform-pagopa-it.pipeline.enable_tls_cert == true ? 1 : 0
 
   project_id                   = data.azuredevops_project.project.id
   repository                   = var.tlscert-weuprod-aca-internal-prod-platform-pagopa-it.repository
