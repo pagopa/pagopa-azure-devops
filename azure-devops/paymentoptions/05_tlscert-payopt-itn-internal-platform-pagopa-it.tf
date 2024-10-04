@@ -41,7 +41,7 @@
 #     azurerm = azurerm.prod
 #   }
 
-#   source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_tls_cert_federated?ref=v9.0.0"
+#  source = "./.terraform/modules/__azdo__/azuredevops_build_definition_tls_cert_federated"
 #   count  = var.tlscert-payopt-itn-internal-prod-platform-pagopa-it.pipeline.enable_tls_cert == true ? 1 : 0
 
 #   project_id                   = data.azuredevops_project.project.id
@@ -75,9 +75,9 @@
 #   ]
 
 #   schedules = {
-#     days_to_build              = ["Fri"]
+#     days_to_build              = ["Wed",Fri"]
 #     schedule_only_with_changes = false
-#     start_hours                = 3
+#     start_hours                = 13
 #     start_minutes              = 0
 #     time_zone                  = "(UTC+01:00) Amsterdam, Berlin, Bern, Rome, Stockholm, Vienna"
 #     branch_filter = {
