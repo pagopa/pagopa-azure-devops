@@ -38,7 +38,7 @@ locals {
 }
 
 module "pagopa-gpd-payments-pull_performance_test" {
-  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_generic?ref=v9.0.0"
+  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_generic?ref=v4.2.1"
   count  = var.pagopa-gpd-payments-pull.pipeline.performance_test.enabled == true ? 1 : 0
 
   project_id                   = data.azuredevops_project.project.id
