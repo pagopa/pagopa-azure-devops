@@ -36,10 +36,10 @@ locals {
     image_repository_name = replace(var.pagopa-mock-ec-service.repository.name, "-", "")
     repository            = replace(var.pagopa-mock-ec-service.repository.name, "-", "")
 
-    dev_container_registry_service_conn  = data.azuredevops_serviceendpoint_azurecr.dev_weu_workload_identity.id
-    dev_container_registry_name          = data.azuredevops_serviceendpoint_azurecr.dev_weu_workload_identity.service_endpoint_name
-    uat_container_registry_service_conn  = data.azuredevops_serviceendpoint_azurecr.uat_weu_workload_identity.id
-    uat_container_registry_name          = data.azuredevops_serviceendpoint_azurecr.uat_weu_workload_identity.service_endpoint_name
+    dev_container_registry_service_conn = data.azuredevops_serviceendpoint_azurecr.dev_weu_workload_identity.id
+    dev_container_registry_name         = data.azuredevops_serviceendpoint_azurecr.dev_weu_workload_identity.service_endpoint_name
+    uat_container_registry_service_conn = data.azuredevops_serviceendpoint_azurecr.uat_weu_workload_identity.id
+    uat_container_registry_name         = data.azuredevops_serviceendpoint_azurecr.uat_weu_workload_identity.service_endpoint_name
 
     # aks section
     k8s_namespace               = "nodo"
