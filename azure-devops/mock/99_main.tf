@@ -20,6 +20,7 @@ provider "azurerm" {
 }
 
 provider "azurerm" {
+  skip_provider_registration = true
   features {
     key_vault {
       purge_soft_delete_on_destroy = false
@@ -27,4 +28,15 @@ provider "azurerm" {
   }
   alias           = "dev"
   subscription_id = data.azurerm_subscriptions.dev.subscriptions[0].subscription_id
+}
+
+provider "azurerm" {
+  skip_provider_registration = true
+  features {
+    key_vault {
+      purge_soft_delete_on_destroy = false
+    }
+  }
+  alias           = "uat"
+  subscription_id = data.azurerm_subscriptions.uat.subscriptions[0].subscription_id
 }
