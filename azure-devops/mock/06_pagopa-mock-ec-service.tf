@@ -3,7 +3,7 @@ variable "pagopa-mock-ec-service" {
     repository = {
       organization    = "pagopa"
       name            = "pagopa-mock-ec"
-      branch_name     = "refs/heads/develop"
+      branch_name     = "refs/heads/main"
       pipelines_path  = ".devops"
       yml_prefix_name = null
     }
@@ -42,7 +42,7 @@ locals {
     uat_container_registry_name         = data.azuredevops_serviceendpoint_azurecr.uat_weu_workload_identity.service_endpoint_name
 
     # aks section
-    k8s_namespace               = "nodo"
+    k8s_namespace               = "mock"
     dev_kubernetes_service_conn = azuredevops_serviceendpoint_kubernetes.aks_dev.id
     uat_kubernetes_service_conn = azuredevops_serviceendpoint_kubernetes.aks_uat.id
 
