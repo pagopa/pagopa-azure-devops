@@ -34,12 +34,16 @@ locals {
 
     # acr section
     image_repository_name                     = replace(var.pagopa-firmatore-service.repository.name, "-", "")
-    container-registry-service-connection-dev = data.azuredevops_serviceendpoint_azurecr.dev.id
+    container-registry-service-connection-dev = data.azuredevops_serviceendpoint_azurecr.dev_weu_workload_identity.id
     repository                                = replace(var.pagopa-firmatore-service.repository.name, "-", "")
 
-    dev_container_registry_service_conn  = data.azuredevops_serviceendpoint_azurecr.dev.id
-    uat_container_registry_service_conn  = data.azuredevops_serviceendpoint_azurecr.uat.id
-    prod_container_registry_service_conn = data.azuredevops_serviceendpoint_azurecr.prod.id
+    dev_container_registry_service_conn  = data.azuredevops_serviceendpoint_azurecr.dev_weu_workload_identity.id
+    dev_container_registry_name          = data.azuredevops_serviceendpoint_azurecr.dev_weu_workload_identity.service_endpoint_name
+    uat_container_registry_service_conn  = data.azuredevops_serviceendpoint_azurecr.uat_weu_workload_identity.id
+    uat_container_registry_name          = data.azuredevops_serviceendpoint_azurecr.uat_weu_workload_identity.service_endpoint_name
+    prod_container_registry_service_conn = data.azuredevops_serviceendpoint_azurecr.prod_weu_workload_identity.id
+    prod_container_registry_name         = data.azuredevops_serviceendpoint_azurecr.prod_weu_workload_identity.service_endpoint_name
+
 
     # aks section
     k8s_namespace                = "nodo-cron"
@@ -85,9 +89,9 @@ module "pagopa-firmatore-service_deploy" {
 
   service_connection_ids_authorization = [
     data.azuredevops_serviceendpoint_github.github_ro.id,
-    data.azuredevops_serviceendpoint_azurecr.dev.id,
-    data.azuredevops_serviceendpoint_azurecr.uat.id,
-    data.azuredevops_serviceendpoint_azurecr.prod.id,
+    data.azuredevops_serviceendpoint_azurecr.dev_weu_workload_identity.id,
+    data.azuredevops_serviceendpoint_azurecr.uat_weu_workload_identity.id,
+    data.azuredevops_serviceendpoint_azurecr.prod_weu_workload_identity.id,
     data.azuredevops_serviceendpoint_azurerm.dev.id,
     data.azuredevops_serviceendpoint_azurerm.uat.id,
     data.azuredevops_serviceendpoint_azurerm.prod.id,

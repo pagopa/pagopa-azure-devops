@@ -13,12 +13,13 @@ terraform {
 }
 
 provider "azurerm" {
+  skip_provider_registration = true
   features {}
 
-  skip_provider_registration = true
 }
 
 provider "azurerm" {
+  skip_provider_registration = true
   features {
     key_vault {
       purge_soft_delete_on_destroy = false
@@ -29,6 +30,7 @@ provider "azurerm" {
 }
 
 provider "azurerm" {
+  skip_provider_registration = true
   features {
     key_vault {
       purge_soft_delete_on_destroy = false
@@ -39,6 +41,7 @@ provider "azurerm" {
 }
 
 provider "azurerm" {
+  skip_provider_registration = true
   features {
     key_vault {
       purge_soft_delete_on_destroy = false

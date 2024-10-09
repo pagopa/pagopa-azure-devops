@@ -36,7 +36,9 @@ locals {
     image_repository_name = replace(var.pagopa-mock-psp-service.repository.name, "-", "")
     repository            = replace(var.pagopa-mock-psp-service.repository.name, "-", "")
 
-    dev_container_registry_service_conn = data.azuredevops_serviceendpoint_azurecr.dev.id
+
+    dev_container_registry_service_conn = data.azuredevops_serviceendpoint_azurecr.dev_weu_workload_identity.id
+    dev_container_registry_name         = data.azuredevops_serviceendpoint_azurecr.dev_weu_workload_identity.service_endpoint_name
 
     # aks section
     k8s_namespace               = "nodo"
@@ -77,7 +79,7 @@ module "pagopa-mock-psp-service_deploy" {
 
   service_connection_ids_authorization = [
     data.azuredevops_serviceendpoint_github.github_ro.id,
-    data.azuredevops_serviceendpoint_azurecr.dev.id,
+    data.azuredevops_serviceendpoint_azurecr.dev_weu_workload_identity.id,
     data.azuredevops_serviceendpoint_azurerm.dev.id,
     module.DEV-APPINSIGHTS-SERVICE-CONN.service_endpoint_id
   ]
