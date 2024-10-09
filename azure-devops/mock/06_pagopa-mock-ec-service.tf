@@ -38,21 +38,21 @@ locals {
 
     dev_container_registry_service_conn = data.azuredevops_serviceendpoint_azurecr.dev_weu_workload_identity.id
     dev_container_registry_name         = data.azuredevops_serviceendpoint_azurecr.dev_weu_workload_identity.service_endpoint_name
-    uat_container_registry_service_conn = data.azuredevops_serviceendpoint_azurecr.uat_weu_workload_identity.id
-    uat_container_registry_name         = data.azuredevops_serviceendpoint_azurecr.uat_weu_workload_identity.service_endpoint_name
+    # uat_container_registry_service_conn = data.azuredevops_serviceendpoint_azurecr.uat_weu_workload_identity.id
+    # uat_container_registry_name         = data.azuredevops_serviceendpoint_azurecr.uat_weu_workload_identity.service_endpoint_name
 
     # aks section
     k8s_namespace               = "mock"
     dev_kubernetes_service_conn = azuredevops_serviceendpoint_kubernetes.aks_dev.id
-    uat_kubernetes_service_conn = azuredevops_serviceendpoint_kubernetes.aks_uat.id
+    # uat_kubernetes_service_conn = azuredevops_serviceendpoint_kubernetes.aks_uat.id
 
     dev_container_namespace = "pagopadcommonacr.azurecr.io"
-    uat_container_namespace = "pagopaucommonacr.azurecr.io"
+    # uat_container_namespace = "pagopaucommonacr.azurecr.io"
 
     TF_APPINSIGHTS_SERVICE_CONN_DEV = module.DEV-APPINSIGHTS-SERVICE-CONN.service_endpoint_name
     TF_APPINSIGHTS_RESOURCE_ID_DEV  = data.azurerm_application_insights.application_insights_dev.id
-    TF_APPINSIGHTS_SERVICE_CONN_UAT = module.UAT-APPINSIGHTS-SERVICE-CONN.service_endpoint_name
-    TF_APPINSIGHTS_RESOURCE_ID_UAT  = data.azurerm_application_insights.application_insights_uat.id
+    # TF_APPINSIGHTS_SERVICE_CONN_UAT = module.UAT-APPINSIGHTS-SERVICE-CONN.service_endpoint_name
+    # TF_APPINSIGHTS_RESOURCE_ID_UAT  = data.azurerm_application_insights.application_insights_uat.id
   }
 
   # deploy secrets
@@ -89,6 +89,6 @@ module "pagopa-mock-ec-service_deploy" {
     data.azuredevops_serviceendpoint_azurerm.dev.id,
     data.azuredevops_serviceendpoint_azurerm.uat.id,
     module.DEV-APPINSIGHTS-SERVICE-CONN.service_endpoint_id,
-    module.UAT-APPINSIGHTS-SERVICE-CONN.service_endpoint_id
+    # module.UAT-APPINSIGHTS-SERVICE-CONN.service_endpoint_id
   ]
 }
