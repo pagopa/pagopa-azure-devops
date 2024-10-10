@@ -28,7 +28,8 @@ module "gps_dev_secrets" {
     "gpd-d-payments-soap-subscription-key",
     "gpd-d-reporting-enrollment-subscription-key",
     "gpd-d-reporting-subscription-key",
-    "gpd-d-reporting-batch-connection-string"
+    "gpd-d-reporting-batch-connection-string",
+    "integration-test-subkey"
   ]
 }
 
@@ -57,7 +58,8 @@ module "gps_uat_secrets" {
     "gpd-u-payments-soap-subscription-key",
     "gpd-u-reporting-enrollment-subscription-key",
     "gpd-u-reporting-subscription-key",
-    "gpd-u-reporting-batch-connection-string"
+    "gpd-u-reporting-batch-connection-string",
+    "integration-test-subkey"
   ]
 }
 
