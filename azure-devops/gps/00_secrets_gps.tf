@@ -28,21 +28,7 @@ module "gps_dev_secrets" {
     "gpd-d-payments-soap-subscription-key",
     "gpd-d-reporting-enrollment-subscription-key",
     "gpd-d-reporting-subscription-key",
-    "gpd-d-reporting-batch-connection-string"
-  ]
-}
-module "common_dev_secrets" {
-
-  source = "git::https://github.com/pagopa/terraform-azurerm-v3.git//key_vault_secrets_query?ref=v7.39.0"
-
-  providers = {
-    azurerm = azurerm.dev
-  }
-
-  resource_group = local.dev_common_key_vault_resource_group_name
-  key_vault_name = local.dev_common_key_vault_name
-
-  secrets = [
+    "gpd-d-reporting-batch-connection-string",
     "integration-test-subkey"
   ]
 }
@@ -72,7 +58,8 @@ module "gps_uat_secrets" {
     "gpd-u-payments-soap-subscription-key",
     "gpd-u-reporting-enrollment-subscription-key",
     "gpd-u-reporting-subscription-key",
-    "gpd-u-reporting-batch-connection-string"
+    "gpd-u-reporting-batch-connection-string",
+    "integration-test-subkey"
   ]
 }
 
