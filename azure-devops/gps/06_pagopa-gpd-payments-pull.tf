@@ -33,6 +33,7 @@ locals {
   pagopa-gpd-payments-pull-variables_secret_performance_test = {
     DEV_API_SUBSCRIPTION_KEY = module.gps_dev_secrets.values["integration-test-subkey"].value
     UAT_API_SUBSCRIPTION_KEY = module.gps_uat_secrets.values["integration-test-subkey"].value
+    PROD_API_SUBSCRIPTION_KEY = module.gps_prod_secrets.values["integration-test-subkey"].value
   }
 
 }
