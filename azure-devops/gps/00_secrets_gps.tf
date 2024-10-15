@@ -76,6 +76,7 @@ module "gps_prod_secrets" {
   secrets = [
     "pagopa-p-weu-prod-aks-azure-devops-sa-token",
     "pagopa-p-weu-prod-aks-azure-devops-sa-cacrt",
-    "pagopa-p-weu-prod-aks-apiserver-url"
+    "pagopa-p-weu-prod-aks-apiserver-url",
+    "integration-test-subkey"
   ]
 }
