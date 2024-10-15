@@ -13,6 +13,7 @@ module "payopt_dev_secrets" {
     "pagopa-d-itn-dev-aks-azure-devops-sa-token",
     "pagopa-d-itn-dev-aks-azure-devops-sa-cacrt",
     "pagopa-d-itn-dev-aks-apiserver-url",
+    "apikey-service-payment-options"
   ]
 }
 
@@ -31,6 +32,7 @@ module "payopt_uat_secrets" {
     "pagopa-u-itn-uat-aks-azure-devops-sa-token",
     "pagopa-u-itn-uat-aks-azure-devops-sa-cacrt",
     "pagopa-u-itn-uat-aks-apiserver-url",
+    "apikey-service-payment-options"
   ]
 }
 
@@ -67,9 +69,7 @@ module "general_dev_secrets" {
   resource_group = "pagopa-d-sec-rg"
   key_vault_name = "pagopa-d-kv"
 
-  secrets = [
-    "integration-test-subkey",
-  ]
+  secrets = []
 }
 
 module "general_uat_secrets" {
@@ -83,9 +83,7 @@ module "general_uat_secrets" {
   resource_group = "pagopa-u-sec-rg"
   key_vault_name = "pagopa-u-kv"
 
-  secrets = [
-    "integration-test-subkey",
-  ]
+  secrets = []
 }
 
 # module "general_prod_secrets" {
