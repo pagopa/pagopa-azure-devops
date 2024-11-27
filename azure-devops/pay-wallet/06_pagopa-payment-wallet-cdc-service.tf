@@ -64,6 +64,7 @@ locals {
     uat_container_namespace = "pagopauitncoreacr.azurecr.io"
     # prod_container_namespace = "pagopapitncoreacr.azurecr.io"
 
+    wallet_token_test = module.wallet_uat_secrets.values["wallet-token-test-key"].value
   }
   # deploy secrets
   pagopa-payment-wallet-cdc-service-variables_secret_deploy = {
