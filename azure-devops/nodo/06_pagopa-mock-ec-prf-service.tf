@@ -34,10 +34,11 @@ locals {
 
     # acr section
     image_repository_name                     = replace(var.pagopa-mock-ec-prf-service.repository.name, "-", "")
-    container-registry-service-connection-dev = data.azuredevops_serviceendpoint_azurecr.dev.id
+    container-registry-service-connection-dev = data.azuredevops_serviceendpoint_azurecr.dev_weu_workload_identity.id
     repository                                = replace(var.pagopa-mock-ec-prf-service.repository.name, "-", "")
 
-    uat_container_registry_service_conn = data.azuredevops_serviceendpoint_azurecr.uat.id
+    uat_container_registry_service_conn = data.azuredevops_serviceendpoint_azurecr.uat_weu_workload_identity.id
+    uat_container_registry_name         = data.azuredevops_serviceendpoint_azurecr.uat_weu_workload_identity.service_endpoint_name
 
     # aks section
     k8s_namespace               = "nodo"
@@ -83,7 +84,7 @@ module "pagopa-mock-ec-prf-service_deploy" {
 
   service_connection_ids_authorization = [
     data.azuredevops_serviceendpoint_github.github_ro.id,
-    data.azuredevops_serviceendpoint_azurecr.uat.id,
+    data.azuredevops_serviceendpoint_azurecr.uat_weu_workload_identity.id,
     data.azuredevops_serviceendpoint_azurerm.uat.id,
     module.UAT-APPINSIGHTS-SERVICE-CONN.service_endpoint_id
   ]
