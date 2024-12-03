@@ -40,7 +40,7 @@ locals {
   }
   # code_review secrets
   pagopa-payment-wallet-scheduler-service-variables_secret_code_review = {
-
+    scheduler_cdc_queue_connection_string =  module.wallet_uat_secrets.values["wallet-storage-connection-string"].value
   }
   # deploy vars
   pagopa-payment-wallet-scheduler-service-variables_deploy = {
@@ -64,6 +64,7 @@ locals {
     uat_container_namespace = "pagopauitncoreacr.azurecr.io"
     # prod_container_namespace = "pagopapitncoreacr.azurecr.io"
 
+    scheduler_cdc_queue_connection_string =  module.wallet_uat_secrets.values["wallet-storage-connection-string"].value
   }
   # deploy secrets
   pagopa-payment-wallet-scheduler-service-variables_secret_deploy = {

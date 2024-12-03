@@ -40,7 +40,8 @@ locals {
   }
   # code_review secrets
   pagopa-payment-wallet-cdc-service-variables_secret_code_review = {
-
+    wallet_token_test = module.wallet_uat_secrets.values["wallet-token-test-key"].value
+    azure_eventhub_connection_string = module.wallet_uat_secrets.values["receiver-evt-rx-event-hub-connection-string-test"].value
   }
   # deploy vars
   pagopa-payment-wallet-cdc-service-variables_deploy = {
