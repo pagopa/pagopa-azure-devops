@@ -33,8 +33,8 @@ locals {
   }
   # performance secrets
   pagopa-payment-options-service-variables_secret_performance_test = {
-    DEV_API_SUBSCRIPTION_KEY = module.payopt_dev_secrets.values["apikey-service-payment-options"].value
-    UAT_API_SUBSCRIPTION_KEY = module.payopt_uat_secrets.values["apikey-service-payment-options"].value
+    DEV_API_SUBSCRIPTION_KEY = module.payopt_dev_secrets.values["apikey-service-payment-options-test"].value
+    UAT_API_SUBSCRIPTION_KEY = module.payopt_uat_secrets.values["apikey-service-payment-options-test"].value
   }
 
 }

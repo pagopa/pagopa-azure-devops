@@ -13,7 +13,7 @@ module "payopt_dev_secrets" {
     "pagopa-d-itn-dev-aks-azure-devops-sa-token",
     "pagopa-d-itn-dev-aks-azure-devops-sa-cacrt",
     "pagopa-d-itn-dev-aks-apiserver-url",
-    "apikey-service-payment-options"
+    "apikey-service-payment-options-test"
   ]
 }
 
@@ -32,7 +32,7 @@ module "payopt_uat_secrets" {
     "pagopa-u-itn-uat-aks-azure-devops-sa-token",
     "pagopa-u-itn-uat-aks-azure-devops-sa-cacrt",
     "pagopa-u-itn-uat-aks-apiserver-url",
-    "apikey-service-payment-options"
+    "apikey-service-payment-options-test"
   ]
 }
 
