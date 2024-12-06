@@ -52,17 +52,17 @@ locals {
     dev_container_registry_name         = data.azuredevops_serviceendpoint_azurecr.dev_ita_workload_identity.service_endpoint_name
     uat_container_registry_service_conn = data.azuredevops_serviceendpoint_azurecr.uat_ita_workload_identity.id
     uat_container_registry_name         = data.azuredevops_serviceendpoint_azurecr.uat_ita_workload_identity.service_endpoint_name
-    # prod_container_registry_service_conn = data.azuredevops_serviceendpoint_azurecr.prod_ita_workload_identity.id
-    # prod_container_registry_name         = data.azuredevops_serviceendpoint_azurecr.prod_ita_workload_identity.service_endpoint_name
+    prod_container_registry_service_conn = data.azuredevops_serviceendpoint_azurecr.prod_ita_workload_identity.id
+    prod_container_registry_name         = data.azuredevops_serviceendpoint_azurecr.prod_ita_workload_identity.service_endpoint_name
 
     # aks section
     dev_kubernetes_service_conn = azuredevops_serviceendpoint_kubernetes.aks_dev.id
     uat_kubernetes_service_conn = azuredevops_serviceendpoint_kubernetes.aks_uat.id
-    # prod_kubernetes_service_conn = azuredevops_serviceendpoint_kubernetes.aks_prod.id
+    prod_kubernetes_service_conn = azuredevops_serviceendpoint_kubernetes.aks_prod.id
 
     dev_container_namespace = "pagopaditncoreacr.azurecr.io"
     uat_container_namespace = "pagopauitncoreacr.azurecr.io"
-    # prod_container_namespace = "pagopapitncoreacr.azurecr.io"
+    prod_container_namespace = "pagopapitncoreacr.azurecr.io"
 
     scheduler_cdc_queue_connection_string =  module.wallet_uat_secrets.values["wallet-storage-connection-string"].value
   }
@@ -122,9 +122,9 @@ module "pagopa-payment-wallet-scheduler-service_deploy" {
     data.azuredevops_serviceendpoint_github.github_ro.id,
     data.azuredevops_serviceendpoint_azurecr.dev_ita_workload_identity.id,
     data.azuredevops_serviceendpoint_azurecr.uat_ita_workload_identity.id,
-    # data.azuredevops_serviceendpoint_azurecr.prod_ita_workload_identity.id,
+    data.azuredevops_serviceendpoint_azurecr.prod_ita_workload_identity.id,
     data.azuredevops_serviceendpoint_azurerm.dev.id,
     data.azuredevops_serviceendpoint_azurerm.uat.id,
-    # data.azuredevops_serviceendpoint_azurerm.prod.id,
+    data.azuredevops_serviceendpoint_azurerm.prod.id,
   ]
 }
