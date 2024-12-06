@@ -35,7 +35,9 @@ module "wallet_uat_secrets" {
     "pagopa-u-itn-uat-aks-azure-devops-sa-token",
     "pagopa-u-itn-uat-aks-azure-devops-sa-cacrt",
     "pagopa-u-itn-uat-aks-apiserver-url",
-    "wallet-token-test-key"
+    "wallet-token-test-key",
+    "wallet-storage-connection-string",
+    "receiver-evt-rx-event-hub-connection-string-test"
   ]
 }
 
@@ -53,6 +55,6 @@ module "wallet_prod_secrets" {
   secrets = [
     "pagopa-p-itn-prod-aks-azure-devops-sa-token",
     "pagopa-p-itn-prod-aks-azure-devops-sa-cacrt",
-    "pagopa-p-itn-prod-aks-apiserver-url",
+    "pagopa-p-itn-prod-aks-apiserver-url"
   ]
 }
