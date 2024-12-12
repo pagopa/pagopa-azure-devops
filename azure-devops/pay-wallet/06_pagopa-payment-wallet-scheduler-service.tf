@@ -40,7 +40,6 @@ locals {
   }
   # code_review secrets
   pagopa-payment-wallet-scheduler-service-variables_secret_code_review = {
-
   }
   # deploy vars
   pagopa-payment-wallet-scheduler-service-variables_deploy = {
@@ -67,9 +66,10 @@ locals {
   }
   # deploy secrets
   pagopa-payment-wallet-scheduler-service-variables_secret_deploy = {
-    git_mail     = module.secrets.values["azure-devops-github-EMAIL"].value
-    git_username = module.secrets.values["azure-devops-github-USERNAME"].value
-    tenant_id    = data.azurerm_client_config.current.tenant_id
+    git_mail                              = module.secrets.values["azure-devops-github-EMAIL"].value
+    git_username                          = module.secrets.values["azure-devops-github-USERNAME"].value
+    tenant_id                             = data.azurerm_client_config.current.tenant_id
+    scheduler_cdc_queue_connection_string = module.wallet_uat_secrets.values["wallet-storage-connection-string"].value
   }
 }
 
