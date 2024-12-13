@@ -127,3 +127,24 @@ variable "service_connection_prod_acr_name" {
   type        = string
   description = "ACR service connection PROD name"
 }
+
+#
+# ACR workload identity
+#
+variable "acr_weu_service_connection_workload_identity_dev" {
+  type        = string
+  description = "The service connection ID for the WEU DEV workload identity in Azure Container Registry"
+  default     = ""
+}
+
+variable "acr_weu_service_connection_workload_identity_uat" {
+  type        = string
+  description = "The service connection ID for the WEU UAT workload identity in Azure Container Registry"
+  default     = ""
+}
+
+variable "acr_weu_service_connection_workload_identity_prod" {
+  type        = string
+  description = "The service connection ID for the WEU PROD workload identity in Azure Container Registry"
+  default     = ""
+}

@@ -93,7 +93,7 @@ module "pagopa-qi-fdr-kpi-service_code_review" {
 
 module "pagopa-qi-fdr-kpi-service_deploy" {
   source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy?ref=v4.2.1"
-  count  = var.pagopa-qi-fdr-kpi-service.enable_deploy == true ? 1 : 0
+  count  = var.pagopa-qi-fdr-kpi-service.pipeline.enable_deploy == true ? 1 : 0
 
   project_id                   = data.azuredevops_project.project.id
   repository                   = var.pagopa-qi-fdr-kpi-service.repository
@@ -101,13 +101,13 @@ module "pagopa-qi-fdr-kpi-service_deploy" {
   path                         = "${local.domain}\\pagopa-qi-fdr-kpi-service"
 
   variables = merge(
-    local.pagopa-ecommerce-user-stats-service-variables,
-    local.pagopa-ecommerce-user-stats-service-variables_deploy,
+    local.pagopa-qi-fdr-kpi-service-variables,
+    local.pagopa-qi-fdr-kpi-service-variables_deploy,
   )
 
   variables_secret = merge(
-    local.pagopa-ecommerce-user-stats-service-variables_secret,
-    local.pagopa-ecommerce-user-stats-service-variables_secret_deploy,
+    local.pagopa-qi-fdr-kpi-service-variables_secret,
+    local.pagopa-qi-fdr-kpi-service-variables_secret_deploy,
   )
 
   service_connection_ids_authorization = [
