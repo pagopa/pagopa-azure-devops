@@ -45,9 +45,23 @@ locals {
   }
   # deploy vars
   pagopa-qi-fdr-kpi-service-variables_deploy = {
+    github_connection = data.azuredevops_serviceendpoint_github.github_rw.service_endpoint_name
+
+    # acr section
+    k8s_image_repository_name           = replace(var.pagopa-qi-fdr-kpi-service.repository.name, "-", "")
+    dev_container_registry_service_conn = data.azuredevops_serviceendpoint_azurecr.dev_weu_workload_identity.id
+    dev_container_registry_name         = data.azuredevops_serviceendpoint_azurecr.dev_weu_workload_identity.service_endpoint_name
+
+    # aks section
+    dev_kubernetes_service_conn = azuredevops_serviceendpoint_kubernetes.aks_dev.id
+
+    dev_container_namespace = "pagopadcommonacr.azurecr.io"
   }
   # deploy secrets
   pagopa-qi-fdr-kpi-service-variables_secret_deploy = {
+    git_mail     = module.secrets.values["azure-devops-github-EMAIL"].value
+    git_username = module.secrets.values["azure-devops-github-USERNAME"].value
+    tenant_id    = data.azurerm_client_config.current.tenant_id
   }
 }
 
@@ -73,5 +87,32 @@ module "pagopa-qi-fdr-kpi-service_code_review" {
   service_connection_ids_authorization = [
     local.azuredevops_serviceendpoint_sonarcloud_id,
     data.azuredevops_serviceendpoint_github.github_ro.service_endpoint_id
+  ]
+}
+
+
+module "pagopa-qi-fdr-kpi-service_deploy" {
+  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy?ref=v4.2.1"
+  count  = var.pagopa-qi-fdr-kpi-service.enable_deploy == true ? 1 : 0
+
+  project_id                   = data.azuredevops_project.project.id
+  repository                   = var.pagopa-qi-fdr-kpi-service.repository
+  github_service_connection_id = data.azuredevops_serviceendpoint_github.github_rw.service_endpoint_id
+  path                         = "${local.domain}\\pagopa-qi-fdr-kpi-service"
+
+  variables = merge(
+    local.pagopa-ecommerce-user-stats-service-variables,
+    local.pagopa-ecommerce-user-stats-service-variables_deploy,
+  )
+
+  variables_secret = merge(
+    local.pagopa-ecommerce-user-stats-service-variables_secret,
+    local.pagopa-ecommerce-user-stats-service-variables_secret_deploy,
+  )
+
+  service_connection_ids_authorization = [
+    data.azuredevops_serviceendpoint_github.github_ro.id,
+    data.azuredevops_serviceendpoint_azurecr.dev_weu_workload_identity.id,
+    data.azuredevops_serviceendpoint_azurerm.dev.id,
   ]
 }
