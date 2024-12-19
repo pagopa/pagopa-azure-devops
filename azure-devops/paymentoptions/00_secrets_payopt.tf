@@ -36,26 +36,23 @@ module "payopt_uat_secrets" {
   ]
 }
 
-# module "payopt_prod_secrets" {
+module "payopt_prod_secrets" {
 
-#   providers = {
-#     azurerm = azurerm.prod
-#   }
+  providers = {
+    azurerm = azurerm.prod
+  }
 
-#   source = "git::https://github.com/pagopa/terraform-azurerm-v3.git//key_vault_secrets_query?ref=v8.22.0"
+  source = "git::https://github.com/pagopa/terraform-azurerm-v3.git//key_vault_secrets_query?ref=v8.22.0"
 
-#   resource_group = local.prod_payopt_key_vault_resource_group
-#   key_vault_name = local.prod_payopt_key_vault_name
+  resource_group = local.prod_payopt_key_vault_resource_group
+  key_vault_name = local.prod_payopt_key_vault_name
 
-#   secrets = [
-#     "pagopa-p-itn-prod-aks-azure-devops-sa-token",
-#     "pagopa-p-itn-prod-aks-azure-devops-sa-cacrt",
-#     "pagopa-p-itn-prod-aks-apiserver-url",
-#     "institutions-storage-account-connection-string",
-#     "notices-storage-account-connection-string",
-#     "notices-mongo-connection-string",
-#   ]
-# }
+  secrets = [
+    "pagopa-p-itn-prod-aks-azure-devops-sa-token",
+    "pagopa-p-itn-prod-aks-azure-devops-sa-cacrt",
+    "pagopa-p-itn-prod-aks-apiserver-url"
+  ]
+}
 
 
 module "general_dev_secrets" {
@@ -86,18 +83,16 @@ module "general_uat_secrets" {
   secrets = []
 }
 
-# module "general_prod_secrets" {
+module "general_prod_secrets" {
 
-#   providers = {
-#     azurerm = azurerm.prod
-#   }
+  providers = {
+    azurerm = azurerm.prod
+  }
 
-#   source = "git::https://github.com/pagopa/terraform-azurerm-v3.git//key_vault_secrets_query?ref=v8.22.0"
+  source = "git::https://github.com/pagopa/terraform-azurerm-v3.git//key_vault_secrets_query?ref=v8.22.0"
 
-#   resource_group = "pagopa-p-sec-rg"
-#   key_vault_name = "pagopa-p-kv"
+  resource_group = "pagopa-p-sec-rg"
+  key_vault_name = "pagopa-p-kv"
 
-#   secrets = [
-#     "integration-test-subkey",
-#   ]
-# }
+  secrets = []
+}
