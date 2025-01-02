@@ -48,8 +48,8 @@ locals {
   # code_review secrets
   pagopa-fdr-nodo-service-variables_secret_code_review = {
     lightbend_key_dev = module.fdr_dev_secrets.values["lightbend-key"].value
-    lightbend_key_uat = module.fdr_dev_secrets.values["lightbend-key"].value
-    #    lightbend_key_prod = module.fdr_dev_secrets.values["lightbend-key"].value
+    lightbend_key_uat = module.fdr_uat_secrets.values["lightbend-key"].value
+    #    lightbend_key_prod = module.fdr_prod_secrets.values["lightbend-key"].value
   }
   # deploy vars
   pagopa-fdr-nodo-service-variables_deploy = {
@@ -94,7 +94,7 @@ locals {
   # deploy secrets
   pagopa-fdr-nodo-service-variables_secret_deploy = {
     lightbend_key_dev = module.fdr_dev_secrets.values["lightbend-key"].value
-    lightbend_key_uat = module.fdr_dev_secrets.values["lightbend-key"].value
+    lightbend_key_uat = module.fdr_uat_secrets.values["lightbend-key"].value
     #    lightbend_key_prod = module.fdr_dev_secrets.values["lightbend-key"].value
   }
 
