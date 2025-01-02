@@ -47,11 +47,11 @@ resource "azuredevops_serviceendpoint_github" "azure-devops-github-rw" {
 
 
 # # Github service connection (read-only)
-resource "azuredevops_serviceendpoint_github" "pipelines-azure-devops-github-rw" {
+resource "azuredevops_serviceendpoint_github" "pipeline-azure-devops-github-rw" {
   depends_on = [data.azuredevops_project.project]
 
   project_id            = data.azuredevops_project.project.id
-  service_endpoint_name = "pipelines-azure-devops-github-rw"
+  service_endpoint_name = "pipeline-azure-devops-github-rw"
   auth_personal {
     personal_access_token = module.fdr_dev_secrets.values["azure-devops-github-rw"].value
   }

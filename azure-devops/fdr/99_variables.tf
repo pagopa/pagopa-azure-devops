@@ -4,9 +4,9 @@ locals {
   domain           = "fdr"
 
   # Service connections/ End points
-  srv_endpoint_github_ro = "io-azure-devops-github-ro"
-  srv_endpoint_github_rw = "io-azure-devops-github-rw"
-  srv_endpoint_github_pr = "io-azure-devops-github-pr"
+  srv_endpoint_github_ro = "io-azure-devops-github-ro-se"
+  srv_endpoint_github_rw = "io-azure-devops-github-rw-se"
+  srv_endpoint_github_pr = "io-azure-devops-github-pr-se"
 
   # 🔐 KV AZDO
   dev_key_vault_azdo_name  = "${local.prefix}-d-azdo-weu-kv"
