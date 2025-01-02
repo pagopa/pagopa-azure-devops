@@ -134,11 +134,11 @@ module "pagopa-fdr-nodo-service_code_review" {
   source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review?ref=v5.1.1"
   count  = var.pagopa-fdr-nodo-service.pipeline.enable_code_review == true ? 1 : 0
 
-  project_id = data.azuredevops_project.project.id
-  repository = var.pagopa-fdr-nodo-service.repository
-  # github_service_connection_id = data.azuredevops_serviceendpoint_github.github_pr.service_endpoint_id
-  github_service_connection_id = data.azuredevops_serviceendpoint_github.github_rw.service_endpoint_id
-  path                         = "${local.domain}\\pagopa-fdr-nodo-service"
+  project_id                   = data.azuredevops_project.project.id
+  repository                   = var.pagopa-fdr-nodo-service.repository
+  github_service_connection_id = data.azuredevops_serviceendpoint_github.github_pr.service_endpoint_id
+  #  github_service_connection_id = data.azuredevops_serviceendpoint_github.github_rw.service_endpoint_id
+  path = "${local.domain}\\pagopa-fdr-nodo-service"
 
   pull_request_trigger_use_yaml = true
   ci_trigger_use_yaml           = true
