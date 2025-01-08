@@ -13,7 +13,8 @@ module "ebollo_dev_secrets" {
     "pagopa-d-itn-dev-aks-azure-devops-sa-token",
     "pagopa-d-itn-dev-aks-azure-devops-sa-cacrt",
     "pagopa-d-itn-dev-aks-apiserver-url",
-    "apikey-gps-mbd-integration-test"
+    "apikey-gps-mbd-integration-test",
+    "apikey-mbd-integration-test"
   ]
 }
 
@@ -32,7 +33,8 @@ module "ebollo_uat_secrets" {
     "pagopa-u-itn-uat-aks-azure-devops-sa-token",
     "pagopa-u-itn-uat-aks-azure-devops-sa-cacrt",
     "pagopa-u-itn-uat-aks-apiserver-url",
-    "apikey-gps-mbd-integration-test"
+    "apikey-gps-mbd-integration-test",
+    "apikey-mbd-integration-test"
   ]
 }
 
