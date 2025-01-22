@@ -14,6 +14,7 @@ variable "pagopa-mock-ec-prf-service" {
       name            = "pagopa-nodo-dei-pagamenti-test-ec"
       # branch_name     = "refs/heads/deploy-pagopa"
       # branch_name     = "refs/heads/mock-ec-prf-embedded"
+      branch_name     = "refs/heads/perf-pagopa"
 
       # name            = "pagopa-nodo-dei-pagamenti-test"
       # branch_name     = "refs/heads/NOD-prf-data-dump"
