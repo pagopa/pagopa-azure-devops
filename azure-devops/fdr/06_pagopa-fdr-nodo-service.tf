@@ -118,8 +118,8 @@ locals {
   }
   # performance secrets
   pagopa-fdr-nodo-service-variables_secret_performance_test = {
-    DEV_API_SUBSCRIPTION_KEY = module.afm_dev_secrets.values["fdr-nodo-api-subscription-key"].value
-    UAT_API_SUBSCRIPTION_KEY = module.afm_dev_secrets.values["fdr-nodo-api-subscription-key"].value
+    DEV_API_SUBSCRIPTION_KEY = module.fdr_dev_secrets.values["fdr-phase-1-perf-test-subkey"].value
+    UAT_API_SUBSCRIPTION_KEY = module.fdr_uat_secrets.values["fdr-phase-1-perf-test-subkey"].value
   }
 
   # suspend job vars
