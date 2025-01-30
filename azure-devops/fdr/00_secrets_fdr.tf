@@ -18,7 +18,7 @@ module "fdr_dev_secrets" {
     "pagopa-d-weu-dev-aks-azure-devops-sa-cacrt",
     "pagopa-d-weu-dev-aks-apiserver-url",
     "lightbend-key",
-    "fdr-nodo-api-subscription-key"
+    "fdr-phase-1-perf-test-subkey"
   ]
 }
 
@@ -41,7 +41,7 @@ module "fdr_uat_secrets" {
     "pagopa-u-weu-uat-aks-azure-devops-sa-cacrt",
     "pagopa-u-weu-uat-aks-apiserver-url",
     "lightbend-key",
-    "fdr-nodo-api-subscription-key"
+    "fdr-phase-1-perf-test-subkey"
   ]
 }
 
