@@ -8,13 +8,6 @@ variable "pagopa-fdr-nodo-service" {
       yml_prefix_name = null
     }
     pipeline = {
-      sonarcloud = {
-        # TODO azure devops terraform provider does not support SonarCloud service endpoint
-        service_connection = "SONARCLOUD-SERVICE-CONN"
-        org                = "pagopa"
-        project_key        = "pagopa_pagopa-fdr-nodo-dei-pagamenti"
-        project_name       = "pagopa-fdr-nodo-dei-pagamenti"
-      }
       suspend_job = {
         enabled               = true
         name                  = "suspend-job-pipeline"
@@ -32,7 +25,6 @@ locals {
   }
   # global secrets
   pagopa-fdr-nodo-service-variables_secret = {
-
   }
   # integration vars
   pagopa-fdr-nodo-service-variables_integration_test = {
