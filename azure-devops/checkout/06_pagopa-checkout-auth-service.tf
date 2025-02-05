@@ -24,7 +24,7 @@ variable "pagopa-checkout-auth-service" {
 locals {
   # global vars
   pagopa-checkout-auth-service-variables = {
-    default_branch   = var.pagopa-checkout-auth-service.repository.branch_name
+    default_branch = var.pagopa-checkout-auth-service.repository.branch_name
   }
   # global secrets
   pagopa-checkout-auth-service-variables_secret = {
