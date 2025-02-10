@@ -33,11 +33,11 @@ locals {
   }
   # performance test secrets
   pagopa-gpd-ingestion-manager-variables_secret_performance_test = {
-    DEV_PG_GPD_PASSWORD = module.gps_dev_secrets.values["db-apd-user-password"].value
-    DEV_PG_GPD_USER = module.gps_dev_secrets.values["db-apd-user-name"].value
+    DEV_PG_GPD_PASSWORD                = module.gps_dev_secrets.values["db-apd-user-password"].value
+    DEV_PG_GPD_USER                    = module.gps_dev_secrets.values["db-apd-user-name"].value
     DEV_INGESTION_EVENTHUB_CONN_STRING = module.gps_dev_secrets.values["cdc-gpd-test-connection-string"].value
-    UAT_PG_GPD_PASSWORD = module.gps_uat_secrets.values["db-apd-user-password"].value
-    UAT_PG_GPD_USER = module.gps_dev_secrets.values["db-apd-user-name"].value
+    UAT_PG_GPD_PASSWORD                = module.gps_uat_secrets.values["db-apd-user-password"].value
+    UAT_PG_GPD_USER                    = module.gps_dev_secrets.values["db-apd-user-name"].value
     UAT_INGESTION_EVENTHUB_CONN_STRING = module.gps_uat_secrets.values["cdc-gpd-test-connection-string"].value
   }
 }

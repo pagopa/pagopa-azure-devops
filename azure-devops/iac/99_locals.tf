@@ -21,7 +21,7 @@ locals {
       code_review : true,
       deploy : true,
       pipeline_prefix : "checkout",
-      pipeline_path : ".devops",
+      pipeline_path : "checkout-infra",
       repository : {
         yml_prefix_name : "checkout"
       }
