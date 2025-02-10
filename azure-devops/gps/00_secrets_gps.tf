@@ -29,7 +29,10 @@ module "gps_dev_secrets" {
     "gpd-d-reporting-enrollment-subscription-key",
     "gpd-d-reporting-subscription-key",
     "gpd-d-reporting-batch-connection-string",
-    "integration-test-subkey"
+    "integration-test-subkey",
+    "db-apd-user-password",
+    "db-apd-user-name",
+    "cdc-gpd-test-connection-string"
   ]
 }
 
@@ -59,7 +62,10 @@ module "gps_uat_secrets" {
     "gpd-u-reporting-enrollment-subscription-key",
     "gpd-u-reporting-subscription-key",
     "gpd-u-reporting-batch-connection-string",
-    "integration-test-subkey"
+    "integration-test-subkey",
+    "db-apd-user-password",
+    "db-apd-user-name",
+    "cdc-gpd-test-connection-string"
   ]
 }
 

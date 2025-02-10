@@ -24,7 +24,8 @@ module "ecommerce_dev_secrets" {
     "helpdesk-service-testing-email",
     "helpdesk-service-testing-fiscalCode",
     "wallet-token-test-key",
-    "helpdesk-ecommerce-commands-testing-api-key"
+    "helpdesk-ecommerce-commands-testing-api-key",
+    "helpdesk-service-testing-email-history",
   ]
 }
 

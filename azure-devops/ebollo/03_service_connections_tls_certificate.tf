@@ -1,7 +1,7 @@
 #
 # DEV
 #
-module "DEV-PAYOPT-TLS-CERT-SERVICE-CONN" {
+module "DEV-EBOLLO-TLS-CERT-SERVICE-CONN" {
 
   providers = {
     azurerm = azurerm.dev
@@ -21,11 +21,11 @@ module "DEV-PAYOPT-TLS-CERT-SERVICE-CONN" {
 
 }
 
-resource "azurerm_key_vault_access_policy" "DEV-PAYOPT-TLS-CERT-SERVICE-CONN_kv_access_policy" {
+resource "azurerm_key_vault_access_policy" "DEV-EBOLLO-TLS-CERT-SERVICE-CONN_kv_access_policy" {
   provider     = azurerm.dev
   key_vault_id = data.azurerm_key_vault.domain_kv_dev.id
   tenant_id    = data.azurerm_client_config.current.tenant_id
-  object_id    = module.DEV-PAYOPT-TLS-CERT-SERVICE-CONN.service_principal_object_id
+  object_id    = module.DEV-EBOLLO-TLS-CERT-SERVICE-CONN.service_principal_object_id
 
   certificate_permissions = ["Get", "Import"]
 }
@@ -33,7 +33,7 @@ resource "azurerm_key_vault_access_policy" "DEV-PAYOPT-TLS-CERT-SERVICE-CONN_kv_
 ##
 ## UAT
 ##
-module "UAT-PAYOPT-TLS-CERT-SERVICE-CONN" {
+module "UAT-EBOLLO-TLS-CERT-SERVICE-CONN" {
   providers = {
     azurerm = azurerm.uat
   }
@@ -50,11 +50,11 @@ module "UAT-PAYOPT-TLS-CERT-SERVICE-CONN" {
   resource_group_name = local.uat_identity_rg_name
 }
 
-resource "azurerm_key_vault_access_policy" "UAT-PAYOPT-TLS-CERT-SERVICE-CONN_kv_access_policy" {
+resource "azurerm_key_vault_access_policy" "UAT-EBOLLO-TLS-CERT-SERVICE-CONN_kv_access_policy" {
   provider     = azurerm.uat
   key_vault_id = data.azurerm_key_vault.domain_kv_uat.id
   tenant_id    = data.azurerm_client_config.current.tenant_id
-  object_id    = module.UAT-PAYOPT-TLS-CERT-SERVICE-CONN.service_principal_object_id
+  object_id    = module.UAT-EBOLLO-TLS-CERT-SERVICE-CONN.service_principal_object_id
 
   certificate_permissions = ["Get", "Import"]
 }
@@ -62,7 +62,7 @@ resource "azurerm_key_vault_access_policy" "UAT-PAYOPT-TLS-CERT-SERVICE-CONN_kv_
 #
 # PROD
 #
-module "PROD-PAYOPT-TLS-CERT-SERVICE-CONN" {
+module "PROD-EBOLLO-TLS-CERT-SERVICE-CONN" {
   providers = {
     azurerm = azurerm.prod
   }
@@ -79,11 +79,11 @@ module "PROD-PAYOPT-TLS-CERT-SERVICE-CONN" {
   resource_group_name = local.prod_identity_rg_name
 }
 
-resource "azurerm_key_vault_access_policy" "PROD-PAYOPT-TLS-CERT-SERVICE-CONN_kv_access_policy" {
+resource "azurerm_key_vault_access_policy" "PROD-EBOLLO-TLS-CERT-SERVICE-CONN_kv_access_policy" {
   provider     = azurerm.prod
   key_vault_id = data.azurerm_key_vault.domain_kv_prod.id
   tenant_id    = data.azurerm_client_config.current.tenant_id
-  object_id    = module.PROD-PAYOPT-TLS-CERT-SERVICE-CONN.service_principal_object_id
+  object_id    = module.PROD-EBOLLO-TLS-CERT-SERVICE-CONN.service_principal_object_id
 
   certificate_permissions = ["Get", "Import"]
 }
