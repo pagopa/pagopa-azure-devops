@@ -22,6 +22,14 @@ locals {
   uat_vnet_rg  = "${local.prefix}-u-vnet-rg"
   prod_vnet_rg = "${local.prefix}-p-vnet-rg"
 
+  dev_checkout_key_vault_name  = "${local.prefix}-d-${local.domain}-kv"
+  uat_checkout_key_vault_name  = "${local.prefix}-u-${local.domain}-kv"
+  prod_checkout_key_vault_name = "${local.prefix}-p-${local.domain}-kv"
+
+  dev_checkout_key_vault_resource_group  = "${local.prefix}-d-${local.domain}-sec-rg"
+  uat_checkout_key_vault_resource_group  = "${local.prefix}-u-${local.domain}-sec-rg"
+  prod_checkout_key_vault_resource_group = "${local.prefix}-p-${local.domain}-sec-rg"
+
   #tfsec:ignore:general-secrets-no-plaintext-exposure
   #tfsec:ignore:GEN002
   tlscert_renew_token = "v1"
@@ -91,3 +99,43 @@ variable "service_connection_prod_acr_name" {
   type        = string
   description = "ACR service connection PROD name"
 }
+
+#
+# ACR workload identity
+#
+variable "acr_weu_service_connection_workload_identity_dev" {
+  type        = string
+  description = "The service connection ID for the WEU DEV workload identity in Azure Container Registry"
+  default     = ""
+}
+
+variable "acr_weu_service_connection_workload_identity_uat" {
+  type        = string
+  description = "The service connection ID for the WEU UAT workload identity in Azure Container Registry"
+  default     = ""
+}
+
+variable "acr_weu_service_connection_workload_identity_prod" {
+  type        = string
+  description = "The service connection ID for the WEU PROD workload identity in Azure Container Registry"
+  default     = ""
+}
+
+variable "acr_ita_service_connection_workload_identity_dev" {
+  type        = string
+  description = "The service connection ID for the ITA DEV workload identity in Azure Container Registry"
+  default     = ""
+}
+
+variable "acr_ita_service_connection_workload_identity_uat" {
+  type        = string
+  description = "The service connection ID for the ITA UAT workload identity in Azure Container Registry"
+  default     = ""
+}
+
+variable "acr_ita_service_connection_workload_identity_prod" {
+  type        = string
+  description = "The service connection ID for the ITA PROD workload identity in Azure Container Registry"
+  default     = ""
+}
+
