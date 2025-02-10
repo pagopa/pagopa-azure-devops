@@ -68,7 +68,7 @@ module "PROD-EBOLLO-TLS-CERT-SERVICE-CONN" {
   }
 
   depends_on = [data.azuredevops_project.project]
- source     = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated?ref=v9.2.1"
+  source     = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated?ref=v9.2.1"
 
   project_id          = data.azuredevops_project.project.id
   name                = "${local.prefix}-${local.domain}-p-tls-cert-azdo"

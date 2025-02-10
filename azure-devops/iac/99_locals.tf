@@ -13,6 +13,19 @@ locals {
         yml_prefix_name : "next-core-secrets"
       }
     },
+    {
+      name : "checkout",
+      envs : ["d", "u", "p"],
+      kv_name : "",
+      rg_name : "",
+      code_review : true,
+      deploy : true,
+      pipeline_prefix : "checkout",
+      pipeline_path : "checkout-infra",
+      repository : {
+        yml_prefix_name : "checkout"
+      }
+    },
   ]
 
   definitions_variables = {}

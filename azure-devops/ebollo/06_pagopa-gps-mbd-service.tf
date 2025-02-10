@@ -31,8 +31,8 @@ locals {
   }
   # performance secrets
   pagopa-gps-mbd-service-variables_secret_performance_test = {
-    DEV_API_SUBSCRIPTION_KEY  = module.ebollo_dev_secrets.values["apikey-gps-mbd-integration-test"].value
-    UAT_API_SUBSCRIPTION_KEY  = module.ebollo_uat_secrets.values["apikey-gps-mbd-integration-test"].value
+    DEV_API_SUBSCRIPTION_KEY = module.ebollo_dev_secrets.values["apikey-gps-mbd-integration-test"].value
+    UAT_API_SUBSCRIPTION_KEY = module.ebollo_uat_secrets.values["apikey-gps-mbd-integration-test"].value
   }
 
 }
@@ -40,7 +40,7 @@ locals {
 module "pagopa-gps-mbd-service_performance_test" {
   source = "./.terraform/modules/__azdo__/azuredevops_build_definition_generic"
 
-  count  = var.pagopa-gps-mbd-service.pipeline.performance_test.enabled == true ? 1 : 0
+  count = var.pagopa-gps-mbd-service.pipeline.performance_test.enabled == true ? 1 : 0
 
   project_id                   = data.azuredevops_project.project.id
   repository                   = var.pagopa-gps-mbd-service.repository
