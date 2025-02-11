@@ -36,6 +36,10 @@ locals {
 
   # TODO azure devops terraform provider does not support SonarCloud service endpoint
   azuredevops_serviceendpoint_sonarcloud_id = "9182be64-d387-465d-9acc-e79e802910c8"
+
+  srv_endpoint_name_aks_dev  = "${local.prefix}-${local.domain}-aks-dev"
+  srv_endpoint_name_aks_uat  = "${local.prefix}-${local.domain}-aks-uat"
+  srv_endpoint_name_aks_prod = "${local.prefix}-${local.domain}-aks-prod"
 }
 
 
@@ -138,4 +142,5 @@ variable "acr_ita_service_connection_workload_identity_prod" {
   description = "The service connection ID for the ITA PROD workload identity in Azure Container Registry"
   default     = ""
 }
+
 
