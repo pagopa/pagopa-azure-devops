@@ -50,19 +50,19 @@ locals {
     k8s_image_repository_name            = replace(var.pagopa-checkout-auth-service.repository.name, "-", "")
     dev_container_registry_service_conn  = data.azuredevops_serviceendpoint_azurecr.dev_weu_workload_identity.id
     dev_container_registry_name          = data.azuredevops_serviceendpoint_azurecr.dev_weu_workload_identity.service_endpoint_name
-    uat_container_registry_service_conn  = data.azuredevops_serviceendpoint_azurecr.uat_weu_workload_identity.id
-    uat_container_registry_name          = data.azuredevops_serviceendpoint_azurecr.uat_weu_workload_identity.service_endpoint_name
-    prod_container_registry_service_conn = data.azuredevops_serviceendpoint_azurecr.prod_weu_workload_identity.id
-    prod_container_registry_name         = data.azuredevops_serviceendpoint_azurecr.prod_weu_workload_identity.service_endpoint_name
+    # uat_container_registry_service_conn  = data.azuredevops_serviceendpoint_azurecr.uat_weu_workload_identity.id
+    # uat_container_registry_name          = data.azuredevops_serviceendpoint_azurecr.uat_weu_workload_identity.service_endpoint_name
+    # prod_container_registry_service_conn = data.azuredevops_serviceendpoint_azurecr.prod_weu_workload_identity.id
+    # prod_container_registry_name         = data.azuredevops_serviceendpoint_azurecr.prod_weu_workload_identity.service_endpoint_name
 
     # aks section
     dev_kubernetes_service_conn  = azuredevops_serviceendpoint_kubernetes.aks_dev.id
-    uat_kubernetes_service_conn  = azuredevops_serviceendpoint_kubernetes.aks_uat.id
-    prod_kubernetes_service_conn = azuredevops_serviceendpoint_kubernetes.aks_prod.id
+    # uat_kubernetes_service_conn  = azuredevops_serviceendpoint_kubernetes.aks_uat.id
+    # prod_kubernetes_service_conn = azuredevops_serviceendpoint_kubernetes.aks_prod.id
 
     dev_container_namespace  = "pagopadcommonacr.azurecr.io"
-    uat_container_namespace  = "pagopaucommonacr.azurecr.io"
-    prod_container_namespace = "pagopapcommonacr.azurecr.io"
+    # uat_container_namespace  = "pagopaucommonacr.azurecr.io"
+    # prod_container_namespace = "pagopapcommonacr.azurecr.io"
 
   }
   # deploy secrets
@@ -70,11 +70,6 @@ locals {
     git_mail              = module.secrets.values["azure-devops-github-EMAIL"].value
     git_username          = module.secrets.values["azure-devops-github-USERNAME"].value
     tenant_id             = data.azurerm_client_config.current.tenant_id
-    wallet_token_test_dev = module.wallet_dev_secrets.values["wallet-token-test-key"].value
-    # wallet_token_test_uat            = module.wallet_uat_secrets.values["wallet-token-test-key"].value
-    migration_api_key_test_dev       = module.wallet_dev_secrets.values["wallet-migration-api-key-test-dev"].value
-    migration_cstar_api_key_test_dev = module.wallet_dev_secrets.values["wallet-migration-cstar-api-key-test-dev"].value
-    migration_wallet_token_test_dev  = module.wallet_dev_secrets.values["migration-wallet-token-test-dev"].value
   }
 }
 
@@ -125,9 +120,9 @@ module "pagopa-checkout-auth-service_deploy" {
   service_connection_ids_authorization = [
     data.azuredevops_serviceendpoint_github.github_ro.id,
     data.azuredevops_serviceendpoint_azurecr.dev_weu_workload_identity.id,
-    data.azuredevops_serviceendpoint_azurecr.uat_weu_workload_identity.id,
-    data.azuredevops_serviceendpoint_azurecr.prod_weu_workload_identity.id,
-    data.azuredevops_serviceendpoint_azurerm.dev.id,
+    # data.azuredevops_serviceendpoint_azurecr.uat_weu_workload_identity.id,
+    # data.azuredevops_serviceendpoint_azurecr.prod_weu_workload_identity.id,
+    # data.azuredevops_serviceendpoint_azurerm.dev.id,
     data.azuredevops_serviceendpoint_azurerm.uat.id,
     data.azuredevops_serviceendpoint_azurerm.prod.id,
   ]
