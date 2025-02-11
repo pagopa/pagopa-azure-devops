@@ -39,11 +39,11 @@ locals {
     sonarcloud_project_key  = var.pagopa-qi-fdr-kpi-service.pipeline.sonarcloud.project_key
     sonarcloud_project_name = var.pagopa-qi-fdr-kpi-service.pipeline.sonarcloud.project_name
 
-    k8s_image_repository_name            = replace(var.pagopa-qi-fdr-kpi-service.repository.name, "-", "")
-    dev_kubernetes_service_conn          = azuredevops_serviceendpoint_kubernetes.aks_dev.id
-    dev_container_namespace              = "pagopadcommonacr.azurecr.io"
-    dev_container_registry_service_conn  = data.azuredevops_serviceendpoint_azurecr.dev_weu_workload_identity.id
-    dev_container_registry_name          = data.azuredevops_serviceendpoint_azurecr.dev_weu_workload_identity.service_endpoint_name
+    k8s_image_repository_name           = replace(var.pagopa-qi-fdr-kpi-service.repository.name, "-", "")
+    dev_kubernetes_service_conn         = azuredevops_serviceendpoint_kubernetes.aks_dev.id
+    dev_container_namespace             = "pagopadcommonacr.azurecr.io"
+    dev_container_registry_service_conn = data.azuredevops_serviceendpoint_azurecr.dev_weu_workload_identity.id
+    dev_container_registry_name         = data.azuredevops_serviceendpoint_azurecr.dev_weu_workload_identity.service_endpoint_name
   }
   # code_review secrets
   pagopa-qi-fdr-kpi-service-variables_secret_code_review = {
