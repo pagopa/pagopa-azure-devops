@@ -8,7 +8,7 @@ variable "tlscert-weuuat-checkout-internal-uat-platform-pagopa-it" {
     }
     pipeline = {
       enable_tls_cert         = true
-      path                    = "TLS-Certificates\\DEV"
+      path                    = "TLS-Certificates\\UAT"
       dns_record_name         = "weuuat.checkout.internal"
       dns_zone_name           = "uat.platform.pagopa.it"
       dns_zone_resource_group = "pagopa-u-vnet-rg"
