@@ -93,4 +93,3 @@ resource "azuredevops_serviceendpoint_kubernetes" "aks_uat" {
 #     ca_cert = module.checkout_prod_secrets.values["pagopa-p-weu-prod-aks-azure-devops-sa-cacrt"].value
 #   }
 # }
-
