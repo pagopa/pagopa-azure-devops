@@ -11,7 +11,7 @@ variable "pagopa-payment-options-service" {
       performance_test = {
         enabled               = true
         name                  = "performance-test-pipeline"
-        pipeline_yml_filename = "performance-test-pipelines.yaml"
+        pipeline_yml_filename = "performance-test-pipelines.yml"
       }
     }
   }
@@ -33,27 +33,15 @@ locals {
   }
   # performance secrets
   pagopa-payment-options-service-variables_secret_performance_test = {
-    # DEV_API_SUBSCRIPTION_KEY                = module.general_dev_secrets.values["integration-test-subkey"].value
-    # DEV_BLOB_INSTITUTIONS_CONNECTION_STRING = module.payopt_dev_secrets.values["institutions-storage-account-connection-string"].value
-    # DEV_BLOB_NOTICES_CONNECTION_STRING      = module.payopt_dev_secrets.values["notices-storage-account-connection-string"].value
-    # DEV_MONGO_NOTICES_CONNECTION_STRING     = module.payopt_dev_secrets.values["notices-mongo-connection-string"].value
-
-    # UAT_API_SUBSCRIPTION_KEY                = module.general_uat_secrets.values["integration-test-subkey"].value
-    # UAT_BLOB_INSTITUTIONS_CONNECTION_STRING = module.payopt_uat_secrets.values["institutions-storage-account-connection-string"].value
-    # UAT_BLOB_NOTICES_CONNECTION_STRING      = module.payopt_uat_secrets.values["notices-storage-account-connection-string"].value
-    # UAT_MONGO_NOTICES_CONNECTION_STRING     = module.payopt_uat_secrets.values["notices-mongo-connection-string"].value
-
-    # PROD_API_SUBSCRIPTION_KEY                = module.general_prod_secrets.values["integration-test-subkey"].value
-    # PROD_BLOB_INSTITUTIONS_CONNECTION_STRING = module.payopt_prod_secrets.values["institutions-storage-account-connection-string"].value
-    # PROD_BLOB_NOTICES_CONNECTION_STRING      = module.payopt_prod_secrets.values["notices-storage-account-connection-string"].value
-    # PROD_MONGO_NOTICES_CONNECTION_STRING     = module.payopt_prod_secrets.values["notices-mongo-connection-string"].value
+    DEV_API_SUBSCRIPTION_KEY = module.payopt_dev_secrets.values["apikey-service-payment-options"].value
+    UAT_API_SUBSCRIPTION_KEY = module.payopt_uat_secrets.values["apikey-service-payment-options"].value
   }
 
 }
 
 
 module "pagopa-payment-options-service_performance_test" {
-  source = "./.terraform/modules/__azdo__/azuredevops_build_definition_generic"
+  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_generic?ref=v9.0.0"
   count  = var.pagopa-payment-options-service.pipeline.performance_test.enabled == true ? 1 : 0
 
   project_id                   = data.azuredevops_project.project.id

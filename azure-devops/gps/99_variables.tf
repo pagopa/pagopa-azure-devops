@@ -20,6 +20,9 @@ locals {
   uat_gps_key_vault_resource_group  = "${local.prefix}-u-${local.domain}-sec-rg"
   prod_gps_key_vault_resource_group = "${local.prefix}-p-${local.domain}-sec-rg"
 
+  dev_common_key_vault_name                = "${local.prefix}-d-kv"
+  dev_common_key_vault_resource_group_name = "${local.prefix}-d-sec-rg"
+
   # ☁️ VNET
   dev_vnet_rg  = "${local.prefix}-d-vnet-rg"
   uat_vnet_rg  = "${local.prefix}-u-vnet-rg"

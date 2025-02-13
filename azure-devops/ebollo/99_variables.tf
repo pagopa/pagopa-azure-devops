@@ -1,32 +1,36 @@
 locals {
   prefix           = "pagopa"
   azure_devops_org = "pagopaspa"
-  domain           = "wallet"
+  domain           = "ebollo"
 
   dev_subscription_name  = "dev-pagopa"
   uat_subscription_name  = "uat-pagopa"
   prod_subscription_name = "prod-pagopa"
 
-  dev_identity_rg_name  = "${local.prefix}-d-identity-rg"
-  uat_identity_rg_name  = "${local.prefix}-u-identity-rg"
-  prod_identity_rg_name = "${local.prefix}-p-identity-rg"
+  dev_identity_rg_name  = "pagopa-d-identity-rg"
+  uat_identity_rg_name  = "pagopa-u-identity-rg"
+  prod_identity_rg_name = "pagopa-p-identity-rg"
+
+  location            = "italynorth"
+  location_westeurope = "westeurope"
+  location_short      = "itn"
 
   # 🔐 KV
   dev_key_vault_azdo_name  = "${local.prefix}-d-azdo-weu-kv"
   uat_key_vault_azdo_name  = "${local.prefix}-u-azdo-weu-kv"
   prod_key_vault_azdo_name = "${local.prefix}-p-azdo-weu-kv"
 
-  dev_wallet_key_vault_name  = "${local.prefix}-d-${local.domain}-kv"
-  uat_wallet_key_vault_name  = "${local.prefix}-u-${local.domain}-kv"
-  prod_wallet_key_vault_name = "${local.prefix}-p-${local.domain}-kv"
+  dev_ebollo_key_vault_name  = "${local.prefix}-d-${local.location_short}-${local.domain}-kv"
+  uat_ebollo_key_vault_name  = "${local.prefix}-u-${local.location_short}-${local.domain}-kv"
+  prod_ebollo_key_vault_name = "${local.prefix}-p-${local.location_short}-${local.domain}-kv"
 
   dev_key_vault_resource_group  = "${local.prefix}-d-sec-rg"
   uat_key_vault_resource_group  = "${local.prefix}-u-sec-rg"
   prod_key_vault_resource_group = "${local.prefix}-p-sec-rg"
 
-  dev_wallet_key_vault_resource_group  = "${local.prefix}-d-${local.domain}-sec-rg"
-  uat_wallet_key_vault_resource_group  = "${local.prefix}-u-${local.domain}-sec-rg"
-  prod_wallet_key_vault_resource_group = "${local.prefix}-p-${local.domain}-sec-rg"
+  dev_ebollo_key_vault_resource_group  = "${local.prefix}-d-${local.location_short}-${local.domain}-sec-rg"
+  uat_ebollo_key_vault_resource_group  = "${local.prefix}-u-${local.location_short}-${local.domain}-sec-rg"
+  prod_ebollo_key_vault_resource_group = "${local.prefix}-p-${local.location_short}-${local.domain}-sec-rg"
 
   # ☁️ VNET
   dev_vnet_rg  = "${local.prefix}-d-vnet-rg"
@@ -50,17 +54,14 @@ locals {
 
   settings_xml_ro_secure_file_name = "settings-ro.xml"
 
-  srv_endpoint_name_aks_dev  = "${local.prefix}-${local.domain}-aks-dev"
-  srv_endpoint_name_aks_uat  = "${local.prefix}-${local.domain}-aks-uat"
-  srv_endpoint_name_aks_prod = "${local.prefix}-${local.domain}-aks-prod"
-
-  #tfsec:ignore:general-secrets-no-plaintext-exposure
-  #tfsec:ignore:GEN002
-  tlscert_renew_token = "v1"
+  srv_endpoint_name_aks_dev  = "${local.prefix}-${local.domain}-${local.location_short}-dev-aks"
+  srv_endpoint_name_aks_uat  = "${local.prefix}-${local.domain}-${local.location_short}-uat-aks"
+  srv_endpoint_name_aks_prod = "${local.prefix}-${local.domain}-${local.location_short}-prod-aks"
 
   # TODO azure devops terraform provider does not support SonarCloud service endpoint
   azuredevops_serviceendpoint_sonarcloud_id = "9182be64-d387-465d-9acc-e79e802910c8"
 }
+
 
 variable "dev_subscription_name" {
   type        = string
@@ -87,10 +88,6 @@ variable "pipeline_environments" {
   description = "List of environments pipeline to create"
 }
 
-variable "location" {
-  type = string
-}
-
 #
 # AZURERM
 #
@@ -110,19 +107,40 @@ variable "service_connection_prod_azurerm_name" {
 }
 
 #
-# ACR
+# ACR workload identity
 #
-variable "service_connection_dev_acr_name" {
+variable "acr_weu_service_connection_workload_identity_dev" {
   type        = string
-  description = "ACR service connection DEV name"
+  description = "The service connection ID for the WEU DEV workload identity in Azure Container Registry"
+  default     = ""
 }
 
-variable "service_connection_uat_acr_name" {
+variable "acr_weu_service_connection_workload_identity_uat" {
   type        = string
-  description = "ACR service connection UAT name"
+  description = "The service connection ID for the WEU UAT workload identity in Azure Container Registry"
+  default     = ""
 }
 
-variable "service_connection_prod_acr_name" {
+variable "acr_weu_service_connection_workload_identity_prod" {
   type        = string
-  description = "ACR service connection PROD name"
+  description = "The service connection ID for the WEU PROD workload identity in Azure Container Registry"
+  default     = ""
+}
+
+variable "acr_ita_service_connection_workload_identity_dev" {
+  type        = string
+  description = "The service connection ID for the ITA DEV workload identity in Azure Container Registry"
+  default     = ""
+}
+
+variable "acr_ita_service_connection_workload_identity_uat" {
+  type        = string
+  description = "The service connection ID for the ITA UAT workload identity in Azure Container Registry"
+  default     = ""
+}
+
+variable "acr_ita_service_connection_workload_identity_prod" {
+  type        = string
+  description = "The service connection ID for the ITA PROD workload identity in Azure Container Registry"
+  default     = ""
 }
