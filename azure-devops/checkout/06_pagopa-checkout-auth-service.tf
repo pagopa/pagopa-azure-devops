@@ -121,8 +121,8 @@ module "pagopa-checkout-auth-service_deploy" {
     data.azuredevops_serviceendpoint_github.github_ro.id,
     data.azuredevops_serviceendpoint_azurecr.dev_weu_workload_identity.id,
     data.azuredevops_serviceendpoint_azurecr.uat_weu_workload_identity.id,
-    # data.azuredevops_serviceendpoint_azurecr.prod_weu_workload_identity.id,
-    # data.azuredevops_serviceendpoint_azurerm.dev.id,
+    data.azuredevops_serviceendpoint_azurecr.prod_weu_workload_identity.id,
+    data.azuredevops_serviceendpoint_azurerm.dev.id,
     data.azuredevops_serviceendpoint_azurerm.uat.id,
     data.azuredevops_serviceendpoint_azurerm.prod.id,
   ]
