@@ -35,9 +35,9 @@ module "uat_secrets" {
 
 
   secrets = [
-    "pagopa-d-weu-uat-aks-azure-devops-sa-token",
-    "pagopa-d-weu-uat-aks-azure-devops-sa-cacrt",
-    "pagopa-d-weu-uat-aks-apiserver-url"
+    "pagopa-u-weu-uat-aks-azure-devops-sa-token",
+    "pagopa-u-weu-uat-aks-azure-devops-sa-cacrt",
+    "pagopa-u-weu-uat-aks-apiserver-url"
   ]
 }
 
@@ -56,7 +56,7 @@ module "prod_secrets" {
 
   secrets = [
     "pagopa-p-weu-prod-aks-azure-devops-sa-token",
-    "pagopa-d-weu-prod-aks-azure-devops-sa-cacrt",
-    "pagopa-d-weu-prod-aks-apiserver-url"
+    "pagopa-p-weu-prod-aks-azure-devops-sa-cacrt",
+    "pagopa-p-weu-prod-aks-apiserver-url"
   ]
 }
