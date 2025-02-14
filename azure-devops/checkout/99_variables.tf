@@ -22,12 +22,24 @@ locals {
   uat_vnet_rg  = "${local.prefix}-u-vnet-rg"
   prod_vnet_rg = "${local.prefix}-p-vnet-rg"
 
+  dev_checkout_key_vault_name  = "${local.prefix}-d-${local.domain}-kv"
+  uat_checkout_key_vault_name  = "${local.prefix}-u-${local.domain}-kv"
+  prod_checkout_key_vault_name = "${local.prefix}-p-${local.domain}-kv"
+
+  dev_checkout_key_vault_resource_group  = "${local.prefix}-d-${local.domain}-sec-rg"
+  uat_checkout_key_vault_resource_group  = "${local.prefix}-u-${local.domain}-sec-rg"
+  prod_checkout_key_vault_resource_group = "${local.prefix}-p-${local.domain}-sec-rg"
+
   #tfsec:ignore:general-secrets-no-plaintext-exposure
   #tfsec:ignore:GEN002
   tlscert_renew_token = "v1"
 
   # TODO azure devops terraform provider does not support SonarCloud service endpoint
   azuredevops_serviceendpoint_sonarcloud_id = "9182be64-d387-465d-9acc-e79e802910c8"
+
+  srv_endpoint_name_aks_dev  = "${local.prefix}-${local.domain}-aks-dev"
+  srv_endpoint_name_aks_uat  = "${local.prefix}-${local.domain}-aks-uat"
+  srv_endpoint_name_aks_prod = "${local.prefix}-${local.domain}-aks-prod"
 }
 
 
@@ -90,4 +102,43 @@ variable "service_connection_uat_acr_name" {
 variable "service_connection_prod_acr_name" {
   type        = string
   description = "ACR service connection PROD name"
+}
+
+#
+# ACR workload identity
+#
+variable "acr_weu_service_connection_workload_identity_dev" {
+  type        = string
+  description = "The service connection ID for the WEU DEV workload identity in Azure Container Registry"
+  default     = ""
+}
+
+variable "acr_weu_service_connection_workload_identity_uat" {
+  type        = string
+  description = "The service connection ID for the WEU UAT workload identity in Azure Container Registry"
+  default     = ""
+}
+
+variable "acr_weu_service_connection_workload_identity_prod" {
+  type        = string
+  description = "The service connection ID for the WEU PROD workload identity in Azure Container Registry"
+  default     = ""
+}
+
+variable "acr_ita_service_connection_workload_identity_dev" {
+  type        = string
+  description = "The service connection ID for the ITA DEV workload identity in Azure Container Registry"
+  default     = ""
+}
+
+variable "acr_ita_service_connection_workload_identity_uat" {
+  type        = string
+  description = "The service connection ID for the ITA UAT workload identity in Azure Container Registry"
+  default     = ""
+}
+
+variable "acr_ita_service_connection_workload_identity_prod" {
+  type        = string
+  description = "The service connection ID for the ITA PROD workload identity in Azure Container Registry"
+  default     = ""
 }
