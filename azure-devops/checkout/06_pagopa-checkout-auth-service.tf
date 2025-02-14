@@ -47,21 +47,21 @@ locals {
     github_connection = data.azuredevops_serviceendpoint_github.github_rw.service_endpoint_name
 
     # acr section
-    k8s_image_repository_name           = replace(var.pagopa-checkout-auth-service.repository.name, "-", "")
-    dev_container_registry_service_conn = data.azuredevops_serviceendpoint_azurecr.dev_weu_workload_identity.id
-    dev_container_registry_name         = data.azuredevops_serviceendpoint_azurecr.dev_weu_workload_identity.service_endpoint_name
-    uat_container_registry_service_conn = data.azuredevops_serviceendpoint_azurecr.uat_weu_workload_identity.id
-    uat_container_registry_name         = data.azuredevops_serviceendpoint_azurecr.uat_weu_workload_identity.service_endpoint_name
+    k8s_image_repository_name            = replace(var.pagopa-checkout-auth-service.repository.name, "-", "")
+    dev_container_registry_service_conn  = data.azuredevops_serviceendpoint_azurecr.dev_weu_workload_identity.id
+    dev_container_registry_name          = data.azuredevops_serviceendpoint_azurecr.dev_weu_workload_identity.service_endpoint_name
+    uat_container_registry_service_conn  = data.azuredevops_serviceendpoint_azurecr.uat_weu_workload_identity.id
+    uat_container_registry_name          = data.azuredevops_serviceendpoint_azurecr.uat_weu_workload_identity.service_endpoint_name
     prod_container_registry_service_conn = data.azuredevops_serviceendpoint_azurecr.prod_weu_workload_identity.id
     prod_container_registry_name         = data.azuredevops_serviceendpoint_azurecr.prod_weu_workload_identity.service_endpoint_name
 
     # aks section
-    dev_kubernetes_service_conn = azuredevops_serviceendpoint_kubernetes.aks_dev.id
-    uat_kubernetes_service_conn = azuredevops_serviceendpoint_kubernetes.aks_uat.id
+    dev_kubernetes_service_conn  = azuredevops_serviceendpoint_kubernetes.aks_dev.id
+    uat_kubernetes_service_conn  = azuredevops_serviceendpoint_kubernetes.aks_uat.id
     prod_kubernetes_service_conn = azuredevops_serviceendpoint_kubernetes.aks_prod.id
 
-    dev_container_namespace = "pagopadcommonacr.azurecr.io"
-    uat_container_namespace = "pagopaucommonacr.azurecr.io"
+    dev_container_namespace  = "pagopadcommonacr.azurecr.io"
+    uat_container_namespace  = "pagopaucommonacr.azurecr.io"
     prod_container_namespace = "pagopapcommonacr.azurecr.io"
 
   }

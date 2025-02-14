@@ -19,6 +19,7 @@
 | <a name="module_PROD-CHECKOUT-TLS-CERT-SERVICE-CONN"></a> [PROD-CHECKOUT-TLS-CERT-SERVICE-CONN](#module\_PROD-CHECKOUT-TLS-CERT-SERVICE-CONN) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated | v4.2.1 |
 | <a name="module_UAT-CHECKOUT-TLS-CERT-SERVICE-CONN"></a> [UAT-CHECKOUT-TLS-CERT-SERVICE-CONN](#module\_UAT-CHECKOUT-TLS-CERT-SERVICE-CONN) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated | v4.2.1 |
 | <a name="module_checkout_dev_secrets"></a> [checkout\_dev\_secrets](#module\_checkout\_dev\_secrets) | git::https://github.com/pagopa/terraform-azurerm-v3.git//key_vault_secrets_query | v8.42.3 |
+| <a name="module_checkout_prod_secrets"></a> [checkout\_prod\_secrets](#module\_checkout\_prod\_secrets) | git::https://github.com/pagopa/terraform-azurerm-v3.git//key_vault_secrets_query | v8.42.3 |
 | <a name="module_checkout_uat_secrets"></a> [checkout\_uat\_secrets](#module\_checkout\_uat\_secrets) | git::https://github.com/pagopa/terraform-azurerm-v3.git//key_vault_secrets_query | v8.42.3 |
 | <a name="module_letsencrypt_dev"></a> [letsencrypt\_dev](#module\_letsencrypt\_dev) | git::https://github.com/pagopa/terraform-azurerm-v3.git//letsencrypt_credential | v7.30.0 |
 | <a name="module_letsencrypt_prod"></a> [letsencrypt\_prod](#module\_letsencrypt\_prod) | git::https://github.com/pagopa/terraform-azurerm-v3.git//letsencrypt_credential | v7.30.0 |
@@ -42,6 +43,7 @@
 | Name | Type |
 |------|------|
 | [azuredevops_serviceendpoint_kubernetes.aks_dev](https://registry.terraform.io/providers/microsoft/azuredevops/latest/docs/resources/serviceendpoint_kubernetes) | resource |
+| [azuredevops_serviceendpoint_kubernetes.aks_prod](https://registry.terraform.io/providers/microsoft/azuredevops/latest/docs/resources/serviceendpoint_kubernetes) | resource |
 | [azuredevops_serviceendpoint_kubernetes.aks_uat](https://registry.terraform.io/providers/microsoft/azuredevops/latest/docs/resources/serviceendpoint_kubernetes) | resource |
 | [azurerm_key_vault_access_policy.DEV-CHECKOUT-TLS-CERT-SERVICE-CONN_kv_access_policy](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/key_vault_access_policy) | resource |
 | [azurerm_key_vault_access_policy.PROD-CHECKOUT-TLS-CERT-SERVICE-CONN_kv_access_policy](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/key_vault_access_policy) | resource |
