@@ -4,7 +4,7 @@
 #tfsec:ignore:GEN003
 module "DEV-TLS-CERT-EXTERNALS-SERVICE-CONN" {
   depends_on = [data.azuredevops_project.project]
-  source     = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_azurerm_limited?ref=v5.5.0"
+  source     = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_azurerm_limited?ref=v9.2.1"
   providers = {
     azurerm = azurerm.dev
   }
@@ -44,7 +44,7 @@ resource "azurerm_key_vault_access_policy" "DEV-TLS-CERT-EXTERNALS-SERVICE-CONN_
 #tfsec:ignore:GEN003
 module "UAT-TLS-CERT-EXTERNALS-SERVICE-CONN" {
   depends_on = [data.azuredevops_project.project]
-  source     = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_azurerm_limited?ref=v5.5.0"
+  source     = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_azurerm_limited?ref=v9.2.1"
   providers = {
     azurerm = azurerm.uat
   }
@@ -83,7 +83,7 @@ resource "azurerm_key_vault_access_policy" "UAT-TLS-CERT-EXTERNALS-SERVICE-CONN_
 #tfsec:ignore:GEN003
 module "PROD-TLS-CERT-EXTERNALS-SERVICE-CONN" {
   depends_on = [data.azuredevops_project.project]
-  source     = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_azurerm_limited?ref=v5.5.0"
+  source     = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_azurerm_limited?ref=v9.2.1"
   providers = {
     azurerm = azurerm.prod
   }

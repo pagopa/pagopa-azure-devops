@@ -1,10 +1,10 @@
-##
-## ⛩ Service connection 2 🔐 KV@DEV 🟢
-##
-##tfsec:ignore:GEN003
-#module "DEV-EXTERNALS-TLS-CERT-SERVICE-CONN" {
+# #
+# # ⛩ Service connection 2 🔐 KV@DEV 🟢
+# #
+# #tfsec:ignore:GEN003
+# module "DEV-EXTERNALS-TLS-CERT-SERVICE-CONN" {
 #  depends_on = [data.azuredevops_project.project]
-#  source     = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated?ref=v5.5.0"
+#   source     = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated?ref=v9.2.1"
 #  providers = {
 #    azurerm = azurerm.dev
 #  }
@@ -19,15 +19,15 @@
 #  location            = var.location
 #  resource_group_name = local.dev_key_vault_resource_group
 #
-#}
+# }
 #
-#data "azurerm_key_vault" "kv_dev" {
+# data "azurerm_key_vault" "kv_dev" {
 #  provider            = azurerm.dev
 #  name                = local.dev_key_vault_name
 #  resource_group_name = local.dev_key_vault_resource_group
-#}
+# }
 #
-#resource "azurerm_key_vault_access_policy" "DEV-EXTERNALS-TLS-CERT-SERVICE-CONN_kv_dev" {
+# resource "azurerm_key_vault_access_policy" "DEV-EXTERNALS-TLS-CERT-SERVICE-CONN_kv_dev" {
 #  provider = azurerm.dev
 #
 #  key_vault_id = data.azurerm_key_vault.kv_dev.id
@@ -35,15 +35,15 @@
 #  object_id    = module.DEV-EXTERNALS-TLS-CERT-SERVICE-CONN.service_principal_object_id
 #
 #  certificate_permissions = ["Get", "Import"]
-#}
+# }
 #
-##
-## ⛩ Service connection 2 🔐 KV@UAT 🟨
-##
-##tfsec:ignore:GEN003
-#module "UAT-EXTERNALS-TLS-CERT-SERVICE-CONN" {
+# #
+# # ⛩ Service connection 2 🔐 KV@UAT 🟨
+# #
+# #tfsec:ignore:GEN003
+# module "UAT-EXTERNALS-TLS-CERT-SERVICE-CONN" {
 #  depends_on = [data.azuredevops_project.project]
-#  source     = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated?ref=v5.5.0"
+#   source     = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated?ref=v9.2.1"
 #  providers = {
 #    azurerm = azurerm.uat
 #  }
@@ -58,30 +58,30 @@
 #
 #  location            = var.location
 #  resource_group_name = local.uat_key_vault_resource_group
-#}
+# }
 #
-#data "azurerm_key_vault" "kv_uat" {
+# data "azurerm_key_vault" "kv_uat" {
 #  provider            = azurerm.uat
 #  name                = local.uat_key_vault_name
 #  resource_group_name = local.uat_key_vault_resource_group
-#}
+# }
 #
-#resource "azurerm_key_vault_access_policy" "UAT-EXTERNALS-TLS-CERT-SERVICE-CONN_kv_uat" {
+# resource "azurerm_key_vault_access_policy" "UAT-EXTERNALS-TLS-CERT-SERVICE-CONN_kv_uat" {
 #  provider     = azurerm.uat
 #  key_vault_id = data.azurerm_key_vault.kv_uat.id
 #  tenant_id    = data.azurerm_client_config.current.tenant_id
 #  object_id    = module.UAT-EXTERNALS-TLS-CERT-SERVICE-CONN.service_principal_object_id
 #
 #  certificate_permissions = ["Get", "Import"]
-#}
+# }
 #
-##
-## ⛩ Service connection 2 🔐 KV@PROD 🛑
-##
-##tfsec:ignore:GEN003
-#module "PROD-EXTERNALS-TLS-CERT-SERVICE-CONN" {
+# #
+# # ⛩ Service connection 2 🔐 KV@PROD 🛑
+# #
+# #tfsec:ignore:GEN003
+# module "PROD-EXTERNALS-TLS-CERT-SERVICE-CONN" {
 #  depends_on = [data.azuredevops_project.project]
-#  source     = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated?ref=v5.5.0"
+#   source     = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated?ref=v9.2.1"
 #  providers = {
 #    azurerm = azurerm.prod
 #  }
@@ -95,19 +95,19 @@
 #
 #  location            = var.location
 #  resource_group_name = local.prod_key_vault_resource_group
-#}
+# }
 #
-#data "azurerm_key_vault" "kv_prod" {
+# data "azurerm_key_vault" "kv_prod" {
 #  provider            = azurerm.prod
 #  name                = local.prod_key_vault_name
 #  resource_group_name = local.prod_key_vault_resource_group
-#}
+# }
 #
-#resource "azurerm_key_vault_access_policy" "PROD-EXTERNALS-TLS-CERT-SERVICE-CONN_kv_prod" {
+# resource "azurerm_key_vault_access_policy" "PROD-EXTERNALS-TLS-CERT-SERVICE-CONN_kv_prod" {
 #  provider     = azurerm.prod
 #  key_vault_id = data.azurerm_key_vault.kv_prod.id
 #  tenant_id    = data.azurerm_client_config.current.tenant_id
 #  object_id    = module.PROD-EXTERNALS-TLS-CERT-SERVICE-CONN.service_principal_object_id
 #
 #  certificate_permissions = ["Get", "Import"]
-#}
+# }
