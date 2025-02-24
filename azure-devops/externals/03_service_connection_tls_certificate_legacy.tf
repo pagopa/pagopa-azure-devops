@@ -22,12 +22,6 @@ module "DEV-TLS-CERT-EXTERNALS-SERVICE-CONN" {
   credential_key_vault_resource_group = local.dev_key_vault_resource_group
 }
 
-data "azurerm_key_vault" "kv_dev" {
-  provider            = azurerm.dev
-  name                = local.dev_key_vault_name
-  resource_group_name = local.dev_key_vault_resource_group
-}
-
 resource "azurerm_key_vault_access_policy" "DEV-TLS-CERT-EXTERNALS-SERVICE-CONN_kv_dev" {
   provider = azurerm.dev
 
@@ -62,12 +56,6 @@ module "UAT-TLS-CERT-EXTERNALS-SERVICE-CONN" {
   credential_key_vault_resource_group = local.uat_key_vault_resource_group
 }
 
-data "azurerm_key_vault" "kv_uat" {
-  provider            = azurerm.uat
-  name                = local.uat_key_vault_name
-  resource_group_name = local.uat_key_vault_resource_group
-}
-
 resource "azurerm_key_vault_access_policy" "UAT-TLS-CERT-EXTERNALS-SERVICE-CONN_kv_uat" {
   provider     = azurerm.uat
   key_vault_id = data.azurerm_key_vault.kv_uat.id
@@ -99,12 +87,6 @@ module "PROD-TLS-CERT-EXTERNALS-SERVICE-CONN" {
   credential_subcription              = var.prod_subscription_name
   credential_key_vault_name           = local.prod_key_vault_name
   credential_key_vault_resource_group = local.prod_key_vault_resource_group
-}
-
-data "azurerm_key_vault" "kv_prod" {
-  provider            = azurerm.prod
-  name                = local.prod_key_vault_name
-  resource_group_name = local.prod_key_vault_resource_group
 }
 
 resource "azurerm_key_vault_access_policy" "PROD-TLS-CERT-EXTERNALS-SERVICE-CONN_kv_prod" {
