@@ -36,14 +36,14 @@ locals {
     github_connection = data.azuredevops_serviceendpoint_github.github_rw.service_endpoint_name
 
     # acr section
-    k8s_image_repository_name            = replace(var.pagopa-checkout-identity-provider-mock.repository.name, "-", "")
-    dev_container_registry_service_conn  = data.azuredevops_serviceendpoint_azurecr.dev_weu_workload_identity.id
-    dev_container_registry_name          = data.azuredevops_serviceendpoint_azurecr.dev_weu_workload_identity.service_endpoint_name
+    k8s_image_repository_name           = replace(var.pagopa-checkout-identity-provider-mock.repository.name, "-", "")
+    dev_container_registry_service_conn = data.azuredevops_serviceendpoint_azurecr.dev_weu_workload_identity.id
+    dev_container_registry_name         = data.azuredevops_serviceendpoint_azurecr.dev_weu_workload_identity.service_endpoint_name
 
     # aks section
-    dev_kubernetes_service_conn  = azuredevops_serviceendpoint_kubernetes.aks_dev.id
+    dev_kubernetes_service_conn = azuredevops_serviceendpoint_kubernetes.aks_dev.id
 
-    dev_container_namespace  = "pagopadcommonacr.azurecr.io"
+    dev_container_namespace = "pagopadcommonacr.azurecr.io"
   }
   # deploy secrets
   pagopa-checkout-identity-provider-mock-variables_secret_deploy = {
