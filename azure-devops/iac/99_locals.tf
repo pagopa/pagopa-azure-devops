@@ -49,7 +49,7 @@ locals {
         }
       }
     },
-    "disaster-recovery": {
+    "disaster-recovery" : {
       pipeline_prefix : "disaster-recovery",
       pipeline_path : "disaster-recovery",
       repository : {
