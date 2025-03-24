@@ -1,12 +1,14 @@
-module "disaster_recovery" {
+module "generic_pipelines" {
   source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_generic?ref=v7.1.0"
 
+  for_each = local.generic_pipelines
+
   project_id                   = azuredevops_project.project.id
-  repository                   = var.disaster_recovery.repository
+  repository                   = merge(local.default_repository, each.value.repository)
   github_service_connection_id = azuredevops_serviceendpoint_github.azure-devops-github-pr.id
-  path                         = "disaster-recovery"
-  pipeline_name                = "disaster-recovery"
-  pipeline_yml_filename        = "disaster-recovery.yml"
+  path                         = each.value.pipeline_path
+  pipeline_name                = each.key
+  pipeline_yml_filename        = each.value.repository.yml_file_name
 
   ci_trigger_use_yaml = false
 
@@ -30,4 +32,5 @@ module "disaster_recovery" {
     module.PROD-AZURERM-IAC-DEPLOY-SERVICE-CONN.service_endpoint_id,
   ]
 
+  schedules = lookup(each.value, "schedules", null)
 }
