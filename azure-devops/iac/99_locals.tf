@@ -16,8 +16,8 @@ locals {
     {
       name : "checkout",
       envs : ["d", "u", "p"],
-      kv_name : "",
-      rg_name : "",
+      kv_name : "pagopa-%s-checkout-kv",
+      rg_name : "pagopa-%s-checkout-sec-rg",
       code_review : true,
       deploy : true,
       pipeline_prefix : "checkout",
