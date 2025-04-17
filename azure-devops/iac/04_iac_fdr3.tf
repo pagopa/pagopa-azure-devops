@@ -8,7 +8,7 @@ variable "fdr3_iac" {
       yml_prefix_name = "fdr-fase3"
     }
     pipeline = {
-      path                 = "fdr3-infrastructure"
+      path = "fdr3-infrastructure"
       db_migration = {
         name                  = "fdr-fase3-db-migration-pipelines"
         pipeline_yml_filename = "fdr-fase3-db-migration-pipelines.yml"

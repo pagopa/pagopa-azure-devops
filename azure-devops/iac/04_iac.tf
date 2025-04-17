@@ -116,7 +116,7 @@ module "iac_deploy" {
       tf_uat_aks_azure_devops_sa_token = base64decode(module.uat_secrets[each.value.name].values["pagopa-u-weu-uat-aks-azure-devops-sa-token"].value),
     } : {},
     contains(each.value.envs, "p") && try(each.value.kv_name, "") != "" ? {
-      tf_prod_aks_apiserver_url         = module.prod_secrets[each.value.name].values["pagopa-p-weu-prod-aks-azure-devops-sa-cacrt"].value,
+      tf_prod_aks_apiserver_url         = module.prod_secrets[each.value.name].values["pagopa-p-weu-prod-aks-apiserver-url"].value,
       tf_prod_aks_azure_devops_sa_cacrt = module.prod_secrets[each.value.name].values["pagopa-p-weu-prod-aks-azure-devops-sa-cacrt"].value,
       tf_prod_aks_azure_devops_sa_token = base64decode(module.prod_secrets[each.value.name].values["pagopa-p-weu-prod-aks-azure-devops-sa-token"].value),
     } : {},
