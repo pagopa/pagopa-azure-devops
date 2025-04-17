@@ -10,6 +10,13 @@ variable "pagopa-ecommerce-reporting-functions" {
     pipeline = {
       enable_code_review = true
       enable_deploy      = true
+      sonarcloud = {
+        # TODO azure devops terraform provider does not support SonarCloud service endpoint
+        service_connection = "SONARCLOUD-SERVICE-CONN"
+        org                = "pagopa"
+        project_key        = "pagopa_pagopa-ecommerce-reporting-functions"
+        project_name       = "pagopa-ecommerce-reporting-functions"
+      }
     }
   }
 }
@@ -25,19 +32,30 @@ locals {
   }
   # code_review vars
   pagopa-ecommerce-reporting-functions-variables_code_review = {
+    sonarcloud_service_conn = var.pagopa-ecommerce-reporting-functions.pipeline.sonarcloud.service_connection
+    sonarcloud_org          = var.pagopa-ecommerce-reporting-functions.pipeline.sonarcloud.org
+    sonarcloud_project_key  = var.pagopa-ecommerce-reporting-functions.pipeline.sonarcloud.project_key
+    sonarcloud_project_name = var.pagopa-ecommerce-reporting-functions.pipeline.sonarcloud.project_name
   }
   # code_review secrets
   pagopa-ecommerce-reporting-functions-variables_secret_code_review = {
-
   }
   # deploy vars
   pagopa-ecommerce-reporting-functions-variables_deploy = {
-    git_mail                = module.secrets.values["azure-devops-github-EMAIL"].value
-    git_username            = module.secrets.values["azure-devops-github-USERNAME"].value
-    github_connection       = data.azuredevops_serviceendpoint_github.github_rw.service_endpoint_name
-    dev_azure_subscription  = data.azuredevops_serviceendpoint_azurerm.dev.service_endpoint_name
-    uat_azure_subscription  = data.azuredevops_serviceendpoint_azurerm.uat.service_endpoint_name
-    prod_azure_subscription = data.azuredevops_serviceendpoint_azurerm.prod.service_endpoint_name
+    git_mail                         = module.secrets.values["azure-devops-github-EMAIL"].value
+    git_username                     = module.secrets.values["azure-devops-github-USERNAME"].value
+    github_connection                = data.azuredevops_serviceendpoint_github.github_rw.service_endpoint_name
+    dev_azure_subscription           = data.azuredevops_serviceendpoint_azurerm.dev.service_endpoint_name
+    dev_web_app_name                 = "pagopa-d-fn-ecommerce-reporting"
+    dev_web_app_resource_group_name  = "pagopa-d-ecommerce-reporting-rg"
+    dev_container_registry_service_conn  = data.azuredevops_serviceendpoint_azurecr.dev_weu_workload_identity.id
+    dev_container_registry_name          = data.azuredevops_serviceendpoint_azurecr.dev_weu_workload_identity.service_endpoint_name
+    uat_azure_subscription           = data.azuredevops_serviceendpoint_azurerm.uat.service_endpoint_name
+    uat_web_app_name                 = "pagopa-d-fn-ecommerce-reporting"
+    uat_web_app_resource_group_name  = "pagopa-d-ecommerce-reporting-rg"
+    prod_azure_subscription          = data.azuredevops_serviceendpoint_azurerm.prod.service_endpoint_name
+    prod_web_app_name                = "pagopa-d-fn-ecommerce-reporting"
+    prod_web_app_resource_group_name = "pagopa-d-ecommerce-reporting-rg"
   }
   # deploy secrets
   pagopa-ecommerce-reporting-functions-variables_secret_deploy = {
