@@ -42,23 +42,33 @@ locals {
   }
   # deploy vars
   pagopa-ecommerce-reporting-functions-variables_deploy = {
-    git_mail                         = module.secrets.values["azure-devops-github-EMAIL"].value
-    git_username                     = module.secrets.values["azure-devops-github-USERNAME"].value
-    github_connection                = data.azuredevops_serviceendpoint_github.github_rw.service_endpoint_name
-    dev_azure_subscription           = data.azuredevops_serviceendpoint_azurerm.dev.service_endpoint_name
-    dev_web_app_name                 = "pagopa-d-fn-ecommerce-reporting"
-    dev_web_app_resource_group_name  = "pagopa-d-ecommerce-reporting-rg"
+
+    github_connection = data.azuredevops_serviceendpoint_github.github_rw.service_endpoint_name
+
+    # acr section
+    k8s_image_repository_name            = replace(var.pagopa-ecommerce-reporting-functions.repository.name, "-", "")
     dev_container_registry_service_conn  = data.azuredevops_serviceendpoint_azurecr.dev_weu_workload_identity.id
     dev_container_registry_name          = data.azuredevops_serviceendpoint_azurecr.dev_weu_workload_identity.service_endpoint_name
-    uat_azure_subscription           = data.azuredevops_serviceendpoint_azurerm.uat.service_endpoint_name
-    uat_web_app_name                 = "pagopa-d-fn-ecommerce-reporting"
-    uat_web_app_resource_group_name  = "pagopa-d-ecommerce-reporting-rg"
-    prod_azure_subscription          = data.azuredevops_serviceendpoint_azurerm.prod.service_endpoint_name
-    prod_web_app_name                = "pagopa-d-fn-ecommerce-reporting"
-    prod_web_app_resource_group_name = "pagopa-d-ecommerce-reporting-rg"
+    uat_container_registry_service_conn  = data.azuredevops_serviceendpoint_azurecr.uat_weu_workload_identity.id
+    uat_container_registry_name          = data.azuredevops_serviceendpoint_azurecr.uat_weu_workload_identity.service_endpoint_name
+    prod_container_registry_service_conn = data.azuredevops_serviceendpoint_azurecr.prod_weu_workload_identity.id
+    prod_container_registry_name         = data.azuredevops_serviceendpoint_azurecr.prod_weu_workload_identity.service_endpoint_name
+
+    # aks section
+    dev_kubernetes_service_conn  = azuredevops_serviceendpoint_kubernetes.aks_dev.id
+    uat_kubernetes_service_conn  = azuredevops_serviceendpoint_kubernetes.aks_uat.id
+    prod_kubernetes_service_conn = azuredevops_serviceendpoint_kubernetes.aks_prod.id
+
+    dev_container_namespace  = "pagopadcommonacr.azurecr.io"
+    uat_container_namespace  = "pagopaucommonacr.azurecr.io"
+    prod_container_namespace = "pagopapcommonacr.azurecr.io"
+
   }
   # deploy secrets
   pagopa-ecommerce-reporting-functions-variables_secret_deploy = {
+    tenant_id    = data.azurerm_client_config.current.tenant_id
+    git_mail     = module.secrets.values["azure-devops-github-EMAIL"].value
+    git_username = module.secrets.values["azure-devops-github-USERNAME"].value
 
   }
 }
