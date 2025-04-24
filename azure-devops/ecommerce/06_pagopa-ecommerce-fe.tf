@@ -14,8 +14,8 @@ variable "pagopa-ecommerce-fe" {
         # TODO azure devops terraform provider does not support SonarCloud service endpoint
         service_connection = "SONARCLOUD-SERVICE-CONN"
         org                = "pagopa"
-        project_key        = "pagopa_pagopa-wallet-fe"
-        project_name       = "pagopa-wallet-fe"
+        project_key        = "pagopa_pagopa-ecommerce-fe"
+        project_name       = "pagopa-ecommerce-fe"
       }
     }
   }
