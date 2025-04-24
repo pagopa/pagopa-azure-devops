@@ -12,9 +12,7 @@ module "crusc8_dev_secrets" {
   secrets = [
     "pagopa-d-itn-dev-aks-azure-devops-sa-token",
     "pagopa-d-itn-dev-aks-azure-devops-sa-cacrt",
-    "pagopa-d-itn-dev-aks-apiserver-url",
-    "apikey-gps-mbd-integration-test",
-    "apikey-mbd-integration-test"
+    "pagopa-d-itn-dev-aks-apiserver-url"
   ]
 }
 
@@ -68,9 +66,7 @@ module "general_dev_secrets" {
   resource_group = "pagopa-d-sec-rg"
   key_vault_name = "pagopa-d-kv"
 
-  secrets = [
-    "integration-test-subkey",
-  ]
+  secrets = []
 }
 
 # module "general_uat_secrets" {
