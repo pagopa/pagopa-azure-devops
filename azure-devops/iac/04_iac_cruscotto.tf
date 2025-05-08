@@ -1,3 +1,8 @@
+##################################################
+#         DO NOT COPY-PASTE THIS FILE
+# use the new structured way to define the iac pipelines
+# have a look at README.md
+##################################################
 variable "crusc8_iac" {
   default = {
     repository = {
