@@ -55,6 +55,13 @@ locals {
       repository : {
         yml_file_name : "disaster-recovery.yml"
       }
+    },
+    "performance-test-setup" : {
+      pipeline_prefix : "performance-test-setup",
+      pipeline_path : "performance-test-setup",
+      repository : {
+        yml_file_name : "performance-test-setup.yml"
+      }
     }
   }
 }
