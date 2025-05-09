@@ -91,6 +91,10 @@ locals {
     uat_container_namespace  = "pagopaucommonacr.azurecr.io"
     prod_container_namespace = "pagopapcommonacr.azurecr.io"
 
+    azure_insights_enabled_dev = true
+    azure_insights_enabled_uat = true
+    azure_insights_enabled_prod = true
+
     TF_APPINSIGHTS_SERVICE_CONN_DEV = module.DEV-APPINSIGHTS-SERVICE-CONN.service_endpoint_name
     TF_APPINSIGHTS_RESOURCE_ID_DEV  = data.azurerm_application_insights.application_insights_dev.id
 
