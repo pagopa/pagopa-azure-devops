@@ -1,21 +1,21 @@
 variable "pagopa-jwt-issuer-service" {
   default = {
     repository = {
-      organization    = "pagopa"
-      name            = "pagopa-jwt-issuer-service" #repo template that contains code to be deployed to both payment wallet and ecommerce domains
-      branch_name     = "refs/heads/main"
-      pipelines_path  = ".devops"
-      
+      organization   = "pagopa"
+      name           = "pagopa-jwt-issuer-service" #repo template that contains code to be deployed to both payment wallet and ecommerce domains
+      branch_name    = "refs/heads/main"
+      pipelines_path = ".devops"
+
     }
     pipeline = {
-      enable_deploy      = true
+      enable_deploy = true
     }
   }
 }
 
 locals {
 
-   pagopa-jwt-issuer-service-deploy-repository-conf = {
+  pagopa-jwt-issuer-service-deploy-repository-conf = {
     yml_prefix_name = "pay-wallet"
   }
 
@@ -63,8 +63,8 @@ module "pagopa-jwt-issuer-service_deploy" {
   source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy?ref=v4.2.1"
   count  = var.pagopa-jwt-issuer-service.pipeline.enable_deploy == true ? 1 : 0
 
-  project_id                   = data.azuredevops_project.project.id
-  repository                   = merge(
+  project_id = data.azuredevops_project.project.id
+  repository = merge(
     var.pagopa-jwt-issuer-service.repository,
     local.pagopa-jwt-issuer-service-deploy-repository-conf
   )
