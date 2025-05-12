@@ -1,11 +1,5 @@
 variable "tlscert-dev-api-dev-platform-pagopa-it" {
   default = {
-    repository = {
-      organization   = "pagopa"
-      name           = "le-azure-acme-tiny"
-      branch_name    = "refs/heads/master"
-      pipelines_path = "."
-    }
     pipeline = {
       enable_tls_cert         = true
       path                    = "TLS-Certificates\\DEV"
@@ -47,10 +41,11 @@ module "tlscert-dev-api-dev-platform-pagopa-it-cert_az" {
   count  = var.tlscert-dev-api-dev-platform-pagopa-it.pipeline.enable_tls_cert == true ? 1 : 0
 
   project_id = azuredevops_project.project.id
-  repository = var.tlscert-dev-api-dev-platform-pagopa-it.repository
+  repository = local.tlscert_repository
+
   #tfsec:ignore:GEN003
   path                         = var.tlscert-dev-api-dev-platform-pagopa-it.pipeline.path
-  github_service_connection_id = azuredevops_serviceendpoint_github.azure-devops-github-rw.id
+  github_service_connection_id = azuredevops_serviceendpoint_github.azure-devops-github-ro-le-acme.id
 
   dns_record_name                      = var.tlscert-dev-api-dev-platform-pagopa-it.pipeline.dns_record_name
   dns_zone_name                        = var.tlscert-dev-api-dev-platform-pagopa-it.pipeline.dns_zone_name
@@ -59,7 +54,6 @@ module "tlscert-dev-api-dev-platform-pagopa-it-cert_az" {
   subscription_name                    = local.tlscert-dev-api-dev-platform-pagopa-it.subscription_name
   subscription_id                      = local.tlscert-dev-api-dev-platform-pagopa-it.subscription_id
   managed_identity_resource_group_name = local.dev_identity_rg_name
-
 
   location                            = var.location
   credential_key_vault_name           = local.dev_key_vault_name
@@ -73,6 +67,7 @@ module "tlscert-dev-api-dev-platform-pagopa-it-cert_az" {
   variables_secret = merge(
     var.tlscert-dev-api-dev-platform-pagopa-it.pipeline.variables_secret,
     local.tlscert-dev-api-dev-platform-pagopa-it-variables_secret,
+    local.cert_diff_variables
   )
 
   service_connection_ids_authorization = [
@@ -86,8 +81,9 @@ module "tlscert-dev-api-dev-platform-pagopa-it-cert_az" {
     start_minutes              = 0
     time_zone                  = "(UTC+01:00) Amsterdam, Berlin, Bern, Rome, Stockholm, Vienna"
     branch_filter = {
-      include = ["master"]
+      include = [local.tlscert_repository.branch_name]
       exclude = []
     }
   }
+  cert_diff_pipeline_enabled = true
 }
