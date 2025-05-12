@@ -9,6 +9,7 @@ variable "pagopa-jwt-issuer-service" {
     }
     pipeline = {
       enable_deploy = true
+      #for code review pipeline definition see 06_pagopa-ecommerce-jwt-issuer-service.tf file
     }
   }
 }

@@ -2,7 +2,7 @@ variable "pagopa-jwt-issuer-service" {
   default = {
     repository = {
       organization   = "pagopa"
-      name           = "pagopa-jwt-issuer-service"
+      name           = "pagopa-jwt-issuer-service" #repo template that contains code to be deployed to both payment wallet and ecommerce domains
       branch_name    = "refs/heads/main"
       pipelines_path = ".devops"
     }
