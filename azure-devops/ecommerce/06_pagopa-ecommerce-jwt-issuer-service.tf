@@ -27,7 +27,8 @@ locals {
   }
 
   pagopa-jwt-issuer-service-deploy-repository-conf = {
-    yml_prefix_name = "ecommerce"
+    yml_prefix_name      = "ecommerce",
+    pipeline_name_prefix = "pagopa-ecommerce-jwt-issuer-service"
   }
 
   # global vars

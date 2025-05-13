@@ -5,7 +5,6 @@ variable "pagopa-jwt-issuer-service" {
       name           = "pagopa-jwt-issuer-service" #repo template that contains code to be deployed to both payment wallet and ecommerce domains
       branch_name    = "refs/heads/main"
       pipelines_path = ".devops"
-
     }
     pipeline = {
       enable_deploy = true
@@ -17,7 +16,8 @@ variable "pagopa-jwt-issuer-service" {
 locals {
 
   pagopa-jwt-issuer-service-deploy-repository-conf = {
-    yml_prefix_name = "pay-wallet"
+    yml_prefix_name      = "pay-wallet",
+    pipeline_name_prefix = "pagopa-pay-wallet-jwt-issuer-service"
   }
 
   # global vars
