@@ -16,8 +16,7 @@ variable "pagopa-jwt-issuer-service" {
 locals {
 
   pagopa-jwt-issuer-service-deploy-repository-conf = {
-    yml_prefix_name      = "pay-wallet",
-    pipeline_name_prefix = "pagopa-pay-wallet-jwt-issuer-service"
+    yml_prefix_name = "pay-wallet"
   }
 
   # global vars
@@ -69,6 +68,7 @@ module "pagopa-jwt-issuer-service_deploy" {
     var.pagopa-jwt-issuer-service.repository,
     local.pagopa-jwt-issuer-service-deploy-repository-conf
   )
+  pipeline_name_prefix         = "pagopa-pay-wallet-jwt-issuer-service"
   github_service_connection_id = data.azuredevops_serviceendpoint_github.github_rw.service_endpoint_id
   path                         = "${local.domain}\\pagopa-jwt-issuer-service"
 
