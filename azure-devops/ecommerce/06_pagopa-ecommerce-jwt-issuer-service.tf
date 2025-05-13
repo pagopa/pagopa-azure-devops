@@ -118,6 +118,7 @@ module "pagopa-jwt-issuer-service_deploy" {
     var.pagopa-jwt-issuer-service.repository,
     local.pagopa-jwt-issuer-service-deploy-repository-conf
   )
+  pipeline_name_prefix         = "pagopa-ecommerce-jwt-issuer-service"
   github_service_connection_id = data.azuredevops_serviceendpoint_github.github_rw.service_endpoint_id
 
   path = "${local.domain}\\pagopa-jwt-issuer-service"

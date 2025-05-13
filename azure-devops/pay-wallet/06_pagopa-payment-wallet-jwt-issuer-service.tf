@@ -5,7 +5,6 @@ variable "pagopa-jwt-issuer-service" {
       name           = "pagopa-jwt-issuer-service" #repo template that contains code to be deployed to both payment wallet and ecommerce domains
       branch_name    = "refs/heads/main"
       pipelines_path = ".devops"
-
     }
     pipeline = {
       enable_deploy = true
@@ -69,6 +68,7 @@ module "pagopa-jwt-issuer-service_deploy" {
     var.pagopa-jwt-issuer-service.repository,
     local.pagopa-jwt-issuer-service-deploy-repository-conf
   )
+  pipeline_name_prefix         = "pagopa-pay-wallet-jwt-issuer-service"
   github_service_connection_id = data.azuredevops_serviceendpoint_github.github_rw.service_endpoint_id
   path                         = "${local.domain}\\pagopa-jwt-issuer-service"
 
