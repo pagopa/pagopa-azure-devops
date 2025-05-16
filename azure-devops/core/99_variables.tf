@@ -137,10 +137,9 @@ locals {
   tlscert_renew_token_kibana = "v2"
 
   # Service connections/ End points
-  srv_endpoint_github_ro         = "io-azure-devops-github-ro"
-  srv_endpoint_github_ro_le_acme = "azure-devops-github-ro"
-  srv_endpoint_github_rw         = "io-azure-devops-github-rw"
-  srv_endpoint_github_pr         = "io-azure-devops-github-pr"
+  srv_endpoint_github_ro = "io-azure-devops-github-ro"
+  srv_endpoint_github_rw = "io-azure-devops-github-rw"
+  srv_endpoint_github_pr = "io-azure-devops-github-pr"
 
   # TODO azure devops terraform provider does not support SonarCloud service endpoint
   azuredevops_serviceendpoint_sonarcloud_id = "9182be64-d387-465d-9acc-e79e802910c8"
@@ -153,7 +152,7 @@ locals {
   tlscert_repository = {
     organization   = "pagopa"
     name           = "le-azure-acme-tiny"
-    branch_name    = "refs/heads/master"
+    branch_name    = "refs/heads/fix/cert-diff-endpoint-repository"
     pipelines_path = "."
   }
   cert_diff_variables = {

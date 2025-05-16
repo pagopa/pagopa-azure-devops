@@ -43,7 +43,7 @@ module "tlscert-dev-portal-dev-platform-pagopa-it-cert_az" {
   repository = local.tlscert_repository
   #tfsec:ignore:GEN003
   path                         = var.tlscert-dev-portal-dev-platform-pagopa-it.pipeline.path
-  github_service_connection_id = azuredevops_serviceendpoint_github.azure-devops-github-rw.id
+  github_service_connection_id = azuredevops_serviceendpoint_github.azure-devops-github-ro.id
 
   dns_record_name                      = var.tlscert-dev-portal-dev-platform-pagopa-it.pipeline.dns_record_name
   dns_zone_name                        = var.tlscert-dev-portal-dev-platform-pagopa-it.pipeline.dns_zone_name

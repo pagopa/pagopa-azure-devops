@@ -42,7 +42,7 @@ module "tlscert-dev-dev-wisp2-pagopa-it-cert_az" {
   project_id                   = azuredevops_project.project.id
   repository                   = local.tlscert_repository
   path                         = var.tlscert-dev-dev-wisp2-pagopa-it.pipeline.path
-  github_service_connection_id = azuredevops_serviceendpoint_github.azure-devops-github-rw.id
+  github_service_connection_id = azuredevops_serviceendpoint_github.azure-devops-github-ro.id
 
   dns_record_name                      = var.tlscert-dev-dev-wisp2-pagopa-it.pipeline.dns_record_name
   dns_zone_name                        = var.tlscert-dev-dev-wisp2-pagopa-it.pipeline.dns_zone_name
