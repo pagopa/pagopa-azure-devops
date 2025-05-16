@@ -34,7 +34,8 @@ resource "azurerm_key_vault_access_policy" "DEV-TLS-CERT-SERVICE-CONN_kv_dev" {
   tenant_id    = data.azurerm_client_config.current.tenant_id
   object_id    = module.DEV-TLS-CERT-SERVICE-CONN.service_principal_object_id
 
-  certificate_permissions = ["Get", "Import"]
+  certificate_permissions = ["Get", "Import", "Update"]
+  secret_permissions      = ["Get"]
 }
 
 #
