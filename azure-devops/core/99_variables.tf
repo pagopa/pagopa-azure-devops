@@ -143,6 +143,24 @@ locals {
 
   # TODO azure devops terraform provider does not support SonarCloud service endpoint
   azuredevops_serviceendpoint_sonarcloud_id = "9182be64-d387-465d-9acc-e79e802910c8"
+
+  # APPINSIGHTS
+  dev_app_insight_monitoring_connection_string = module.pagopa_core_dev_secrets.values["appinsights-monitoring-connection-string"].value
+
+
+  # TLS CERT + TLS CERT DIFF
+  tlscert_repository = {
+    organization   = "pagopa"
+    name           = "le-azure-acme-tiny"
+    branch_name    = "refs/heads/master"
+    pipelines_path = "."
+  }
+  cert_diff_variables = {
+    RECEIVER_EMAIL                = module.secrets_core_prod.values["tls-cert-diff-receiver-emails"].value
+    SENDER_EMAIL                  = module.secrets_core_prod.values["tls-cert-diff-sender-email"].value
+    APP_PASS                      = module.secrets_core_prod.values["tls-cert-diff-sender-email-app-pass"].value
+    APP_INSIGHT_CONNECTION_STRING = local.dev_app_insight_monitoring_connection_string
+  }
 }
 
 variable "location" {
