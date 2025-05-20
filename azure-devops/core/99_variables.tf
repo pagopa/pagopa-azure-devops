@@ -152,7 +152,7 @@ locals {
   tlscert_repository = {
     organization   = "pagopa"
     name           = "le-azure-acme-tiny"
-    branch_name    = "refs/heads/fix/cert-diff-endpoint-repository"
+    branch_name    = "refs/heads/master"
     pipelines_path = "."
   }
   cert_diff_variables = {
