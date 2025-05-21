@@ -5,7 +5,7 @@ locals {
       envs : ["d", "u", "p"],
       kv_name : "",
       rg_name : "",
-      region: "weu"
+      region : "weu"
       code_review : true,
       deploy : false,
       pipeline_prefix : "next-core-secrets",
@@ -19,7 +19,7 @@ locals {
       envs : ["d", "u", "p"],
       kv_name : "pagopa-%s-checkout-kv",
       rg_name : "pagopa-%s-checkout-sec-rg",
-      region: "weu"
+      region : "weu"
       code_review : true,
       deploy : true,
       pipeline_prefix : "checkout",
@@ -33,7 +33,7 @@ locals {
       envs : ["d"],
       kv_name : "pagopa-%s-itn-crusc8-kv",
       rg_name : "pagopa-%s-itn-crusc8-sec-rg",
-      region: "itn"
+      region : "itn"
       code_review : true,
       deploy : true,
       pipeline_prefix : "cruscotto",
