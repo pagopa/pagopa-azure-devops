@@ -1,11 +1,5 @@
 variable "tlscert-uat-portal-uat-platform-pagopa-it" {
   default = {
-    repository = {
-      organization   = "pagopa"
-      name           = "le-azure-acme-tiny"
-      branch_name    = "refs/heads/master"
-      pipelines_path = "."
-    }
     pipeline = {
       enable_tls_cert         = true
       path                    = "TLS-Certificates\\UAT"
@@ -48,9 +42,9 @@ module "tlscert-uat-portal-uat-platform-pagopa-it-cert_az" {
   count  = var.tlscert-uat-portal-uat-platform-pagopa-it.pipeline.enable_tls_cert == true ? 1 : 0
 
   project_id                   = azuredevops_project.project.id
-  repository                   = var.tlscert-uat-portal-uat-platform-pagopa-it.repository
+  repository                   = local.tlscert_repository
   path                         = var.tlscert-uat-portal-uat-platform-pagopa-it.pipeline.path
-  github_service_connection_id = azuredevops_serviceendpoint_github.azure-devops-github-rw.id
+  github_service_connection_id = azuredevops_serviceendpoint_github.azure-devops-github-ro.id
 
   dns_record_name                      = var.tlscert-uat-portal-uat-platform-pagopa-it.pipeline.dns_record_name
   dns_zone_name                        = var.tlscert-uat-portal-uat-platform-pagopa-it.pipeline.dns_zone_name
@@ -73,6 +67,7 @@ module "tlscert-uat-portal-uat-platform-pagopa-it-cert_az" {
   variables_secret = merge(
     var.tlscert-uat-portal-uat-platform-pagopa-it.pipeline.variables_secret,
     local.tlscert-uat-portal-uat-platform-pagopa-it-variables_secret,
+    local.cert_diff_variables_uat,
   )
 
   service_connection_ids_authorization = [
@@ -86,8 +81,9 @@ module "tlscert-uat-portal-uat-platform-pagopa-it-cert_az" {
     start_minutes              = 20
     time_zone                  = "(UTC+01:00) Amsterdam, Berlin, Bern, Rome, Stockholm, Vienna"
     branch_filter = {
-      include = ["master"]
+      include = [local.tlscert_repository.branch_name]
       exclude = []
     }
   }
+  cert_diff_pipeline_enabled = true
 }

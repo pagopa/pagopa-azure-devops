@@ -38,6 +38,9 @@ module "pagopa_core_dev_secrets" {
   key_vault_name = local.dev_key_vault_name
 
   secrets = [
+    "tls-cert-diff-receiver-emails",
+    "tls-cert-diff-sender-email",
+    "tls-cert-diff-sender-email-app-pass",
     "appinsights-monitoring-connection-string"
   ]
 }
