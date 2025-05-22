@@ -57,19 +57,19 @@ module "iac_code_review" {
   variables = merge(
     local.base_iac_variables,
     contains(each.value.envs, "d") && try(each.value.kv_name, "") != "" ? {
-      tf_dev_aks_apiserver_url         = module.dev_secrets[each.value.name].values["pagopa-d-weu-dev-aks-apiserver-url"].value,
-      tf_dev_aks_azure_devops_sa_cacrt = module.dev_secrets[each.value.name].values["pagopa-d-weu-dev-aks-azure-devops-sa-cacrt"].value,
-      tf_dev_aks_azure_devops_sa_token = base64decode(module.dev_secrets[each.value.name].values["pagopa-d-weu-dev-aks-azure-devops-sa-token"].value),
+      tf_dev_aks_apiserver_url         = module.dev_secrets[each.value.name].values["pagopa-d-${each.value.region}-dev-aks-apiserver-url"].value,
+      tf_dev_aks_azure_devops_sa_cacrt = module.dev_secrets[each.value.name].values["pagopa-d-${each.value.region}-dev-aks-azure-devops-sa-cacrt"].value,
+      tf_dev_aks_azure_devops_sa_token = base64decode(module.dev_secrets[each.value.name].values["pagopa-d-${each.value.region}-dev-aks-azure-devops-sa-token"].value),
     } : {},
     contains(each.value.envs, "u") && try(each.value.kv_name, "") != "" ? {
-      tf_uat_aks_apiserver_url         = module.uat_secrets[each.value.name].values["pagopa-u-weu-uat-aks-apiserver-url"].value,
-      tf_uat_aks_azure_devops_sa_cacrt = module.uat_secrets[each.value.name].values["pagopa-u-weu-uat-aks-azure-devops-sa-cacrt"].value,
-      tf_uat_aks_azure_devops_sa_token = base64decode(module.uat_secrets[each.value.name].values["pagopa-u-weu-uat-aks-azure-devops-sa-token"].value),
+      tf_uat_aks_apiserver_url         = module.uat_secrets[each.value.name].values["pagopa-u-${each.value.region}-uat-aks-apiserver-url"].value,
+      tf_uat_aks_azure_devops_sa_cacrt = module.uat_secrets[each.value.name].values["pagopa-u-${each.value.region}-uat-aks-azure-devops-sa-cacrt"].value,
+      tf_uat_aks_azure_devops_sa_token = base64decode(module.uat_secrets[each.value.name].values["pagopa-u-${each.value.region}-uat-aks-azure-devops-sa-token"].value),
     } : {},
     contains(each.value.envs, "p") && try(each.value.kv_name, "") != "" ? {
-      tf_prod_aks_apiserver_url         = module.prod_secrets[each.value.name].values["pagopa-p-weu-prod-aks-apiserver-url"].value,
-      tf_prod_aks_azure_devops_sa_cacrt = module.prod_secrets[each.value.name].values["pagopa-p-weu-prod-aks-azure-devops-sa-cacrt"].value,
-      tf_prod_aks_azure_devops_sa_token = base64decode(module.prod_secrets[each.value.name].values["pagopa-p-weu-prod-aks-azure-devops-sa-token"].value),
+      tf_prod_aks_apiserver_url         = module.prod_secrets[each.value.name].values["pagopa-p-${each.value.region}-prod-aks-apiserver-url"].value,
+      tf_prod_aks_azure_devops_sa_cacrt = module.prod_secrets[each.value.name].values["pagopa-p-${each.value.region}-prod-aks-azure-devops-sa-cacrt"].value,
+      tf_prod_aks_azure_devops_sa_token = base64decode(module.prod_secrets[each.value.name].values["pagopa-p-${each.value.region}-prod-aks-azure-devops-sa-token"].value),
     } : {},
     local.base_iac_variables_code_review,
     try(local.definitions_variables[each.value.name].iac_variables_cr, {})
@@ -106,19 +106,19 @@ module "iac_deploy" {
   variables = merge(
     local.base_iac_variables,
     contains(each.value.envs, "d") && try(each.value.kv_name, "") != "" ? {
-      tf_dev_aks_apiserver_url         = module.dev_secrets[each.value.name].values["pagopa-d-weu-dev-aks-apiserver-url"].value,
-      tf_dev_aks_azure_devops_sa_cacrt = module.dev_secrets[each.value.name].values["pagopa-d-weu-dev-aks-azure-devops-sa-cacrt"].value,
-      tf_dev_aks_azure_devops_sa_token = base64decode(module.dev_secrets[each.value.name].values["pagopa-d-weu-dev-aks-azure-devops-sa-token"].value),
+      tf_dev_aks_apiserver_url         = module.dev_secrets[each.value.name].values["pagopa-d-${each.value.region}-dev-aks-apiserver-url"].value,
+      tf_dev_aks_azure_devops_sa_cacrt = module.dev_secrets[each.value.name].values["pagopa-d-${each.value.region}-dev-aks-azure-devops-sa-cacrt"].value,
+      tf_dev_aks_azure_devops_sa_token = base64decode(module.dev_secrets[each.value.name].values["pagopa-d-${each.value.region}-dev-aks-azure-devops-sa-token"].value),
     } : {},
     contains(each.value.envs, "u") && try(each.value.kv_name, "") != "" ? {
-      tf_uat_aks_apiserver_url         = module.uat_secrets[each.value.name].values["pagopa-u-weu-uat-aks-apiserver-url"].value,
-      tf_uat_aks_azure_devops_sa_cacrt = module.uat_secrets[each.value.name].values["pagopa-u-weu-uat-aks-azure-devops-sa-cacrt"].value,
-      tf_uat_aks_azure_devops_sa_token = base64decode(module.uat_secrets[each.value.name].values["pagopa-u-weu-uat-aks-azure-devops-sa-token"].value),
+      tf_uat_aks_apiserver_url         = module.uat_secrets[each.value.name].values["pagopa-u-${each.value.region}-uat-aks-apiserver-url"].value,
+      tf_uat_aks_azure_devops_sa_cacrt = module.uat_secrets[each.value.name].values["pagopa-u-${each.value.region}-uat-aks-azure-devops-sa-cacrt"].value,
+      tf_uat_aks_azure_devops_sa_token = base64decode(module.uat_secrets[each.value.name].values["pagopa-u-${each.value.region}-uat-aks-azure-devops-sa-token"].value),
     } : {},
     contains(each.value.envs, "p") && try(each.value.kv_name, "") != "" ? {
-      tf_prod_aks_apiserver_url         = module.prod_secrets[each.value.name].values["pagopa-p-weu-prod-aks-apiserver-url"].value,
-      tf_prod_aks_azure_devops_sa_cacrt = module.prod_secrets[each.value.name].values["pagopa-p-weu-prod-aks-azure-devops-sa-cacrt"].value,
-      tf_prod_aks_azure_devops_sa_token = base64decode(module.prod_secrets[each.value.name].values["pagopa-p-weu-prod-aks-azure-devops-sa-token"].value),
+      tf_prod_aks_apiserver_url         = module.prod_secrets[each.value.name].values["pagopa-p-${each.value.region}-prod-aks-apiserver-url"].value,
+      tf_prod_aks_azure_devops_sa_cacrt = module.prod_secrets[each.value.name].values["pagopa-p-${each.value.region}-prod-aks-azure-devops-sa-cacrt"].value,
+      tf_prod_aks_azure_devops_sa_token = base64decode(module.prod_secrets[each.value.name].values["pagopa-p-${each.value.region}-prod-aks-azure-devops-sa-token"].value),
     } : {},
     local.base_iac_variables_deploy,
     try(local.definitions_variables[each.value.name].iac_variables_deploy, {})
