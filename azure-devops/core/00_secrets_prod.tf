@@ -45,7 +45,7 @@ module "secrets" {
 # PROD KEYVAULT CORE
 #
 
-module "secrets_core_prod" {
+module "pagopa_core_prod_secrets" {
 
   source = "./.terraform/modules/__v3__/key_vault_secrets_query"
 
@@ -56,6 +56,7 @@ module "secrets_core_prod" {
   secrets = [
     "tls-cert-diff-receiver-emails",
     "tls-cert-diff-sender-email",
-    "tls-cert-diff-sender-email-app-pass"
+    "tls-cert-diff-sender-email-app-pass",
+    "appinsights-monitoring-connection-string"
   ]
 }

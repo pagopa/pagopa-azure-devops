@@ -65,7 +65,7 @@ module "tlscert-dev-upload-dev-platform-pagopa-it-cert_az" {
   variables_secret = merge(
     var.tlscert-dev-upload-dev-platform-pagopa-it.pipeline.variables_secret,
     local.tlscert-dev-upload-dev-platform-pagopa-it-variables_secret,
-    local.cert_diff_variables
+    local.cert_diff_variables_dev
   )
 
   service_connection_ids_authorization = [

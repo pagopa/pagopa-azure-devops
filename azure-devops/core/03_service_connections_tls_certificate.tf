@@ -4,7 +4,7 @@
 #tfsec:ignore:GEN003
 module "DEV-TLS-CERT-SERVICE-CONN" {
   depends_on = [azuredevops_project.project]
-  source     = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated?ref=v9.1.0"
+  source     = "./.terraform/modules/__azdo__/azuredevops_serviceendpoint_federated"
   providers = {
     azurerm = azurerm.dev
   }
@@ -44,7 +44,7 @@ resource "azurerm_key_vault_access_policy" "DEV-TLS-CERT-SERVICE-CONN_kv_dev" {
 #tfsec:ignore:GEN003
 module "UAT-TLS-CERT-SERVICE-CONN" {
   depends_on = [azuredevops_project.project]
-  source     = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated?ref=v9.1.0"
+  source     = "./.terraform/modules/__azdo__/azuredevops_serviceendpoint_federated"
   providers = {
     azurerm = azurerm.uat
   }
@@ -73,7 +73,8 @@ resource "azurerm_key_vault_access_policy" "UAT-TLS-CERT-SERVICE-CONN_kv_uat" {
   tenant_id    = data.azurerm_client_config.current.tenant_id
   object_id    = module.UAT-TLS-CERT-SERVICE-CONN.service_principal_object_id
 
-  certificate_permissions = ["Get", "Import"]
+  certificate_permissions = ["Get", "Import", "Update"]
+  secret_permissions      = ["Get"]
 }
 
 #
@@ -82,7 +83,7 @@ resource "azurerm_key_vault_access_policy" "UAT-TLS-CERT-SERVICE-CONN_kv_uat" {
 #tfsec:ignore:GEN003
 module "PROD-TLS-CERT-SERVICE-CONN" {
   depends_on = [azuredevops_project.project]
-  source     = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated?ref=v9.1.0"
+  source     = "./.terraform/modules/__azdo__/azuredevops_serviceendpoint_federated"
   providers = {
     azurerm = azurerm.prod
   }
@@ -119,7 +120,7 @@ resource "azurerm_key_vault_access_policy" "PROD-TLS-CERT-SERVICE-CONN_kv_prod" 
 #tfsec:ignore:GEN003
 module "DEV-ECOMMERCE-TLS-CERT-SERVICE-CONN" {
   depends_on = [azuredevops_project.project]
-  source     = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated?ref=v9.1.0"
+  source     = "./.terraform/modules/__azdo__/azuredevops_serviceendpoint_federated"
   providers = {
     azurerm = azurerm.dev
   }
@@ -157,7 +158,7 @@ resource "azurerm_key_vault_access_policy" "DEV-ECOMMERCE-TLS-CERT-SERVICE-CONN_
 #tfsec:ignore:GEN003
 module "UAT-ECOMMERCE-TLS-CERT-SERVICE-CONN" {
   depends_on = [azuredevops_project.project]
-  source     = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated?ref=v9.1.0"
+  source     = "./.terraform/modules/__azdo__/azuredevops_serviceendpoint_federated"
   providers = {
     azurerm = azurerm.uat
   }
@@ -195,7 +196,7 @@ resource "azurerm_key_vault_access_policy" "UAT-ECOMMERCE-TLS-CERT-SERVICE-CONN_
 #tfsec:ignore:GEN003
 module "PROD-ECOMMERCE-TLS-CERT-SERVICE-CONN" {
   depends_on = [azuredevops_project.project]
-  source     = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated?ref=v9.1.0"
+  source     = "./.terraform/modules/__azdo__/azuredevops_serviceendpoint_federated"
   providers = {
     azurerm = azurerm.prod
   }
@@ -232,7 +233,7 @@ resource "azurerm_key_vault_access_policy" "PROD-ECOMMERCE-TLS-CERT-SERVICE-CONN
 #tfsec:ignore:GEN003
 module "DEV-SHARED-TLS-CERT-SERVICE-CONN" {
   depends_on = [azuredevops_project.project]
-  source     = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated?ref=v9.1.0"
+  source     = "./.terraform/modules/__azdo__/azuredevops_serviceendpoint_federated"
   providers = {
     azurerm = azurerm.dev
   }
@@ -271,7 +272,7 @@ resource "azurerm_key_vault_access_policy" "DEV-SHARED-TLS-CERT-SERVICE-CONN_kv_
 #tfsec:ignore:GEN003
 module "DEV-AFM-TLS-CERT-SERVICE-CONN" {
   depends_on = [azuredevops_project.project]
-  source     = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated?ref=v9.1.0"
+  source     = "./.terraform/modules/__azdo__/azuredevops_serviceendpoint_federated"
   providers = {
     azurerm = azurerm.dev
   }
@@ -309,7 +310,7 @@ resource "azurerm_key_vault_access_policy" "DEV-AFM-TLS-CERT-SERVICE-CONN_kv_dev
 #tfsec:ignore:GEN003
 module "UAT-SHARED-TLS-CERT-SERVICE-CONN" {
   depends_on = [azuredevops_project.project]
-  source     = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated?ref=v9.1.0"
+  source     = "./.terraform/modules/__azdo__/azuredevops_serviceendpoint_federated"
   providers = {
     azurerm = azurerm.uat
   }
@@ -347,7 +348,7 @@ resource "azurerm_key_vault_access_policy" "UAT-SHARED-TLS-CERT-SERVICE-CONN_kv_
 #tfsec:ignore:GEN003
 module "UAT-AFM-TLS-CERT-SERVICE-CONN" {
   depends_on = [azuredevops_project.project]
-  source     = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated?ref=v9.1.0"
+  source     = "./.terraform/modules/__azdo__/azuredevops_serviceendpoint_federated"
   providers = {
     azurerm = azurerm.uat
   }
@@ -385,7 +386,7 @@ resource "azurerm_key_vault_access_policy" "UAT-AFM-TLS-CERT-SERVICE-CONN_kv_uat
 #tfsec:ignore:GEN003
 module "PROD-SHARED-TLS-CERT-SERVICE-CONN" {
   depends_on = [azuredevops_project.project]
-  source     = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated?ref=v9.1.0"
+  source     = "./.terraform/modules/__azdo__/azuredevops_serviceendpoint_federated"
   providers = {
     azurerm = azurerm.prod
   }
@@ -422,7 +423,7 @@ resource "azurerm_key_vault_access_policy" "PROD-SHARED-TLS-CERT-SERVICE-CONN_kv
 #tfsec:ignore:GEN003
 module "PROD-AFM-TLS-CERT-SERVICE-CONN" {
   depends_on = [azuredevops_project.project]
-  source     = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated?ref=v9.1.0"
+  source     = "./.terraform/modules/__azdo__/azuredevops_serviceendpoint_federated"
   providers = {
     azurerm = azurerm.prod
   }
@@ -459,7 +460,7 @@ resource "azurerm_key_vault_access_policy" "PROD-AFM-TLS-CERT-SERVICE-CONN_kv_pr
 #tfsec:ignore:GEN003
 module "DEV-KIBANA-TLS-CERT-SERVICE-CONN" {
   depends_on = [azuredevops_project.project]
-  source     = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated?ref=v9.1.0"
+  source     = "./.terraform/modules/__azdo__/azuredevops_serviceendpoint_federated"
   providers = {
     azurerm = azurerm.dev
   }
@@ -499,7 +500,7 @@ resource "azurerm_key_vault_access_policy" "DEV-KIBANA-TLS-CERT-SERVICE-CONN_kv_
 #tfsec:ignore:GEN003
 module "UAT-KIBANA-TLS-CERT-SERVICE-CONN" {
   depends_on = [azuredevops_project.project]
-  source     = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated?ref=v9.1.0"
+  source     = "./.terraform/modules/__azdo__/azuredevops_serviceendpoint_federated"
   providers = {
     azurerm = azurerm.uat
   }
@@ -537,7 +538,7 @@ resource "azurerm_key_vault_access_policy" "UAT-KIBANA-TLS-CERT-SERVICE-CONN_kv_
 #tfsec:ignore:GEN003
 module "PROD-KIBANA-TLS-CERT-SERVICE-CONN" {
   depends_on = [azuredevops_project.project]
-  source     = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated?ref=v9.1.0"
+  source     = "./.terraform/modules/__azdo__/azuredevops_serviceendpoint_federated"
   providers = {
     azurerm = azurerm.prod
   }
