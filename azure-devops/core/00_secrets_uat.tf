@@ -42,6 +42,5 @@ module "pagopa_core_uat_secrets" {
     "tls-cert-diff-receiver-emails",
     "tls-cert-diff-sender-email",
     "tls-cert-diff-sender-email-app-pass",
-    "appinsights-monitoring-connection-string"
   ]
 }

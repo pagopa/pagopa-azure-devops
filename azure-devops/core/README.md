@@ -30,7 +30,7 @@
 | <a name="module_UAT-KIBANA-TLS-CERT-SERVICE-CONN"></a> [UAT-KIBANA-TLS-CERT-SERVICE-CONN](#module\_UAT-KIBANA-TLS-CERT-SERVICE-CONN) | ./.terraform/modules/__azdo__/azuredevops_serviceendpoint_federated | n/a |
 | <a name="module_UAT-SHARED-TLS-CERT-SERVICE-CONN"></a> [UAT-SHARED-TLS-CERT-SERVICE-CONN](#module\_UAT-SHARED-TLS-CERT-SERVICE-CONN) | ./.terraform/modules/__azdo__/azuredevops_serviceendpoint_federated | n/a |
 | <a name="module_UAT-TLS-CERT-SERVICE-CONN"></a> [UAT-TLS-CERT-SERVICE-CONN](#module\_UAT-TLS-CERT-SERVICE-CONN) | ./.terraform/modules/__azdo__/azuredevops_serviceendpoint_federated | n/a |
-| <a name="module___azdo__"></a> [\_\_azdo\_\_](#module\_\_\_azdo\_\_) | git::https://github.com/pagopa/azuredevops-tf-modules.git | 8ccb43f241907eebceef92bc21b4448602b6af0b |
+| <a name="module___azdo__"></a> [\_\_azdo\_\_](#module\_\_\_azdo\_\_) | git::https://github.com/pagopa/azuredevops-tf-modules.git | feat/add-alarm-cert-diff |
 | <a name="module___v3__"></a> [\_\_v3\_\_](#module\_\_\_v3\_\_) | git::https://github.com/pagopa/terraform-azurerm-v3.git | 745f8cf8faa1a53878939fc3b0fd944eef257f8e |
 | <a name="module_pagopa-api-config-fe_code_review"></a> [pagopa-api-config-fe\_code\_review](#module\_pagopa-api-config-fe\_code\_review) | ./.terraform/modules/__azdo__/azuredevops_build_definition_code_review | n/a |
 | <a name="module_pagopa-api-config-fe_deploy"></a> [pagopa-api-config-fe\_deploy](#module\_pagopa-api-config-fe\_deploy) | ./.terraform/modules/__azdo__/azuredevops_build_definition_deploy | n/a |
@@ -165,6 +165,8 @@
 | [azurerm_key_vault.kv_shared_prod](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/data-sources/key_vault) | data source |
 | [azurerm_key_vault.kv_shared_uat](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/data-sources/key_vault) | data source |
 | [azurerm_key_vault.kv_uat](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/data-sources/key_vault) | data source |
+| [azurerm_monitor_action_group.certificate_pipeline_status_dev](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/data-sources/monitor_action_group) | data source |
+| [azurerm_monitor_action_group.certificate_pipeline_status_uat](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/data-sources/monitor_action_group) | data source |
 | [azurerm_subscriptions.dev](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/data-sources/subscriptions) | data source |
 | [azurerm_subscriptions.prod](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/data-sources/subscriptions) | data source |
 | [azurerm_subscriptions.uat](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/data-sources/subscriptions) | data source |

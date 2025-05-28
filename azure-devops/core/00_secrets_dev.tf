@@ -41,6 +41,5 @@ module "pagopa_core_dev_secrets" {
     "tls-cert-diff-receiver-emails",
     "tls-cert-diff-sender-email",
     "tls-cert-diff-sender-email-app-pass",
-    "appinsights-monitoring-connection-string"
   ]
 }

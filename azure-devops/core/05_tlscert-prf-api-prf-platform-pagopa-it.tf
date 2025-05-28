@@ -65,7 +65,7 @@ module "tlscert-prf-api-prf-platform-pagopa-it-cert_az" {
   variables_secret = merge(
     var.tlscert-prf-api-prf-platform-pagopa-it.pipeline.variables_secret,
     local.tlscert-prf-api-prf-platform-pagopa-it-variables_secret,
-    local.cert_diff_variables_uat
+    local.cert_diff_env_variables_uat
   )
 
   service_connection_ids_authorization = [
@@ -83,5 +83,5 @@ module "tlscert-prf-api-prf-platform-pagopa-it-cert_az" {
       exclude = []
     }
   }
-  cert_diff_pipeline_enabled = true
+  cert_diff_variables = local.uat_cert_diff_variables
 }
