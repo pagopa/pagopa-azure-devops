@@ -52,6 +52,6 @@ module "__v3__" {
 }
 
 module "__azdo__" {
-  # https://github.com/pagopa/azuredevops-tf-modules/releases/tag/v9.4.1
-  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git?ref=feat/add-alarm-cert-diff"
+  # https://github.com/pagopa/azuredevops-tf-modules/releases/tag/v9.5.0
+  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git?ref=0ae8d9d49f92f690afc66a39f245924a04aa274b"
 }

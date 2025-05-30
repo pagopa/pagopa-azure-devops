@@ -12,7 +12,7 @@
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module___azdo__"></a> [\_\_azdo\_\_](#module\_\_\_azdo\_\_) | git::https://github.com/pagopa/azuredevops-tf-modules.git | feat/add-alarm-cert-diff |
+| <a name="module___azdo__"></a> [\_\_azdo\_\_](#module\_\_\_azdo\_\_) | git::https://github.com/pagopa/azuredevops-tf-modules.git | 0ae8d9d49f92f690afc66a39f245924a04aa274b |
 | <a name="module___v3__"></a> [\_\_v3\_\_](#module\_\_\_v3\_\_) | git::https://github.com/pagopa/terraform-azurerm-v3.git | 33777a27f8f917a96220f5cf8fb3c3eee8e594b0 |
 | <a name="module_dev_afm_tls_cert_service_conn"></a> [dev\_afm\_tls\_cert\_service\_conn](#module\_dev\_afm\_tls\_cert\_service\_conn) | ./.terraform/modules/__azdo__/azuredevops_serviceendpoint_federated | n/a |
 | <a name="module_dev_azurerm_service_conn"></a> [dev\_azurerm\_service\_conn](#module\_dev\_azurerm\_service\_conn) | ./.terraform/modules/__azdo__/azuredevops_serviceendpoint_federated | n/a |
