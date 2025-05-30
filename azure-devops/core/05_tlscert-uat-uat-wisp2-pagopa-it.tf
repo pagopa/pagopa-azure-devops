@@ -25,7 +25,7 @@ locals {
     subscription_id   = data.azurerm_subscriptions.uat.subscriptions[0].subscription_id
   }
   tlscert-uat-wisp2-pagopa-it-variables = {
-    KEY_VAULT_SERVICE_CONNECTION = module.UAT-TLS-CERT-SERVICE-CONN.service_endpoint_name
+    KEY_VAULT_SERVICE_CONNECTION = module.uat_tls_cert_service_conn.service_endpoint_name
   }
   tlscert-uat-wisp2-pagopa-it-variables_secret = {
   }
@@ -70,7 +70,7 @@ module "tlscert-uat-wisp2-pagopa-it-cert_az" {
   )
 
   service_connection_ids_authorization = [
-    module.UAT-TLS-CERT-SERVICE-CONN.service_endpoint_id,
+    module.uat_tls_cert_service_conn.service_endpoint_id,
   ]
 
   schedules = {

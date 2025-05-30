@@ -26,7 +26,7 @@ locals {
   }
   tlscert-uat-portal-uat-platform-pagopa-it-variables = {
     KEY_VAULT_CERT_NAME          = "${replace(var.tlscert-uat-portal-uat-platform-pagopa-it.pipeline.dns_record_name, ".", "-")}-${replace(var.tlscert-uat-portal-uat-platform-pagopa-it.pipeline.dns_zone_name, ".", "-")}"
-    KEY_VAULT_SERVICE_CONNECTION = module.UAT-TLS-CERT-SERVICE-CONN.service_endpoint_name
+    KEY_VAULT_SERVICE_CONNECTION = module.uat_tls_cert_service_conn.service_endpoint_name
   }
   tlscert-uat-portal-uat-platform-pagopa-it-variables_secret = {
   }
@@ -71,7 +71,7 @@ module "tlscert-uat-portal-uat-platform-pagopa-it-cert_az" {
   )
 
   service_connection_ids_authorization = [
-    module.UAT-TLS-CERT-SERVICE-CONN.service_endpoint_id,
+    module.uat_tls_cert_service_conn.service_endpoint_id,
   ]
 
   schedules = {

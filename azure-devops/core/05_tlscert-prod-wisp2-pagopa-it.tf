@@ -31,7 +31,7 @@ locals {
     subscription_id   = data.azurerm_subscriptions.prod.subscriptions[0].subscription_id
   }
   tlscert-prod-wisp2-pagopa-it-variables = {
-    KEY_VAULT_SERVICE_CONNECTION = module.PROD-TLS-CERT-SERVICE-CONN.service_endpoint_name
+    KEY_VAULT_SERVICE_CONNECTION = module.prod_tls_cert_service_conn.service_endpoint_name
   }
   tlscert-prod-wisp2-pagopa-it-variables_secret = {
   }
@@ -73,11 +73,11 @@ module "tlscert-prod-wisp2-pagopa-it-cert_az" {
   )
 
   service_connection_ids_authorization = [
-    module.PROD-TLS-CERT-SERVICE-CONN.service_endpoint_id,
+    module.prod_tls_cert_service_conn.service_endpoint_id,
   ]
 
   schedules = {
-    days_to_build              = ["Fri"]
+    days_to_build              = ["Tue", "Fri"]
     schedule_only_with_changes = false
     start_hours                = 19
     start_minutes              = 30
