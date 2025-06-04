@@ -40,7 +40,7 @@ locals {
     prod_endpoint_name        = "pagopa-p-assets-platform-cdn-endpoint "
     prod_resource_group_name  = "pagopa-p-assets-cdn-platform-rg"
     prod_blob_container_name  = "$web"
-    prod_azure_subscription   = module.PROD-AZURERM-SERVICE-CONN.service_endpoint_name
+    prod_azure_subscription   = module.prod_azurerm_service_conn.service_endpoint_name
   }
   # deploy secrets
   pagopa-platform-cdn-assets-variables_secret_deploy = {
@@ -96,6 +96,6 @@ module "pagopa-platform-cdn-assets_deploy" {
 
   service_connection_ids_authorization = [
     azuredevops_serviceendpoint_github.azure-devops-github-ro.id,
-    module.PROD-AZURERM-SERVICE-CONN.service_endpoint_id,
+    module.prod_azurerm_service_conn.service_endpoint_id,
   ]
 }

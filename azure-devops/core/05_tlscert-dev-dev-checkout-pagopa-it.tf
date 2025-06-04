@@ -31,7 +31,7 @@ locals {
     subscription_id   = data.azurerm_subscriptions.dev.subscriptions[0].subscription_id
   }
   tlscert-dev-dev-checkout-pagopa-it-variables = {
-    KEY_VAULT_SERVICE_CONNECTION = module.DEV-TLS-CERT-SERVICE-CONN.service_endpoint_name
+    KEY_VAULT_SERVICE_CONNECTION = module.dev_tls_cert_service_conn.service_endpoint_name
   }
   tlscert-dev-dev-checkout-pagopa-it-variables_secret = {
   }
@@ -75,7 +75,7 @@ module "tlscert-dev-dev-checkout-pagopa-it-cert_az" {
   )
 
   service_connection_ids_authorization = [
-    module.DEV-TLS-CERT-SERVICE-CONN.service_endpoint_id,
+    module.dev_tls_cert_service_conn.service_endpoint_id,
   ]
 
   schedules = {

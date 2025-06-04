@@ -52,15 +52,15 @@ locals {
 
     healthcheck_endpoint             = "/api/v1/info"
     dev_deploy_type                  = "production_slot" #or staging_slot_and_swap
-    dev_azure_subscription           = module.DEV-AZURERM-SERVICE-CONN.service_endpoint_name
+    dev_azure_subscription           = module.dev_azurerm_service_conn.service_endpoint_name
     dev_web_app_name                 = "pagopa-d-fn-reportingfdr"
     dev_web_app_resource_group_name  = "pagopa-d-reporting-fdr-rg"
     uat_deploy_type                  = "production_slot" #or staging_slot_and_swap
-    uat_azure_subscription           = module.UAT-AZURERM-SERVICE-CONN.service_endpoint_name
+    uat_azure_subscription           = module.uat_azurerm_service_conn.service_endpoint_name
     uat_web_app_name                 = "pagopa-u-fn-reportingfdr"
     uat_web_app_resource_group_name  = "pagopa-u-reporting-fdr-rg"
     prod_deploy_type                 = "production_slot" #or staging_slot_and_swap
-    prod_azure_subscription          = module.PROD-AZURERM-SERVICE-CONN.service_endpoint_name
+    prod_azure_subscription          = module.prod_azurerm_service_conn.service_endpoint_name
     prod_web_app_name                = "pagopa-p-fn-reportingfdr"
     prod_web_app_resource_group_name = "pagopa-p-reporting-fdr-rg"
 
@@ -131,8 +131,8 @@ module "pagopa-reporting-fdr_deploy" {
 
   service_connection_ids_authorization = [
     azuredevops_serviceendpoint_github.azure-devops-github-ro.id,
-    module.DEV-AZURERM-SERVICE-CONN.service_endpoint_id,
-    module.UAT-AZURERM-SERVICE-CONN.service_endpoint_id,
-    module.PROD-AZURERM-SERVICE-CONN.service_endpoint_id,
+    module.dev_azurerm_service_conn.service_endpoint_id,
+    module.uat_azurerm_service_conn.service_endpoint_id,
+    module.prod_azurerm_service_conn.service_endpoint_id,
   ]
 }

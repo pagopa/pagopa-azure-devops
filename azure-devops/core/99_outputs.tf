@@ -35,21 +35,21 @@ output "service_endpoint_azure_devops_github_rw_id" {
 }
 
 output "service_endpoint_azure_dev_id" {
-  value = module.DEV-AZURERM-SERVICE-CONN.service_endpoint_id
+  value = module.dev_azurerm_service_conn.service_endpoint_id
 }
 output "service_endpoint_azure_uat_id" {
-  value = module.UAT-AZURERM-SERVICE-CONN.service_endpoint_id
+  value = module.uat_azurerm_service_conn.service_endpoint_id
 }
 output "service_endpoint_azure_prod_id" {
-  value = module.PROD-AZURERM-SERVICE-CONN.service_endpoint_id
+  value = module.prod_azurerm_service_conn.service_endpoint_id
 }
 
 output "service_endpoint_azure_dev_name" {
-  value = module.DEV-AZURERM-SERVICE-CONN.service_endpoint_name
+  value = module.dev_azurerm_service_conn.service_endpoint_name
 }
 output "service_endpoint_azure_uat_name" {
-  value = module.UAT-AZURERM-SERVICE-CONN.service_endpoint_name
+  value = module.uat_azurerm_service_conn.service_endpoint_name
 }
 output "service_endpoint_azure_prod_name" {
-  value = module.PROD-AZURERM-SERVICE-CONN.service_endpoint_name
+  value = module.prod_azurerm_service_conn.service_endpoint_name
 }
