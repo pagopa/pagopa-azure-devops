@@ -44,7 +44,7 @@ module "tlscert-crusc8-itn-internal-uat-platform-pagopa-it-cert_az" {
   }
 
   source = "./.terraform/modules/__azdo__/azuredevops_build_definition_tls_cert_federated"
-  count = var.tlscert-crusc8-itn-internal-uat-platform-pagopa-it.pipeline.enable_tls_cert == true ? 1 : 0
+  count  = var.tlscert-crusc8-itn-internal-uat-platform-pagopa-it.pipeline.enable_tls_cert == true ? 1 : 0
 
   project_id                   = data.azuredevops_project.project.id
   repository                   = var.tlscert-crusc8-itn-internal-uat-platform-pagopa-it.repository

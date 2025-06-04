@@ -79,7 +79,7 @@ module "general_uat_secrets" {
   key_vault_name = "pagopa-u-kv"
 
   secrets = [
-]
+  ]
 }
 
 # module "general_prod_secrets" {
