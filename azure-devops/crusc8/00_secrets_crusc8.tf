@@ -16,25 +16,23 @@ module "crusc8_dev_secrets" {
   ]
 }
 
-# module "crusc8_uat_secrets" {
+module "crusc8_uat_secrets" {
 
-#   providers = {
-#     azurerm = azurerm.uat
-#   }
+  providers = {
+    azurerm = azurerm.uat
+  }
 
-#   source = "./.terraform/modules/__v3__/key_vault_secrets_query"
+  source = "./.terraform/modules/__v3__/key_vault_secrets_query"
 
-#   resource_group = local.uat_crusc8_key_vault_resource_group
-#   key_vault_name = local.uat_crusc8_key_vault_name
+  resource_group = local.uat_crusc8_key_vault_resource_group
+  key_vault_name = local.uat_crusc8_key_vault_name
 
-#   secrets = [
-#     "pagopa-u-itn-uat-aks-azure-devops-sa-token",
-#     "pagopa-u-itn-uat-aks-azure-devops-sa-cacrt",
-#     "pagopa-u-itn-uat-aks-apiserver-url",
-#     "apikey-gps-mbd-integration-test",
-#     "apikey-mbd-integration-test"
-#   ]
-# }
+  secrets = [
+    "pagopa-u-itn-uat-aks-azure-devops-sa-token",
+    "pagopa-u-itn-uat-aks-azure-devops-sa-cacrt",
+    "pagopa-u-itn-uat-aks-apiserver-url",
+  ]
+}
 
 # module "crusc8_prod_secrets" {
 
@@ -69,21 +67,20 @@ module "general_dev_secrets" {
   secrets = []
 }
 
-# module "general_uat_secrets" {
+module "general_uat_secrets" {
 
-#   providers = {
-#     azurerm = azurerm.uat
-#   }
+  providers = {
+    azurerm = azurerm.uat
+  }
 
-#   source = "git::https://github.com/pagopa/terraform-azurerm-v3.git//key_vault_secrets_query?ref=v8.22.0"
+  source = "git::https://github.com/pagopa/terraform-azurerm-v3.git//key_vault_secrets_query?ref=v8.22.0"
 
-#   resource_group = "pagopa-u-sec-rg"
-#   key_vault_name = "pagopa-u-kv"
+  resource_group = "pagopa-u-sec-rg"
+  key_vault_name = "pagopa-u-kv"
 
-#   secrets = [
-#     "integration-test-subkey",
-#   ]
-# }
+  secrets = [
+]
+}
 
 # module "general_prod_secrets" {
 
