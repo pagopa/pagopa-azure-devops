@@ -36,9 +36,6 @@ locals {
   uat_afm_key_vault_name  = "${local.prefix}-u-afm-kv"
   prod_afm_key_vault_name = "${local.prefix}-p-afm-kv"
 
-  dev_kibana_key_vault_name  = "${local.prefix}-d-elk-kv"
-  uat_kibana_key_vault_name  = "${local.prefix}-u-elk-kv"
-  prod_kibana_key_vault_name = "${local.prefix}-p-elk-kv"
   # KV RG
 
   dev_key_vault_resource_group  = "${local.prefix}-d-sec-rg"
@@ -61,9 +58,6 @@ locals {
   uat_afm_key_vault_resource_group  = "${local.prefix}-u-afm-sec-rg"
   prod_afm_key_vault_resource_group = "${local.prefix}-p-afm-sec-rg"
 
-  dev_kibana_key_vault_resource_group  = "${local.prefix}-d-elk-sec-rg"
-  uat_kibana_key_vault_resource_group  = "${local.prefix}-u-elk-sec-rg"
-  prod_kibana_key_vault_resource_group = "${local.prefix}-p-elk-sec-rg"
 
   # ☁️ VNET
   dev_vnet_rg  = "${local.prefix}-d-vnet-rg"
