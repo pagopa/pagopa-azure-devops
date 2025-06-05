@@ -453,4 +453,3 @@ resource "azurerm_key_vault_access_policy" "PROD-AFM-TLS-CERT-SERVICE-CONN_kv_pr
 
   certificate_permissions = ["Get", "Import"]
 }
-
