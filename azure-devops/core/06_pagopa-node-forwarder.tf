@@ -76,9 +76,9 @@ locals {
     # acr section
     image_repository = "pagopanodeforwarder"
 
-    dev_container_registry_service_conn  = azuredevops_serviceendpoint_azurecr.acr_docker_registry_dev.service_endpoint_name
-    uat_container_registry_service_conn  = azuredevops_serviceendpoint_azurecr.acr_docker_registry_uat.service_endpoint_name
-    prod_container_registry_service_conn = azuredevops_serviceendpoint_azurecr.acr_docker_registry_prod.service_endpoint_name
+    dev_container_registry_service_conn  = data.azuredevops_serviceendpoint_azurecr.dev_weu_workload_identity.service_endpoint_name
+    uat_container_registry_service_conn  = data.azuredevops_serviceendpoint_azurecr.uat_weu_workload_identity.service_endpoint_name
+    prod_container_registry_service_conn = data.azuredevops_serviceendpoint_azurecr.prod_weu_workload_identity.service_endpoint_name
 
     dev_container_namespace  = "pagopadcommonacr.azurecr.io"
     uat_container_namespace  = "pagopaucommonacr.azurecr.io"
@@ -149,6 +149,9 @@ module "pagopa-node-forwarder_deploy" {
     module.dev_azurerm_service_conn.service_endpoint_id,
     module.uat_azurerm_service_conn.service_endpoint_id,
     module.prod_azurerm_service_conn.service_endpoint_id,
+    data.azuredevops_serviceendpoint_azurecr.dev_weu_workload_identity.id,
+    data.azuredevops_serviceendpoint_azurecr.uat_weu_workload_identity.id,
+    data.azuredevops_serviceendpoint_azurecr.prod_weu_workload_identity.id
   ]
 }
 
