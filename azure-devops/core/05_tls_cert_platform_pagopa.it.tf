@@ -1,5 +1,4 @@
 locals {
-  # DEV
   tls_cert_platform_variables = {
     dev = {
       dns_zone_name                       = "dev.platform.pagopa.it"
@@ -148,40 +147,52 @@ locals {
     }
     # PROD
     api-prod-platform-pagopa-it : {
-      env              = "prod"
-      dns_record_name  = "api"
-      variables        = {}
-      variables_secret = {}
+      env             = "prod"
+      dns_record_name = "api"
+      variables       = {}
+      variables_secret = merge(
+        local.cert_diff_env_variables_prod
+      )
+      cert_diff_variables = local.prod_cert_diff_variables
       schedules = {
         start_hours   = 17
         start_minutes = 0
       }
     }
     portal-prod-platform-pagopa-it : {
-      env              = "prod"
-      dns_record_name  = "portal"
-      variables        = {}
-      variables_secret = {}
+      env             = "prod"
+      dns_record_name = "portal"
+      variables       = {}
+      variables_secret = merge(
+        local.cert_diff_env_variables_prod
+      )
+      cert_diff_variables = local.prod_cert_diff_variables
       schedules = {
         start_hours   = 14
         start_minutes = 20
       }
     }
     management-prod-platform-pagopa-it : {
-      env              = "prod"
-      dns_record_name  = "management"
-      variables        = {}
-      variables_secret = {}
+      env             = "prod"
+      dns_record_name = "management"
+      variables       = {}
+      variables_secret = merge(
+        local.cert_diff_env_variables_prod
+      )
+      cert_diff_variables = local.prod_cert_diff_variables
       schedules = {
         start_hours   = 13
         start_minutes = 15
       }
     }
     upload-prod-platform-pagopa-it : {
-      env              = "prod"
-      dns_record_name  = "upload"
-      variables        = {}
-      variables_secret = {}
+      env             = "prod"
+      dns_record_name = "upload"
+      variables       = {}
+      variables_secret = merge(
+        local.cert_diff_env_variables_prod
+      )
+      cert_diff_variables = local.prod_cert_diff_variables
       schedules = {
         start_hours = 11
       }

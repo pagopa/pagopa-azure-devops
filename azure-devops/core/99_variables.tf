@@ -148,6 +148,11 @@ locals {
   uat_cert_diff_pipeline_status_name = "${local.prefix}u-cert-pipeline-status"
   uat_monitor_rg                     = "${local.prefix}-u-monitor-rg"
 
+  prod_app_insight_monitoring_name    = "${local.prefix}-p-weu-synthetic-appinsights"
+  prod_app_insight_monitoring_rg      = "${local.prefix}-p-weu-synthetic-rg"
+  prod_cert_diff_pipeline_status_name = "${local.prefix}p-cert-pipeline-status"
+  prod_monitor_rg                     = "${local.prefix}-p-monitor-rg"
+
   # TLS CERT + TLS CERT DIFF
   tlscert_repository = {
     organization   = "pagopa"
@@ -186,12 +191,20 @@ locals {
     actions_group     = [data.azurerm_monitor_action_group.certificate_pipeline_status_uat.id]
   }
 
-  # cert_diff_variables_prod = {
-  #   RECEIVER_EMAIL                = module.pagopa_core_prod_secrets.values["tls-cert-diff-receiver-emails"].value
-  #   SENDER_EMAIL                  = module.pagopa_core_prod_secrets.values["tls-cert-diff-sender-email"].value
-  #   APP_PASS                      = module.pagopa_core_prod_secrets.values["tls-cert-diff-sender-email-app-pass"].value
-  #   APP_INSIGHT_CONNECTION_STRING = local.prod_app_insight_monitoring_connection_string
-  # }
+  cert_diff_env_variables_prod = {
+    RECEIVER_EMAIL = module.pagopa_core_prod_secrets.values["tls-cert-diff-receiver-emails"].value
+    SENDER_EMAIL   = module.pagopa_core_prod_secrets.values["tls-cert-diff-sender-email"].value
+    APP_PASS       = module.pagopa_core_prod_secrets.values["tls-cert-diff-sender-email-app-pass"].value
+  }
+
+  prod_cert_diff_variables = {
+    enabled           = true
+    alert_enabled     = true
+    cert_diff_version = "0.2.5"
+    app_insights_name = local.prod_app_insight_monitoring_name
+    app_insights_rg   = local.prod_app_insight_monitoring_rg
+    actions_group     = [data.azurerm_monitor_action_group.certificate_pipeline_status_prod.id]
+  }
 
 }
 

@@ -111,7 +111,8 @@ resource "azurerm_key_vault_access_policy" "PROD-TLS-CERT-SERVICE-CONN_kv_prod" 
   tenant_id    = data.azurerm_client_config.current.tenant_id
   object_id    = module.prod_tls_cert_service_conn.service_principal_object_id
 
-  certificate_permissions = ["Get", "Import"]
+  certificate_permissions = ["Get", "Import", "Update"]
+  secret_permissions      = ["Get"]
 }
 
 #
