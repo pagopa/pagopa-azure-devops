@@ -8,7 +8,6 @@ variable "pagopa-anonymizer" {
       yml_prefix_name = null
     }
     pipeline = {
-      enable_deploy = true
       performance_test = {
         enabled               = true
         name                  = "performance-test-pipeline"
