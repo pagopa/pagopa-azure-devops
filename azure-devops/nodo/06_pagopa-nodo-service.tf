@@ -27,11 +27,6 @@ variable "pagopa-nodo-service" {
         name                  = "performance-test-pipeline"
         pipeline_yml_filename = "performance-test-pipelines.yml"
       }
-      suspend_job = {
-        enabled               = true
-        name                  = "suspend-job-pipeline"
-        pipeline_yml_filename = "suspend-job-pipelines.yml"
-      }
     }
   }
 }
@@ -256,33 +251,6 @@ module "pagopa-nodo-service_performance_test" {
   variables_secret = merge(
     local.pagopa-nodo-service-variables_secret,
     local.pagopa-nodo-service-variables_secret_performance_test,
-  )
-
-  service_connection_ids_authorization = [
-    data.azuredevops_serviceendpoint_github.github_ro.id,
-  ]
-}
-
-module "pagopa-nodo-service_suspend_job" {
-  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_generic?ref=v4.2.1"
-  count  = var.pagopa-nodo-service.pipeline.suspend_job.enabled == true ? 1 : 0
-
-  project_id                   = data.azuredevops_project.project.id
-  repository                   = var.pagopa-nodo-service.repository
-  github_service_connection_id = data.azuredevops_serviceendpoint_github.github_rw.service_endpoint_id
-  # github_service_connection_id = data.azuredevops_serviceendpoint_github.github_ro.id
-  path                  = "${local.domain}\\pagopa-nodo-service"
-  pipeline_name         = var.pagopa-nodo-service.pipeline.suspend_job.name
-  pipeline_yml_filename = var.pagopa-nodo-service.pipeline.suspend_job.pipeline_yml_filename
-
-  variables = merge(
-    local.pagopa-nodo-service-variables,
-    local.pagopa-nodo-service-variables_suspend_job,
-  )
-
-  variables_secret = merge(
-    local.pagopa-nodo-service-variables_secret,
-    local.pagopa-nodo-service-variables_secret_suspend_job,
   )
 
   service_connection_ids_authorization = [
