@@ -28,7 +28,7 @@ locals {
   tlscert-crusc8-prod-platform-pagopa-it = {
     tenant_id         = data.azurerm_client_config.current.tenant_id
     subscription_name = "PROD-PAGOPA"
-    subscription_id   = data.azurerm_subscriptions.uat.subscriptions[0].subscription_id
+    subscription_id   = data.azurerm_subscriptions.prod.subscriptions[0].subscription_id
   }
   tlscert-crusc8-prod-platform-pagopa-it-variables = {
     KEY_VAULT_SERVICE_CONNECTION = module.PROD-CRUSC8-TLS-CERT-SERVICE-CONN.service_endpoint_name
