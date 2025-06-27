@@ -70,6 +70,8 @@ module "ecommerce_prod_secrets" {
     "pagopa-p-weu-prod-aks-azure-devops-sa-token",
     "pagopa-p-weu-prod-aks-azure-devops-sa-cacrt",
     "pagopa-p-weu-prod-aks-apiserver-url",
-    "touchpoint-mail"
+    "touchpoint-mail",
+    "ecommerce-event-dispatcher-service-primary-api-key",
+    "ecommerce-event-dispatcher-service-secondary-api-key"
   ]
 }
