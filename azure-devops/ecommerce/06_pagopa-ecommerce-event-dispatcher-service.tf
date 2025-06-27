@@ -18,6 +18,7 @@ variable "pagopa-ecommerce-event-dispatcher-service" {
         project_name       = "pagopa-ecommerce-event-dispatcher-service"
       }
     }
+    use_primary_api_key = true
   }
 }
 
@@ -66,11 +67,13 @@ locals {
     prod_container_namespace = "pagopapcommonacr.azurecr.io"
 
   }
+
   # deploy secrets
   pagopa-ecommerce-event-dispatcher-service-variables_secret_deploy = {
-    git_mail     = module.secrets.values["azure-devops-github-EMAIL"].value
-    git_username = module.secrets.values["azure-devops-github-USERNAME"].value
-    tenant_id    = data.azurerm_client_config.current.tenant_id
+    git_mail             = module.secrets.values["azure-devops-github-EMAIL"].value
+    git_username         = module.secrets.values["azure-devops-github-USERNAME"].value
+    tenant_id            = data.azurerm_client_config.current.tenant_id
+    prod_service_api_key = var.pagopa-ecommerce-event-dispatcher-service.use_primary_api_key ? module.ecommerce_prod_secrets.values["ecommerce-event-dispatcher-service-primary-api-key"].value : module.ecommerce_prod_secrets.values["ecommerce-event-dispatcher-service-secondary-api-key"].value
   }
 }
 
