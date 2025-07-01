@@ -16,6 +16,7 @@ variable "pagopa-jwt-issuer-service" {
         project_key        = "pagopa_pagopa-jwt-issuer-service"
         project_name       = "pagopa-jwt-issuer-service"
       }
+      use_primary_api_key = true
     }
   }
 }
@@ -74,10 +75,11 @@ locals {
   }
   # deploy secrets
   pagopa-jwt-issuer-service-variables_secret_deploy = {
-    tenant_id    = data.azurerm_client_config.current.tenant_id
-    git_mail     = module.secrets.values["azure-devops-github-EMAIL"].value
-    git_username = module.secrets.values["azure-devops-github-USERNAME"].value
-
+    tenant_id           = data.azurerm_client_config.current.tenant_id
+    git_mail            = module.secrets.values["azure-devops-github-EMAIL"].value
+    git_username        = module.secrets.values["azure-devops-github-USERNAME"].value
+    service_api_key_dev = var.pagopa-jwt-issuer-service.pipeline.use_primary_api_key ? module.ecommerce_dev_secrets.values["ecommerce-jwt-issuer-service-primary-api-key"].value : module.ecommerce_dev_secrets.values["ecommerce-jwt-issuer-service-secondary-api-key"].value
+    service_api_key_uat = var.pagopa-jwt-issuer-service.pipeline.use_primary_api_key ? module.ecommerce_uat_secrets.values["ecommerce-jwt-issuer-service-primary-api-key"].value : module.ecommerce_uat_secrets.values["ecommerce-jwt-issuer-service-secondary-api-key"].value
   }
 }
 
