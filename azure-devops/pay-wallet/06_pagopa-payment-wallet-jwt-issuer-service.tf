@@ -7,7 +7,8 @@ variable "pagopa-jwt-issuer-service" {
       pipelines_path = ".devops"
     }
     pipeline = {
-      enable_deploy = true
+      enable_deploy       = true
+      use_primary_api_key = true
       #for code review pipeline definition see 06_pagopa-ecommerce-jwt-issuer-service.tf file
     }
   }
@@ -53,9 +54,11 @@ locals {
   }
   # deploy secrets
   pagopa-jwt-issuer-service-variables_secret_deploy = {
-    git_mail     = module.secrets.values["azure-devops-github-EMAIL"].value
-    git_username = module.secrets.values["azure-devops-github-USERNAME"].value
-    tenant_id    = data.azurerm_client_config.current.tenant_id
+    git_mail            = module.secrets.values["azure-devops-github-EMAIL"].value
+    git_username        = module.secrets.values["azure-devops-github-USERNAME"].value
+    tenant_id           = data.azurerm_client_config.current.tenant_id
+    service_api_key_dev = var.pagopa-jwt-issuer-service.pipeline.use_primary_api_key ? module.wallet_dev_secrets.values["pay-wallet-jwt-issuer-service-primary-api-key"].value : module.wallet_dev_secrets.values["pay-wallet-jwt-issuer-service-secondary-api-key"].value
+    service_api_key_uat = var.pagopa-jwt-issuer-service.pipeline.use_primary_api_key ? module.wallet_uat_secrets.values["pay-wallet-jwt-issuer-service-primary-api-key"].value : module.wallet_uat_secrets.values["pay-wallet-jwt-issuer-service-secondary-api-key"].value
   }
 }
 

@@ -26,6 +26,8 @@ module "ecommerce_dev_secrets" {
     "wallet-token-test-key",
     "helpdesk-ecommerce-commands-testing-api-key",
     "helpdesk-service-testing-email-history",
+    "ecommerce-jwt-issuer-service-primary-api-key",
+    "ecommerce-jwt-issuer-service-secondary-api-key",
   ]
 }
 
@@ -51,7 +53,9 @@ module "ecommerce_uat_secrets" {
     "helpdesk-service-testing-email",
     "helpdesk-service-testing-fiscalCode",
     "wallet-token-test-key",
-    "helpdesk-ecommerce-commands-testing-api-key"
+    "helpdesk-ecommerce-commands-testing-api-key",
+    "ecommerce-jwt-issuer-service-primary-api-key",
+    "ecommerce-jwt-issuer-service-secondary-api-key",
   ]
 }
 

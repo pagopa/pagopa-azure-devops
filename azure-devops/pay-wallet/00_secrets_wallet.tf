@@ -16,7 +16,9 @@ module "wallet_dev_secrets" {
     "wallet-token-test-key",
     "wallet-migration-api-key-test-dev",
     "wallet-migration-cstar-api-key-test-dev",
-    "migration-wallet-token-test-dev"
+    "migration-wallet-token-test-dev",
+    "pay-wallet-jwt-issuer-service-primary-api-key",
+    "pay-wallet-jwt-issuer-service-secondary-api-key",
   ]
 }
 
@@ -37,7 +39,9 @@ module "wallet_uat_secrets" {
     "pagopa-u-itn-uat-aks-apiserver-url",
     "wallet-token-test-key",
     "wallet-storage-connection-string",
-    "receiver-evt-rx-event-hub-connection-string-test"
+    "receiver-evt-rx-event-hub-connection-string-test",
+    "pay-wallet-jwt-issuer-service-primary-api-key",
+    "pay-wallet-jwt-issuer-service-secondary-api-key",
   ]
 }
 
