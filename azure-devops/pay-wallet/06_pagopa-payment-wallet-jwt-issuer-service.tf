@@ -58,7 +58,7 @@ locals {
     git_username        = module.secrets.values["azure-devops-github-USERNAME"].value
     tenant_id           = data.azurerm_client_config.current.tenant_id
     service_api_key_dev = var.pagopa-jwt-issuer-service.pipeline.use_primary_api_key ? module.wallet_dev_secrets.values["ecommerce-jwt-issuer-service-primary-api-key"].value : module.wallet_dev_secrets.values["ecommerce-jwt-issuer-service-secondary-api-key"].value
-    service_api_key_uat = var.pagopa-jwt-issuer-service.pipeline.use_primary_api_key ? module.wallet_uat_secrets.values["ecommerce-jwt-issuer-service-primary-api-key"].value : module.wallet_uat_secrets.values["ecommerce-jwt-issuer-service-secondary-api-key"].value
+    service_api_key_uat = var.pagopa-jwt-issuer-service.pipeline.use_primary_api_key ? module.wallet_uat_secrets.values["pay-wallet-jwt-issuer-service-primary-api-key"].value : module.wallet_uat_secrets.values["pay-wallet-jwt-issuer-service-secondary-api-key"].value
   }
 }
 
