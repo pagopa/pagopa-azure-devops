@@ -44,7 +44,7 @@ locals {
     prod_azure_subscription = data.azuredevops_serviceendpoint_azurerm.prod.service_endpoint_name
 
     # acr section
-    image_repository_name                = replace(var.pagopa-pdf-engine.repository.name, "-", "")
+    image_repository_name = replace(var.pagopa-pdf-engine.repository.name, "-", "")
     # dev_container_registry_service_conn  = data.azuredevops_serviceendpoint_azurecr.dev.id
     # uat_container_registry_service_conn  = data.azuredevops_serviceendpoint_azurecr.uat.id
     # prod_container_registry_service_conn = data.azuredevops_serviceendpoint_azurecr.prod.id
