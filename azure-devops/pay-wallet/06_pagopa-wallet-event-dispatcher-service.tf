@@ -18,6 +18,7 @@ variable "pagopa-payment-wallet-event-dispatcher-service" {
         project_name       = "pagopa-payment-wallet-event-dispatcher-service"
       }
     }
+    use_primary_api_key = true
   }
 }
 
@@ -68,9 +69,10 @@ locals {
   }
   # deploy secrets
   pagopa-payment-wallet-event-dispatcher-service-variables_secret_deploy = {
-    git_mail     = module.secrets.values["azure-devops-github-EMAIL"].value
-    git_username = module.secrets.values["azure-devops-github-USERNAME"].value
-    tenant_id    = data.azurerm_client_config.current.tenant_id
+    git_mail             = module.secrets.values["azure-devops-github-EMAIL"].value
+    git_username         = module.secrets.values["azure-devops-github-USERNAME"].value
+    tenant_id            = data.azurerm_client_config.current.tenant_id
+    prod_service_api_key = var.pagopa-payment-wallet-event-dispatcher-service.use_primary_api_key ? module.wallet_prod_secrets.values["pay-wallet-event-dispatcher-service-primary-api-key"].value : module.wallet_prod_secrets.values["pay-wallet-event-dispatcher-service-secondary-api-key"].value
   }
 }
 

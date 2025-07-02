@@ -59,6 +59,8 @@ module "wallet_prod_secrets" {
   secrets = [
     "pagopa-p-itn-prod-aks-azure-devops-sa-token",
     "pagopa-p-itn-prod-aks-azure-devops-sa-cacrt",
-    "pagopa-p-itn-prod-aks-apiserver-url"
+    "pagopa-p-itn-prod-aks-apiserver-url",
+    "pay-wallet-event-dispatcher-service-primary-api-key",
+    "pay-wallet-event-dispatcher-service-secondary-api-key"
   ]
 }
