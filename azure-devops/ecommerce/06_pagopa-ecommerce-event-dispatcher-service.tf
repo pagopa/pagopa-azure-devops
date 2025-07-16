@@ -70,10 +70,14 @@ locals {
 
   # deploy secrets
   pagopa-ecommerce-event-dispatcher-service-variables_secret_deploy = {
-    git_mail             = module.secrets.values["azure-devops-github-EMAIL"].value
-    git_username         = module.secrets.values["azure-devops-github-USERNAME"].value
-    tenant_id            = data.azurerm_client_config.current.tenant_id
-    prod_service_api_key = var.pagopa-ecommerce-event-dispatcher-service.use_primary_api_key ? module.ecommerce_prod_secrets.values["ecommerce-event-dispatcher-service-primary-api-key"].value : module.ecommerce_prod_secrets.values["ecommerce-event-dispatcher-service-secondary-api-key"].value
+    git_mail                                = module.secrets.values["azure-devops-github-EMAIL"].value
+    git_username                            = module.secrets.values["azure-devops-github-USERNAME"].value
+    tenant_id                               = data.azurerm_client_config.current.tenant_id
+    prod_service_api_key                    = var.pagopa-ecommerce-event-dispatcher-service.use_primary_api_key ? module.ecommerce_prod_secrets.values["ecommerce-event-dispatcher-service-primary-api-key"].value : module.ecommerce_prod_secrets.values["ecommerce-event-dispatcher-service-secondary-api-key"].value
+    dev_mongo_ecommerce_password            = module.ecommerce_dev_secrets.values["mongo-ecommerce-password"].value
+    uat_mongo_ecommerce_password            = module.ecommerce_uat_secrets.values["mongo-ecommerce-password"].value
+    dev_transient_storage_connection_string = module.ecommerce_dev_secrets.values["ecommerce-storage-transient-connection-string"].value
+    uat_transient_storage_connection_string = module.ecommerce_uat_secrets.values["ecommerce-storage-transient-connection-string"].value
   }
 }
 

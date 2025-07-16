@@ -28,6 +28,8 @@ module "ecommerce_dev_secrets" {
     "helpdesk-service-testing-email-history",
     "ecommerce-jwt-issuer-service-primary-api-key",
     "ecommerce-jwt-issuer-service-secondary-api-key",
+    "mongo-ecommerce-password",
+    "ecommerce-storage-transient-connection-string"
   ]
 }
 
@@ -56,6 +58,8 @@ module "ecommerce_uat_secrets" {
     "helpdesk-ecommerce-commands-testing-api-key",
     "ecommerce-jwt-issuer-service-primary-api-key",
     "ecommerce-jwt-issuer-service-secondary-api-key",
+    "mongo-ecommerce-password",
+    "ecommerce-storage-transient-connection-string"
   ]
 }
 
