@@ -78,13 +78,6 @@ locals {
       repository : {
         yml_file_name : "performance-test-setup.yml"
       }
-    },
-    "performance-test-weekly-teardown" : {
-      pipeline_prefix : "performance-test-scheduled-teardown",
-      pipeline_path : "performance-test-setup",
-      repository : {
-        yml_file_name : "performance-test-weekly-teardown.yml"
-      }
       schedules : {
         days_to_build : ["Fri"],
         schedule_only_with_changes : false,
