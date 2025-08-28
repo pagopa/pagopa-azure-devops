@@ -41,7 +41,7 @@ locals {
   }
   # code_review secrets
   pagopa-ecommerce-helpdesk-service-variables_secret_code_review = {
-
+    github_ro_token = module.secrets.values["azure-devops-github-ro-TOKEN"].value
   }
   # deploy vars
   pagopa-ecommerce-helpdesk-service-variables_deploy = {
@@ -78,6 +78,7 @@ locals {
     helpdesk_testing_fiscalCode_dev    = module.ecommerce_dev_secrets.values["helpdesk-service-testing-fiscalCode"].value
     helpdesk_testing_fiscalCode_uat    = module.ecommerce_uat_secrets.values["helpdesk-service-testing-fiscalCode"].value
     helpdesk_testing_email_history_dev = module.ecommerce_dev_secrets.values["helpdesk-service-testing-email-history"].value
+    github_ro_token                    = module.secrets.values["azure-devops-github-ro-TOKEN"].value
   }
 }
 
