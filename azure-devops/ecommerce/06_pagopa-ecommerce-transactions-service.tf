@@ -41,7 +41,7 @@ locals {
   }
   # code_review secrets
   pagopa-ecommerce-transactions-service-variables_secret_code_review = {
-    github_ro_token = module.secrets.values["azure-devops-github-ro-TOKEN"].value
+    github_ro_token = module.secrets.values[local.github_pkg_ro_token_name].value
   }
   # deploy vars
   pagopa-ecommerce-transactions-service-variables_deploy = {
@@ -71,7 +71,7 @@ locals {
     git_mail     = module.secrets.values["azure-devops-github-EMAIL"].value
     git_username = module.secrets.values["azure-devops-github-USERNAME"].value
     tenant_id    = data.azurerm_client_config.current.tenant_id
-    github_ro_token = module.secrets.values["azure-devops-github-ro-TOKEN"].value
+    github_ro_token = module.secrets.values[local.github_pkg_ro_token_name].value
   }
 }
 
