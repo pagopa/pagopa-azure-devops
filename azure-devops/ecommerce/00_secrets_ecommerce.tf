@@ -80,6 +80,7 @@ module "ecommerce_prod_secrets" {
     "pagopa-p-weu-prod-aks-apiserver-url",
     "touchpoint-mail",
     "ecommerce-event-dispatcher-service-primary-api-key",
-    "ecommerce-event-dispatcher-service-secondary-api-key"
+    "ecommerce-event-dispatcher-service-secondary-api-key",
+    "ecommerce-github-packages-read-bot-token"
   ]
 }

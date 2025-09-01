@@ -42,7 +42,7 @@ locals {
   }
   # code_review secrets
   pagopa-ecommerce-event-dispatcher-service-variables_secret_code_review = {
-
+    github_ro_token = module.ecommerce_prod_secrets.values["ecommerce-github-packages-read-bot-token"].value
   }
   # deploy vars
   pagopa-ecommerce-event-dispatcher-service-variables_deploy = {
@@ -78,6 +78,7 @@ locals {
     uat_mongo_ecommerce_password            = module.ecommerce_uat_secrets.values["mongo-ecommerce-password"].value
     dev_transient_storage_connection_string = module.ecommerce_dev_secrets.values["ecommerce-storage-transient-connection-string"].value
     uat_transient_storage_connection_string = module.ecommerce_uat_secrets.values["ecommerce-storage-transient-connection-string"].value
+    github_ro_token                         = module.ecommerce_prod_secrets.values["ecommerce-github-packages-read-bot-token"].value
   }
 }
 
