@@ -41,7 +41,7 @@ locals {
   }
   # code_review secrets
   pagopa-ecommerce-helpdesk-commands-service-variables_secret_code_review = {
-    github_ro_token = module.secrets.values[local.github_pkg_ro_token_name].value
+    github_ro_token = module.ecommerce_prod_secrets.values["ecommerce-github-packages-read-bot-token"].value
   }
   # deploy vars
   pagopa-ecommerce-helpdesk-commands-service-variables_deploy = {
@@ -73,7 +73,7 @@ locals {
     tenant_id                    = data.azurerm_client_config.current.tenant_id
     helpdesk_testing_api_key_dev = module.ecommerce_dev_secrets.values["helpdesk-ecommerce-commands-testing-api-key"].value
     helpdesk_testing_api_key_uat = module.ecommerce_uat_secrets.values["helpdesk-ecommerce-commands-testing-api-key"].value
-    github_ro_token = module.secrets.values[local.github_pkg_ro_token_name].value
+    github_ro_token              = module.ecommerce_prod_secrets.values["ecommerce-github-packages-read-bot-token"].value
   }
 }
 

@@ -41,7 +41,7 @@ locals {
   }
   # code_review secrets
   pagopa-ecommerce-transactions-scheduler-service-variables_secret_code_review = {
-    github_ro_token = module.secrets.values[local.github_pkg_ro_token_name].value
+    github_ro_token = module.ecommerce_prod_secrets.values["ecommerce-github-packages-read-bot-token"].value
   }
   # deploy vars
   pagopa-ecommerce-transactions-scheduler-service-variables_deploy = {
@@ -68,10 +68,10 @@ locals {
   }
   # deploy secrets
   pagopa-ecommerce-transactions-scheduler-service-variables_secret_deploy = {
-    git_mail     = module.secrets.values["azure-devops-github-EMAIL"].value
-    git_username = module.secrets.values["azure-devops-github-USERNAME"].value
-    tenant_id    = data.azurerm_client_config.current.tenant_id
-    github_ro_token = module.secrets.values[local.github_pkg_ro_token_name].value
+    git_mail        = module.secrets.values["azure-devops-github-EMAIL"].value
+    git_username    = module.secrets.values["azure-devops-github-USERNAME"].value
+    tenant_id       = data.azurerm_client_config.current.tenant_id
+    github_ro_token = module.ecommerce_prod_secrets.values["ecommerce-github-packages-read-bot-token"].value
   }
 }
 
