@@ -89,6 +89,13 @@ locals {
           exclude : []
         }
       }
+    },
+    "db-readonly-user" : {
+      pipeline_prefix : "read-user-creation",
+      pipeline_path : "database",
+      repository : {
+        yml_file_name : "db-read-user-pipelines.yml"
+      }
     }
   }
 }
