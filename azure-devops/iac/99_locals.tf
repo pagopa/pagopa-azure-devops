@@ -90,8 +90,8 @@ locals {
         }
       }
     },
-    "db-readonly-user" : {
-      pipeline_prefix : "read-user-creation",
+    "metabase" : {
+      pipeline_prefix : "metabase-connection",
       pipeline_path : "database",
       repository : {
         yml_file_name : "db-metabase-pipelines.yml"
