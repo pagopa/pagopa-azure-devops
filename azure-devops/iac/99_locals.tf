@@ -89,6 +89,13 @@ locals {
           exclude : []
         }
       }
+    },
+    "metabase" : {
+      pipeline_prefix : "metabase-connection",
+      pipeline_path : "database",
+      repository : {
+        yml_file_name : "db-metabase-pipelines.yml"
+      }
     }
   }
 }
