@@ -49,6 +49,21 @@ locals {
     git_mail          = module.secrets.values["azure-devops-github-EMAIL"].value
     git_username      = module.secrets.values["azure-devops-github-USERNAME"].value
     github_connection = data.azuredevops_serviceendpoint_github.github_rw.service_endpoint_name
+    tenant_id = data.azurerm_client_config.current.tenant_id
+
+    dev_azure_subscription  = data.azuredevops_serviceendpoint_azurerm.dev.service_endpoint_name
+    uat_azure_subscription  = data.azuredevops_serviceendpoint_azurerm.uat.service_endpoint_name
+    prod_azure_subscription = data.azuredevops_serviceendpoint_azurerm.prod.service_endpoint_name
+
+    # acr section
+    image_repository = "reporting-fdr"
+    dev_container_registry_service_conn  = data.azuredevops_serviceendpoint_azurecr.dev.id
+    uat_container_registry_service_conn  = data.azuredevops_serviceendpoint_azurecr.uat.id
+    prod_container_registry_service_conn = data.azuredevops_serviceendpoint_azurecr.prod.id
+
+    dev_container_namespace  = "pagopadcommonacr.azurecr.io"
+    uat_container_namespace  = "pagopaucommonacr.azurecr.io"
+    prod_container_namespace = "pagopapcommonacr.azurecr.io"
 
     healthcheck_endpoint             = "/api/v1/info"
     dev_deploy_type                  = "production_slot" #or staging_slot_and_swap
@@ -60,22 +75,6 @@ locals {
     prod_deploy_type                 = "production_slot" #or staging_slot_and_swap
     prod_web_app_name                = "pagopa-p-fn-reportingfdr"
     prod_web_app_resource_group_name = "pagopa-p-reporting-fdr-rg"
-
-    tenant_id = data.azurerm_client_config.current.tenant_id
-
-    # acr section
-    image_repository = "reporting-fdr"
-    dev_container_registry_service_conn  = data.azuredevops_serviceendpoint_azurecr.dev.id
-    uat_container_registry_service_conn  = data.azuredevops_serviceendpoint_azurecr.uat.id
-    prod_container_registry_service_conn = data.azuredevops_serviceendpoint_azurecr.prod.id
-
-    dev_azure_subscription  = data.azuredevops_serviceendpoint_azurerm.dev.service_endpoint_name
-    uat_azure_subscription  = data.azuredevops_serviceendpoint_azurerm.uat.service_endpoint_name
-    prod_azure_subscription = data.azuredevops_serviceendpoint_azurerm.prod.service_endpoint_name
-
-    dev_container_namespace  = "pagopadcommonacr.azurecr.io"
-    uat_container_namespace  = "pagopaucommonacr.azurecr.io"
-    prod_container_namespace = "pagopapcommonacr.azurecr.io"
 
     TF_APPINSIGHTS_SERVICE_CONN_DEV = module.DEV-APPINSIGHTS-SERVICE-CONN.service_endpoint_name
     TF_APPINSIGHTS_RESOURCE_ID_DEV  = data.azurerm_application_insights.application_insights_dev.id
@@ -140,6 +139,12 @@ module "pagopa-reporting-fdr_deploy" {
 
   service_connection_ids_authorization = [
     data.azuredevops_serviceendpoint_github.github_ro.id,
+    data.azuredevops_serviceendpoint_azurecr.dev.id,
+    data.azuredevops_serviceendpoint_azurecr.uat.id,
+    data.azuredevops_serviceendpoint_azurecr.prod.id,
+    data.azuredevops_serviceendpoint_azurerm.dev.id,
+    data.azuredevops_serviceendpoint_azurerm.uat.id,
+    data.azuredevops_serviceendpoint_azurerm.prod.id,
     module.DEV-APPINSIGHTS-SERVICE-CONN.service_endpoint_id,
     module.UAT-APPINSIGHTS-SERVICE-CONN.service_endpoint_id,
     module.PROD-APPINSIGHTS-SERVICE-CONN.service_endpoint_id
