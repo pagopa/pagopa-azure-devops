@@ -100,7 +100,7 @@ module "pagopa-reporting-fdr_code_review" {
   project_id                   = data.azuredevops_project.project.id
   repository                   = var.pagopa-reporting-fdr.repository
   github_service_connection_id = data.azuredevops_serviceendpoint_github.github_pr.service_endpoint_id
-  path                         = var.pagopa-reporting-fdr.repository.name
+  path                         = "${local.domain}\\${var.pagopa-reporting-fdr.repository.name}"
 
   variables = merge(
     local.pagopa-reporting-fdr-variables,
@@ -125,7 +125,7 @@ module "pagopa-reporting-fdr_deploy" {
   project_id                   = data.azuredevops_project.project.id
   repository                   = var.pagopa-reporting-fdr.repository
   github_service_connection_id = data.azuredevops_serviceendpoint_github.github_rw.service_endpoint_id
-  path                         = var.pagopa-reporting-fdr.repository.name
+  path                         = "${local.domain}\\${var.pagopa-reporting-fdr.repository.name}"
 
 
   variables = merge(
