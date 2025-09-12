@@ -139,7 +139,7 @@ module "pagopa-reporting-fdr_deploy" {
   )
 
   service_connection_ids_authorization = [
-    data.azuredevops_serviceendpoint_github.azure-devops-github-ro.id,
+    data.azuredevops_serviceendpoint_github.github_ro.id,
     module.DEV-APPINSIGHTS-SERVICE-CONN.service_endpoint_id,
     module.UAT-APPINSIGHTS-SERVICE-CONN.service_endpoint_id,
     module.PROD-APPINSIGHTS-SERVICE-CONN.service_endpoint_id
