@@ -49,14 +49,14 @@ locals {
     git_mail          = module.secrets.values["azure-devops-github-EMAIL"].value
     git_username      = module.secrets.values["azure-devops-github-USERNAME"].value
     github_connection = data.azuredevops_serviceendpoint_github.github_rw.service_endpoint_name
-    tenant_id = data.azurerm_client_config.current.tenant_id
+    tenant_id         = data.azurerm_client_config.current.tenant_id
 
     dev_azure_subscription  = data.azuredevops_serviceendpoint_azurerm.dev.service_endpoint_name
     uat_azure_subscription  = data.azuredevops_serviceendpoint_azurerm.uat.service_endpoint_name
     prod_azure_subscription = data.azuredevops_serviceendpoint_azurerm.prod.service_endpoint_name
 
     # acr section
-    image_repository = "reporting-fdr"
+    image_repository                     = "reporting-fdr"
     dev_container_registry_service_conn  = data.azuredevops_serviceendpoint_azurecr.dev_weu_workload_identity.id
     uat_container_registry_service_conn  = data.azuredevops_serviceendpoint_azurecr.uat_weu_workload_identity.id
     prod_container_registry_service_conn = data.azuredevops_serviceendpoint_azurecr.prod_weu_workload_identity.id
