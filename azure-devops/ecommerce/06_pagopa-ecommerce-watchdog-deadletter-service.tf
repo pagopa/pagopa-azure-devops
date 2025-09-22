@@ -67,9 +67,9 @@ locals {
   }
   # deploy secrets
   pagopa-ecommerce-watchdog-deadletter-service-variables_secret_deploy = {
-    git_mail        = module.secrets.values["azure-devops-github-EMAIL"].value
-    git_username    = module.secrets.values["azure-devops-github-USERNAME"].value
-    tenant_id       = data.azurerm_client_config.current.tenant_id
+    git_mail     = module.secrets.values["azure-devops-github-EMAIL"].value
+    git_username = module.secrets.values["azure-devops-github-USERNAME"].value
+    tenant_id    = data.azurerm_client_config.current.tenant_id
   }
 }
 
