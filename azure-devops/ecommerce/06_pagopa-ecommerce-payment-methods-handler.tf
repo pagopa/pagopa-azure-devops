@@ -68,10 +68,14 @@ locals {
   }
   # deploy secrets
   pagopa-ecommerce-payment-methods-handler-variables_secret_deploy = {
-    tenant_id       = data.azurerm_client_config.current.tenant_id
-    git_mail        = module.secrets.values["azure-devops-github-EMAIL"].value
-    git_username    = module.secrets.values["azure-devops-github-USERNAME"].value
-    github_ro_token = module.ecommerce_prod_secrets.values["ecommerce-github-packages-read-bot-token"].value
+    tenant_id                            = data.azurerm_client_config.current.tenant_id
+    git_mail                             = module.secrets.values["azure-devops-github-EMAIL"].value
+    git_username                         = module.secrets.values["azure-devops-github-USERNAME"].value
+    github_ro_token                      = module.ecommerce_prod_secrets.values["ecommerce-github-packages-read-bot-token"].value
+    CHECKOUT_PAYMENT_HANDLER_API_KEY_DEV = module.ecommerce_dev_secrets.values["checkout-payment-methods-handler-api-key"].value
+    CHECKOUT_PAYMENT_HANDLER_API_KEY_UAT = module.ecommerce_uat_secrets.values["checkout-payment-methods-handler-api-key"].value
+    IO_PAYMENT_HANDLER_API_KEY_DEV       = module.ecommerce_dev_secrets.values["io-payment-methods-handler-api-key"].value
+    IO_PAYMENT_HANDLER_API_KEY_UAT       = module.ecommerce_uat_secrets.values["io-payment-methods-handler-api-key"].value
   }
 }
 

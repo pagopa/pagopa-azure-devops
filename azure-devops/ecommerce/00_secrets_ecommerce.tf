@@ -29,7 +29,9 @@ module "ecommerce_dev_secrets" {
     "ecommerce-jwt-issuer-service-primary-api-key",
     "ecommerce-jwt-issuer-service-secondary-api-key",
     "mongo-ecommerce-password",
-    "ecommerce-storage-transient-connection-string"
+    "ecommerce-storage-transient-connection-string",
+    "checkout-payment-methods-handler-api-key",
+    "io-payment-methods-handler-api-key"
   ]
 }
 
@@ -59,7 +61,9 @@ module "ecommerce_uat_secrets" {
     "ecommerce-jwt-issuer-service-primary-api-key",
     "ecommerce-jwt-issuer-service-secondary-api-key",
     "mongo-ecommerce-password",
-    "ecommerce-storage-transient-connection-string"
+    "ecommerce-storage-transient-connection-string",
+    "checkout-payment-methods-handler-api-key",
+    "io-payment-methods-handler-api-key"
   ]
 }
 
