@@ -53,6 +53,15 @@ locals {
     TF_APPINSIGHTS_RESOURCE_ID_DEV  = data.azurerm_application_insights.application_insights_dev.id
     TF_APPINSIGHTS_SERVICE_CONN_UAT = module.UAT-APPINSIGHTS-SERVICE-CONN.service_endpoint_name
     TF_APPINSIGHTS_RESOURCE_ID_UAT  = data.azurerm_application_insights.application_insights_uat.id
+
+    dev_azure_subscription = data.azuredevops_serviceendpoint_azurerm.dev.service_endpoint_name
+    uat_azure_subscription = data.azuredevops_serviceendpoint_azurerm.uat.service_endpoint_name
+
+    dev_web_app_name                = "pagopa-d-app-mock-ec"
+    dev_web_app_resource_group_name = "pagopa-d-mock-ec-rg"
+    uat_web_app_name                = "pagopa-u-app-mock-ec"
+    uat_web_app_resource_group_name = "pagopa-u-mock-ec-rg"
+
   }
 
   # deploy secrets
