@@ -31,7 +31,7 @@ locals {
     subscription_id   = data.azurerm_subscriptions.prod.subscriptions[0].subscription_id
   }
   tlscert-prod-wisp2-pagopa-it-variables = {
-    KEY_VAULT_SERVICE_CONNECTION = module.PROD-TLS-CERT-SERVICE-CONN.service_endpoint_name
+    KEY_VAULT_SERVICE_CONNECTION = module.prod_tls_cert_service_conn.service_endpoint_name
   }
   tlscert-prod-wisp2-pagopa-it-variables_secret = {
   }
@@ -46,7 +46,7 @@ module "tlscert-prod-wisp2-pagopa-it-cert_az" {
   count  = var.tlscert-prod-wisp2-pagopa-it.pipeline.enable_tls_cert == true ? 1 : 0
 
   project_id                   = azuredevops_project.project.id
-  repository                   = var.tlscert-prod-wisp2-pagopa-it.repository
+  repository                   = local.tlscert_repository
   path                         = var.tlscert-prod-wisp2-pagopa-it.pipeline.path
   github_service_connection_id = azuredevops_serviceendpoint_github.azure-devops-github-rw.id
 
@@ -70,10 +70,11 @@ module "tlscert-prod-wisp2-pagopa-it-cert_az" {
   variables_secret = merge(
     var.tlscert-prod-wisp2-pagopa-it.pipeline.variables_secret,
     local.tlscert-prod-wisp2-pagopa-it-variables_secret,
+    local.cert_diff_env_variables_prod
   )
 
   service_connection_ids_authorization = [
-    module.PROD-TLS-CERT-SERVICE-CONN.service_endpoint_id,
+    module.prod_tls_cert_service_conn.service_endpoint_id,
   ]
 
   schedules = {
@@ -83,8 +84,9 @@ module "tlscert-prod-wisp2-pagopa-it-cert_az" {
     start_minutes              = 30
     time_zone                  = "(UTC+01:00) Amsterdam, Berlin, Bern, Rome, Stockholm, Vienna"
     branch_filter = {
-      include = ["master"]
+      include = [local.tlscert_repository.branch_name]
       exclude = []
     }
   }
+  cert_diff_variables = local.prod_cert_diff_variables
 }

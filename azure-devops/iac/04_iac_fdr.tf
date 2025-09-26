@@ -1,8 +1,13 @@
+##################################################
+#         DO NOT COPY-PASTE THIS FILE
+# use the new structured way to define the iac pipelines
+# have a look at README.md
+##################################################
 variable "fdr_iac" {
   default = {
     repository = {
       organization    = "pagopa"
-      name            = "pagopa-infra"
+      name            = "pagopa-fdr-nodo-dei-pagamenti"
       branch_name     = "refs/heads/main"
       pipelines_path  = ".devops"
       yml_prefix_name = "fdr"

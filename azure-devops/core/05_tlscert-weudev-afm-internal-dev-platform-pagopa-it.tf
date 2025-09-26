@@ -31,7 +31,7 @@ locals {
     subscription_id   = data.azurerm_subscriptions.dev.subscriptions[0].subscription_id
   }
   tlscert-weudev-afm-internal-dev-platform-pagopa-it-variables = {
-    KEY_VAULT_SERVICE_CONNECTION = module.DEV-AFM-TLS-CERT-SERVICE-CONN.service_endpoint_name
+    KEY_VAULT_SERVICE_CONNECTION = module.dev_afm_tls_cert_service_conn.service_endpoint_name
   }
   tlscert-weudev-afm-internal-dev-platform-pagopa-it-variables_secret = {
   }
@@ -75,7 +75,7 @@ module "tlscert-weudev-afm-internal-dev-platform-pagopa-it-cert_az" {
   )
 
   service_connection_ids_authorization = [
-    module.DEV-AFM-TLS-CERT-SERVICE-CONN.service_endpoint_id,
+    module.dev_afm_tls_cert_service_conn.service_endpoint_id,
   ]
 
   schedules = {

@@ -36,9 +36,6 @@ locals {
   uat_afm_key_vault_name  = "${local.prefix}-u-afm-kv"
   prod_afm_key_vault_name = "${local.prefix}-p-afm-kv"
 
-  dev_kibana_key_vault_name  = "${local.prefix}-d-elk-kv"
-  uat_kibana_key_vault_name  = "${local.prefix}-u-elk-kv"
-  prod_kibana_key_vault_name = "${local.prefix}-p-elk-kv"
   # KV RG
 
   dev_key_vault_resource_group  = "${local.prefix}-d-sec-rg"
@@ -61,9 +58,6 @@ locals {
   uat_afm_key_vault_resource_group  = "${local.prefix}-u-afm-sec-rg"
   prod_afm_key_vault_resource_group = "${local.prefix}-p-afm-sec-rg"
 
-  dev_kibana_key_vault_resource_group  = "${local.prefix}-d-elk-sec-rg"
-  uat_kibana_key_vault_resource_group  = "${local.prefix}-u-elk-sec-rg"
-  prod_kibana_key_vault_resource_group = "${local.prefix}-p-elk-sec-rg"
 
   # ☁️ VNET
   dev_vnet_rg  = "${local.prefix}-d-vnet-rg"
@@ -133,8 +127,7 @@ locals {
 
   #tfsec:ignore:general-secrets-no-plaintext-exposure
   #tfsec:ignore:GEN002
-  tlscert_renew_token        = "v3"
-  tlscert_renew_token_kibana = "v2"
+  tlscert_renew_token = "v3"
 
   # Service connections/ End points
   srv_endpoint_github_ro = "io-azure-devops-github-ro"
@@ -143,6 +136,76 @@ locals {
 
   # TODO azure devops terraform provider does not support SonarCloud service endpoint
   azuredevops_serviceendpoint_sonarcloud_id = "9182be64-d387-465d-9acc-e79e802910c8"
+
+  # APPINSIGHTS
+  dev_app_insight_monitoring_name    = "${local.prefix}-d-weu-synthetic-appinsights"
+  dev_app_insight_monitoring_rg      = "${local.prefix}-d-weu-synthetic-rg"
+  dev_cert_diff_pipeline_status_name = "${local.prefix}d-cert-pipeline-status"
+  dev_monitor_rg                     = "${local.prefix}-d-monitor-rg"
+
+  uat_app_insight_monitoring_name    = "${local.prefix}-u-weu-synthetic-appinsights"
+  uat_app_insight_monitoring_rg      = "${local.prefix}-u-weu-synthetic-rg"
+  uat_cert_diff_pipeline_status_name = "${local.prefix}u-cert-pipeline-status"
+  uat_monitor_rg                     = "${local.prefix}-u-monitor-rg"
+
+  prod_app_insight_monitoring_name    = "${local.prefix}-p-weu-synthetic-appinsights"
+  prod_app_insight_monitoring_rg      = "${local.prefix}-p-weu-synthetic-rg"
+  prod_cert_diff_pipeline_status_name = "${local.prefix}p-cert-pipeline-status"
+  prod_monitor_rg                     = "${local.prefix}-p-monitor-rg"
+
+  # TLS CERT + TLS CERT DIFF
+  tlscert_repository = {
+    organization   = "pagopa"
+    name           = "le-azure-acme-tiny"
+    branch_name    = "refs/heads/master"
+    pipelines_path = "."
+  }
+
+  cert_diff_env_variables_dev = {
+    RECEIVER_EMAIL = module.pagopa_core_dev_secrets.values["tls-cert-diff-receiver-emails"].value
+    SENDER_EMAIL   = module.pagopa_core_dev_secrets.values["tls-cert-diff-sender-email"].value
+    APP_PASS       = module.pagopa_core_dev_secrets.values["tls-cert-diff-sender-email-app-pass"].value
+  }
+
+  dev_cert_diff_variables = {
+    enabled           = true
+    alert_enabled     = true
+    cert_diff_version = "0.2.5"
+    app_insights_name = local.dev_app_insight_monitoring_name
+    app_insights_rg   = local.dev_app_insight_monitoring_rg
+    actions_group     = [data.azurerm_monitor_action_group.certificate_pipeline_status_dev.id]
+  }
+
+  cert_diff_env_variables_uat = {
+    RECEIVER_EMAIL = module.pagopa_core_uat_secrets.values["tls-cert-diff-receiver-emails"].value
+    SENDER_EMAIL   = module.pagopa_core_uat_secrets.values["tls-cert-diff-sender-email"].value
+    APP_PASS       = module.pagopa_core_uat_secrets.values["tls-cert-diff-sender-email-app-pass"].value
+  }
+
+  uat_cert_diff_variables = {
+    enabled           = true
+    alert_enabled     = true
+    cert_diff_version = "0.2.5"
+    app_insights_name = local.uat_app_insight_monitoring_name
+    app_insights_rg   = local.uat_app_insight_monitoring_rg
+    actions_group     = [data.azurerm_monitor_action_group.certificate_pipeline_status_uat.id]
+  }
+
+  cert_diff_env_variables_prod = {
+    RECEIVER_EMAIL = module.pagopa_core_prod_secrets.values["tls-cert-diff-receiver-emails"].value
+    SENDER_EMAIL   = module.pagopa_core_prod_secrets.values["tls-cert-diff-sender-email"].value
+    APP_PASS       = module.pagopa_core_prod_secrets.values["tls-cert-diff-sender-email-app-pass"].value
+  }
+
+  prod_cert_diff_variables = {
+    enabled           = true
+    alert_enabled     = true
+    cert_diff_version = "0.2.5"
+    app_insights_name = local.prod_app_insight_monitoring_name
+    app_insights_rg   = local.prod_app_insight_monitoring_rg
+    actions_group     = [data.azurerm_monitor_action_group.certificate_pipeline_status_prod.id]
+  }
+
 }
 
 variable "location" {

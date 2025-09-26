@@ -44,14 +44,21 @@ locals {
     prod_azure_subscription = data.azuredevops_serviceendpoint_azurerm.prod.service_endpoint_name
 
     # acr section
-    image_repository_name                = replace(var.pagopa-pdf-engine.repository.name, "-", "")
-    dev_container_registry_service_conn  = data.azuredevops_serviceendpoint_azurecr.dev.id
-    uat_container_registry_service_conn  = data.azuredevops_serviceendpoint_azurecr.uat.id
-    prod_container_registry_service_conn = data.azuredevops_serviceendpoint_azurecr.prod.id
+    image_repository_name = replace(var.pagopa-pdf-engine.repository.name, "-", "")
+    # dev_container_registry_service_conn  = data.azuredevops_serviceendpoint_azurecr.dev.id
+    # uat_container_registry_service_conn  = data.azuredevops_serviceendpoint_azurecr.uat.id
+    # prod_container_registry_service_conn = data.azuredevops_serviceendpoint_azurecr.prod.id
+    dev_container_registry_service_conn  = data.azuredevops_serviceendpoint_azurecr.dev_weu_workload_identity.service_endpoint_name
+    uat_container_registry_service_conn  = data.azuredevops_serviceendpoint_azurecr.uat_weu_workload_identity.service_endpoint_name
+    prod_container_registry_service_conn = data.azuredevops_serviceendpoint_azurecr.prod_weu_workload_identity.service_endpoint_name
 
-    itn_dev_container_registry_service_conn  = data.azuredevops_serviceendpoint_azurecr.itn_dev.id
-    itn_uat_container_registry_service_conn  = data.azuredevops_serviceendpoint_azurecr.itn_uat.id
-    itn_prod_container_registry_service_conn = data.azuredevops_serviceendpoint_azurecr.itn_prod.id
+
+    # itn_dev_container_registry_service_conn  = data.azuredevops_serviceendpoint_azurecr.itn_dev.id
+    # itn_uat_container_registry_service_conn  = data.azuredevops_serviceendpoint_azurecr.itn_uat.id
+    # itn_prod_container_registry_service_conn = data.azuredevops_serviceendpoint_azurecr.itn_prod.id
+    itn_dev_container_registry_service_conn  = data.azuredevops_serviceendpoint_azurecr.dev_ita_workload_identity.service_endpoint_name
+    itn_uat_container_registry_service_conn  = data.azuredevops_serviceendpoint_azurecr.uat_ita_workload_identity.service_endpoint_name
+    itn_prod_container_registry_service_conn = data.azuredevops_serviceendpoint_azurecr.prod_ita_workload_identity.service_endpoint_name
 
     dev_container_namespace  = "pagopadcommonacr.azurecr.io"
     uat_container_namespace  = "pagopaucommonacr.azurecr.io"

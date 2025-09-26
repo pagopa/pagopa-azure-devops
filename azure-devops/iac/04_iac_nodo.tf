@@ -1,3 +1,8 @@
+##################################################
+#         DO NOT COPY-PASTE THIS FILE
+# use the new structured way to define the iac pipelines
+# have a look at README.md
+##################################################
 variable "nodo_iac" {
   default = {
     repository = {
@@ -36,7 +41,10 @@ variable "nodo_iac" {
         name                  = "sync-schema-cfg-grant-pipelines"
         pipeline_yml_filename = "nodo-sync-grant-schema-cfg-pipelines.yml"
       }
-
+      nodo_cron_alert_suspend_jobs = {
+        name                  = "nodo-cron-alert-suspend-jobs-pipelines"
+        pipeline_yml_filename = "nodo-cron-alert-suspend-jobs-pipelines.yml"
+      }
     }
   }
 }
@@ -109,6 +117,10 @@ locals {
   # db-web-bo-schema secrets
   nodo_iac_variables_secret_web_bo_db_schema = {}
 
+  # nodo-cron-alert-suspend-jobs variables
+  nodo_iac_variables_cron_alert_suspend_jobs = {}
+  # nodo-cron-alert-suspend-jobs secrets
+  nodo_iac_variables_secret_cron_alert_suspend_jobs = {}
 }
 
 
@@ -301,6 +313,35 @@ module "nodo_iac_web_bo_db_schema" {
 
   variables_secret = merge(
     local.nodo_iac_variables_secret_web_bo_db_schema,
+  )
+
+  service_connection_ids_authorization = [
+    azuredevops_serviceendpoint_github.azure-devops-github-ro.id,
+    module.DEV-AZURERM-IAC-PLAN-SERVICE-CONN.service_endpoint_id,
+    module.UAT-AZURERM-IAC-PLAN-SERVICE-CONN.service_endpoint_id,
+    module.PROD-AZURERM-IAC-PLAN-SERVICE-CONN.service_endpoint_id,
+  ]
+}
+
+module "nodo_cron_alert_suspend_jobs" {
+  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_generic?ref=v7.0.0"
+
+  project_id                   = azuredevops_project.project.id
+  repository                   = var.nodo_iac.repository
+  github_service_connection_id = azuredevops_serviceendpoint_github.azure-devops-github-pr.id
+  path                         = var.nodo_iac.pipeline.path
+  pipeline_name                = var.nodo_iac.pipeline.nodo_cron_alert_suspend_jobs.name
+  pipeline_yml_filename        = var.nodo_iac.pipeline.nodo_cron_alert_suspend_jobs.pipeline_yml_filename
+  ci_trigger_enabled           = true
+  ci_trigger_use_yaml          = true
+
+  variables = merge(
+    local.nodo_iac_variables,
+    local.nodo_iac_variables_cron_alert_suspend_jobs,
+  )
+
+  variables_secret = merge(
+    local.nodo_iac_variables_secret_cron_alert_suspend_jobs,
   )
 
   service_connection_ids_authorization = [

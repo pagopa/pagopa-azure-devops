@@ -10,6 +10,13 @@ variable "pagopa-ecommerce-fe" {
     pipeline = {
       enable_code_review = true
       enable_deploy      = true
+      sonarcloud = {
+        # TODO azure devops terraform provider does not support SonarCloud service endpoint
+        service_connection = "SONARCLOUD-SERVICE-CONN"
+        org                = "pagopa"
+        project_key        = "pagopa_pagopa-ecommerce-fe"
+        project_name       = "pagopa-ecommerce-fe"
+      }
     }
   }
 }
@@ -27,6 +34,10 @@ locals {
   # code_review vars
   pagopa-ecommerce-fe-variables_code_review = {
     danger_github_api_token = "skip"
+    sonarcloud_service_conn = var.pagopa-ecommerce-fe.pipeline.sonarcloud.service_connection
+    sonarcloud_org          = var.pagopa-ecommerce-fe.pipeline.sonarcloud.org
+    sonarcloud_project_key  = var.pagopa-ecommerce-fe.pipeline.sonarcloud.project_key
+    sonarcloud_project_name = var.pagopa-ecommerce-fe.pipeline.sonarcloud.project_name
   }
   # code_review secrets
   pagopa-ecommerce-fe-variables_secret_code_review = {
@@ -71,7 +82,8 @@ module "pagopa-ecommerce-fe_code_review" {
   )
 
   service_connection_ids_authorization = [
-    data.azuredevops_serviceendpoint_github.github_ro.id
+    data.azuredevops_serviceendpoint_github.github_ro.id,
+    local.azuredevops_serviceendpoint_sonarcloud_id
   ]
 }
 

@@ -26,6 +26,12 @@ module "ecommerce_dev_secrets" {
     "wallet-token-test-key",
     "helpdesk-ecommerce-commands-testing-api-key",
     "helpdesk-service-testing-email-history",
+    "ecommerce-jwt-issuer-service-primary-api-key",
+    "ecommerce-jwt-issuer-service-secondary-api-key",
+    "mongo-ecommerce-password",
+    "ecommerce-storage-transient-connection-string",
+    "checkout-payment-methods-handler-api-key",
+    "io-payment-methods-handler-api-key"
   ]
 }
 
@@ -51,7 +57,13 @@ module "ecommerce_uat_secrets" {
     "helpdesk-service-testing-email",
     "helpdesk-service-testing-fiscalCode",
     "wallet-token-test-key",
-    "helpdesk-ecommerce-commands-testing-api-key"
+    "helpdesk-ecommerce-commands-testing-api-key",
+    "ecommerce-jwt-issuer-service-primary-api-key",
+    "ecommerce-jwt-issuer-service-secondary-api-key",
+    "mongo-ecommerce-password",
+    "ecommerce-storage-transient-connection-string",
+    "checkout-payment-methods-handler-api-key",
+    "io-payment-methods-handler-api-key"
   ]
 }
 
@@ -70,6 +82,9 @@ module "ecommerce_prod_secrets" {
     "pagopa-p-weu-prod-aks-azure-devops-sa-token",
     "pagopa-p-weu-prod-aks-azure-devops-sa-cacrt",
     "pagopa-p-weu-prod-aks-apiserver-url",
-    "touchpoint-mail"
+    "touchpoint-mail",
+    "ecommerce-event-dispatcher-service-primary-api-key",
+    "ecommerce-event-dispatcher-service-secondary-api-key",
+    "ecommerce-github-packages-read-bot-token"
   ]
 }

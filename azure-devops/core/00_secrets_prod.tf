@@ -40,3 +40,22 @@ module "secrets" {
     "DEV-PGS-TEST-API-KEY",
   ]
 }
+
+#
+# PROD KEYVAULT CORE
+#
+
+module "pagopa_core_prod_secrets" {
+
+  source = "./.terraform/modules/__v3__/key_vault_secrets_query"
+
+
+  resource_group = local.prod_key_vault_resource_group
+  key_vault_name = local.prod_key_vault_name
+
+  secrets = [
+    "tls-cert-diff-receiver-emails",
+    "tls-cert-diff-sender-email",
+    "tls-cert-diff-sender-email-app-pass",
+  ]
+}

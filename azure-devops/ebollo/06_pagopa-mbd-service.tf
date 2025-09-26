@@ -33,8 +33,8 @@ locals {
   }
   # performance secrets
   pagopa-mbd-service-variables_secret_performance_test = {
-    DEV_API_SUBSCRIPTION_KEY  = module.ebollo_dev_secrets.values["apikey-mbd-integration-test"].value
-    UAT_API_SUBSCRIPTION_KEY  = module.ebollo_uat_secrets.values["apikey-mbd-integration-test"].value
+    DEV_API_SUBSCRIPTION_KEY = module.ebollo_dev_secrets.values["apikey-mbd-integration-test"].value
+    UAT_API_SUBSCRIPTION_KEY = module.ebollo_uat_secrets.values["apikey-mbd-integration-test"].value
   }
 
 }

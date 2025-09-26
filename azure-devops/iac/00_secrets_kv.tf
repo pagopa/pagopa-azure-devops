@@ -15,9 +15,9 @@ module "dev_secrets" {
   key_vault_name = format(each.value.kv_name, "d")
 
   secrets = [
-    "pagopa-d-weu-dev-aks-azure-devops-sa-token",
-    "pagopa-d-weu-dev-aks-azure-devops-sa-cacrt",
-    "pagopa-d-weu-dev-aks-apiserver-url"
+    "pagopa-d-${each.value.region}-dev-aks-azure-devops-sa-token",
+    "pagopa-d-${each.value.region}-dev-aks-azure-devops-sa-cacrt",
+    "pagopa-d-${each.value.region}-dev-aks-apiserver-url"
   ]
 }
 
@@ -35,9 +35,9 @@ module "uat_secrets" {
 
 
   secrets = [
-    "pagopa-d-weu-uat-aks-azure-devops-sa-token",
-    "pagopa-d-weu-uat-aks-azure-devops-sa-cacrt",
-    "pagopa-d-weu-uat-aks-apiserver-url"
+    "pagopa-u-${each.value.region}-uat-aks-azure-devops-sa-token",
+    "pagopa-u-${each.value.region}-uat-aks-azure-devops-sa-cacrt",
+    "pagopa-u-${each.value.region}-uat-aks-apiserver-url"
   ]
 }
 
@@ -55,8 +55,8 @@ module "prod_secrets" {
 
 
   secrets = [
-    "pagopa-p-weu-prod-aks-azure-devops-sa-token",
-    "pagopa-d-weu-prod-aks-azure-devops-sa-cacrt",
-    "pagopa-d-weu-prod-aks-apiserver-url"
+    "pagopa-p-${each.value.region}-prod-aks-azure-devops-sa-token",
+    "pagopa-p-${each.value.region}-prod-aks-azure-devops-sa-cacrt",
+    "pagopa-p-${each.value.region}-prod-aks-apiserver-url"
   ]
 }

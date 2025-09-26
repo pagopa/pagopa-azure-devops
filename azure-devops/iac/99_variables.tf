@@ -82,15 +82,6 @@ locals {
   uat_ecommerce_key_vault_name  = "${local.prefix}-u-ecommerce-kv"
   prod_ecommerce_key_vault_name = "${local.prefix}-p-ecommerce-kv"
 
-  ### ELK
-  dev_elk_key_vault_name  = "${local.prefix}-d-elk-kv"
-  uat_elk_key_vault_name  = "${local.prefix}-u-elk-kv"
-  prod_elk_key_vault_name = "${local.prefix}-p-elk-kv"
-
-  dev_elk_key_vault_resource_group  = "${local.prefix}-d-elk-sec-rg"
-  uat_elk_key_vault_resource_group  = "${local.prefix}-u-elk-sec-rg"
-  prod_elk_key_vault_resource_group = "${local.prefix}-p-elk-sec-rg"
-
   ### FDR
   dev_fdr_key_vault_resource_group  = "${local.prefix}-d-fdr-sec-rg"
   uat_fdr_key_vault_resource_group  = "${local.prefix}-u-fdr-sec-rg"
