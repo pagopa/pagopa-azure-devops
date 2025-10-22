@@ -15,7 +15,7 @@ variable "tlscert-prod-ecommerce-pagopa-it" {
       # common variables to all pipelines
       variables = {
         CERT_NAME_EXPIRE_SECONDS = "2592000" #30 days
-        KEY_VAULT_NAME           = "pagopa-p-kv"
+        KEY_VAULT_NAME           = local.prod_ecommerce_key_vault_name
       }
       # common secret variables to all pipelines
       variables_secret = {
