@@ -12,9 +12,15 @@
 
 | Name | Source | Version |
 |------|--------|---------|
+| <a name="module_DEV-ECOMMERCE-TLS-CERT-SERVICE-CONN"></a> [DEV-ECOMMERCE-TLS-CERT-SERVICE-CONN](#module\_DEV-ECOMMERCE-TLS-CERT-SERVICE-CONN) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated | v4.2.1 |
+| <a name="module_PROD-ECOMMERCE-TLS-CERT-SERVICE-CONN"></a> [PROD-ECOMMERCE-TLS-CERT-SERVICE-CONN](#module\_PROD-ECOMMERCE-TLS-CERT-SERVICE-CONN) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated | v4.2.1 |
+| <a name="module_UAT-ECOMMERCE-TLS-CERT-SERVICE-CONN"></a> [UAT-ECOMMERCE-TLS-CERT-SERVICE-CONN](#module\_UAT-ECOMMERCE-TLS-CERT-SERVICE-CONN) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated | v4.2.1 |
 | <a name="module_ecommerce_dev_secrets"></a> [ecommerce\_dev\_secrets](#module\_ecommerce\_dev\_secrets) | git::https://github.com/pagopa/terraform-azurerm-v3.git//key_vault_secrets_query | v7.39.0 |
 | <a name="module_ecommerce_prod_secrets"></a> [ecommerce\_prod\_secrets](#module\_ecommerce\_prod\_secrets) | git::https://github.com/pagopa/terraform-azurerm-v3.git//key_vault_secrets_query | v7.39.0 |
 | <a name="module_ecommerce_uat_secrets"></a> [ecommerce\_uat\_secrets](#module\_ecommerce\_uat\_secrets) | git::https://github.com/pagopa/terraform-azurerm-v3.git//key_vault_secrets_query | v7.39.0 |
+| <a name="module_letsencrypt_dev"></a> [letsencrypt\_dev](#module\_letsencrypt\_dev) | git::https://github.com/pagopa/terraform-azurerm-v3.git//letsencrypt_credential | v7.30.0 |
+| <a name="module_letsencrypt_prod"></a> [letsencrypt\_prod](#module\_letsencrypt\_prod) | git::https://github.com/pagopa/terraform-azurerm-v3.git//letsencrypt_credential | v7.30.0 |
+| <a name="module_letsencrypt_uat"></a> [letsencrypt\_uat](#module\_letsencrypt\_uat) | git::https://github.com/pagopa/terraform-azurerm-v3.git//letsencrypt_credential | v7.30.0 |
 | <a name="module_pagopa-api-tests-ecommerce-for-io"></a> [pagopa-api-tests-ecommerce-for-io](#module\_pagopa-api-tests-ecommerce-for-io) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_generic | v4.2.1 |
 | <a name="module_pagopa-ecommerce-cdc-service_code_review"></a> [pagopa-ecommerce-cdc-service\_code\_review](#module\_pagopa-ecommerce-cdc-service\_code\_review) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review | v5.1.1 |
 | <a name="module_pagopa-ecommerce-cdc-service_deploy"></a> [pagopa-ecommerce-cdc-service\_deploy](#module\_pagopa-ecommerce-cdc-service\_deploy) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy | v4.2.1 |
@@ -48,6 +54,9 @@
 | <a name="module_pagopa-jwt-issuer-service_code_review"></a> [pagopa-jwt-issuer-service\_code\_review](#module\_pagopa-jwt-issuer-service\_code\_review) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review | v5.1.1 |
 | <a name="module_pagopa-jwt-issuer-service_deploy"></a> [pagopa-jwt-issuer-service\_deploy](#module\_pagopa-jwt-issuer-service\_deploy) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy | v4.2.1 |
 | <a name="module_secrets"></a> [secrets](#module\_secrets) | git::https://github.com/pagopa/terraform-azurerm-v3.git//key_vault_secrets_query | v7.39.0 |
+| <a name="module_tlscert-dev-dev-ecommerce-pagopa-it-cert_az"></a> [tlscert-dev-dev-ecommerce-pagopa-it-cert\_az](#module\_tlscert-dev-dev-ecommerce-pagopa-it-cert\_az) | ../core/.terraform/modules/__azdo__/azuredevops_build_definition_tls_cert_federated | n/a |
+| <a name="module_tlscert-prod-ecommerce-pagopa-it-cert_az"></a> [tlscert-prod-ecommerce-pagopa-it-cert\_az](#module\_tlscert-prod-ecommerce-pagopa-it-cert\_az) | ../core/.terraform/modules/__azdo__/azuredevops_build_definition_tls_cert_federated | n/a |
+| <a name="module_tlscert-uat-ecommerce-pagopa-it-cert_az"></a> [tlscert-uat-ecommerce-pagopa-it-cert\_az](#module\_tlscert-uat-ecommerce-pagopa-it-cert\_az) | ../core/.terraform/modules/__azdo__/azuredevops_build_definition_tls_cert_federated | n/a |
 
 ## Resources
 
@@ -56,6 +65,9 @@
 | [azuredevops_serviceendpoint_kubernetes.aks_dev](https://registry.terraform.io/providers/microsoft/azuredevops/latest/docs/resources/serviceendpoint_kubernetes) | resource |
 | [azuredevops_serviceendpoint_kubernetes.aks_prod](https://registry.terraform.io/providers/microsoft/azuredevops/latest/docs/resources/serviceendpoint_kubernetes) | resource |
 | [azuredevops_serviceendpoint_kubernetes.aks_uat](https://registry.terraform.io/providers/microsoft/azuredevops/latest/docs/resources/serviceendpoint_kubernetes) | resource |
+| [azurerm_key_vault_access_policy.DEV-ECOMMERCE-TLS-CERT-SERVICE-CONN_kv_access_policy](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/key_vault_access_policy) | resource |
+| [azurerm_key_vault_access_policy.PROD-ECOMMERCE-TLS-CERT-SERVICE-CONN_kv_access_policy](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/key_vault_access_policy) | resource |
+| [azurerm_key_vault_access_policy.UAT-ECOMMERCE-TLS-CERT-SERVICE-CONN_kv_access_policy](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/key_vault_access_policy) | resource |
 | [azuredevops_project.project](https://registry.terraform.io/providers/microsoft/azuredevops/latest/docs/data-sources/project) | data source |
 | [azuredevops_serviceendpoint_azurecr.dev_ita_workload_identity](https://registry.terraform.io/providers/microsoft/azuredevops/latest/docs/data-sources/serviceendpoint_azurecr) | data source |
 | [azuredevops_serviceendpoint_azurecr.dev_weu_workload_identity](https://registry.terraform.io/providers/microsoft/azuredevops/latest/docs/data-sources/serviceendpoint_azurecr) | data source |
@@ -70,6 +82,9 @@
 | [azuredevops_serviceendpoint_github.github_ro](https://registry.terraform.io/providers/microsoft/azuredevops/latest/docs/data-sources/serviceendpoint_github) | data source |
 | [azuredevops_serviceendpoint_github.github_rw](https://registry.terraform.io/providers/microsoft/azuredevops/latest/docs/data-sources/serviceendpoint_github) | data source |
 | [azurerm_client_config.current](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/data-sources/client_config) | data source |
+| [azurerm_key_vault.domain_kv_dev](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/data-sources/key_vault) | data source |
+| [azurerm_key_vault.domain_kv_prod](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/data-sources/key_vault) | data source |
+| [azurerm_key_vault.domain_kv_uat](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/data-sources/key_vault) | data source |
 | [azurerm_subscriptions.dev](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/data-sources/subscriptions) | data source |
 | [azurerm_subscriptions.prod](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/data-sources/subscriptions) | data source |
 | [azurerm_subscriptions.uat](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/data-sources/subscriptions) | data source |
@@ -108,6 +123,9 @@
 | <a name="input_service_connection_dev_azurerm_name"></a> [service\_connection\_dev\_azurerm\_name](#input\_service\_connection\_dev\_azurerm\_name) | Azurerm service connection DEV name | `string` | n/a | yes |
 | <a name="input_service_connection_prod_azurerm_name"></a> [service\_connection\_prod\_azurerm\_name](#input\_service\_connection\_prod\_azurerm\_name) | Azurerm service connection PROD name | `string` | n/a | yes |
 | <a name="input_service_connection_uat_azurerm_name"></a> [service\_connection\_uat\_azurerm\_name](#input\_service\_connection\_uat\_azurerm\_name) | Azurerm service connection UAT name | `string` | n/a | yes |
+| <a name="input_tlscert-dev-dev-ecommerce-pagopa-it"></a> [tlscert-dev-dev-ecommerce-pagopa-it](#input\_tlscert-dev-dev-ecommerce-pagopa-it) | n/a | `map` | <pre>{<br/>  "pipeline": {<br/>    "dns_record_name": "",<br/>    "dns_zone_name": "dev.ecommerce.pagopa.it",<br/>    "dns_zone_resource_group": "pagopa-d-vnet-rg",<br/>    "enable_tls_cert": true,<br/>    "path": "TLS-Certificates\\DEV",<br/>    "variables": {<br/>      "CERT_NAME_EXPIRE_SECONDS": "2592000",<br/>      "KEY_VAULT_NAME": "pagopa-d-ecommerce-kv"<br/>    },<br/>    "variables_secret": {}<br/>  },<br/>  "repository": {<br/>    "branch_name": "refs/heads/master",<br/>    "name": "le-azure-acme-tiny",<br/>    "organization": "pagopa",<br/>    "pipelines_path": "."<br/>  }<br/>}</pre> | no |
+| <a name="input_tlscert-prod-ecommerce-pagopa-it"></a> [tlscert-prod-ecommerce-pagopa-it](#input\_tlscert-prod-ecommerce-pagopa-it) | n/a | `map` | <pre>{<br/>  "pipeline": {<br/>    "dns_record_name": "",<br/>    "dns_zone_name": "ecommerce.pagopa.it",<br/>    "dns_zone_resource_group": "pagopa-p-vnet-rg",<br/>    "enable_tls_cert": true,<br/>    "path": "TLS-Certificates\\PROD",<br/>    "variables": {<br/>      "CERT_NAME_EXPIRE_SECONDS": "2592000",<br/>      "KEY_VAULT_NAME": "pagopa-p-kv"<br/>    },<br/>    "variables_secret": {}<br/>  },<br/>  "repository": {<br/>    "branch_name": "refs/heads/master",<br/>    "name": "le-azure-acme-tiny",<br/>    "organization": "pagopa",<br/>    "pipelines_path": "."<br/>  }<br/>}</pre> | no |
+| <a name="input_tlscert-uat-ecommerce-pagopa-it"></a> [tlscert-uat-ecommerce-pagopa-it](#input\_tlscert-uat-ecommerce-pagopa-it) | n/a | `map` | <pre>{<br/>  "pipeline": {<br/>    "dns_record_name": "",<br/>    "dns_zone_name": "uat.ecommerce.pagopa.it",<br/>    "dns_zone_resource_group": "pagopa-u-vnet-rg",<br/>    "enable_tls_cert": true,<br/>    "path": "TLS-Certificates\\UAT",<br/>    "variables": {<br/>      "CERT_NAME_EXPIRE_SECONDS": "2592000",<br/>      "KEY_VAULT_NAME": "pagopa-u-kv"<br/>    },<br/>    "variables_secret": {}<br/>  },<br/>  "repository": {<br/>    "branch_name": "refs/heads/master",<br/>    "name": "le-azure-acme-tiny",<br/>    "organization": "pagopa",<br/>    "pipelines_path": "."<br/>  }<br/>}</pre> | no |
 | <a name="input_uat_subscription_name"></a> [uat\_subscription\_name](#input\_uat\_subscription\_name) | UAT Subscription name | `string` | n/a | yes |
 
 ## Outputs
