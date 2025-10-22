@@ -8,7 +8,7 @@ module "DEV-ECOMMERCE-TLS-CERT-SERVICE-CONN" {
   }
 
   depends_on = [data.azuredevops_project.project]
-  source     = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated?ref=v4.2.1"
+  source     = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated?ref=v5.5.1"
 
   project_id        = data.azuredevops_project.project.id
   name              = "${local.prefix}-${local.domain}-d-tls-cert-azdo"
@@ -52,7 +52,7 @@ module "UAT-ECOMMERCE-TLS-CERT-SERVICE-CONN" {
   }
 
   depends_on = [data.azuredevops_project.project]
-  source     = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated?ref=v4.2.1"
+  source     = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated?ref=v5.5.1"
 
   project_id        = data.azuredevops_project.project.id
   name              = "${local.prefix}-${local.domain}-u-tls-cert-azdo"
@@ -96,7 +96,7 @@ module "PROD-ECOMMERCE-TLS-CERT-SERVICE-CONN" {
   }
 
   depends_on = [data.azuredevops_project.project]
-  source     = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated?ref=v4.2.1"
+  source     = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated?ref=v5.5.1"
 
   project_id        = data.azuredevops_project.project.id
   name              = "${local.prefix}-${local.domain}-p-tls-cert-azdo"
