@@ -42,10 +42,10 @@ module "tlscert-dev-dev-ecommerce-pagopa-it-cert_az" {
     azurerm = azurerm.dev
   }
 
-  source = "../core/.terraform/modules/__azdo__/azuredevops_build_definition_tls_cert_federated"
+  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_tls_cert_federated?ref=v5.5.1"
   count  = var.tlscert-dev-dev-ecommerce-pagopa-it.pipeline.enable_tls_cert == true ? 1 : 0
 
-  project_id = var.project_name.id
+  project_id = data.azuredevops_project.project.id
   repository = var.tlscert-dev-dev-ecommerce-pagopa-it.repository
   #tfsec:ignore:GEN003
   path                         = var.tlscert-dev-dev-ecommerce-pagopa-it.pipeline.path
@@ -62,7 +62,7 @@ module "tlscert-dev-dev-ecommerce-pagopa-it-cert_az" {
 
   location                            = local.location
   credential_key_vault_name           = local.dev_ecommerce_key_vault_name
-  credential_key_vault_resource_group = local.dev_key_vault_resource_group
+  credential_key_vault_resource_group = local.dev_ecommerce_key_vault_resource_group
 
   variables = merge(
     var.tlscert-dev-dev-ecommerce-pagopa-it.pipeline.variables,
@@ -81,8 +81,8 @@ module "tlscert-dev-dev-ecommerce-pagopa-it-cert_az" {
   schedules = {
     days_to_build              = ["Fri"]
     schedule_only_with_changes = false
-    start_hours                = 3
-    start_minutes              = 10
+    start_hours                = 8
+    start_minutes              = 0
     time_zone                  = "(UTC+01:00) Amsterdam, Berlin, Bern, Rome, Stockholm, Vienna"
     branch_filter = {
       include = ["master"]
