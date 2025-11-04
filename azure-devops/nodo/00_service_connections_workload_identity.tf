@@ -18,10 +18,10 @@ data "azuredevops_serviceendpoint_azurecr" "prod_weu_workload_identity" {
 
 data "azurerm_user_assigned_identity" "dev_weu_nodo_workload_identity" {
   name                = "nodo-workload-identity"
-  resource_group_name = "var.aks_dev_platform_name"
+  resource_group_name = var.aks_dev_platform_name
 }
 
 data "azurerm_user_assigned_identity" "uat_weu_nodo_workload_identity" {
   name                = "nodo-workload-identity"
-  resource_group_name = "var.aks_uat_platform_name"
+  resource_group_name = var.aks_uat_platform_name
 }
