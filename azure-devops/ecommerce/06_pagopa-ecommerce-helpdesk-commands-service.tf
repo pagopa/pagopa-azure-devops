@@ -85,6 +85,7 @@ module "pagopa-ecommerce-helpdesk-commands-service_code_review" {
   repository                   = var.pagopa-ecommerce-helpdesk-commands-service.repository
   github_service_connection_id = data.azuredevops_serviceendpoint_github.github_pr.service_endpoint_id
   path                         = "${local.domain}\\pagopa-ecommerce-helpdesk-commands-service"
+  ci_trigger_use_yaml          = true
 
   variables = merge(
     local.pagopa-ecommerce-helpdesk-commands-service-variables,

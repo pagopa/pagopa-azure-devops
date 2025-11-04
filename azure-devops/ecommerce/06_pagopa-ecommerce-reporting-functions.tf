@@ -83,6 +83,8 @@ module "pagopa-ecommerce-reporting-functions_code_review" {
 
   path = "${local.domain}\\pagopa-ecommerce-reporting-functions"
 
+  ci_trigger_use_yaml          = true
+
   variables = merge(
     local.pagopa-ecommerce-reporting-functions-variables,
     local.pagopa-ecommerce-reporting-functions-variables_code_review,

@@ -81,6 +81,7 @@ module "pagopa-ecommerce-watchdog-deadletter-service_code_review" {
   repository                   = var.pagopa-ecommerce-watchdog-deadletter-service.repository
   github_service_connection_id = data.azuredevops_serviceendpoint_github.github_pr.service_endpoint_id
   path                         = "${local.domain}\\pagopa-ecommerce-watchdog-deadletter-service"
+  ci_trigger_use_yaml          = true
 
   variables = merge(
     local.pagopa-ecommerce-watchdog-deadletter-service-variables,
