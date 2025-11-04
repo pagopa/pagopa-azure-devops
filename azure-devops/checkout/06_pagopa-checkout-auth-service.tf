@@ -81,6 +81,7 @@ module "pagopa-checkout-auth-service_code_review" {
   repository                   = var.pagopa-checkout-auth-service.repository
   github_service_connection_id = data.azuredevops_serviceendpoint_github.github_pr.service_endpoint_id
   path                         = "${local.domain}\\pagopa-checkout-auth-service"
+  ci_trigger_use_yaml          = true
 
   variables = merge(
     local.pagopa-checkout-auth-service-variables,

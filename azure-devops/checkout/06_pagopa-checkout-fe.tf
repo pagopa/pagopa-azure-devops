@@ -64,6 +64,8 @@ module "pagopa-checkout-fe_code_review" {
 
   path = "${local.domain}\\pagopa-checkout-fe"
 
+  ci_trigger_use_yaml          = true
+
   variables = merge(
     local.pagopa-checkout-fe-variables,
     local.pagopa-checkout-fe-variables_code_review,
