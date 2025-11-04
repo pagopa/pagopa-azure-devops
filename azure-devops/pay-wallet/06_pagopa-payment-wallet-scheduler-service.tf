@@ -81,6 +81,7 @@ module "pagopa-payment-wallet-scheduler-service_code_review" {
   repository                   = var.pagopa-payment-wallet-scheduler-service.repository
   github_service_connection_id = data.azuredevops_serviceendpoint_github.github_pr.service_endpoint_id
   path                         = "${local.domain}\\pagopa-payment-wallet-scheduler-service"
+  ci_trigger_use_yaml          = true
 
   variables = merge(
     local.pagopa-payment-wallet-scheduler-service-variables,
