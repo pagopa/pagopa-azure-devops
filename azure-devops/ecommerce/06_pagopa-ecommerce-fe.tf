@@ -71,7 +71,7 @@ module "pagopa-ecommerce-fe_code_review" {
 
   path = "${local.domain}\\pagopa-ecommerce-fe"
 
-  ci_trigger_use_yaml          = true
+  ci_trigger_use_yaml = true
 
   variables = merge(
     local.pagopa-ecommerce-fe-variables,
