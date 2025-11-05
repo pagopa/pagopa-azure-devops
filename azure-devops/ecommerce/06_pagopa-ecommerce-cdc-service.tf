@@ -82,6 +82,7 @@ module "pagopa-ecommerce-cdc-service_code_review" {
   repository                   = var.pagopa-ecommerce-cdc-service.repository
   github_service_connection_id = data.azuredevops_serviceendpoint_github.github_pr.service_endpoint_id
   path                         = "${local.domain}\\pagopa-ecommerce-cdc-service"
+  ci_trigger_use_yaml          = true
 
   variables = merge(
     local.pagopa-ecommerce-cdc-service-variables,
@@ -107,7 +108,6 @@ module "pagopa-ecommerce-cdc-service_deploy" {
   repository                   = var.pagopa-ecommerce-cdc-service.repository
   github_service_connection_id = data.azuredevops_serviceendpoint_github.github_rw.service_endpoint_id
   path                         = "${local.domain}\\pagopa-ecommerce-cdc-service"
-  ci_trigger_use_yaml          = true
 
   variables = merge(
     local.pagopa-ecommerce-cdc-service-variables,
