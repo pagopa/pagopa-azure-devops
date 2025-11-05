@@ -64,6 +64,7 @@ module "pagopa-ecommerce-ecommerce-commons_code_review" {
   repository                   = var.pagopa-ecommerce-commons.repository
   github_service_connection_id = data.azuredevops_serviceendpoint_github.github_pr.service_endpoint_id
   path                         = "${local.domain}\\pagopa-ecommerce-commons"
+  ci_trigger_use_yaml          = true
 
   variables = merge(
     local.pagopa-ecommerce-commons-variables,

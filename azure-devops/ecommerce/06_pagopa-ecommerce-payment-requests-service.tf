@@ -83,6 +83,7 @@ module "pagopa-ecommerce-payment-requests-service_code_review" {
   repository                   = var.pagopa-ecommerce-payment-requests-service.repository
   github_service_connection_id = data.azuredevops_serviceendpoint_github.github_pr.service_endpoint_id
   path                         = "${local.domain}\\pagopa-ecommerce-payment-requests-service"
+  ci_trigger_use_yaml          = true
 
   variables = merge(
     local.pagopa-ecommerce-payment-requests-service-variables,
