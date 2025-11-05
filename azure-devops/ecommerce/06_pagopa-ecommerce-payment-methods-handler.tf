@@ -87,6 +87,7 @@ module "pagopa-ecommerce-payment-methods-handler_code_review" {
   repository                   = var.pagopa-ecommerce-payment-methods-handler.repository
   github_service_connection_id = data.azuredevops_serviceendpoint_github.github_pr.service_endpoint_id
   path                         = "${local.domain}\\pagopa-ecommerce-payment-methods-handler"
+  ci_trigger_use_yaml          = true
 
   variables = merge(
     local.pagopa-ecommerce-payment-methods-handler-variables,

@@ -83,6 +83,7 @@ module "pagopa-ecommerce-transactions-scheduler-service_code_review" {
   repository                   = var.pagopa-ecommerce-transactions-scheduler-service.repository
   github_service_connection_id = data.azuredevops_serviceendpoint_github.github_pr.service_endpoint_id
   path                         = "${local.domain}\\pagopa-ecommerce-transactions-scheduler-service"
+  ci_trigger_use_yaml          = true
 
   variables = merge(
     local.pagopa-ecommerce-transactions-scheduler-service-variables,

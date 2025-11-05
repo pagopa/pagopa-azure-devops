@@ -82,6 +82,7 @@ module "pagopa-ecommerce-user-stats-service_code_review" {
   repository                   = var.pagopa-ecommerce-user-stats-service.repository
   github_service_connection_id = data.azuredevops_serviceendpoint_github.github_pr.service_endpoint_id
   path                         = "${local.domain}\\pagopa-ecommerce-user-stats-service"
+  ci_trigger_use_yaml          = true
 
   variables = merge(
     local.pagopa-ecommerce-user-stats-service-variables,

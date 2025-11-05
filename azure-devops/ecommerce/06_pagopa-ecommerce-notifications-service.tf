@@ -87,6 +87,7 @@ module "pagopa-ecommerce-notifications-service_code_review" {
   repository                   = var.pagopa-notifications-service.repository
   github_service_connection_id = data.azuredevops_serviceendpoint_github.github_pr.service_endpoint_id
   path                         = "${local.domain}\\pagopa-notifications-service"
+  ci_trigger_use_yaml          = true
 
   variables = merge(
     local.pagopa-notifications-service-variables,
