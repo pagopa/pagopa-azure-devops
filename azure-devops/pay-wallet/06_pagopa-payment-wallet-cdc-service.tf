@@ -82,6 +82,7 @@ module "pagopa-payment-wallet-cdc-service_code_review" {
   repository                   = var.pagopa-payment-wallet-cdc-service.repository
   github_service_connection_id = data.azuredevops_serviceendpoint_github.github_pr.service_endpoint_id
   path                         = "${local.domain}\\pagopa-payment-wallet-cdc-service"
+  ci_trigger_use_yaml          = true
 
   variables = merge(
     local.pagopa-payment-wallet-cdc-service-variables,

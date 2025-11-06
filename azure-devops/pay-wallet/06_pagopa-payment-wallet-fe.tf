@@ -70,6 +70,8 @@ module "pagopa-payment-wallet-fe_code_review" {
 
   path = "${local.domain}\\pagopa-payment-wallet-fe"
 
+  ci_trigger_use_yaml = true
+
   variables = merge(
     local.pagopa-payment-wallet-fe-variables,
     local.pagopa-payment-wallet-fe-variables_code_review,

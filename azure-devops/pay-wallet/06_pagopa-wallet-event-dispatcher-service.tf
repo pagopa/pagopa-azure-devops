@@ -84,6 +84,7 @@ module "pagopa-payment-wallet-event-dispatcher-service_code_review" {
   repository                   = var.pagopa-payment-wallet-event-dispatcher-service.repository
   github_service_connection_id = data.azuredevops_serviceendpoint_github.github_pr.service_endpoint_id
   path                         = "${local.domain}\\pagopa-payment-wallet-event-dispatcher-service"
+  ci_trigger_use_yaml          = true
 
   variables = merge(
     local.pagopa-payment-wallet-event-dispatcher-service-variables,
