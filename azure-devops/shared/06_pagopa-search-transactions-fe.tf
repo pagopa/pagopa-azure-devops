@@ -27,10 +27,7 @@ locals {
     default_branch = var.pagopa-search-transactions-fe.repository.branch_name
   }
   # global secrets
-  pagopa-search-transactions-fe-variables_secret = {
-    test_token_key_dev = module.shared_dev_secrets.values["search-transactions-token-secret"].value
-    test_token_key_uat = module.shared_uat_secrets.values["search-transactions-token-secret"].value
-  }
+  pagopa-search-transactions-fe-variables_secret = {}
   # code_review vars
   pagopa-search-transactions-fe-variables_code_review = {
     sonarcloud_service_conn = var.pagopa-search-transactions-fe.pipeline.sonarcloud.service_connection
@@ -69,6 +66,8 @@ locals {
     tenant_id    = data.azurerm_client_config.current.tenant_id
     git_mail     = module.secrets.values["azure-devops-github-EMAIL"].value
     git_username = module.secrets.values["azure-devops-github-USERNAME"].value
+    SEARCH_TRANSACTIONS_TOKEN_DEV       = module.shared_dev_secrets.values["search-transactions-token-secret"].value
+    SEARCH_TRANSACTIONS_TOKEN_UAT       = module.shared_uat_secrets.values["search-transactions-token-secret"].value
   }
 }
 
