@@ -28,7 +28,8 @@ locals {
   }
   # global secrets
   pagopa-search-transactions-fe-variables_secret = {
-
+    test_token_key_dev = module.shared_dev_secrets.values["search-transactions-token-secret"].value
+    test_token_key_uat = module.shared_uat_secrets.values["search-transactions-token-secret"].value
   }
   # code_review vars
   pagopa-search-transactions-fe-variables_code_review = {
