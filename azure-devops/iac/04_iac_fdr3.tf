@@ -22,6 +22,10 @@ variable "fdr3_iac" {
         name                  = "fdr-fase3-db-schema-pipelines"
         pipeline_yml_filename = "fdr-fase3-db-schema-pipelines.yml"
       }
+      db_archive_schema = {
+        name                  = "fdr-fase3-archive-db-schema-pipelines"
+        pipeline_yml_filename = "fdr-fase3-archive-db-schema-pipelines.yml"
+      }
     }
   }
 }
@@ -103,6 +107,33 @@ module "fdr3_iac_db_schema" {
   path                         = var.fdr3_iac.pipeline.path
   pipeline_name                = var.fdr3_iac.pipeline.db_schema.name
   pipeline_yml_filename        = var.fdr3_iac.pipeline.db_schema.pipeline_yml_filename
+
+  variables = merge(
+    local.fdr3_iac_variables,
+    local.fdr3_iac_variables_db_schema,
+  )
+
+  variables_secret = merge(
+    local.fdr3_iac_variables_secret_db_schema,
+  )
+
+  service_connection_ids_authorization = [
+    azuredevops_serviceendpoint_github.azure-devops-github-ro.id,
+    module.DEV-AZURERM-IAC-PLAN-SERVICE-CONN.service_endpoint_id,
+    module.UAT-AZURERM-IAC-PLAN-SERVICE-CONN.service_endpoint_id,
+    module.PROD-AZURERM-IAC-PLAN-SERVICE-CONN.service_endpoint_id,
+  ]
+}
+
+module "fdr3_iac_db_archive_schema" {
+  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_generic?ref=v7.0.0"
+
+  project_id                   = azuredevops_project.project.id
+  repository                   = var.fdr3_iac.repository
+  github_service_connection_id = azuredevops_serviceendpoint_github.azure-devops-github-pr.id
+  path                         = var.fdr3_iac.pipeline.path
+  pipeline_name                = var.fdr3_iac.pipeline.db_archive_schema.name
+  pipeline_yml_filename        = var.fdr3_iac.pipeline.db_archive_schema.pipeline_yml_filename
 
   variables = merge(
     local.fdr3_iac_variables,
