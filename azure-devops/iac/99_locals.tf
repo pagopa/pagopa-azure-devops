@@ -42,6 +42,20 @@ locals {
         yml_prefix_name : "cruscotto"
       }
     },
+    {
+      name : "fdr3-archive",
+      envs : ["d", "u", "p"],
+      kv_name : "pagopa-%s-fdr-kv",
+      rg_name : "pagopa-%s-fdr-sec-rg",
+      region : "weu"
+      code_review : true,
+      deploy : true,
+      pipeline_prefix : "fdr-archive",
+      pipeline_path : "fdr3-infrastructure",
+      repository : {
+        yml_prefix_name : "fdr-fase3-archive"
+      }
+    },
   ]
 
   definitions_variables = {}
