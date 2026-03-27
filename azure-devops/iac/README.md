@@ -38,8 +38,9 @@ The `definitions` section defines the definitions for which the pipelines defini
 
 - **name**: name of the domain
 - **envs**: list of environments (initials) in which the domain resource are available {`d`, `u`, `p`}. Used to avoid failures when a domain keyvault has not been created on a certain environment
-- **kv_name**: name of the domain keyvault. must contain the placeholder string `%s` in place of the environment; will be resolved at run time
-- **rg_name**: resource group name of the domain keyvault. must contain the placeholder string `%s` in place of the environment; will be resolved at run time
+- **kv_name**: name of the domain keyvault. must contain the placeholder string `%s` in place of the environment; will be resolved at run time. Set to `""` if the domain does not need AKS secrets
+- **rg_name**: resource group name of the domain keyvault. must contain the placeholder string `%s` in place of the environment; will be resolved at run time. Set to `""` if the domain does not need AKS secrets
+- **region**: Azure region where the AKS cluster is deployed. Accepted values: `"weu"` (West Europe), `"itn"` (Italy North)
 - **code_review**: if true, enables the creation of the code review pipeline
 - **deploy**: if true, enables the creation of the deploy pipeline
 - **pipeline_prefix**: prefix assigned to the pipelines being created
@@ -50,7 +51,7 @@ The `definitions` section defines the definitions for which the pipelines defini
 ```hcl
 default_repository = {
     organization    = "pagopa"
-    name            = "p4pa-infra"
+    name            = "pagopa-infra"
     branch_name     = "refs/heads/main"
     pipelines_path  = ".devops"
   }
@@ -58,6 +59,46 @@ default_repository = {
 any field can be overwritten in the `repository` field
 
 To create pipelines for a new domain simply add the domain configuration to the list and apply the terraform configuration
+
+### Examples
+
+Domain with full AKS secrets and all environments:
+
+```hcl
+{
+  name            : "checkout",
+  envs            : ["d", "u", "p"],
+  kv_name         : "pagopa-%s-checkout-kv",
+  rg_name         : "pagopa-%s-checkout-sec-rg",
+  region          : "weu",
+  code_review     : true,
+  deploy          : true,
+  pipeline_prefix : "checkout",
+  pipeline_path   : "checkout-infra",
+  repository : {
+    yml_prefix_name : "checkout"
+  }
+},
+```
+
+Domain without AKS secrets (no Key Vault integration needed):
+
+```hcl
+{
+  name            : "next-core-secrets",
+  envs            : ["d", "u", "p"],
+  kv_name         : "",
+  rg_name         : "",
+  region          : "weu",
+  code_review     : true,
+  deploy          : false,
+  pipeline_prefix : "next-core-secrets",
+  pipeline_path   : "next-core-infra",
+  repository : {
+    yml_prefix_name : "next-core-secrets"
+  }
+},
+```
 
 ## definitions_variables
 
@@ -69,7 +110,66 @@ the structure is the following:
   - **iac_variables_cr**: variables for code review
   - **iac_variables_secrets_cr**: secrets for code review
   - **iac_variables_deploy**: variables for deploy
-  - **iac_variables_secrets_deploy**: secrets for deploy<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+  - **iac_variables_secrets_deploy**: secrets for deploy
+
+## generic_pipelines
+
+The `generic_pipelines` map (defined in `99_locals.tf`) is used to create standalone pipelines that do not follow the terraform plan/apply pattern (e.g. cleanup jobs, disaster recovery, performance tests).
+
+Each key in the map becomes the pipeline name in Azure DevOps. The supported fields are:
+
+- **pipeline_prefix**: prefix assigned to the pipeline name
+- **pipeline_path**: AZDO folder path in which the pipeline will be created
+- **repository**:
+  - **yml_file_name**: REQUIRED. exact name of the YAML file in the repository (looked up in `.devops/`)
+- **schedules** *(optional)*: if present, configures an automatic schedule trigger:
+  - **days_to_build**: list of weekday names (e.g. `["Mon", "Fri"]`)
+  - **schedule_only_with_changes**: if `true`, runs only when the branch has new commits
+  - **start_hours** / **start_minutes**: time of day to trigger the pipeline
+  - **time_zone**: IANA/Windows timezone string
+  - **branch_filter**:
+    - **include**: list of branch refs to include (e.g. `["refs/heads/main"]`)
+    - **exclude**: list of branch refs to exclude
+
+To add a new generic pipeline, add an entry to the `generic_pipelines` map and apply the terraform configuration.
+
+### Examples
+
+Pipeline with a daily schedule:
+
+```hcl
+"gh-runner-daily-cleanup" : {
+  pipeline_prefix : "gh-runner-daily-cleanup",
+  pipeline_path   : "gh-runner-cleanup",
+  repository : {
+    yml_file_name : "gh-runner-cleanup.yml"
+  }
+  schedules : {
+    days_to_build              : ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+    schedule_only_with_changes : false,
+    start_hours                : 18,
+    start_minutes              : 0,
+    time_zone                  : "(UTC+01:00) Amsterdam, Berlin, Bern, Rome, Stockholm, Vienna",
+    branch_filter : {
+      include : ["refs/heads/main"],
+      exclude : []
+    }
+  }
+},
+```
+
+Pipeline without a schedule (triggered manually or via CI):
+
+```hcl
+"disaster-recovery" : {
+  pipeline_prefix : "disaster-recovery",
+  pipeline_path   : "disaster-recovery",
+  repository : {
+    yml_file_name : "disaster-recovery.yml"
+  }
+},
+```
+<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 <!-- BEGIN_TF_DOCS -->
 ## Requirements
 
