@@ -98,12 +98,12 @@ locals {
       }
     },
 
-    //
-    "fdr3-archive" : {
+    // FdR-Fase3 Archive DB pipeline
+    "fdr-fase3-archive-db-schema-pipelines" : {
       pipeline_prefix : "fdr3-archive",
       pipeline_path : "fdr3-infrastructure",
       repository : {
-        yml_file_name : "fdr-fase3-archive-db-schema-pipelines"
+        yml_file_name : "fdr-fase3-archive-db-schema-pipelines.yml"
       }
     }
   }
