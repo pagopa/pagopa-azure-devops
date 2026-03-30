@@ -97,7 +97,7 @@ locals {
         yml_file_name : "db-metabase-pipelines.yml"
       }
     },
-    "liquibase-addon": {
+    "liquibase-addon" : {
       pipeline_prefix : "liquibase-addon",
       pipeline_path : "database",
       repository : {
@@ -110,6 +110,10 @@ locals {
       pipeline_prefix : "fdr3-archive",
       pipeline_path : "fdr3-infrastructure",
       repository : {
+        organization : "pagopa"
+        name : "pagopa-fdr"
+        branch_name : "refs/heads/main"
+        pipelines_path : ".devops"
         yml_file_name : "fdr-fase3-archive-db-schema-pipelines.yml"
       }
     }
