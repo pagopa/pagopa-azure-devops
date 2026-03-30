@@ -169,7 +169,6 @@ Pipeline without a schedule (triggered manually or via CI):
   }
 },
 ```
-<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 <!-- BEGIN_TF_DOCS -->
 ## Requirements
 
