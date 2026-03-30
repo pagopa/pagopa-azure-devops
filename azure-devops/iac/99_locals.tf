@@ -41,7 +41,7 @@ locals {
       repository : {
         yml_prefix_name : "cruscotto"
       }
-    }
+    },
   ]
 
   definitions_variables = {}
