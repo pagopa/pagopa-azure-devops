@@ -110,7 +110,11 @@ locals {
       pipeline_prefix : "fdr3-archive",
       pipeline_path : "fdr3-infrastructure",
       repository : {
-        yml_file_name : "fdr-fase3-archive-db-schema-pipelines.yml"
+        organization    : "pagopa"
+        name            : "pagopa-fdr"
+        branch_name     : "refs/heads/main"
+        pipelines_path  : ".devops"
+        yml_file_name   : "fdr-fase3-archive-db-schema-pipelines.yml"
       }
     }
   }
