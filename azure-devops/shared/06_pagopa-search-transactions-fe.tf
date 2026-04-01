@@ -63,11 +63,11 @@ locals {
   }
   # deploy secrets
   pagopa-search-transactions-fe-variables_secret_deploy = {
-    tenant_id    = data.azurerm_client_config.current.tenant_id
-    git_mail     = module.secrets.values["azure-devops-github-EMAIL"].value
-    git_username = module.secrets.values["azure-devops-github-USERNAME"].value
-    SEARCH_TRANSACTIONS_TOKEN_DEV       = module.shared_dev_secrets.values["search-transactions-token-secret"].value
-    SEARCH_TRANSACTIONS_TOKEN_UAT       = module.shared_uat_secrets.values["search-transactions-token-secret"].value
+    tenant_id                     = data.azurerm_client_config.current.tenant_id
+    git_mail                      = module.secrets.values["azure-devops-github-EMAIL"].value
+    git_username                  = module.secrets.values["azure-devops-github-USERNAME"].value
+    SEARCH_TRANSACTIONS_TOKEN_DEV = module.shared_dev_secrets.values["search-transactions-token-secret"].value
+    SEARCH_TRANSACTIONS_TOKEN_UAT = module.shared_uat_secrets.values["search-transactions-token-secret"].value
   }
 }
 
