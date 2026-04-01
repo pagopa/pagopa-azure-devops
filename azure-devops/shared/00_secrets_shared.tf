@@ -25,7 +25,8 @@ module "shared_dev_secrets" {
     "auth-d-integrationtest-valid-subkey",
     "auth-d-integrationtest-invalid-subkey",
     "pdf-engine-d-perftest-subkey",
-    "shared-anonymizer-api-key"
+    "shared-anonymizer-api-key",
+    "search-transactions-token-secret"
   ]
 }
 
@@ -52,7 +53,8 @@ module "shared_uat_secrets" {
     "auth-u-integrationtest-invalid-subkey",
     "pdf-engine-u-perftest-subkey",
     "pdf-engine-node-u-perftest-subkey",
-    "shared-anonymizer-api-key"
+    "shared-anonymizer-api-key",
+    "search-transactions-token-secret"
   ]
 }
 
