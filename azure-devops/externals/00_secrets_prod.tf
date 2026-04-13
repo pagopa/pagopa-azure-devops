@@ -4,7 +4,7 @@
 
 module "secrets" {
 
-  source = "git::https://github.com/pagopa/terraform-azurerm-v3.git//key_vault_secrets_query?ref=v7.30.0"
+  source = "./.terraform/modules/__v3__/key_vault_secrets_query"
 
 
   resource_group = local.prod_key_vault_resource_group
@@ -17,9 +17,6 @@ module "secrets" {
     "azure-devops-github-pr-TOKEN",
     "azure-devops-github-EMAIL",
     "azure-devops-github-USERNAME",
-    # "DEV-SUBSCRIPTION-ID",
-    # "UAT-SUBSCRIPTION-ID",
-    # "PROD-SUBSCRIPTION-ID",
     "ORG-SUBSCRIPTION-ID",
     "DEV-SIA-DOCKER-REGISTRY-PWD",
     "UAT-SIA-DOCKER-REGISTRY-PWD",

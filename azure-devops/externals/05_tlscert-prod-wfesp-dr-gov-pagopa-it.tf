@@ -31,7 +31,7 @@ locals {
     subscription_id   = module.secrets.values["ORG-SUBSCRIPTION-ID"].value
   }
   tlscert-prod-wfesp-dr-pagopa-gov-it-variables = {
-    KEY_VAULT_SERVICE_CONNECTION = module.PROD-TLS-CERT-EXTERNALS-SERVICE-CONN.service_endpoint_name
+    KEY_VAULT_SERVICE_CONNECTION = module.PROD-EXTERNALS-TLS-CERT-SERVICE-CONN-FEDERATED.service_endpoint_name
   }
   tlscert-prod-wfesp-dr-pagopa-gov-it-variables_secret = {
   }
@@ -42,7 +42,7 @@ module "tlscert-prod-wfesp-dr-pagopa-gov-it-cert_az" {
     azurerm = azurerm.prod
   }
 
-  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_tls_cert_federated?ref=v5.5.0"
+  source = "./.terraform/modules/__azdo__/azuredevops_build_definition_tls_cert_federated"
   count  = var.tlscert-prod-wfesp-dr-pagopa-gov-it.pipeline.enable_tls_cert == true ? 1 : 0
 
   project_id                   = data.azuredevops_project.project.id
@@ -73,7 +73,7 @@ module "tlscert-prod-wfesp-dr-pagopa-gov-it-cert_az" {
   )
 
   service_connection_ids_authorization = [
-    module.PROD-TLS-CERT-EXTERNALS-SERVICE-CONN.service_endpoint_id,
+    module.PROD-EXTERNALS-TLS-CERT-SERVICE-CONN-FEDERATED.service_endpoint_id,
   ]
 
   schedules = {
