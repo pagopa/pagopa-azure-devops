@@ -58,6 +58,8 @@ locals {
   pagopa-payment-wallet-fe-variables_secret_deploy = {
     git_mail     = module.secrets.values["azure-devops-github-EMAIL"].value
     git_username = module.secrets.values["azure-devops-github-USERNAME"].value
+    user_wallet_token_dev = module.wallet_dev_secrets.values["wallet-token-test-key"].value
+    user_wallet_token_uat = module.wallet_uat_secrets.values["wallet-token-test-key"].value
   }
 }
 
