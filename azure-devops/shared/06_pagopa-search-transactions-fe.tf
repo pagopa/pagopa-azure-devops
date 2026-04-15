@@ -68,6 +68,10 @@ locals {
     git_username                  = module.secrets.values["azure-devops-github-USERNAME"].value
     SEARCH_TRANSACTIONS_TOKEN_DEV = module.shared_dev_secrets.values["search-transactions-token-secret"].value
     SEARCH_TRANSACTIONS_TOKEN_UAT = module.shared_uat_secrets.values["search-transactions-token-secret"].value
+    AZURE_COSMOS_URI_DEV          = module.shared_dev_secrets.values["bizevents-ds-cosmos-endpoint"].value
+    AZURE_COSMOS_KEY_DEV          = module.shared_dev_secrets.values["bizevents-ds-cosmos-primary-key"].value
+    AZURE_COSMOS_URI_UAT          = module.shared_uat_secrets.values["bizevents-ds-cosmos-endpoint"].value
+    AZURE_COSMOS_KEY_UAT          = module.shared_uat_secrets.values["bizevents-ds-cosmos-primary-key"].value
   }
 }
 

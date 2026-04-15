@@ -26,7 +26,9 @@ module "shared_dev_secrets" {
     "auth-d-integrationtest-invalid-subkey",
     "pdf-engine-d-perftest-subkey",
     "shared-anonymizer-api-key",
-    "search-transactions-token-secret"
+    "search-transactions-token-secret",
+    "bizevents-ds-cosmos-endpoint",
+    "bizevents-ds-cosmos-primary-key"
   ]
 }
 
@@ -54,7 +56,9 @@ module "shared_uat_secrets" {
     "pdf-engine-u-perftest-subkey",
     "pdf-engine-node-u-perftest-subkey",
     "shared-anonymizer-api-key",
-    "search-transactions-token-secret"
+    "search-transactions-token-secret",
+    "bizevents-ds-cosmos-endpoint",
+    "bizevents-ds-cosmos-primary-key"
   ]
 }
 
