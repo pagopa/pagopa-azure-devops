@@ -62,6 +62,15 @@ module "UAT-MOCK-TLS-CERT-SERVICE-CONN" {
   resource_group_name = local.uat_identity_rg_name
 }
 
+resource "azurerm_key_vault_access_policy" "UAT-MOCK-TLS-CERT-SERVICE-CONN_kv_access_policy" {
+  provider     = azurerm.uat
+  key_vault_id = data.azurerm_key_vault.domain_kv_uat.id
+  tenant_id    = data.azurerm_client_config.current.tenant_id
+  object_id    = module.UAT-MOCK-TLS-CERT-SERVICE-CONN.service_principal_object_id
+
+  certificate_permissions = ["Get", "Import"]
+}
+
 # create let's encrypt credential used to create SSL certificates
 module "letsencrypt_uat" {
   source = "git::https://github.com/pagopa/terraform-azurerm-v3.git//letsencrypt_credential?ref=v7.30.0"
