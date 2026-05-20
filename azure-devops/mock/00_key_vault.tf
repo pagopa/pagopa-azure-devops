@@ -8,8 +8,8 @@ data "azurerm_key_vault" "domain_kv_dev" {
 
 data "azurerm_key_vault" "domain_kv_uat" {
 
- provider = azurerm.uat
+  provider = azurerm.uat
 
- resource_group_name = local.uat_mock_key_vault_resource_group
- name                = local.uat_mock_key_vault_name
+  resource_group_name = local.uat_mock_key_vault_resource_group
+  name                = local.uat_mock_key_vault_name
 }
