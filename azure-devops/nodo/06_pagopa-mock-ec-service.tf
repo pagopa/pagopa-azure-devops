@@ -27,8 +27,8 @@ locals {
 
   # deploy vars
   pagopa-mock-ec-service-variables_deploy = {
-    git_email         = module.secrets.values["azure-devops-github-EMAIL"].value
-    git_username      = module.secrets.values["azure-devops-github-USERNAME"].value
+    git_email         = module.shared_uat_secrets.values["pagopa-platform-domain-github-bot-email"].value
+    git_username      = module.shared_uat_secrets.values["pagopa-platform-domain-github-bot-username"].value
     github_connection = data.azuredevops_serviceendpoint_github.github_rw.service_endpoint_name
     tenant_id         = data.azurerm_client_config.current.tenant_id
 
