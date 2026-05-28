@@ -1,5 +1,5 @@
 #
-# PROD SHARED KEYVAULT
+# DEV SHARED KEYVAULT
 #
 
 module "shared_dev_secrets" {
