@@ -38,4 +38,3 @@ module "shared_uat_secrets" {
     "pagopa-platform-domain-github-bot-username"
   ]
 }
-
