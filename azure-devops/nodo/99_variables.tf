@@ -20,8 +20,8 @@ locals {
   uat_nodo_key_vault_name  = "${local.prefix}-u-${local.domain}-kv"
   prod_nodo_key_vault_name = "${local.prefix}-p-${local.domain}-kv"
 
-  dev_shared_key_vault_name  = "${local.prefix}-d-shared-kv"
-  uat_shared_key_vault_name  = "${local.prefix}-u-shared-kv"
+  dev_shared_key_vault_name = "${local.prefix}-d-shared-kv"
+  uat_shared_key_vault_name = "${local.prefix}-u-shared-kv"
 
   dev_key_vault_resource_group  = "${local.prefix}-d-sec-rg"
   uat_key_vault_resource_group  = "${local.prefix}-u-sec-rg"
@@ -31,8 +31,8 @@ locals {
   uat_nodo_key_vault_resource_group  = "${local.prefix}-u-${local.domain}-sec-rg"
   prod_nodo_key_vault_resource_group = "${local.prefix}-p-${local.domain}-sec-rg"
 
-  dev_shared_key_vault_resource_group  = "${local.prefix}-d-shared-sec-rg"
-  uat_shared_key_vault_resource_group  = "${local.prefix}-u-shared-sec-rg"
+  dev_shared_key_vault_resource_group = "${local.prefix}-d-shared-sec-rg"
+  uat_shared_key_vault_resource_group = "${local.prefix}-u-shared-sec-rg"
 
   # ☁️ VNET
   dev_vnet_rg  = "${local.prefix}-d-vnet-rg"
