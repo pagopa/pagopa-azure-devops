@@ -27,7 +27,7 @@ locals {
   # AzDO folder where the Terraform-managed TAS pipelines are placed.
   # We use `qa\tas-example` not `qa\tas` where the manually created TAS
   # pipelines currently live.
-  tas_pipelines_path = "${local.domain}\\tas-example"
+  tas_pipelines_path = "\\${local.domain}\\tas-example"
 
   # key = pipeline display name (also unique TF address)
   # value.yml_path = path of the YAML inside the TAS examples repo
