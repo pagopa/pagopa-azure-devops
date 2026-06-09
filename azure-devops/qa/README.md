@@ -73,4 +73,3 @@ Copy `06_tas_example.tf` to `06_tas_<component>.tf`, then change:
 
 Remember to update the `azuredevops_pipeline_authorization` accordingly so the
 pipeline keeps access to the GitHub service connection.
-

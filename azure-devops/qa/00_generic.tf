@@ -11,4 +11,3 @@ data "azurerm_subscriptions" "uat" {
 data "azurerm_subscriptions" "prod" {
   display_name_prefix = var.prod_subscription_name
 }
-

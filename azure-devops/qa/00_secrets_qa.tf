@@ -45,4 +45,3 @@ module "qa_prod_secrets" {
     local.tas_integration_pat_secret_name,
   ]
 }
-

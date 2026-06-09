@@ -49,4 +49,3 @@ resource "azuredevops_variable_group" "tas_integration_secrets_prod" {
     is_secret    = true
   }
 }
-

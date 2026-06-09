@@ -9,4 +9,3 @@ data "azuredevops_serviceendpoint_github" "github_ro" {
   project_id            = data.azuredevops_project.project.id
   service_endpoint_name = "io-azure-devops-github-ro"
 }
-

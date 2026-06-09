@@ -15,4 +15,3 @@ data "azurerm_key_vault" "domain_kv_prod" {
   name                = local.prod_qa_key_vault_name
   resource_group_name = local.prod_qa_key_vault_resource_group
 }
-

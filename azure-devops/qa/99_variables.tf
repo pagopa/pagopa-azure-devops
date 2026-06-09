@@ -46,4 +46,3 @@ variable "location" {
   description = "Azure region (kept for symmetry with the other contexts)"
   default     = "westeurope"
 }
-
