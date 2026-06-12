@@ -42,6 +42,30 @@ locals {
         yml_prefix_name : "cruscotto"
       }
     },
+    {
+      name : "client-certs",
+      envs : ["d", "u", "p"],
+      region : "weu"
+      code_review : true,
+      deploy : true,
+      pipeline_prefix : "client-certs",
+      pipeline_path : "client-certificates-infra",
+      repository : {
+        yml_prefix_name : "client-certs"
+        branch_name : "refs/heads/feat/add-private-ca"
+      }
+      schedules = {
+        days_to_build              = ["Mon"]
+        schedule_only_with_changes = false
+        start_hours                = 3
+        start_minutes              = 0
+        time_zone                  = "(UTC+01:00) Amsterdam, Berlin, Bern, Rome, Stockholm, Vienna"
+        branch_filter = {
+          include = ["main"]
+          exclude = []
+        }
+      }
+    }
   ]
 
   definitions_variables = {}

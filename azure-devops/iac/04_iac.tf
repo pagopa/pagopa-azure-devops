@@ -139,4 +139,6 @@ module "iac_deploy" {
     module.UAT-AZURERM-IAC-DEPLOY-SERVICE-CONN.service_endpoint_id,
     module.PROD-AZURERM-IAC-DEPLOY-SERVICE-CONN.service_endpoint_id,
   ]
+
+  schedules = try(each.value.schedules, null)
 }
