@@ -11,4 +11,3 @@ resource "azuredevops_environment" "environments_auto" {
   project_id = azuredevops_project.project.id
   name       = "${each.key}_auto"
 }
-

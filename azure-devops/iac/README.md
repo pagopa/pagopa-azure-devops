@@ -298,6 +298,7 @@ Pipeline without a schedule (triggered manually or via CI):
 | Name | Type |
 |------|------|
 | [azuredevops_environment.environments](https://registry.terraform.io/providers/microsoft/azuredevops/latest/docs/resources/environment) | resource |
+| [azuredevops_environment.environments_auto](https://registry.terraform.io/providers/microsoft/azuredevops/latest/docs/resources/environment) | resource |
 | [azuredevops_project.project](https://registry.terraform.io/providers/microsoft/azuredevops/latest/docs/resources/project) | resource |
 | [azuredevops_project_features.project_features](https://registry.terraform.io/providers/microsoft/azuredevops/latest/docs/resources/project_features) | resource |
 | [azuredevops_serviceendpoint_azurerm.DEV-PAGOPA-IAC-LEGACY](https://registry.terraform.io/providers/microsoft/azuredevops/latest/docs/resources/serviceendpoint_azurerm) | resource |
