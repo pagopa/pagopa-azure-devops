@@ -18,7 +18,7 @@ is needed.
 | `99_variables.tf` | `domain = "qa"`, KV names per env, input variables. |
 | `00_generic.tf` | Subscription data sources. |
 | `01_project.tf` | Look up the existing AzDO project (created by `iac/`). |
-| `00_key_vault.tf` | Data sources for `pagopa-{d\|u\|p}-qi-kv` (KVs hosting the GitHub PAT). |
+| `00_key_vault.tf` | Data sources for `pagopa-{d\|u\|p}-itn-qa-kv` (KVs hosting the GitHub PAT). |
 | `00_secrets_qa.tf` | Read `integration-test-pat` from each KV via `key_vault_secrets_query`. |
 | `00_service_connections.tf` | Look up the existing `io-azure-devops-github-ro` GitHub SC. |
 | `02_variable_group_tas.tf` | Three variable groups `tas-integration-secrets-{dev,uat,prod}` carrying `INTEGRATION_TEST_PAT` from the matching KV. |
@@ -45,9 +45,9 @@ Before `terraform apply`:
 1. The `INTEGRATION_TEST_PAT` (a GitHub PAT with `public_repo` + `actions:read`
    scopes) must be stored in each environment KV under the secret name
    `integration-test-pat`:
-   * `pagopa-d-qi-kv`
-   * `pagopa-u-qi-kv`
-   * `pagopa-p-qi-kv`
+   * `pagopa-d-itn-qa-kv`
+   * `pagopa-u-itn-qa-kv`
+   * `pagopa-p-itn-qa-kv`
 2. The GitHub service connection `io-azure-devops-github-ro` must already
    exist in the AzDO project.
 3. The standard `.env/qa_state.tfvars` and `.env/terraform.tfvars` must be in

@@ -1,20 +1,16 @@
 locals {
   prefix = "pagopa"
   domain = "qa"
+  location_short = "itn"
 
   # 🔐 KV per environment.
-  # The PAT used by TAS pipelines is stored in the QI domain key vaults
-  # (pagopa-{d|u|p}-qi-kv) — one secret per environment.
-  # NOTE: the literal "qi" below is intentional: the KVs already exist for the
-  # QI domain and host integration secrets shared with TAS. Only the `d/u/p`
-  # prefix is parametrized on the environment, exactly like all other contexts.
-  dev_qa_key_vault_name  = "${local.prefix}-d-qi-kv"
-  uat_qa_key_vault_name  = "${local.prefix}-u-qi-kv"
-  prod_qa_key_vault_name = "${local.prefix}-p-qi-kv"
+  dev_qa_key_vault_name  = "${local.prefix}-${local.location_short}-d-qa-kv"
+  uat_qa_key_vault_name  = "${local.prefix}-${local.location_short}-u-qa-kv"
+  prod_qa_key_vault_name = "${local.prefix}-${local.location_short}-p-qa-kv"
 
-  dev_qa_key_vault_resource_group  = "${local.prefix}-d-qi-sec-rg"
-  uat_qa_key_vault_resource_group  = "${local.prefix}-u-qi-sec-rg"
-  prod_qa_key_vault_resource_group = "${local.prefix}-p-qi-sec-rg"
+  dev_qa_key_vault_resource_group  = "${local.prefix}-${local.location_short}-d-qa-sec-rg"
+  uat_qa_key_vault_resource_group  = "${local.prefix}-${local.location_short}-u-qa-sec-rg"
+  prod_qa_key_vault_resource_group = "${local.prefix}-${local.location_short}-p-qa-sec-rg"
 
   # Name of the secret that holds the GitHub PAT used by the TAS orchestrator.
   # Must exist in each of the three KVs above (dev/uat/prod).
