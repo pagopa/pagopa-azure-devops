@@ -52,7 +52,7 @@ locals {
       pipeline_path : "client-certificates-infra",
       repository : {
         yml_prefix_name : "client-certs"
-        branch_name : "refs/heads/feat/add-private-ca"
+        branch_name : "refs/heads/main"
       }
       schedules = {
         days_to_build              = ["Mon"]
