@@ -8,8 +8,9 @@ variable "pagopa-checkout-fe" {
       yml_prefix_name = "pagopa"
     }
     pipeline = {
-      enable_code_review = true
-      enable_deploy      = true
+      enable_code_review   = true
+      enable_deploy        = true
+      enable_npg_sdk_sync  = true
     }
   }
 }
@@ -99,6 +100,33 @@ module "pagopa-checkout-fe_deploy" {
   variables_secret = merge(
     local.pagopa-checkout-fe-variables_secret,
     local.pagopa-checkout-fe-variables_secret_deploy,
+  )
+
+  service_connection_ids_authorization = [
+    data.azuredevops_serviceendpoint_github.github_ro.id,
+    data.azuredevops_serviceendpoint_azurerm.dev.id,
+    data.azuredevops_serviceendpoint_azurerm.uat.id,
+    data.azuredevops_serviceendpoint_azurerm.prod.id,
+  ]
+}
+
+module "pagopa-checkout-fe_npg_sdk_sync" {
+  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_generic?ref=v4.2.1"
+  count  = var.pagopa-checkout-fe.pipeline.enable_npg_sdk_sync == true ? 1 : 0
+
+  project_id                   = data.azuredevops_project.project.id
+  repository                   = var.pagopa-checkout-fe.repository
+  github_service_connection_id = data.azuredevops_serviceendpoint_github.github_ro.id
+  path                         = "${local.domain}\\pagopa-checkout-fe"
+  pipeline_name                = "pagopa-checkout-fe.npg-sdk-sync"
+  pipeline_yml_filename        = "pagopa-npg-sdk-sync-pipelines.yml"
+
+  variables = merge(
+    local.pagopa-checkout-fe-variables,
+  )
+
+  variables_secret = merge(
+    local.pagopa-checkout-fe-variables_secret,
   )
 
   service_connection_ids_authorization = [
