@@ -8,9 +8,9 @@ variable "pagopa-checkout-fe" {
       yml_prefix_name = "pagopa"
     }
     pipeline = {
-      enable_code_review   = true
-      enable_deploy        = true
-      enable_npg_sdk_sync  = true
+      enable_code_review  = true
+      enable_deploy       = true
+      enable_npg_sdk_sync = true
     }
   }
 }
