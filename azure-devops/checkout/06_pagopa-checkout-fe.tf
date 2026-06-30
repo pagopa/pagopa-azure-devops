@@ -114,8 +114,10 @@ module "pagopa-checkout-fe_npg_sdk_sync" {
   source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy?ref=v4.2.1"
   count  = var.pagopa-checkout-fe.pipeline.enable_npg_sdk_sync == true ? 1 : 0
 
-  project_id                   = data.azuredevops_project.project.id
-  repository                   = var.pagopa-checkout-fe.repository
+  project_id = data.azuredevops_project.project.id
+  repository = merge(var.pagopa-checkout-fe.repository, {
+    yml_prefix_name = "pagopa-npg-sdk-sync"
+  })
   github_service_connection_id = data.azuredevops_serviceendpoint_github.github_rw.service_endpoint_id
   pipeline_name_prefix         = "pagopa-checkout-fe.npg-sdk-sync"
 
