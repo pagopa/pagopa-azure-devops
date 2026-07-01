@@ -1,10 +1,8 @@
-variable "pagopa-mock-psp-prf-service" {
+variable "pagopa-mock-pm-prf-service" {
   default = {
     repository = {
       organization    = "pagopa"
-      # name            = "pagopa-nodo-dei-pagamenti-test-psp"
-      # branch_name     = "refs/heads/develop"
-      name            = "pagopa-nodo-dei-pagamenti-test-psp"
+      name            = "pagopa-nodo-dei-pagamenti-test-pm"
       branch_name     = "refs/heads/perf-pagopa"
       pipelines_path  = ".devops"
       yml_prefix_name = null
@@ -18,25 +16,25 @@ variable "pagopa-mock-psp-prf-service" {
 
 locals {
   # global vars
-  pagopa-mock-psp-prf-service-variables = {
+  pagopa-mock-pm-prf-service-variables = {
     cache_version_id = "v1"
-    default_branch   = var.pagopa-mock-psp-prf-service.repository.branch_name
+    default_branch   = var.pagopa-mock-pm-prf-service.repository.branch_name
   }
   # global secrets
-  pagopa-mock-psp-prf-service-variables_secret = {
+  pagopa-mock-pm-prf-service-variables_secret = {
 
   }
 
   # deploy vars
-  pagopa-mock-psp-prf-service-variables_deploy = {
+  pagopa-mock-pm-prf-service-variables_deploy = {
     git_email         = module.secrets.values["azure-devops-github-EMAIL"].value
     git_username      = module.secrets.values["azure-devops-github-USERNAME"].value
     github_connection = data.azuredevops_serviceendpoint_github.github_rw.service_endpoint_name
     tenant_id         = data.azurerm_client_config.current.tenant_id
 
     # acr section
-    image_repository_name = replace(var.pagopa-mock-psp-prf-service.repository.name, "-", "")
-    repository            = replace(var.pagopa-mock-psp-prf-service.repository.name, "-", "")
+    image_repository_name = replace(var.pagopa-mock-pm-prf-service.repository.name, "-", "")
+    repository            = replace(var.pagopa-mock-pm-prf-service.repository.name, "-", "")
 
 
     uat_container_registry_service_conn = data.azuredevops_serviceendpoint_azurecr.uat_weu_workload_identity.id
@@ -53,30 +51,30 @@ locals {
 
   }
   # deploy secrets
-  pagopa-mock-psp-prf-service-variables_secret_deploy = {
+  pagopa-mock-pm-prf-service-variables_secret_deploy = {
 
   }
 }
 
 
 
-module "pagopa-mock-psp-prf-service_deploy" {
+module "pagopa-mock-pm-prf-service_deploy" {
   source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy?ref=v4.2.1"
-  count  = var.pagopa-mock-psp-prf-service.pipeline.enable_deploy == true ? 1 : 0
+  count  = var.pagopa-mock-pm-prf-service.pipeline.enable_deploy == true ? 1 : 0
 
   project_id                   = data.azuredevops_project.project.id
-  repository                   = var.pagopa-mock-psp-prf-service.repository
+  repository                   = var.pagopa-mock-pm-prf-service.repository
   github_service_connection_id = data.azuredevops_serviceendpoint_github.github_rw.service_endpoint_id
-  path                         = "${local.domain}\\pagopa-mock-psp-prf-service"
+  path                         = "${local.domain}\\pagopa-mock-pm-prf-service"
 
   variables = merge(
-    local.pagopa-mock-psp-prf-service-variables,
-    local.pagopa-mock-psp-prf-service-variables_deploy,
+    local.pagopa-mock-pm-prf-service-variables,
+    local.pagopa-mock-pm-prf-service-variables_deploy,
   )
 
   variables_secret = merge(
-    local.pagopa-mock-psp-prf-service-variables_secret,
-    local.pagopa-mock-psp-prf-service-variables_secret_deploy,
+    local.pagopa-mock-pm-prf-service-variables_secret,
+    local.pagopa-mock-pm-prf-service-variables_secret_deploy,
   )
 
   service_connection_ids_authorization = [
