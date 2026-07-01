@@ -53,6 +53,12 @@ locals {
   pagopa-checkout-fe-variables_secret_deploy = {
 
   }
+  # npg_sdk_sync secrets
+  pagopa-checkout-fe-variables_secret_npg_sdk_sync = {
+    npg_api_key_dev = module.ecommerce_dev_secrets.values["npg-api-key"].value
+    # npg_api_key_uat  = module.ecommerce_uat_secrets.values["npg-api-key"].value
+    # npg_api_key_prod = module.ecommerce_prod_secrets.values["npg-api-key"].value
+  }
 }
 
 module "pagopa-checkout-fe_code_review" {
@@ -125,7 +131,10 @@ module "pagopa-checkout-fe_npg_sdk_sync" {
 
   variables = {}
 
-  variables_secret = {}
+  variables_secret = merge(
+    local.pagopa-checkout-fe-variables_secret,
+    local.pagopa-checkout-fe-variables_secret_npg_sdk_sync,
+  )
 
   service_connection_ids_authorization = [
     data.azuredevops_serviceendpoint_github.github_ro.id,

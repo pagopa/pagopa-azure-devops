@@ -30,6 +30,15 @@ locals {
   uat_checkout_key_vault_resource_group  = "${local.prefix}-u-${local.domain}-sec-rg"
   prod_checkout_key_vault_resource_group = "${local.prefix}-p-${local.domain}-sec-rg"
 
+  # ecommerce KV — cross-domain read for the NPG SDK sync pipeline
+  dev_ecommerce_key_vault_name = "${local.prefix}-d-ecommerce-kv"
+  # uat_ecommerce_key_vault_name  = "${local.prefix}-u-ecommerce-kv"
+  # prod_ecommerce_key_vault_name = "${local.prefix}-p-ecommerce-kv"
+
+  dev_ecommerce_key_vault_resource_group = "${local.prefix}-d-ecommerce-sec-rg"
+  # uat_ecommerce_key_vault_resource_group  = "${local.prefix}-u-ecommerce-sec-rg"
+  # prod_ecommerce_key_vault_resource_group = "${local.prefix}-p-ecommerce-sec-rg"
+
   #tfsec:ignore:general-secrets-no-plaintext-exposure
   #tfsec:ignore:GEN002
   tlscert_renew_token = "v1"
