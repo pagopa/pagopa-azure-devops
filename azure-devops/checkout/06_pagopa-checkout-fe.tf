@@ -130,7 +130,7 @@ module "pagopa-checkout-fe_npg_sdk_sync" {
   service_connection_ids_authorization = [
     data.azuredevops_serviceendpoint_github.github_ro.id,
     data.azuredevops_serviceendpoint_azurerm.dev.id,
-    #data.azuredevops_serviceendpoint_azurerm.uat.id,
-    #data.azuredevops_serviceendpoint_azurerm.prod.id,
+    data.azuredevops_serviceendpoint_azurerm.uat.id,
+    data.azuredevops_serviceendpoint_azurerm.prod.id,
   ]
 }
