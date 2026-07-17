@@ -51,7 +51,7 @@ locals {
   }
   # deploy secrets
   pagopa-checkout-fe-variables_secret_deploy = {
-
+    checkout_tas_github_token = module.checkout_prod_secrets.values["checkout-github-token-for-tas-integration"].value
   }
 }
 
