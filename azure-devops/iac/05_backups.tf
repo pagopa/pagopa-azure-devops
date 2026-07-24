@@ -37,3 +37,43 @@ module "apim_backup" {
     }
   }
 }
+
+module "apim_backup_uat" {
+  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy?ref=v7.0.0"
+
+  project_id                   = azuredevops_project.project.id
+  repository                   = var.apim_backup.repository
+  github_service_connection_id = azuredevops_serviceendpoint_github.azure-devops-github-pr.id
+  path                         = "backups"
+  pipeline_name_prefix         = "backup-apim-uat"
+
+  ci_trigger_use_yaml = false
+
+  variables = {
+    apim_name                                   = "pagopa-u-apim"
+    apim_rg                                     = "pagopa-u-api-rg"
+    storage_account_name                        = "pagopaubackupstorage"
+    backup_name                                 = "apim-backup"
+    storage_account_container                   = "apim"
+    storage_account_rg                          = "pagopa-u-data-rg"
+    TF_AZURE_SERVICE_CONNECTION_APPLY_NAME_UAT  = module.UAT-AZURERM-IAC-DEPLOY-SERVICE-CONN.service_endpoint_name
+  }
+
+  variables_secret = {}
+
+  service_connection_ids_authorization = [
+    module.UAT-AZURERM-IAC-DEPLOY-SERVICE-CONN.service_endpoint_id,
+  ]
+
+  schedules = {
+    days_to_build              = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
+    schedule_only_with_changes = false
+    start_hours                = 3
+    start_minutes              = 10
+    time_zone                  = "(UTC+01:00) Amsterdam, Berlin, Bern, Rome, Stockholm, Vienna"
+    branch_filter = {
+      include = ["main"]
+      exclude = []
+    }
+  }
+}
