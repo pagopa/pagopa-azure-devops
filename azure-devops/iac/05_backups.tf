@@ -42,7 +42,7 @@ module "apim_backup_uat" {
   source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy?ref=v7.0.0"
 
   project_id                   = azuredevops_project.project.id
-  repository                   = var.apim_backup.repository
+  repository                   = var.apim_backup_uat.repository
   github_service_connection_id = azuredevops_serviceendpoint_github.azure-devops-github-pr.id
   path                         = "backups"
   pipeline_name_prefix         = "backup-apim-uat"
@@ -50,13 +50,13 @@ module "apim_backup_uat" {
   ci_trigger_use_yaml = false
 
   variables = {
-    apim_name                                   = "pagopa-u-apim"
-    apim_rg                                     = "pagopa-u-api-rg"
-    storage_account_name                        = "pagopaubackupstorage"
-    backup_name                                 = "apim-backup"
-    storage_account_container                   = "apim"
-    storage_account_rg                          = "pagopa-u-data-rg"
-    TF_AZURE_SERVICE_CONNECTION_APPLY_NAME_UAT  = module.UAT-AZURERM-IAC-DEPLOY-SERVICE-CONN.service_endpoint_name
+    apim_name                                  = "pagopa-u-apim"
+    apim_rg                                    = "pagopa-u-api-rg"
+    storage_account_name                       = "pagopaubackupstorage"
+    backup_name                                = "apim-backup"
+    storage_account_container                  = "apim"
+    storage_account_rg                         = "pagopa-u-data-rg"
+    TF_AZURE_SERVICE_CONNECTION_APPLY_NAME_UAT = module.UAT-AZURERM-IAC-DEPLOY-SERVICE-CONN.service_endpoint_name
   }
 
   variables_secret = {}
