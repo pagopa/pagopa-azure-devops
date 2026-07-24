@@ -220,10 +220,26 @@ variable "apim_backup" {
   default = {
     repository = {
       organization    = "pagopa"
-      name            = "pagopa-infra"
+      name            = "pagopa-infra-core"
       branch_name     = "refs/heads/main"
       pipelines_path  = ".devops"
       yml_prefix_name = "backup-apim"
+    }
+    pipeline = {
+      enable_code_review = false
+      enable_deploy      = true
+    }
+  }
+}
+
+variable "apim_backup_uat" {
+  default = {
+    repository = {
+      organization    = "pagopa"
+      name            = "pagopa-infra-core"
+      branch_name     = "refs/heads/main"
+      pipelines_path  = ".devops"
+      yml_prefix_name = "backup-apim-uat"
     }
     pipeline = {
       enable_code_review = false
