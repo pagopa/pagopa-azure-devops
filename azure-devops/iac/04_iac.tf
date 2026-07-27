@@ -81,7 +81,7 @@ module "iac_code_review" {
   )
 
   service_connection_ids_authorization = [
-    azuredevops_serviceendpoint_github.azure-devops-github-ro.id,
+    try(each.value.repository.name, "pagopa-infra") == "pagopa-infra-core" ?  azuredevops_serviceendpoint_github.azure-devops-github-infra-core-ro.id : azuredevops_serviceendpoint_github.azure-devops-github-ro.id ,
     module.DEV-AZURERM-IAC-PLAN-SERVICE-CONN.service_endpoint_id,
     module.UAT-AZURERM-IAC-PLAN-SERVICE-CONN.service_endpoint_id,
     module.PROD-AZURERM-IAC-PLAN-SERVICE-CONN.service_endpoint_id,
@@ -130,7 +130,7 @@ module "iac_deploy" {
   )
 
   service_connection_ids_authorization = [
-    azuredevops_serviceendpoint_github.azure-devops-github-ro.id,
+    try(each.value.repository.name, "pagopa-infra") == "pagopa-infra-core" ? azuredevops_serviceendpoint_github.azure-devops-github-infra-core-ro.id : azuredevops_serviceendpoint_github.azure-devops-github-ro.id,
     module.DEV-AZURERM-IAC-PLAN-SERVICE-CONN.service_endpoint_id,
     module.UAT-AZURERM-IAC-PLAN-SERVICE-CONN.service_endpoint_id,
     module.PROD-AZURERM-IAC-PLAN-SERVICE-CONN.service_endpoint_id,

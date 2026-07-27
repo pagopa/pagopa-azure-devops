@@ -43,3 +43,50 @@ resource "azuredevops_serviceendpoint_github" "azure-devops-github-rw" {
     ignore_changes = [description, authorization]
   }
 }
+
+
+#
+# GITHUB service connection for pagopa-infra-core
+#
+
+# Github service connection (read-only)
+resource "azuredevops_serviceendpoint_github" "azure-devops-github-infra-core-ro" {
+  depends_on = [azuredevops_project.project]
+
+  project_id            = azuredevops_project.project.id
+  service_endpoint_name = local.srv_endpoint_github_infra_core_ro
+  auth_personal {
+    personal_access_token = module.secrets.values["azure-devops-github-infra-core-ro-TOKEN"].value
+  }
+  lifecycle {
+    ignore_changes = [description, authorization]
+  }
+}
+
+# Github service connection (pull request)
+resource "azuredevops_serviceendpoint_github" "azure-devops-github-infra-core-pr" {
+  depends_on = [azuredevops_project.project]
+
+  project_id            = azuredevops_project.project.id
+  service_endpoint_name = local.srv_endpoint_github_infra_core_pr
+  auth_personal {
+    personal_access_token = module.secrets.values["azure-devops-github-infra-core-pr-TOKEN"].value
+  }
+  lifecycle {
+    ignore_changes = [description, authorization]
+  }
+}
+
+# Github service connection (read-write)
+resource "azuredevops_serviceendpoint_github" "azure-devops-github-infra-core-rw" {
+  depends_on = [azuredevops_project.project]
+
+  project_id            = azuredevops_project.project.id
+  service_endpoint_name = local.srv_endpoint_github_infra_core_rw
+  auth_personal {
+    personal_access_token = module.secrets.values["azure-devops-github-infra-core-rw-TOKEN"].value
+  }
+  lifecycle {
+    ignore_changes = [description, authorization]
+  }
+}
