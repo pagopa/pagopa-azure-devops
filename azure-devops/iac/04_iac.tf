@@ -50,7 +50,7 @@ module "iac_code_review" {
 
   project_id                   = azuredevops_project.project.id
   repository                   = merge(local.default_repository, each.value.repository)
-  github_service_connection_id = azuredevops_serviceendpoint_github.azure-devops-github-pr.id
+  github_service_connection_id = try(each.value.repository.name, "pagopa-infra") == "pagopa-infra-core" ?  azuredevops_serviceendpoint_github.azure-devops-github-infra-core-pr.id : azuredevops_serviceendpoint_github.azure-devops-github-pr.id
 
   pipeline_name_prefix = each.value.pipeline_prefix
 
@@ -99,7 +99,7 @@ module "iac_deploy" {
 
   project_id                   = azuredevops_project.project.id
   repository                   = merge(local.default_repository, each.value.repository)
-  github_service_connection_id = azuredevops_serviceendpoint_github.azure-devops-github-pr.id
+  github_service_connection_id = try(each.value.repository.name, "pagopa-infra") == "pagopa-infra-core" ?  azuredevops_serviceendpoint_github.azure-devops-github-infra-core-pr.id : azuredevops_serviceendpoint_github.azure-devops-github-pr.id
 
   pipeline_name_prefix = each.value.pipeline_prefix
 
