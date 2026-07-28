@@ -18,6 +18,10 @@ locals {
   srv_endpoint_github_ro = "io-azure-devops-github-ro"
   srv_endpoint_github_rw = "io-azure-devops-github-rw"
   srv_endpoint_github_pr = "io-azure-devops-github-pr"
+  # Service connections/ End points
+  srv_endpoint_github_infra_core_ro = "io-azure-devops-github-infra-core-ro"
+  srv_endpoint_github_infra_core_rw = "io-azure-devops-github-infra-core-rw"
+  srv_endpoint_github_infra_core_pr = "io-azure-devops-github-infra-core-pr"
 
   # 🔐 KV AZDO
   dev_key_vault_azdo_name  = "${local.prefix}-d-azdo-weu-kv"
