@@ -50,7 +50,7 @@ module "iac_code_review" {
 
   project_id                   = azuredevops_project.project.id
   repository                   = merge(local.default_repository, each.value.repository)
-  github_service_connection_id = try(each.value.repository.name, "pagopa-infra") == "pagopa-infra-core" ?  azuredevops_serviceendpoint_github.azure-devops-github-infra-core-pr.id : azuredevops_serviceendpoint_github.azure-devops-github-pr.id
+  github_service_connection_id = try(each.value.repository.name, "pagopa-infra") == "pagopa-infra-core" ? azuredevops_serviceendpoint_github.azure-devops-github-infra-core-pr.id : azuredevops_serviceendpoint_github.azure-devops-github-pr.id
 
   pipeline_name_prefix = each.value.pipeline_prefix
 
@@ -81,7 +81,7 @@ module "iac_code_review" {
   )
 
   service_connection_ids_authorization = [
-    try(each.value.repository.name, "pagopa-infra") == "pagopa-infra-core" ?  azuredevops_serviceendpoint_github.azure-devops-github-infra-core-ro.id : azuredevops_serviceendpoint_github.azure-devops-github-ro.id ,
+    try(each.value.repository.name, "pagopa-infra") == "pagopa-infra-core" ? azuredevops_serviceendpoint_github.azure-devops-github-infra-core-ro.id : azuredevops_serviceendpoint_github.azure-devops-github-ro.id,
     module.DEV-AZURERM-IAC-PLAN-SERVICE-CONN.service_endpoint_id,
     module.UAT-AZURERM-IAC-PLAN-SERVICE-CONN.service_endpoint_id,
     module.PROD-AZURERM-IAC-PLAN-SERVICE-CONN.service_endpoint_id,
@@ -99,7 +99,7 @@ module "iac_deploy" {
 
   project_id                   = azuredevops_project.project.id
   repository                   = merge(local.default_repository, each.value.repository)
-  github_service_connection_id = try(each.value.repository.name, "pagopa-infra") == "pagopa-infra-core" ?  azuredevops_serviceendpoint_github.azure-devops-github-infra-core-pr.id : azuredevops_serviceendpoint_github.azure-devops-github-pr.id
+  github_service_connection_id = try(each.value.repository.name, "pagopa-infra") == "pagopa-infra-core" ? azuredevops_serviceendpoint_github.azure-devops-github-infra-core-pr.id : azuredevops_serviceendpoint_github.azure-devops-github-pr.id
 
   pipeline_name_prefix = each.value.pipeline_prefix
 

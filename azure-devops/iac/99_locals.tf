@@ -107,7 +107,7 @@ locals {
   }
 
   infra_core_definitions = [
-  {
+    {
       name : "audit-logs",
       envs : ["d", "u", "p"],
       kv_name : "",
@@ -119,7 +119,7 @@ locals {
       pipeline_path : "pagopa-infra-core\\audit-logs",
       repository : {
         yml_prefix_name = "audit-logs"
-        name           = "pagopa-infra-core"
+        name            = "pagopa-infra-core"
       }
     },
     {
@@ -133,7 +133,7 @@ locals {
       repository : {
         yml_prefix_name : "client-certs"
         branch_name : "refs/heads/main"
-        name           = "pagopa-infra-core"
+        name = "pagopa-infra-core"
       }
       schedules = {
         days_to_build              = ["Mon"]
@@ -159,7 +159,7 @@ locals {
       pipeline_path : "pagopa-infra-core\\cloudo",
       repository : {
         yml_prefix_name = "cloudo"
-        name           = "pagopa-infra-core"
+        name            = "pagopa-infra-core"
       }
     },
     {
@@ -174,7 +174,7 @@ locals {
       pipeline_path : "pagopa-infra-core\\core-itn",
       repository : {
         yml_prefix_name = "core-itn"
-        name           = "pagopa-infra-core"
+        name            = "pagopa-infra-core"
       }
     },
     {
@@ -189,7 +189,7 @@ locals {
       pipeline_path : "pagopa-infra-core\\db-security",
       repository : {
         yml_prefix_name = "db-security"
-        name           = "pagopa-infra-core"
+        name            = "pagopa-infra-core"
       }
     },
     {
@@ -204,7 +204,7 @@ locals {
       pipeline_path : "pagopa-infra-core\\db-security",
       repository : {
         yml_prefix_name = "db-security-configuration"
-        name           = "pagopa-infra-core"
+        name            = "pagopa-infra-core"
       }
     },
     {
@@ -219,7 +219,7 @@ locals {
       pipeline_path : "pagopa-infra-core\\grafana-monitoring",
       repository : {
         yml_prefix_name = "grafana-monitoring"
-        name           = "pagopa-infra-core"
+        name            = "pagopa-infra-core"
       }
     },
     {
@@ -234,7 +234,7 @@ locals {
       pipeline_path : "pagopa-infra-core\\network",
       repository : {
         yml_prefix_name = "network"
-        name           = "pagopa-infra-core"
+        name            = "pagopa-infra-core"
       }
     },
     {
@@ -249,7 +249,7 @@ locals {
       pipeline_path : "pagopa-infra-core\\aks",
       repository : {
         yml_prefix_name = "next-aks"
-        name           = "pagopa-infra-core"
+        name            = "pagopa-infra-core"
       }
     },
     {
@@ -264,7 +264,7 @@ locals {
       pipeline_path : "pagopa-infra-core\\next-core",
       repository : {
         yml_prefix_name = "next-core"
-        name           = "pagopa-infra-core"
+        name            = "pagopa-infra-core"
       }
     },
     {
@@ -279,7 +279,7 @@ locals {
       pipeline_path : "pagopa-infra-core\\packer-image",
       repository : {
         yml_prefix_name = "packer-image"
-        name           = "pagopa-infra-core"
+        name            = "pagopa-infra-core"
       }
     },
     {
@@ -294,7 +294,7 @@ locals {
       pipeline_path : "pagopa-infra-core\\release-notes-agent",
       repository : {
         yml_prefix_name = "release-notes-agent"
-        name           = "pagopa-infra-core"
+        name            = "pagopa-infra-core"
       }
     },
     {
@@ -309,7 +309,7 @@ locals {
       pipeline_path : "pagopa-infra-core\\synthetic-monitoring",
       repository : {
         yml_prefix_name = "synthetic-monitoring"
-        name           = "pagopa-infra-core"
+        name            = "pagopa-infra-core"
       }
     },
     {
@@ -324,7 +324,7 @@ locals {
       pipeline_path : "pagopa-infra-core\\tf-audit",
       repository : {
         yml_prefix_name = "tf-audit"
-        name           = "pagopa-infra-core"
+        name            = "pagopa-infra-core"
       }
     }
   ]
