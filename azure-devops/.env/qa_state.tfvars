@@ -1,4 +1,4 @@
-resource_group_name  = "io-infra-rg"
-storage_account_name = "pagopainfraterraformprod"
-container_name       = "azuredevopsstate"
+resource_group_name  = "terraform-state-rg"
+storage_account_name = "tfinfdevdpagopa"
+container_name       = "terraform-state"
 key                  = "qa-domain.terraform.tfstate"
