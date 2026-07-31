@@ -20,8 +20,7 @@ locals {
   pagopa-qa-centralhub-fe-variables = {
     # ⚠️ image name must match the repo value used by the pipeline (with dashes)
     image_repository = "pagopa-qa-centralhub-fe"
-    # ⚠️ pipeline uses a dedicated GitHub connection "github-pat-qa-hub"; here we
-    # wire the shared RW connection. Switch if a dedicated PAT connection is required.
+    # GitHub connection for checkout + GitHubRelease: shared RW (io-azure-devops-github-rw)
     github_conn  = data.azuredevops_serviceendpoint_github.github_rw.service_endpoint_name
     git_username = module.secrets.values["azure-devops-github-USERNAME"].value
     git_email    = module.secrets.values["azure-devops-github-EMAIL"].value
