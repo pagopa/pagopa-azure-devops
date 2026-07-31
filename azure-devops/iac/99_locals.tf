@@ -39,6 +39,7 @@ locals {
       pipeline_path : "gh-runner-cleanup",
       repository : {
         yml_file_name : "gh-runner-cleanup.yml"
+        name = "pagopa-infra-core"
       }
       schedules : {
         days_to_build : ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
@@ -57,6 +58,7 @@ locals {
       pipeline_path : "disaster-recovery",
       repository : {
         yml_file_name : "disaster-recovery.yml"
+        name = "pagopa-infra-core"
       }
     },
     "performance-test-setup" : {
@@ -64,6 +66,7 @@ locals {
       pipeline_path : "performance-test-setup",
       repository : {
         yml_file_name : "performance-test-setup.yml"
+        name = "pagopa-infra-core"
       }
       schedules : {
         days_to_build : ["Fri"],
@@ -82,6 +85,7 @@ locals {
       pipeline_path : "database",
       repository : {
         yml_file_name : "db-metabase-pipelines.yml"
+        name = "pagopa-infra-core"
       }
     },
     "liquibase-addon" : {
