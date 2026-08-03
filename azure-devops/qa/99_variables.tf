@@ -7,23 +7,14 @@ locals {
   uat_subscription_name  = "uat-pagopa"
   prod_subscription_name = "prod-pagopa"
 
-  # 🔐 KV azdo (hosts the GitHub PAT/email/username used by the pipelines)
+  # KV azdo (hosts the GitHub PAT/email/username used by the pipelines)
   prod_key_vault_azdo_name      = "${local.prefix}-p-azdo-weu-kv"
   prod_key_vault_resource_group = "${local.prefix}-p-sec-rg"
-
-  # 🔐 QA domain KV per environment (hosts the FE OAuth/NextAuth secrets)
-  # TODO confirm the exact KV names and resource groups.
-  dev_qa_key_vault_name  = "${local.prefix}-d-itn-qa-kv"
-  uat_qa_key_vault_name  = "${local.prefix}-u-itn-qa-kv"
-  prod_qa_key_vault_name = "${local.prefix}-p-itn-qa-kv"
-
-  dev_qa_key_vault_resource_group  = "${local.prefix}-d-itn-qa-sec-rg"
-  uat_qa_key_vault_resource_group  = "${local.prefix}-u-itn-qa-sec-rg"
-  prod_qa_key_vault_resource_group = "${local.prefix}-p-itn-qa-sec-rg"
 
   # Service connections / End points (shared org-level GitHub connections)
   srv_endpoint_github_ro = "io-azure-devops-github-ro"
   srv_endpoint_github_rw = "io-azure-devops-github-rw"
+  srv_endpoint_github_pr = "io-azure-devops-github-pr"
 }
 
 variable "dev_subscription_name" {

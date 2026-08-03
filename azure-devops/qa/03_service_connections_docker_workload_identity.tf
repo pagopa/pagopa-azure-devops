@@ -2,7 +2,7 @@
 ### with the provider and the docker@2 plugin for azdo
 
 #
-# 🇹 Italy Workload identity
+# Italy North Workload identity
 #
 data "azuredevops_serviceendpoint_azurecr" "dev_ita_workload_identity" {
   project_id            = data.azuredevops_project.project.id
