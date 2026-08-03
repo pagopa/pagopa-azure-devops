@@ -277,12 +277,12 @@ locals {
       kv_name : "",
       rg_name : "",
       region : "weu"
-      code_review : false,
+      code_review : true,
       deploy : true,
       pipeline_prefix : "packer",
       pipeline_path : "pagopa-infra-core\\packer-image",
       repository : {
-        yml_prefix_name = "packer-image"
+        yml_prefix_name = "packer"
         name            = "pagopa-infra-core"
       }
     },
@@ -292,7 +292,7 @@ locals {
       kv_name : "",
       rg_name : "",
       region : "weu"
-      code_review : false,
+      code_review : true,
       deploy : true,
       pipeline_prefix : "release-notes-agent",
       pipeline_path : "pagopa-infra-core\\release-notes-agent",
@@ -307,7 +307,7 @@ locals {
       kv_name : "",
       rg_name : "",
       region : "weu"
-      code_review : false,
+      code_review : true,
       deploy : true,
       pipeline_prefix : "synthetic-monitoring",
       pipeline_path : "pagopa-infra-core\\synthetic-monitoring",
@@ -322,7 +322,7 @@ locals {
       kv_name : "",
       rg_name : "",
       region : "weu"
-      code_review : false,
+      code_review : true,
       deploy : true,
       pipeline_prefix : "tf-audit",
       pipeline_path : "pagopa-infra-core\\tf-audit",
