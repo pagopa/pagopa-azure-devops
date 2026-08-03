@@ -14,7 +14,7 @@ locals {
   app_pipelines = [
     {
       name            = "centralhub-fe"
-      envs            = ["d", "u", "p"]
+      envs            = ["d", "u"]
       kv_name         = "${local.prefix}-%s-itn-qa-kv"
       rg_name         = "${local.prefix}-%s-itn-qa-sec-rg"
       region          = "itn"
