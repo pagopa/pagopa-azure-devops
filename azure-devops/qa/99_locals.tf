@@ -40,7 +40,7 @@ locals {
   base_app_variables = {
     git_username = module.secrets.values["azure-devops-github-USERNAME"].value
     git_email    = module.secrets.values["azure-devops-github-EMAIL"].value
-    github_conn  = data.azuredevops_serviceendpoint_github.github_rw.service_endpoint_name
+    github_conn  = azuredevops_serviceendpoint_github.github_qa.service_endpoint_name
   }
 
   # Per-pipeline variables and secrets (merged onto base_app_variables).

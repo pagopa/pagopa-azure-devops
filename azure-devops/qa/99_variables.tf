@@ -11,10 +11,12 @@ locals {
   prod_key_vault_azdo_name      = "${local.prefix}-p-azdo-weu-kv"
   prod_key_vault_resource_group = "${local.prefix}-p-sec-rg"
 
-  # Service connections / End points (shared org-level GitHub connections)
-  srv_endpoint_github_ro = "io-azure-devops-github-ro"
-  srv_endpoint_github_rw = "io-azure-devops-github-rw"
-  srv_endpoint_github_pr = "io-azure-devops-github-pr"
+  # KV UAT (hosts the domain-level GitHub PAT for all QA service connections)
+  uat_qa_github_kv_name = "${local.prefix}-u-itn-qa-kv"
+  uat_qa_github_kv_rg   = "${local.prefix}-u-itn-qa-sec-rg"
+
+  # Name of the dedicated GitHub service connection created by this domain state
+  qa_github_connection_name = "qa-azure-devops-github"
 }
 
 variable "dev_subscription_name" {

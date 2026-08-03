@@ -8,7 +8,7 @@ module "code_review" {
 
   project_id                   = data.azuredevops_project.project.id
   repository                   = each.value.repository
-  github_service_connection_id = data.azuredevops_serviceendpoint_github.github_pr.id
+  github_service_connection_id = azuredevops_serviceendpoint_github.github_qa.id
   path                         = each.value.pipeline_path
   pipeline_name_prefix         = each.value.pipeline_prefix
 
@@ -16,7 +16,7 @@ module "code_review" {
   variables_secret = try(local.pipelines_variables[each.value.name].variables_secrets_cr, {})
 
   service_connection_ids_authorization = [
-    data.azuredevops_serviceendpoint_github.github_ro.id,
+    azuredevops_serviceendpoint_github.github_qa.id,
   ]
 }
 
@@ -26,7 +26,7 @@ module "deploy" {
 
   project_id                   = data.azuredevops_project.project.id
   repository                   = each.value.repository
-  github_service_connection_id = data.azuredevops_serviceendpoint_github.github_rw.id
+  github_service_connection_id = azuredevops_serviceendpoint_github.github_qa.id
   path                         = each.value.pipeline_path
   pipeline_name_prefix         = each.value.pipeline_prefix
 
@@ -55,7 +55,7 @@ module "deploy" {
   )
 
   service_connection_ids_authorization = [
-    data.azuredevops_serviceendpoint_github.github_ro.id,
+    azuredevops_serviceendpoint_github.github_qa.id,
     data.azuredevops_serviceendpoint_azurerm.dev.id,
     data.azuredevops_serviceendpoint_azurerm.uat.id,
     data.azuredevops_serviceendpoint_azurerm.prod.id,

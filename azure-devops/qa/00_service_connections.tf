@@ -1,19 +1,23 @@
 #
 # GITHUB
 #
-data "azuredevops_serviceendpoint_github" "github_pr" {
-  project_id            = data.azuredevops_project.project.id
-  service_endpoint_name = local.srv_endpoint_github_pr
-}
+# Dedicated service connection for the QA domain, owned by the QA bot.
+# Uses a single PAT (stored in pagopa-u-itn-qa-kv) with all required grant 
+# (repo, admin:repo_hook) for all QA pipelines, instead of the shared org-level connections.
+#
+resource "azuredevops_serviceendpoint_github" "github_qa" {
+  depends_on = [data.azuredevops_project.project]
 
-data "azuredevops_serviceendpoint_github" "github_ro" {
   project_id            = data.azuredevops_project.project.id
-  service_endpoint_name = local.srv_endpoint_github_ro
-}
+  service_endpoint_name = local.qa_github_connection_name
 
-data "azuredevops_serviceendpoint_github" "github_rw" {
-  project_id            = data.azuredevops_project.project.id
-  service_endpoint_name = local.srv_endpoint_github_rw
+  auth_personal {
+    personal_access_token = module.qa_github_token.values["azure-devops-qa-github-token"].value
+  }
+
+  lifecycle {
+    ignore_changes = [description, authorization]
+  }
 }
 
 #
