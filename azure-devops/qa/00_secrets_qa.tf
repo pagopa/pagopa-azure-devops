@@ -4,7 +4,7 @@
 # The secret names must exist in each KV (see each pipeline `secrets`).
 #
 module "qa_dev_secrets" {
-  source = "./.terraform/modules/__v3__/key_vault_secrets_query"
+  source = "./.terraform/modules/__v4__/key_vault_secrets_query"
 
   for_each = { for p in local.deploy_pipelines : p.name => p if contains(p.envs, "d") && try(p.kv_name, "") != "" }
 
@@ -19,7 +19,7 @@ module "qa_dev_secrets" {
 }
 
 module "qa_uat_secrets" {
-  source = "./.terraform/modules/__v3__/key_vault_secrets_query"
+  source = "./.terraform/modules/__v4__/key_vault_secrets_query"
 
   for_each = { for p in local.deploy_pipelines : p.name => p if contains(p.envs, "u") && try(p.kv_name, "") != "" }
 
@@ -34,7 +34,7 @@ module "qa_uat_secrets" {
 }
 
 module "qa_prod_secrets" {
-  source = "./.terraform/modules/__v3__/key_vault_secrets_query"
+  source = "./.terraform/modules/__v4__/key_vault_secrets_query"
 
   for_each = { for p in local.deploy_pipelines : p.name => p if contains(p.envs, "p") && try(p.kv_name, "") != "" }
 
