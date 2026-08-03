@@ -56,8 +56,8 @@ locals {
         dev_web_app_resource_group_name     = "pagopa-d-itn-qa-qa-hub-rg"
         dev_container_registry_service_conn = data.azuredevops_serviceendpoint_azurecr.dev_ita_workload_identity.service_endpoint_name
         dev_container_namespace             = "pagopaditncoreacr.azurecr.io"
-        dev_next_public_api_url             = "TODO" # public API base url (build-arg), not secret
-        dev_nextauth_url                    = "TODO" # NextAuth base url, not secret
+        dev_next_public_api_url             = "https://api.dev.platform.pagopa.it/qa/central-hub/v1" # public API base url (build-arg), not secret
+        dev_nextauth_url                    = "https://api.dev.platform.pagopa.it/qa/central-hub/v1" # NextAuth base url, not secret
 
         # UAT
         uat_azure_subscription              = data.azuredevops_serviceendpoint_azurerm.uat.service_endpoint_name
@@ -65,8 +65,8 @@ locals {
         uat_web_app_resource_group_name     = "pagopa-u-itn-qa-qa-hub-rg"
         uat_container_registry_service_conn = data.azuredevops_serviceendpoint_azurecr.uat_ita_workload_identity.service_endpoint_name
         uat_container_namespace             = "pagopauitncoreacr.azurecr.io"
-        uat_next_public_api_url             = "TODO"
-        uat_nextauth_url                    = "TODO"
+        uat_next_public_api_url             = "https://api.uat.platform.pagopa.it/qa/central-hub/v1"
+        uat_nextauth_url                    = "https://api.uat.platform.pagopa.it/qa/central-hub/v1" # NextAuth base url, not secret
 
         # PROD
         prod_azure_subscription              = data.azuredevops_serviceendpoint_azurerm.prod.service_endpoint_name
@@ -74,8 +74,8 @@ locals {
         prod_web_app_resource_group_name     = "pagopa-p-itn-qa-qa-hub-rg"
         prod_container_registry_service_conn = data.azuredevops_serviceendpoint_azurecr.prod_ita_workload_identity.service_endpoint_name
         prod_container_namespace             = "pagopapitncoreacr.azurecr.io"
-        prod_next_public_api_url             = "TODO"
-        prod_nextauth_url                    = "TODO"
+        prod_next_public_api_url             = "https://api.platform.pagopa.it/qa/central-hub/v1"
+        prod_nextauth_url                    = "https://api.platform.pagopa.it/qa/central-hub/v1" # NextAuth base url, not secret
       }
       variables_secrets_deploy = {
         dev_nextauth_secret      = module.qa_dev_secrets["centralhub-fe"].values["nextauth-secret"].value
