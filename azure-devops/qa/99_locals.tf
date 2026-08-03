@@ -77,19 +77,7 @@ locals {
         prod_next_public_api_url             = "https://api.platform.pagopa.it/qa/central-hub/v1"
         prod_nextauth_url                    = "https://api.platform.pagopa.it/qa/central-hub/v1" # NextAuth base url, not secret
       }
-      variables_secrets_deploy = {
-        dev_nextauth_secret      = module.qa_dev_secrets["centralhub-fe"].values["nextauth-secret"].value
-        dev_google_client_id     = module.qa_dev_secrets["centralhub-fe"].values["google-client-id"].value
-        dev_google_client_secret = module.qa_dev_secrets["centralhub-fe"].values["google-client-secret"].value
-
-        uat_nextauth_secret      = module.qa_uat_secrets["centralhub-fe"].values["nextauth-secret"].value
-        uat_google_client_id     = module.qa_uat_secrets["centralhub-fe"].values["google-client-id"].value
-        uat_google_client_secret = module.qa_uat_secrets["centralhub-fe"].values["google-client-secret"].value
-
-        prod_nextauth_secret      = module.qa_prod_secrets["centralhub-fe"].values["nextauth-secret"].value
-        prod_google_client_id     = module.qa_prod_secrets["centralhub-fe"].values["google-client-id"].value
-        prod_google_client_secret = module.qa_prod_secrets["centralhub-fe"].values["google-client-secret"].value
-      }
+      variables_secrets_deploy = {}
       # code review (PR gate) — lint/type-check/test/build run in the repo YAML
       variables_cr         = {}
       variables_secrets_cr = {}
