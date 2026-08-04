@@ -258,6 +258,7 @@ Pipeline without a schedule (triggered manually or via CI):
 | <a name="module_paywallet_dev_secrets"></a> [paywallet\_dev\_secrets](#module\_paywallet\_dev\_secrets) | git::https://github.com/pagopa/terraform-azurerm-v3.git//key_vault_secrets_query | v8.13.0 |
 | <a name="module_paywallet_prod_secrets"></a> [paywallet\_prod\_secrets](#module\_paywallet\_prod\_secrets) | git::https://github.com/pagopa/terraform-azurerm-v3.git//key_vault_secrets_query | v8.13.0 |
 | <a name="module_paywallet_uat_secrets"></a> [paywallet\_uat\_secrets](#module\_paywallet\_uat\_secrets) | git::https://github.com/pagopa/terraform-azurerm-v3.git//key_vault_secrets_query | v8.13.0 |
+| <a name="module_pos_gateway_dev_secrets"></a> [pos\_gateway\_dev\_secrets](#module\_pos\_gateway\_dev\_secrets) | git::https://github.com/pagopa/terraform-azurerm-v3.git//key_vault_secrets_query | v7.48.0 |
 | <a name="module_printit_dev_secrets"></a> [printit\_dev\_secrets](#module\_printit\_dev\_secrets) | git::https://github.com/pagopa/terraform-azurerm-v3.git//key_vault_secrets_query | v8.13.0 |
 | <a name="module_printit_prod_secrets"></a> [printit\_prod\_secrets](#module\_printit\_prod\_secrets) | git::https://github.com/pagopa/terraform-azurerm-v3.git//key_vault_secrets_query | v8.13.0 |
 | <a name="module_printit_uat_secrets"></a> [printit\_uat\_secrets](#module\_printit\_uat\_secrets) | git::https://github.com/pagopa/terraform-azurerm-v3.git//key_vault_secrets_query | v8.13.0 |

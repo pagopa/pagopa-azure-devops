@@ -27,6 +27,21 @@ locals {
       repository : {
         yml_prefix_name : "cruscotto"
       }
+    },
+    {
+      name : "pos-gateway",
+      //envs : ["d", "u", "p"],
+      envs : ["d"],
+      kv_name : "pagopa-%s-pos-gateway-kv",
+      rg_name : "pagopa-%s-pos-gateway-sec-rg",
+      region : "itn",
+      code_review : true,
+      deploy : true,
+      pipeline_prefix : "pos-gateway",
+      pipeline_path : "pos-gateway-infra",
+      repository : {
+        yml_prefix_name : "pos-gateway"
+      }
     }
   ])
 
