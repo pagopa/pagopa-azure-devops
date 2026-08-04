@@ -1,8 +1,8 @@
 locals {
-  prefix                 = "pagopa"
-  azure_devops_org       = "pagopaspa"
-  domain                 = "pos-gateway"
-  domain_short           = "posgw"
+  prefix           = "pagopa"
+  azure_devops_org = "pagopaspa"
+  domain           = "pos-gateway"
+  domain_short     = "posgw"
 
   location            = "italynorth"
   location_westeurope = "westeurope"
