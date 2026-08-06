@@ -229,6 +229,21 @@ variable "aks_prod_platform_name" {
   description = "AKS PROD platform name"
 }
 
+variable "aks_itn_dev_platform_name" {
+  type        = string
+  description = "AKS DEV platform name (ITN region)"
+}
+
+variable "aks_itn_uat_platform_name" {
+  type        = string
+  description = "AKS UAT platform name (ITN region)"
+}
+
+variable "aks_itn_prod_platform_name" {
+  type        = string
+  description = "AKS PROD platform name (ITN region)"
+}
+
 variable "apim_backup" {
   default = {
     repository = {

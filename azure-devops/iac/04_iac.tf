@@ -11,10 +11,6 @@ locals {
 
 
   base_iac_variables = {
-    tf_aks_dev_name  = var.aks_dev_platform_name
-    tf_aks_uat_name  = var.aks_uat_platform_name
-    tf_aks_prod_name = var.aks_prod_platform_name
-
     TF_POOL_NAME_DEV  = "pagopa-dev-linux-infra",
     TF_POOL_NAME_UAT  = "pagopa-uat-linux-infra",
     TF_POOL_NAME_PROD = "pagopa-prod-linux-infra",
@@ -56,6 +52,15 @@ module "iac_code_review" {
 
   variables = merge(
     local.base_iac_variables,
+    each.value.region == "itn" ? {
+      tf_aks_dev_name  = var.aks_itn_dev_platform_name
+      tf_aks_uat_name  = var.aks_itn_uat_platform_name
+      tf_aks_prod_name = var.aks_itn_prod_platform_name
+      } : {
+      tf_aks_dev_name  = var.aks_dev_platform_name
+      tf_aks_uat_name  = var.aks_uat_platform_name
+      tf_aks_prod_name = var.aks_prod_platform_name
+    },
     contains(each.value.envs, "d") && try(each.value.kv_name, "") != "" ? {
       tf_dev_aks_apiserver_url         = module.dev_secrets[each.value.name].values["pagopa-d-${each.value.region}-dev-aks-apiserver-url"].value,
       tf_dev_aks_azure_devops_sa_cacrt = module.dev_secrets[each.value.name].values["pagopa-d-${each.value.region}-dev-aks-azure-devops-sa-cacrt"].value,
@@ -105,6 +110,15 @@ module "iac_deploy" {
 
   variables = merge(
     local.base_iac_variables,
+    each.value.region == "itn" ? {
+      tf_aks_dev_name  = var.aks_itn_dev_platform_name
+      tf_aks_uat_name  = var.aks_itn_uat_platform_name
+      tf_aks_prod_name = var.aks_itn_prod_platform_name
+      } : {
+      tf_aks_dev_name  = var.aks_dev_platform_name
+      tf_aks_uat_name  = var.aks_uat_platform_name
+      tf_aks_prod_name = var.aks_prod_platform_name
+    },
     contains(each.value.envs, "d") && try(each.value.kv_name, "") != "" ? {
       tf_dev_aks_apiserver_url         = module.dev_secrets[each.value.name].values["pagopa-d-${each.value.region}-dev-aks-apiserver-url"].value,
       tf_dev_aks_azure_devops_sa_cacrt = module.dev_secrets[each.value.name].values["pagopa-d-${each.value.region}-dev-aks-azure-devops-sa-cacrt"].value,
