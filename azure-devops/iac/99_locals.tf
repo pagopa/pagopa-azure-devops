@@ -127,6 +127,36 @@ locals {
 
   infra_core_definitions = [
     {
+      name : "aks-platform",
+      envs : ["d"],
+      kv_name : "pagopa-%s-kv",
+      rg_name : "pagopa-%s-sec-rg",
+      region : "weu"
+      code_review : true,
+      deploy : true,
+      pipeline_prefix : "aks-platform",
+      pipeline_path : "pagopa-infra-core\\aks-platform",
+      repository : {
+        yml_prefix_name = "aks-platform"
+        name            = "pagopa-infra-core"
+      }
+    },
+    {
+      name : "aks-italy",
+      envs : ["d"],
+      kv_name : "pagopa-%s-itn-core-kv",
+      rg_name : "pagopa-%s-itn-core-sec-rg",
+      region : "itn"
+      code_review : true,
+      deploy : true,
+      pipeline_prefix : "aks-italy",
+      pipeline_path : "pagopa-infra-core\\aks-italy",
+      repository : {
+        yml_prefix_name = "aks-italy"
+        name            = "pagopa-infra-core"
+      }
+    },
+    {
       name : "audit-logs",
       envs : ["d", "u", "p"],
       kv_name : "",
@@ -258,9 +288,9 @@ locals {
     },
     {
       name : "next-aks",
-      envs : ["d", "u", "p"],
-      kv_name : "",
-      rg_name : "",
+      envs : ["d"],
+      kv_name : "pagopa-%s-kv",
+      rg_name : "pagopa-%s-sec-rg",
       region : "weu"
       code_review : true,
       deploy : true,
