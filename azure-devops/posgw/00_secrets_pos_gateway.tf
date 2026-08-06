@@ -1,4 +1,4 @@
-module "pos_gateway_dev_secrets" {
+module "posgw_dev_secrets" {
 
   providers = {
     azurerm = azurerm.dev
@@ -6,8 +6,8 @@ module "pos_gateway_dev_secrets" {
 
   source = "git::https://github.com/pagopa/terraform-azurerm-v3.git//key_vault_secrets_query?ref=v7.30.0"
 
-  resource_group = local.dev_pos_gateway_key_vault_resource_group
-  key_vault_name = local.dev_pos_gateway_key_vault_name
+  resource_group = local.dev_posgw_key_vault_resource_group
+  key_vault_name = local.dev_posgw_key_vault_name
 
   secrets = [
     "pagopa-d-itn-dev-aks-azure-devops-sa-token",

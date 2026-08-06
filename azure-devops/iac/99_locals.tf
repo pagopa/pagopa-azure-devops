@@ -29,7 +29,7 @@ locals {
       }
     },
     {
-      name : "pos-gateway",
+      name : "posgw",
       //envs : ["d", "u", "p"],
       envs : ["d"],
       kv_name : "pagopa-%s-itn-posgw-kv",
@@ -37,10 +37,10 @@ locals {
       region : "itn",
       code_review : true,
       deploy : true,
-      pipeline_prefix : "pos-gateway",
-      pipeline_path : "pos-gateway-infra",
+      pipeline_prefix : "posgw",
+      pipeline_path : "posgw-infra",
       repository : {
-        yml_prefix_name : "pos-gateway"
+        yml_prefix_name : "posgw"
       }
     }
   ])
