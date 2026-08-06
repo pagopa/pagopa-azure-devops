@@ -177,9 +177,9 @@ locals {
   prod_paywallet_key_vault_name = "${local.prefix}-p-pay-wallet-kv"
 
   ### pos gateway
-  dev_pos_gateway_key_vault_resource_group  = "${local.prefix}-d-itn-pos-gateway-sec-rg"
-  uat_pos_gateway_key_vault_resource_group  = "${local.prefix}-u-itn-pos-gateway-sec-rg"
-  prod_pos_gateway_key_vault_resource_group = "${local.prefix}-p-itn-pos-gateway-sec-rg"
+  dev_pos_gateway_key_vault_resource_group  = "${local.prefix}-d-itn-posgw-sec-rg"
+  uat_pos_gateway_key_vault_resource_group  = "${local.prefix}-u-itn-posgw-sec-rg"
+  prod_pos_gateway_key_vault_resource_group = "${local.prefix}-p-itn-posgw-sec-rg"
 
   dev_pos_gateway_key_vault_name  = "${local.prefix}-d-itn-posgw-kv"
   uat_pos_gateway_key_vault_name  = "${local.prefix}-u-itn-posgw-kv"

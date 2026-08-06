@@ -1,4 +1,4 @@
 resource_group_name  = "terraform-state-rg"
 storage_account_name = "tfinfprodpagopa"
 container_name       = "terraform-state"
-key                  = "azdo-pos-gateway.terraform.tfstate"
+key                  = "azdo-posgw.terraform.tfstate"
