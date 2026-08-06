@@ -33,7 +33,7 @@ locals {
       //envs : ["d", "u", "p"],
       envs : ["d"],
       kv_name : "pagopa-%s-itn-posgw-kv",
-      rg_name : "pagopa-%s-itn-pos-gateway-sec-rg",
+      rg_name : "pagopa-%s-itn-posgw-sec-rg",
       region : "itn",
       code_review : true,
       deploy : true,
