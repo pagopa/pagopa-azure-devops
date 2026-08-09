@@ -1,5 +1,5 @@
 module "pagopa-node-forwarder_uat_secrets" {
-  source = "git::https://github.com/pagopa/terraform-azurerm-v3.git//key_vault_secrets_query?ref=v7.30.0"
+  source = "./.terraform/modules/__v3__/key_vault_secrets_query"
 
   providers = {
     azurerm = azurerm.uat
@@ -14,7 +14,7 @@ module "pagopa-node-forwarder_uat_secrets" {
 }
 
 module "pagopa-debt-position_uat_secrets" {
-  source = "git::https://github.com/pagopa/terraform-azurerm-v3.git//key_vault_secrets_query?ref=v7.30.0"
+  source = "./.terraform/modules/__v3__/key_vault_secrets_query"
 
   providers = {
     azurerm = azurerm.uat
