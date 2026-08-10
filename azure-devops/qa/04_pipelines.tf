@@ -64,3 +64,16 @@ module "deploy" {
     data.azuredevops_serviceendpoint_azurecr.prod_ita_workload_identity.id,
   ]
 }
+
+# Grant all pipelines in the project access to UAT and PROD pools (same model as pagopa-dev-linux)
+resource "azuredevops_pipeline_authorization" "uat_linux_pool" {
+  project_id  = data.azuredevops_project.project.id
+  resource_id = data.azuredevops_agent_queue.uat_linux.id
+  type        = "queue"
+}
+
+resource "azuredevops_pipeline_authorization" "prod_linux_pool" {
+  project_id  = data.azuredevops_project.project.id
+  resource_id = data.azuredevops_agent_queue.prod_linux.id
+  type        = "queue"
+}
