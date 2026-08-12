@@ -23,6 +23,10 @@ terraform {
 
 data "azurerm_client_config" "current" {}
 
+provider "azuredevops" {
+  org_service_url = "https://dev.azure.com/pagopaspa"
+}
+
 provider "azurerm" {
   features {}
 }
