@@ -22,6 +22,7 @@ array=(
     'azure-devops::app'
     'azure-devops::bizevents'
     'azure-devops::checkout'
+    'azure-devops::centralhub'
     'azure-devops::ecommerce'
     'azure-devops::externals'
     'azure-devops::fdr'
