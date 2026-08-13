@@ -43,53 +43,53 @@ locals {
     github_connection = local.centralhub_github_connection_name
   }
 
-  centralhub_pipelines = {
-    portalpa_code_review = {
-      kind                                 = "code_review"
-      repository                           = local.centralhub_repository
-      path                                 = "${local.domain}\\pagopa-portalpa"
-      pipeline_prefix                      = "pagopa-portalpa"
-      variables                            = { danger_github_api_token = "skip" }
-      variables_secret                     = {}
-      service_connection_ids_authorization = []
-      queue_ids_to_authorize               = []
-    }
+  centralhub_applications = {
+    portalpa = {
+      repository         = local.centralhub_repository
+      path               = "${local.domain}\\pagopa-portalpa"
+      pipeline_prefix    = "pagopa-portalpa"
+      enable_code_review = true
+      enable_deploy      = true
 
-    portalpa_deploy = {
-      kind            = "deploy"
-      repository      = local.centralhub_repository
-      path            = "${local.domain}\\pagopa-portalpa"
-      pipeline_prefix = "pagopa-portalpa"
-      variables = {
-        image_repository = "pagopa-portal"
-
-        dev_deploy_type                     = "production_slot"
-        dev_azure_subscription              = data.azuredevops_serviceendpoint_azurerm.dev.service_endpoint_name
-        dev_web_app_name                    = "pagopa-d-itn-portalpa-app"
-        dev_web_app_resource_group_name     = "pagopa-d-itn-portalpa-departements-rg"
-        dev_container_registry_service_conn = data.azuredevops_serviceendpoint_azurecr.dev_ita_workload_identity.service_endpoint_name
-        dev_container_namespace             = "pagopadcommonacr.azurecr.io"
-        dev_key_vault_name                  = local.dev_centralhub_key_vault_name
-
-        prod_deploy_type                     = "staging_slot_and_swap"
-        prod_azure_subscription              = data.azuredevops_serviceendpoint_azurerm.prod.service_endpoint_name
-        prod_web_app_name                    = "pagopa-p-itn-portalpa-app"
-        prod_web_app_resource_group_name     = "pagopa-p-itn-portalpa-departements-rg"
-        prod_container_registry_service_conn = data.azuredevops_serviceendpoint_azurecr.prod_ita_workload_identity.service_endpoint_name
-        prod_container_namespace             = "pagopapcommonacr.azurecr.io"
-        prod_key_vault_name                  = local.prod_centralhub_key_vault_name
+      code_review = {
+        variables = {
+          danger_github_api_token = "skip"
+        }
       }
-      variables_secret = {}
-      service_connection_ids_authorization = [
-        data.azuredevops_serviceendpoint_azurerm.dev.id,
-        data.azuredevops_serviceendpoint_azurerm.prod.id,
-        data.azuredevops_serviceendpoint_azurecr.dev_ita_workload_identity.id,
-        data.azuredevops_serviceendpoint_azurecr.prod_ita_workload_identity.id,
-      ]
-      queue_ids_to_authorize = [
-        data.azuredevops_agent_queue.uat_linux.id,
-        data.azuredevops_agent_queue.prod_linux.id,
-      ]
+
+      deploy = {
+        variables = {
+          image_repository = "pagopa-portal"
+
+          dev_deploy_type                     = "production_slot"
+          dev_azure_subscription              = data.azuredevops_serviceendpoint_azurerm.dev.service_endpoint_name
+          dev_web_app_name                    = "pagopa-d-itn-portalpa-app"
+          dev_web_app_resource_group_name     = "pagopa-d-itn-portalpa-departements-rg"
+          dev_container_registry_service_conn = data.azuredevops_serviceendpoint_azurecr.dev_ita_workload_identity.service_endpoint_name
+          dev_container_namespace             = "pagopadcommonacr.azurecr.io"
+          dev_key_vault_name                  = local.dev_centralhub_key_vault_name
+
+          prod_deploy_type                     = "staging_slot_and_swap"
+          prod_azure_subscription              = data.azuredevops_serviceendpoint_azurerm.prod.service_endpoint_name
+          prod_web_app_name                    = "pagopa-p-itn-portalpa-app"
+          prod_web_app_resource_group_name     = "pagopa-p-itn-portalpa-departements-rg"
+          prod_container_registry_service_conn = data.azuredevops_serviceendpoint_azurecr.prod_ita_workload_identity.service_endpoint_name
+          prod_container_namespace             = "pagopapcommonacr.azurecr.io"
+          prod_key_vault_name                  = local.prod_centralhub_key_vault_name
+        }
+
+        service_connection_ids_authorization = [
+          data.azuredevops_serviceendpoint_azurerm.dev.id,
+          data.azuredevops_serviceendpoint_azurerm.prod.id,
+          data.azuredevops_serviceendpoint_azurecr.dev_ita_workload_identity.id,
+          data.azuredevops_serviceendpoint_azurecr.prod_ita_workload_identity.id,
+        ]
+
+        queue_ids_to_authorize = [
+          data.azuredevops_agent_queue.uat_linux.id,
+          data.azuredevops_agent_queue.prod_linux.id,
+        ]
+      }
     }
   }
 }

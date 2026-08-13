@@ -29,8 +29,53 @@ variable "base_variables" {
   default     = {}
 }
 
+variable "applications" {
+  description = "Application-centric pipeline definitions with feature flags"
+
+  type = map(object({
+    repository = object({
+      organization    = string
+      name            = string
+      branch_name     = string
+      pipelines_path  = string
+      yml_prefix_name = any
+    })
+    path            = string
+    pipeline_prefix = string
+
+    enable_code_review = optional(bool, true)
+    enable_deploy      = optional(bool, true)
+
+    code_review = optional(object({
+      pull_request_trigger_use_yaml        = optional(bool, true)
+      variables                            = optional(map(string), {})
+      variables_secret                     = optional(map(string), {})
+      service_connection_ids_authorization = optional(list(string), [])
+      queue_ids_to_authorize               = optional(list(string), [])
+    }), {})
+
+    deploy = optional(object({
+      variables                            = optional(map(string), {})
+      variables_secret                     = optional(map(string), {})
+      service_connection_ids_authorization = optional(list(string), [])
+      queue_ids_to_authorize               = optional(list(string), [])
+    }), {})
+
+    generic = optional(map(object({
+      pipeline_name                        = string
+      pipeline_yml_filename                = string
+      variables                            = optional(map(string), {})
+      variables_secret                     = optional(map(string), {})
+      service_connection_ids_authorization = optional(list(string), [])
+      queue_ids_to_authorize               = optional(list(string), [])
+    })), {})
+  }))
+
+  default = {}
+}
+
 variable "pipelines" {
-  description = "Pipeline definitions grouped by kind"
+  description = "Low-level pipeline definitions grouped by kind (advanced/legacy path)"
 
   type = map(object({
     kind = string
@@ -51,4 +96,6 @@ variable "pipelines" {
     service_connection_ids_authorization = optional(list(string), [])
     queue_ids_to_authorize               = optional(list(string), [])
   }))
+
+  default = {}
 }

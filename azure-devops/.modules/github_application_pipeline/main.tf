@@ -27,18 +27,77 @@ resource "azuredevops_serviceendpoint_github" "this" {
 }
 
 locals {
+  derived_code_review_pipelines = {
+    for app_name, app in var.applications :
+    "${app_name}_code_review" => {
+      kind                                 = "code_review"
+      repository                           = app.repository
+      path                                 = app.path
+      pipeline_prefix                      = app.pipeline_prefix
+      pull_request_trigger_use_yaml        = try(app.code_review.pull_request_trigger_use_yaml, true)
+      variables                            = try(app.code_review.variables, {})
+      variables_secret                     = try(app.code_review.variables_secret, {})
+      service_connection_ids_authorization = try(app.code_review.service_connection_ids_authorization, [])
+      queue_ids_to_authorize               = try(app.code_review.queue_ids_to_authorize, [])
+    }
+    if try(app.enable_code_review, true)
+  }
+
+  derived_deploy_pipelines = {
+    for app_name, app in var.applications :
+    "${app_name}_deploy" => {
+      kind                                 = "deploy"
+      repository                           = app.repository
+      path                                 = app.path
+      pipeline_prefix                      = app.pipeline_prefix
+      variables                            = try(app.deploy.variables, {})
+      variables_secret                     = try(app.deploy.variables_secret, {})
+      service_connection_ids_authorization = try(app.deploy.service_connection_ids_authorization, [])
+      queue_ids_to_authorize               = try(app.deploy.queue_ids_to_authorize, [])
+    }
+    if try(app.enable_deploy, true)
+  }
+
+  derived_generic_pipelines = {
+    for item in flatten([
+      for app_name, app in var.applications : [
+        for generic_name, generic_pipeline in try(app.generic, {}) : {
+          key = "${app_name}_${generic_name}"
+          value = {
+            kind                                 = "generic"
+            repository                           = app.repository
+            path                                 = app.path
+            pipeline_name                        = generic_pipeline.pipeline_name
+            pipeline_yml_filename                = generic_pipeline.pipeline_yml_filename
+            variables                            = try(generic_pipeline.variables, {})
+            variables_secret                     = try(generic_pipeline.variables_secret, {})
+            service_connection_ids_authorization = try(generic_pipeline.service_connection_ids_authorization, [])
+            queue_ids_to_authorize               = try(generic_pipeline.queue_ids_to_authorize, [])
+          }
+        }
+      ]
+    ]) : item.key => item.value
+  }
+
+  normalized_pipelines = merge(
+    local.derived_code_review_pipelines,
+    local.derived_deploy_pipelines,
+    local.derived_generic_pipelines,
+    var.pipelines,
+  )
+
   code_review_pipelines = {
-    for name, pipeline in var.pipelines : name => pipeline
+    for name, pipeline in local.normalized_pipelines : name => pipeline
     if pipeline.kind == "code_review"
   }
 
   deploy_pipelines = {
-    for name, pipeline in var.pipelines : name => pipeline
+    for name, pipeline in local.normalized_pipelines : name => pipeline
     if pipeline.kind == "deploy"
   }
 
   generic_pipelines = {
-    for name, pipeline in var.pipelines : name => pipeline
+    for name, pipeline in local.normalized_pipelines : name => pipeline
     if pipeline.kind == "generic"
   }
 }
@@ -106,7 +165,7 @@ module "generic" {
 
 resource "azuredevops_pipeline_authorization" "queues" {
   for_each = toset(flatten([
-    for pipeline in values(var.pipelines) : pipeline.queue_ids_to_authorize
+    for pipeline in values(local.normalized_pipelines) : pipeline.queue_ids_to_authorize
   ]))
 
   project_id  = var.project_id

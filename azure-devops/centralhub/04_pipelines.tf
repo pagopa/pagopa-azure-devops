@@ -10,5 +10,5 @@ module "portalpa" {
   github_token_key_vault_resource_group = local.prod_centralhub_github_kv_rg
   github_token_secret_name              = "azure-devops-centralhub-github-token"
   base_variables                        = local.centralhub_base_variables
-  pipelines                             = local.centralhub_pipelines
+  applications                          = local.centralhub_applications
 }
