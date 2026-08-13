@@ -1,4 +1,4 @@
 resource_group_name  = "io-infra-rg"
 storage_account_name = "pagopainfraterraformprod"
 container_name       = "azuredevopsstate"
-key                  = "ecommerce-domain.terraform.tfstate"
+key                  = "centralhub-domain.terraform.tfstate"

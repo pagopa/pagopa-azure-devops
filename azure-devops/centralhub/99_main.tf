@@ -6,16 +6,10 @@ terraform {
       version = "<= 1.3.0"
     }
     azurerm = {
-      source  = "hashicorp/azurerm"
       version = "<= 3.107.0"
     }
     time = {
-      source  = "hashicorp/time"
       version = "<= 0.11.0"
-    }
-    null = {
-      source  = "hashicorp/null"
-      version = "<= 3.2.1"
     }
   }
   backend "azurerm" {}
@@ -29,9 +23,12 @@ provider "azuredevops" {
 
 provider "azurerm" {
   features {}
+
+  skip_provider_registration = true
 }
 
 provider "azurerm" {
+  skip_provider_registration = true
   features {
     key_vault {
       purge_soft_delete_on_destroy = false
@@ -42,6 +39,7 @@ provider "azurerm" {
 }
 
 provider "azurerm" {
+  skip_provider_registration = true
   features {
     key_vault {
       purge_soft_delete_on_destroy = false
@@ -52,6 +50,7 @@ provider "azurerm" {
 }
 
 provider "azurerm" {
+  skip_provider_registration = true
   features {
     key_vault {
       purge_soft_delete_on_destroy = false
@@ -62,11 +61,11 @@ provider "azurerm" {
 }
 
 module "__v3__" {
-  # https://github.com/pagopa/terraform-azurerm-v3/releases/tag/v8.39.0
-  source = "git::https://github.com/pagopa/terraform-azurerm-v3.git?ref=e64f39b63d46e8c05470e30eca873f44a0ab7f1b"
+  # https://github.com/pagopa/terraform-azurerm-v3/releases/tag/8.97.0
+  source = "git::https://github.com/pagopa/terraform-azurerm-v3.git?ref=33777a27f8f917a96220f5cf8fb3c3eee8e594b0"
 }
 
 module "__azdo__" {
-  # https://github.com/pagopa/azuredevops-tf-modules/releases/tag/v9.2.1
-  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git?ref=7e23d73d22e7b37352c25a32cc40f6f42b6569ea"
+  # https://github.com/pagopa/azuredevops-tf-modules/releases/tag/v9.5.0
+  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git?ref=0ae8d9d49f92f690afc66a39f245924a04aa274b"
 }
