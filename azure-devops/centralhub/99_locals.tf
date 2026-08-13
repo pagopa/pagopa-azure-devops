@@ -1,36 +1,66 @@
 locals {
-  app_pipelines = [
-    {
-      name            = "portalpa"
-      envs            = ["d", "p"]
-      code_review     = true
-      deploy          = true
-      pipeline_prefix = "pagopa-portalpa"
-      pipeline_path   = "${local.domain}\\pagopa-portalpa"
-      repository = {
-        organization    = "pagopa"
-        name            = "pagopa-payments-department-centralhub"
-        branch_name     = "refs/heads/main"
-        pipelines_path  = ".devops"
-        yml_prefix_name = null
-      }
-    }
-  ]
+  prefix           = "pagopa"
+  azure_devops_org = "pagopaspa"
+  domain           = "centralhub"
 
-  deploy_pipelines      = [for p in local.app_pipelines : p if p.deploy]
-  code_review_pipelines = [for p in local.app_pipelines : p if p.code_review]
+  dev_subscription_name  = "dev-pagopa"
+  uat_subscription_name  = "uat-pagopa"
+  prod_subscription_name = "prod-pagopa"
 
-  base_app_variables = {
+  location_short = "itn"
+
+  # 🔐 KV azdo (shared)
+  prod_key_vault_azdo_name      = "${local.prefix}-p-azdo-weu-kv"
+  prod_key_vault_resource_group = "${local.prefix}-p-sec-rg"
+
+  # 🔐 KV DOMAIN
+  dev_centralhub_key_vault_name  = "${local.prefix}-d-${local.location_short}-portalpa-kv"
+  prod_centralhub_key_vault_name = "${local.prefix}-p-${local.location_short}-portalpa-kv"
+
+  dev_centralhub_key_vault_resource_group  = "${local.prefix}-d-${local.location_short}-portalpa-sec-rg"
+  prod_centralhub_key_vault_resource_group = "${local.prefix}-p-${local.location_short}-portalpa-sec-rg"
+
+  # KV PROD (hosts the domain-level GitHub PAT for Central Hub service connection)
+  prod_centralhub_github_kv_name = local.prod_centralhub_key_vault_name
+  prod_centralhub_github_kv_rg   = local.prod_centralhub_key_vault_resource_group
+
+  # Dedicated service connection name created by this domain state
+  centralhub_github_connection_name = "centralhub-azure-devops-github"
+
+  centralhub_repository = {
+    organization    = "pagopa"
+    name            = "pagopa-payments-department-centralhub"
+    branch_name     = "refs/heads/main"
+    pipelines_path  = ".devops"
+    yml_prefix_name = null
+  }
+
+  centralhub_base_variables = {
     cache_version_id  = "v1"
     default_branch    = "refs/heads/main"
     git_username      = module.secrets.values["azure-devops-github-USERNAME"].value
     git_mail          = module.secrets.values["azure-devops-github-EMAIL"].value
-    github_connection = azuredevops_serviceendpoint_github.github_centralhub.service_endpoint_name
+    github_connection = local.centralhub_github_connection_name
   }
 
-  pipelines_variables = {
-    portalpa = {
-      variables_deploy = {
+  centralhub_pipelines = {
+    portalpa_code_review = {
+      kind                                 = "code_review"
+      repository                           = local.centralhub_repository
+      path                                 = "${local.domain}\\pagopa-portalpa"
+      pipeline_prefix                      = "pagopa-portalpa"
+      variables                            = { danger_github_api_token = "skip" }
+      variables_secret                     = {}
+      service_connection_ids_authorization = []
+      queue_ids_to_authorize               = []
+    }
+
+    portalpa_deploy = {
+      kind            = "deploy"
+      repository      = local.centralhub_repository
+      path            = "${local.domain}\\pagopa-portalpa"
+      pipeline_prefix = "pagopa-portalpa"
+      variables = {
         image_repository = "pagopa-portal"
 
         dev_deploy_type                     = "production_slot"
@@ -49,11 +79,17 @@ locals {
         prod_container_namespace             = "pagopapcommonacr.azurecr.io"
         prod_key_vault_name                  = local.prod_centralhub_key_vault_name
       }
-      variables_secrets_deploy = {}
-      variables_cr = {
-        danger_github_api_token = "skip"
-      }
-      variables_secrets_cr = {}
+      variables_secret = {}
+      service_connection_ids_authorization = [
+        data.azuredevops_serviceendpoint_azurerm.dev.id,
+        data.azuredevops_serviceendpoint_azurerm.prod.id,
+        data.azuredevops_serviceendpoint_azurecr.dev_ita_workload_identity.id,
+        data.azuredevops_serviceendpoint_azurecr.prod_ita_workload_identity.id,
+      ]
+      queue_ids_to_authorize = [
+        data.azuredevops_agent_queue.uat_linux.id,
+        data.azuredevops_agent_queue.prod_linux.id,
+      ]
     }
   }
 }

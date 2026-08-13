@@ -1,33 +1,3 @@
-locals {
-  prefix           = "pagopa"
-  azure_devops_org = "pagopaspa"
-  domain           = "centralhub"
-
-  dev_subscription_name  = "dev-pagopa"
-  uat_subscription_name  = "uat-pagopa"
-  prod_subscription_name = "prod-pagopa"
-
-  location_short = "itn"
-
-  # 🔐 KV azdo (shared)
-  prod_key_vault_azdo_name      = "${local.prefix}-p-azdo-weu-kv"
-  prod_key_vault_resource_group = "${local.prefix}-p-sec-rg"
-
-  # 🔐 KV DOMAIN
-  dev_centralhub_key_vault_name  = "${local.prefix}-d-${local.location_short}-portalpa-kv"
-  prod_centralhub_key_vault_name = "${local.prefix}-p-${local.location_short}-portalpa-kv"
-
-  dev_centralhub_key_vault_resource_group  = "${local.prefix}-d-${local.location_short}-portalpa-sec-rg"
-  prod_centralhub_key_vault_resource_group = "${local.prefix}-p-${local.location_short}-portalpa-sec-rg"
-
-  # KV PROD (hosts the domain-level GitHub PAT for Central Hub service connection)
-  prod_centralhub_github_kv_name = local.prod_centralhub_key_vault_name
-  prod_centralhub_github_kv_rg   = local.prod_centralhub_key_vault_resource_group
-
-  # Dedicated service connection name created by this domain state
-  centralhub_github_connection_name = "centralhub-azure-devops-github"
-}
-
 variable "dev_subscription_name" {
   type        = string
   description = "DEV Subscription name"
