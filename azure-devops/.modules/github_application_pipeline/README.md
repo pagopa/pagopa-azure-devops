@@ -60,7 +60,7 @@ providers = {
 
 ```hcl
 module "portalpa" {
-  source = "../modules/github_application_pipeline"
+  source = "../.modules/github_application_pipeline"
 
   providers = {
     azurerm.dev  = azurerm.dev
