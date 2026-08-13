@@ -1,5 +1,5 @@
 module "portalpa" {
-  source = "${path.cwd}/../.modules/github_application_pipeline"
+  source = "../.modules/github_application_pipeline"
 
   providers = {
     azurerm.dev  = azurerm.dev
