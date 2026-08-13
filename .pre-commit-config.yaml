@@ -29,7 +29,7 @@ repos:
           - --hook-config=--create-file-if-not-exist=true # Boolean. true or false
           - --args=--hide providers
       - id: terraform_validate
-        exclude: ^azure-devops/\.modules/github_application_pipeline/
+        exclude: ^azure-devops/modules/github_application_pipeline/
         args:
           - --init-args=-lockfile=readonly
           - --args=-json
