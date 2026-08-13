@@ -4,7 +4,8 @@ terraform {
       source = "microsoft/azuredevops"
     }
     azurerm = {
-      source = "hashicorp/azurerm"
+      source                = "hashicorp/azurerm"
+      configuration_aliases = [azurerm.dev, azurerm.uat, azurerm.prod]
     }
   }
 }

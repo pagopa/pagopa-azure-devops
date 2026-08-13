@@ -1,11 +1,11 @@
 output "github_service_connection_id" {
-  value       = azuredevops_serviceendpoint_github.this.id
-  description = "GitHub service connection ID"
+  value       = { for env, sc in azuredevops_serviceendpoint_github.this : env => sc.id }
+  description = "GitHub service connection IDs by environment"
 }
 
 output "github_service_connection_name" {
-  value       = azuredevops_serviceendpoint_github.this.service_endpoint_name
-  description = "GitHub service connection name"
+  value       = { for env, sc in azuredevops_serviceendpoint_github.this : env => sc.service_endpoint_name }
+  description = "GitHub service connection names by environment"
 }
 
 output "pipeline_kinds" {

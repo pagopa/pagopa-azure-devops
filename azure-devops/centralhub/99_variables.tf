@@ -23,6 +23,12 @@ variable "location" {
   description = "Azure region"
 }
 
+variable "project_name_prefix" {
+  type        = string
+  description = "Optional project name prefix from shared tfvars"
+  default     = ""
+}
+
 variable "pipeline_environments" {
   type        = list(any)
   description = "List of environments pipeline to create"

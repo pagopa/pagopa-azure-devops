@@ -20,9 +20,19 @@ locals {
   dev_centralhub_key_vault_resource_group  = "${local.prefix}-d-${local.location_short}-portalpa-sec-rg"
   prod_centralhub_key_vault_resource_group = "${local.prefix}-p-${local.location_short}-portalpa-sec-rg"
 
-  # KV PROD (hosts the domain-level GitHub PAT for Central Hub service connection)
-  prod_centralhub_github_kv_name = local.prod_centralhub_key_vault_name
-  prod_centralhub_github_kv_rg   = local.prod_centralhub_key_vault_resource_group
+  # KV (hosts the domain-level GitHub PAT for Central Hub service connection)
+  prod_centralhub_github_kv_name      = local.prod_centralhub_key_vault_name
+  prod_centralhub_github_kv_rg        = local.prod_centralhub_key_vault_resource_group
+  centralhub_github_token_secret_name = "azure-devops-centralhub-github-token"
+
+  # Environments used to bootstrap the GitHub PAT retrieval.
+  centralhub_bootstrap_envs = ["prod"]
+  centralhub_environment_secrets = {
+    prod = {
+      key_vault_name           = local.prod_centralhub_github_kv_name
+      key_vault_resource_group = local.prod_centralhub_github_kv_rg
+    }
+  }
 
   # Dedicated service connection name created by this domain state
   centralhub_github_connection_name = "centralhub-azure-devops-github"
