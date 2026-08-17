@@ -49,6 +49,9 @@ locals {
     dev_container_namespace = "pagopadcommonacr.azurecr.io"
     uat_container_namespace = "pagopaucommonacr.azurecr.io"
 
+    dev_workload_identity_client_id = data.azurerm_user_assigned_identity.dev_weu_nodo_workload_identity.client_id
+    uat_workload_identity_client_id = data.azurerm_user_assigned_identity.uat_weu_nodo_workload_identity.client_id
+
     TF_APPINSIGHTS_SERVICE_CONN_DEV = module.DEV-APPINSIGHTS-SERVICE-CONN.service_endpoint_name
     TF_APPINSIGHTS_RESOURCE_ID_DEV  = data.azurerm_application_insights.application_insights_dev.id
     TF_APPINSIGHTS_SERVICE_CONN_UAT = module.UAT-APPINSIGHTS-SERVICE-CONN.service_endpoint_name
