@@ -2,7 +2,7 @@
 # GITHUB
 #
 # Dedicated service connection for the QA domain, owned by the QA bot.
-# Uses a single PAT (stored in pagopa-u-itn-qa-kv) with all required grant 
+# Uses a single PAT (stored in pagopa-u-itn-qa-kv) with all required grant
 # (repo, admin:repo_hook) for all QA pipelines, instead of the shared org-level connections.
 #
 resource "azuredevops_serviceendpoint_github" "github_qa" {

@@ -57,7 +57,7 @@ locals {
         dev_container_registry_service_conn = data.azuredevops_serviceendpoint_azurecr.dev_ita_workload_identity.service_endpoint_name
         dev_container_namespace             = "pagopaditncoreacr.azurecr.io"
         dev_next_public_api_url             = "https://api.dev.platform.pagopa.it/qa/central-hub/v1" # public API base url (build-arg), not secret
-        dev_nextauth_url                    = "https://pagopa-d-itn-qa-qa-hub-wa.azurewebsites.net" # NextAuth base url, not secret
+        dev_nextauth_url                    = "https://pagopa-d-itn-qa-qa-hub-wa.azurewebsites.net"  # NextAuth base url, not secret
 
         # UAT
         uat_azure_subscription              = data.azuredevops_serviceendpoint_azurerm.uat.service_endpoint_name
