@@ -15,14 +15,11 @@ locals {
     {
       name            = "centralhub-fe"
       envs            = ["d", "u"]
-      kv_name         = "${local.prefix}-%s-itn-qa-kv"
-      rg_name         = "${local.prefix}-%s-itn-qa-sec-rg"
       region          = "itn"
       code_review     = true
       deploy          = true
       pipeline_prefix = "pagopa-qa-centralhub-frontend"
       pipeline_path   = "${local.domain}\\pagopa-qa-centralhub-frontend"
-      secrets         = ["nextauth-secret", "google-client-id", "google-client-secret"]
       repository = {
         organization    = "pagopa"
         name            = "pagopa-qa-centralhub-frontend"

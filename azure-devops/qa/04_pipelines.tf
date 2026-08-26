@@ -35,24 +35,7 @@ module "deploy" {
     try(local.pipelines_variables[each.value.name].variables_deploy, {}),
   )
 
-  variables_secret = merge(
-    try(local.pipelines_variables[each.value.name].variables_secrets_deploy, {}),
-    contains(each.value.envs, "d") && try(each.value.kv_name, "") != "" ? {
-      dev_nextauth_secret      = module.qa_dev_secrets[each.value.name].values["nextauth-secret"].value
-      dev_google_client_id     = module.qa_dev_secrets[each.value.name].values["google-client-id"].value
-      dev_google_client_secret = module.qa_dev_secrets[each.value.name].values["google-client-secret"].value
-    } : {},
-    contains(each.value.envs, "u") && try(each.value.kv_name, "") != "" ? {
-      uat_nextauth_secret      = module.qa_uat_secrets[each.value.name].values["nextauth-secret"].value
-      uat_google_client_id     = module.qa_uat_secrets[each.value.name].values["google-client-id"].value
-      uat_google_client_secret = module.qa_uat_secrets[each.value.name].values["google-client-secret"].value
-    } : {},
-    contains(each.value.envs, "p") && try(each.value.kv_name, "") != "" ? {
-      prod_nextauth_secret      = module.qa_prod_secrets[each.value.name].values["nextauth-secret"].value
-      prod_google_client_id     = module.qa_prod_secrets[each.value.name].values["google-client-id"].value
-      prod_google_client_secret = module.qa_prod_secrets[each.value.name].values["google-client-secret"].value
-    } : {},
-  )
+  variables_secret = try(local.pipelines_variables[each.value.name].variables_secrets_deploy, {})
 
   service_connection_ids_authorization = [
     azuredevops_serviceendpoint_github.github_qa.id,
