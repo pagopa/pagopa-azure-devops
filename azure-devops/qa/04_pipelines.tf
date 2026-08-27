@@ -35,7 +35,19 @@ module "deploy" {
     try(local.pipelines_variables[each.value.name].variables_deploy, {}),
   )
 
-  variables_secret = try(local.pipelines_variables[each.value.name].variables_secrets_deploy, {})
+  # in case we wanted to use secrets from keyvault
+  variables_secret = merge(
+    try(local.pipelines_variables[each.value.name].variables_secrets_deploy, {}),
+    contains(each.value.envs, "d") && try(each.value.kv_name, "") != "" ? {
+      # placeholder      = module.qa_dev_secrets[each.value.name].values["placeholder"].value
+    } : {},
+    contains(each.value.envs, "u") && try(each.value.kv_name, "") != "" ? {
+      # placeholder      = module.qa_dev_secrets[each.value.name].values["placeholder"].value    
+    } : {},
+    contains(each.value.envs, "p") && try(each.value.kv_name, "") != "" ? {
+      # placeholder      = module.qa_dev_secrets[each.value.name].values["placeholder"].value
+    } : {},
+  )
 
   service_connection_ids_authorization = [
     azuredevops_serviceendpoint_github.github_qa.id,
