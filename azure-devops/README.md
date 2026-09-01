@@ -42,7 +42,7 @@ After create your token export it, for example in your bash_profile
 
 ```sh
 # .bash_profile
-export AZDO_ORG_SERVICE_URL="https://dev.azure.com/pagopa-io"
+export AZDO_ORG_SERVICE_URL="https://dev.azure.com/pagopaspa"
 export AZDO_PERSONAL_ACCESS_TOKEN="__YOUR_PERSONAL_ACCESS_TOKEN__"
 ```
 
