@@ -42,7 +42,7 @@ module "deploy" {
       # placeholder      = module.qa_dev_secrets[each.value.name].values["placeholder"].value
     } : {},
     contains(each.value.envs, "u") && try(each.value.kv_name, "") != "" ? {
-      # placeholder      = module.qa_dev_secrets[each.value.name].values["placeholder"].value    
+      # placeholder      = module.qa_dev_secrets[each.value.name].values["placeholder"].value
     } : {},
     contains(each.value.envs, "p") && try(each.value.kv_name, "") != "" ? {
       # placeholder      = module.qa_dev_secrets[each.value.name].values["placeholder"].value
