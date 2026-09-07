@@ -33,6 +33,7 @@ module "qa_dev_secrets" {
   secrets = each.value.secrets
 }
 
+
 module "qa_uat_secrets" {
   source = "./.terraform/modules/__v3__/key_vault_secrets_query"
 

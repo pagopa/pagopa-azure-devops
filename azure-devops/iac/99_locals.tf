@@ -42,6 +42,20 @@ locals {
       repository : {
         yml_prefix_name : "posgw"
       }
+    },
+    {
+      name : "qa",
+      envs : ["d", "u", "p"],
+      kv_name : "pagopa-%s-itn-qa-kv",
+      rg_name : "pagopa-%s-itn-qa-sec-rg",
+      region : "itn",
+      code_review : true,
+      deploy : true,
+      pipeline_prefix : "qa",
+      pipeline_path : "qa-infra",
+      repository : {
+        yml_prefix_name : "qa"
+      }
     }
   ])
 
@@ -374,7 +388,7 @@ locals {
       repository : {
         yml_prefix_name = "tf-audit"
         name            = "pagopa-infra-core"
-      }
+      },
     }
   ]
 }

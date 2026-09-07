@@ -7,6 +7,10 @@ locals {
   uat_subscription_name  = "uat-pagopa"
   prod_subscription_name = "prod-pagopa"
 
+  dev_subscription_id  = data.azurerm_subscriptions.dev.subscriptions[0].subscription_id
+  uat_subscription_id  = data.azurerm_subscriptions.uat.subscriptions[0].subscription_id
+  prod_subscription_id = data.azurerm_subscriptions.prod.subscriptions[0].subscription_id
+
   # KV azdo (hosts the GitHub PAT/email/username used by the pipelines)
   prod_key_vault_azdo_name      = "${local.prefix}-p-azdo-weu-kv"
   prod_key_vault_resource_group = "${local.prefix}-p-sec-rg"
@@ -17,6 +21,27 @@ locals {
 
   # Name of the dedicated GitHub service connection created by this domain state
   qa_github_connection_name = "qa-azure-devops-github"
+
+  # VNET
+  # Dns Zone RG:
+  dev_internal_dns_zone = "pagopa-d-vnet-rg"
+
+  ### 🔑 Key Vault
+  dev_kv_domain_name           = "${local.prefix}-d-itn-${local.domain}-kv"
+  dev_kv_domain_resource_group = "${local.prefix}-d-itn-${local.domain}-sec-rg"
+
+  ### 🔑 Identity
+  dev_identity_rg_name  = "${local.prefix}-d-identity-rg"
+  uat_identity_rg_name  = "${local.prefix}-u-identity-rg"
+  prod_identity_rg_name = "${local.prefix}-p-identity-rg"
+
+  tlscert_repository = {
+    organization   = "pagopa"
+    name           = "le-azure-acme-tiny"
+    branch_name    = "refs/heads/master"
+    pipelines_path = "."
+  }
+
 }
 
 variable "dev_subscription_name" {
