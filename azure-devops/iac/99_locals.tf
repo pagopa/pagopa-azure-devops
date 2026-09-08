@@ -142,7 +142,7 @@ locals {
   infra_core_definitions = [
     {
       name : "aks-platform",
-      envs : ["d"],
+      envs : ["d", "u", "p"],
       kv_name : "pagopa-%s-kv",
       rg_name : "pagopa-%s-sec-rg",
       region : "weu"
@@ -157,7 +157,7 @@ locals {
     },
     {
       name : "aks-italy",
-      envs : ["d"],
+      envs : ["d", "u", "p"],
       kv_name : "pagopa-%s-itn-core-kv",
       rg_name : "pagopa-%s-itn-core-sec-rg",
       region : "itn"
