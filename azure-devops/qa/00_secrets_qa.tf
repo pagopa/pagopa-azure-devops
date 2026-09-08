@@ -5,17 +5,46 @@
 #
 
 # Domain-level QA GitHub PAT.
-module "qa_github_token" {
-  source = "./.terraform/modules/__v3__/key_vault_secrets_query"
+module "dev_secrets" {
 
   providers = {
-    azurerm = azurerm.uat
+    azurerm = azurerm.dev
   }
 
-  resource_group = local.uat_qa_github_kv_rg
-  key_vault_name = local.uat_qa_github_kv_name
+  source = "./.terraform/modules/__v3__/key_vault_secrets_query"
 
-  secrets = ["azure-devops-qa-github-token"]
+  resource_group = local.dev_kv_domain_resource_group
+  key_vault_name = local.dev_kv_domain_name
+
+  secrets = [
+    "pagopa-d-itn-dev-aks-azure-devops-sa-token",
+    "pagopa-d-itn-dev-aks-azure-devops-sa-cacrt",
+    "pagopa-d-itn-dev-aks-apiserver-url"
+  ]
+}
+
+module "uat_secrets" {
+
+  providers = {
+    azurerm = azurerm.dev
+  }
+
+  source = "./.terraform/modules/__v3__/key_vault_secrets_query"
+
+  resource_group = local.dev_kv_domain_resource_group
+  key_vault_name = local.dev_kv_domain_name
+
+  secrets = [
+    "pagopa-d-itn-dev-aks-azure-devops-sa-token",
+    "pagopa-d-itn-dev-aks-azure-devops-sa-cacrt",
+    "pagopa-d-itn-dev-aks-apiserver-url",
+    "azure-devops-qa-github-token"
+  ]
+}
+
+moved {
+  from = module.qa_uat_secrets
+  to   = module.uat_secrets
 }
 
 module "qa_dev_secrets" {
@@ -34,20 +63,20 @@ module "qa_dev_secrets" {
 }
 
 
-module "qa_uat_secrets" {
-  source = "./.terraform/modules/__v3__/key_vault_secrets_query"
-
-  for_each = { for p in local.deploy_pipelines : p.name => p if contains(p.envs, "u") && try(p.kv_name, "") != "" }
-
-  providers = {
-    azurerm = azurerm.uat
-  }
-
-  resource_group = format(each.value.rg_name, "u")
-  key_vault_name = format(each.value.kv_name, "u")
-
-  secrets = each.value.secrets
-}
+# module "qa_uat_secrets" {
+#   source = "./.terraform/modules/__v3__/key_vault_secrets_query"
+#
+#   for_each = { for p in local.deploy_pipelines : p.name => p if contains(p.envs, "u") && try(p.kv_name, "") != "" }
+#
+#   providers = {
+#     azurerm = azurerm.uat
+#   }
+#
+#   resource_group = format(each.value.rg_name, "u")
+#   key_vault_name = format(each.value.kv_name, "u")
+#
+#   secrets = each.value.secrets
+# }
 
 module "qa_prod_secrets" {
   source = "./.terraform/modules/__v3__/key_vault_secrets_query"

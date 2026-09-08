@@ -35,6 +35,10 @@ locals {
   uat_identity_rg_name  = "${local.prefix}-u-identity-rg"
   prod_identity_rg_name = "${local.prefix}-p-identity-rg"
 
+  srv_endpoint_name_aks_dev  = "${local.prefix}-${local.domain}-itn-dev-aks"
+  srv_endpoint_name_aks_uat  = "${local.prefix}-${local.domain}-itn-uat-aks"
+  srv_endpoint_name_aks_prod = "${local.prefix}-${local.domain}-itn-prod-aks"
+
   tlscert_repository = {
     organization   = "pagopa"
     name           = "le-azure-acme-tiny"

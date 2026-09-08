@@ -118,8 +118,9 @@ locals {
     qa-superset = {
       variables_deploy = {
         # DEV
-        dev_azure_subscription  = data.azuredevops_serviceendpoint_azurerm.dev.service_endpoint_id
-        dev_container_namespace = "pagopaditncoreacr.azurecr.io"
+        dev_azure_subscription     = data.azuredevops_serviceendpoint_azurerm.dev.service_endpoint_id
+        dev_container_namespace    = "pagopaditncoreacr.azurecr.io"
+        dev_aks_service_connection = azuredevops_serviceendpoint_kubernetes.aks_dev.service_endpoint_name
       }
     }
   }
