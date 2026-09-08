@@ -27,8 +27,12 @@ locals {
   dev_internal_dns_zone = "pagopa-d-vnet-rg"
 
   ### 🔑 Key Vault
-  dev_kv_domain_name           = "${local.prefix}-d-itn-${local.domain}-kv"
-  dev_kv_domain_resource_group = "${local.prefix}-d-itn-${local.domain}-sec-rg"
+  dev_kv_domain_name            = "${local.prefix}-d-itn-${local.domain}-kv"
+  dev_kv_domain_resource_group  = "${local.prefix}-d-itn-${local.domain}-sec-rg"
+  uat_kv_domain_name            = "${local.prefix}-u-itn-${local.domain}-kv"
+  uat_kv_domain_resource_group  = "${local.prefix}-u-itn-${local.domain}-sec-rg"
+  prod_kv_domain_name           = "${local.prefix}-p-itn-${local.domain}-kv"
+  prod_kv_domain_resource_group = "${local.prefix}-p-itn-${local.domain}-sec-rg"
 
   ### 🔑 Identity
   dev_identity_rg_name  = "${local.prefix}-d-identity-rg"

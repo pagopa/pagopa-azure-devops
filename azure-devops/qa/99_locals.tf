@@ -121,6 +121,14 @@ locals {
         dev_azure_subscription     = data.azuredevops_serviceendpoint_azurerm.dev.service_endpoint_id
         dev_container_namespace    = "pagopaditncoreacr.azurecr.io"
         dev_aks_service_connection = azuredevops_serviceendpoint_kubernetes.aks_dev.service_endpoint_name
+
+        uat_azure_subscription     = data.azuredevops_serviceendpoint_azurerm.uat.service_endpoint_id
+        uat_container_namespace    = "pagopauitncoreacr.azurecr.io"
+        uat_aks_service_connection = azuredevops_serviceendpoint_kubernetes.aks_uat.service_endpoint_name
+
+        # prod_azure_subscription     = data.azuredevops_serviceendpoint_azurerm.prod.service_endpoint_id
+        # prod_container_namespace    = "pagopapitncoreacr.azurecr.io"
+        # prod_aks_service_connection = azuredevops_serviceendpoint_kubernetes.aks_prod.service_endpoint_name
       }
     }
   }
