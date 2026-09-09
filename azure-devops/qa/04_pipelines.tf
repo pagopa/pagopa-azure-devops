@@ -39,13 +39,13 @@ module "deploy" {
   variables_secret = merge(
     try(local.pipelines_variables[each.value.name].variables_secrets_deploy, {}),
     contains(each.value.envs, "d") && try(each.value.kv_name, "") != "" ? {
-      # placeholder      = module.qa_dev_secrets[each.value.name].values["placeholder"].value
+      # placeholder      = module.dev_secrets[each.value.name].values["placeholder"].value
     } : {},
     contains(each.value.envs, "u") && try(each.value.kv_name, "") != "" ? {
-      # placeholder      = module.qa_dev_secrets[each.value.name].values["placeholder"].value
+      # placeholder      = module.uat_secrets[each.value.name].values["placeholder"].value
     } : {},
     contains(each.value.envs, "p") && try(each.value.kv_name, "") != "" ? {
-      # placeholder      = module.qa_dev_secrets[each.value.name].values["placeholder"].value
+      # placeholder      = module.prod_secrets[each.value.name].values["placeholder"].value
     } : {},
   )
 
