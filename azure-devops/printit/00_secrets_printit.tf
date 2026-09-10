@@ -16,6 +16,7 @@ module "printit_dev_secrets" {
     "institutions-storage-account-connection-string",
     "notices-storage-account-connection-string",
     "notices-mongo-connection-string",
+    "performance-test-subkey-ec-demo"
   ]
 }
 
@@ -37,6 +38,7 @@ module "printit_uat_secrets" {
     "institutions-storage-account-connection-string",
     "notices-storage-account-connection-string",
     "notices-mongo-connection-string",
+    "performance-test-subkey-ec-demo"
   ]
 }
 
@@ -58,54 +60,6 @@ module "printit_prod_secrets" {
     "institutions-storage-account-connection-string",
     "notices-storage-account-connection-string",
     "notices-mongo-connection-string",
-  ]
-}
-
-
-module "general_dev_secrets" {
-
-  providers = {
-    azurerm = azurerm.dev
-  }
-
-  source = "git::https://github.com/pagopa/terraform-azurerm-v3.git//key_vault_secrets_query?ref=v8.22.0"
-
-  resource_group = "pagopa-d-sec-rg"
-  key_vault_name = "pagopa-d-kv"
-
-  secrets = [
-    "integration-test-subkey",
-  ]
-}
-
-module "general_uat_secrets" {
-
-  providers = {
-    azurerm = azurerm.uat
-  }
-
-  source = "git::https://github.com/pagopa/terraform-azurerm-v3.git//key_vault_secrets_query?ref=v8.22.0"
-
-  resource_group = "pagopa-u-sec-rg"
-  key_vault_name = "pagopa-u-kv"
-
-  secrets = [
-    "integration-test-subkey",
-  ]
-}
-
-module "general_prod_secrets" {
-
-  providers = {
-    azurerm = azurerm.prod
-  }
-
-  source = "git::https://github.com/pagopa/terraform-azurerm-v3.git//key_vault_secrets_query?ref=v8.22.0"
-
-  resource_group = "pagopa-p-sec-rg"
-  key_vault_name = "pagopa-p-kv"
-
-  secrets = [
-    "integration-test-subkey",
+    "performance-test-subkey-ec-demo"
   ]
 }
