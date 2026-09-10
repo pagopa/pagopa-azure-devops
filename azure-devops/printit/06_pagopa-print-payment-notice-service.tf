@@ -33,17 +33,17 @@ locals {
   }
   # performance secrets
   pagopa-print-payment-notice-service-variables_secret_performance_test = {
-    DEV_API_SUBSCRIPTION_KEY                = module.general_dev_secrets.values["integration-test-subkey"].value
+    DEV_API_SUBSCRIPTION_KEY                = module.printit_dev_secrets.values["performance-test-subkey-ec-demo"].value
     DEV_BLOB_INSTITUTIONS_CONNECTION_STRING = module.printit_dev_secrets.values["institutions-storage-account-connection-string"].value
     DEV_BLOB_NOTICES_CONNECTION_STRING      = module.printit_dev_secrets.values["notices-storage-account-connection-string"].value
     DEV_MONGO_NOTICES_CONNECTION_STRING     = module.printit_uat_secrets.values["notices-mongo-connection-string"].value
 
-    UAT_API_SUBSCRIPTION_KEY                = module.general_uat_secrets.values["integration-test-subkey"].value
+    UAT_API_SUBSCRIPTION_KEY                = module.printit_uat_secrets.values["performance-test-subkey-ec-demo"].value
     UAT_BLOB_INSTITUTIONS_CONNECTION_STRING = module.printit_uat_secrets.values["institutions-storage-account-connection-string"].value
     UAT_BLOB_NOTICES_CONNECTION_STRING      = module.printit_uat_secrets.values["notices-storage-account-connection-string"].value
     UAT_MONGO_NOTICES_CONNECTION_STRING     = module.printit_uat_secrets.values["notices-mongo-connection-string"].value
 
-    PROD_API_SUBSCRIPTION_KEY                = module.general_prod_secrets.values["integration-test-subkey"].value
+    PROD_API_SUBSCRIPTION_KEY                = module.printit_prod_secrets.values["performance-test-subkey-ec-demo"].value
     PROD_BLOB_INSTITUTIONS_CONNECTION_STRING = module.printit_prod_secrets.values["institutions-storage-account-connection-string"].value
     PROD_BLOB_NOTICES_CONNECTION_STRING      = module.printit_prod_secrets.values["notices-storage-account-connection-string"].value
     PROD_MONGO_NOTICES_CONNECTION_STRING     = module.printit_prod_secrets.values["notices-mongo-connection-string"].value
