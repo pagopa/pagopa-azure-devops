@@ -15,7 +15,9 @@ module "printit_dev_secrets" {
     "pagopa-d-itn-dev-aks-apiserver-url",
     "institutions-storage-account-connection-string",
     "notices-storage-account-connection-string",
-    "notices-mongo-connection-string"  ]
+    "notices-mongo-connection-string",
+    "performance-test-subkey-ec-demo"
+  ]
 }
 
 module "printit_uat_secrets" {
@@ -57,7 +59,6 @@ module "printit_prod_secrets" {
     "pagopa-p-itn-prod-aks-apiserver-url",
     "institutions-storage-account-connection-string",
     "notices-storage-account-connection-string",
-    "notices-mongo-connection-string",
-    "performance-test-subkey-ec-demo"
+    "notices-mongo-connection-string"
   ]
 }
