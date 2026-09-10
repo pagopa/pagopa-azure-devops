@@ -24,7 +24,9 @@ locals {
 
   # VNET
   # Dns Zone RG:
-  dev_internal_dns_zone = "pagopa-d-vnet-rg"
+  dev_internal_dns_zone  = "pagopa-d-vnet-rg"
+  uat_internal_dns_zone  = "pagopa-u-vnet-rg"
+  prod_internal_dns_zone = "pagopa-p-vnet-rg"
 
   ### 🔑 Key Vault
   dev_kv_domain_name            = "${local.prefix}-d-itn-${local.domain}-kv"

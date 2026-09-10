@@ -64,6 +64,28 @@ locals {
       }
       variables_secret = {}
     }
+    uat = {
+      subscription_name                   = local.uat_subscription_name
+      subscription_id                     = local.uat_subscription_id
+      credential_key_vault_name           = local.uat_kv_domain_name
+      credential_key_vault_resource_group = local.uat_kv_domain_resource_group
+      service_endpoint_id                 = module.uat_tls_cert_service_connection.service_endpoint_id
+      variables = {
+        KEY_VAULT_SERVICE_CONNECTION = module.uat_tls_cert_service_connection.service_endpoint_name
+      }
+      variables_secret = {}
+    }
+    prod = {
+      subscription_name                   = local.prod_subscription_name
+      subscription_id                     = local.prod_subscription_id
+      credential_key_vault_name           = local.prod_kv_domain_name
+      credential_key_vault_resource_group = local.prod_kv_domain_resource_group
+      service_endpoint_id                 = module.prod_tls_cert_service_connection.service_endpoint_id
+      variables = {
+        KEY_VAULT_SERVICE_CONNECTION = module.prod_tls_cert_service_connection.service_endpoint_name
+      }
+      variables_secret = {}
+    }
   }
 
   deploy_pipelines      = [for p in local.app_pipelines : p if p.deploy]
@@ -122,13 +144,17 @@ locals {
         dev_container_namespace    = "pagopaditncoreacr.azurecr.io"
         dev_aks_service_connection = azuredevops_serviceendpoint_kubernetes.aks_dev.service_endpoint_name
 
+        # UAT
         uat_azure_subscription     = data.azuredevops_serviceendpoint_azurerm.uat.service_endpoint_id
         uat_container_namespace    = "pagopauitncoreacr.azurecr.io"
         uat_aks_service_connection = azuredevops_serviceendpoint_kubernetes.aks_uat.service_endpoint_name
+        uat_acr_name               = "pagopauitncoreacr"
 
-        # prod_azure_subscription     = data.azuredevops_serviceendpoint_azurerm.prod.service_endpoint_id
-        # prod_container_namespace    = "pagopapitncoreacr.azurecr.io"
-        # prod_aks_service_connection = azuredevops_serviceendpoint_kubernetes.aks_prod.service_endpoint_name
+        # PROD
+        prod_azure_subscription     = data.azuredevops_serviceendpoint_azurerm.prod.service_endpoint_id
+        prod_container_namespace    = "pagopapitncoreacr.azurecr.io"
+        prod_aks_service_connection = azuredevops_serviceendpoint_kubernetes.aks_prod.service_endpoint_name
+        prod_acr_name               = "pagopapitncoreacr"
       }
     }
   }
