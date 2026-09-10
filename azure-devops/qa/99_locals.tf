@@ -29,9 +29,64 @@ locals {
         branch_name     = "refs/heads/main"
         pipelines_path  = "azure-pipelines"
         yml_prefix_name = null
+      },
+    },
+    {
+      name            = "qa-superset"
+      envs            = ["d", "u", "p"]
+      kv_name         = "${local.prefix}-%s-itn-qa-kv"
+      rg_name         = "${local.prefix}-%s-itn-qa-sec-rg"
+      region          = "itn"
+      code_review     = true
+      deploy          = true
+      pipeline_prefix = "pagopa-qa-superset"
+      pipeline_path   = "${local.domain}\\pagopa-qa-superset"
+      secrets         = []
+      repository = {
+        organization    = "pagopa"
+        name            = "pagopa-qa-superset"
+        branch_name     = "refs/heads/helm"
+        pipelines_path  = ".devops"
+        yml_prefix_name = null
       }
     }
   ]
+
+  env_configurations = {
+    dev = {
+      subscription_name                   = local.dev_subscription_name
+      subscription_id                     = local.dev_subscription_id
+      credential_key_vault_name           = local.dev_kv_domain_name
+      credential_key_vault_resource_group = local.dev_kv_domain_resource_group
+      service_endpoint_id                 = module.dev_tls_cert_service_connection.service_endpoint_id
+      variables = {
+        KEY_VAULT_SERVICE_CONNECTION = module.dev_tls_cert_service_connection.service_endpoint_name
+      }
+      variables_secret = {}
+    }
+    uat = {
+      subscription_name                   = local.uat_subscription_name
+      subscription_id                     = local.uat_subscription_id
+      credential_key_vault_name           = local.uat_kv_domain_name
+      credential_key_vault_resource_group = local.uat_kv_domain_resource_group
+      service_endpoint_id                 = module.uat_tls_cert_service_connection.service_endpoint_id
+      variables = {
+        KEY_VAULT_SERVICE_CONNECTION = module.uat_tls_cert_service_connection.service_endpoint_name
+      }
+      variables_secret = {}
+    }
+    prod = {
+      subscription_name                   = local.prod_subscription_name
+      subscription_id                     = local.prod_subscription_id
+      credential_key_vault_name           = local.prod_kv_domain_name
+      credential_key_vault_resource_group = local.prod_kv_domain_resource_group
+      service_endpoint_id                 = module.prod_tls_cert_service_connection.service_endpoint_id
+      variables = {
+        KEY_VAULT_SERVICE_CONNECTION = module.prod_tls_cert_service_connection.service_endpoint_name
+      }
+      variables_secret = {}
+    }
+  }
 
   deploy_pipelines      = [for p in local.app_pipelines : p if p.deploy]
   code_review_pipelines = [for p in local.app_pipelines : p if p.code_review]
@@ -81,6 +136,26 @@ locals {
       # code review (PR gate) — lint/type-check/test/build run in the repo YAML
       variables_cr         = {}
       variables_secrets_cr = {}
+    }
+    qa-superset = {
+      variables_deploy = {
+        # DEV
+        dev_azure_subscription     = data.azuredevops_serviceendpoint_azurerm.dev.service_endpoint_id
+        dev_container_namespace    = "pagopaditncoreacr.azurecr.io"
+        dev_aks_service_connection = azuredevops_serviceendpoint_kubernetes.aks_dev.service_endpoint_name
+
+        # UAT
+        uat_azure_subscription     = data.azuredevops_serviceendpoint_azurerm.uat.service_endpoint_id
+        uat_container_namespace    = "pagopauitncoreacr.azurecr.io"
+        uat_aks_service_connection = azuredevops_serviceendpoint_kubernetes.aks_uat.service_endpoint_name
+        uat_acr_name               = "pagopauitncoreacr"
+
+        # PROD
+        prod_azure_subscription     = data.azuredevops_serviceendpoint_azurerm.prod.service_endpoint_id
+        prod_container_namespace    = "pagopapitncoreacr.azurecr.io"
+        prod_aks_service_connection = azuredevops_serviceendpoint_kubernetes.aks_prod.service_endpoint_name
+        prod_acr_name               = "pagopapitncoreacr"
+      }
     }
   }
 }

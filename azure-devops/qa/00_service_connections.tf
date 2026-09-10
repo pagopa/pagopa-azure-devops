@@ -12,7 +12,7 @@ resource "azuredevops_serviceendpoint_github" "github_qa" {
   service_endpoint_name = local.qa_github_connection_name
 
   auth_personal {
-    personal_access_token = module.qa_github_token.values["azure-devops-qa-github-token"].value
+    personal_access_token = module.uat_secrets.values["azure-devops-qa-github-token"].value
   }
 
   lifecycle {

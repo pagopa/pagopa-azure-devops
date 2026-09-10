@@ -24,3 +24,27 @@ data "azuredevops_agent_queue" "prod_linux" {
   project_id = data.azuredevops_project.project.id
   name       = "pagopa-prod-linux"
 }
+
+#
+# KV
+#
+data "azurerm_key_vault" "dev_kv_domain" {
+  provider = azurerm.dev
+
+  name                = local.dev_kv_domain_name
+  resource_group_name = local.dev_kv_domain_resource_group
+}
+
+data "azurerm_key_vault" "uat_kv_domain" {
+  provider = azurerm.uat
+
+  name                = local.uat_kv_domain_name
+  resource_group_name = local.uat_kv_domain_resource_group
+}
+
+data "azurerm_key_vault" "prod_kv_domain" {
+  provider = azurerm.prod
+
+  name                = local.prod_kv_domain_name
+  resource_group_name = local.prod_kv_domain_resource_group
+}

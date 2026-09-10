@@ -42,6 +42,20 @@ locals {
       repository : {
         yml_prefix_name : "posgw"
       }
+    },
+    {
+      name : "qa",
+      envs : ["d", "u", "p"],
+      kv_name : "pagopa-%s-itn-qa-kv",
+      rg_name : "pagopa-%s-itn-qa-sec-rg",
+      region : "itn",
+      code_review : true,
+      deploy : true,
+      pipeline_prefix : "qa",
+      pipeline_path : "qa-infra",
+      repository : {
+        yml_prefix_name : "qa"
+      }
     }
   ])
 
@@ -128,7 +142,7 @@ locals {
   infra_core_definitions = [
     {
       name : "aks-platform",
-      envs : ["d"],
+      envs : ["d", "u", "p"],
       kv_name : "pagopa-%s-kv",
       rg_name : "pagopa-%s-sec-rg",
       region : "weu"
@@ -143,7 +157,7 @@ locals {
     },
     {
       name : "aks-italy",
-      envs : ["d"],
+      envs : ["d", "u", "p"],
       kv_name : "pagopa-%s-itn-core-kv",
       rg_name : "pagopa-%s-itn-core-sec-rg",
       region : "itn"
@@ -374,7 +388,7 @@ locals {
       repository : {
         yml_prefix_name = "tf-audit"
         name            = "pagopa-infra-core"
-      }
+      },
     }
   ]
 }
