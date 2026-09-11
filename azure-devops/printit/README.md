@@ -18,9 +18,6 @@
 | <a name="module_DEV-PRINTIT-TLS-CERT-SERVICE-CONN"></a> [DEV-PRINTIT-TLS-CERT-SERVICE-CONN](#module\_DEV-PRINTIT-TLS-CERT-SERVICE-CONN) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated | v9.0.0 |
 | <a name="module_PROD-PRINTIT-TLS-CERT-SERVICE-CONN"></a> [PROD-PRINTIT-TLS-CERT-SERVICE-CONN](#module\_PROD-PRINTIT-TLS-CERT-SERVICE-CONN) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated | v9.0.0 |
 | <a name="module_UAT-PRINTIT-TLS-CERT-SERVICE-CONN"></a> [UAT-PRINTIT-TLS-CERT-SERVICE-CONN](#module\_UAT-PRINTIT-TLS-CERT-SERVICE-CONN) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated | v9.0.0 |
-| <a name="module_general_dev_secrets"></a> [general\_dev\_secrets](#module\_general\_dev\_secrets) | git::https://github.com/pagopa/terraform-azurerm-v3.git//key_vault_secrets_query | v8.22.0 |
-| <a name="module_general_prod_secrets"></a> [general\_prod\_secrets](#module\_general\_prod\_secrets) | git::https://github.com/pagopa/terraform-azurerm-v3.git//key_vault_secrets_query | v8.22.0 |
-| <a name="module_general_uat_secrets"></a> [general\_uat\_secrets](#module\_general\_uat\_secrets) | git::https://github.com/pagopa/terraform-azurerm-v3.git//key_vault_secrets_query | v8.22.0 |
 | <a name="module_letsencrypt_dev"></a> [letsencrypt\_dev](#module\_letsencrypt\_dev) | git::https://github.com/pagopa/terraform-azurerm-v3.git//letsencrypt_credential | v8.22.0 |
 | <a name="module_letsencrypt_prod"></a> [letsencrypt\_prod](#module\_letsencrypt\_prod) | git::https://github.com/pagopa/terraform-azurerm-v3.git//letsencrypt_credential | v8.22.0 |
 | <a name="module_letsencrypt_uat"></a> [letsencrypt\_uat](#module\_letsencrypt\_uat) | git::https://github.com/pagopa/terraform-azurerm-v3.git//letsencrypt_credential | v8.22.0 |
