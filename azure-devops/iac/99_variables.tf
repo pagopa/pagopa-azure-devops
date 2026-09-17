@@ -18,6 +18,10 @@ locals {
   srv_endpoint_github_ro = "io-azure-devops-github-ro"
   srv_endpoint_github_rw = "io-azure-devops-github-rw"
   srv_endpoint_github_pr = "io-azure-devops-github-pr"
+  # Service connections/ End points
+  srv_endpoint_github_infra_core_ro = "io-azure-devops-github-infra-core-ro"
+  srv_endpoint_github_infra_core_rw = "io-azure-devops-github-infra-core-rw"
+  srv_endpoint_github_infra_core_pr = "io-azure-devops-github-infra-core-pr"
 
   # 🔐 KV AZDO
   dev_key_vault_azdo_name  = "${local.prefix}-d-azdo-weu-kv"
@@ -172,6 +176,15 @@ locals {
   uat_paywallet_key_vault_name  = "${local.prefix}-u-pay-wallet-kv"
   prod_paywallet_key_vault_name = "${local.prefix}-p-pay-wallet-kv"
 
+  ### pos gateway
+  dev_pos_gateway_key_vault_resource_group  = "${local.prefix}-d-itn-posgw-sec-rg"
+  uat_pos_gateway_key_vault_resource_group  = "${local.prefix}-u-itn-posgw-sec-rg"
+  prod_pos_gateway_key_vault_resource_group = "${local.prefix}-p-itn-posgw-sec-rg"
+
+  dev_pos_gateway_key_vault_name  = "${local.prefix}-d-itn-posgw-kv"
+  uat_pos_gateway_key_vault_name  = "${local.prefix}-u-itn-posgw-kv"
+  prod_pos_gateway_key_vault_name = "${local.prefix}-p-itn-posgw-kv"
+
 
   tlscert_renew_token = "v3"
 }
@@ -216,14 +229,45 @@ variable "aks_prod_platform_name" {
   description = "AKS PROD platform name"
 }
 
+variable "aks_itn_dev_platform_name" {
+  type        = string
+  description = "AKS DEV platform name (ITN region)"
+}
+
+variable "aks_itn_uat_platform_name" {
+  type        = string
+  description = "AKS UAT platform name (ITN region)"
+}
+
+variable "aks_itn_prod_platform_name" {
+  type        = string
+  description = "AKS PROD platform name (ITN region)"
+}
+
 variable "apim_backup" {
   default = {
     repository = {
       organization    = "pagopa"
-      name            = "pagopa-infra"
+      name            = "pagopa-infra-core"
       branch_name     = "refs/heads/main"
       pipelines_path  = ".devops"
       yml_prefix_name = "backup-apim"
+    }
+    pipeline = {
+      enable_code_review = false
+      enable_deploy      = true
+    }
+  }
+}
+
+variable "apim_backup_uat" {
+  default = {
+    repository = {
+      organization    = "pagopa"
+      name            = "pagopa-infra-core"
+      branch_name     = "refs/heads/main"
+      pipelines_path  = ".devops"
+      yml_prefix_name = "backup-apim-uat"
     }
     pipeline = {
       enable_code_review = false

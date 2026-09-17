@@ -11,10 +11,6 @@ locals {
 
 
   base_iac_variables = {
-    tf_aks_dev_name  = var.aks_dev_platform_name
-    tf_aks_uat_name  = var.aks_uat_platform_name
-    tf_aks_prod_name = var.aks_prod_platform_name
-
     TF_POOL_NAME_DEV  = "pagopa-dev-linux-infra",
     TF_POOL_NAME_UAT  = "pagopa-uat-linux-infra",
     TF_POOL_NAME_PROD = "pagopa-prod-linux-infra",
@@ -50,12 +46,21 @@ module "iac_code_review" {
 
   project_id                   = azuredevops_project.project.id
   repository                   = merge(local.default_repository, each.value.repository)
-  github_service_connection_id = azuredevops_serviceendpoint_github.azure-devops-github-pr.id
+  github_service_connection_id = try(each.value.repository.name, "pagopa-infra") == "pagopa-infra-core" ? azuredevops_serviceendpoint_github.azure-devops-github-infra-core-pr.id : azuredevops_serviceendpoint_github.azure-devops-github-pr.id
 
   pipeline_name_prefix = each.value.pipeline_prefix
 
   variables = merge(
     local.base_iac_variables,
+    each.value.region == "itn" ? {
+      tf_aks_dev_name  = var.aks_itn_dev_platform_name
+      tf_aks_uat_name  = var.aks_itn_uat_platform_name
+      tf_aks_prod_name = var.aks_itn_prod_platform_name
+      } : {
+      tf_aks_dev_name  = var.aks_dev_platform_name
+      tf_aks_uat_name  = var.aks_uat_platform_name
+      tf_aks_prod_name = var.aks_prod_platform_name
+    },
     contains(each.value.envs, "d") && try(each.value.kv_name, "") != "" ? {
       tf_dev_aks_apiserver_url         = module.dev_secrets[each.value.name].values["pagopa-d-${each.value.region}-dev-aks-apiserver-url"].value,
       tf_dev_aks_azure_devops_sa_cacrt = module.dev_secrets[each.value.name].values["pagopa-d-${each.value.region}-dev-aks-azure-devops-sa-cacrt"].value,
@@ -81,7 +86,7 @@ module "iac_code_review" {
   )
 
   service_connection_ids_authorization = [
-    azuredevops_serviceendpoint_github.azure-devops-github-ro.id,
+    try(each.value.repository.name, "pagopa-infra") == "pagopa-infra-core" ? azuredevops_serviceendpoint_github.azure-devops-github-infra-core-ro.id : azuredevops_serviceendpoint_github.azure-devops-github-ro.id,
     module.DEV-AZURERM-IAC-PLAN-SERVICE-CONN.service_endpoint_id,
     module.UAT-AZURERM-IAC-PLAN-SERVICE-CONN.service_endpoint_id,
     module.PROD-AZURERM-IAC-PLAN-SERVICE-CONN.service_endpoint_id,
@@ -99,12 +104,21 @@ module "iac_deploy" {
 
   project_id                   = azuredevops_project.project.id
   repository                   = merge(local.default_repository, each.value.repository)
-  github_service_connection_id = azuredevops_serviceendpoint_github.azure-devops-github-pr.id
+  github_service_connection_id = try(each.value.repository.name, "pagopa-infra") == "pagopa-infra-core" ? azuredevops_serviceendpoint_github.azure-devops-github-infra-core-pr.id : azuredevops_serviceendpoint_github.azure-devops-github-pr.id
 
   pipeline_name_prefix = each.value.pipeline_prefix
 
   variables = merge(
     local.base_iac_variables,
+    each.value.region == "itn" ? {
+      tf_aks_dev_name  = var.aks_itn_dev_platform_name
+      tf_aks_uat_name  = var.aks_itn_uat_platform_name
+      tf_aks_prod_name = var.aks_itn_prod_platform_name
+      } : {
+      tf_aks_dev_name  = var.aks_dev_platform_name
+      tf_aks_uat_name  = var.aks_uat_platform_name
+      tf_aks_prod_name = var.aks_prod_platform_name
+    },
     contains(each.value.envs, "d") && try(each.value.kv_name, "") != "" ? {
       tf_dev_aks_apiserver_url         = module.dev_secrets[each.value.name].values["pagopa-d-${each.value.region}-dev-aks-apiserver-url"].value,
       tf_dev_aks_azure_devops_sa_cacrt = module.dev_secrets[each.value.name].values["pagopa-d-${each.value.region}-dev-aks-azure-devops-sa-cacrt"].value,
@@ -130,7 +144,7 @@ module "iac_deploy" {
   )
 
   service_connection_ids_authorization = [
-    azuredevops_serviceendpoint_github.azure-devops-github-ro.id,
+    try(each.value.repository.name, "pagopa-infra") == "pagopa-infra-core" ? azuredevops_serviceendpoint_github.azure-devops-github-infra-core-ro.id : azuredevops_serviceendpoint_github.azure-devops-github-ro.id,
     module.DEV-AZURERM-IAC-PLAN-SERVICE-CONN.service_endpoint_id,
     module.UAT-AZURERM-IAC-PLAN-SERVICE-CONN.service_endpoint_id,
     module.PROD-AZURERM-IAC-PLAN-SERVICE-CONN.service_endpoint_id,
@@ -139,4 +153,6 @@ module "iac_deploy" {
     module.UAT-AZURERM-IAC-DEPLOY-SERVICE-CONN.service_endpoint_id,
     module.PROD-AZURERM-IAC-DEPLOY-SERVICE-CONN.service_endpoint_id,
   ]
+
+  schedules = try(each.value.schedules, null)
 }

@@ -1,0 +1,50 @@
+data "azurerm_subscriptions" "dev" {
+  display_name_prefix = local.dev_subscription_name
+}
+
+data "azurerm_subscriptions" "uat" {
+  display_name_prefix = local.uat_subscription_name
+}
+
+data "azurerm_subscriptions" "prod" {
+  display_name_prefix = local.prod_subscription_name
+}
+
+data "azuredevops_agent_queue" "dev_linux" {
+  project_id = data.azuredevops_project.project.id
+  name       = "pagopa-dev-linux"
+}
+
+data "azuredevops_agent_queue" "uat_linux" {
+  project_id = data.azuredevops_project.project.id
+  name       = "pagopa-uat-linux"
+}
+
+data "azuredevops_agent_queue" "prod_linux" {
+  project_id = data.azuredevops_project.project.id
+  name       = "pagopa-prod-linux"
+}
+
+#
+# KV
+#
+data "azurerm_key_vault" "dev_kv_domain" {
+  provider = azurerm.dev
+
+  name                = local.dev_kv_domain_name
+  resource_group_name = local.dev_kv_domain_resource_group
+}
+
+data "azurerm_key_vault" "uat_kv_domain" {
+  provider = azurerm.uat
+
+  name                = local.uat_kv_domain_name
+  resource_group_name = local.uat_kv_domain_resource_group
+}
+
+data "azurerm_key_vault" "prod_kv_domain" {
+  provider = azurerm.prod
+
+  name                = local.prod_kv_domain_name
+  resource_group_name = local.prod_kv_domain_resource_group
+}

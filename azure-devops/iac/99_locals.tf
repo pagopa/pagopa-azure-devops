@@ -1,19 +1,5 @@
 locals {
-  definitions = [
-    {
-      name : "next-core-secrets",
-      envs : ["d", "u", "p"],
-      kv_name : "",
-      rg_name : "",
-      region : "weu"
-      code_review : true,
-      deploy : false,
-      pipeline_prefix : "next-core-secrets",
-      pipeline_path : "next-core-infra",
-      repository : {
-        yml_prefix_name : "next-core-secrets"
-      }
-    },
+  definitions = concat(local.infra_core_definitions, [
     {
       name : "checkout",
       envs : ["d", "u", "p"],
@@ -42,7 +28,37 @@ locals {
         yml_prefix_name : "cruscotto"
       }
     },
-  ]
+    {
+      name : "posgw",
+      //envs : ["d", "u", "p"],
+      envs : ["d"],
+      kv_name : "pagopa-%s-itn-posgw-kv",
+      rg_name : "pagopa-%s-itn-posgw-sec-rg",
+      region : "itn",
+      code_review : true,
+      deploy : true,
+      pipeline_prefix : "posgw",
+      pipeline_path : "posgw-infra",
+      repository : {
+        yml_prefix_name : "posgw"
+      }
+    },
+    {
+      name : "qa",
+      envs : ["d", "u", "p"],
+      kv_name : "pagopa-%s-itn-qa-kv",
+      rg_name : "pagopa-%s-itn-qa-sec-rg",
+      region : "itn",
+      code_review : true,
+      deploy : true,
+      pipeline_prefix : "qa",
+      pipeline_path : "qa-infra",
+      repository : {
+        yml_prefix_name : "qa"
+      }
+    }
+  ])
+
 
   definitions_variables = {}
 
@@ -52,6 +68,7 @@ locals {
       pipeline_path : "gh-runner-cleanup",
       repository : {
         yml_file_name : "gh-runner-cleanup.yml"
+        name = "pagopa-infra-core"
       }
       schedules : {
         days_to_build : ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
@@ -70,6 +87,7 @@ locals {
       pipeline_path : "disaster-recovery",
       repository : {
         yml_file_name : "disaster-recovery.yml"
+        name = "pagopa-infra-core"
       }
     },
     "performance-test-setup" : {
@@ -77,6 +95,7 @@ locals {
       pipeline_path : "performance-test-setup",
       repository : {
         yml_file_name : "performance-test-setup.yml"
+        name = "pagopa-infra-core"
       }
       schedules : {
         days_to_build : ["Fri"],
@@ -95,6 +114,7 @@ locals {
       pipeline_path : "database",
       repository : {
         yml_file_name : "db-metabase-pipelines.yml"
+        name = "pagopa-infra-core"
       }
     },
     "liquibase-addon" : {
@@ -118,4 +138,257 @@ locals {
       }
     }
   }
+
+  infra_core_definitions = [
+    {
+      name : "aks-platform",
+      envs : ["d", "u", "p"],
+      kv_name : "pagopa-%s-kv",
+      rg_name : "pagopa-%s-sec-rg",
+      region : "weu"
+      code_review : true,
+      deploy : true,
+      pipeline_prefix : "aks-platform",
+      pipeline_path : "pagopa-infra-core\\aks-platform",
+      repository : {
+        yml_prefix_name = "aks-platform"
+        name            = "pagopa-infra-core"
+      }
+    },
+    {
+      name : "aks-italy",
+      envs : ["d", "u", "p"],
+      kv_name : "pagopa-%s-itn-core-kv",
+      rg_name : "pagopa-%s-itn-core-sec-rg",
+      region : "itn"
+      code_review : true,
+      deploy : true,
+      pipeline_prefix : "aks-italy",
+      pipeline_path : "pagopa-infra-core\\aks-italy",
+      repository : {
+        yml_prefix_name = "aks-italy"
+        name            = "pagopa-infra-core"
+      }
+    },
+    {
+      name : "audit-logs",
+      envs : ["d", "u", "p"],
+      kv_name : "",
+      rg_name : "",
+      region : "weu"
+      code_review : true,
+      deploy : true,
+      pipeline_prefix : "audit-logs",
+      pipeline_path : "pagopa-infra-core\\audit-logs",
+      repository : {
+        yml_prefix_name = "audit-logs"
+        name            = "pagopa-infra-core"
+      }
+    },
+    {
+      name : "client-certs",
+      envs : ["d", "u", "p"],
+      region : "weu"
+      code_review : true,
+      deploy : true,
+      pipeline_prefix : "client-certs",
+      pipeline_path : "pagopa-infra-core\\client-certs",
+      repository : {
+        yml_prefix_name : "client-certs"
+        branch_name : "refs/heads/main"
+        name = "pagopa-infra-core"
+      }
+      schedules = {
+        days_to_build              = ["Mon"]
+        schedule_only_with_changes = false
+        start_hours                = 3
+        start_minutes              = 0
+        time_zone                  = "(UTC+01:00) Amsterdam, Berlin, Bern, Rome, Stockholm, Vienna"
+        branch_filter = {
+          include = ["main"]
+          exclude = []
+        }
+      }
+    },
+    {
+      name : "cloudo",
+      envs : ["d", "u", "p"],
+      kv_name : "",
+      rg_name : "",
+      region : "itn"
+      code_review : true,
+      deploy : true,
+      pipeline_prefix : "cloudo",
+      pipeline_path : "pagopa-infra-core\\cloudo",
+      repository : {
+        yml_prefix_name = "cloudo"
+        name            = "pagopa-infra-core"
+      }
+    },
+    {
+      name : "core-itn",
+      envs : ["d", "u", "p"],
+      kv_name : "",
+      rg_name : "",
+      region : "itn"
+      code_review : true,
+      deploy : true,
+      pipeline_prefix : "core-itn",
+      pipeline_path : "pagopa-infra-core\\core-itn",
+      repository : {
+        yml_prefix_name = "core-itn"
+        name            = "pagopa-infra-core"
+      }
+    },
+    {
+      name : "db-security",
+      envs : ["d", "p"],
+      kv_name : "",
+      rg_name : "",
+      region : "itn"
+      code_review : true,
+      deploy : true,
+      pipeline_prefix : "db-security",
+      pipeline_path : "pagopa-infra-core\\db-security",
+      repository : {
+        yml_prefix_name = "db-security"
+        name            = "pagopa-infra-core"
+      }
+    },
+    {
+      name : "db-security-configuration",
+      envs : ["d", "p"],
+      kv_name : "",
+      rg_name : "",
+      region : "itn"
+      code_review : true,
+      deploy : true,
+      pipeline_prefix : "db-security-configuration",
+      pipeline_path : "pagopa-infra-core\\db-security",
+      repository : {
+        yml_prefix_name = "db-security-configuration"
+        name            = "pagopa-infra-core"
+      }
+    },
+    {
+      name : "grafana-monitoring",
+      envs : ["d", "u", "p"],
+      kv_name : "",
+      rg_name : "",
+      region : "weu"
+      code_review : true,
+      deploy : true,
+      pipeline_prefix : "grafana-monitoring",
+      pipeline_path : "pagopa-infra-core\\grafana-monitoring",
+      repository : {
+        yml_prefix_name = "grafana-monitoring"
+        name            = "pagopa-infra-core"
+      }
+    },
+    {
+      name : "network",
+      envs : ["d", "u", "p"],
+      kv_name : "",
+      rg_name : "",
+      region : "weu"
+      code_review : true,
+      deploy : true,
+      pipeline_prefix : "network",
+      pipeline_path : "pagopa-infra-core\\network",
+      repository : {
+        yml_prefix_name = "network"
+        name            = "pagopa-infra-core"
+      }
+    },
+    {
+      name : "next-aks",
+      envs : ["d"],
+      kv_name : "pagopa-%s-kv",
+      rg_name : "pagopa-%s-sec-rg",
+      region : "weu"
+      code_review : true,
+      deploy : true,
+      pipeline_prefix : "next-aks",
+      pipeline_path : "pagopa-infra-core\\aks",
+      repository : {
+        yml_prefix_name = "next-aks"
+        name            = "pagopa-infra-core"
+      }
+    },
+    {
+      name : "next-core",
+      envs : ["d", "u", "p"],
+      kv_name : "",
+      rg_name : "",
+      region : "weu"
+      code_review : true,
+      deploy : true,
+      pipeline_prefix : "next-core",
+      pipeline_path : "pagopa-infra-core\\next-core",
+      repository : {
+        yml_prefix_name = "next-core"
+        name            = "pagopa-infra-core"
+      }
+    },
+    {
+      name : "packer-image",
+      envs : ["d", "u", "p"],
+      kv_name : "",
+      rg_name : "",
+      region : "weu"
+      code_review : true,
+      deploy : true,
+      pipeline_prefix : "packer",
+      pipeline_path : "pagopa-infra-core\\packer-image",
+      repository : {
+        yml_prefix_name = "packer"
+        name            = "pagopa-infra-core"
+      }
+    },
+    {
+      name : "release-notes-agent",
+      envs : ["d"],
+      kv_name : "",
+      rg_name : "",
+      region : "weu"
+      code_review : true,
+      deploy : true,
+      pipeline_prefix : "release-notes-agent",
+      pipeline_path : "pagopa-infra-core\\release-notes-agent",
+      repository : {
+        yml_prefix_name = "release-notes-agent"
+        name            = "pagopa-infra-core"
+      }
+    },
+    {
+      name : "synthetic-monitoring",
+      envs : ["d", "u", "p"],
+      kv_name : "",
+      rg_name : "",
+      region : "weu"
+      code_review : true,
+      deploy : true,
+      pipeline_prefix : "synthetic-monitoring",
+      pipeline_path : "pagopa-infra-core\\synthetic-monitoring",
+      repository : {
+        yml_prefix_name = "synthetic-monitoring"
+        name            = "pagopa-infra-core"
+      }
+    },
+    {
+      name : "tf-audit",
+      envs : ["p"],
+      kv_name : "",
+      rg_name : "",
+      region : "weu"
+      code_review : true,
+      deploy : true,
+      pipeline_prefix : "tf-audit",
+      pipeline_path : "pagopa-infra-core\\tf-audit",
+      repository : {
+        yml_prefix_name = "tf-audit"
+        name            = "pagopa-infra-core"
+      },
+    }
+  ]
 }

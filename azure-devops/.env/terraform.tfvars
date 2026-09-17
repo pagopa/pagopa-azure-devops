@@ -13,6 +13,10 @@ aks_dev_platform_name  = "pagopa-d-weu-dev-aks"
 aks_uat_platform_name  = "pagopa-u-weu-uat-aks"
 aks_prod_platform_name = "pagopa-p-weu-prod-aks"
 
+aks_itn_dev_platform_name  = "pagopa-d-itn-dev-aks"
+aks_itn_uat_platform_name  = "pagopa-u-itn-uat-aks"
+aks_itn_prod_platform_name = "pagopa-p-itn-prod-aks"
+
 service_connection_dev_azurerm_name  = "DEV-PAGOPA-SERVICE-CONN"
 service_connection_uat_azurerm_name  = "UAT-PAGOPA-SERVICE-CONN"
 service_connection_prod_azurerm_name = "PROD-PAGOPA-SERVICE-CONN"

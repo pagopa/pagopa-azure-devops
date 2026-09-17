@@ -54,5 +54,6 @@ module "checkout_prod_secrets" {
     "pagopa-p-weu-prod-aks-azure-devops-sa-token",
     "pagopa-p-weu-prod-aks-azure-devops-sa-cacrt",
     "pagopa-p-weu-prod-aks-apiserver-url",
+    "checkout-github-token-for-tas-integration"
   ]
 }

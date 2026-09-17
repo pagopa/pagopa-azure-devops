@@ -8,8 +8,9 @@ variable "pagopa-platform-cdn-assets" {
       yml_prefix_name = "pagopa"
     }
     pipeline = {
-      enable_code_review = true
-      enable_deploy      = true
+      enable_code_review  = true
+      enable_deploy       = true
+      enable_npg_sdk_sync = true
     }
   }
 }
@@ -83,6 +84,38 @@ module "pagopa-platform-cdn-assets_deploy" {
   github_service_connection_id = azuredevops_serviceendpoint_github.azure-devops-github-rw.id
   path                         = var.pagopa-platform-cdn-assets.repository.name
 
+
+  variables = merge(
+    local.pagopa-platform-cdn-assets-variables,
+    local.pagopa-platform-cdn-assets-variables_deploy,
+  )
+
+  variables_secret = merge(
+    local.pagopa-platform-cdn-assets-variables_secret,
+    local.pagopa-platform-cdn-assets-variables_secret_deploy,
+  )
+
+  service_connection_ids_authorization = [
+    azuredevops_serviceendpoint_github.azure-devops-github-ro.id,
+    module.prod_azurerm_service_conn.service_endpoint_id,
+  ]
+}
+
+# Hourly NPG SDK sync pipeline: publishes the NPG SDK + integrity hash into the
+# npg-uat and npg-prod folders of the platform CDN. Schedule-only (cron in the
+# yaml); reuses the same prod storage/CDN/subscription variables as the deploy
+# pipeline. Distinct pipeline_name_prefix so it does not collide with .deploy.
+module "pagopa-platform-cdn-assets_npg_sdk_sync" {
+  source = "./.terraform/modules/__azdo__/azuredevops_build_definition_deploy"
+  count  = var.pagopa-platform-cdn-assets.pipeline.enable_npg_sdk_sync == true ? 1 : 0
+
+  project_id = azuredevops_project.project.id
+  repository = merge(var.pagopa-platform-cdn-assets.repository, {
+    yml_prefix_name = "pagopa-npg-sdk-sync"
+  })
+  github_service_connection_id = azuredevops_serviceendpoint_github.azure-devops-github-rw.id
+  pipeline_name_prefix         = "pagopa-platform-cdn-assets.npg-sdk-sync"
+  path                         = var.pagopa-platform-cdn-assets.repository.name
 
   variables = merge(
     local.pagopa-platform-cdn-assets-variables,
