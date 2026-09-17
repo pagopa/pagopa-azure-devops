@@ -3,7 +3,7 @@
 ## Requirements
 
 | Name | Version |
-|------|---------|
+| ---- | ------- |
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.3.5 |
 | <a name="requirement_azuredevops"></a> [azuredevops](#requirement\_azuredevops) | ~> 0.10.0 |
 | <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) | <= 3.85.0 |
@@ -11,7 +11,7 @@
 ## Modules
 
 | Name | Source | Version |
-|------|--------|---------|
+| ---- | ------ | ------- |
 | <a name="module_DEV-APPINSIGHTS-SERVICE-CONN"></a> [DEV-APPINSIGHTS-SERVICE-CONN](#module\_DEV-APPINSIGHTS-SERVICE-CONN) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated | v4.2.1 |
 | <a name="module_DEV-NODO-TLS-CERT-SERVICE-CONN"></a> [DEV-NODO-TLS-CERT-SERVICE-CONN](#module\_DEV-NODO-TLS-CERT-SERVICE-CONN) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated | v4.2.1 |
 | <a name="module_PROD-APPINSIGHTS-SERVICE-CONN"></a> [PROD-APPINSIGHTS-SERVICE-CONN](#module\_PROD-APPINSIGHTS-SERVICE-CONN) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated | v4.2.1 |
@@ -26,7 +26,6 @@
 | <a name="module_nodo_uat_secrets"></a> [nodo\_uat\_secrets](#module\_nodo\_uat\_secrets) | git::https://github.com/pagopa/terraform-azurerm-v3.git//key_vault_secrets_query | v7.30.0 |
 | <a name="module_pagopa-firmatore-service_deploy"></a> [pagopa-firmatore-service\_deploy](#module\_pagopa-firmatore-service\_deploy) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy | v4.2.1 |
 | <a name="module_pagopa-mock-ec-prf-service_deploy"></a> [pagopa-mock-ec-prf-service\_deploy](#module\_pagopa-mock-ec-prf-service\_deploy) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy | v4.2.1 |
-| <a name="module_pagopa-mock-ec-service_deploy"></a> [pagopa-mock-ec-service\_deploy](#module\_pagopa-mock-ec-service\_deploy) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy | v4.2.1 |
 | <a name="module_pagopa-mock-pm-service_deploy"></a> [pagopa-mock-pm-service\_deploy](#module\_pagopa-mock-pm-service\_deploy) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy | v4.2.1 |
 | <a name="module_pagopa-mock-psp-prf-service_deploy"></a> [pagopa-mock-psp-prf-service\_deploy](#module\_pagopa-mock-psp-prf-service\_deploy) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy | v4.2.1 |
 | <a name="module_pagopa-mock-psp-service_deploy"></a> [pagopa-mock-psp-service\_deploy](#module\_pagopa-mock-psp-service\_deploy) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy | v4.2.1 |
@@ -49,7 +48,7 @@
 ## Resources
 
 | Name | Type |
-|------|------|
+| ---- | ---- |
 | [azuredevops_environment.environments_nodo](https://registry.terraform.io/providers/microsoft/azuredevops/latest/docs/resources/environment) | resource |
 | [azuredevops_serviceendpoint_kubernetes.aks_dev](https://registry.terraform.io/providers/microsoft/azuredevops/latest/docs/resources/serviceendpoint_kubernetes) | resource |
 | [azuredevops_serviceendpoint_kubernetes.aks_prod](https://registry.terraform.io/providers/microsoft/azuredevops/latest/docs/resources/serviceendpoint_kubernetes) | resource |
@@ -84,7 +83,7 @@
 ## Inputs
 
 | Name | Description | Type | Default | Required |
-|------|-------------|------|---------|:--------:|
+| ---- | ----------- | ---- | ------- | :------: |
 | <a name="input_acr_weu_service_connection_workload_identity_dev"></a> [acr\_weu\_service\_connection\_workload\_identity\_dev](#input\_acr\_weu\_service\_connection\_workload\_identity\_dev) | The service connection ID for the WEU DEV workload identity in Azure Container Registry | `string` | `""` | no |
 | <a name="input_acr_weu_service_connection_workload_identity_prod"></a> [acr\_weu\_service\_connection\_workload\_identity\_prod](#input\_acr\_weu\_service\_connection\_workload\_identity\_prod) | The service connection ID for the WEU PROD workload identity in Azure Container Registry | `string` | `""` | no |
 | <a name="input_acr_weu_service_connection_workload_identity_uat"></a> [acr\_weu\_service\_connection\_workload\_identity\_uat](#input\_acr\_weu\_service\_connection\_workload\_identity\_uat) | The service connection ID for the WEU UAT workload identity in Azure Container Registry | `string` | `""` | no |
@@ -92,7 +91,6 @@
 | <a name="input_location"></a> [location](#input\_location) | n/a | `string` | n/a | yes |
 | <a name="input_pagopa-firmatore-service"></a> [pagopa-firmatore-service](#input\_pagopa-firmatore-service) | n/a | `map` | <pre>{<br/>  "pipeline": {<br/>    "enable_code_review": false,<br/>    "enable_deploy": true<br/>  },<br/>  "repository": {<br/>    "branch_name": "refs/heads/develop",<br/>    "name": "pagopa-firmatore",<br/>    "organization": "pagopa",<br/>    "pipelines_path": ".devops",<br/>    "yml_prefix_name": null<br/>  }<br/>}</pre> | no |
 | <a name="input_pagopa-mock-ec-prf-service"></a> [pagopa-mock-ec-prf-service](#input\_pagopa-mock-ec-prf-service) | n/a | `map` | <pre>{<br/>  "pipeline": {<br/>    "enable_code_review": false,<br/>    "enable_deploy": true<br/>  },<br/>  "repository": {<br/>    "branch_name": "refs/heads/feature/mock-ec-pf",<br/>    "name": "pagopa-nodo-dei-pagamenti-test",<br/>    "organization": "pagopa",<br/>    "pipelines_path": ".devops",<br/>    "yml_prefix_name": null<br/>  }<br/>}</pre> | no |
-| <a name="input_pagopa-mock-ec-service"></a> [pagopa-mock-ec-service](#input\_pagopa-mock-ec-service) | n/a | `map` | <pre>{<br/>  "pipeline": {<br/>    "enable_code_review": false,<br/>    "enable_deploy": true<br/>  },<br/>  "repository": {<br/>    "branch_name": "refs/heads/develop",<br/>    "name": "pagopa-mock-ec",<br/>    "organization": "pagopa",<br/>    "pipelines_path": ".devops",<br/>    "yml_prefix_name": null<br/>  }<br/>}</pre> | no |
 | <a name="input_pagopa-mock-pm-service"></a> [pagopa-mock-pm-service](#input\_pagopa-mock-pm-service) | n/a | `map` | <pre>{<br/>  "pipeline": {<br/>    "enable_code_review": false,<br/>    "enable_deploy": true<br/>  },<br/>  "repository": {<br/>    "branch_name": "refs/heads/develop",<br/>    "name": "pagopa-nodo-dei-pagamenti-test-pm",<br/>    "organization": "pagopa",<br/>    "pipelines_path": ".devops",<br/>    "yml_prefix_name": null<br/>  }<br/>}</pre> | no |
 | <a name="input_pagopa-mock-psp-prf-service"></a> [pagopa-mock-psp-prf-service](#input\_pagopa-mock-psp-prf-service) | n/a | `map` | <pre>{<br/>  "pipeline": {<br/>    "enable_code_review": false,<br/>    "enable_deploy": true<br/>  },<br/>  "repository": {<br/>    "branch_name": "refs/heads/develop",<br/>    "name": "pagopa-nodo-dei-pagamenti-test-psp",<br/>    "organization": "pagopa",<br/>    "pipelines_path": ".devops",<br/>    "yml_prefix_name": null<br/>  }<br/>}</pre> | no |
 | <a name="input_pagopa-mock-psp-service"></a> [pagopa-mock-psp-service](#input\_pagopa-mock-psp-service) | n/a | `map` | <pre>{<br/>  "pipeline": {<br/>    "enable_code_review": false,<br/>    "enable_deploy": true<br/>  },<br/>  "repository": {<br/>    "branch_name": "refs/heads/develop",<br/>    "name": "pagopa-mock-psp-service",<br/>    "organization": "pagopa",<br/>    "pipelines_path": ".devops",<br/>    "yml_prefix_name": null<br/>  }<br/>}</pre> | no |
