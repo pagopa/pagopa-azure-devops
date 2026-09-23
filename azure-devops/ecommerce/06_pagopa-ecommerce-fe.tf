@@ -57,7 +57,7 @@ locals {
   }
   # deploy secrets
   pagopa-ecommerce-fe-variables_secret_deploy = {
-
+    ecommerce_tas_github_token = module.ecommerce_prod_secrets.values["ecommerce-github-token-for-tas-integration"].value
   }
 }
 
