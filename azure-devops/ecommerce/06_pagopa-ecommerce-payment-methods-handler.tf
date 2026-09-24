@@ -76,6 +76,7 @@ locals {
     CHECKOUT_PAYMENT_HANDLER_API_KEY_UAT = module.ecommerce_uat_secrets.values["checkout-payment-methods-handler-api-key"].value
     IO_PAYMENT_HANDLER_API_KEY_DEV       = module.ecommerce_dev_secrets.values["io-payment-methods-handler-api-key"].value
     IO_PAYMENT_HANDLER_API_KEY_UAT       = module.ecommerce_uat_secrets.values["io-payment-methods-handler-api-key"].value
+    ecommerce_tas_github_token           = module.ecommerce_prod_secrets.values["ecommerce-github-token-for-tas-integration"].value
   }
 }
 

@@ -76,6 +76,7 @@ locals {
     notifications_service_testing_api_key_uat = module.ecommerce_uat_secrets.values["notifications-service-testing-api-key"].value
     notifications_service_testing_mail_uat    = module.ecommerce_uat_secrets.values["notifications-service-testing-mail"].value
     approve_touchpoint_mail                   = module.ecommerce_prod_secrets.values["touchpoint-mail"].value
+    ecommerce_tas_github_token                = module.ecommerce_prod_secrets.values["ecommerce-github-token-for-tas-integration"].value
   }
 }
 
