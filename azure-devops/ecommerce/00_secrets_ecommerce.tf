@@ -85,6 +85,7 @@ module "ecommerce_prod_secrets" {
     "touchpoint-mail",
     "ecommerce-event-dispatcher-service-primary-api-key",
     "ecommerce-event-dispatcher-service-secondary-api-key",
-    "ecommerce-github-packages-read-bot-token"
+    "ecommerce-github-packages-read-bot-token",
+    "ecommerce-github-token-for-tas-integration"
   ]
 }
