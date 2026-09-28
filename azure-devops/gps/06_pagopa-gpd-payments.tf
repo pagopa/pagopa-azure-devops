@@ -27,7 +27,7 @@ locals {
   pagopa-gpd-payments-variables_secret = {
     DEV_API_CONFIG_SUBSCRIPTION_KEY    = module.gps_dev_secrets.values["gpd-d-apiconfig-subscription-key"].value
     DEV_GPD_SUBSCRIPTION_KEY           = module.gps_dev_secrets.values["gpd-d-gpd-subscription-key"].value
-    DEV_GPS_SUBSCRIPTION_KEY           = module.gps_dev_secrets.values["gpd-d-gps-subscription-key"].value
+    DEV_GPS_SUBSCRIPTION_KEY           = module.gps_dev_secrets.values["gpd-payments-to-vertical-services"].value
     DEV_DONATIONS_SUBSCRIPTION_KEY     = module.gps_dev_secrets.values["gpd-d-donations-subscription-key"].value
     DEV_IUV_GENERATOR_SUBSCRIPTION_KEY = module.gps_dev_secrets.values["gpd-d-iuv-generator-subscription-key"].value
     DEV_PAYMENTS_REST_SUBSCRIPTION_KEY = module.gps_dev_secrets.values["gpd-d-payments-rest-subscription-key"].value
@@ -35,7 +35,7 @@ locals {
     #####
     UAT_API_CONFIG_SUBSCRIPTION_KEY    = module.gps_uat_secrets.values["gpd-u-apiconfig-subscription-key"].value
     UAT_GPD_SUBSCRIPTION_KEY           = module.gps_uat_secrets.values["gpd-u-gpd-subscription-key"].value
-    UAT_GPS_SUBSCRIPTION_KEY           = module.gps_uat_secrets.values["gpd-u-gps-subscription-key"].value
+    UAT_GPS_SUBSCRIPTION_KEY           = module.gps_uat_secrets.values["gpd-payments-to-vertical-services"].value
     UAT_DONATIONS_SUBSCRIPTION_KEY     = module.gps_uat_secrets.values["gpd-u-donations-subscription-key"].value
     UAT_IUV_GENERATOR_SUBSCRIPTION_KEY = module.gps_uat_secrets.values["gpd-u-iuv-generator-subscription-key"].value
     UAT_PAYMENTS_REST_SUBSCRIPTION_KEY = module.gps_uat_secrets.values["gpd-u-payments-rest-subscription-key"].value
