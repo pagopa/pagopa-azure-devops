@@ -173,7 +173,7 @@ Pipeline without a schedule (triggered manually or via CI):
 ## Requirements
 
 | Name | Version |
-|------|---------|
+| ---- | ------- |
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.6.5 |
 | <a name="requirement_azuredevops"></a> [azuredevops](#requirement\_azuredevops) | <= 0.11.0 |
 | <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) | >= 3.80.0 |
@@ -181,7 +181,7 @@ Pipeline without a schedule (triggered manually or via CI):
 ## Modules
 
 | Name | Source | Version |
-|------|--------|---------|
+| ---- | ------ | ------- |
 | <a name="module_DEV-AZURERM-IAC-DEPLOY-SERVICE-CONN"></a> [DEV-AZURERM-IAC-DEPLOY-SERVICE-CONN](#module\_DEV-AZURERM-IAC-DEPLOY-SERVICE-CONN) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated | v7.0.0 |
 | <a name="module_DEV-AZURERM-IAC-PLAN-SERVICE-CONN"></a> [DEV-AZURERM-IAC-PLAN-SERVICE-CONN](#module\_DEV-AZURERM-IAC-PLAN-SERVICE-CONN) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated | v7.0.0 |
 | <a name="module_PROD-AZURERM-IAC-DEPLOY-SERVICE-CONN"></a> [PROD-AZURERM-IAC-DEPLOY-SERVICE-CONN](#module\_PROD-AZURERM-IAC-DEPLOY-SERVICE-CONN) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated | v7.0.0 |
@@ -288,7 +288,7 @@ Pipeline without a schedule (triggered manually or via CI):
 ## Resources
 
 | Name | Type |
-|------|------|
+| ---- | ---- |
 | [azuredevops_environment.environments](https://registry.terraform.io/providers/microsoft/azuredevops/latest/docs/resources/environment) | resource |
 | [azuredevops_environment.environments_auto](https://registry.terraform.io/providers/microsoft/azuredevops/latest/docs/resources/environment) | resource |
 | [azuredevops_project.project](https://registry.terraform.io/providers/microsoft/azuredevops/latest/docs/resources/project) | resource |
@@ -314,7 +314,7 @@ Pipeline without a schedule (triggered manually or via CI):
 ## Inputs
 
 | Name | Description | Type | Default | Required |
-|------|-------------|------|---------|:--------:|
+| ---- | ----------- | ---- | ------- | :------: |
 | <a name="input_aca_iac"></a> [aca\_iac](#input\_aca\_iac) | ################################################# DO NOT COPY-PASTE THIS FILE use the new structured way to define the iac pipelines have a look at README.md ################################################# | `map` | <pre>{<br/>  "pipeline": {<br/>    "enable_code_review": true,<br/>    "enable_deploy": true,<br/>    "path": "aca-infrastructure",<br/>    "pipeline_name_prefix": "aca-infra"<br/>  },<br/>  "repository": {<br/>    "branch_name": "refs/heads/main",<br/>    "name": "pagopa-infra",<br/>    "organization": "pagopa",<br/>    "pipelines_path": ".devops",<br/>    "yml_prefix_name": "aca"<br/>  }<br/>}</pre> | no |
 | <a name="input_afm_iac"></a> [afm\_iac](#input\_afm\_iac) | ################################################# DO NOT COPY-PASTE THIS FILE use the new structured way to define the iac pipelines have a look at README.md ################################################# | `map` | <pre>{<br/>  "pipeline": {<br/>    "enable_code_review": true,<br/>    "enable_deploy": true,<br/>    "path": "afm-infrastructure",<br/>    "pipeline_name_prefix": "afm-infra"<br/>  },<br/>  "repository": {<br/>    "branch_name": "refs/heads/main",<br/>    "name": "pagopa-infra",<br/>    "organization": "pagopa",<br/>    "pipelines_path": ".devops",<br/>    "yml_prefix_name": "afm"<br/>  }<br/>}</pre> | no |
 | <a name="input_aks_dev_platform_name"></a> [aks\_dev\_platform\_name](#input\_aks\_dev\_platform\_name) | AKS DEV platform name | `string` | n/a | yes |
