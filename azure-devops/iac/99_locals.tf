@@ -211,6 +211,20 @@ locals {
       }
     },
     {
+      name : "client-certs-promote",
+      envs : ["d", "u", "p"],
+      region : "weu"
+      code_review : false,
+      deploy : true,
+      pipeline_prefix : "client-certs-promotion",
+      pipeline_path : "pagopa-infra-core\\client-certs",
+      repository : {
+        yml_prefix_name : "client-certs-promotion"
+        branch_name : "refs/heads/main"
+        name = "pagopa-infra-core"
+      }
+    },
+    {
       name : "cloudo",
       envs : ["d", "u", "p"],
       kv_name : "",
