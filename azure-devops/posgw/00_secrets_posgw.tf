@@ -15,3 +15,19 @@ module "posgw_dev_secrets" {
     "pagopa-d-itn-dev-aks-apiserver-url"
   ]
 }
+
+module "posgw_prod_secrets" {
+
+  providers = {
+    azurerm = azurerm.prod
+  }
+
+  source = "git::https://github.com/pagopa/terraform-azurerm-v3.git//key_vault_secrets_query?ref=v7.30.0"
+
+  resource_group = local.prod_posgw_key_vault_resource_group
+  key_vault_name = local.prod_posgw_key_vault_name
+
+  secrets = [
+    "posgw-github-packages-read-bot-token"
+  ]
+}
