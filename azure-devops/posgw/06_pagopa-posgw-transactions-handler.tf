@@ -29,7 +29,7 @@ locals {
   }
   # global secrets
   pagopa-posgw-transactions-handler-variables_secret = {
-    github_ro_token = module.posgw_dev_secrets.values["posgw-github-packages-read-bot-token"].value
+    github_ro_token = module.posgw_prod_secrets.values["posgw-github-packages-read-bot-token"].value
   }
   # code_review vars
   pagopa-posgw-transactions-handler-variables_code_review = {
@@ -70,7 +70,7 @@ locals {
     git_mail        = module.secrets.values["azure-devops-github-EMAIL"].value
     git_username    = module.secrets.values["azure-devops-github-USERNAME"].value
     tenant_id       = data.azurerm_client_config.current.tenant_id
-    github_ro_token = module.posgw_dev_secrets.values["posgw-github-packages-read-bot-token"].value
+    github_ro_token = module.posgw_prod_secrets.values["posgw-github-packages-read-bot-token"].value
   }
 }
 
