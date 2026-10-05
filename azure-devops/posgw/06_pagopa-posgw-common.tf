@@ -9,7 +9,7 @@ variable "pagopa-posgw-common" {
     }
     pipeline = {
       enable_code_review = true
-      enable_deploy      = true
+      enable_deploy      = false
       sonarcloud = {
         # TODO azure devops terraform provider does not support SonarCloud service endpoint
         service_connection = "SONARCLOUD-SERVICE-CONN"
