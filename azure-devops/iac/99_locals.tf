@@ -3,9 +3,13 @@ locals {
     {
       name : "checkout",
       envs : ["d", "u", "p"],
-      kv_name : "pagopa-%s-checkout-kv",
-      rg_name : "pagopa-%s-checkout-sec-rg",
-      region : "weu"
+      regions : ["weu"]
+      key_vaults : {
+        weu : {
+          kv_name : "pagopa-%s-checkout-kv",
+          rg_name : "pagopa-%s-checkout-sec-rg",
+        }
+      }
       code_review : true,
       deploy : true,
       pipeline_prefix : "checkout",
@@ -17,9 +21,13 @@ locals {
     {
       name : "cruscotto",
       envs : ["d"],
-      kv_name : "pagopa-%s-itn-crusc8-kv",
-      rg_name : "pagopa-%s-itn-crusc8-sec-rg",
-      region : "itn"
+      regions : ["itn"]
+      key_vaults : {
+        itn : {
+          kv_name : "pagopa-%s-itn-crusc8-kv",
+          rg_name : "pagopa-%s-itn-crusc8-sec-rg",
+        }
+      }
       code_review : true,
       deploy : true,
       pipeline_prefix : "cruscotto",
@@ -32,9 +40,13 @@ locals {
       name : "posgw",
       //envs : ["d", "u", "p"],
       envs : ["d"],
-      kv_name : "pagopa-%s-itn-posgw-kv",
-      rg_name : "pagopa-%s-itn-posgw-sec-rg",
-      region : "itn",
+      key_vaults : {
+        itn : {
+          kv_name : "pagopa-%s-itn-posgw-kv",
+          rg_name : "pagopa-%s-itn-posgw-sec-rg",
+        }
+      }
+      regions : ["itn"],
       code_review : true,
       deploy : true,
       pipeline_prefix : "posgw",
@@ -46,9 +58,13 @@ locals {
     {
       name : "qa",
       envs : ["d", "u", "p"],
-      kv_name : "pagopa-%s-itn-qa-kv",
-      rg_name : "pagopa-%s-itn-qa-sec-rg",
-      region : "itn",
+      regions : ["itn"],
+      key_vaults : {
+        itn : {
+          kv_name : "pagopa-%s-itn-qa-kv",
+          rg_name : "pagopa-%s-itn-qa-sec-rg",
+        }
+      }
       code_review : true,
       deploy : true,
       pipeline_prefix : "qa",
@@ -141,11 +157,38 @@ locals {
 
   infra_core_definitions = [
     {
+      name : "iac-cicd",
+      envs : ["d", "u", "p"],
+      pipeline_prefix : "iac-cicd",
+      pipeline_path : "pagopa-infra-core\\CICD",
+      regions : ["weu", "itn"],
+      key_vaults : {
+        weu : {
+          kv_name : "pagopa-%s-kv",
+          rg_name : "pagopa-%s-sec-rg",
+        }
+        itn : {
+          kv_name : "pagopa-%s-itn-core-kv",
+          rg_name : "pagopa-%s-itn-core-sec-rg",
+        }
+      }
+      code_review : false,
+      deploy : true,
+      repository : {
+        yml_prefix_name : "cicd"
+        name = "pagopa-infra-core"
+      }
+    },
+    {
       name : "aks-platform",
       envs : ["d", "u", "p"],
-      kv_name : "pagopa-%s-kv",
-      rg_name : "pagopa-%s-sec-rg",
-      region : "weu"
+      key_vaults : {
+        weu : {
+          kv_name : "pagopa-%s-kv",
+          rg_name : "pagopa-%s-sec-rg",
+        }
+      }
+      regions : ["weu"],
       code_review : true,
       deploy : true,
       pipeline_prefix : "aks-platform",
@@ -158,9 +201,13 @@ locals {
     {
       name : "aks-italy",
       envs : ["d", "u", "p"],
-      kv_name : "pagopa-%s-itn-core-kv",
-      rg_name : "pagopa-%s-itn-core-sec-rg",
-      region : "itn"
+      regions : ["itn"],
+      key_vaults : {
+        itn : {
+          kv_name : "pagopa-%s-itn-core-kv",
+          rg_name : "pagopa-%s-itn-core-sec-rg",
+        }
+      }
       code_review : true,
       deploy : true,
       pipeline_prefix : "aks-italy",
@@ -173,9 +220,8 @@ locals {
     {
       name : "audit-logs",
       envs : ["d", "u", "p"],
-      kv_name : "",
-      rg_name : "",
-      region : "weu"
+      key_vaults : {},
+      regions : ["weu"],
       code_review : true,
       deploy : true,
       pipeline_prefix : "audit-logs",
@@ -188,7 +234,8 @@ locals {
     {
       name : "client-certs",
       envs : ["d", "u", "p"],
-      region : "weu"
+      key_vaults : {},
+      regions : ["weu"],
       code_review : true,
       deploy : true,
       pipeline_prefix : "client-certs",
@@ -213,7 +260,8 @@ locals {
     {
       name : "client-certs-promote",
       envs : ["d", "u", "p"],
-      region : "weu"
+      regions : ["weu"],
+      key_vaults : {},
       code_review : false,
       deploy : true,
       pipeline_prefix : "client-certs-promotion",
@@ -227,9 +275,8 @@ locals {
     {
       name : "cloudo",
       envs : ["d", "u", "p"],
-      kv_name : "",
-      rg_name : "",
-      region : "itn"
+      key_vaults : {},
+      regions : ["itn"],
       code_review : true,
       deploy : true,
       pipeline_prefix : "cloudo",
@@ -242,9 +289,8 @@ locals {
     {
       name : "core-itn",
       envs : ["d", "u", "p"],
-      kv_name : "",
-      rg_name : "",
-      region : "itn"
+      key_vaults : {},
+      regions : ["itn"],
       code_review : true,
       deploy : true,
       pipeline_prefix : "core-itn",
@@ -257,9 +303,8 @@ locals {
     {
       name : "db-security",
       envs : ["d", "p"],
-      kv_name : "",
-      rg_name : "",
-      region : "itn"
+      key_vaults : {},
+      regions : ["itn"],
       code_review : true,
       deploy : true,
       pipeline_prefix : "db-security",
@@ -272,9 +317,8 @@ locals {
     {
       name : "db-security-configuration",
       envs : ["d", "p"],
-      kv_name : "",
-      rg_name : "",
-      region : "itn"
+      key_vaults : {},
+      regions : ["itn"],
       code_review : true,
       deploy : true,
       pipeline_prefix : "db-security-configuration",
@@ -287,9 +331,8 @@ locals {
     {
       name : "grafana-monitoring",
       envs : ["d", "u", "p"],
-      kv_name : "",
-      rg_name : "",
-      region : "weu"
+      key_vaults : {},
+      regions : ["weu"],
       code_review : true,
       deploy : true,
       pipeline_prefix : "grafana-monitoring",
@@ -302,9 +345,8 @@ locals {
     {
       name : "network",
       envs : ["d", "u", "p"],
-      kv_name : "",
-      rg_name : "",
-      region : "weu"
+      key_vaults : {},
+      regions : ["weu"],
       code_review : true,
       deploy : true,
       pipeline_prefix : "network",
@@ -317,9 +359,13 @@ locals {
     {
       name : "next-aks",
       envs : ["d"],
-      kv_name : "pagopa-%s-kv",
-      rg_name : "pagopa-%s-sec-rg",
-      region : "weu"
+      key_vaults : {
+        weu : {
+          kv_name : "pagopa-%s-kv",
+          rg_name : "pagopa-%s-sec-rg",
+        }
+      }
+      regions : ["weu"],
       code_review : true,
       deploy : true,
       pipeline_prefix : "next-aks",
@@ -332,9 +378,8 @@ locals {
     {
       name : "next-core",
       envs : ["d", "u", "p"],
-      kv_name : "",
-      rg_name : "",
-      region : "weu"
+      key_vaults : {},
+      regions : ["weu"],
       code_review : true,
       deploy : true,
       pipeline_prefix : "next-core",
@@ -347,9 +392,8 @@ locals {
     {
       name : "packer-image",
       envs : ["d", "u", "p"],
-      kv_name : "",
-      rg_name : "",
-      region : "weu"
+      key_vaults : {},
+      regions : ["weu"],
       code_review : true,
       deploy : true,
       pipeline_prefix : "packer",
@@ -362,9 +406,8 @@ locals {
     {
       name : "release-notes-agent",
       envs : ["d"],
-      kv_name : "",
-      rg_name : "",
-      region : "weu"
+      key_vaults : {},
+      regions : ["weu"],
       code_review : true,
       deploy : true,
       pipeline_prefix : "release-notes-agent",
@@ -377,9 +420,8 @@ locals {
     {
       name : "synthetic-monitoring",
       envs : ["d", "u", "p"],
-      kv_name : "",
-      rg_name : "",
-      region : "weu"
+      key_vaults : {},
+      regions : ["weu"],
       code_review : true,
       deploy : true,
       pipeline_prefix : "synthetic-monitoring",
@@ -392,9 +434,8 @@ locals {
     {
       name : "tf-audit",
       envs : ["p"],
-      kv_name : "",
-      rg_name : "",
-      region : "weu"
+      key_vaults : {},
+      regions : ["weu"],
       code_review : true,
       deploy : true,
       pipeline_prefix : "tf-audit",

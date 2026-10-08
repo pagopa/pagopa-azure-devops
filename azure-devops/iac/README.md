@@ -10,8 +10,13 @@ definitions =  [
     {
       name: "payhub",
       envs: ["d"],
-      kv_name: "p4pa-%s-payhub-kv",
-      rg_name: "p4pa-%s-itn-payhub-sec-rg",
+      key_vaults: {
+        itn: {
+          kv_name: "p4pa-%s-payhub-kv",
+          rg_name: "p4pa-%s-itn-payhub-sec-rg",
+        }
+      }
+      regions: ["itn"]
       code_review: true,
       deploy: true,
       pipeline_prefix: "payhub-infra",
@@ -38,9 +43,11 @@ The `definitions` section defines the definitions for which the pipelines defini
 
 - **name**: name of the domain
 - **envs**: list of environments (initials) in which the domain resource are available {`d`, `u`, `p`}. Used to avoid failures when a domain keyvault has not been created on a certain environment
-- **kv_name**: name of the domain keyvault. must contain the placeholder string `%s` in place of the environment; will be resolved at run time. Set to `""` if the domain does not need AKS secrets
-- **rg_name**: resource group name of the domain keyvault. must contain the placeholder string `%s` in place of the environment; will be resolved at run time. Set to `""` if the domain does not need AKS secrets
-- **region**: Azure region where the AKS cluster is deployed. Accepted values: `"weu"` (West Europe), `"itn"` (Italy North)
+- **key_vaults**: map of region-key_vault configuration where to retrieve the secret for the domain
+  - **<region>**: region name where the domain keyvault is deployed (e.g. `itn`, `weu`)
+    - **kv_name**: name of the domain keyvault. must contain the placeholder string `%s` in place of the environment; will be resolved at run time. Set to `""` if the domain does not need AKS secrets
+    - **rg_name**: resource group name of the domain keyvault. must contain the placeholder string `%s` in place of the environment; will be resolved at run time. Set to `""` if the domain does not need AKS secrets
+- **regions**: list of Azure region where the AKS cluster is deployed. Accepted values: `"weu"` (West Europe), `"itn"` (Italy North)
 - **code_review**: if true, enables the creation of the code review pipeline
 - **deploy**: if true, enables the creation of the deploy pipeline
 - **pipeline_prefix**: prefix assigned to the pipelines being created
@@ -68,9 +75,13 @@ Domain with full AKS secrets and all environments:
 {
   name            : "checkout",
   envs            : ["d", "u", "p"],
-  kv_name         : "pagopa-%s-checkout-kv",
-  rg_name         : "pagopa-%s-checkout-sec-rg",
-  region          : "weu",
+  regions         : ["weu"],
+  key_vaults      : {
+    weu : {
+      kv_name : "pagopa-%s-checkout-kv",
+      rg_name : "pagopa-%s-checkout-sec-rg"
+    }
+  },
   code_review     : true,
   deploy          : true,
   pipeline_prefix : "checkout",
@@ -87,9 +98,8 @@ Domain without AKS secrets (no Key Vault integration needed):
 {
   name            : "next-core-secrets",
   envs            : ["d", "u", "p"],
-  kv_name         : "",
-  rg_name         : "",
-  region          : "weu",
+  key_vaults      : {},
+  regions         : ["weu"],
   code_review     : true,
   deploy          : false,
   pipeline_prefix : "next-core-secrets",

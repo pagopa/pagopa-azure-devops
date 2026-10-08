@@ -2,10 +2,25 @@
 # pagopa KEYVAULT
 #
 
+locals {
+  definitions_by_region = merge([
+    for d in local.definitions : {
+      for r in d.regions : "${d.name}-${r}" => merge(
+        d,
+        { region = r },
+        try(d.key_vaults[r], null) != null ? {
+          kv_name = d.key_vaults[r].kv_name
+          rg_name = d.key_vaults[r].rg_name
+        } : {}
+      )
+    }
+  ]...)
+}
+
 module "dev_secrets" {
   source = "git::https://github.com/pagopa/terraform-azurerm-v3.git//key_vault_secrets_query?ref=v7.48.0"
 
-  for_each = { for d in local.definitions : d.name => d if contains(d.envs, "d") && try(d.kv_name, "") != "" }
+  for_each = { for k, d in local.definitions_by_region : k => d if contains(d.envs, "d") && try(d.kv_name, "") != "" }
 
   providers = {
     azurerm = azurerm.dev
@@ -24,7 +39,7 @@ module "dev_secrets" {
 module "uat_secrets" {
   source = "git::https://github.com/pagopa/terraform-azurerm-v3.git//key_vault_secrets_query?ref=v7.48.0"
 
-  for_each = { for d in local.definitions : d.name => d if contains(d.envs, "u") && try(d.kv_name, "") != "" }
+  for_each = { for k, d in local.definitions_by_region : k => d if contains(d.envs, "u") && try(d.kv_name, "") != "" }
 
   providers = {
     azurerm = azurerm.uat
@@ -44,7 +59,7 @@ module "uat_secrets" {
 module "prod_secrets" {
   source = "git::https://github.com/pagopa/terraform-azurerm-v3.git//key_vault_secrets_query?ref=v7.48.0"
 
-  for_each = { for d in local.definitions : d.name => d if contains(d.envs, "p") && try(d.kv_name, "") != "" }
+  for_each = { for k, d in local.definitions_by_region : k => d if contains(d.envs, "p") && try(d.kv_name, "") != "" }
 
   providers = {
     azurerm = azurerm.prod
