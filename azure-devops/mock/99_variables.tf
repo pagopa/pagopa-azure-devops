@@ -34,6 +34,12 @@ locals {
   dev_mock_key_vault_resource_group = "${local.prefix}-d-${local.domain}-sec-rg"
   uat_mock_key_vault_resource_group = "${local.prefix}-u-${local.domain}-sec-rg"
 
+  dev_shared_key_vault_name = "${local.prefix}-d-shared-kv"
+  uat_shared_key_vault_name = "${local.prefix}-u-shared-kv"
+
+  dev_shared_key_vault_resource_group = "${local.prefix}-d-shared-sec-rg"
+  uat_shared_key_vault_resource_group = "${local.prefix}-u-shared-sec-rg"
+
   # ☁️ VNET
   dev_vnet_rg = "${local.prefix}-d-vnet-rg"
   uat_vnet_rg = "${local.prefix}-u-vnet-rg"
@@ -126,4 +132,16 @@ variable "service_connection_uat_acr_name" {
 variable "service_connection_prod_acr_name" {
   type        = string
   description = "ACR service connection PROD name"
+}
+
+variable "acr_weu_service_connection_workload_identity_dev" {
+  type        = string
+  description = "The service connection ID for the WEU DEV workload identity in Azure Container Registry"
+  default     = ""
+}
+
+variable "acr_weu_service_connection_workload_identity_uat" {
+  type        = string
+  description = "The service connection ID for the WEU UAT workload identity in Azure Container Registry"
+  default     = ""
 }
