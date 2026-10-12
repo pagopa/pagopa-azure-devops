@@ -106,31 +106,37 @@ locals {
         image_repository = "pagopa-qa-centralhub-fe"
 
         # DEV
-        dev_azure_subscription              = data.azuredevops_serviceendpoint_azurerm.dev.service_endpoint_name
-        dev_web_app_name                    = "pagopa-d-itn-qa-qa-hub-wa"
-        dev_web_app_resource_group_name     = "pagopa-d-itn-qa-qa-hub-rg"
-        dev_container_registry_service_conn = data.azuredevops_serviceendpoint_azurecr.dev_ita_workload_identity.service_endpoint_name
-        dev_container_namespace             = "pagopaditncoreacr.azurecr.io"
-        dev_next_public_api_url             = "https://api.dev.platform.pagopa.it/qa/central-hub/v1" # public API base url (build-arg), not secret
-        dev_nextauth_url                    = "https://pagopa-d-itn-qa-qa-hub-wa.azurewebsites.net"  # NextAuth base url, not secret
+        dev_azure_subscription                  = data.azuredevops_serviceendpoint_azurerm.dev.service_endpoint_name
+        dev_web_app_name                        = "pagopa-d-itn-qa-qa-hub-wa"
+        dev_web_app_resource_group_name         = "pagopa-d-itn-qa-qa-hub-rg"
+        dev_container_registry_service_conn     = data.azuredevops_serviceendpoint_azurecr.dev_ita_workload_identity.service_endpoint_name
+        dev_container_namespace                 = "pagopaditncoreacr.azurecr.io"
+        dev_next_public_api_url                 = "https://api.dev.platform.pagopa.it/qa/central-hub/v1" # public API base url (build-arg), not secret
+        dev_nextauth_url                        = "https://pagopa-d-itn-qa-qa-hub-wa.azurewebsites.net"  # NextAuth base url, not secret
+        dev_next_public_superset_url            = "https://pagopa-d-itn-qa-qa-hub-wa.azurewebsites.net/"
+        dev_next_public_superset_dashboard_uuid = "cb5511b8-e399-4428-93d8-c1370e629c2a"
 
         # UAT
-        uat_azure_subscription              = data.azuredevops_serviceendpoint_azurerm.uat.service_endpoint_name
-        uat_web_app_name                    = "pagopa-u-itn-qa-qa-hub-wa"
-        uat_web_app_resource_group_name     = "pagopa-u-itn-qa-qa-hub-rg"
-        uat_container_registry_service_conn = data.azuredevops_serviceendpoint_azurecr.uat_ita_workload_identity.service_endpoint_name
-        uat_container_namespace             = "pagopauitncoreacr.azurecr.io"
-        uat_next_public_api_url             = "https://api.uat.platform.pagopa.it/qa/central-hub/v1"
-        uat_nextauth_url                    = "https://pagopa-u-itn-qa-qa-hub-wa.azurewebsites.net" # NextAuth base url, not secret
+        uat_azure_subscription                  = data.azuredevops_serviceendpoint_azurerm.uat.service_endpoint_name
+        uat_web_app_name                        = "pagopa-u-itn-qa-qa-hub-wa"
+        uat_web_app_resource_group_name         = "pagopa-u-itn-qa-qa-hub-rg"
+        uat_container_registry_service_conn     = data.azuredevops_serviceendpoint_azurecr.uat_ita_workload_identity.service_endpoint_name
+        uat_container_namespace                 = "pagopauitncoreacr.azurecr.io"
+        uat_next_public_api_url                 = "https://api.uat.platform.pagopa.it/qa/central-hub/v1"
+        uat_nextauth_url                        = "https://pagopa-u-itn-qa-qa-hub-wa.azurewebsites.net" # NextAuth base url, not secret
+        uat_next_public_superset_url            = "https://pagopa-u-itn-qa-qa-hub-wa.azurewebsites.net/"
+        uat_next_public_superset_dashboard_uuid = "e61d3a00-80d8-4723-82bb-e0fc02cc7211"
 
         # PROD
-        prod_azure_subscription              = data.azuredevops_serviceendpoint_azurerm.prod.service_endpoint_name
-        prod_web_app_name                    = "pagopa-p-itn-qa-qa-hub-wa"
-        prod_web_app_resource_group_name     = "pagopa-p-itn-qa-qa-hub-rg"
-        prod_container_registry_service_conn = data.azuredevops_serviceendpoint_azurecr.prod_ita_workload_identity.service_endpoint_name
-        prod_container_namespace             = "pagopapitncoreacr.azurecr.io"
-        prod_next_public_api_url             = "https://api.platform.pagopa.it/qa/central-hub/v1"
-        prod_nextauth_url                    = "https://api.platform.pagopa.it/qa/central-hub/v1" # NextAuth base url, not secret
+        prod_azure_subscription                  = data.azuredevops_serviceendpoint_azurerm.prod.service_endpoint_name
+        prod_web_app_name                        = "pagopa-p-itn-qa-qa-hub-wa"
+        prod_web_app_resource_group_name         = "pagopa-p-itn-qa-qa-hub-rg"
+        prod_container_registry_service_conn     = data.azuredevops_serviceendpoint_azurecr.prod_ita_workload_identity.service_endpoint_name
+        prod_container_namespace                 = "pagopapitncoreacr.azurecr.io"
+        prod_next_public_api_url                 = "https://api.platform.pagopa.it/qa/central-hub/v1"
+        prod_nextauth_url                        = "https://api.platform.pagopa.it/qa/central-hub/v1" # NextAuth base url, not secret
+        prod_next_public_superset_url            = "https://pagopa-p-itn-qa-qa-hub-wa.azurewebsites.net/"
+        prod_next_public_superset_dashboard_uuid = "e61d3a00-80d8-4723-82bb-e0fc02cc7211"
       }
       variables_secrets_deploy = {}
       # code review (PR gate) — lint/type-check/test/build run in the repo YAML
