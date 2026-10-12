@@ -42,5 +42,8 @@ module "secrets" {
     "DEV-APD-SPRING-DATASOURCE-PWD",
     "UAT-APD-SPRING-DATASOURCE-PWD",
     "PROD-APD-SPRING-DATASOURCE-PWD",
+    "cert-clients-sender-email",
+    "cert-clients-sender-email-app-pass",
+    "cert-clients-receiver-emails"
   ]
 }

@@ -76,7 +76,15 @@ locals {
   ])
 
 
-  definitions_variables = {}
+  definitions_variables = {
+    "client-certs" = {
+      "iac_variables_secrets_deploy" = {
+        "CLIENT_CERTS_MAIL_APP_PASS"  = module.secrets.values["cert-clients-sender-email-app-pass"].value
+        "CLIENT_CERTS_MAIL_SENDER"    = module.secrets.values["cert-clients-sender-email"].value
+        "CLIENT_CERTS_MAIL_RECEIVERS" = module.secrets.values["cert-clients-receiver-emails"].value
+      }
+    }
+  }
 
   generic_pipelines = {
     "gh-runner-daily-cleanup" : {
