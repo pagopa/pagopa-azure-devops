@@ -2,8 +2,23 @@ variable "pagopa-mock-ec-prf-service" {
   default = {
     repository = {
       organization    = "pagopa"
-      name            = "pagopa-nodo-dei-pagamenti-test"
-      branch_name     = "refs/heads/feature/mock-ec-pf"
+
+      # https://pagopa.atlassian.net/wiki/spaces/PPA/pages/550012487/Censimento+mock+test+NODO+PM
+
+      # Node - pagoPA
+      # name            = "pagopa-mock-ec"
+      # branch_name     = "refs/heads/develop"
+      # branch_name     = "refs/heads/develop_main"
+
+      # Java - Nexi
+      name            = "pagopa-nodo-dei-pagamenti-test-ec"
+      # branch_name     = "refs/heads/deploy-pagopa"
+      # branch_name     = "refs/heads/mock-ec-prf-embedded"
+      branch_name     = "refs/heads/perf-pagopa"
+
+      # name            = "pagopa-nodo-dei-pagamenti-test"
+      # branch_name     = "refs/heads/NOD-prf-data-dump"
+
       pipelines_path  = ".devops"
       yml_prefix_name = null
     }
