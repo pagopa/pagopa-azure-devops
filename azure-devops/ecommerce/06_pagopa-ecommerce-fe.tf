@@ -41,6 +41,8 @@ locals {
   }
   # code_review secrets
   pagopa-ecommerce-fe-variables_secret_code_review = {
+    #make use of the same api key used in checkout-fe CR tests
+    checkout-test-npg-api-key = module.secrets.values["checkout-test-npg-api-key"].value
   }
   # deploy vars
   pagopa-ecommerce-fe-variables_deploy = {

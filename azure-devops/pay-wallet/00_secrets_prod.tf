@@ -15,5 +15,6 @@ module "secrets" {
     "azure-devops-github-pr-TOKEN",
     "azure-devops-github-EMAIL",
     "azure-devops-github-USERNAME",
+    "checkout-test-npg-api-key"
   ]
 }
