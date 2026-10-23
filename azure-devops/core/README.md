@@ -3,7 +3,7 @@
 ## Requirements
 
 | Name | Version |
-|------|---------|
+| ---- | ------- |
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.3.5 |
 | <a name="requirement_azuredevops"></a> [azuredevops](#requirement\_azuredevops) | ~> 1.9 |
 | <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) | ~> 3.117 |
@@ -11,7 +11,7 @@
 ## Modules
 
 | Name | Source | Version |
-|------|--------|---------|
+| ---- | ------ | ------- |
 | <a name="module___azdo__"></a> [\_\_azdo\_\_](#module\_\_\_azdo\_\_) | git::https://github.com/pagopa/azuredevops-tf-modules.git | 0ae8d9d49f92f690afc66a39f245924a04aa274b |
 | <a name="module___v3__"></a> [\_\_v3\_\_](#module\_\_\_v3\_\_) | git::https://github.com/pagopa/terraform-azurerm-v3.git | 33777a27f8f917a96220f5cf8fb3c3eee8e594b0 |
 | <a name="module_dev_afm_tls_cert_service_conn"></a> [dev\_afm\_tls\_cert\_service\_conn](#module\_dev\_afm\_tls\_cert\_service\_conn) | ./.terraform/modules/__azdo__/azuredevops_serviceendpoint_federated | n/a |
@@ -85,7 +85,7 @@
 ## Resources
 
 | Name | Type |
-|------|------|
+| ---- | ---- |
 | [azuredevops_environment.environments](https://registry.terraform.io/providers/microsoft/azuredevops/latest/docs/resources/environment) | resource |
 | [azuredevops_project.project](https://registry.terraform.io/providers/microsoft/azuredevops/latest/docs/resources/project) | resource |
 | [azuredevops_serviceendpoint_azurecr.acr_docker_registry_dev](https://registry.terraform.io/providers/microsoft/azuredevops/latest/docs/resources/serviceendpoint_azurecr) | resource |
@@ -146,7 +146,7 @@
 ## Inputs
 
 | Name | Description | Type | Default | Required |
-|------|-------------|------|---------|:--------:|
+| ---- | ----------- | ---- | ------- | :------: |
 | <a name="input_acr_ita_service_connection_workload_identity_dev"></a> [acr\_ita\_service\_connection\_workload\_identity\_dev](#input\_acr\_ita\_service\_connection\_workload\_identity\_dev) | The service connection ID for the ITA DEV workload identity in Azure Container Registry | `string` | `""` | no |
 | <a name="input_acr_ita_service_connection_workload_identity_prod"></a> [acr\_ita\_service\_connection\_workload\_identity\_prod](#input\_acr\_ita\_service\_connection\_workload\_identity\_prod) | The service connection ID for the ITA PROD workload identity in Azure Container Registry | `string` | `""` | no |
 | <a name="input_acr_ita_service_connection_workload_identity_uat"></a> [acr\_ita\_service\_connection\_workload\_identity\_uat](#input\_acr\_ita\_service\_connection\_workload\_identity\_uat) | The service connection ID for the ITA UAT workload identity in Azure Container Registry | `string` | `""` | no |
@@ -195,7 +195,7 @@
 ## Outputs
 
 | Name | Description |
-|------|-------------|
+| ---- | ----------- |
 | <a name="output_service_endpoint_azure_dev_id"></a> [service\_endpoint\_azure\_dev\_id](#output\_service\_endpoint\_azure\_dev\_id) | n/a |
 | <a name="output_service_endpoint_azure_dev_name"></a> [service\_endpoint\_azure\_dev\_name](#output\_service\_endpoint\_azure\_dev\_name) | n/a |
 | <a name="output_service_endpoint_azure_devops_github_pr_id"></a> [service\_endpoint\_azure\_devops\_github\_pr\_id](#output\_service\_endpoint\_azure\_devops\_github\_pr\_id) | n/a |
