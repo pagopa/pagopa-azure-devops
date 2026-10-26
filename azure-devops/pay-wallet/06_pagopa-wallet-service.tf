@@ -8,8 +8,9 @@ variable "pagopa-wallet-service" {
       yml_prefix_name = "pay-wallet"
     }
     pipeline = {
-      enable_code_review = true
-      enable_deploy      = true
+      enable_code_review  = true
+      enable_deploy       = true
+      use_primary_api_key = true
       sonarcloud = {
         # TODO azure devops terraform provider does not support SonarCloud service endpoint
         service_connection = "SONARCLOUD-SERVICE-CONN"
@@ -76,6 +77,8 @@ locals {
     migration_api_key_test_dev       = module.wallet_dev_secrets.values["wallet-migration-api-key-test-dev"].value
     migration_cstar_api_key_test_dev = module.wallet_dev_secrets.values["wallet-migration-cstar-api-key-test-dev"].value
     migration_wallet_token_test_dev  = module.wallet_dev_secrets.values["migration-wallet-token-test-dev"].value
+    wallet_service_api_key_dev       = var.pagopa-jwt-issuer-service.pipeline.use_primary_api_key ? module.wallet_dev_secrets.values["payment-wallet-service-primary-api-key"].value : module.wallet_dev_secrets.values["payment-wallet-service-secondary-api-key"].value
+    wallet_service_api_key_uat       = var.pagopa-jwt-issuer-service.pipeline.use_primary_api_key ? module.wallet_uat_secrets.values["payment-wallet-service-primary-api-key"].value : module.wallet_uat_secrets.values["payment-wallet-service-secondary-api-key"].value
   }
 }
 
