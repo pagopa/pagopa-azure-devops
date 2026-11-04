@@ -36,6 +36,10 @@ locals {
   uat_afm_key_vault_name  = "${local.prefix}-u-afm-kv"
   prod_afm_key_vault_name = "${local.prefix}-p-afm-kv"
 
+  dev_cpm_key_vault_name  = "${local.prefix}-d-itn-cpm-kv"
+  uat_cpm_key_vault_name  = "${local.prefix}-u-itn-cpm-kv"
+  prod_cpm_key_vault_name = "${local.prefix}-p-itn-cpm-kv"
+
   # KV RG
 
   dev_key_vault_resource_group  = "${local.prefix}-d-sec-rg"
@@ -58,6 +62,9 @@ locals {
   uat_afm_key_vault_resource_group  = "${local.prefix}-u-afm-sec-rg"
   prod_afm_key_vault_resource_group = "${local.prefix}-p-afm-sec-rg"
 
+  dev_cpm_key_vault_resource_group  = "${local.prefix}-d-itn-cpm-sec-rg"
+  uat_cpm_key_vault_resource_group  = "${local.prefix}-u-itn-cpm-sec-rg"
+  prod_cpm_key_vault_resource_group = "${local.prefix}-p-itn-cpm-sec-rg"
 
   # ☁️ VNET
   dev_vnet_rg  = "${local.prefix}-d-vnet-rg"
