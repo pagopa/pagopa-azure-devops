@@ -19,6 +19,8 @@ module "wallet_dev_secrets" {
     "migration-wallet-token-test-dev",
     "pay-wallet-jwt-issuer-service-primary-api-key",
     "pay-wallet-jwt-issuer-service-secondary-api-key",
+    "payment-wallet-service-primary-api-key",
+    "payment-wallet-service-secondary-api-key",
   ]
 }
 
@@ -42,6 +44,8 @@ module "wallet_uat_secrets" {
     "receiver-evt-rx-event-hub-connection-string-test",
     "pay-wallet-jwt-issuer-service-primary-api-key",
     "pay-wallet-jwt-issuer-service-secondary-api-key",
+    "payment-wallet-service-primary-api-key",
+    "payment-wallet-service-secondary-api-key",
   ]
 }
 
