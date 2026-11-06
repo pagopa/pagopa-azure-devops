@@ -420,6 +420,45 @@ resource "azurerm_key_vault_access_policy" "UAT-AFM-TLS-CERT-SERVICE-CONN_kv_uat
 }
 
 #
+# ⛩ Service connection 3 🔐 KV-CPM@UAT 🟢
+#
+
+#tfsec:ignore:GEN003
+module "uat_cpm_tls_cert_service_conn" {
+  depends_on = [azuredevops_project.project]
+  source     = "./.terraform/modules/__azdo__/azuredevops_serviceendpoint_federated"
+  providers = {
+    azurerm = azurerm.uat
+  }
+
+  project_id = azuredevops_project.project.id
+  #tfsec:ignore:general-secrets-no-plaintext-exposure
+  name              = "${local.prefix}-cpm-u-${local.domain}-azdo-tls-cert-kv-policy"
+  tenant_id         = data.azurerm_client_config.current.tenant_id
+  subscription_id   = data.azurerm_subscriptions.uat.subscriptions[0].subscription_id
+  subscription_name = var.uat_subscription_name
+
+  location            = var.location
+  resource_group_name = local.uat_identity_rg_name
+}
+
+data "azurerm_key_vault" "kv_cpm_uat" {
+  provider            = azurerm.uat
+  name                = local.uat_cpm_key_vault_name
+  resource_group_name = local.uat_cpm_key_vault_resource_group
+}
+
+resource "azurerm_key_vault_access_policy" "UAT-CPM-TLS-CERT-SERVICE-CONN_kv_dev" {
+  provider = azurerm.uat
+
+  key_vault_id = data.azurerm_key_vault.kv_cpm_uat.id
+  tenant_id    = data.azurerm_client_config.current.tenant_id
+  object_id    = module.uat_cpm_tls_cert_service_conn.service_principal_object_id
+
+  certificate_permissions = ["Get", "Import"]
+}
+
+#
 # ⛩ Service connection 3 🔐 KV-SHARED@PROD 🟢
 #
 #tfsec:ignore:GEN003
@@ -489,6 +528,45 @@ resource "azurerm_key_vault_access_policy" "PROD-AFM-TLS-CERT-SERVICE-CONN_kv_pr
   key_vault_id = data.azurerm_key_vault.kv_afm_prod.id
   tenant_id    = data.azurerm_client_config.current.tenant_id
   object_id    = module.prod_afm_tls_cert_service_conn.service_principal_object_id
+
+  certificate_permissions = ["Get", "Import"]
+}
+
+#
+# ⛩ Service connection 3 🔐 KV-CPM@PROD 🟢
+#
+
+#tfsec:ignore:GEN003
+module "prod_cpm_tls_cert_service_conn" {
+  depends_on = [azuredevops_project.project]
+  source     = "./.terraform/modules/__azdo__/azuredevops_serviceendpoint_federated"
+  providers = {
+    azurerm = azurerm.prod
+  }
+
+  project_id = azuredevops_project.project.id
+  #tfsec:ignore:general-secrets-no-plaintext-exposure
+  name              = "${local.prefix}-cpm-p-${local.domain}-azdo-tls-cert-kv-policy"
+  tenant_id         = data.azurerm_client_config.current.tenant_id
+  subscription_id   = data.azurerm_subscriptions.prod.subscriptions[0].subscription_id
+  subscription_name = var.prod_subscription_name
+
+  location            = var.location
+  resource_group_name = local.prod_identity_rg_name
+}
+
+data "azurerm_key_vault" "kv_cpm_prod" {
+  provider            = azurerm.prod
+  name                = local.prod_cpm_key_vault_name
+  resource_group_name = local.prod_cpm_key_vault_resource_group
+}
+
+resource "azurerm_key_vault_access_policy" "PROD-CPM-TLS-CERT-SERVICE-CONN_kv_prod" {
+  provider = azurerm.prod
+
+  key_vault_id = data.azurerm_key_vault.kv_cpm_prod.id
+  tenant_id    = data.azurerm_client_config.current.tenant_id
+  object_id    = module.prod_cpm_tls_cert_service_conn.service_principal_object_id
 
   certificate_permissions = ["Get", "Import"]
 }

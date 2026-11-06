@@ -84,19 +84,6 @@ locals {
       )
       cert_diff_variables = local.dev_cert_diff_variables
     }
-    icinga-internal-dev-platform-pagopa-it : {
-      env             = "dev"
-      dns_record_name = "icinga.internal"
-      variables       = {}
-      variables_secret = merge(
-        local.cert_diff_env_variables_dev
-      )
-      #cert_diff_variables = local.dev_cert_diff_variables # Not enabled
-      schedules = {
-        start_hours   = 4
-        start_minutes = 0
-      }
-    }
     # UAT
     api-uat-platform-pagopa-it : {
       env             = "uat"
@@ -156,19 +143,6 @@ locals {
       cert_diff_variables = local.uat_cert_diff_variables
       schedules = {
         start_hours = 7
-      }
-    }
-    icinga-internal-uat-platform-pagopa-it : {
-      env             = "uat"
-      dns_record_name = "icinga.internal"
-      variables       = {}
-      variables_secret = merge(
-        local.cert_diff_env_variables_uat
-      )
-      #cert_diff_variables = local.uat_cert_diff_variables # Not enabled
-      schedules = {
-        start_hours   = 5
-        start_minutes = 0
       }
     }
     # PROD
@@ -231,19 +205,6 @@ locals {
       schedules = {
         start_hours   = 17
         start_minutes = 10
-      }
-    }
-    icinga-internal-platform-pagopa-it : {
-      env             = "prod"
-      dns_record_name = "icinga.internal"
-      variables       = {}
-      variables_secret = merge(
-        local.cert_diff_env_variables_prod
-      )
-      #cert_diff_variables = local.prod_cert_diff_variables # Not enabled
-      schedules = {
-        start_hours   = 3
-        start_minutes = 0
       }
     }
   }
