@@ -448,7 +448,7 @@ data "azurerm_key_vault" "kv_cpm_uat" {
   resource_group_name = local.uat_cpm_key_vault_resource_group
 }
 
-resource "azurerm_key_vault_access_policy" "UAT-CPM-TLS-CERT-SERVICE-CONN_kv_dev" {
+resource "azurerm_key_vault_access_policy" "UAT-CPM-TLS-CERT-SERVICE-CONN_kv_uat" {
   provider = azurerm.uat
 
   key_vault_id = data.azurerm_key_vault.kv_cpm_uat.id
