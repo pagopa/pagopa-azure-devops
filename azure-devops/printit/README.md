@@ -4,7 +4,7 @@
 ## Requirements
 
 | Name | Version |
-|------|---------|
+| ---- | ------- |
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.3.5 |
 | <a name="requirement_azuredevops"></a> [azuredevops](#requirement\_azuredevops) | <= 1.1.1 |
 | <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) | <= 3.107.0 |
@@ -14,7 +14,7 @@
 ## Modules
 
 | Name | Source | Version |
-|------|--------|---------|
+| ---- | ------ | ------- |
 | <a name="module_DEV-PRINTIT-TLS-CERT-SERVICE-CONN"></a> [DEV-PRINTIT-TLS-CERT-SERVICE-CONN](#module\_DEV-PRINTIT-TLS-CERT-SERVICE-CONN) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated | v9.0.0 |
 | <a name="module_PROD-PRINTIT-TLS-CERT-SERVICE-CONN"></a> [PROD-PRINTIT-TLS-CERT-SERVICE-CONN](#module\_PROD-PRINTIT-TLS-CERT-SERVICE-CONN) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated | v9.0.0 |
 | <a name="module_UAT-PRINTIT-TLS-CERT-SERVICE-CONN"></a> [UAT-PRINTIT-TLS-CERT-SERVICE-CONN](#module\_UAT-PRINTIT-TLS-CERT-SERVICE-CONN) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated | v9.0.0 |
@@ -33,7 +33,7 @@
 ## Resources
 
 | Name | Type |
-|------|------|
+| ---- | ---- |
 | [azuredevops_serviceendpoint_kubernetes.aks_dev](https://registry.terraform.io/providers/microsoft/azuredevops/latest/docs/resources/serviceendpoint_kubernetes) | resource |
 | [azuredevops_serviceendpoint_kubernetes.aks_prod](https://registry.terraform.io/providers/microsoft/azuredevops/latest/docs/resources/serviceendpoint_kubernetes) | resource |
 | [azuredevops_serviceendpoint_kubernetes.aks_uat](https://registry.terraform.io/providers/microsoft/azuredevops/latest/docs/resources/serviceendpoint_kubernetes) | resource |
@@ -58,7 +58,7 @@
 ## Inputs
 
 | Name | Description | Type | Default | Required |
-|------|-------------|------|---------|:--------:|
+| ---- | ----------- | ---- | ------- | :------: |
 | <a name="input_dev_subscription_name"></a> [dev\_subscription\_name](#input\_dev\_subscription\_name) | DEV Subscription name | `string` | n/a | yes |
 | <a name="input_pagopa-print-payment-notice-service"></a> [pagopa-print-payment-notice-service](#input\_pagopa-print-payment-notice-service) | n/a | `map` | <pre>{<br/>  "pipeline": {<br/>    "performance_test": {<br/>      "enabled": true,<br/>      "name": "performance-test-pipeline",<br/>      "pipeline_yml_filename": "performance-test-pipelines.yaml"<br/>    }<br/>  },<br/>  "repository": {<br/>    "branch_name": "refs/heads/main",<br/>    "name": "pagopa-print-payment-notice-service",<br/>    "organization": "pagopa",<br/>    "pipelines_path": ".devops",<br/>    "yml_prefix_name": null<br/>  }<br/>}</pre> | no |
 | <a name="input_pipeline_environments"></a> [pipeline\_environments](#input\_pipeline\_environments) | List of environments pipeline to create | `list(any)` | n/a | yes |
