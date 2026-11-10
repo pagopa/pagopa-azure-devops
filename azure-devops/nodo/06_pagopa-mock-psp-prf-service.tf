@@ -2,8 +2,10 @@ variable "pagopa-mock-psp-prf-service" {
   default = {
     repository = {
       organization    = "pagopa"
+      # name            = "pagopa-nodo-dei-pagamenti-test-psp"
+      # branch_name     = "refs/heads/develop"
       name            = "pagopa-nodo-dei-pagamenti-test-psp"
-      branch_name     = "refs/heads/develop"
+      branch_name     = "refs/heads/perf-pagopa"
       pipelines_path  = ".devops"
       yml_prefix_name = null
     }
