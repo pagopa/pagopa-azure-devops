@@ -12,7 +12,8 @@ module "posgw_dev_secrets" {
   secrets = [
     "pagopa-d-itn-dev-aks-azure-devops-sa-token",
     "pagopa-d-itn-dev-aks-azure-devops-sa-cacrt",
-    "pagopa-d-itn-dev-aks-apiserver-url"
+    "pagopa-d-itn-dev-aks-apiserver-url",
+    "debtposition-handler-api-key"
   ]
 }
 

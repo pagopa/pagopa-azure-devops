@@ -68,10 +68,11 @@ locals {
   }
   # deploy secrets
   pagopa-posgw-debtposition-handler-variables_secret_deploy = {
-    git_mail        = module.secrets.values["azure-devops-github-EMAIL"].value
-    git_username    = module.secrets.values["azure-devops-github-USERNAME"].value
-    tenant_id       = data.azurerm_client_config.current.tenant_id
-    github_ro_token = module.posgw_prod_secrets.values["posgw-github-packages-read-bot-token"].value
+    git_mail                         = module.secrets.values["azure-devops-github-EMAIL"].value
+    git_username                     = module.secrets.values["azure-devops-github-USERNAME"].value
+    tenant_id                        = data.azurerm_client_config.current.tenant_id
+    github_ro_token                  = module.posgw_prod_secrets.values["posgw-github-packages-read-bot-token"].value
+    debtposition_handler_api_key_dev = module.posgw_dev_secrets.values["debtposition-handler-api-key"].value
   }
 }
 
